@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <h1>Facturas</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 text-right">
+      <%= link_to 'Nueva Factura', new_invoice_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <table class="table">
+        <thead>
+          <tr>
+              <th>Numero</th>
+              <th>Cliente</th>
+              <th>Fecha</th>
+              <th>Descuento</th>
+              <th colspan="3"></th>            
+          </tr>
+        </thead>
+        <tbody>
+          <% @invoices.each do |invoice| %>
+            <tr>
+              <td><%= invoice.numero %></td>
+              <td><%= invoice.client.nombre + ' '+invoice.client.apellido %></td>
+              <td><%= invoice.fecha %></td>
+              <td><%= invoice.descuento %></td>
+              <td><%= link_to 'Show', invoice %></td>
+              <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+              <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @account.client.nombre+' '+@account.client.apellido %>
+</p>
+
+<p>
+  <strong>Fecha entrada:</strong>
+  <%= @account.fecha_entrada %>
+</p>
+
+<p>
+  <strong>Fecha salida:</strong>
+  <%= @account.fecha_salida %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @account.total %>
+</p>
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

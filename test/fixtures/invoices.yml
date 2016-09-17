@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numero: 1
+  client_id: 
+  fecha: 2016-09-16
+  descuento: 1
+
+two:
+  numero: 1
+  client_id: 
+  fecha: 2016-09-16
+  descuento: 1

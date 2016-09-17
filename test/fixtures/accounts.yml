@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client_id: 
+  fecha_entrada: 2016-09-16
+  fecha_salida: 2016-09-16
+  total: 1
+
+two:
+  client_id: 
+  fecha_entrada: 2016-09-16
+  fecha_salida: 2016-09-16
+  total: 1

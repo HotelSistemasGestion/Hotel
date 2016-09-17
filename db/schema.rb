@@ -11,10 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905210907) do
+ActiveRecord::Schema.define(version: 20160916191907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "client_id"
+    t.date     "fecha_entrada"
+    t.date     "fecha_salida"
+    t.integer  "total"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "telefono"
+    t.string   "email"
+    t.text     "direccion"
+    t.string   "cedula"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.integer  "numero"
+    t.integer  "client_id"
+    t.date     "fecha"
+    t.integer  "descuento"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
+
+  create_table "services", force: :cascade do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.integer  "precio"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -34,4 +75,6 @@ ActiveRecord::Schema.define(version: 20160905210907) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "accounts", "clients"
+  add_foreign_key "invoices", "clients"
 end
