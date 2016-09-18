@@ -34,7 +34,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'validates_email_format_of'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

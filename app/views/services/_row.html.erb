@@ -1,0 +1,8 @@
+<tr id="<%= service.id %>">
+    <td><%= service.nombre %></td>
+    <td><%= service.descripcion %></td>
+    <td><%= service.precio %></td>
+    <td><%= link_to 'Ver', service, remote: true %></td>
+    <td><%= link_to 'Editar', edit_service_path(service), remote: true  %></td>
+    <td><%= link_to 'Eliminar', service, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+</tr>

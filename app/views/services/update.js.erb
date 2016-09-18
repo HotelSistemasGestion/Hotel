@@ -1,0 +1,8 @@
+<% if @service.errors.blank? %>
+  // add the row to the table, show alert and hide modal
+  $('#product-modal').modal('hide');
+  $('table tbody tr#<%= @service.id %>').replaceWith(' <%= j render "row", service: @service %>');
+  alert('El servicio ha sido modificado');
+<% else %>
+  alert('<%= @service.errors.full_messages[0] %>');
+<% end %>
