@@ -1,10 +1,16 @@
 <h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
 <li><a href="<%=dashboard_index_path%>"><i class='glyphicon glyphicon-link'></i> <span>Ingresar</span></a></li>
 
 
 
-<%if !user_signed_in? %>
-	<h1>Pedir Reservacion</h1>
-	<%= render 'reservation_requests/form' %>
-<%end%>
+
+	<% if notice %>
+        <div class="alert alert-success alert-dismissable">
+            <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <b><%= notice %></b>
+        </div>
+    <%end%>
+    <%if !user_signed_in? %>
+		<h1>Pedir Reservacion</h1>
+		<%= render 'reservation_requests/form' %>
+	<%end%>

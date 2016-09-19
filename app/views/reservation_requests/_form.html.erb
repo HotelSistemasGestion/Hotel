@@ -1,57 +1,88 @@
-<%= form_for(@reservation_request) do |f| %>
+<%= form_for(@reservation_request, html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @reservation_request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reservation_request.errors.count, "error") %> prohibited this reservation_request from being saved:</h2>
+    <div class="alert alert-danger alert-dismissable" role="alert" id="error">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@reservation_request.errors.count, "error") %> Ocurrio un error,por favor verifique los campos:</h4>
 
       <ul>
-      <% @reservation_request.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @reservation_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
+
+  <div class="form-group">
+    <%= f.label :nombre, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :nombre, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :apellido %><br>
-    <%= f.text_field :apellido %>
+  <div class="form-group">
+    <%= f.label :apellido, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :apellido, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+  <div class="form-group">
+    <%= f.label :email, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.email_field :email, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :telefono %><br>
-    <%= f.text_field :telefono %>
+  <div class="form-group">
+    <%= f.label :telefono, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :telefono, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :cantidad_de_adultos %><br>
-    <%= f.number_field :cantidad_de_adultos %>
+  <div class="form-group">
+    <%= f.label :cantidad_de_adultos, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :cantidad_de_adultos, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :cantidad_de_ninhos %><br>
-    <%= f.number_field :cantidad_de_ninhos %>
+  <div class="form-group">
+    <%= f.label :cantidad_de_ninhos, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :cantidad_de_ninhos, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :cantidad_de_familias %><br>
-    <%= f.number_field :cantidad_de_familias %>
+  <div class="form-group">
+    <%= f.label :cantidad_de_familias, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.number_field :cantidad_de_familias, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :check_in %><br>
-    <%= f.date_select :check_in %>
+   <div class="form-group">
+    <%= f.label :check_in, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.date_select :check_in, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :check_out %><br>
-    <%= f.date_select :check_out %>
+   <div class="form-group">
+    <%= f.label :check_out, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.date_select :check_out, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :comentarios %><br>
-    <%= f.text_area :comentarios %>
+   <div class="form-group">
+    <%= f.label :comentarios, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_area :comentarios, class: "form-control" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.label :recaptcha_tags, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+       <%= recaptcha_tags %>
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit  "Enviar Pedido",class: "btn btn-default" %>
+    </div>
   </div>
 <% end %>

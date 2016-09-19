@@ -130,6 +130,7 @@ GEM
     rake (11.2.2)
     rdoc (4.2.2)
       json (~> 1.4)
+    recaptcha (0.3.6)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     sass (3.4.22)
@@ -187,6 +188,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.5.1)
   rails_12factor
+  recaptcha
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   turbolinks

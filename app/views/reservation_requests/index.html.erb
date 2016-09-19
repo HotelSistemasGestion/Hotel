@@ -1,45 +1,49 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Reservation Requests</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Email</th>
-      <th>Telefono</th>
-      <th>Cantidad de adultos</th>
-      <th>Cantidad de ninhos</th>
-      <th>Cantidad de familias</th>
-      <th>Check in</th>
-      <th>Check out</th>
-      <th>Comentarios</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reservation_requests.each do |reservation_request| %>
-      <tr>
-        <td><%= reservation_request.nombre %></td>
-        <td><%= reservation_request.apellido %></td>
-        <td><%= reservation_request.email %></td>
-        <td><%= reservation_request.telefono %></td>
-        <td><%= reservation_request.cantidad_de_adultos %></td>
-        <td><%= reservation_request.cantidad_de_ninhos %></td>
-        <td><%= reservation_request.cantidad_de_familias %></td>
-        <td><%= reservation_request.check_in %></td>
-        <td><%= reservation_request.check_out %></td>
-        <td><%= reservation_request.comentarios %></td>
-        <td><%= link_to 'Show', reservation_request %></td>
-        <td><%= link_to 'Edit', edit_reservation_request_path(reservation_request) %></td>
-        <td><%= link_to 'Destroy', reservation_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%#= link_to 'New Reservation request', new_reservation_request_path %>
+<div class="page-header">
+  <%#= link_to new_customer_path, class: 'btn btn-primary' do %>
+    <!--span class="glyphicon glyphicon-plus"></span>
+    New Customer
+  <#% end %-->
+  <h1>Pedidos de Reserva</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Cantidad de adultos</th>
+            <th>Cantidad de ninhos</th>
+            <th>Cantidad de familias</th>
+            <th>Check in</th>
+            <th>Check out</th>
+            <th>Comentarios</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @reservation_requests) do |reservation_request| %>
+          <td><%= reservation_request.nombre %></td>
+          <td><%= reservation_request.apellido %></td>
+          <td><%= reservation_request.email %></td>
+          <td><%= reservation_request.telefono %></td>
+          <td><%= reservation_request.cantidad_de_adultos %></td>
+          <td><%= reservation_request.cantidad_de_ninhos %></td>
+          <td><%= reservation_request.cantidad_de_familias %></td>
+          <td><%= reservation_request.check_in %></td>
+          <td><%= reservation_request.check_out %></td>
+          <td><%= reservation_request.comentarios %></td>
+          <td><%= link_to 'Show', reservation_request %></td>
+          <td><%= link_to 'Edit', edit_reservation_request_path(reservation_request) %></td>
+          <td><%= link_to 'Destroy', reservation_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

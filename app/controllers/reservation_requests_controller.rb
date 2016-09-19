@@ -27,12 +27,14 @@ class ReservationRequestsController < ApplicationController
     @reservation_request = ReservationRequest.new(reservation_request_params)
 
     respond_to do |format|
-      if @reservation_request.save
-        format.html { redirect_to @reservation_request, notice: 'Reservation request was successfully created.' }
-        format.json { render :show, status: :created, location: @reservation_request }
+       if verify_recaptcha(model: @reservation_request) && @reservation_request.save
+        # Redireccionamos a welcome y especificamente a la seccion de contacto para mostrar el mensaje de exito.
+        format.html { redirect_to welcome_index_path(), notice: 'Su pedido fue creado con exito,en breve responderemos.' }
+        #format.json { render 'welcome/index' , status: :created, location: @reservation_request }
       else
-        format.html { render :new }
+        format.html { render 'welcome/index'}
         format.json { render json: @reservation_request.errors, status: :unprocessable_entity }
+        #format.html {redirect_to welcome_index_path(:anchor => 'contact'),json: @reservation_request.errors}
       end
     end
   end
