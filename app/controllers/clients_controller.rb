@@ -10,6 +10,10 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
+    @client = Client.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /clients/new
@@ -25,11 +29,9 @@ class ClientsController < ApplicationController
   # POST /clients.json
   def create
     @client = Client.new(client_params)
-
     respond_to do |format|
       if @client.save
-        format.html { redirect_to @client, notice: 'Client was successfully created.' }
-        format.json { render :show, status: :created, location: @client }
+         format.js { } # Hace un render a create.js.erb
       else
         format.html { render :new }
         format.json { render json: @client.errors, status: :unprocessable_entity }
@@ -42,8 +44,7 @@ class ClientsController < ApplicationController
   def update
     respond_to do |format|
       if @client.update(client_params)
-        format.html { redirect_to @client, notice: 'Client was successfully updated.' }
-        format.json { render :show, status: :ok, location: @client }
+        format.js { }
       else
         format.html { render :edit }
         format.json { render json: @client.errors, status: :unprocessable_entity }
