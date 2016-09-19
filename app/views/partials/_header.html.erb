@@ -99,17 +99,17 @@
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <!-- The user image in the navbar-->
-            <img src="/assets/user2-160x160.jpg" class="user-image" alt="User Image"/>
+            <!--img src="/assets/user2-160x160.jpg" class="user-image" alt="User Image"/-->
+            <%= image_tag "user2-160x160.jpg", :class =>"user-image" , alt: "User Image" %>
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-            <span class="hidden-xs"><%=current_user.email%>Usuario</span>
+            <span class="hidden-xs"><%=current_user.email%></span>
           </a>
           <ul class="dropdown-menu">
             <!-- The user image in the menu -->
             <li class="user-header">
-              <img src="/assets/user2-160x160.jpg" class="img-circle" alt="User Image" />
+            <%= image_tag "user2-160x160.jpg", :class =>"img-circle" , alt: "User Image" %>
               <p>
                 <%=current_user.email%>
-                Usuario
                 <small><%=current_user.remember_created_at%></small>
               </p>
             </li>
@@ -128,7 +128,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <a href="<%=edit_user_registration_path%>" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
                 <a href="<%=destroy_user_session_path%>" data-method="delete" class="btn btn-default btn-flat">Sign out</a>
