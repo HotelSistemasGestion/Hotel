@@ -1,33 +1,125 @@
-<%= form_for(@invoice) do |f| %>
-  <% if @invoice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+<div id="invoice-modal" class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Facturacion Manual</h4>
+      </div>
+      <%= form_for @invoice, remote: true do |f| %>        
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert" style="display: none;"></div>
+          <div class="form-group">
 
-      <ul>
-      <% @invoice.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= f.label 'Numero de Factura' %><br>
+                  <%= f.text_field :numero, class: "form-control input-lg", placeholder: "Numero de factura" %> 
+                </div>               
+              </div>
 
-  <div class="field">
-    <%= f.label :numero %><br>
-    <%= f.number_field :numero %>
-  </div>
-  <div class="field">
-    <%= f.label :client_id %><br>
-    <%= f.text_field :client_id %>
-  </div>
-  <div class="field">
-    <%= f.label :fecha %><br>
-    <%= f.date_select :fecha %>
-  </div>
-  <div class="field">
-    <%= f.label :descuento %><br>
-    <%= f.number_field :descuento %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= f.label :fecha %><br>
+                  <%= f.text_field :fecha, class: "form-control input-lg", placeholder: "Fecha" %>                                            
+                </div>
+              </div>  
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <%= f.label 'Forma de pago' %><br>
+                  <%= f.text_field :numero, class: "form-control input-lg", placeholder: "Forma de Pago" %> 
+                </div>               
+              </div>
+
+            </div>  
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Nombre</label>
+                <%= f.text_field :client_id, class: "form-control input-lg", placeholder: "Nombre" %>            
+              </div> 
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Apellido</label>
+                <%= f.text_field :descuento, class: "form-control input-lg", placeholder: "Apellido" %>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>C.I.N</label>
+                <%= f.text_field :descuento, class: "form-control input-lg", placeholder: "Numero de cedula" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><center><strong>Detalle</strong></center></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                          <td><strong>Item</strong></td>
+                          <td class="text-center"><strong>Price</strong></td>
+                          <td class="text-center"><strong>Quantity</strong></td>
+                          <td class="text-right"><strong>Total</strong></td>
+                        </tr>
+                      </thead>
+                      <tbody>     
+
+                        <tr>
+                          <td>BS-200</td>
+                          <td class="text-center">$10.99</td>
+                          <td class="text-center">1</td>
+                          <td class="text-right">$10.99</td>
+                        </tr>
+
+                        <tr>
+                          <td>BS-400</td>
+                          <td class="text-center">$20.00</td>
+                          <td class="text-center">3</td>
+                          <td class="text-right">$60.00</td>
+                        </tr>
+
+                        <tr>
+                          <td>BS-1000</td>
+                          <td class="text-center">$600.00</td>
+                          <td class="text-center">1</td>
+                          <td class="text-right">$600.00</td>
+                        </tr>                        
+
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+              <div class="form-group text-right">
+                <strong>Subtotal: </strong>           
+              </div> 
+              <div class="form-group text-right">
+                <strong>Descuento: </strong>           
+              </div> 
+              <div class="form-group text-right">
+                <strong>Total: </strong>           
+              </div> 
+          </div>
+        </div><!-- /.tabla-content -->
+      </div>
+      <div class="modal-footer">
+        <%= f.submit 'Facturar', class: "btn btn-primary btn-lg" %>
+      </div>
+    <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
