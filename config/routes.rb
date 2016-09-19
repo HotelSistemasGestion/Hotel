@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reservation_requests
   resources :services
   resources :accounts
   resources :invoices

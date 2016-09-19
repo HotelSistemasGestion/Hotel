@@ -1,0 +1,1 @@
+json.array! @reservation_requests, partial: 'reservation_requests/reservation_request', as: :reservation_request

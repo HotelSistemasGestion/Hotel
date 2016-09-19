@@ -1,0 +1,57 @@
+<%= form_for(@reservation_request) do |f| %>
+  <% if @reservation_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reservation_request.errors.count, "error") %> prohibited this reservation_request from being saved:</h2>
+
+      <ul>
+      <% @reservation_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :apellido %><br>
+    <%= f.text_field :apellido %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono %><br>
+    <%= f.text_field :telefono %>
+  </div>
+  <div class="field">
+    <%= f.label :cantidad_de_adultos %><br>
+    <%= f.number_field :cantidad_de_adultos %>
+  </div>
+  <div class="field">
+    <%= f.label :cantidad_de_ninhos %><br>
+    <%= f.number_field :cantidad_de_ninhos %>
+  </div>
+  <div class="field">
+    <%= f.label :cantidad_de_familias %><br>
+    <%= f.number_field :cantidad_de_familias %>
+  </div>
+  <div class="field">
+    <%= f.label :check_in %><br>
+    <%= f.date_select :check_in %>
+  </div>
+  <div class="field">
+    <%= f.label :check_out %><br>
+    <%= f.date_select :check_out %>
+  </div>
+  <div class="field">
+    <%= f.label :comentarios %><br>
+    <%= f.text_area :comentarios %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+json.extract! reservation_request, :id, :nombre, :apellido, :email, :telefono, :cantidad_de_adultos, :cantidad_de_ninhos, :cantidad_de_familias, :check_in, :check_out, :comentarios, :created_at, :updated_at
+json.url reservation_request_url(reservation_request, format: :json)

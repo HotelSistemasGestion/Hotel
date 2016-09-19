@@ -1,0 +1,1 @@
+json.partial! "reservation_requests/reservation_request", reservation_request: @reservation_request

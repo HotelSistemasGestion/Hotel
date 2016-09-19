@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @reservation_request.nombre %>
+</p>
+
+<p>
+  <strong>Apellido:</strong>
+  <%= @reservation_request.apellido %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @reservation_request.email %>
+</p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @reservation_request.telefono %>
+</p>
+
+<p>
+  <strong>Cantidad de adultos:</strong>
+  <%= @reservation_request.cantidad_de_adultos %>
+</p>
+
+<p>
+  <strong>Cantidad de ninhos:</strong>
+  <%= @reservation_request.cantidad_de_ninhos %>
+</p>
+
+<p>
+  <strong>Cantidad de familias:</strong>
+  <%= @reservation_request.cantidad_de_familias %>
+</p>
+
+<p>
+  <strong>Check in:</strong>
+  <%= @reservation_request.check_in %>
+</p>
+
+<p>
+  <strong>Check out:</strong>
+  <%= @reservation_request.check_out %>
+</p>
+
+<p>
+  <strong>Comentarios:</strong>
+  <%= @reservation_request.comentarios %>
+</p>
+
+<%= link_to 'Edit', edit_reservation_request_path(@reservation_request) %> |
+<%= link_to 'Back', reservation_requests_path %>
