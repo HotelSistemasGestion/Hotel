@@ -1,0 +1,6 @@
+<% if @service.errors.blank? %>
+	$('#product-modal').modal('hide');
+	$('table tbody').append(' <%= j render "row", service: @service %>');		
+<% else %>
+  	alert('<%= @service.errors.full_messages[0] %>');
+<% end %>

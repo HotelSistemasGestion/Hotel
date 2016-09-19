@@ -1,0 +1,8 @@
+<% if @client.errors.blank? %>
+  // add the row to the table, show alert and hide modal
+  $('#product-modal').modal('hide');
+  $('table tbody tr#<%= @client.id %>').replaceWith(' <%= j render "row", client: @client %>');
+  alert('El cliente se modifico exitosamente');
+<% else %>
+  alert('<%= @client.errors.full_messages[0] %>');
+<% end %>

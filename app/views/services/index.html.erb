@@ -8,9 +8,8 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 text-right">
-      <%= link_to 'Nuevo Servicio', new_service_path, class: "btn btn-primary" %>
-    </div>
+      <div class="col-sm-10 col-sm-offset-1 text-right">
+        <%= link_to 'Nuevo Servicio', new_service_path, remote: true, class: "btn btn-primary" %> </div>
   </div>
 
   <div class="row">
@@ -26,14 +25,7 @@
         </thead>
         <tbody>
           <% @services.each do |service| %>
-            <tr>
-              <td><%= service.nombre %></td>
-              <td><%= service.descripcion %></td>
-              <td><%= service.precio %></td>
-              <td><%= link_to 'Show', service %></td>
-              <td><%= link_to 'Edit', edit_service_path(service) %></td>
-              <td><%= link_to 'Destroy', service, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
-            </tr>
+            <%= render "row", service: service %>
           <% end %>
         </tbody>
       </table>

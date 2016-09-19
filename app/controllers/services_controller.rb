@@ -9,7 +9,11 @@ class ServicesController < ApplicationController
 
   # GET /services/1
   # GET /services/1.json
-  def show
+  def show          
+    @service = Service.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /services/new
@@ -18,18 +22,16 @@ class ServicesController < ApplicationController
   end
 
   # GET /services/1/edit
-  def edit
+  def edit   
   end
 
   # POST /services
   # POST /services.json
   def create
     @service = Service.new(service_params)
-
     respond_to do |format|
-      if @service.save
-        format.html { redirect_to @service, notice: 'Service was successfully created.' }
-        format.json { render :show, status: :created, location: @service }
+      if @service.save        
+        format.js { } # Hace un render a create.js.erb
       else
         format.html { render :new }
         format.json { render json: @service.errors, status: :unprocessable_entity }
@@ -41,9 +43,8 @@ class ServicesController < ApplicationController
   # PATCH/PUT /services/1.json
   def update
     respond_to do |format|
-      if @service.update(service_params)
-        format.html { redirect_to @service, notice: 'Service was successfully updated.' }
-        format.json { render :show, status: :ok, location: @service }
+      if @service.update(service_params)        
+        format.js { }
       else
         format.html { render :edit }
         format.json { render json: @service.errors, status: :unprocessable_entity }
@@ -56,7 +57,7 @@ class ServicesController < ApplicationController
   def destroy
     @service.destroy
     respond_to do |format|
-      format.html { redirect_to services_url, notice: 'Service was successfully destroyed.' }
+      format.html { redirect_to services_url, notice: 'El servicio ha sido eliminado.' }
       format.json { head :no_content }
     end
   end

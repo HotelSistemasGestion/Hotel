@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 text-right">
-      <%= link_to 'Nuevo Cliente', new_client_path, class: "btn btn-primary" %>
+      <%= link_to 'Nuevo Cliente', new_client_path, remote: true, class: "btn btn-primary" %>
     </div>
   </div>
 
@@ -29,17 +29,7 @@
         </thead>
         <tbody>
           <% @clients.each do |client| %>
-            <tr>
-              <td><%= client.nombre %></td>
-              <td><%= client.apellido %></td>
-              <td><%= client.telefono %></td>
-              <td><%= client.email %></td>
-              <td><%= client.direccion %></td>
-              <td><%= client.cedula %></td>
-              <td><%= link_to 'Show', client %></td>
-              <td><%= link_to 'Edit', edit_client_path(client) %></td>
-              <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
-            </tr>
+            <%= render "row", client: client %>
           <% end %>
         </tbody>
       </table>
