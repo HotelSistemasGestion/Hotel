@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :rooms
+  resources :type_of_rooms
   resources :accounting_x_automatic_entries
   resources :accounting_x_entries
   resources :entries

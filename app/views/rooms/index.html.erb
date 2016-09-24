@@ -1,0 +1,45 @@
+<div class="page-header">
+  <%= link_to new_room_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Room
+  <% end %>
+  <h1>Listing rooms</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Type of room</th>
+    
+        <th>State</th>
+    
+        <th>Capacidad</th>
+    
+        <th>Identificador</th>
+    
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @rooms) do |room| %>
+    
+        <td><%= room.type_of_room %></td>
+    
+        <td><%= room.state %></td>
+    
+        <td><%= room.capacidad %></td>
+    
+        <td><%= room.identificador %></td>
+    
+        <td><%= link_to 'Show', room %></td>
+        <td><%= link_to 'Edit', edit_room_path(room) %></td>
+        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
