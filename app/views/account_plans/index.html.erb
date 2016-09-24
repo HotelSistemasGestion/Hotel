@@ -1,0 +1,41 @@
+<div class="page-header">
+  <%= link_to new_account_plan_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Account plan
+  <% end %>
+  <h1>Listing account_plans</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Descripcion</th>
+    
+        <th>Estado</th>
+    
+        <th>Version</th>
+    
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @account_plans) do |account_plan| %>
+    
+        <td><%= account_plan.descripcion %></td>
+    
+        <td><%= account_plan.estado %></td>
+    
+        <td><%= account_plan.version %></td>
+    
+        <td><%= link_to 'Show', account_plan %></td>
+        <td><%= link_to 'Edit', edit_account_plan_path(account_plan) %></td>
+        <td><%= link_to 'Destroy', account_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

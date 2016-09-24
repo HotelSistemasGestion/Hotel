@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to accounting_years_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_accounting_year_path(@accounting_year), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show accounting_year</h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt>Anho:</dt>
+  <dd><%= @accounting_year.anho %></dd>
+
+
+  <dt>Estado:</dt>
+  <dd><%= @accounting_year.estado %></dd>
+
+
+</dl>

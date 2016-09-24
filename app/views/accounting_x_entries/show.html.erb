@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to accounting_x_entries_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_accounting_x_entry_path(@accounting_x_entry), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show accounting_x_entry</h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt>Monto:</dt>
+  <dd><%= @accounting_x_entry.monto %></dd>
+
+
+  <dt>Observacion:</dt>
+  <dd><%= @accounting_x_entry.observacion %></dd>
+
+
+</dl>
