@@ -1,16 +1,498 @@
-<h1>Welcome#index</h1>
-<li><a href="<%=dashboard_index_path%>"><i class='glyphicon glyphicon-link'></i> <span>Ingresar</span></a></li>
+
+<!DOCTYPE html>
+ 
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hotel-Uni</title>
+
+    <%= stylesheet_link_tag "style" %>
+    <%= stylesheet_link_tag "animate" %>
+    <%= javascript_include_tag "main" %>
+
+   
+    <%= csrf_meta_tags %>
 
 
+    
+
+    </head>
+    <body>
+    <header role="banner" id="fh5co-header">
+            <div class="container">
+                <!-- <div class="row"> -->
+                <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <!-- Mobile Toggle Menu Button -->
+                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+                 <a class="navbar-brand" href="index.html">Hotel Uni</a> 
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#" data-nav-section="home"><span>Home</span></a></li>
+                    <li><a href="#" data-nav-section="Habitaciones"><span>Habitaciones</span></a></li>
+                    <li><a href="#" data-nav-section="testimonials"><span>Testimonials</span></a></li>
+                    <li><a href="#" data-nav-section="services"><span>Services</span></a></li>
+                    <li><a href="#" data-nav-section="about"><span>About</span></a></li>
+                    <li><a href="#" data-nav-section="contact"><span>Contact</span></a></li>
+                    <li><a href="<%=new_user_session_path%>" id="ingresar" ><span>Ingresar</span></a></li>
+                  </ul>
+                    
+                </div>
 
 
-	<% if notice %>
-        <div class="alert alert-success alert-dismissable">
-            <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <b><%= notice %></b>
+                </nav>
+              <!-- </div> -->
+          </div>
+
+    </header>
+
+    <section id="fh5co-home" data-section="home" style="background-image: url('/assets/full_image_2.jpg');" data-stellar-background-ratio="0.5">
+        <div class="gradient"></div>
+        <div class="container">
+            <div class="text-wrap">
+                <div class="text-inner">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h1 class="to-animate">Bienvenidos</h1>
+                            <h2 class="to-animate">Hotel-Uni</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    <%end%>
-    <%if !user_signed_in? %>
-		<h1>Pedir Reservacion</h1>
-		<%= render 'reservation_requests/form' %>
-	<%end%>
+        <div class="slant"></div>
+    </section>
+
+    <section id="fh5co-intro">
+        <div class="container">
+            <div class="row row-bottom-padded-lg">
+                <div class="fh5co-block to-animate" style="background-image: url('/assets/img_7.jpg');">
+                    <div class="overlay-darker"></div>
+                    <div class="overlay"></div>
+                    <div class="fh5co-text">
+                        <i class="fh5co-intro-icon fa fa-apple"></i>
+                        <h2>Plan</h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <p><a href="User/Log_in" class="btn btn-primary">Get In Touch</a></p>
+                    </div>
+                </div>
+                <div class="fh5co-block to-animate" style="background-image: url('/assets/img_8.jpg');">
+                    <div class="overlay-darker"></div>
+                    <div class="overlay"></div>
+                    <div class="fh5co-text">
+                        <i class="fh5co-intro-icon fa fa-apple"></i>
+                        <h2>Develop</h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <p><a href="#" class="btn btn-primary">Click Me</a></p>
+                    </div>
+                </div>
+                <div class="fh5co-block to-animate" style="background-image: url('/assets/img_10.jpg');">
+                    <div class="overlay-darker"></div>
+                    <div class="overlay"></div>
+                    <div class="fh5co-text">
+                        <i class="fh5co-intro-icon fa fa-apple"></i>
+                        <h2>Launch</h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <p><a href="#" class="btn btn-primary">Why Us?</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row watch-video text-center to-animate">
+                <span>Watch the video</span>
+
+                <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo btn-video"><i class="fa fa-play"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="fh5co-work" data-section="Habitaciones">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="to-animate">Nuestras Habitaciones</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-bottom-padded-sm">
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a  class="fh5co-project-item image-popup to-animate">
+                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <div class="fh5co-text">
+                        <h2>Project 1</h2>
+                        <span>Branding</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a class="fh5co-project-item image-popup to-animate">
+                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <div class="fh5co-text">
+                        <h2>Project 2</h2>
+                        <span>Web</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="clearfix visible-sm-block"></div>
+
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a  class="fh5co-project-item image-popup to-animate">
+                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <div class="fh5co-text">
+                        <h2>Project 3</h2>
+                        <span>Web</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a class="fh5co-project-item image-popup to-animate">
+                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <div class="fh5co-text">
+                        <h2>Project 4</h2>
+                        <span>UI/UX</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="clearfix visible-sm-block"></div>
+
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a  class="fh5co-project-item image-popup to-animate">
+                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <div class="fh5co-text">
+                        <h2>Project 1</h2>
+                        <span>Photography</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a  class="fh5co-project-item image-popup to-animate">
+                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <div class="fh5co-text">
+                        <h2>Project 2</h2>
+                        <span>Illustration</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="clearfix visible-sm-block"></div>
+
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a  class="fh5co-project-item image-popup to-animate">
+                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <div class="fh5co-text">
+                        <h2>Project 3</h2>
+                        <span>Web</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a class="fh5co-project-item image-popup to-animate">
+                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <div class="fh5co-text">
+                        <h2>Project 4</h2>
+                        <span>Sketch</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="clearfix visible-sm-block"></div>
+
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a  class="fh5co-project-item image-popup to-animate">
+                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <div class="fh5co-text">
+                        <h2>Project 2</h2>
+                        <span>Illustration</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fh5co-testimonials" data-section="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="to-animate">Testimonials</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box-testimony">
+                        <blockquote class="to-animate-2">
+                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+                        </blockquote>
+                        <div class="author to-animate">
+                            <figure><%= image_tag "user7-128x128.jpg" , alt: "Person" %></figure>
+                            <p>
+                            Jean Doe, CEO <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-testimony">
+                        <blockquote class="to-animate-2">
+                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+                        </blockquote>
+                        <div class="author to-animate">
+                            <figure><%= image_tag "user7-128x128.jpg" , alt: "Person" %></figure>
+                            <p>
+                            John Doe, Senior UI <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="box-testimony">
+                        <blockquote class="to-animate-2">
+                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. &rdquo;</p>
+                        </blockquote>
+                        <div class="author to-animate">
+                            <figure><%= image_tag "user7-128x128.jpg" , alt: "Person" %></figure>
+                            <p>
+                            Chris Nash, Director <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+
+    <section id="fh5co-services" data-section="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-heading text-left">
+                    <h2 class=" left-border to-animate">Services</h2>
+                    <div class="row">
+                        <div class="col-md-8 subtext to-animate">
+                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <h3>Brand &amp; Strategy</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+                </div>
+                <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <h3>Web &amp; Interface</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+                </div>
+
+                <div class="clearfix visible-sm-block"></div>
+
+                <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <h3>Photo &amp; Video</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+                </div>
+                <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <h3>CMS &amp; eCommerce</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <section id="fh5co-about" data-section="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="to-animate">About</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="fh5co-person text-center to-animate">
+                        <figure><%= image_tag "user7-128x128.jpg" , alt: "Image" %></figure>
+                        <h3>Ing Fabrizio Gonzalez</h3>
+                        <span class="fh5co-position">Web Designer</span>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+                        <ul class="social social-circle">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fh5co-person text-center to-animate">
+                        <figure><%= image_tag "user7-128x128.jpg" , alt: "Image" %></figure>
+                        <h3>Ing Fabrizio Gonzalez</h3>
+                        <span class="fh5co-position">Web Developer</span>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+                        <ul class="social social-circle">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="fh5co-person text-center to-animate">
+                        <figure><%= image_tag "user7-128x128.jpg" , alt: "Image" %></figure>
+                        <h3>Ing Fabrizio Gonzalez</h3>
+                        <span class="fh5co-position">Web Designer</span>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts</p>
+                        <ul class="social social-circle">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="fh5co-counters" style="background-image: url('/assets/full_image_2.jpg');" data-stellar-background-ratio="0.5">
+        <div class="fh5co-overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-heading text-center to-animate">
+                    <h2>Lo que se te ocurra</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fh5co-counter to-animate">
+                        <i class="fh5co-counter-icon icon-briefcase to-animate-2"></i>
+                        <span class="fh5co-counter-number js-counter" data-from="0" data-to="89" data-speed="5000" data-refresh-interval="50">89</span>
+                        <span class="fh5co-counter-label">Finished projects</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fh5co-counter to-animate">
+                        <i class="fh5co-counter-icon icon-code to-animate-2"></i>
+                        <span class="fh5co-counter-number js-counter" data-from="0" data-to="2343409" data-speed="5000" data-refresh-interval="50">2343409</span>
+                        <span class="fh5co-counter-label">Line of codes</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fh5co-counter to-animate">
+                        <i class="fh5co-counter-icon icon-cup to-animate-2"></i>
+                        <span class="fh5co-counter-number js-counter" data-from="0" data-to="1302" data-speed="5000" data-refresh-interval="50">1302</span>
+                        <span class="fh5co-counter-label">Cup of coffees</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fh5co-counter to-animate">
+                        <i class="fh5co-counter-icon icon-people to-animate-2"></i>
+                        <span class="fh5co-counter-number js-counter" data-from="0" data-to="52" data-speed="5000" data-refresh-interval="50">52</span>
+                        <span class="fh5co-counter-label">Happy clients</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fh5co-contact" data-section="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="to-animate">Get In Touch</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-bottom-padded-md">
+                <div class="col-md-5 to-animate">
+                    <h3>Contact Info</h3>
+                    <ul class="fh5co-contact-info">
+                        <li class="fh5co-contact-address ">
+                            <i class="icon-home"></i>
+                            5555 Love Paradise 56 New Clity 5655, <br>Excel Tower United Kingdom
+                        </li>
+                        <li><i class="icon-phone"></i> (123) 465-6789</li>
+                        <li><i class="icon-envelope"></i>info@freehtml5.co</li>
+                        <li><i class="icon-globe"></i> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 to-animate">
+                    <% if notice %>
+                        <div class="alert alert-success alert-dismissable">
+                        <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <b><%= notice %></b>
+                        </div>
+                        <%end%>
+                        <%if !user_signed_in? %>
+                        <h1>Pedir Reservacion</h1>
+                        <%= render 'reservation_requests/form' %>
+                <%end%>
+                </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="map" class="to-animate"></div>
+        <p><center>Aqui va un mapa de localizacion si quieren.</center></p>
+    </section>
+    
+    
+    <footer id="footer" role="contentinfo">
+        <a href="#" class="gotop js-gotop"><i class="icon-arrow-up2"></i></a>
+        <div class="container">
+            <div class="">
+                <div class="col-md-12 text-center">
+                    <p>&copy; Elate Free HTML5. All Rights Reserved. <br>Created by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> Images: <a href="http://pexels.com/" target="_blank">Pexels</a>, <a href="http://plmd.me/" target="_blank">plmd.me</a></p>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <ul class="social social-circle">
+                        <li><a href="#"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#"><i class="icon-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    
+    <!-- jQuery -->
+    
+
+    </body>
+</html>
+
+
+
+
+
+
