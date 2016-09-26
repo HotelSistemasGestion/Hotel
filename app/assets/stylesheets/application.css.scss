@@ -1,7 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+@import "bootstrap-datepicker3";
+@import "magnific-popup";
+
+@import "style";
+@import "animate";
+
 @import "skin";
 @import "custom";
 @import "font-awesome";
-@import "bootstrap-datepicker3";
-@import "magnific-popup";

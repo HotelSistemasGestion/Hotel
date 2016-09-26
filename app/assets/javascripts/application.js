@@ -9,3 +9,4 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require app
 //= require custom
+//= require main
