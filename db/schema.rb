@@ -11,10 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919140146) do
+ActiveRecord::Schema.define(version: 20160924140730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_plans", force: :cascade do |t|
+    t.string   "descripcion"
+    t.string   "estado"
+    t.string   "version"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "account_x_plans", force: :cascade do |t|
+    t.string   "cuenta_superior"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "accounting_accounts", force: :cascade do |t|
+    t.string   "nombre"
+    t.boolean  "imputable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "accounting_x_automatic_entries", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "accounting_x_entries", force: :cascade do |t|
+    t.integer  "monto"
+    t.string   "observacion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "accounting_years", force: :cascade do |t|
+    t.integer  "anho"
+    t.string   "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "client_id"
@@ -34,6 +74,21 @@ ActiveRecord::Schema.define(version: 20160919140146) do
     t.string   "email"
     t.text     "direccion"
     t.string   "cedula"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comforts", force: :cascade do |t|
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.integer  "numero"
+    t.date     "fecha"
+    t.integer  "debe"
+    t.integer  "haber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,10 +119,45 @@ ActiveRecord::Schema.define(version: 20160919140146) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "room_comforts", force: :cascade do |t|
+    t.integer  "room_id"
+    t.integer  "comfort_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "room_comforts", ["comfort_id"], name: "index_room_comforts_on_comfort_id", using: :btree
+  add_index "room_comforts", ["room_id"], name: "index_room_comforts_on_room_id", using: :btree
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer  "type_of_room_id"
+    t.integer  "state_id"
+    t.integer  "capacidad"
+    t.string   "identificador"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "rooms", ["state_id"], name: "index_rooms_on_state_id", using: :btree
+  add_index "rooms", ["type_of_room_id"], name: "index_rooms_on_type_of_room_id", using: :btree
+
   create_table "services", force: :cascade do |t|
     t.string   "nombre"
     t.text     "descripcion"
     t.integer  "precio"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "type_of_rooms", force: :cascade do |t|
+    t.string   "tipo"
+    t.string   "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -92,4 +182,8 @@ ActiveRecord::Schema.define(version: 20160919140146) do
 
   add_foreign_key "accounts", "clients"
   add_foreign_key "invoices", "clients"
+  add_foreign_key "room_comforts", "comforts"
+  add_foreign_key "room_comforts", "rooms"
+  add_foreign_key "rooms", "states"
+  add_foreign_key "rooms", "type_of_rooms"
 end
