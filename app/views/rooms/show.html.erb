@@ -13,11 +13,11 @@
 <dl class="dl-horizontal">
 
   <dt>Type of room:</dt>
-  <dd><%= @room.type_of_room %></dd>
+  <dd><%= @room.type_of_room_tipo %></dd>
 
 
   <dt>State:</dt>
-  <dd><%= @room.state %></dd>
+  <dd><%= @room.state_descripcion %></dd>
 
 
   <dt>Capacidad:</dt>
@@ -26,6 +26,13 @@
 
   <dt>Identificador:</dt>
   <dd><%= @room.identificador %></dd>
-
+  
+  
+  <% @room_comforts.each  do |room|  %>
+      
+            <dt><%= "Comfort:" %></dt>
+            <dd><%= room.comfort_descripcion%></dd>
+      
+  <% end %>
 
 </dl>

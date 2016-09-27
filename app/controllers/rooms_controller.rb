@@ -10,11 +10,18 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @room_comforts = RoomComfort.where("#{:room_id} = ?", params[:id])
+   # @r = Comfort.where("#{:room_id} = ?", params[room_comforts.room_id])
+    puts "hola"
+    puts @room_comforts
+    @room = Room.find(params[:id])
+
   end
 
   # GET /rooms/new
   def new
     @room = Room.new
+    @room.room_comforts.build
   end
 
   # GET /rooms/1/edit
@@ -28,8 +35,9 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to @room, notice: 'Person was successfully created.' }
         format.json { render :show, status: :created, location: @room }
+        format.js   { render action: 'show', status: :created, location: @room }
       else
         format.html { render :new }
         format.json { render json: @room.errors, status: :unprocessable_entity }
@@ -69,6 +77,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:type_of_room_id, :state_id, :capacidad, :identificador)
+      params.require(:room).permit(:type_of_room_id, :state_id, :capacidad, :identificador,room_comforts_attributes: [:room_id,:comfort_id,:_destroy])
     end
 end

@@ -10,7 +10,7 @@ gem "font-awesome-rails"
 #Lo que se necesita para bootstrap
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
-
+gem 'nested_form'
 gem "recaptcha", require: "recaptcha/rails"
 
 

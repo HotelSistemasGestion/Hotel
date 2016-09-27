@@ -1,0 +1,56 @@
+<!-- Modal -->
+<div class="modal fade" id="show-modal">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Detalles</h4>
+      </div>
+      
+      <div class="modal-body">
+
+          <div class="alert alert-danger" role="alert" style="display: none;"></div>
+
+          <div class="form-group">
+            <p>
+              <strong>Nombre:</strong>
+              <%= @room.type_of_room_id %>
+            </p>       
+          </div>
+
+          <div class="form-group">
+            <p>
+              <strong>Descripcion:</strong>
+              <%= @room.state_id %>
+            </p>          
+          </div>
+
+          <div class="form-group">
+            <p>
+              <strong>Precio:</strong>
+              <%= @room.capacidad %>
+            </p> 
+          </div>
+          <div class="form-group">
+             <p>
+               <strong>Precio:</strong>
+               <%= @room.identificador %>
+             </p> 
+          </div>
+          <% @rooms_comforts.each  do |room|  %>
+
+            <dt><%= "Comfort:" %></dt>
+            <dd><%= room.comfort_id %></dd>
+          <% end %>
+
+      </div>
+
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Aceptar</button>
+      </div>
+
+    </div>      
+  </div>
+</div>
