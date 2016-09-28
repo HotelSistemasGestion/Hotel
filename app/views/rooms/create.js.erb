@@ -1,6 +1,7 @@
 <% if @room.errors.blank? %>
-	//$('#product-modal').modal('hide');
-	//$('table tbody').append(' <%= j render "row", client: @client %>');		
+	$('#product-modal').modal('hide');
+	$('table tbody').append(' <%= j render "row", room: @room %>');	
+	alert("Habitación Creada");
 <% else %>
   	alert('<%= @room.errors.full_messages[0] %>');
 <% end %>

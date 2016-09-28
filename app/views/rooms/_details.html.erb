@@ -29,20 +29,20 @@
 
           <div class="form-group">
             <p>
-              <strong>Precio:</strong>
+              <strong>Capacidad:</strong>
               <%= @room.capacidad %>
             </p> 
           </div>
           <div class="form-group">
              <p>
-               <strong>Precio:</strong>
+               <strong>Identificador:</strong>
                <%= @room.identificador %>
              </p> 
           </div>
-          <% @rooms_comforts.each  do |room|  %>
+          <% @room_comforts.each  do |room|  %>
 
             <dt><%= "Comfort:" %></dt>
-            <dd><%= room.comfort_id %></dd>
+            <dd><%= room.comfort_descripcion %></dd>
           <% end %>
 
       </div>
