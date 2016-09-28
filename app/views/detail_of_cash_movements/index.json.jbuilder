@@ -1,0 +1,1 @@
+json.array! @detail_of_cash_movements, partial: 'detail_of_cash_movements/detail_of_cash_movement', as: :detail_of_cash_movement

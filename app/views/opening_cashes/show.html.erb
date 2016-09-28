@@ -1,0 +1,23 @@
+<div class="page-header">
+  <%= link_to opening_cashes_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_opening_cash_path(@opening_cash), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show opening_cash</h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt>Fecha apertura:</dt>
+  <dd><%= @opening_cash.fecha_apertura %></dd>
+
+
+  <dt>Monto efectivo:</dt>
+  <dd><%= @opening_cash.monto_efectivo %></dd>
+
+
+</dl>

@@ -1,0 +1,2 @@
+module CashesHelper
+end

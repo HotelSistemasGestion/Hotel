@@ -1,0 +1,1 @@
+json.partial! "closing_cashes/closing_cash", closing_cash: @closing_cash

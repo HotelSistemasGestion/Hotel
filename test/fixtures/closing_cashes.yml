@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_cierre: 2016-09-27
+  monto_efectivo: 1
+  monto_cheque: 1
+  monto_tcredito: 1
+  monto_tdebito: 1
+
+two:
+  fecha_cierre: 2016-09-27
+  monto_efectivo: 1
+  monto_cheque: 1
+  monto_tcredito: 1
+  monto_tdebito: 1

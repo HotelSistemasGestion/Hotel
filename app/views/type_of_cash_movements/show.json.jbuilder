@@ -1,0 +1,1 @@
+json.partial! "type_of_cash_movements/type_of_cash_movement", type_of_cash_movement: @type_of_cash_movement
