@@ -1,0 +1,2 @@
+json.extract! detail_of_payment_type, :id, :titular, :banco, :numero, :tipo_tarjeta, :fecha_disponibilidad, :created_at, :updated_at
+json.url detail_of_payment_type_url(detail_of_payment_type, format: :json)

@@ -1,0 +1,33 @@
+<div class="page-header">
+  <%= link_to new_type_of_cash_movement_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Type of cash movement
+  <% end %>
+  <h1>Listing type_of_cash_movements</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Descripcion</th>
+    
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @type_of_cash_movements) do |type_of_cash_movement| %>
+    
+        <td><%= type_of_cash_movement.descripcion %></td>
+    
+        <td><%= link_to 'Show', type_of_cash_movement %></td>
+        <td><%= link_to 'Edit', edit_type_of_cash_movement_path(type_of_cash_movement) %></td>
+        <td><%= link_to 'Destroy', type_of_cash_movement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

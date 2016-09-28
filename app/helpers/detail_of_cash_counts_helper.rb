@@ -1,0 +1,2 @@
+module DetailOfCashCountsHelper
+end

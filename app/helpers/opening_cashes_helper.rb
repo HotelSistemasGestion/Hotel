@@ -1,0 +1,2 @@
+module OpeningCashesHelper
+end

@@ -1,0 +1,33 @@
+<div class="page-header">
+  <%= link_to new_cash_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Cash
+  <% end %>
+  <h1>Listing cashes</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Descripcion</th>
+    
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @cashes) do |cash| %>
+    
+        <td><%= cash.descripcion %></td>
+    
+        <td><%= link_to 'Show', cash %></td>
+        <td><%= link_to 'Edit', edit_cash_path(cash) %></td>
+        <td><%= link_to 'Destroy', cash, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

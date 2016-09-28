@@ -25,7 +25,6 @@ class ReservationRequestsController < ApplicationController
   # POST /reservation_requests.json
   def create
     @reservation_request = ReservationRequest.new(reservation_request_params)
-
     respond_to do |format|
        if verify_recaptcha(model: @reservation_request) && @reservation_request.save
         # Redireccionamos a welcome y especificamente a la seccion de contacto para mostrar el mensaje de exito.

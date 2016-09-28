@@ -1,0 +1,1 @@
+json.array! @closing_cashes, partial: 'closing_cashes/closing_cash', as: :closing_cash
