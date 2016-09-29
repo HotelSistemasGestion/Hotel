@@ -1,0 +1,2 @@
+module TypeOfRoomsHelper
+end

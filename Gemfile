@@ -7,14 +7,23 @@ gem 'bootstrap-generators', '~> 3.3.4'
 gem 'devise'
 #iconos lindos
 gem "font-awesome-rails"
+#complementos de jquery
+gem 'jquery-easing-rails'
+gem 'stellar-js-rails'
+gem 'magnific-popup-rails', '~> 1.1.0'
+gem 'waypoints-rails'
 #Lo que se necesita para bootstrap
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
-
+#Gema Para usar captcha
 gem "recaptcha", require: "recaptcha/rails"
+#bootstrap datepicker
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
-
-
+# para el data-table
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -68,7 +77,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# para el data-table
-gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails'
-gem 'kaminari'
-gem 'kaminari-bootstrap'
+
+

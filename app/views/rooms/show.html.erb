@@ -1,0 +1,31 @@
+<div class="page-header">
+  <%= link_to rooms_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_room_path(@room), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show room</h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt>Type of room:</dt>
+  <dd><%= @room.type_of_room %></dd>
+
+
+  <dt>State:</dt>
+  <dd><%= @room.state %></dd>
+
+
+  <dt>Capacidad:</dt>
+  <dd><%= @room.capacidad %></dd>
+
+
+  <dt>Identificador:</dt>
+  <dd><%= @room.identificador %></dd>
+
+
+</dl>

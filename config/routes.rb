@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   resources :accounting_entries
+=======
+  resources :rooms
+  resources :type_of_rooms
+  resources :accounting_x_automatic_entries
+  resources :accounting_x_entries
+  resources :entries
+  resources :accounting_years
+  resources :account_x_plans
+>>>>>>> master
   resources :accounting_accounts
   resources :account_plans
   get 'diary_book/diario'
