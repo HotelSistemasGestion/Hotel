@@ -1,0 +1,19 @@
+<div class="page-header">
+  <%= link_to cash_counts_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_cash_count_path(@cash_count), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show cash_count</h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt>Fecha arqueo:</dt>
+  <dd><%= @cash_count.fecha_arqueo %></dd>
+
+
+</dl>

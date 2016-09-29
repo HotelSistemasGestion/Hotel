@@ -1,7 +1,20 @@
 Rails.application.routes.draw do
 <<<<<<< HEAD
+<<<<<<< HEAD
   resources :accounting_entries
 =======
+=======
+  resources :detail_of_payment_types
+  resources :payment_types
+  resources :detail_of_cash_movements
+  resources :detail_of_cash_counts
+  resources :cash_movements
+  resources :type_of_cash_movements
+  resources :cash_counts
+  resources :closing_cashes
+  resources :opening_cashes
+  resources :cashes
+>>>>>>> origin/master
   resources :rooms
   resources :type_of_rooms
   resources :accounting_x_automatic_entries

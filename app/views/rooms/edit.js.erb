@@ -1,0 +1,4 @@
+$('<%= j render "form", title: "Editar la Habitación" %>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();

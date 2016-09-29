@@ -1,0 +1,1 @@
+json.partial! "detail_of_cash_counts/detail_of_cash_count", detail_of_cash_count: @detail_of_cash_count

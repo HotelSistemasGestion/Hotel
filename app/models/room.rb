@@ -1,4 +1,10 @@
 class Room < ActiveRecord::Base
   belongs_to :type_of_room
   belongs_to :state
-end
+  has_many :room_comforts
+  delegate :tipo, to: :type_of_room, prefix: true, allow_nil: true
+  delegate :descripcion, to: :state, prefix: true, allow_nil: true
+  accepts_nested_attributes_for :room_comforts ,:allow_destroy => true
+
+
+end 

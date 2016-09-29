@@ -1,3 +1,4 @@
+<<<<<<< HEAD:test/fixtures/accounting_entries.yml
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
@@ -13,3 +14,18 @@ two:
   iva: 1
   debe: 1
   haber: 1
+=======
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numero: 1
+  fecha: 2016-09-23
+  debe: 1
+  haber: 1
+
+two:
+  numero: 1
+  fecha: 2016-09-23
+  debe: 1
+  haber: 1
+>>>>>>> origin/master:test/fixtures/entries.yml

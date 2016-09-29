@@ -11,11 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160929042834) do
-=======
-ActiveRecord::Schema.define(version: 20160924140730) do
->>>>>>> master
+
+ActiveRecord::Schema.define(version: 20160928005947) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +113,24 @@ ActiveRecord::Schema.define(version: 20160924140730) do
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
 
+  create_table "cash_counts", force: :cascade do |t|
+    t.date     "fecha_arqueo"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "cash_movements", force: :cascade do |t|
+    t.integer  "monto_total"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "cashes", force: :cascade do |t|
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "clients", force: :cascade do |t|
     t.string   "nombre"
     t.string   "apellido"
@@ -127,11 +143,47 @@ ActiveRecord::Schema.define(version: 20160924140730) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+  create_table "closing_cashes", force: :cascade do |t|
+    t.date     "fecha_cierre"
+    t.integer  "monto_efectivo"
+    t.integer  "monto_cheque"
+    t.integer  "monto_tcredito"
+    t.integer  "monto_tdebito"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+>>>>>>> origin/master
   create_table "comforts", force: :cascade do |t|
     t.string   "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "detail_of_cash_counts", force: :cascade do |t|
+    t.integer  "monto_sistema"
+    t.integer  "monto_caja"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "detail_of_cash_movements", force: :cascade do |t|
+    t.integer  "sub_monto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "detail_of_payment_types", force: :cascade do |t|
+    t.string   "titular"
+    t.string   "banco"
+    t.integer  "numero"
+    t.string   "tipo_tarjeta"
+    t.date     "fecha_disponibilidad"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "entries", force: :cascade do |t|
@@ -154,6 +206,19 @@ ActiveRecord::Schema.define(version: 20160924140730) do
   end
 
   add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
+
+  create_table "opening_cashes", force: :cascade do |t|
+    t.date     "fecha_apertura"
+    t.integer  "monto_efectivo"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "payment_types", force: :cascade do |t|
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "reservation_requests", force: :cascade do |t|
     t.string   "nombre"
@@ -201,6 +266,12 @@ ActiveRecord::Schema.define(version: 20160924140730) do
   end
 
   create_table "states", force: :cascade do |t|
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "type_of_cash_movements", force: :cascade do |t|
     t.string   "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

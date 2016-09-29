@@ -1,5 +1,5 @@
 GIT
-<<<<<<< HEAD
+
   remote: git://github.com/rweng/jquery-datatables-rails
   revision: d486b31b192a2924b1913e080ad23460e6b96d31
   specs:
@@ -8,13 +8,13 @@ GIT
       jquery-rails
       railties (>= 3.1)
       sass-rails
-=======
+
   remote: git://github.com/Nerian/bootstrap-datepicker-rails.git
   revision: 4b8252531307852c5cd2cf6d6faa5a303fc795dd
   specs:
     bootstrap-datepicker-rails (1.6.4.1)
       railties (>= 3.0)
->>>>>>> master
+
 
 GEM
   remote: https://rubygems.org/
@@ -116,6 +116,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
+    nested_form (0.3.2)
     nokogiri (1.6.8-x86-mingw32)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
@@ -226,7 +227,11 @@ DEPENDENCIES
   jquery-easing-rails
   jquery-rails
   magnific-popup-rails (~> 1.1.0)
+<<<<<<< HEAD
 >>>>>>> master
+=======
+  nested_form
+>>>>>>> origin/master
   pg
   rails (= 4.2.5.1)
   rails_12factor

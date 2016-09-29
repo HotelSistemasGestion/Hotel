@@ -1,0 +1,1 @@
+json.array! @type_of_cash_movements, partial: 'type_of_cash_movements/type_of_cash_movement', as: :type_of_cash_movement

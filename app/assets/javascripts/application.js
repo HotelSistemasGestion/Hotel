@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery.easing
 //= require jquery.stellar
+//= require jquery_nested_form
 //= require magnific-popup
 //= require waypoints
 //= require bootstrap
@@ -15,4 +16,8 @@
 =======
 //= require custom
 //= require main
+<<<<<<< HEAD
 >>>>>>> master
+=======
+
+>>>>>>> origin/master

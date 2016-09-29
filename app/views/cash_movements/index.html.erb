@@ -1,0 +1,33 @@
+<div class="page-header">
+  <%= link_to new_cash_movement_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Cash movement
+  <% end %>
+  <h1>Listing cash_movements</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Monto total</th>
+    
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @cash_movements) do |cash_movement| %>
+    
+        <td><%= cash_movement.monto_total %></td>
+    
+        <td><%= link_to 'Show', cash_movement %></td>
+        <td><%= link_to 'Edit', edit_cash_movement_path(cash_movement) %></td>
+        <td><%= link_to 'Destroy', cash_movement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

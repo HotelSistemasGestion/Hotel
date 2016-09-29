@@ -1,0 +1,19 @@
+<div class="page-header">
+  <%= link_to cashes_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_cash_path(@cash), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show cash</h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt>Descripcion:</dt>
+  <dd><%= @cash.descripcion %></dd>
+
+
+</dl>

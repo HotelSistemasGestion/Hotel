@@ -1,0 +1,11 @@
+<tr id="<%= room.id %>">
+	<td><%= room.id %></td>
+    <td><%= room.type_of_room_id %></td>
+    <td><%= room.state_descripcion %></td>
+    <td><%= room.capacidad %></td>
+    <td><%= room.identificador %></td>
+    
+    <td><%= link_to 'Ver', room, remote: true %></td>
+    <td><%= link_to 'Editar', edit_room_path(room), remote: true  %></td>
+    <td><%= link_to 'Eliminar', room, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+</tr>
