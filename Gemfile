@@ -20,6 +20,7 @@ gem "recaptcha", require: "recaptcha/rails"
 #bootstrap datepicker
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
+
 # para el data-table
 gem 'jquery-datatables-rails'
 gem 'kaminari'
@@ -27,7 +28,6 @@ gem 'kaminari-bootstrap'
 
 #formularios anidados
 gem 'nested_form'
-
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -80,5 +80,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-

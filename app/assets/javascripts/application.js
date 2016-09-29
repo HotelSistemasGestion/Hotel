@@ -12,7 +12,7 @@
 
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require np.js
+//= require np
 
 //= require custom
 //= require main
