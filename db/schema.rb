@@ -142,10 +142,7 @@ ActiveRecord::Schema.define(version: 20160928005947) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
+
   create_table "closing_cashes", force: :cascade do |t|
     t.date     "fecha_cierre"
     t.integer  "monto_efectivo"
@@ -156,7 +153,7 @@ ActiveRecord::Schema.define(version: 20160928005947) do
     t.datetime "updated_at",     null: false
   end
 
->>>>>>> origin/master
+
   create_table "comforts", force: :cascade do |t|
     t.string   "descripcion"
     t.datetime "created_at",  null: false
@@ -195,7 +192,7 @@ ActiveRecord::Schema.define(version: 20160928005947) do
     t.datetime "updated_at", null: false
   end
 
->>>>>>> master
+
   create_table "invoices", force: :cascade do |t|
     t.integer  "numero"
     t.integer  "client_id"

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
@@ -6,7 +6,7 @@ one:
 
 two:
   cuenta_superior: 1
-=======
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
@@ -14,4 +14,3 @@ one:
 
 two:
   cuenta_superior: MyString
->>>>>>> origin/master

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 require 'test_helper'
 
 class AccountingAccountsControllerTest < ActionController::TestCase
@@ -48,7 +48,7 @@ class AccountingAccountsControllerTest < ActionController::TestCase
     assert_redirected_to accounting_accounts_path
   end
 end
-=======
+
 require 'test_helper'
 
 class AccountingAccountsControllerTest < ActionController::TestCase
@@ -98,4 +98,4 @@ class AccountingAccountsControllerTest < ActionController::TestCase
     assert_redirected_to accounting_accounts_path
   end
 end
->>>>>>> origin/master
+

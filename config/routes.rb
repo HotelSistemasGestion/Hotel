@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resources :accounting_entries
-=======
-=======
+
+ 
+
   resources :detail_of_payment_types
   resources :payment_types
   resources :detail_of_cash_movements
@@ -14,15 +12,10 @@ Rails.application.routes.draw do
   resources :closing_cashes
   resources :opening_cashes
   resources :cashes
->>>>>>> origin/master
+
   resources :rooms
   resources :type_of_rooms
-  resources :accounting_x_automatic_entries
-  resources :accounting_x_entries
-  resources :entries
-  resources :accounting_years
-  resources :account_x_plans
->>>>>>> master
+  resources :accounting_entries
   resources :accounting_accounts
   resources :account_plans
   get 'diary_book/diario'

@@ -21,7 +21,7 @@ gem "recaptcha", require: "recaptcha/rails"
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
 # para el data-table
-gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails'
+gem 'jquery-datatables-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 

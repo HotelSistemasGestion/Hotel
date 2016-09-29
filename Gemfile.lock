@@ -218,20 +218,18 @@ DEPENDENCIES
   devise
   font-awesome-rails
   jbuilder (~> 2.0)
-<<<<<<< HEAD
+
   jquery-datatables-rails!
   jquery-rails
   kaminari
   kaminari-bootstrap
-=======
+
   jquery-easing-rails
   jquery-rails
   magnific-popup-rails (~> 1.1.0)
-<<<<<<< HEAD
->>>>>>> master
-=======
+
   nested_form
->>>>>>> origin/master
+
   pg
   rails (= 4.2.5.1)
   rails_12factor
