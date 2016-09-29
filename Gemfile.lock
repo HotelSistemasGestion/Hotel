@@ -228,10 +228,14 @@ DEPENDENCIES
   jquery-rails
   magnific-popup-rails (~> 1.1.0)
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> master
 =======
   nested_form
 >>>>>>> origin/master
+=======
+  nested_form
+>>>>>>> 35fe10f882090135e42e3d21e3449f1af8637751
   pg
   rails (= 4.2.5.1)
   rails_12factor

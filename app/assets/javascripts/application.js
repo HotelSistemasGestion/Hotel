@@ -17,7 +17,11 @@
 //= require custom
 //= require main
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> master
 =======
 
 >>>>>>> origin/master
+=======
+
+>>>>>>> 35fe10f882090135e42e3d21e3449f1af8637751

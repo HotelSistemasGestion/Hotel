@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
@@ -21,3 +22,14 @@ two:
   nombre: MyString
   imputable: false
 >>>>>>> origin/master
+=======
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  imputable: false
+
+two:
+  nombre: MyString
+  imputable: false
+>>>>>>> 35fe10f882090135e42e3d21e3449f1af8637751

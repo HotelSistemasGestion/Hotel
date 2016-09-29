@@ -11,9 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 
 ActiveRecord::Schema.define(version: 20160928005947) do
 
+=======
+ActiveRecord::Schema.define(version: 20160928005947) do
+>>>>>>> 35fe10f882090135e42e3d21e3449f1af8637751
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,8 +148,11 @@ ActiveRecord::Schema.define(version: 20160928005947) do
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
+=======
+>>>>>>> 35fe10f882090135e42e3d21e3449f1af8637751
   create_table "closing_cashes", force: :cascade do |t|
     t.date     "fecha_cierre"
     t.integer  "monto_efectivo"
@@ -156,7 +163,10 @@ ActiveRecord::Schema.define(version: 20160928005947) do
     t.datetime "updated_at",     null: false
   end
 
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> 35fe10f882090135e42e3d21e3449f1af8637751
   create_table "comforts", force: :cascade do |t|
     t.string   "descripcion"
     t.datetime "created_at",  null: false
