@@ -1,1 +1,0 @@
-json.partial! "accounting_years/accounting_year", accounting_year: @accounting_year

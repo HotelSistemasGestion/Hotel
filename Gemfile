@@ -67,3 +67,8 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# para el data-table
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails'
+gem 'kaminari'
+gem 'kaminari-bootstrap'

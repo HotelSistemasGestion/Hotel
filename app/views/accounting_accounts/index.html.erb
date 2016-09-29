@@ -11,6 +11,8 @@
     <thead>
       <tr>
     
+        <th>Grupo</th>
+    
         <th>Nombre</th>
     
         <th>Imputable</th>
@@ -23,6 +25,8 @@
 
     <tbody>
       <%= content_tag_for(:tr, @accounting_accounts) do |accounting_account| %>
+    
+        <td><%= accounting_account.grupo %></td>
     
         <td><%= accounting_account.nombre %></td>
     

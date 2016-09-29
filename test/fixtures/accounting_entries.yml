@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  numero: 1
+  fecha: 2016-09-28
+  iva: 1
+  debe: 1
+  haber: 1
+
+two:
+  numero: 1
+  fecha: 2016-09-28
+  iva: 1
+  debe: 1
+  haber: 1

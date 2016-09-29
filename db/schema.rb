@@ -11,42 +11,86 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924015457) do
+ActiveRecord::Schema.define(version: 20160929042834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "account_plans", force: :cascade do |t|
+    t.integer  "accounting_year_id"
     t.string   "descripcion"
     t.string   "estado"
     t.string   "version"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
+
+  add_index "account_plans", ["accounting_year_id"], name: "index_account_plans_on_accounting_year_id", using: :btree
+
+  create_table "account_x_accounting_entries", force: :cascade do |t|
+    t.integer  "accounting_entry_id"
+    t.integer  "accounting_account_id"
+    t.integer  "monto"
+    t.string   "observacion"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "account_x_accounting_entries", ["accounting_account_id"], name: "index_account_x_accounting_entries_on_accounting_account_id", using: :btree
+  add_index "account_x_accounting_entries", ["accounting_entry_id"], name: "index_account_x_accounting_entries_on_accounting_entry_id", using: :btree
+
+  create_table "account_x_auto_entries", force: :cascade do |t|
+    t.integer  "account_x_entry_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "account_x_auto_entries", ["account_x_entry_id"], name: "index_account_x_auto_entries_on_account_x_entry_id", using: :btree
+
+  create_table "account_x_automatic_entries", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "account_x_entries", force: :cascade do |t|
+    t.integer  "accounting_entry_id"
+    t.integer  "accounting_account_id"
+    t.integer  "monto"
+    t.string   "observacion"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "account_x_entries", ["accounting_account_id"], name: "index_account_x_entries_on_accounting_account_id", using: :btree
+  add_index "account_x_entries", ["accounting_entry_id"], name: "index_account_x_entries_on_accounting_entry_id", using: :btree
 
   create_table "account_x_plans", force: :cascade do |t|
-    t.string   "cuenta_superior"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "account_plan_id"
+    t.integer  "accounting_account_id"
+    t.integer  "cuenta_superior"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
+  add_index "account_x_plans", ["account_plan_id"], name: "index_account_x_plans_on_account_plan_id", using: :btree
+  add_index "account_x_plans", ["accounting_account_id"], name: "index_account_x_plans_on_accounting_account_id", using: :btree
+
   create_table "accounting_accounts", force: :cascade do |t|
+    t.integer  "grupo"
     t.string   "nombre"
     t.boolean  "imputable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "accounting_x_automatic_entries", force: :cascade do |t|
+  create_table "accounting_entries", force: :cascade do |t|
+    t.integer  "numero"
+    t.date     "fecha"
+    t.integer  "iva"
+    t.integer  "debe"
+    t.integer  "haber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "accounting_x_entries", force: :cascade do |t|
-    t.integer  "monto"
-    t.string   "observacion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "accounting_years", force: :cascade do |t|
@@ -74,15 +118,6 @@ ActiveRecord::Schema.define(version: 20160924015457) do
     t.string   "email"
     t.text     "direccion"
     t.string   "cedula"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "entries", force: :cascade do |t|
-    t.integer  "numero"
-    t.date     "fecha"
-    t.integer  "debe"
-    t.integer  "haber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -139,6 +174,14 @@ ActiveRecord::Schema.define(version: 20160924015457) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "account_plans", "accounting_years"
+  add_foreign_key "account_x_accounting_entries", "accounting_accounts"
+  add_foreign_key "account_x_accounting_entries", "accounting_entries"
+  add_foreign_key "account_x_auto_entries", "account_x_entries"
+  add_foreign_key "account_x_entries", "accounting_accounts"
+  add_foreign_key "account_x_entries", "accounting_entries"
+  add_foreign_key "account_x_plans", "account_plans"
+  add_foreign_key "account_x_plans", "accounting_accounts"
   add_foreign_key "accounts", "clients"
   add_foreign_key "invoices", "clients"
 end

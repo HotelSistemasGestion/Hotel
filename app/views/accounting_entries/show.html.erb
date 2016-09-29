@@ -1,0 +1,35 @@
+<div class="page-header">
+  <%= link_to accounting_entries_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_accounting_entry_path(@accounting_entry), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show accounting_entry</h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt>Numero:</dt>
+  <dd><%= @accounting_entry.numero %></dd>
+
+
+  <dt>Fecha:</dt>
+  <dd><%= @accounting_entry.fecha %></dd>
+
+
+  <dt>Iva:</dt>
+  <dd><%= @accounting_entry.iva %></dd>
+
+
+  <dt>Debe:</dt>
+  <dd><%= @accounting_entry.debe %></dd>
+
+
+  <dt>Haber:</dt>
+  <dd><%= @accounting_entry.haber %></dd>
+
+
+</dl>

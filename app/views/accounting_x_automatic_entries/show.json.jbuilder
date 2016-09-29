@@ -1,1 +1,0 @@
-json.partial! "accounting_x_automatic_entries/accounting_x_automatic_entry", accounting_x_automatic_entry: @accounting_x_automatic_entry

@@ -1,1 +1,0 @@
-json.array! @account_x_plans, partial: 'account_x_plans/account_x_plan', as: :account_x_plan
