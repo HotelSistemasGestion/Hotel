@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reservation_request_id: 1
+  email: MyString
+  type_of_room_id: 1
+  cantidad_de_habitaciones: 1
+  dias: 1
+
+two:
+  reservation_request_id: 1
+  email: MyString
+  type_of_room_id: 1
+  cantidad_de_habitaciones: 1
+  dias: 1

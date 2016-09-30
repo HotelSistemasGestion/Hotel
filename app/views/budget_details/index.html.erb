@@ -1,0 +1,35 @@
+<div class="page-header">
+  <%= link_to new_budget_detail_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Budget detail
+  <% end %>
+  <h1>Listing budget_details</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Budget</th>
+            <th>Cantidad</th>
+            <th>Service</th>
+            <th>Subtotal</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @budget_details) do |budget_detail| %>
+            <td><%= budget_detail.budget_id %></td>
+            <td><%= budget_detail.cantidad %></td>
+            <td><%= budget_detail.service_id %></td>
+            <td><%= budget_detail.subtotal %></td>
+            <td><%= link_to 'Show', budget_detail %></td>
+        <td><%= link_to 'Edit', edit_budget_detail_path(budget_detail) %></td>
+        <td><%= link_to 'Destroy', budget_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

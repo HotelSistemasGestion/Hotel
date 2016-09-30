@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924140730) do
+ActiveRecord::Schema.define(version: 20160927184329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,33 @@ ActiveRecord::Schema.define(version: 20160924140730) do
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
 
+  create_table "budget_details", force: :cascade do |t|
+    t.integer  "budget_id"
+    t.integer  "service_id"
+    t.integer  "cantidad"
+    t.integer  "subtotal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "budget_details", ["budget_id"], name: "index_budget_details_on_budget_id", using: :btree
+  add_index "budget_details", ["service_id"], name: "index_budget_details_on_service_id", using: :btree
+
+  create_table "budgets", force: :cascade do |t|
+    t.integer  "reservation_request_id"
+    t.string   "email"
+    t.integer  "type_of_room_id"
+    t.integer  "cantidad_de_habitaciones"
+    t.integer  "dias"
+    t.integer  "descuento"
+    t.integer  "total"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "budgets", ["reservation_request_id"], name: "index_budgets_on_reservation_request_id", using: :btree
+  add_index "budgets", ["type_of_room_id"], name: "index_budgets_on_type_of_room_id", using: :btree
+
   create_table "clients", force: :cascade do |t|
     t.string   "nombre"
     t.string   "apellido"
@@ -109,6 +136,7 @@ ActiveRecord::Schema.define(version: 20160924140730) do
     t.string   "apellido"
     t.string   "email"
     t.string   "telefono"
+    t.integer  "type_of_room_id"
     t.integer  "cantidad_de_adultos"
     t.integer  "cantidad_de_ninhos"
     t.integer  "cantidad_de_familias"
@@ -118,6 +146,8 @@ ActiveRecord::Schema.define(version: 20160924140730) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  add_index "reservation_requests", ["type_of_room_id"], name: "index_reservation_requests_on_type_of_room_id", using: :btree
 
   create_table "room_comforts", force: :cascade do |t|
     t.integer  "room_id"
@@ -181,7 +211,12 @@ ActiveRecord::Schema.define(version: 20160924140730) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "accounts", "clients"
+  add_foreign_key "budget_details", "budgets"
+  add_foreign_key "budget_details", "services"
+  add_foreign_key "budgets", "reservation_requests"
+  add_foreign_key "budgets", "type_of_rooms"
   add_foreign_key "invoices", "clients"
+  add_foreign_key "reservation_requests", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "states"

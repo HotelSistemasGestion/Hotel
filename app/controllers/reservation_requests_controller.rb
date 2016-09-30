@@ -4,7 +4,7 @@ class ReservationRequestsController < ApplicationController
   # GET /reservation_requests
   # GET /reservation_requests.json
   def index
-    @reservation_requests = ReservationRequest.all
+    @reservation_requests = ReservationRequest.all.reverse
   end
 
   # GET /reservation_requests/1
@@ -70,6 +70,6 @@ class ReservationRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_request_params
-      params.require(:reservation_request).permit(:nombre, :apellido, :email, :telefono, :cantidad_de_adultos, :cantidad_de_ninhos, :cantidad_de_familias, :check_in, :check_out, :comentarios)
+      params.require(:reservation_request).permit(:nombre, :apellido, :email, :telefono,:type_of_room_id, :cantidad_de_adultos, :cantidad_de_ninhos, :cantidad_de_familias, :check_in, :check_out, :comentarios)
     end
 end

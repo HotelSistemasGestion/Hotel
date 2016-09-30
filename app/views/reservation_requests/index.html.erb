@@ -15,16 +15,11 @@
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Email</th>
-            <th>Telefono</th>
-            <th>Cantidad de adultos</th>
-            <th>Cantidad de ninhos</th>
-            <th>Cantidad de familias</th>
-            <th>Check in</th>
-            <th>Check out</th>
-            <th>Comentarios</th>
             <th></th>
-        <th></th>
-        <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
       </tr>
     </thead>
 
@@ -33,16 +28,11 @@
           <td><%= reservation_request.nombre %></td>
           <td><%= reservation_request.apellido %></td>
           <td><%= reservation_request.email %></td>
-          <td><%= reservation_request.telefono %></td>
-          <td><%= reservation_request.cantidad_de_adultos %></td>
-          <td><%= reservation_request.cantidad_de_ninhos %></td>
-          <td><%= reservation_request.cantidad_de_familias %></td>
-          <td><%= reservation_request.check_in %></td>
-          <td><%= reservation_request.check_out %></td>
-          <td><%= reservation_request.comentarios %></td>
-          <td><%= link_to 'Show', reservation_request %></td>
-          <td><%= link_to 'Edit', edit_reservation_request_path(reservation_request) %></td>
-          <td><%= link_to 'Destroy', reservation_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Confirmar', reservation_request,class: "btn btn-primary" %></td>
+          <td><%= link_to 'Presupuestar', {:controller => "budgets", :action => "my_new", :id => reservation_request.id },class: "btn btn-primary" %></td>
+          <td><%= link_to '', reservation_request ,class: "btn btn-primary glyphicon glyphicon-eye-open"%></td>
+          <td><%= link_to '', edit_reservation_request_path(reservation_request) ,class: "btn btn-success glyphicon glyphicon-edit"%></td>
+          <td><%= link_to '', reservation_request,class: "btn btn-danger glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tbody>
   </table>

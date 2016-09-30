@@ -4,4 +4,4 @@
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+   TypeOfRoom.create(tipo: 'Matrimonial', descripcion: 'Para una pareja y un hijo')

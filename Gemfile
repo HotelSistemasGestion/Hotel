@@ -19,7 +19,11 @@ gem 'autoprefixer-rails'
 gem "recaptcha", require: "recaptcha/rails"
 #bootstrap datepicker
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
-
+# gema para formularios complejos como (factura y detalle_factura)
+gem 'nested_form'
+#Gema de autocompletado
+gem 'rails4-autocomplete'
+gem 'jquery-ui-rails'
 
 
 

@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :budget_details
+  resources :budgets do
+  collection do
+    get 'my_new'
+  end
+end
   resources :rooms
   resources :type_of_rooms
   resources :accounting_x_automatic_entries
@@ -9,7 +15,9 @@ Rails.application.routes.draw do
   resources :accounting_accounts
   resources :account_plans
   resources :reservation_requests
-  resources :services
+  resources :services do
+    get :autocomplete_service_nombre, :on => :collection
+  end
   resources :accounts
   resources :invoices
   resources :clients

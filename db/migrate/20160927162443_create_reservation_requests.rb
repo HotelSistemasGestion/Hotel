@@ -5,6 +5,7 @@ class CreateReservationRequests < ActiveRecord::Migration
       t.string :apellido
       t.string :email
       t.string :telefono
+      t.references :type_of_room, index: true, foreign_key: true
       t.integer :cantidad_de_adultos
       t.integer :cantidad_de_ninhos
       t.integer :cantidad_de_familias
