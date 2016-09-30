@@ -21,7 +21,7 @@ gem "recaptcha", require: "recaptcha/rails"
 gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 #formularios anidados
 gem 'nested_form'
-
+gem 'client_side_validations'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'

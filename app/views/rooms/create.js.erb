@@ -1,7 +1,18 @@
 <% if @room.errors.blank? %>
 	$('#product-modal').modal('hide');
-	$('table tbody').append(' <%= j render "row", room: @room %>');	
+	//$('table').append(' <%= j render "row", room: @room %>');	
 	alert("Habitación Creada");
+  location.href = "/rooms"
 <% else %>
-  	alert('<%= @room.errors.full_messages[0] %>');
+    $('#product-modal').modal('hide');
+  	
+  	//alert('<%= @room.errors.full_messages[0] %>');
+  
+
+  	$('<%= j render "form", room: @room, title: "Nueva Habitacion" %>').on('hidden.bs.modal', function (e) {	
+  $(this).remove();
+  $('.modal-backdrop').remove();
+  }).modal();
+
+
 <% end %>
