@@ -17,36 +17,80 @@ ActiveRecord::Schema.define(version: 20160927184329) do
   enable_extension "plpgsql"
 
   create_table "account_plans", force: :cascade do |t|
+    t.integer  "accounting_year_id"
     t.string   "descripcion"
     t.string   "estado"
     t.string   "version"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
+
+  add_index "account_plans", ["accounting_year_id"], name: "index_account_plans_on_accounting_year_id", using: :btree
+
+  create_table "account_x_accounting_entries", force: :cascade do |t|
+    t.integer  "accounting_entry_id"
+    t.integer  "accounting_account_id"
+    t.integer  "monto"
+    t.string   "observacion"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "account_x_accounting_entries", ["accounting_account_id"], name: "index_account_x_accounting_entries_on_accounting_account_id", using: :btree
+  add_index "account_x_accounting_entries", ["accounting_entry_id"], name: "index_account_x_accounting_entries_on_accounting_entry_id", using: :btree
+
+  create_table "account_x_auto_entries", force: :cascade do |t|
+    t.integer  "account_x_entry_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "account_x_auto_entries", ["account_x_entry_id"], name: "index_account_x_auto_entries_on_account_x_entry_id", using: :btree
+
+  create_table "account_x_automatic_entries", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "account_x_entries", force: :cascade do |t|
+    t.integer  "accounting_entry_id"
+    t.integer  "accounting_account_id"
+    t.integer  "monto"
+    t.string   "observacion"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "account_x_entries", ["accounting_account_id"], name: "index_account_x_entries_on_accounting_account_id", using: :btree
+  add_index "account_x_entries", ["accounting_entry_id"], name: "index_account_x_entries_on_accounting_entry_id", using: :btree
 
   create_table "account_x_plans", force: :cascade do |t|
-    t.string   "cuenta_superior"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "account_plan_id"
+    t.integer  "accounting_account_id"
+    t.integer  "cuenta_superior"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
+  add_index "account_x_plans", ["account_plan_id"], name: "index_account_x_plans_on_account_plan_id", using: :btree
+  add_index "account_x_plans", ["accounting_account_id"], name: "index_account_x_plans_on_accounting_account_id", using: :btree
+
   create_table "accounting_accounts", force: :cascade do |t|
+    t.integer  "grupo"
     t.string   "nombre"
     t.boolean  "imputable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "accounting_x_automatic_entries", force: :cascade do |t|
+  create_table "accounting_entries", force: :cascade do |t|
+    t.integer  "numero"
+    t.date     "fecha"
+    t.integer  "iva"
+    t.integer  "debe"
+    t.integer  "haber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "accounting_x_entries", force: :cascade do |t|
-    t.integer  "monto"
-    t.string   "observacion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "accounting_years", force: :cascade do |t|
@@ -67,6 +111,7 @@ ActiveRecord::Schema.define(version: 20160927184329) do
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
 
+<<<<<<< HEAD
   create_table "budget_details", force: :cascade do |t|
     t.integer  "budget_id"
     t.integer  "service_id"
@@ -93,6 +138,25 @@ ActiveRecord::Schema.define(version: 20160927184329) do
 
   add_index "budgets", ["reservation_request_id"], name: "index_budgets_on_reservation_request_id", using: :btree
   add_index "budgets", ["type_of_room_id"], name: "index_budgets_on_type_of_room_id", using: :btree
+=======
+  create_table "cash_counts", force: :cascade do |t|
+    t.date     "fecha_arqueo"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "cash_movements", force: :cascade do |t|
+    t.integer  "monto_total"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "cashes", force: :cascade do |t|
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+>>>>>>> e54c1258d7a9630950348c87c40c0bb82c131a6e
 
   create_table "clients", force: :cascade do |t|
     t.string   "nombre"
@@ -105,10 +169,45 @@ ActiveRecord::Schema.define(version: 20160927184329) do
     t.datetime "updated_at", null: false
   end
 
+
+  create_table "closing_cashes", force: :cascade do |t|
+    t.date     "fecha_cierre"
+    t.integer  "monto_efectivo"
+    t.integer  "monto_cheque"
+    t.integer  "monto_tcredito"
+    t.integer  "monto_tdebito"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+
   create_table "comforts", force: :cascade do |t|
     t.string   "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "detail_of_cash_counts", force: :cascade do |t|
+    t.integer  "monto_sistema"
+    t.integer  "monto_caja"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "detail_of_cash_movements", force: :cascade do |t|
+    t.integer  "sub_monto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "detail_of_payment_types", force: :cascade do |t|
+    t.string   "titular"
+    t.string   "banco"
+    t.integer  "numero"
+    t.string   "tipo_tarjeta"
+    t.date     "fecha_disponibilidad"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "entries", force: :cascade do |t|
@@ -120,6 +219,7 @@ ActiveRecord::Schema.define(version: 20160927184329) do
     t.datetime "updated_at", null: false
   end
 
+
   create_table "invoices", force: :cascade do |t|
     t.integer  "numero"
     t.integer  "client_id"
@@ -130,6 +230,19 @@ ActiveRecord::Schema.define(version: 20160927184329) do
   end
 
   add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
+
+  create_table "opening_cashes", force: :cascade do |t|
+    t.date     "fecha_apertura"
+    t.integer  "monto_efectivo"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "payment_types", force: :cascade do |t|
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "reservation_requests", force: :cascade do |t|
     t.string   "nombre"
@@ -185,6 +298,12 @@ ActiveRecord::Schema.define(version: 20160927184329) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "type_of_cash_movements", force: :cascade do |t|
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "type_of_rooms", force: :cascade do |t|
     t.string   "tipo"
     t.string   "descripcion"
@@ -210,6 +329,14 @@ ActiveRecord::Schema.define(version: 20160927184329) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "account_plans", "accounting_years"
+  add_foreign_key "account_x_accounting_entries", "accounting_accounts"
+  add_foreign_key "account_x_accounting_entries", "accounting_entries"
+  add_foreign_key "account_x_auto_entries", "account_x_entries"
+  add_foreign_key "account_x_entries", "accounting_accounts"
+  add_foreign_key "account_x_entries", "accounting_entries"
+  add_foreign_key "account_x_plans", "account_plans"
+  add_foreign_key "account_x_plans", "accounting_accounts"
   add_foreign_key "accounts", "clients"
   add_foreign_key "budget_details", "budgets"
   add_foreign_key "budget_details", "services"

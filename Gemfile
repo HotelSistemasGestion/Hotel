@@ -25,6 +25,13 @@ gem 'nested_form'
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
 
+# para el data-table
+gem 'jquery-datatables-rails'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+
+#formularios anidados
+gem 'nested_form'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

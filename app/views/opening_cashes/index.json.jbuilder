@@ -1,0 +1,1 @@
+json.array! @opening_cashes, partial: 'opening_cashes/opening_cash', as: :opening_cash

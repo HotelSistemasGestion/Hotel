@@ -10,13 +10,16 @@
 //= require waypoints
 
 
-
 //= require bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 
-
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require np
 
 //= require app
 //= require custom
 //= require main
+
+

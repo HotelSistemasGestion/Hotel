@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+
+=======
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grupo: 1
+  nombre: MyString
+  imputable: false
+
+two:
+  grupo: 1
+  nombre: MyString
+  imputable: false
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
@@ -7,3 +23,4 @@ one:
 two:
   nombre: MyString
   imputable: false
+

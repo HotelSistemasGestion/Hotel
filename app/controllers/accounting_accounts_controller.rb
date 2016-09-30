@@ -69,6 +69,6 @@ class AccountingAccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accounting_account_params
-      params.require(:accounting_account).permit(:nombre, :imputable)
+      params.require(:accounting_account).permit(:grupo, :nombre, :imputable)
     end
 end

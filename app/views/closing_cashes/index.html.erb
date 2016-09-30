@@ -1,0 +1,49 @@
+<div class="page-header">
+  <%= link_to new_closing_cash_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Closing cash
+  <% end %>
+  <h1>Listing closing_cashes</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Fecha cierre</th>
+    
+        <th>Monto efectivo</th>
+    
+        <th>Monto cheque</th>
+    
+        <th>Monto tcredito</th>
+    
+        <th>Monto tdebito</th>
+    
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @closing_cashes) do |closing_cash| %>
+    
+        <td><%= closing_cash.fecha_cierre %></td>
+    
+        <td><%= closing_cash.monto_efectivo %></td>
+    
+        <td><%= closing_cash.monto_cheque %></td>
+    
+        <td><%= closing_cash.monto_tcredito %></td>
+    
+        <td><%= closing_cash.monto_tdebito %></td>
+    
+        <td><%= link_to 'Show', closing_cash %></td>
+        <td><%= link_to 'Edit', edit_closing_cash_path(closing_cash) %></td>
+        <td><%= link_to 'Destroy', closing_cash, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

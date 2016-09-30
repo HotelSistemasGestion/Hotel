@@ -10,11 +10,24 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @room_comfort = RoomComfort.where("#{:room_id} = ?", params[:id])
+    @room_comfort.each do |room| 
+      destruir_repetidos(room.room_id,room.comfort_id);
+    end  
+    @room_comforts = @room_comfort;
+   
+   # @r = Comfort.where("#{:room_id} = ?", params[room_comforts.room_id])
+    @room = Room.find(params[:id])
+     respond_to do |format|
+      format.js
+    end
+
   end
 
   # GET /rooms/new
   def new
     @room = Room.new
+    @room.room_comforts.build
   end
 
   # GET /rooms/1/edit
@@ -24,31 +37,36 @@ class RoomsController < ApplicationController
   # POST /rooms
   # POST /rooms.json
   def create
+ 
     @room = Room.new(room_params)
-
     respond_to do |format|
-      if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
-        format.json { render :show, status: :created, location: @room }
+      if @room.save        
+        format.js { }
       else
         format.html { render :new }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
+        format.json { render json: @service.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /rooms/1
   # PATCH/PUT /rooms/1.json
-  def update
+  def update 
+   @room_comforts = RoomComfort.all
     respond_to do |format|
-      if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
-        format.json { render :show, status: :ok, location: @room }
+
+       if @room.update(room_params)  
+       format.js {}
+    @room_comforts.each do |room| 
+      destruir_repetidos(room.room_id,room.comfort_id);
+    end  
+
       else
         format.html { render :edit }
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # DELETE /rooms/1
@@ -69,6 +87,13 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:type_of_room_id, :state_id, :capacidad, :identificador)
+      params.require(:room).permit(:type_of_room_id, :state_id, :capacidad, :identificador,room_comforts_attributes: [:room_id,:comfort_id,:_destroy])
+     
+    end
+    def destruir_repetidos(room_id,comfort_id)
+      if(RoomComfort.where("room_id = ? and comfort_id = ?" , room_id,comfort_id).count >=  2)
+        RoomComfort.where("room_id = ? and  comfort_id = ?" , room_id,comfort_id).second.delete
+        destruir_repetidos(room_id,comfort_id)
+      end
     end
 end

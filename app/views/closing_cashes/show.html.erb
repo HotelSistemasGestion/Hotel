@@ -1,0 +1,35 @@
+<div class="page-header">
+  <%= link_to closing_cashes_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_closing_cash_path(@closing_cash), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show closing_cash</h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt>Fecha cierre:</dt>
+  <dd><%= @closing_cash.fecha_cierre %></dd>
+
+
+  <dt>Monto efectivo:</dt>
+  <dd><%= @closing_cash.monto_efectivo %></dd>
+
+
+  <dt>Monto cheque:</dt>
+  <dd><%= @closing_cash.monto_cheque %></dd>
+
+
+  <dt>Monto tcredito:</dt>
+  <dd><%= @closing_cash.monto_tcredito %></dd>
+
+
+  <dt>Monto tdebito:</dt>
+  <dd><%= @closing_cash.monto_tdebito %></dd>
+
+
+</dl>

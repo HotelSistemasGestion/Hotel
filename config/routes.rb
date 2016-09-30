@@ -2,18 +2,27 @@ Rails.application.routes.draw do
   resources :budget_details
   resources :budgets do
   collection do
-    get 'my_new'
+      get 'my_new'
+    end
   end
-end
+
+  resources :accounting_entries
+  resources :detail_of_payment_types
+  resources :payment_types
+  resources :detail_of_cash_movements
+  resources :detail_of_cash_counts
+  resources :cash_movements
+  resources :type_of_cash_movements
+  resources :cash_counts
+  resources :closing_cashes
+  resources :opening_cashes
+  resources :cashes
   resources :rooms
   resources :type_of_rooms
-  resources :accounting_x_automatic_entries
-  resources :accounting_x_entries
-  resources :entries
-  resources :accounting_years
-  resources :account_x_plans
+  resources :accounting_entries
   resources :accounting_accounts
   resources :account_plans
+  get 'diary_book/diario'
   resources :reservation_requests
   resources :services do
     get :autocomplete_service_nombre, :on => :collection
@@ -22,15 +31,15 @@ end
   resources :invoices
   resources :clients
   devise_for :users
-  get 'dashboard/index'
 
+  get 'dashboard/index'
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,49 +1,62 @@
-<%= form_for(@room, html: { class: "form-horizontal", role: "form" }) do |f| %>
-  <% if @room.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h4>
+<div id="product-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= title %></h4>
+      </div>
+          <%= nested_form_for @room, remote: true do |f| %>
+    
 
-      <ul>
-      <% @room.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+ <div class="form-horizontal">
+            <div class="form-group">
+              <%= f.label :type_of_room, class: "col-sm-2 control-label" %>
+              <div class="col-sm-10">
+                  <%= f.select :type_of_room_id ,TypeOfRoom.all.collect { |p| [p.tipo, p.id ] },{include_blank: false},class: "form-control" %>
+              </div>             
+            </div>
+            <div class="form-group">
+              <%= f.label :state, class: "col-sm-2 control-label" %>
+              <div class="col-sm-10">
+                  <%= f.select :state_id ,State.all.collect { |p| [p.descripcion, p.id ] },{include_blank: false},class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :capacidad, class: "col-sm-2 control-label" %>
+              <div class="col-sm-10">
+                <%= f.number_field :capacidad, class: "form-control" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :identificador, class: "col-sm-2 control-label" %>
+              <div class="col-sm-10">
+                <%= f.text_field :identificador, class: "form-control" %>
+              </div>
+            </div>
+            
+            <%= f.fields_for :room_comforts do |room| %>
+              <div class="form-group">
+                <%= room.label :comfort_id ,class: "col-sm-2 control-label" %>
+                <div class="col-sm-8">
+                  <%= room.select :comfort_id, Comfort.all.collect { |p| [ p.descripcion, p.id ] },{include_blank: false},class: "form-control" %>
+                </div>
+              <%= room.link_to_remove "" ,class: "col-sm-1  control-label glyphicon glyphicon-trash"%>
+              </div>
+           <% end %>
 
+           <div class="text-center">
+           <%= f.link_to_add "", :room_comforts ,class: "control-label glyphicon glyphicon-plus"%>
+           </div>
 
-  <div class="form-group">
-    <%= f.label :type_of_room, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :type_of_room, class: "form-control" %>
-    </div>
-  </div>
+</div>
 
-  <div class="form-group">
-    <%= f.label :state, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :state, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :capacidad, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :capacidad, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :identificador, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :identificador, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
+            <div class="modal-footer ">
+              <div class="col-sm-10">
+                <%= f.submit class: "btn btn-primary pull-left" %>
+              </div>
+            </div>
+            <div></div>
+          <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
