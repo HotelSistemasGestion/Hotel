@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927184329) do
+ActiveRecord::Schema.define(version: 20160929042834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,18 +27,6 @@ ActiveRecord::Schema.define(version: 20160927184329) do
 
   add_index "account_plans", ["accounting_year_id"], name: "index_account_plans_on_accounting_year_id", using: :btree
 
-  create_table "account_x_accounting_entries", force: :cascade do |t|
-    t.integer  "accounting_entry_id"
-    t.integer  "accounting_account_id"
-    t.integer  "monto"
-    t.string   "observacion"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  add_index "account_x_accounting_entries", ["accounting_account_id"], name: "index_account_x_accounting_entries_on_accounting_account_id", using: :btree
-  add_index "account_x_accounting_entries", ["accounting_entry_id"], name: "index_account_x_accounting_entries_on_accounting_entry_id", using: :btree
-
   create_table "account_x_auto_entries", force: :cascade do |t|
     t.integer  "account_x_entry_id"
     t.datetime "created_at",         null: false
@@ -46,11 +34,6 @@ ActiveRecord::Schema.define(version: 20160927184329) do
   end
 
   add_index "account_x_auto_entries", ["account_x_entry_id"], name: "index_account_x_auto_entries_on_account_x_entry_id", using: :btree
-
-  create_table "account_x_automatic_entries", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "account_x_entries", force: :cascade do |t|
     t.integer  "accounting_entry_id"
@@ -111,7 +94,6 @@ ActiveRecord::Schema.define(version: 20160927184329) do
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
 
-<<<<<<< HEAD
   create_table "budget_details", force: :cascade do |t|
     t.integer  "budget_id"
     t.integer  "service_id"
@@ -138,7 +120,7 @@ ActiveRecord::Schema.define(version: 20160927184329) do
 
   add_index "budgets", ["reservation_request_id"], name: "index_budgets_on_reservation_request_id", using: :btree
   add_index "budgets", ["type_of_room_id"], name: "index_budgets_on_type_of_room_id", using: :btree
-=======
+
   create_table "cash_counts", force: :cascade do |t|
     t.date     "fecha_arqueo"
     t.datetime "created_at",   null: false
@@ -156,7 +138,6 @@ ActiveRecord::Schema.define(version: 20160927184329) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
->>>>>>> e54c1258d7a9630950348c87c40c0bb82c131a6e
 
   create_table "clients", force: :cascade do |t|
     t.string   "nombre"
@@ -169,7 +150,6 @@ ActiveRecord::Schema.define(version: 20160927184329) do
     t.datetime "updated_at", null: false
   end
 
-
   create_table "closing_cashes", force: :cascade do |t|
     t.date     "fecha_cierre"
     t.integer  "monto_efectivo"
@@ -179,7 +159,6 @@ ActiveRecord::Schema.define(version: 20160927184329) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
-
 
   create_table "comforts", force: :cascade do |t|
     t.string   "descripcion"
@@ -209,16 +188,6 @@ ActiveRecord::Schema.define(version: 20160927184329) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
-
-  create_table "entries", force: :cascade do |t|
-    t.integer  "numero"
-    t.date     "fecha"
-    t.integer  "debe"
-    t.integer  "haber"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "numero"
@@ -330,8 +299,6 @@ ActiveRecord::Schema.define(version: 20160927184329) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "account_plans", "accounting_years"
-  add_foreign_key "account_x_accounting_entries", "accounting_accounts"
-  add_foreign_key "account_x_accounting_entries", "accounting_entries"
   add_foreign_key "account_x_auto_entries", "account_x_entries"
   add_foreign_key "account_x_entries", "accounting_accounts"
   add_foreign_key "account_x_entries", "accounting_entries"

@@ -18,9 +18,7 @@ gem 'autoprefixer-rails'
 #Gema Para usar captcha
 gem "recaptcha", require: "recaptcha/rails"
 #bootstrap datepicker
-gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
-# gema para formularios complejos como (factura y detalle_factura)
-gem 'nested_form'
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git => 'https://github.com/Nerian/bootstrap-datepicker-rails.git'
 #Gema de autocompletado
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
@@ -66,8 +64,11 @@ gem 'validates_email_format_of'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'pg'
+end
 
+group :development, :production do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pg'
 end
 
 group :development do
@@ -78,7 +79,6 @@ end
 
 group :production do
 	#configuramos nuestro entorno de produccion(Heroku) 
-	gem 'pg'
 	gem 'rails_12factor'
 end
 
