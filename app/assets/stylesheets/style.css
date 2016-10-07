@@ -378,7 +378,7 @@
   left: 0;
   right: 0;
   z-index: 2;
-  opacity: .9;
+  opacity: .1;
   -webkit-backface-visibility: hidden;
   background-color: #52d3aa;
   /* IE9, iOS 3.2+ */
@@ -417,16 +417,19 @@
   border-bottom: 1px dashed white;
 }
 #welcome #fh5co-home .text-inner h1 {
-  font-size: 50px;
-  color: white;
+  font-size: 80px;
+  color: #fff;
   margin: 0 0 20px 0;
+  text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+  font-weight: bold;
 }
 #welcome #fh5co-home .text-inner h2 {
-  font-size: 28px;
+  font-size: 50px;
+  color: #fff;
+  margin: 0; 
+  text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
   line-height: 38px;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
+  font-weight: bold;      
 }
 
 #welcome .slant {
