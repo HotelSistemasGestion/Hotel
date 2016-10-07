@@ -428,6 +428,7 @@
                 </div>
             </div>
             <div class="row row-bottom-padded-md">
+            
                 <div class="col-md-5 to-animate">
                     <h3>Contact Info</h3>
                     <ul class="fh5co-contact-info">
@@ -440,8 +441,8 @@
                         <li><i class="icon-globe"></i> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></li>
                     </ul>
                 </div>
-
-                <div class="col-md-6 to-animate">
+                <!--estaba pedido de reserva-->
+                <div class="col-md-7 to-animate">
                     <% if notice %>
                         <div class="alert alert-success alert-dismissable">
                         <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -449,13 +450,17 @@
                         </div>
                         <%end%>
                         <%if !user_signed_in? %>
-                        <h1>Pedir Reservacion</h1>
-                        <%= render 'reservation_requests/form' %>
-                <%end%>
+                        <div class="panel panel-success">
+                        <div class="panel-heading"> Pedir Reservacion </div>
+                            <div class="panel-body">
+                                <%= render 'reservation_requests/form' %>
+                            </div>
+                        </div>
+                    <%end%>
                 </div>
-                </div>
-
             </div>
+
+        </div>
         </div>
         <div id="map" class="to-animate"></div> <!-- aqui va el mapa-->
 
@@ -491,8 +496,6 @@
         </div>
     </footer>
     
-    
-
     
     <!-- jQuery -->
     
