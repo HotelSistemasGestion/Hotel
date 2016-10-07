@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 #genera los sacaffold ya con bootstrap
@@ -30,6 +30,8 @@ gem 'kaminari-bootstrap'
 
 #formularios anidados
 gem 'nested_form'
+
+gem 'sendgrid-rails', '~> 2.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
