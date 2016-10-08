@@ -8,4 +8,6 @@ class ReservationRequest < ActiveRecord::Base
 	validates :cantidad_de_adultos, :presence => {:message => "debe registrar almenos un adulto"}, :numericality => {:only_integer => true, :message => "solo se aceptan enteros"}
 	validates :check_in, :presence => {:message => "en blanco"}
 	validates :check_out, :presence => {:message => "en blanco"}
+
+	paginates_per 3 #solo puse 3 para probar
 end

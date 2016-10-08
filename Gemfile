@@ -26,6 +26,7 @@ gem 'jquery-ui-rails'
 # para el data-table
 gem 'jquery-datatables-rails'
 gem 'kaminari'
+#gem 'ransack', github: 'activerecord-hackery/ransack' #para buscar
 gem 'kaminari-bootstrap'
 
 #formularios anidados
