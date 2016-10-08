@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     @rooms = Room.all
+    @room =Room.new
     @type_of_rooms = TypeOfRoom.all
   end
 
