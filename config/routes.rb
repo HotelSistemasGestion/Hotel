@@ -35,6 +35,9 @@ Rails.application.routes.draw do
   get 'dashboard/index'
   get 'welcome/index'
 
+  resources :usuarios
+  match 'usuarios/:id' => 'usuarios#destroy', :via => :delete, :as => :admin_destroy_user
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

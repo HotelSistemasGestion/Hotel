@@ -63,7 +63,7 @@ gem 'validates_email_format_of'
 # gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'cancancan', '~> 1.10'
 
 #agregue gemas para funcionamiento de mapas
 #gem 'geocoder'

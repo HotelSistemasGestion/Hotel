@@ -1,0 +1,38 @@
+<div class="col-sm-12 col-md-12">
+        <table id="table" class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Correo</th>              
+              <th></th>   
+              <th></th>   
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @usuarios.each do |usuario| %>
+              <tr>
+                <td><%= usuario.username %></td>
+                <td><%= usuario.apellido %></td>
+                <td><%= usuario.email %></td>                
+                <td>
+                  <% if can? :edit, User %>
+                    <%= link_to edit_usuario_path(usuario), class: 'btn btn-default', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon-pencil"></span>
+                    <% end %>                
+                <% end %>
+                </td> 
+                <td>
+                  <% if can? :destroy, User %>
+                    <%= link_to admin_destroy_user_path(usuario), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-default', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon-remove"></span>
+                    <% end %>                                                
+                <% end %>
+                </td> 
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+</div>
+   
