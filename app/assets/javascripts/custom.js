@@ -16,9 +16,5 @@ $(document).ready(function(){
 		  return $(content).insertBefore($tr);
 		}
 
-	$(document).on('change','#service_select',function(){
-              console.log("se cambio un select");
- 	});
-
 });
 

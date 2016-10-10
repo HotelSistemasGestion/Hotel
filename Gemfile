@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 #genera los sacaffold ya con bootstrap
@@ -26,10 +26,13 @@ gem 'jquery-ui-rails'
 # para el data-table
 gem 'jquery-datatables-rails'
 gem 'kaminari'
+#gem 'ransack', github: 'activerecord-hackery/ransack' #para buscar
 gem 'kaminari-bootstrap'
 
 #formularios anidados
 gem 'nested_form'
+
+gem 'sendgrid-rails', '~> 2.0'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -60,7 +63,7 @@ gem 'validates_email_format_of'
 # gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'cancancan', '~> 1.10'
 
 #agregue gemas para funcionamiento de mapas
 #gem 'geocoder'
