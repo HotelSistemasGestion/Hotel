@@ -29,6 +29,9 @@
                     <li><a href="#" data-nav-section="Habitaciones"><span>Habitaciones</span></a></li>
                     <li><a href="#" data-nav-section="testimonials"><span>Testimonios</span></a></li>
                     <li><a href="#" data-nav-section="services"><span>Servicios</span></a></li>
+                    <% if is_ip_allowed %>
+                    <li><a href="#" data-nav-section="Quejas"><span>Quejas</span></a></li>
+                    <%end%>
                     <li><a href="#" data-nav-section="about"><span>Acerca de</span></a></li>
                     <li><a href="#" data-nav-section="contact"><span>Contacto</span></a></li>
                     <li><a href="<%=new_user_session_path%>" id="ingresar" ><span>Ingresar</span></a></li>
@@ -457,6 +460,39 @@
 
             </div>
         </div>
+
+        <% if is_ip_allowed %>
+        <section id="fh5co-contact" data-section="Quejas">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="to-animate">Quejas</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                            <h3>Porque buscamos la excelencia y creemos en que nuestro capital mas valioso son los clientes</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-bottom-padded-md">
+                <div class="col-md-12">
+
+                    <% if my_type %>
+
+                        <div class="alert alert-success alert-dismissable" id="my_type">
+                        <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <b><%= my_type %></b>
+                        </div>
+                        <%end%>
+    
+                        <h1>Realize su queja correspondiente</h1>
+                        <%= render 'complaints/form' %>
+                </div>
+                </div>
+
+            </div>
+        </div>
+        <%end%>
         <div id="map" class="to-animate"></div> <!-- aqui va el mapa-->
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgKxTWFKOAtZruNP6J50YvrOZCWYJNRrM">

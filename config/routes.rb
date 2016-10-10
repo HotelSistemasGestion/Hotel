@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+
+
   resources :budget_details
   resources :budgets do
   collection do
       get 'my_new'
     end
   end
-
+  resources :complaints
   resources :accounting_entries
   resources :detail_of_payment_types
   resources :payment_types

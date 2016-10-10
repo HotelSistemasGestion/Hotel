@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929042834) do
+ActiveRecord::Schema.define(version: 20161005012228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,17 @@ ActiveRecord::Schema.define(version: 20160929042834) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "complaints", force: :cascade do |t|
+    t.integer  "room_id"
+    t.integer  "service_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "complaints", ["room_id"], name: "index_complaints_on_room_id", using: :btree
+  add_index "complaints", ["service_id"], name: "index_complaints_on_service_id", using: :btree
+
   create_table "detail_of_cash_counts", force: :cascade do |t|
     t.integer  "monto_sistema"
     t.integer  "monto_caja"
@@ -309,6 +320,8 @@ ActiveRecord::Schema.define(version: 20160929042834) do
   add_foreign_key "budget_details", "services"
   add_foreign_key "budgets", "reservation_requests"
   add_foreign_key "budgets", "type_of_rooms"
+  add_foreign_key "complaints", "rooms"
+  add_foreign_key "complaints", "services"
   add_foreign_key "invoices", "clients"
   add_foreign_key "reservation_requests", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
