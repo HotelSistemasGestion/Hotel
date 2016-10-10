@@ -17,3 +17,5 @@ Comfort.create(descripcion: "cama doble");
 Comfort.create(descripcion: "aire acondicionado");
 Comfort.create(descripcion: "television por cable");
 Comfort.create(descripcion: "frizzer");
+Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
+Service.create(nombre: "TV cable Nacionales",descripcion: "100 canales",precio: 10000);
