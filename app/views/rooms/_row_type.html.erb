@@ -1,0 +1,29 @@
+
+
+
+ <table  class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>  
+
+        <th class="text-center">TIPO </th>
+    
+        <th class="text-center">CANTIDAD</th>
+    
+      </tr>
+    </thead>
+
+        <tbody>
+      <% @tipo = TypeOfRoom.all %>
+      <% @tipo.each do |room_type| %>
+ 
+      <tr>
+			
+          <td><%=room_type.tipo%></td>
+          <td><%=Room.where("type_of_room_id = ?",room_type.id).count%></td>
+           
+      </tr>
+
+      <% end %>
+        
+        </tbody>
+  </table>

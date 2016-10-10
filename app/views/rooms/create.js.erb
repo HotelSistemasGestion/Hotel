@@ -1,18 +1,21 @@
 <% if @room.errors.blank? %>
-	$('#product-modal').modal('hide');
-	//$('table').append(' <%= j render "row", room: @room %>');	
+	$('#test-modal').modal('hide');
+	//$('table').append(' <%= j render "row", room: @room %>');
+
+  $(' <%= j render "row", room: @room %>').appendTo($('#tabla'));
+  $(' <%= j render "row_type"%>').replaceAll(("#tabla-2"));  
+  console.log('<%= j render "row_type"%>')
 	alert("Habitación Creada");
-  location.href = "/rooms"
+ // location.href = "/rooms"
 <% else %>
-    $('#product-modal').modal('hide');
+    $('#test-modal').modal('hide');
   	
   	//alert('<%= @room.errors.full_messages[0] %>');
-  
 
-  	$('<%= j render "form", room: @room, title: "Nueva Habitacion" %>').on('hidden.bs.modal', function (e) {	
-  $(this).remove();
-  $('.modal-backdrop').remove();
-  }).modal();
+  	//$('<%= j render "form", room: @room, title: "Nueva Habitacion" %>').on('hidden.bs.modal', function (e) {	
+  //$(this).remove();
+ // $('.modal-backdrop').remove();
+ // }).modal();
 
 
 <% end %>

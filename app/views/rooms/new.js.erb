@@ -1,4 +1,14 @@
-$('<%= j render "form", title: "Nueva Habitacion" %>').on('hidden.bs.modal', function (e) {	
+//$('<%= j render "form", title: "Nueva Habitacion" %>').on('hidden.bs.modal', function (e) {	
+ // $(this).remove();
+ // $('.modal-backdrop').remove();
+//}).modal();
+$('#test-modal').modal("show");
+$("#room_identificador").val("");
+$("#room_capacidad").val("");
+$("div").removeClass("has-success");
+$("span").removeClass("glyphicon-ok");
+//$
+$('#test-modal').on('hidde.bs.modal', function (e) {
   $(this).remove();
   $('.modal-backdrop').remove();
 }).modal();
