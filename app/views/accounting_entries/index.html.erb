@@ -1,0 +1,49 @@
+<div class="page-header">
+  <%= link_to new_accounting_entry_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Accounting entry
+  <% end %>
+  <h1>Listing accounting_entries</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Numero</th>
+    
+        <th>Fecha</th>
+    
+        <th>Iva</th>
+    
+        <th>Debe</th>
+    
+        <th>Haber</th>
+    
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @accounting_entries) do |accounting_entry| %>
+    
+        <td><%= accounting_entry.numero %></td>
+    
+        <td><%= accounting_entry.fecha %></td>
+    
+        <td><%= accounting_entry.iva %></td>
+    
+        <td><%= accounting_entry.debe %></td>
+    
+        <td><%= accounting_entry.haber %></td>
+    
+        <td><%= link_to 'Show', accounting_entry %></td>
+        <td><%= link_to 'Edit', edit_accounting_entry_path(accounting_entry) %></td>
+        <td><%= link_to 'Destroy', accounting_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

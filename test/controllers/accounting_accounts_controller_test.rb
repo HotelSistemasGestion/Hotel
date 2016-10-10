@@ -1,3 +1,4 @@
+
 require 'test_helper'
 
 class AccountingAccountsControllerTest < ActionController::TestCase
@@ -18,7 +19,7 @@ class AccountingAccountsControllerTest < ActionController::TestCase
 
   test "should create accounting_account" do
     assert_difference('AccountingAccount.count') do
-      post :create, accounting_account: { imputable: @accounting_account.imputable, nombre: @accounting_account.nombre }
+      post :create, accounting_account: { grupo: @accounting_account.grupo, imputable: @accounting_account.imputable, nombre: @accounting_account.nombre }
     end
 
     assert_redirected_to accounting_account_path(assigns(:accounting_account))
@@ -35,7 +36,7 @@ class AccountingAccountsControllerTest < ActionController::TestCase
   end
 
   test "should update accounting_account" do
-    patch :update, id: @accounting_account, accounting_account: { imputable: @accounting_account.imputable, nombre: @accounting_account.nombre }
+    patch :update, id: @accounting_account, accounting_account: { grupo: @accounting_account.grupo, imputable: @accounting_account.imputable, nombre: @accounting_account.nombre }
     assert_redirected_to accounting_account_path(assigns(:accounting_account))
   end
 
@@ -47,3 +48,4 @@ class AccountingAccountsControllerTest < ActionController::TestCase
     assert_redirected_to accounting_accounts_path
   end
 end
+

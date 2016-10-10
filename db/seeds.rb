@@ -17,4 +17,3 @@ Comfort.create(descripcion: "cama doble");
 Comfort.create(descripcion: "aire acondicionado");
 Comfort.create(descripcion: "television por cable");
 Comfort.create(descripcion: "frizzer");
-

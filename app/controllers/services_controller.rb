@@ -1,6 +1,11 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
-
+  
+  autocomplete :service, :nombre, :extra_data => [:id,:precio] do |items|
+    respond_to do |format|
+    format.json { render :json => @items }
+    end
+  end
   # GET /services
   # GET /services.json
   def index

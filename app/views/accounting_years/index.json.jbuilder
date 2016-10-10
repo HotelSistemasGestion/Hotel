@@ -1,1 +1,0 @@
-json.array! @accounting_years, partial: 'accounting_years/accounting_year', as: :accounting_year

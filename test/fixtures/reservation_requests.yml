@@ -5,11 +5,12 @@ one:
   apellido: MyString
   email: MyString
   telefono: MyString
+  type_of_rooms_id: 1
   cantidad_de_adultos: 1
   cantidad_de_ninhos: 1
   cantidad_de_familias: 1
-  check_in: 2016-09-19
-  check_out: 2016-09-19
+  check_in: 2016-09-27
+  check_out: 2016-09-27
   comentarios: MyText
 
 two:
@@ -17,9 +18,10 @@ two:
   apellido: MyString
   email: MyString
   telefono: MyString
+  type_of_rooms_id: 1
   cantidad_de_adultos: 1
   cantidad_de_ninhos: 1
   cantidad_de_familias: 1
-  check_in: 2016-09-19
-  check_out: 2016-09-19
+  check_in: 2016-09-27
+  check_out: 2016-09-27
   comentarios: MyText

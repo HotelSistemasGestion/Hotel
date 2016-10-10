@@ -1,1 +1,0 @@
-json.array! @accounting_x_entries, partial: 'accounting_x_entries/accounting_x_entry', as: :accounting_x_entry
