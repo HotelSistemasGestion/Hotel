@@ -1,0 +1,2 @@
+module BalanceReportHelper
+end

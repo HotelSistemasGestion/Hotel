@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'balance_report/balance'
+
+  get 'ledger/mayor'
+
   resources :budget_details
   resources :budgets do
   collection do

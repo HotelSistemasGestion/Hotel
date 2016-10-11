@@ -20,5 +20,11 @@ $(document).ready(function(){
               console.log("se cambio un select");
  	});
 
-});
 
+    $('input[name="daterange"]').daterangepicker({
+       
+       
+
+
+});
+    });
