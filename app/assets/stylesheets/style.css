@@ -362,6 +362,7 @@
 }
 
 #welcome #fh5co-home {
+  background-image: url('/assets/hotel.jpg');
   background-color: transparent;
   background-size: cover;
   background-attachment: fixed;
