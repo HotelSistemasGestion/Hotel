@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929042834) do
+ActiveRecord::Schema.define(version: 20161010200659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,17 @@ ActiveRecord::Schema.define(version: 20160929042834) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "complaints", force: :cascade do |t|
+    t.integer  "room_id"
+    t.integer  "service_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "complaints", ["room_id"], name: "index_complaints_on_room_id", using: :btree
+  add_index "complaints", ["service_id"], name: "index_complaints_on_service_id", using: :btree
+
   create_table "detail_of_cash_counts", force: :cascade do |t|
     t.integer  "monto_sistema"
     t.integer  "monto_caja"
@@ -188,6 +199,22 @@ ActiveRecord::Schema.define(version: 20160929042834) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  create_table "employees", force: :cascade do |t|
+    t.integer  "types_of_employee_id"
+    t.string   "nombre"
+    t.string   "apellido"
+    t.integer  "edad"
+    t.integer  "cedula"
+    t.integer  "telefono"
+    t.string   "correo"
+    t.string   "direccion"
+    t.integer  "hijo"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "employees", ["types_of_employee_id"], name: "index_employees_on_types_of_employee_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "numero"
@@ -280,6 +307,13 @@ ActiveRecord::Schema.define(version: 20160929042834) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "types_of_employees", force: :cascade do |t|
+    t.string   "tipo"
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -293,6 +327,13 @@ ActiveRecord::Schema.define(version: 20160929042834) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "username"
+    t.string   "apellido"
+    t.integer  "numero_ci"
+    t.string   "telefono"
+    t.string   "celular"
+    t.integer  "roles_mask"
+    t.string   "direccion"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -309,6 +350,9 @@ ActiveRecord::Schema.define(version: 20160929042834) do
   add_foreign_key "budget_details", "services"
   add_foreign_key "budgets", "reservation_requests"
   add_foreign_key "budgets", "type_of_rooms"
+  add_foreign_key "complaints", "rooms"
+  add_foreign_key "complaints", "services"
+  add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
   add_foreign_key "reservation_requests", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"

@@ -1,0 +1,50 @@
+
+<%= image_tag("empleados.jpg", :alt => "rss feed", class: "room") %>
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-9">
+<h1  class="titulo page-header">
+            <i class="fa fa-globe"></i>#Hotel-UNI LISTA DE EMPLEADOS
+            <small class="pull-right">Date: 2/10/2014</small>
+          </h1>
+</div>        
+</div> 
+
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-2">
+<%= link_to new_employee_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Employee
+  <% end %> 
+</div>  
+</div>
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-9 table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Tipos de Empleado</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Cedula</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Direccion</th>
+            <th>Hijo</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+     <% @employees.each do |employee| %>
+            <%= render "row", employee: employee %>
+     <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

@@ -49,6 +49,8 @@ GEM
     bcrypt (3.1.11-x86-mingw32)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-daterangepicker-rails (0.1.5)
+      railties (>= 4.0, < 5.1)
     bootstrap-generators (3.3.4)
       railties (>= 3.1.0)
     bootstrap-sass (3.3.7)
@@ -56,6 +58,10 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.5)
+      jquery-rails (>= 3.1.2, < 5.0.0)
+      js_regex (~> 1.0, >= 1.0.9)
+      rails (>= 4.0.0, < 4.3.0)
+    cancancan (1.15.0)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -95,6 +101,8 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    js_regex (1.0.18)
+      regexp_parser (= 0.3.6)
     json (1.8.3)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
@@ -112,6 +120,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
+    momentjs-rails (2.15.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     nested_form (0.3.2)
     nokogiri (1.6.8-x86-mingw32)
@@ -158,6 +168,7 @@ GEM
     rdoc (4.2.2)
       json (~> 1.4)
     recaptcha (0.3.6)
+    regexp_parser (0.3.6)
     responders (2.2.0)
       railties (>= 4.2.0, < 5.1)
     sass (3.4.22)
@@ -213,9 +224,11 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootstrap-datepicker-rails!
+  bootstrap-daterangepicker-rails
   bootstrap-generators (~> 3.3.4)
   bootstrap-sass (~> 3.3.1)
   byebug
+  cancancan (~> 1.10)
   coffee-rails (~> 4.1.0)
   devise
   font-awesome-rails
@@ -228,6 +241,7 @@ DEPENDENCIES
   kaminari
   kaminari-bootstrap
   magnific-popup-rails (~> 1.1.0)
+  momentjs-rails
   nested_form
   pg
   rails (= 4.2.5.1)

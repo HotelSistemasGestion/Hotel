@@ -1,0 +1,79 @@
+<%= form_for @usuario, validate: true, url: usuario_path, html: { method: :put } do |f| %>
+
+    <div class="row">
+
+      <div class="field col-md-12 form-group">
+        <h3>Informacion Personal</h3>
+      </div>
+      <br>
+      <br>
+      <form class="form-horizontal">
+        <div class="field col-md-12 form-group">
+          <div class="field col-md-4 form-group required">
+            <%= f.label :username, "Nombre", :class => 'col-md-3 control-label'%>
+            <div class="field col-md-9 form-group">
+              <%= f.text_field :username, autofocus: true, :class => 'form-control' %> 
+            </div>
+          </div>
+
+          <div class="field col-md-4 form-group required">
+            <%= f.label :apellido, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :apellido, :class => 'form-control' %>
+            </div>
+          </div>
+
+          <div class="field col-md-4 form-group required">
+            <%= f.label :numero_ci, "Documento", :class => 'col-md-4 control-label' %>
+            <div class="col-md-8">
+              <%= f.text_field :numero_ci, :class => 'form-control' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field col-md-12 form-group">
+          <div class="field col-md-5 form-group required">
+            <%= f.label :direccion, :class => 'col-md-3 control-label'%>
+            <div class="field col-md-9 form-group">
+              <%= f.text_field :direccion, :class => 'form-control' %> 
+            </div>
+          </div>          
+
+        <div class="field col-md-12 form-group">
+
+          <div class="field col-md-4 form-group required">
+            <%= f.label :celular, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :celular, :class => 'form-control' %>
+            </div>
+          </div>
+
+          <div class="field col-md-4 form-group">
+            <%= f.label :telefono, :class => 'col-md-3 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :telefono, :class => 'form-control' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+
+              <div class="col-md-6">                
+                  <label>Rol: </label>  
+                  <%= f.select :role, [["administrador", "administrador"], ["editor", "editor"], ["suscriptor", "suscriptor"]], class: 'form-control' %>                                  
+              </div>            
+            </div>  
+        </div>
+
+        
+      
+    <div class="col-md-10">
+      <div class="actions">
+        <%= f.submit "Guardar", :class => 'btn btn-primary margen'%>
+        <%= link_to 'Cancelar',  usuarios_path , class: 'btn btn-primary margen' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</form>

@@ -42,14 +42,25 @@
             <ul class="treeview-menu">
               <li><a href="<%=accounting_entries_path%>">Asientos</a></li>
               <li><a href="<%=diary_book_diario_path%>">Libro Diario</a></li>
-              <li><a href="#">Libro Mayor</a></li>
-              <li><a href="#">Balance de Sumas y Saldos</a></li>
+              <li><a href="<%=ledger_mayor_path%>">Libro Mayor</a></li>
+              <li><a href="<%=balance_report_balance_path%>">Balance de Sumas y Saldos</a></li>
             </ul>
           </li>
           <li><a href="#">link2</a></li>
         </ul>
       </li>
+
+      <li class="treeview">
+        <a href="<%=rooms_path%>" <i class='glyphicon glyphicon-link'> </i> <span>Habitaciones</span> </a>
+      </li>
+       <li class="treeview">
+        <a href="<%=employees_path%>" <i class='glyphicon glyphicon-link'> </i> <span>Empleados</span> </a>
+      </li>
+
       <li><a href="<%=reservation_requests_path%>"><i class='glyphicon glyphicon-link'></i> <span>Pedidos de Reservaciones</span></a></li>
+      <% if can? :manage, :all %>
+        <li><a href="<%=usuarios_path%>"><i class='glyphicon glyphicon-link'></i> <span>Usuarios</span></a></li>
+      <% end %>
     </ul><!-- /.sidebar-menu -->
   </section>
   <!-- /.sidebar -->

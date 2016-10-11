@@ -5,6 +5,8 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     @rooms = Room.all
+    @room =Room.new
+    @type_of_rooms = TypeOfRoom.all
   end
 
   # GET /rooms/1
@@ -40,11 +42,14 @@ class RoomsController < ApplicationController
  
     @room = Room.new(room_params)
     respond_to do |format|
-      if @room.save        
+      if @room.save
         format.js { }
+
       else
-        format.html { render :new }
-        format.json { render json: @service.errors, status: :unprocessable_entity }
+        format.js {}
+
+       
+    
       end
     end
   end
@@ -56,11 +61,10 @@ class RoomsController < ApplicationController
     respond_to do |format|
 
        if @room.update(room_params)  
-       format.js {}
-    @room_comforts.each do |room| 
-      destruir_repetidos(room.room_id,room.comfort_id);
-    end  
-
+        format.js {}
+        @room_comforts.each do |room| 
+        destruir_repetidos(room.room_id,room.comfort_id);
+        end  
       else
         format.html { render :edit }
         format.json { render json: @room.errors, status: :unprocessable_entity }
@@ -72,8 +76,10 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
+    RoomComfort.where("room_id = ?",params[:id]).delete_all
     @room.destroy
     respond_to do |format|
+      
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -96,4 +102,7 @@ class RoomsController < ApplicationController
         destruir_repetidos(room_id,comfort_id)
       end
     end
+    def conteo(type_of_room_id)
+      numero = Room.where("type_of_room_id = ?",type_of_room_id).count
+    end 
 end

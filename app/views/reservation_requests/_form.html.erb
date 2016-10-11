@@ -69,6 +69,7 @@
 
 
 
+
     <div class="form-group">
       <%= f.label :check_in, class: "col-sm-2 sr-only" %>
       <div class="col-sm-6">
@@ -79,6 +80,7 @@
       <div class="col-sm-6">
         <%= f.text_field :check_out, class: "datepicker", placeholder:"Check_out"%>
       </div>
+
     </div>
 
 
@@ -86,10 +88,9 @@
       <%= f.label :comentario, class: "col-sm-2 sr-only" %>
       <div class="col-sm-12">
         <%= f.text_area :comentarios, class: "form-control", placeholder:"Comentario" %>
+      </div>
     </div>
-
-    <br>
-    <br>
+    
     <div class="form-group">
       <%= f.label :recaptcha_tags, class: "col-sm-2 sr-only" %>
       <div class="col-sm-offset-1 col-sm-10">

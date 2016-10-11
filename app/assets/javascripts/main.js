@@ -522,10 +522,20 @@ $(document).ready(function() {
     	};
 
 	}
+	// Scroll a complaint despues de enviar el formulario correctamente
+	var gotoComplaint = function (){
+	  if ($('#my_type').length) {
+      	$('html, body').animate({
+			scrollTop: $('[data-section = Quejas ]').offset().top
+		}, 500);
+    	};
 
+	}
+	
 	// Call the functions 
 	magnifPopup();
 	magnifVideo();
 	gotoAlert();
-
+	gotoComplaint();
+	
 });

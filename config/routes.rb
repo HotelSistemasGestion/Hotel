@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
+
+  resources :employees
   resources :budget_details
   resources :budgets do
   collection do
       get 'my_new'
     end
   end
-
+  resources :complaints
   resources :accounting_entries
   resources :detail_of_payment_types
   resources :payment_types
@@ -22,6 +24,8 @@ Rails.application.routes.draw do
   resources :accounting_entries
   resources :accounting_accounts
   resources :account_plans
+  get 'balance_report/balance'
+  get 'ledger/mayor'
   get 'diary_book/diario'
   resources :reservation_requests
   resources :services do
@@ -34,6 +38,9 @@ Rails.application.routes.draw do
 
   get 'dashboard/index'
   get 'welcome/index'
+
+  resources :usuarios
+  match 'usuarios/:id' => 'usuarios#destroy', :via => :delete, :as => :admin_destroy_user
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
