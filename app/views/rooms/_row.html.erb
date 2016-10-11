@@ -1,9 +1,9 @@
-<tr id="<%= room.id %>">
-	<td><%= room.id %></td>
-    <td><%= room.type_of_room_id %></td>
+<tr  class="ind" id="<%= room.id %>">
+	<td class="text-left"><%= room.identificador %></td>
+    <td><%= room.type_of_room_tipo %></td>
     <td><%= room.state_descripcion %></td>
     <td><%= room.capacidad %></td>
-    <td><%= room.identificador %></td>
+  
     
     <td><%= link_to 'Ver', room, remote: true %></td>
     <td><%= link_to 'Editar', edit_room_path(room), remote: true  %></td>

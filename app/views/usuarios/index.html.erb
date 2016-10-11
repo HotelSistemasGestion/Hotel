@@ -1,0 +1,16 @@
+<% if can? :manage, :all %>
+	<div class="container white">
+	  	<center><h1> Usuarios </h1></center>	  	
+	  			<%= link_to new_usuario_path, class: 'btn btn-primary pull-right', title: 'Nuevo Usuario', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+	    			<span class= "glyphicon glyphicon-plus"></span>
+	    		<% end %>	    
+	    <br><br>
+	    <%= render 'table' %>
+	</div>
+<% else %>
+	<script type="text/javascript">
+    	window.location.href="/users/sign_in"  // put your correct path in a string here
+  	</script>	
+<% end %>
+
+

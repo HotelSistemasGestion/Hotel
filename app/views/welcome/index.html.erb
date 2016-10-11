@@ -1,4 +1,5 @@
-
+<script src="//maps.google.com/maps/api/js?key=[your API key]"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 <!DOCTYPE html>
  
     <head>
@@ -26,11 +27,18 @@
                   <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#" data-nav-section="home"><span>Home</span></a></li>
                     <li><a href="#" data-nav-section="Habitaciones"><span>Habitaciones</span></a></li>
-                    <li><a href="#" data-nav-section="testimonials"><span>Testimonials</span></a></li>
-                    <li><a href="#" data-nav-section="services"><span>Services</span></a></li>
-                    <li><a href="#" data-nav-section="about"><span>About</span></a></li>
-                    <li><a href="#" data-nav-section="contact"><span>Contact</span></a></li>
+                    <li><a href="#" data-nav-section="testimonials"><span>Testimonios</span></a></li>
+                    <li><a href="#" data-nav-section="services"><span>Servicios</span></a></li>
+                    <% if is_ip_allowed %>
+                    <li><a href="#" data-nav-section="Quejas"><span>Quejas</span></a></li>
+                    <%end%>
+                    <li><a href="#" data-nav-section="about"><span>Acerca de</span></a></li>
+                    <li><a href="#" data-nav-section="contact"><span>Contacto</span></a></li>
+                    <%if !user_signed_in? %>
                     <li><a href="<%=new_user_session_path%>" id="ingresar" ><span>Ingresar</span></a></li>
+                    <%else%>
+                    <li><a href="<%=dashboard_index_path%>" id="panel" ><span>Panel</span></a></li>
+                    <%end%>
                   </ul>
                     
                 </div>
@@ -42,15 +50,15 @@
 
     </header>
 
-    <section id="fh5co-home" data-section="home" style="background-image: url('/assets/full_image_2.jpg');" data-stellar-background-ratio="0.5">
+    <section id="fh5co-home" data-section="home" style="background-image: url('/assets/hotel.jpg');" data-stellar-background-ratio="0.5">
         <div class="gradient"></div>
         <div class="container">
             <div class="text-wrap">
                 <div class="text-inner">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            <h1 class="to-animate">Bienvenidos</h1>
-                            <h2 class="to-animate">Hotel-Uni</h2>
+                            <h1 class="animated zoomIn">Bienvenidos</h1>
+                            <h2 class="animated zoomIn">Hotel Uni</h2>                            
                         </div>
                     </div>
                 </div>
@@ -62,7 +70,7 @@
     <section id="fh5co-intro">
         <div class="container">
             <div class="row row-bottom-padded-lg">
-                <div class="fh5co-block to-animate" style="background-image: url('/assets/img_7.jpg');">
+                <div class="fh5co-block to-animate" style="background-image: url('/assets/plan.jpg');">
                     <div class="overlay-darker"></div>
                     <div class="overlay"></div>
                     <div class="fh5co-text">
@@ -72,29 +80,29 @@
                         <p><a href="User/Log_in" class="btn btn-primary">Get In Touch</a></p>
                     </div>
                 </div>
-                <div class="fh5co-block to-animate" style="background-image: url('/assets/img_8.jpg');">
+                <div class="fh5co-block to-animate" style="background-image: url('/assets/develop.jpg');">
                     <div class="overlay-darker"></div>
                     <div class="overlay"></div>
                     <div class="fh5co-text">
                         <i class="fh5co-intro-icon fa fa-apple"></i>
-                        <h2>Develop</h2>
+                        <h2>Desarrollo</h2>
                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                         <p><a href="#" class="btn btn-primary">Click Me</a></p>
                     </div>
                 </div>
-                <div class="fh5co-block to-animate" style="background-image: url('/assets/img_10.jpg');">
+                <div class="fh5co-block to-animate" style="background-image: url('/assets/launch.jpg');">
                     <div class="overlay-darker"></div>
                     <div class="overlay"></div>
                     <div class="fh5co-text">
                         <i class="fh5co-intro-icon fa fa-apple"></i>
-                        <h2>Launch</h2>
+                        <h2>Lanzamiento</h2>
                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                         <p><a href="#" class="btn btn-primary">Why Us?</a></p>
                     </div>
                 </div>
             </div>
             <div class="row watch-video text-center to-animate">
-                <span>Watch the video</span>
+                <span>Mira el video</span>
 
                 <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo btn-video"><i class="fa fa-play"></i></a>
             </div>
@@ -108,7 +116,8 @@
                     <h2 class="to-animate">Nuestras Habitaciones</h2>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 subtext to-animate">
-                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                            <h3>Tenemos lo mejor en habitaciones para todos los gustos solo diganos que busca en una
+                            y trataremos de hacer lo mejor para satisfacerlo.</h3>
                         </div>
                     </div>
                 </div>
@@ -116,18 +125,18 @@
             <div class="row row-bottom-padded-sm">
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                     <a  class="fh5co-project-item image-popup to-animate">
-                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <%= image_tag "habitacion.jpg", :class =>"img-responsive" , alt: "Image" %>
                         <div class="fh5co-text">
-                        <h2>Project 1</h2>
+                        <h2>Habitacion 1</h2>
                         <span>Branding</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                     <a class="fh5co-project-item image-popup to-animate">
-                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <%= image_tag "habitacion2.jpg", :class =>"img-responsive" , alt: "Image" %>
                         <div class="fh5co-text">
-                        <h2>Project 2</h2>
+                        <h2>Habitacion 2</h2>
                         <span>Web</span>
                         </div>
                     </a>
@@ -137,18 +146,18 @@
 
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                     <a  class="fh5co-project-item image-popup to-animate">
-                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <%= image_tag "habitacion3.jpg", :class =>"img-responsive" , alt: "Image" %>
                         <div class="fh5co-text">
-                        <h2>Project 3</h2>
+                        <h2>Habitacion 3</h2>
                         <span>Web</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                     <a class="fh5co-project-item image-popup to-animate">
-                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <%= image_tag "habitacion4.jpg", :class =>"img-responsive" , alt: "Image" %>
                         <div class="fh5co-text">
-                        <h2>Project 4</h2>
+                        <h2>Habitacion 4</h2>
                         <span>UI/UX</span>
                         </div>
                     </a>
@@ -158,18 +167,18 @@
 
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                     <a  class="fh5co-project-item image-popup to-animate">
-                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <%= image_tag "habitacion5.jpg", :class =>"img-responsive" , alt: "Image" %>
                         <div class="fh5co-text">
-                        <h2>Project 1</h2>
+                        <h2>Habitacion 5</h2>
                         <span>Photography</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                     <a  class="fh5co-project-item image-popup to-animate">
-                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <%= image_tag "habitacion6.jpg", :class =>"img-responsive" , alt: "Image" %>
                         <div class="fh5co-text">
-                        <h2>Project 2</h2>
+                        <h2>Habitacion 6</h2>
                         <span>Illustration</span>
                         </div>
                     </a>
@@ -179,18 +188,18 @@
 
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                     <a  class="fh5co-project-item image-popup to-animate">
-                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <%= image_tag "habitacion7.jpg", :class =>"img-responsive" , alt: "Image" %>
                         <div class="fh5co-text">
-                        <h2>Project 3</h2>
+                        <h2>Habitacion 7</h2>
                         <span>Web</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                     <a class="fh5co-project-item image-popup to-animate">
-                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <%= image_tag "habitacion8.jpg", :class =>"img-responsive" , alt: "Image" %>
                         <div class="fh5co-text">
-                        <h2>Project 4</h2>
+                        <h2>Habitacion 8</h2>
                         <span>Sketch</span>
                         </div>
                     </a>
@@ -200,9 +209,9 @@
 
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                     <a  class="fh5co-project-item image-popup to-animate">
-                        <%= image_tag "work_1.jpg", :class =>"img-responsive" , alt: "Image" %>
+                        <%= image_tag "habitacion9.jpg", :class =>"img-responsive" , alt: "Image" %>
                         <div class="fh5co-text">
-                        <h2>Project 2</h2>
+                        <h2>Habitacion 9</h2>
                         <span>Illustration</span>
                         </div>
                     </a>
@@ -215,10 +224,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 section-heading text-center">
-                    <h2 class="to-animate">Testimonials</h2>
+                    <h2 class="to-animate">Testimonios</h2>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 subtext to-animate">
-                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                            <h3>Abajo podra obserbar las opiniones de las diferentes personas
+                             que han estado en el hotel.</h3>
                         </div>
                     </div>
                 </div>
@@ -227,10 +237,10 @@
                 <div class="col-md-4">
                     <div class="box-testimony">
                         <blockquote class="to-animate-2">
-                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+                            <p>&ldquo;La noche que pase ahi dormi bastante bien excelente atencion.&rdquo;</p>
                         </blockquote>
                         <div class="author to-animate">
-                            <figure><%= image_tag "user7-128x128.jpg" , alt: "Person" %></figure>
+                            <figure><%= image_tag "user3-128x128.jpg" , alt: "Person" %></figure>
                             <p>
                             Jean Doe, CEO <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
                             </p>
@@ -240,10 +250,10 @@
                 <div class="col-md-4">
                     <div class="box-testimony">
                         <blockquote class="to-animate-2">
-                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+                            <p>&ldquo;No podria definir lo grandioso que es el hotel, buen ambiente y buenos empleados.&rdquo;</p>
                         </blockquote>
                         <div class="author to-animate">
-                            <figure><%= image_tag "user7-128x128.jpg" , alt: "Person" %></figure>
+                            <figure><%= image_tag "user8-128x128.jpg" , alt: "Person" %></figure>
                             <p>
                             John Doe, Senior UI <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> <span class="subtext">Creative Director</span>
                             </p>
@@ -254,7 +264,8 @@
                 <div class="col-md-4">
                     <div class="box-testimony">
                         <blockquote class="to-animate-2">
-                            <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. &rdquo;</p>
+                            <p>&ldquo;Si me dieran la oportunidad de ponerle 5 estrellas al hotel estaria corto ya que se
+                            merece mucho mas, sin mencionar que su comida es fantastica. &rdquo;</p>
                         </blockquote>
                         <div class="author to-animate">
                             <figure><%= image_tag "user7-128x128.jpg" , alt: "Person" %></figure>
@@ -271,14 +282,14 @@
     </section>
 
 
-    <section id="fh5co-services" data-section="services">
+    <section id="fh5co-services" data-section="services" style="background-image: url('/assets/servicios.jpg');" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 section-heading text-left">
-                    <h2 class=" left-border to-animate">Services</h2>
+                    <h2 class=" left-border to-animate">Servicios</h2>
                     <div class="row">
                         <div class="col-md-8 subtext to-animate">
-                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                            <h3>Podran observar los diferentes servicios que ofrece el hotel.</h3>
                         </div>
                     </div>
                 </div>
@@ -286,26 +297,28 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
                     <i class="icon to-animate-2 fa fa-github"></i>
-                    <h3>Brand &amp; Strategy</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+                    <h3>Restaurante &amp; Bar</h3>
+                    <p>Podra encontrar toda clase de bebidas y comidas, tenemos tenedor libre y a la carta</p>
                 </div>
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
                     <i class="icon to-animate-2 fa fa-github"></i>
-                    <h3>Web &amp; Interface</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+                    <h3>Servicio a la Habitacion</h3>
+                    <p>Con tan solo marcar el # en el telefono de su habitacion podra llamar directamente a nuestro comedor
+                    y ordenar algo para que se lo lleven a la habitacion el servicio esta disponible 24hs</p>
                 </div>
 
                 <div class="clearfix visible-sm-block"></div>
 
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
                     <i class="icon to-animate-2 fa fa-github"></i>
-                    <h3>Photo &amp; Video</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+                    <h3>Frigobar</h3>
+                    <p>Si lo desea con su reservacion podra pedir que su habitacion tenga un frigobar con bebidas de su agrado</p>
                 </div>
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
                     <i class="icon to-animate-2 fa fa-github"></i>
-                    <h3>CMS &amp; eCommerce</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean</p>
+                    <h3>Limpieza &amp; mantenimiento</h3>
+                    <p>Cuando este en la habitacion si le incomoda algo o siente que esta sucio, podra llamar las 24hs a nuestro
+                    servicio de limpieza para que se encarge de sus inconvenientes</p>
                 </div>
                 
             </div>
@@ -316,10 +329,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 section-heading text-center">
-                    <h2 class="to-animate">About</h2>
+                    <h2 class="to-animate">Acerca de</h2>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 subtext to-animate">
-                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                            <h3>En el se detalla las personas que trabajaron en el sistema.</h3>
                         </div>
                     </div>
                 </div>
@@ -422,6 +435,7 @@
                 </div>
             </div>
             <div class="row row-bottom-padded-md">
+            
                 <div class="col-md-5 to-animate">
                     <h3>Contact Info</h3>
                     <ul class="fh5co-contact-info">
@@ -434,8 +448,8 @@
                         <li><i class="icon-globe"></i> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></li>
                     </ul>
                 </div>
-
-                <div class="col-md-6 to-animate">
+                <!--estaba pedido de reserva-->
+                <div class="col-md-7 to-animate">
                     <% if notice %>
                         <div class="alert alert-success alert-dismissable">
                         <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -443,15 +457,60 @@
                         </div>
                         <%end%>
                         <%if !user_signed_in? %>
-                        <h1>Pedir Reservacion</h1>
-                        <%= render 'reservation_requests/form' %>
-                <%end%>
+                        <div class="panel panel-success">
+                        <div class="panel-heading"> Pedir Reservacion </div>
+                            <div class="panel-body">
+                                <%= render 'reservation_requests/form' %>
+                            </div>
+                        </div>
+                        <%end%>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+        <% if is_ip_allowed %>
+        <section id="fh5co-contact" data-section="Quejas">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="to-animate">Quejas</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                            <h3>Porque buscamos la excelencia y creemos en que nuestro capital mas valioso son los clientes</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-bottom-padded-md">
+                <div class="col-md-12">
+
+                    <% if my_type %>
+
+                        <div class="alert alert-success alert-dismissable" id="my_type">
+                        <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <b><%= my_type %></b>
+                        </div>
+                        <%end%>
+    
+                        <h1>Realize su queja correspondiente</h1>
+                        <%= render 'complaints/form' %>
                 </div>
                 </div>
 
             </div>
         </div>
-        <div id="map" class="to-animate"></div>
+        <%end%>
+        <div id="map" class="to-animate"></div> <!-- aqui va el mapa-->
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgKxTWFKOAtZruNP6J50YvrOZCWYJNRrM">
+            handler = Gmaps.build('Google');
+            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+            markers = handler.addMarkers(<%=raw @hash.to_json %>);
+        </script>
+
+
         <p><center>Aqui va un mapa de localizacion si quieren.</center></p>
     </section>
     
@@ -477,8 +536,6 @@
         </div>
     </footer>
     
-    
-
     
     <!-- jQuery -->
     

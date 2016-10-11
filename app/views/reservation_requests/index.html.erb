@@ -7,7 +7,6 @@
   <#% end %-->
   <h1>Pedidos de Reserva</h1>
 </div>
-
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
@@ -28,7 +27,9 @@
           <td><%= reservation_request.nombre %></td>
           <td><%= reservation_request.apellido %></td>
           <td><%= reservation_request.email %></td>
+  
           <td><%= link_to 'Confirmar', reservation_request,class: "btn btn-primary" %></td>
+  
           <td><%= link_to 'Presupuestar', {:controller => "budgets", :action => "my_new", :id => reservation_request.id },class: "btn btn-primary" %></td>
           <td><%= link_to '', reservation_request ,class: "btn btn-primary glyphicon glyphicon-eye-open"%></td>
           <td><%= link_to '', edit_reservation_request_path(reservation_request) ,class: "btn btn-success glyphicon glyphicon-edit"%></td>
@@ -36,4 +37,5 @@
       <% end %>
     </tbody>
   </table>
+  <nav><%= paginate @reservation_requests %></nav>
 </div>

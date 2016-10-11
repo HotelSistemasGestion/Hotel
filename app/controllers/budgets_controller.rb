@@ -30,11 +30,11 @@ class BudgetsController < ApplicationController
   # POST /budgets.json
   def create
     @budget = Budget.new(budget_params)
-
     respond_to do |format|
       if @budget.save
         format.html { redirect_to @budget, notice: 'Budget was successfully created.' }
         format.json { render :show, status: :created, location: @budget }
+        BudgetMailer.budget_email.deliver_now!
       else
         format.html { render :new }
         format.json { render json: @budget.errors, status: :unprocessable_entity }

@@ -2,7 +2,7 @@
   <% if @reservation_request.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert" id="error">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@reservation_request.errors.count, "error") %> Ocurrio un error,por favor verifique los campos:</h4>
+      <h4><%= pluralize(@reservation_request.errors.count, "error") %> Ocurrio un error, por favor verifique los campos:</h4>
 
       <ul>
       <% @reservation_request.errors.full_messages.each do |msg| %>
@@ -12,89 +12,96 @@
     </div>
   <% end %>
 
-
-  <div class="form-group">
-    <%= f.label :nombre, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :nombre, class: "form-control" %>
+<!--control-label-->
+    <div class="form-group">
+      <%= f.label :nombre, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-6">
+        <%= f.text_field :nombre, class: "form-control", placeholder:"Nombre"%>
+      </div>
+    
+      <%= f.label :apellido, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-6">
+        <%= f.text_field :apellido, class: "form-control", placeholder:"Apellido"%>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :apellido, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :apellido, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :email, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :telefono, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :telefono, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :type_of_room_id, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.select :type_of_room_id,TypeOfRoom.all.collect { |p| [ p.tipo , p.id ] }, include_blank: true, class: "form-control", class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :cantidad_de_adultos, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :cantidad_de_adultos, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :cantidad_de_ninhos, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :cantidad_de_ninhos, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :cantidad_de_familias, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :cantidad_de_familias, class: "form-control" %>
-    </div>
-  </div>
-   <div class="form-group">
-    <%= f.label :check_in, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%#= f.text_field :check_in, "data-provide" => 'datepicker' %>
-      <%= f.text_field :check_in, class: "datepicker"%>
 
 
+
+    <div class="form-group">
+      <%= f.label :email, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-6">
+        <%= f.email_field :email, class: "form-control", placeholder:"Email" %>
+      </div>
+    
+      <%= f.label :telefono, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-6">
+        <%= f.text_field :telefono, class: "form-control", placeholder:"Telefono" %>
+      </div>
     </div>
-  </div>
-   <div class="form-group">
-    <%= f.label :check_out, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%#= f.text_field :check_out, "data-provide" => 'datepicker' %>
-      <%= f.text_field :check_out, class: "datepicker"%>
+
+
+    <div class="form-group">
+      <%= f.label :tipo_de_cuarto, class: "col-sm-2 sr-only" %> <!--aun no se ve ya que no hay nada en el-->
+      <div class="col-sm-10">
+        <%= f.select :type_of_room_id,TypeOfRoom.all.collect { |p| [ p.tipo , p.id ] }, include_blank: true, class: "form-control",
+         placeholder:"tipo de cuarto" %>
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <%= f.label :adultos, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-4">
+        <%= f.number_field :cantidad_de_adultos, class: "form-control" , placeholder:"Adultos"%>
+      </div>
+    
+      <%= f.label :ninhos, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-4">
+        <%= f.number_field :cantidad_de_ninhos, class: "form-control", placeholder:"Ninhos" %>
+      </div>
+    
+      <%= f.label :familias, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-4">
+        <%= f.number_field :cantidad_de_familias, class: "form-control", placeholder:"Familias" %>
+      </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+      <%= f.label :check_in, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-6">
+        <%= f.text_field :check_in, class: "datepicker", placeholder:"Check_in"%>
+      </div>
+    
+      <%= f.label :check_out, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-6">
+        <%= f.text_field :check_out, class: "datepicker", placeholder:"Check_out"%>
+      </div>
 
     </div>
-  </div>
-   <div class="form-group">
-    <%= f.label :comentario, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_area :comentarios, class: "form-control" %>
+
+
+    <div class="form-group">
+      <%= f.label :comentario, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-12">
+        <%= f.text_area :comentarios, class: "form-control", placeholder:"Comentario" %>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :recaptcha_tags, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-       <%= recaptcha_tags %>
+    
+    <div class="form-group">
+      <%= f.label :recaptcha_tags, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-offset-1 col-sm-10">
+         <%= recaptcha_tags %>
+      </div>
     </div>
-  </div>
- 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit  "Enviar Pedido",class: "btn btn-default" %>
-    </div>
-  </div>
    
+    <div class="form-group">
+      <div class="col-sm-offset-1 col-sm-10">
+        <%= f.submit "Enviar Pedido",class: "btn btn-success" %>
+      </div>
+    </div>
+  
 <% end %>
