@@ -2680,10 +2680,21 @@ a:focus {
 .table.no-border th {
   border: 0;
 }
+.table-color>thead > tr > th{
+  text-align: center;
+    background-color: gray;
+
+}
+.table-sombra{
+      box-shadow: 0 0 9px #333;
+}
 /* .text-center in tables */
 table.text-center,
 table.text-center td,
 table.text-center th {
+  text-align: center;
+}
+.centrar{
   text-align: center;
 }
 .table.align th {
@@ -2691,6 +2702,23 @@ table.text-center th {
 }
 .table.align td {
   text-align: right;
+}
+.debe-ctrol {
+ /* position: absolute;*/
+ margin-top:-10px;
+padding-top: -10px;
+ border-top: 2px;
+  text-align: left;
+}
+.haber-ctrol {
+   /*position: absolute;*/
+ margin-top:10px;
+padding-top: 10px;
+
+ border-top: 20px;
+  text-align: right;
+ 
+
 }
 /*
  * Component: Label
