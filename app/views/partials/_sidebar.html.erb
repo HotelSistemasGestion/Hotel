@@ -49,6 +49,14 @@
           <li><a href="#">link2</a></li>
         </ul>
       </li>
+
+      <li class="treeview">
+        <a href="<%=rooms_path%>" <i class='glyphicon glyphicon-link'> </i> <span>Habitaciones</span> </a>
+      </li>
+       <li class="treeview">
+        <a href="<%=employees_path%>" <i class='glyphicon glyphicon-link'> </i> <span>Empleados</span> </a>
+      </li>
+
       <li><a href="<%=reservation_requests_path%>"><i class='glyphicon glyphicon-link'></i> <span>Pedidos de Reservaciones</span></a></li>
       <% if can? :manage, :all %>
         <li><a href="<%=usuarios_path%>"><i class='glyphicon glyphicon-link'></i> <span>Usuarios</span></a></li>
