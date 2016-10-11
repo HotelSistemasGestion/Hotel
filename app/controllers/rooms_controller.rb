@@ -61,11 +61,10 @@ class RoomsController < ApplicationController
     respond_to do |format|
 
        if @room.update(room_params)  
-       format.js {}
-    @room_comforts.each do |room| 
-      destruir_repetidos(room.room_id,room.comfort_id);
-    end  
-
+        format.js {}
+        @room_comforts.each do |room| 
+        destruir_repetidos(room.room_id,room.comfort_id);
+        end  
       else
         format.html { render :edit }
         format.json { render json: @room.errors, status: :unprocessable_entity }
@@ -77,8 +76,10 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
+    RoomComfort.where("room_id = ?",params[:id]).delete_all
     @room.destroy
     respond_to do |format|
+      
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
     end

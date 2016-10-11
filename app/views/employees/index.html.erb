@@ -1,16 +1,31 @@
-<div class="page-header">
-  <%= link_to new_employee_path, class: 'btn btn-primary' do %>
+
+<%= image_tag("empleados.jpg", :alt => "rss feed", class: "room") %>
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-9">
+<h1  class="titulo page-header">
+            <i class="fa fa-globe"></i>#Hotel-UNI LISTA DE EMPLEADOS
+            <small class="pull-right">Date: 2/10/2014</small>
+          </h1>
+</div>        
+</div> 
+
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-2">
+<%= link_to new_employee_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     New Employee
-  <% end %>
-  <h1>Listing employees</h1>
+  <% end %> 
+</div>  
 </div>
-
-<div class="table-responsive">
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-9 table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-            <th>Types of employee</th>
+            <th>Tipos de Empleado</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Edad</th>
@@ -26,20 +41,10 @@
     </thead>
 
     <tbody>
-      <%= content_tag_for(:tr, @employees) do |employee| %>
-            <td><%= employee.types_of_employee %></td>
-            <td><%= employee.nombre %></td>
-            <td><%= employee.apellido %></td>
-            <td><%= employee.edad %></td>
-            <td><%= employee.cedula %></td>
-            <td><%= employee.telefono %></td>
-            <td><%= employee.correo %></td>
-            <td><%= employee.direccion %></td>
-            <td><%= employee.hijo %></td>
-            <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
+     <% @employees.each do |employee| %>
+            <%= render "row", employee: employee %>
+     <% end %>
     </tbody>
   </table>
+</div>
 </div>
