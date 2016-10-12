@@ -1,7 +1,7 @@
 <% if can? :manage, :all %>
 	<div class="container white">
-	  	<center><h1> Usuarios </h1></center>	  	
-	  			<%= link_to new_usuario_path, class: 'btn btn-primary pull-right', title: 'Nuevo Usuario', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+	  	<center><h1> Administración de Usuarios </h1></center>	  	
+	  			<%= link_to new_usuario_path, class: 'btn btn-success pull-right btn-lg', title: 'Nuevo Usuario', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
 	    			<span class= "glyphicon glyphicon-plus"></span>
 	    		<% end %>	    
 	    <br><br>

@@ -18,14 +18,14 @@
                 <td><%= usuario.email %></td>                
                 <td>
                   <% if can? :edit, User %>
-                    <%= link_to edit_usuario_path(usuario), class: 'btn btn-default', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <%= link_to edit_usuario_path(usuario), class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-pencil"></span>
                     <% end %>                
                 <% end %>
                 </td> 
                 <td>
                   <% if can? :destroy, User %>
-                    <%= link_to admin_destroy_user_path(usuario), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-default', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <%= link_to admin_destroy_user_path(usuario), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-remove"></span>
                     <% end %>                                                
                 <% end %>
