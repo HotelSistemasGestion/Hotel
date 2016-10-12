@@ -25,10 +25,11 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
+    
     respond_to do |format|
       if @invoice.save
-        format.js { } # Hace un render a create.js.erb
+        format.html { redirect_to @invoice, notice: 'Account was successfully created.' }
+        format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
