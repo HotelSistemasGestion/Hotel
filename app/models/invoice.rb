@@ -1,7 +1,4 @@
 class Invoice < ActiveRecord::Base
     belongs_to :client
-    validates :numero, :fecha, presence: true
-
-    validates :client, :presence => {:message => "No puede dejar en blanco este campo"}
-    
+    validates :numero, :fecha, :client, presence: true
 end

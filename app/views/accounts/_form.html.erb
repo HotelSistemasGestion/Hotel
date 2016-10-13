@@ -16,10 +16,13 @@
     <%= f.select :client_id, Client.all.collect { |c| [ c.nombre, c.id ] }, include_blank: true %>
   </div>
 
-<div class="field">
-    <%= f.label :Checks %><br>
+  <div class="field">
+    <%= f.label :Habitacion %><br>
+    <%= f.select :room_id, Room.all.collect { |r| [ r.identificador, r.id ] }, include_blank: true %>
   </div>
 
+  <div class="field">
+    <%= f.label :Checks %><br>
 
     <div class="form-group">
       <%= f.label :fecha_entrada, class: "col-sm-2 sr-only" %>
@@ -31,9 +34,9 @@
       <div class="col-sm-6">
         <%= f.text_field :fecha_salida, class: "datepicker", placeholder:"Check_out"%>
       </div>
-
     </div>
 
+  </div>
 
   <div class="actions">
     <%= f.submit %>

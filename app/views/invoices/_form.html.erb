@@ -12,24 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Numero_de_factura %><br>
-    <%= f.text_field :numero %>
+    <%= f.label :numero %><br>
+    <%= f.number_field :numero %>
   </div>
   <div class="field">
-    <%= f.label :Cliente %><br>
-    <%= f.select :client_id, Client.all.collect { |c| [ c.nombre, c.id ] }, include_blank: true %>
+    <%= f.label :client_id %><br>
+    <%= f.text_field :client_id %>
   </div>
-
   <div class="field">
     <%= f.label :fecha %><br>
     <%= f.date_select :fecha %>
-  </div>
-  <div class="field">
-    <%= f.label :Descuento %><br>
-    <%= f.text_field :descuento %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
