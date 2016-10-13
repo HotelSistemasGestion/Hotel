@@ -1,6 +1,6 @@
 <%= form_for @usuario, validate: true, url: usuario_path, html: { method: :put } do |f| %>
 
-<div class="row">
+<div class="field col-md-11 form-group">
       <div class="field col-md-12 form-group">
         <h3>Informacion Personal</h3>
       </div>
@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="field col-md-4 form-group required">
-            <%= f.label :numero_ci, "Documento", :class => 'col-md-3 control-label' %>
+            <%= f.label :numero_ci, "Cedula", :class => 'col-md-3 control-label' %>
             <div class="col-md-9">
               <%= f.text_field :numero_ci, :maxlength => 7, :class => 'form-control' %>
             </div>

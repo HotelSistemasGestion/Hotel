@@ -4,7 +4,8 @@
             <tr>
               <th>Nombre</th>
               <th>Apellido</th>
-              <th>Correo</th>              
+              <th>Correo</th>
+              <th>Fecha de Alta</th>              
               <th></th>   
               <th></th>   
             </tr>
@@ -15,7 +16,8 @@
               <tr>
                 <td><%= usuario.username %></td>
                 <td><%= usuario.apellido %></td>
-                <td><%= usuario.email %></td>                
+                <td><%= usuario.email %></td>  
+                <td><%= usuario.created_at.strftime("%d-%m-%Y") +' a las '+ usuario.created_at.strftime("%I:%M %p")%></td>               
                 <td>
                   <% if can? :edit, User %>
                     <%= link_to edit_usuario_path(usuario), class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
@@ -26,7 +28,7 @@
                 <td>
                   <% if can? :destroy, User %>
                     <%= link_to admin_destroy_user_path(usuario), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon-remove"></span>
+                    <span class= "glyphicon glyphicon-trash"></span>
                     <% end %>                                                
                 <% end %>
                 </td> 
