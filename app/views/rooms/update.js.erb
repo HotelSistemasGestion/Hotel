@@ -1,7 +1,0 @@
-<% if @room.errors.blank? %>
-  $('#product-modal').modal('hide');
-  $('table tbody tr#<%= @room.id %>').replaceWith(' <%= j render "row", room: @room %>');
-  alert('LA HABITACIÓN ha sido modificada');
-<% else %>
-  alert('<%= @room.errors.full_messages[0] %>');
-<% end %>
