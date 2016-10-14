@@ -19,6 +19,8 @@
         <thead>
           <tr>
             <th>Cliente</th>
+            <th>Direccion</th>
+            <th>RUC</th>
             <th>Fecha entrada</th>
             <th>Fecha salida</th>
             <th>Total</th>
@@ -29,12 +31,14 @@
           <% @accounts.each do |account| %>
             <tr>              
               <td><%= account.client.nombre + ' '+account.client.apellido %></td>
+              <td><%= account.client.direccion %></td>
+              <td><%= account.client.ruc %></td>
               <td><%= account.fecha_entrada %></td>
               <td><%= account.fecha_salida %></td>
               <td><%= account.total %></td>
-              <td><%= link_to 'Show', account %></td>
-              <td><%= link_to 'Edit', edit_account_path(account) %></td>
-              <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+              <td><%= link_to 'Ver', account %></td>
+              <td><%= link_to 'Editar', edit_account_path(account) %></td>
+              <td><%= link_to 'Eliminar', account, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
               </tr>
           <% end %>
         </tbody>

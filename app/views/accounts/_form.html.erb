@@ -12,21 +12,32 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :client_id %><br>
-    <%= f.text_field :client_id %>
+    <%= f.label :Cliente %><br>
+    <%= f.select :client_id, Client.all.collect { |c| [ c.nombre, c.id ] }, include_blank: true %>
   </div>
+
   <div class="field">
-    <%= f.label :fecha_entrada %><br>
-    <%= f.date_select :fecha_entrada %>
+    <%= f.label :Habitacion %><br>
+    <%= f.select :room_id, Room.all.collect { |r| [ r.identificador, r.id ] }, include_blank: true %>
   </div>
+
   <div class="field">
-    <%= f.label :fecha_salida %><br>
-    <%= f.date_select :fecha_salida %>
+    <%= f.label :Checks %><br>
+
+    <div class="form-group">
+      <%= f.label :fecha_entrada, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-6">
+        <%= f.text_field :fecha_entrada, class: "datepicker", placeholder:"Check_in"%>
+      </div>
+   
+      <%= f.label :fecha_salida, class: "col-sm-2 sr-only" %>
+      <div class="col-sm-6">
+        <%= f.text_field :fecha_salida, class: "datepicker", placeholder:"Check_out"%>
+      </div>
+    </div>
+
   </div>
-  <div class="field">
-    <%= f.label :total %><br>
-    <%= f.number_field :total %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
