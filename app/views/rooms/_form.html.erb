@@ -1,13 +1,14 @@
 <div id="product-modal" class="modal fade">
-  <div class="modal-dialog">
+   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+         <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><%= title %></h4>
       </div>
-          <%= nested_form_for @room, remote: true do |f| %>
+ <%= nested_form_for @room, remote: true ,data: {toggle: "validator"} do |f| %>
+ <div class="modal-body">
   <% if @room.errors.any? %>
- 
+ |
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
       <h4><%= pluralize(@room.errors.count, "error") %> prohibited this type_of_room from being saved:</h4>
@@ -20,56 +21,94 @@
     </div>
   <% end %>
     
+    <div class="alert alert-danger" role="alert" style="display: none;"></div>
+      <div class ="form-group row">
+       <div class="col-sm-6">  
+          <div class="form-group has-feedback">
+            <%= f.label :type_of_room, class: "control-label" %>      
+             <%= f.select :type_of_room_id ,TypeOfRoom.all.collect { |p| [p.tipo, p.id ] },{include_blank: false},class: "form-control",:required => true %>
+             <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+             <div class="help-block with-errors">*requerido</div>
+          </div>
+        </div>
+         <div class="col-sm-6">  
+          <div class="form-group has-feedback">
+            <%= f.label "Identificador", class: "control-label" %>
+            <%= f.text_field  :identificador,type: "text" ,minlength: 3, class: "form-control ", placeholder: "Identificador de Habitacion" ,:required => true %>
+            <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+             <div class="help-block with-errors">*requerido</div>
+          </div>
+        </div>
 
- <div class="form-horizontal">
-            <div class="form-group">
-              <%= f.label :type_of_room, class: "col-sm-2 control-label" %>
-              <div class="col-sm-7">
-                  <%= f.select :type_of_room_id ,TypeOfRoom.all.collect { |p| [p.tipo, p.id ] },{include_blank: false},class: "form-control" %>
-              </div>             
-            </div>
-            <div class="form-group">
-              <%= f.label :state, class: "col-sm-2 control-label" %>
-              <div class="col-sm-7">
-                  <%= f.select :state_id ,State.all.collect { |p| [p.descripcion, p.id ] },{include_blank: false},class: "form-control" %>
-              </div>
-            </div>
-            <div class="form-group">
-              <%= f.label :capacidad, class: "col-sm-2 control-label" %>
-              <div class="col-sm-7">
-                <%= f.number_field :capacidad, min: 1,max: 10, class: "form-control" %>
-              </div>
-            </div>
-            <div class="form-group">
-              <%= f.label :identificador, class: "col-sm-2 control-label" %>
-              <div class="col-sm-7">
-                <%= f.text_field :identificador, class: "form-control" %>
-              </div>
-            </div>
-            
-            <%= f.fields_for :room_comforts do |room| %>
-              <div class="form-group">
-                <%= room.label :comfort_id ,class: "col-sm-2 control-label" %>
-                <div class="col-sm-5">
-                  <%= room.select :comfort_id, Comfort.all.collect { |p| [ p.descripcion, p.id ] },{include_blank: false},class: "form-control" %>
-                </div>
-              <%= room.link_to_remove "" ,class: "col-sm-1  control-label glyphicon glyphicon-trash"%>
-              </div>
-           <% end %>
+      </div>
 
-           <div class="text-center">
-           <%= f.link_to_add "", :room_comforts ,class: "control-label glyphicon glyphicon-plus"%>
+
+
+      <div class ="form-group row">
+       <div class="col-sm-6">  
+
+          <div class="form-group has-feedback">
+             <%= f.label :state, class: "control-label" %>
+            <%= f.select :state_id ,State.all.collect { |p| [p.descripcion, p.id ] },{include_blank: false},class: "form-control",:required =>true  %>                
+             <div class="help-block with-errors">*requerido</div>
+               <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          
+          </div>
+        </div>  
+         <div class="col-sm-6">  
+          <div  class="form-group has-feedback">
+             <%= f.label "Capacidad", class: "control-label" %>
+            <%= f.text_field  :capacidad,type: "number" ,min: 1,max: 10,  class: "form-control", placeholder: "Capacidad Habitacion" ,:required => true %>
+            <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+             <div class="help-block with-errors">*requerido</div>
+          </div>
+        </div>
+      </div> 
+
+          <div class="form-group">
+          <%= f.label "confort",class: "control-label" %> 
+          
+         </div>
+          
+ <table id ="prueba2">       
+
+          <%= f.fields_for :room_comforts do |room| %>
+           <div class="fields">
+           
+             <!-- <div class="col-sm-9">  -->
+              <%= room.select :comfort_id, Comfort.all.collect { |p| [ p.descripcion, p.id ] },{include_blank: false} %>
+         <!--     </div>-->
+             
+              <%= room.link_to_remove "" ,class: "glyphicon glyphicon-trash"%>
+       
+        
            </div>
-
-</div>
-
-            <div class="modal-footer ">
-              <div class="col-sm-10">
-                <%= f.submit class: "btn btn-primary pull-left" %>
-              </div>
-            </div>
-            <div></div>
           <% end %>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+     
+    </table>
+
+     
+         <div class="text-center">
+           <%= f.link_to_add "", :room_comforts ,style:"display: none",class: "control-label glyphicon glyphicon-plus"%> 
+       <!-- <button id="demo" onclick="myFunction()">Click me</button>-->
+           <p  id="demo2" onclick="myFunction()">AGREGAR</p>
+           <script>
+              function myFunction() {
+                document.getElementById("demo2").style.color = "red";
+                var p  = $("#room_comforts_fields_blueprint").attr("data-blueprint");
+                $(p).appendTo("#prueba2");
+              }
+           </script>
+        </div>
+
+      <div class="modal-footer ">
+         <div class="col-sm-10">
+            <%= f.submit class: "btn btn-primary pull-left" %>
+         </div>
+      </div>
+        <div></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

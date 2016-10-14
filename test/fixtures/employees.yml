@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  types_of_employee_id: 
+  nombre: MyString
+  apellido: MyString
+  edad: 1
+  cedula: 1
+  telefono: 1
+  correo: MyString
+  direccion: MyString
+  hijo: 1
+
+two:
+  types_of_employee_id: 
+  nombre: MyString
+  apellido: MyString
+  edad: 1
+  cedula: 1
+  telefono: 1
+  correo: MyString
+  direccion: MyString
+  hijo: 1

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  resources :employees
   resources :budget_details
   resources :budgets do
   collection do
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :accounting_entries
   resources :accounting_accounts
   resources :account_plans
+  get 'balance_report/balance'
+  get 'ledger/mayor'
   get 'diary_book/diario'
   resources :reservation_requests
   resources :services do

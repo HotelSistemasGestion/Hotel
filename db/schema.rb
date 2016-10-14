@@ -206,6 +206,22 @@ ActiveRecord::Schema.define(version: 20161013123104) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.integer  "types_of_employee_id"
+    t.string   "nombre"
+    t.string   "apellido"
+    t.integer  "edad"
+    t.integer  "cedula"
+    t.integer  "telefono"
+    t.string   "correo"
+    t.string   "direccion"
+    t.integer  "hijo"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "employees", ["types_of_employee_id"], name: "index_employees_on_types_of_employee_id", using: :btree
+
   create_table "invoices", force: :cascade do |t|
     t.integer  "numero"
     t.integer  "client_id"
@@ -346,6 +362,7 @@ ActiveRecord::Schema.define(version: 20161013123104) do
   add_foreign_key "budgets", "type_of_rooms"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "complaints", "services"
+  add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
   add_foreign_key "reservation_requests", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
