@@ -5,15 +5,16 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     @rooms = Room.all
+   
   end
 
   # GET /rooms/1
   # GET /rooms/1.json
   def show
     @room_comfort = RoomComfort.where("#{:room_id} = ?", params[:id])
-    @room_comfort.each do |room| 
-      destruir_repetidos(room.room_id,room.comfort_id);
-    end  
+    #@room_comfort.each do |room| 
+     # destruir_repetidos(room.room_id,room.comfort_id);
+    #end  
     @room_comforts = @room_comfort;
   end
 
