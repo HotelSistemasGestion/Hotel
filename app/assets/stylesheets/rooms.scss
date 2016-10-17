@@ -1,3 +1,9 @@
+body.room{
+	background:#1565C0; /* For browsers that do not support gradients */
+    background: linear-gradient(#1565C0,#BBDEFB); /* Standard syntax */
+  
+
+}
 img.room {
 			/* Set rules to fill background */
 			min-height: 100%;

@@ -5,6 +5,7 @@
     <td><%= client.email %></td>
     <td><%= client.direccion %></td>
     <td><%= client.cedula %></td>
+    <td><%= client.ruc %></td>
     <td><%= link_to 'Ver', client, remote: true %></td>
     <td><%= link_to 'Editar', edit_client_path(client), remote: true %></td>
     <td><%= link_to 'Eliminar', client, method: :delete, data: { confirm: 'Esta seguro?' } %></td>

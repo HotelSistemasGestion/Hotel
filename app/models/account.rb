@@ -1,4 +1,13 @@
 class Account < ActiveRecord::Base
     belongs_to :client   
-    validates :fecha_entrada, :fecha_salida, :client, presence: true
+    belongs_to :room
+
+    validates :fecha_entrada, presence: true
+
+    validates :client, :presence => {:message => "No puede dejar en blanco este campo"}
+
+    delegate :nombre, to: :client, prefix: true, allow_nill: true
+
+    delegate :identificador, to: :room, prefix: true, allow_nill: true
+
 end

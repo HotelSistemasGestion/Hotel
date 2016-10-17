@@ -1,9 +1,0 @@
-<tr id="<%= invoice.id %>">
-    <td><%= invoice.numero %></td>
-    <td><%= invoice.client_id %></td>
-    <td><%= invoice.fecha %></td>
-    <td><%= invoice.descuento %></td>
-    <td><%= link_to 'Ver', invoice, remote: true %></td>
-    <td><%= link_to 'Editar', edit_invoice_path(invoice), remote: true %></td>
-    <td><%= link_to 'Eliminar', invoice, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
-</tr>
