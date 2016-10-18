@@ -1,12 +1,18 @@
 <tr id="<%= client.id %>">
+    <td><%= client.ruc %></td>
     <td><%= client.nombre %></td>
     <td><%= client.apellido %></td>
-    <td><%= client.telefono %></td>
-    <td><%= client.email %></td>
-    <td><%= client.direccion %></td>
-    <td><%= client.cedula %></td>
-    <td><%= client.ruc %></td>
-    <td><%= link_to 'Ver', client, remote: true %></td>
-    <td><%= link_to 'Editar', edit_client_path(client), remote: true %></td>
-    <td><%= link_to 'Eliminar', client, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+    <td><%= client.cedula %></td>            
+    <td><%= link_to client, remote: true, class: 'btn btn-default', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon-eye-open"></span>
+                    <% end %> 
+    </td>
+    <td><%= link_to edit_client_path(client), remote: true, class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon-pencil"></span>
+                    <% end %>
+    </td>
+    <td><%= link_to client, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                        <span class= "glyphicon glyphicon-trash"></span>
+                    <% end %>
+    </td>
 </tr>
