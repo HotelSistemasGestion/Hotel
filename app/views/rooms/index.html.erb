@@ -14,7 +14,8 @@
   <table class="table  table-bordered table-hover">
     <thead>
       <tr>
-    
+        <th>Imagenes</p></th>
+
         <th>Identificador</p></th>
     
         <th>Tipo de Habitacion</th>
@@ -34,28 +35,25 @@
   
       <% @rooms.each do |room|%>
     <tr >
-        <td   style=" padding-bottom: 0px;"><%= room.identificador %></td>
-
-        <td style=" padding-bottom: 0px;"><%= room.type_of_room_tipo %></td>
-    
-        <td  style=" padding-bottom: 0px;"><%= room.state_descripcion %></td>
-    
-        <td style=" padding-bottom: 0px;"><%= room.capacidad %></td>
-         
-        <%comfort =" " %> 
-        <% @room_comfort = RoomComfort.where("#{:room_id} = ?", room.id)%>
-        
-        <% @room_comfort.each do |r|%>
-         <% p = r.comfort_id %> 
-        
-         <%comfort = p.to_s + comfort %>
-         <%comfort =  " " + comfort %>
-        <%end%>
-      
-
-         <td>
-           <%=comfort%>
+       <td>
+         <% Photo.where("#{:room_id} = ?" , room.id).each do |p|%>
+         <a  href= "<%=p.my_file.url%>"  class="image-popup">
+         <%= image_tag p.my_file.url,:width => 50, :height => 50%>
+         </a>
+         <%end%>
         </td>
+
+                
+                              
+        <td><%= room.identificador %></td>
+
+        <td><%= room.type_of_room_tipo %></td>
+    
+        <td><%= room.state_descripcion %></td>
+    
+        <td><%= room.capacidad %></td>
+         
+
 
         <td style=" padding-bottom:0px;"><%= link_to 'Show', room %></td>
         <td style=" padding-bottom: 0px;"><%= link_to 'Edit', edit_room_path(room) %></td>

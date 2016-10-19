@@ -72,7 +72,31 @@
 
           </tbody>
         </table>
-    </div>       
+    </div>  
+    <div class="col-sm-1"></div>
+      <div class="form-group has-feedback col-sm-5">
+        <table class="table">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Conforts</th>
+            </tr>
+          </thead>
+          <tbody>
+        
+              <%= f.fields_for :photos  ,:wrapper => false do |li| %>
+              <tr class="fields">
+                  <th scope="row"> <%= li.file_field :my_file, class: "form-control" %></th>
+                 
+                  <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
+              </tr>
+              <%end%>
+              <tr>
+                <td><%= f.link_to_add "", :photos, :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
+              </tr>
+
+          </tbody>
+        </table>
+    </div>            
    <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <%= f.submit class: "btn btn-primary" %>

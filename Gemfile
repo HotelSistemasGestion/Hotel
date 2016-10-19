@@ -32,7 +32,8 @@ gem 'kaminari-bootstrap'
 
 #formularios anidados
 gem 'nested_form'
-
+gem 'carrierwave'
+gem 'cloudinary'
 gem 'sendgrid-rails', '~> 2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
