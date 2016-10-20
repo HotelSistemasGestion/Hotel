@@ -76,19 +76,21 @@
             </div>                      
           </div>
         </div>
+
         <div class="field col-md-12 form-group">
           <h3>Rol</h3>
         </div>
         <div class="field col-md-12 form-group">            
-          <div class="field col-md-6 form-group required">                            
-             <% for i in 0..1 %>
-              <% role = User::ROLES[i] %>
-                <%= check_box_tag  "user[roles][#{role}]", role, @usuario.roles.include?(role), {:name => "user[roles][]"}%>
-                <%= label_tag "user_roles_#{role}", role.to_s.humanize %><br />
+         <div class="field col-md-6 form-group required">                            
+            <% for i in 0..1 %>
+             <% role = User::ROLES[i] %>
+               <%= check_box_tag  "user[roles][#{role}]", role, @usuario.roles.include?(role), {:name => "user[roles][]"}%>
+               <%= label_tag "user_roles_#{role}", role.to_s.humanize %><br />
               <% end %>
             <%= hidden_field_tag "user[roles][]", "" %> 
           </div>                        
-        </div>          
+        </div> 
+                                 
         <div class="col-md-10">
           <div class="actions">
             <%= f.submit "Agregar", :class => 'btn btn-success btn-lg'%>

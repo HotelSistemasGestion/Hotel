@@ -4,8 +4,12 @@ class ApplicationController < ActionController::Base
   # Custom flash para complaints
   add_flash_types :my_type
   protect_from_forgery with: :exception
-  def after_sign_in_path_for(resource)
-    dashboard_index_path
+  def after_sign_in_path_for(resource)         
+    if resource.roles_mask == 1
+      usuarios_path
+    else
+      dashboard_index_path
+    end
   end
 
   # Metodos necesarios para el bloqueo por IP
