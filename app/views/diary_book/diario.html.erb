@@ -2,7 +2,13 @@
 <div >
   <div>
     <h1>Libro Diario</h1>
-  <h4>Periodo: <input class="input-mini  " id="fecha"name="daterange" value="01/15/2015 - 02/15/2015" type="text"style="width: 17%"></h4>
+  <h4>Periodo: <input class="input-mini"id="fecha"name="datefilter" type="text"style="width: 17%"></h4>
+  <script>
+  $("#fecha").change(function() { 
+    console.log("Aprete el boton apply");
+  } );
+  </script>
+
   <h4>Denominacion o razon social:    "Hotel Uni"</h4>
 </div>
 
