@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :photos
   resources :employees
   resources :budget_details
   resources :budgets do

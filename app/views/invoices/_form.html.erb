@@ -1,125 +1,164 @@
-<div id="invoice-modal" class="modal fade">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Facturacion Manual</h4>
-      </div>
-      <%= form_for @invoice, remote: true do |f| %>        
-        <div class="modal-body">
-          <div class="alert alert-danger" role="alert" style="display: none;"></div>
-          <div class="form-group">
-
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <%= f.label 'Numero de Factura' %><br>
-                  <%= f.text_field :numero, class: "form-control input-lg", placeholder: "Numero de factura" %> 
-                </div>               
-              </div>
-
-              <div class="col-md-4">
-                <div class="form-group">
-                  <%= f.label :fecha %><br>
-                  <%= f.text_field :fecha, class: "form-control input-lg", placeholder: "Fecha" %>                                            
-                </div>
-              </div>  
-
-              <div class="col-md-4">
-                <div class="form-group">
-                  <%= f.label 'Forma de pago' %><br>
-                  <%= f.text_field :numero, class: "form-control input-lg", placeholder: "Forma de Pago" %> 
-                </div>               
-              </div>
-
+<%= form_for(@invoice) do |f| %>
+<section class="invoice">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-sm-12 page-header">                    
+            <h2>
+              <i class="fa fa-list-alt"></i> Facturacion Manual              
+            </h2>                                 
+        <!-- /.col -->
+        </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">         
+          <address>
+            <h4><strong>Hotel UNI.</strong><br><br>
+            Abog. Lorenzo Zacarias, Km 2<br>
+            Encarnacion, Paraguay<br>
+            Telefono: (071) 207-620<br>
+            Email: info@hoteluni.com
+          </address></h4>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <div class="row">
+            <div class="col-sm-12">
+              <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
+              <%= f.text_field :fecha, class:"col-sm-7", placeholder: "RUC" %>
+            </div>
+            <div class="col-sm-12">
+              <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>
+              <%= f.text_field :fecha, class:"col-sm-8", placeholder: "Nombre y Apellido" %>
+            </div>
+            <div class="col-sm-12">
+              <%= f.label 'Barrio:', class: "col-sm-3 control-label" %>        
+              <%= f.text_field :fecha, class:"col-sm-6", placeholder: "Barrio" %>
+            </div>
+             <div class="col-sm-12">
+              <%= f.label 'Ciudad:', class: "col-sm-3 control-label" %>        
+              <%= f.text_field :fecha, class:"col-sm-5", placeholder: "Ciudad" %>
+            </div>
+            <div class="col-sm-12">
+              <%= f.label 'Celular:', class: "col-sm-3 control-label" %>        
+              <%= f.text_field :fecha, class:"col-sm-5",placeholder: "Celular" %>
             </div>  
-
-          </div>
-
+            <div class="col-sm-12">
+              <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
+              <%= f.text_field :fecha, class:"col-sm-8",  placeholder: "Email" %>
+            </div>                                            
+          </div>                              
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
           <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Nombre</label>
-                <%= f.text_field :client_id, class: "form-control input-lg", placeholder: "Nombre" %>            
-              </div> 
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>Apellido</label>
-                <%= f.text_field :descuento, class: "form-control input-lg", placeholder: "Apellido" %>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label>C.I.N</label>
-                <%= f.text_field :descuento, class: "form-control input-lg", placeholder: "Numero de cedula" %>
-              </div>
-            </div>
+            <%= f.label 'Fecha:', class: "col-sm-4 control-label" %>            
+            <%= f.text_field :fecha, class: "datepicker"%>  
           </div>
-
+          <br> 
           <div class="row">
-            <div class="col-md-12">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title"><center><strong>Detalle</strong></center></h3>
-                </div>
-                <div class="panel-body">
-                  <div class="table-responsive">
-                    <table class="table table-condensed">
-                      <thead>
-                        <tr>
-                          <td><strong>Item</strong></td>
-                          <td class="text-center"><strong>Price</strong></td>
-                          <td class="text-center"><strong>Quantity</strong></td>
-                          <td class="text-right"><strong>Total</strong></td>
-                        </tr>
-                      </thead>
-                      <tbody>     
-
-                        <tr>
-                          <td>BS-200</td>
-                          <td class="text-center">$10.99</td>
-                          <td class="text-center">1</td>
-                          <td class="text-right">$10.99</td>
-                        </tr>
-
-                        <tr>
-                          <td>BS-400</td>
-                          <td class="text-center">$20.00</td>
-                          <td class="text-center">3</td>
-                          <td class="text-right">$60.00</td>
-                        </tr>
-
-                        <tr>
-                          <td>BS-1000</td>
-                          <td class="text-center">$600.00</td>
-                          <td class="text-center">1</td>
-                          <td class="text-right">$600.00</td>
-                        </tr>                        
-
-                      </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-8">
-              <div class="form-group text-right">
-                <strong>Subtotal: </strong>           
-              </div> 
-              <div class="form-group text-right">
-                <strong>Descuento: </strong>           
-              </div> 
-              <div class="form-group text-right">
-                <strong>Total: </strong>           
-              </div> 
-          </div>
-        </div><!-- /.tabla-content -->
+              <%= f.label 'Factura #:', class: "col-sm-4 control-label" %>
+              <%= f.text_field :fecha, class:"col-sm-7", placeholder: "Numero de Factura" %>                      
+          </div>         
+          <br>
+          <div class="row">
+              <%= f.label 'Descuento:', class: "col-sm-4 control-label" %>
+              <%= f.text_field :fecha, class:"col-sm-2", placeholder: "%" %>                                          
+          </div>              
+        </div>
+        </div>
+        <!-- /.col -->
       </div>
-      <div class="modal-footer">
-        <%= f.submit 'Facturar', class: "btn btn-primary btn-lg" %>
+      <!-- /.row -->
+
+      <!-- Table row -->
+      <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Qty</th>
+              <th>Product</th>
+              <th>Serial #</th>
+              <th>Descripcion</th>
+              <th>Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>1</td>
+              <td>Call of Duty</td>
+              <td>455-981-221</td>
+              <td>El snort testosterone trophy driving gloves handsome</td>
+              <td>$64.50</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Need for Speed IV</td>
+              <td>247-925-726</td>
+              <td>Wes Anderson umami biodiesel</td>
+              <td>$50.00</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Monsters DVD</td>
+              <td>735-845-642</td>
+              <td>Terry Richardson helvetica tousled street art master</td>
+              <td>$10.70</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Grown Ups Blue Ray</td>
+              <td>422-568-642</td>
+              <td>Tousled lomo letterpress</td>
+              <td>$25.99</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.col -->
       </div>
-    <% end %>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+      <!-- /.row -->
+
+      <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-xs-6">
+          
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-6">
+
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th style="width:50%">Subtotal:</th>
+                  <td>$250.30</td>
+                </tr>
+                <tr>
+                  <th>Descuento: </th>
+                  <td>$10.34</td>
+                </tr>            
+                <tr>
+                  <th>Total:</th>
+                  <td>$265.24</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- this row will not appear when printing -->
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <a href="" target="_blank" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
+          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Facturar
+          </button>
+          <a href="<%=invoices_path%>" class="btn btn-danger" role="button">Cancelar</a>        
+        </div>
+      </div>      
+    </section>
+<% end %>    

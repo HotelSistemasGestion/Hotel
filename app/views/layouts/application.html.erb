@@ -13,7 +13,7 @@
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
   <%= javascript_include_tag 'application'%>
-  <script src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+ 
   <%= csrf_meta_tags %>
 </head>
   <!-- Mostraremos el navbar o el sidebar(template admin) solamente cuando:
@@ -27,19 +27,7 @@
           <%= render 'partials/sidebar' %>
 
           <!-- Content Wrapper. Contains page content -->
-          <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-              <h1>
-                Hotel-Uni
-                <small>Optional description</small>
-              </h1>
-              <!--ol class="breadcrumb">
-                <li><a href="#"><i class="glyphicon glyphicon-home"></i> Level</a></li>
-                <li class="active">Here</li>
-              </ol-->
-            </section>
-
+          <div class="content-wrapper">                     
             <!-- Main content -->
             <section class="content">
               <% if notice %>

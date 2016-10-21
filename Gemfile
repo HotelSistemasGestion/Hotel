@@ -23,6 +23,7 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git 
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
 
+
 # para el data-table
 gem 'jquery-datatables-rails'
 gem 'kaminari'
@@ -33,6 +34,10 @@ gem 'kaminari-bootstrap'
 gem 'nested_form'
 #Envios de email
 gem 'sendgrid-rails', '~> 2.0'
+
+gem 'carrierwave'
+gem 'cloudinary'
+
 #Styling hmtl emails
 gem 'nokogiri'
 gem 'premailer-rails'

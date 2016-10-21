@@ -28,5 +28,5 @@
 
 
 //= require main
-
+//= require validator.js
 

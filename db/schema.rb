@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010200659) do
+ActiveRecord::Schema.define(version: 20161019202640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,11 @@ ActiveRecord::Schema.define(version: 20161010200659) do
     t.integer  "total"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "direccion"
+    t.string   "ruc"
+    t.integer  "room_id"
   end
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
@@ -148,6 +153,7 @@ ActiveRecord::Schema.define(version: 20161010200659) do
     t.string   "cedula"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "ruc"
   end
 
   create_table "closing_cashes", force: :cascade do |t|
@@ -223,6 +229,10 @@ ActiveRecord::Schema.define(version: 20161010200659) do
     t.integer  "descuento"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "direccion"
+    t.string   "ruc"
   end
 
   add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
@@ -239,6 +249,15 @@ ActiveRecord::Schema.define(version: 20161010200659) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "photos", force: :cascade do |t|
+    t.integer  "room_id"
+    t.string   "my_file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "photos", ["room_id"], name: "index_photos_on_room_id", using: :btree
 
   create_table "reservation_requests", force: :cascade do |t|
     t.string   "nombre"
@@ -275,6 +294,7 @@ ActiveRecord::Schema.define(version: 20161010200659) do
     t.string   "identificador"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "precio"
   end
 
   add_index "rooms", ["state_id"], name: "index_rooms_on_state_id", using: :btree
@@ -354,6 +374,7 @@ ActiveRecord::Schema.define(version: 20161010200659) do
   add_foreign_key "complaints", "services"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
+  add_foreign_key "photos", "rooms"
   add_foreign_key "reservation_requests", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
