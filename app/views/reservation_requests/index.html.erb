@@ -13,12 +13,10 @@
       <tr>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Email</th>
+            <th align="right">Email</th>
+            <th align="right"></th>
             <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+
       </tr>
     </thead>
 
@@ -29,20 +27,19 @@
           <td><%= reservation_request.apellido %></td>
           <td><%= reservation_request.email %></td>
           
-          <td><%if budget.present?%>
+          <td align="right"><%if budget.present?%>
                 <%= link_to 'Confirmar', reservation_request,class: "btn btn-primary" %>
               <%end%>        
-          </td>
-          <td><%if budget.present? %>
+              <%if budget.present? %>
                 <%= link_to 'Editar Presupuesto', edit_budget_path(budget),class: "btn btn-primary" %>
               <%else%>
                 <%= link_to 'Presupuestar', {:controller => "budgets", :action => "my_new", :id => reservation_request.id },class: "btn btn-primary" %>
               <%end%>
-            </td>
-
-          <td><%= link_to '', reservation_request ,class: "btn btn-primary glyphicon glyphicon-eye-open"%></td>
-          <td><%= link_to '', edit_reservation_request_path(reservation_request) ,class: "btn btn-success glyphicon glyphicon-edit"%></td>
-          <td><%= link_to '', reservation_request,class: "btn btn-danger glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </td>
+          <td align="center">
+          <%= link_to '', reservation_request ,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
+              <%= link_to '', edit_reservation_request_path(reservation_request) ,class: "btn btn-success glyphicon glyphicon-edit"%>
+          <%= link_to '', reservation_request,class: "btn btn-danger glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tbody>
   </table>

@@ -31,8 +31,11 @@ gem 'kaminari-bootstrap'
 
 #formularios anidados
 gem 'nested_form'
-
+#Envios de email
 gem 'sendgrid-rails', '~> 2.0'
+#Styling hmtl emails
+gem 'nokogiri'
+gem 'premailer-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'

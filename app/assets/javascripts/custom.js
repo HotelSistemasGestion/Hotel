@@ -9,7 +9,8 @@ $(document).ready(function(){
 
       $(this).datepicker({format: 'yyyy-mm-dd', autoclose: true});
       });
-      
+
+    
       //Java script para que nested form reconozca los <tr>
       window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
 		  var $tr = $(link).closest('tr');
@@ -22,5 +23,5 @@ $(document).ready(function(){
 
 
     $('input[name="daterange"]').daterangepicker({
-       });
+      });
 });

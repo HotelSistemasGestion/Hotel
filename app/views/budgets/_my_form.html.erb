@@ -14,7 +14,7 @@
 
             <div class="row">
               <div class="col-md-4">
-                  <%= f.label :reservation_request_id %><br>
+                  <%= f.label "Pedido de Reservacion." %><br>
                   <%= f.text_field :reservation_request_id,value: @my_reservation_requests.id, class: "form-control", placeholder: "reservation_request_id", :readonly => true %> 
               </div>
 
@@ -24,8 +24,10 @@
               </div>  
 
               <div class="col-md-4">
-                  <%= f.label :type_of_room_id %><br>
-                  <%= f.text_field :type_of_room_id,value: @my_reservation_requests.type_of_room_id, class: "form-control", placeholder: "" %> 
+                  <%= f.label "Tipo de Habitacion" %><br>
+                  <%#= f.text_field :type_of_room_id,value: @my_reservation_requests.type_of_room_id, class: "form-control", placeholder: "" %> 
+                  <%= f.select :type_of_room_id,TypeOfRoom.all.collect { |p| [ p.tipo , p.id ] },
+                  {:selected =>@my_reservation_requests.type_of_room_id}, {class: "form-control"} %>
               </div>
 
             </div>
@@ -56,14 +58,18 @@
         
               <%= f.fields_for :budget_details  ,:wrapper => false do |li| %>
               <tr class="fields">
-                  <th scope="row"><%= li.number_field :cantidad ,:class => ""%></th>
+
+                  <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
                   <% precio = "#"+"#{li.object_name}[subtotal]".gsub(/(\])?\[/, "_").chop %>
                   <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
+
+
+                  <th scope="row"><%= li.number_field :cantidad ,:class => ""%></th>          
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
                   <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
-                  :multiple => false, :update_elements => {:id => id,:precio => precio }%>
+                  :multiple => true, :update_elements => {:id => id,:precio => precio }%>
                   <%= li.hidden_field  :service_id%></td>
-                  <td><%= li.number_field :subtotal,:class => "", disabled: true %></td>
+                  <td><%= li.number_field :subtotal,:class => "",readonly: true%></td>
                   <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
               </tr>
               <%end%>
@@ -85,7 +91,7 @@
 
              <div class="col-md-4">
                <%= f.label :total %><br>
-               <%= f.text_field :total, class: "form-control ", placeholder: ""  , disabled: true%>
+               <%= f.text_field :total, class: "form-control ", placeholder: ""  , readonly: true%>
           </div>
         </div>
         <br></br>

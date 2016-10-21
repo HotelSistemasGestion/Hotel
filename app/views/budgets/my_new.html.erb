@@ -1,8 +1,12 @@
-<div class="page-header">
-  <%= link_to reservation_requests_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <h1><center>Nuevo Presupuesto</center></h1>
+<div class="box box-primary">
+	<div class="box-header with-border">
+	  <%= link_to reservation_requests_path, class: 'btn btn-default' do %>
+	    <span class="glyphicon glyphicon-list-alt"></span>
+	    Back
+	  <% end %>
+	  <h3><center>Nuevo Presupuesto</center></h3>
+	</div>
+	<div class="box-body">
+		<%= render 'my_form' %>
+	</div>
 </div>
-<%= render 'my_form' %>

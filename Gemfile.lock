@@ -43,6 +43,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     arel (6.0.3)
     autoprefixer-rails (6.4.0.2)
       execjs
@@ -70,6 +71,8 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    css_parser (1.4.5)
+      addressable
     debug_inspector (0.0.2)
     devise (4.1.1)
       bcrypt (~> 3.0)
@@ -84,6 +87,7 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     gmaps4rails (2.1.2)
+    htmlentities (4.3.4)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -130,6 +134,12 @@ GEM
     orm_adapter (0.5.0)
     pg (0.18.4-x86-mingw32)
     pkg-config (1.1.7)
+    premailer (1.8.7)
+      css_parser (>= 1.4.5)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.9.4)
+      actionmailer (>= 3, < 6)
+      premailer (~> 1.7, >= 1.7.9)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -243,7 +253,9 @@ DEPENDENCIES
   magnific-popup-rails (~> 1.1.0)
   momentjs-rails
   nested_form
+  nokogiri
   pg
+  premailer-rails
   rails (= 4.2.5.1)
   rails4-autocomplete
   rails_12factor

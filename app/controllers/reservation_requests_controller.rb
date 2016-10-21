@@ -5,7 +5,7 @@ class ReservationRequestsController < ApplicationController
   # GET /reservation_requests.json
   def index
     #@reservation_requests = ReservationRequest.all.reverse
-    @reservation_requests = ReservationRequest.order(:nombre).page params[:page]
+    @reservation_requests = ReservationRequest.order(created_at: :desc).page params[:page]
   end
 
   # GET /reservation_requests/1
