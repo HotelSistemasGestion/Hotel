@@ -1,23 +1,23 @@
-<div class="page-header">
-  <%= link_to rooms_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to edit_room_path(@room), class: 'btn btn-primary',remote: true do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-     <td><%= link_to 'Editar', edit_room_path(@room), remote: true  %></td>
-  <h1>Show room</h1>
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-8 page-header">
+    <h1>Habitacion</h1>
+  </div>
+  <div class="col-sm-2"></div>
 </div>
 
-<dl class="dl-horizontal">
+<div class="row">
+  <div class="col-sm-2"></div>
+  <div class="col-sm-6">
 
-  <dt>Type of room:</dt>
+  <dt>Identificador:</dt>
+  <dd><%= @room.identificador %></dd>
+
+  <dt>Tipo de Habitacion:</dt>
   <dd><%= @room.type_of_room_tipo %></dd>
 
 
-  <dt>State:</dt>
+  <dt>Estado:</dt>
   <dd><%= @room.state_descripcion %></dd>
 
 
@@ -25,15 +25,35 @@
   <dd><%= @room.capacidad %></dd>
 
 
-  <dt>Identificador:</dt>
-  <dd><%= @room.identificador %></dd>
+ 
   
-  
-  <% @room_comforts.each  do |room|  %>
-      
-            <dt><%= "Comfort:" %></dt>
-            <dd><%= room.comfort_descripcion%></dd>
-      
+   <dt>Comforts: </dt>
+  <% RoomComfort.where("#{:room_id} = ?",@room.id).each  do |room|  %>     
+      <dd><%= room.comfort_descripcion%></dd>
   <% end %>
+ 
+  </div>
+  <div class="col-sm-2">
+  <% Photo.where("#{:room_id} = ?" , @room.id).each do |p|%>
+         <a  href= "<%=p.my_file.url%>"  class="image-popup">
+         <%= image_tag p.my_file.url,:width => 100, :height => 100%>
+         </a>
+  <%end%>
+  </div>    
+ </div>
 
-</dl>
+ <BR>
+ <BR>
+ <div class="row">
+    <div class="col-sm-2"></div>
+    <div>
+      <%= link_to rooms_path, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Volver
+      <% end %>
+     <%= link_to edit_room_path(@room),class: "btn btn-default" do %>
+     <span class="glyphicon glyphicon-edit"></span>
+     Editar
+     <%end%> 
+    </div>
+</div>

@@ -30,3 +30,4 @@
 //= require main
 //= require validator.js
 
+//= require rooms
