@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019202640) do
+ActiveRecord::Schema.define(version: 20161021154344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,17 @@ ActiveRecord::Schema.define(version: 20161019202640) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "cleaning_rooms", force: :cascade do |t|
+    t.integer  "room_id"
+    t.integer  "employee_id"
+    t.datetime "day"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "cleaning_rooms", ["employee_id"], name: "index_cleaning_rooms_on_employee_id", using: :btree
+  add_index "cleaning_rooms", ["room_id"], name: "index_cleaning_rooms_on_room_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.string   "nombre"
@@ -370,6 +381,8 @@ ActiveRecord::Schema.define(version: 20161019202640) do
   add_foreign_key "budget_details", "services"
   add_foreign_key "budgets", "reservation_requests"
   add_foreign_key "budgets", "type_of_rooms"
+  add_foreign_key "cleaning_rooms", "employees"
+  add_foreign_key "cleaning_rooms", "rooms"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "complaints", "services"
   add_foreign_key "employees", "types_of_employees"
