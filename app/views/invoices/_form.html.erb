@@ -23,28 +23,30 @@
         <div class="col-sm-4 invoice-col">
           <div class="row">
             <div class="col-sm-12">
-              <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :fecha, class:"col-sm-7", placeholder: "RUC" %>
+              <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
+              <%= f.autocomplete_field :client, autocomplete_client_cedula_clients_path, class:"col-sm-7", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
             </div>
             <div class="col-sm-12">
-              <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :fecha, class:"col-sm-8", placeholder: "Nombre y Apellido" %>
+              <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
+              <%= f.text_field :fecha, id: 'ruc', class:"col-sm-8", placeholder: "RUC"%>                            
+                 
+
             </div>
             <div class="col-sm-12">
               <%= f.label 'Barrio:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, class:"col-sm-6", placeholder: "Barrio" %>
+              <%= f.text_field :fecha, id: 'direccion', class:"col-sm-6", placeholder: "Barrio" %>
             </div>
              <div class="col-sm-12">
-              <%= f.label 'Ciudad:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, class:"col-sm-5", placeholder: "Ciudad" %>
+              <%= f.label 'Ciudad:', class: "col-sm-3 control-label" %>                   
+              <%= f.text_field :fecha, id: 'ciudad', class:"col-sm-5", placeholder: "Ciudad" %>
             </div>
             <div class="col-sm-12">
               <%= f.label 'Celular:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, class:"col-sm-5",placeholder: "Celular" %>
+              <%= f.text_field :fecha, id: 'telefono', class:"col-sm-5",placeholder: "Celular" %>
             </div>  
             <div class="col-sm-12">
               <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, class:"col-sm-8",  placeholder: "Email" %>
+              <%= f.text_field :fecha, id: 'correo', class:"col-sm-8",  placeholder: "Email" %>
             </div>                                            
           </div>                              
         </div>
