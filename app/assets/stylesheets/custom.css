@@ -2683,7 +2683,7 @@ a:focus {
 }
 .table-color>thead > tr > th{
   text-align: center;
-    background-color: gray;
+    background-color: gray ;
 
 }
 .table-sombra{
