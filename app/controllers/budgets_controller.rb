@@ -30,11 +30,12 @@ class BudgetsController < ApplicationController
   # POST /budgets.json
   def create
     @budget = Budget.new(budget_params)
+    @budget1 =  @budget
     respond_to do |format|
       if @budget.save
+        BudgetMailer.budget_email(@budget1).deliver_now
         format.html { redirect_to @budget, notice: 'Budget was successfully created.' }
         format.json { render :show, status: :created, location: @budget }
-        BudgetMailer.budget_email.deliver_now!
       else
         format.html { render :new }
         format.json { render json: @budget.errors, status: :unprocessable_entity }
@@ -74,6 +75,6 @@ class BudgetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def budget_params
-      params.require(:budget).permit(:reservation_request_id, :email,:type_of_room_id,:cantidad_de_habitaciones, :dias, :descuento, :total, :budget_details_attributes => [:id, :cantidad, :service_id, :subtotal, :_destroy])
+      params.require(:budget).permit(:id,:reservation_request_id, :email,:type_of_room_id,:cantidad_de_habitaciones, :dias, :descuento, :total, :budget_details_attributes => [:id, :cantidad, :service_id, :subtotal, :_destroy])
     end
 end

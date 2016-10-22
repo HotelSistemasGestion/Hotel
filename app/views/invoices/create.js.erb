@@ -1,6 +1,0 @@
-<% if @invoice.errors.blank? %>
-	$('#invoice-modal').modal('hide');
-	$('table tbody').append(' <%= j render "row", invoice: @invoice %>');		
-<% else %>
-  	alert('<%= @invoice.errors.full_messages[0] %>');
-<% end %>

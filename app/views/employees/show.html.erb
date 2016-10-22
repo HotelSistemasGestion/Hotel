@@ -1,0 +1,42 @@
+
+<div class="page-header">
+  <%= link_to employees_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_employee_path(@employee), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1 class="text-center">Ver Empleado</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Types of employee:</dt>
+  <dd><%= @employee.types_of_employee_tipo %></dd>
+
+  <dt>Nombre:</dt>
+  <dd><%= @employee.nombre %></dd>
+
+  <dt>Apellido:</dt>
+  <dd><%= @employee.apellido %></dd>
+
+  <dt>Edad:</dt>
+  <dd><%= @employee.edad %></dd>
+
+  <dt>Cedula:</dt>
+  <dd><%= @employee.cedula %></dd>
+
+  <dt>Telefono:</dt>
+  <dd><%= @employee.telefono %></dd>
+
+  <dt>Correo:</dt>
+  <dd><%= @employee.correo %></dd>
+
+  <dt>Direccion:</dt>
+  <dd><%= @employee.direccion %></dd>
+
+  <dt>Hijo:</dt>
+  <dd><%= @employee.hijo %></dd>
+
+</dl>

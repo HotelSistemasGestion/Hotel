@@ -15,12 +15,12 @@
             <div class="row">
               <div class="col-md-4">
                   <%= f.label :reservation_request_id %><br>
-                  <%= f.text_field :reservation_request_id,value: @my_reservation_requests.id, class: "form-control", placeholder: "reservation_request_id" , disabled: true %> 
+                  <%= f.text_field :reservation_request_id,value: @my_reservation_requests.id, class: "form-control", placeholder: "reservation_request_id", :readonly => true %> 
               </div>
 
               <div class="col-md-4">
                   <%= f.label :email %><br>
-                  <%= f.text_field  :email,value: @my_reservation_requests.email, class: "form-control", placeholder: "" , disabled: true %>                                            
+                  <%= f.text_field  :email,value: @my_reservation_requests.email, class: "form-control", placeholder: "" ,:readonly => true%>                                            
               </div>  
 
               <div class="col-md-4">

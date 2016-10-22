@@ -9,13 +9,13 @@
         <div class="modal-body">
           <div class="alert alert-danger" role="alert" style="display: none;"></div>
           <div class="form-group">
-            <%= f.text_field :nombre, class: "form-control input-lg", placeholder: "Nombre del servicio" %>          
+            <%= f.text_field :nombre, class: "form-control input-lg", placeholder: "Nombre del servicio(mínimo 4 caracteres)" %>          
           </div>
           <div class="form-group">
-            <%= f.text_area :descripcion, class: "form-control input-lg", placeholder: "Descripcion del servicio" %>          
+            <%= f.text_area :descripcion, class: "form-control input-lg", placeholder: "Descripcion del servicio(mínimo 6 caracteres)" %>          
           </div>
           <div class="form-group">
-            <%= f.text_field :precio, class: "form-control input-lg", placeholder: "Precio del servicio" %>
+            <%= f.text_field :precio, class: "form-control input-lg", placeholder: "Precio del servicio (min: 4 digitos, max: 12)" %>
           </div>
         </div>
         <div class="modal-footer">

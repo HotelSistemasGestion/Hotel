@@ -59,7 +59,7 @@
                   <th scope="row"><%= li.number_field :cantidad ,:class => ""%></th>
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
                   <td><%= li.number_field  :service_id%></td>
-                  <td><%= li.number_field :subtotal,:class => ""%></td>
+                  <td><%= li.number_field :subtotal, :readonly => true,:class => ""%></td>
                   <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
               </tr>
               <%end%>
@@ -81,7 +81,7 @@
 
              <div class="col-md-4">
                <%= f.label :total %><br>
-               <%= f.text_field :total, class: "form-control ", placeholder: "" %>
+               <%= f.text_field :total, class: "form-control ",  :readonly => true,placeholder: "" %>
           </div>
         </div>
         <br></br>
