@@ -1,6 +1,6 @@
 <% if @client.errors.blank? %>
 	$('#product-modal').modal('hide');
-	$('table tbody').append(' <%= j render "row", client: @client %>');		
+	$('#cli_table table tbody').append(' <%= j render "row", client: @client %>');		
 <% else %>
   	alert('<%= @client.errors.full_messages[0] %>');
 <% end %>
