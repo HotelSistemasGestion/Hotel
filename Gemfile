@@ -23,15 +23,18 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git 
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
 
+
 # para el data-table
 gem 'jquery-datatables-rails'
 gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 #gem 'ransack', github: 'activerecord-hackery/ransack' #para buscar
 gem 'kaminari-bootstrap'
 
 #formularios anidados
 gem 'nested_form'
-
+gem 'carrierwave'
+gem 'cloudinary'
 gem 'sendgrid-rails', '~> 2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -95,3 +98,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'rails4-autocomplete'

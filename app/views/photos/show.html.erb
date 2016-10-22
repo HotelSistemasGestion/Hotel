@@ -1,0 +1,20 @@
+<div class="page-header">
+  <%= link_to photos_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_photo_path(@photo), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show photo</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Room:</dt>
+  <dd><%= @photo.room %></dd>
+
+  <dt>My file:</dt>
+  <dd><%= @photo.my_file %></dd>
+
+</dl>
