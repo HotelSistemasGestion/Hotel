@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021154344) do
+
+
+ActiveRecord::Schema.define(version: 20161019202640) do
+
+
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,9 +36,21 @@ ActiveRecord::Schema.define(version: 20161021154344) do
     t.integer  "account_x_entry_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "descripcion"
   end
 
   add_index "account_x_auto_entries", ["account_x_entry_id"], name: "index_account_x_auto_entries_on_account_x_entry_id", using: :btree
+
+  create_table "account_x_auto_entry_dets", force: :cascade do |t|
+    t.string   "imputable_tipo"
+    t.integer  "account_x_auto_entry_id"
+    t.integer  "accounting_account_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "account_x_auto_entry_dets", ["account_x_auto_entry_id"], name: "index_account_x_auto_entry_dets_on_account_x_auto_entry_id", using: :btree
+  add_index "account_x_auto_entry_dets", ["accounting_account_id"], name: "index_account_x_auto_entry_dets_on_accounting_account_id", using: :btree
 
   create_table "account_x_entries", force: :cascade do |t|
     t.integer  "accounting_entry_id"
@@ -42,6 +59,7 @@ ActiveRecord::Schema.define(version: 20161021154344) do
     t.string   "observacion"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "tipo"
   end
 
   add_index "account_x_entries", ["accounting_account_id"], name: "index_account_x_entries_on_accounting_account_id", using: :btree
@@ -372,6 +390,8 @@ ActiveRecord::Schema.define(version: 20161021154344) do
 
   add_foreign_key "account_plans", "accounting_years"
   add_foreign_key "account_x_auto_entries", "account_x_entries"
+  add_foreign_key "account_x_auto_entry_dets", "account_x_auto_entries"
+  add_foreign_key "account_x_auto_entry_dets", "accounting_accounts"
   add_foreign_key "account_x_entries", "accounting_accounts"
   add_foreign_key "account_x_entries", "accounting_entries"
   add_foreign_key "account_x_plans", "account_plans"

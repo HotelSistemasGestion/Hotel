@@ -1,40 +1,86 @@
-
 <div >
-  <div>
-    <h1>Libro Diario</h1>
-  <h4>Periodo: <input class="input-mini  " id="fecha"name="daterange" value="01/15/2015 - 02/15/2015" type="text"style="width: 17%"></h4>
-  <h4>Denominacion o razon social:    "Hotel Uni"</h4>
-</div>
-
-<div class="table-sombra table-responsive">
-  <table class="table table-striped table-bordered table-hover table-color ">
-    <thead>
-      <tr>
-        <th>Asiento</th>
-        <th>Fecha</th>
-        <th>Codigo</th>
-        <th>Cuenta</th>
-        <th>Debe</th>
-        <th>Haber</th>
+  <% anterior=AccountingEntry.new %>
+  <div class="page-header">
+    <h1 class="titulo">Libro Diario</h2>
+    <h4>Periodo: <input class="input-mini"id="fecha"name="datefilter" type="text"style="width: 17%" >
+      <%=link_to "filtrar",diary_book_diario_path, remote: true, class: "btn btn-primary", :id=>"b1" %>
+    </h4>
+    <h4>Denominacion o razon social: Hotel Uni</h4>
+    <div id="respuesta"></div>
+  </div>
 
 
-      </tr>
-    </thead>
 
-    <tbody class="centrar">
-      <%= content_tag_for(:tr, @diary_books) do |a_x_e| %>
 
-        <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).numero%></td>
-        <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).fecha%></td>
-        <td><%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
-        <td><%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
-        <td class="debe-ctrol"><%=AccountingEntry.find(a_x_e.accounting_entry_id).debe%></td>
-        <td class="haber-ctrol"><%=AccountingEntry.find(a_x_e.accounting_entry_id).haber%></td>
+  <div class=" table-responsive ">
+     <table class="table table-bordered table-color table-condensed  table-responsive table-sombra">
+      <thead >
+        <tr>
+          <th>N</th>
+          <th>Fecha</th>
+          <th>Codigo</th>
+          <th>Descripcion</th>
+          <th>Debe</th>
+          <th>Haber</th>
+        </tr>
+      </thead>
 
-       <% end %>
+      <tbody>
+
+        <%= content_tag_for(:tr, @diary_books) do |a_x_e| %>
+        
+          <%if anterior.numero == AccountingEntry.find(a_x_e.accounting_entry_id).numero %>
+            <%if a_x_e.tipo=="D"||a_x_e.tipo=="d"%>
+              <tr>
+              <td></td>
+              <td></td>
+              <td><%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
+              <td class="haber-ctrol">a <%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
+              <td></td>
+              <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).haber%></td>
+              </tr>
+              <tr>
+                <td colspan="6" scope="row">Segun factura nº=</td>
+              </tr>
+            <%end%>
+            
+
+          <%else %>
+            <tr>
+            <%anterior=AccountingEntry.find(a_x_e.accounting_entry_id)%>
+            <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).numero%></td>
+            <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).fecha%></td>
+            <td></td>
+            <td></td>
+            <td ></td>
+            <td ></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><%=a_x_e.observacion%></td>
+              <td></td>
+              <td></td>
+
+            </tr>
+            <%if a_x_e.tipo=="A"||a_x_e.tipo=="a"%>
+              <tr>
+                <td></td>
+                <td></td>
+                <td><%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
+                <td><%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
+                <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).debe%></td>
+                <td></td>
+              </tr>
+
+            <% end %>
+          <% end %>
+          <% end %>
     </tbody>
   </table>
   
 </div>
 
 </div >
+        
