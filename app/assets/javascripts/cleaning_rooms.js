@@ -1,6 +1,8 @@
 $(document).ready(function() {
 		
 		$('#calendar').fullCalendar({
+			 height: 650,
+			//theme: true,
 			header: {
 				left: 'prev,next today',
 				center: 'title',
@@ -22,8 +24,8 @@ $(document).ready(function() {
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			events: '/cleaning_rooms.json',
-			Color: '#378006'
+			events: '/cleaning_rooms.json'
+		
 		});
 		
 	});
