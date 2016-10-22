@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :photos
   resources :employees
   resources :budget_details
   resources :budgets do
@@ -31,10 +32,12 @@ Rails.application.routes.draw do
   resources :reservation_requests
   resources :services do
     get :autocomplete_service_nombre, :on => :collection
-  end
+  end  
   resources :accounts
   resources :invoices
-  resources :clients
+  resources :clients do 
+    get :autocomplete_client_cedula, :on => :collection
+  end
   devise_for :users
 
   get 'dashboard/index'

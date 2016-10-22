@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dqgld1gyl
+  api_key: '749338196888127'
+  api_secret: gxhQyaoisYAtdG_msGwGbR4Sj9A
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dqgld1gyl
+  api_key: '749338196888127'
+  api_secret: gxhQyaoisYAtdG_msGwGbR4Sj9A
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dqgld1gyl
+  api_key: '749338196888127'
+  api_secret: gxhQyaoisYAtdG_msGwGbR4Sj9A
+  enhance_image_tag: true
+  static_image_support: false

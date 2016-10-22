@@ -2,11 +2,11 @@
 <section>
 
 <div class="page-header">
+  <h1>Listing rooms</h1>
   <%= link_to new_room_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     New Room
   <% end %>
-  <h1>Listing rooms</h1>
 </div>
 <div class="row">
 <div class="col-sm-1"></div>
@@ -14,8 +14,9 @@
   <table class="table  table-bordered table-hover">
     <thead>
       <tr>
-    
-        <th>Identificador</th>
+        <th>Imagenes</p></th>
+
+        <th>Identificador</p></th>
     
         <th>Tipo de Habitacion</th>
     
@@ -26,12 +27,24 @@
         <th></th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
-      <%= content_tag_for(:tr, @rooms) do |room| %>
-    
+  
+      <% @rooms.each do |room|%>
+    <tr >
+       <td>
+         <% Photo.where("#{:room_id} = ?" , room.id).each do |p|%>
+         <a  href= "<%=p.my_file.url%>"  class="image-popup">
+         <%= image_tag p.my_file.url,:width => 50, :height => 50%>
+         </a>
+         <%end%>
+        </td>
+
+                
+                              
         <td><%= room.identificador %></td>
 
         <td><%= room.type_of_room_tipo %></td>
@@ -39,12 +52,14 @@
         <td><%= room.state_descripcion %></td>
     
         <td><%= room.capacidad %></td>
-    
-        
-    
-        <td><%= link_to 'Show', room %></td>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
-        <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         
+
+
+        <td style=" padding-bottom:0px;"><%= link_to 'Show', room %></td>
+        <td style=" padding-bottom: 0px;"><%= link_to 'Edit', edit_room_path(room) %></td>
+        <td   style=" padding-bottom: 0px;"><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     
+     </tr>
       <% end %>
     </tbody>
   </table>
