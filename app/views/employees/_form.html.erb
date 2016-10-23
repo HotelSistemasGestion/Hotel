@@ -1,3 +1,5 @@
+<section class="invoice">
+  <div class="row invoice-info">
 <%= form_for(@employee,data: {toggle: "validator"}, html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @employee.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
@@ -129,3 +131,5 @@
     </div>
   </div>  
 <% end %>
+</div>
+</section>

@@ -24,7 +24,23 @@ $(document).ready(function() {
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			events: '/cleaning_rooms.json'
+			
+			   events: [
+        {
+          title: 'Habitacion1 Ruben Fernandez',
+          start: '2016-10-22T14:15:00.000Z',
+       
+         // end: '2016-10-22T19:19:00.000Z',
+          //borderColor: "red",
+          //backgroundColor: "red"
+          //textColor
+           allDay:"true",
+          //color: "red"
+        },
+        {
+          title: 'All Day Event',
+          start: '2016-10-19'
+        }]
 		
 		});
 		
