@@ -10,6 +10,10 @@ class CashesController < ApplicationController
   # GET /cashes/1
   # GET /cashes/1.json
   def show
+     @cash = Cash.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /cashes/new
@@ -25,11 +29,10 @@ class CashesController < ApplicationController
   # POST /cashes.json
   def create
     @cash = Cash.new(cash_params)
-
+    @cash.estado = "cerrada" 
     respond_to do |format|
       if @cash.save
-        format.html { redirect_to @cash, notice: 'Cash was successfully created.' }
-        format.json { render :show, status: :created, location: @cash }
+        format.js { } # Hace un render a create.js.erb
       else
         format.html { render :new }
         format.json { render json: @cash.errors, status: :unprocessable_entity }
@@ -42,8 +45,7 @@ class CashesController < ApplicationController
   def update
     respond_to do |format|
       if @cash.update(cash_params)
-        format.html { redirect_to @cash, notice: 'Cash was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cash }
+        format.js { }
       else
         format.html { render :edit }
         format.json { render json: @cash.errors, status: :unprocessable_entity }

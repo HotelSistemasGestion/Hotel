@@ -1,23 +1,41 @@
 <div class="page-header">
   <%= link_to opening_cashes_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
-    Back
+    Atras
   <% end %>
-  <%= link_to edit_opening_cash_path(@opening_cash), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-  <h1>Show opening_cash</h1>
 </div>
 
-<dl class="dl-horizontal">
-
+<div class="box box-primary">
+    <div class="box-header with-border">
+            <div class="col-sm-1"></div>
+          <h3 class="box-title">
+            Apertura de Caja
+          </h3>           
+        </div>
+    <div class="box-body">
+     <dl class="dl-horizontal">
   <dt>Fecha apertura:</dt>
   <dd><%= @opening_cash.fecha_apertura %></dd>
 
+  <dt>Caja:</dt>
+  <dd><%= @opening_cash.cash_descripcion %></dd>
+
+  <dt>Cajero:</dt>
+  <dd><%= @opening_cash.employee.full_name%></dd>
 
   <dt>Monto efectivo:</dt>
   <dd><%= @opening_cash.monto_efectivo %></dd>
 
 
-</dl>
+</dl> 
+    </div>
+  <div class="box-footer">
+          <div class="col-sm-offset-8 col-sm-10">
+            <%= link_to edit_opening_cash_path(@opening_cash), class: "btn btn-warning " do%>
+            <span class="glyphicon glyphicon-pencil"></span>
+            Editar
+  <% end %>
+          </div>
+        </div>
+</div>
+
