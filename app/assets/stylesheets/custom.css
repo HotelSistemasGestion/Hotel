@@ -2670,7 +2670,17 @@ a:focus {
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
   border: 1px solid #f4f4f4;
+
+}
+.t-bordered > thead > tr > th,
+.t-bordered > tbody > tr > th,
+.t-bordered > tfoot > tr > th,
+.t-bordered> thead > tr > td,
+.t-bordered> tbody > tr > td,
+.t-bordered > tfoot > tr > td {
+  border: 1px solid #f4f4f4;
   border-color: black;
+
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
@@ -2688,13 +2698,80 @@ a:focus {
 }
 .table-sombra{
       box-shadow: 0 0 9px #333;
+      width: 690px;
+      margin: 0 auto;
 }
 .titulo{
-  color: black;
-  text-align: center;
-  font-size: 40px;
+     font: 700 30px/30px 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #4c4c4c;
+    text-transform: uppercase;
+    margin: 0 0 26px;
+    display: inline-block;
+    text-align: center;
 
 
+}
+.global.indent {
+    padding: 76px 0 0;
+    padding-top: 76px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    background: #fff;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+}
+.containerL {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.rayita{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 69px;
+    height: 100%;
+    background: #fdb902;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(253, 185, 2);
+    display: inline-block;
+}
+.bloque_rayita{
+    
+    height: 6px;
+    width: 85%;
+    background: #fedc80;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(254, 220, 128);
+    position: relative;
+    display: block;
+    margin-top: 18px;
 }
 /* .text-center in tables ------------------------------------------------------------------------*/
 table.text-center,
