@@ -22,3 +22,4 @@ Service.create(nombre: "TV cable Nacionales",descripcion: "100 canales",precio: 
 TypesOfEmployee.create(tipo: "administrador", descripcion: "");
 TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
 TypesOfEmployee.create(tipo: "botones", descripcion: "");
+Room.create(type_of_room_id: 1,state_id: 1 ,capacidad: 2,identificador: 's',precio: 10000);

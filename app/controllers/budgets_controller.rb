@@ -24,6 +24,8 @@ class BudgetsController < ApplicationController
   end
   # GET /budgets/1/edit
   def edit
+    @my_budget = Budget.find(params[:id])
+
   end
 
   # POST /budgets
@@ -46,8 +48,11 @@ class BudgetsController < ApplicationController
   # PATCH/PUT /budgets/1
   # PATCH/PUT /budgets/1.json
   def update
+    @budget = Budget.find(params[:id])
+    @budget1 =  @budget
     respond_to do |format|
       if @budget.update(budget_params)
+        BudgetMailer.budget_email(@budget1).deliver_now
         format.html { redirect_to @budget, notice: 'Budget was successfully updated.' }
         format.json { render :show, status: :ok, location: @budget }
       else

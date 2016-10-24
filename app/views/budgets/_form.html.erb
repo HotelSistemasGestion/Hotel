@@ -12,20 +12,23 @@
     </div>
   <% end %>
 
+            
             <div class="row">
               <div class="col-md-4">
-                  <%= f.label :reservation_request_id %><br>
-                  <%= f.text_field :reservation_request_id, class: "form-control", placeholder: "reservation_request_id" %> 
+                  <%= f.label "Pedido de Reservacion." %><br>
+                  <%= f.text_field :reservation_request_id, class: "form-control", placeholder: "reservation_request_id", :readonly => true %> 
               </div>
 
               <div class="col-md-4">
                   <%= f.label :email %><br>
-                  <%= f.text_field  :email, class: "form-control", placeholder: "" %>                                            
+                  <%= f.text_field  :email, class: "form-control", placeholder: "" ,:readonly => true%>                                            
               </div>  
 
               <div class="col-md-4">
-                  <%= f.label :type_of_room_id %><br>
-                  <%= f.text_field :type_of_room_id, class: "form-control", placeholder: "" %> 
+                  <%= f.label "Tipo de Habitacion" %><br>
+                  <%#= f.text_field :type_of_room_id,value: @my_reservation_requests.type_of_room_id, class: "form-control", placeholder: "" %> 
+                  <%= f.select :type_of_room_id,TypeOfRoom.all.collect { |p| [ p.tipo , p.id ] },
+                  {:selected =>f.object.type_of_room_id}, {class: "form-control"} %>
               </div>
 
             </div>
@@ -33,35 +36,55 @@
           <div class="row">
             <div class="col-md-4">
                 <%= f.label 'cantidad de habitaciones'%><br>
-                <%= f.text_field :cantidad_de_habitaciones,:id => "cantidad", class: "form-control", placeholder: "" %>            
+                <%= f.number_field :cantidad_de_habitaciones,min:1,id: "cantidad_de_habitaciones", class: "form-control", placeholder: "" %>            
             </div>
             <div class="col-md-4">
                 <%= f.label :dias %><br>
-                <%= f.text_field :dias, class: "form-control ", placeholder: "" %>
+                <%= f.number_field :dias,min: 1,id:"dias", class: "form-control ", placeholder: "" %>
+            </div>
+            <div class="col-md-4">
+                <%= f.label "Precio Habitacion (Gs)" %><br>
+                <%= f.number_field :precio_habitacion,value: 100000,id: "precio_habitacion" ,:readonly => true, class: "form-control ", placeholder: "" %>
             </div>
           </div>
             
           <br></br>
 
-        <table class="table well">
+        <table class="table well" id="table">
           <thead class="thead-inverse">
             <tr>
-              <th>cantidad</th>
-              <th>servicio</th>
-              <th>subtotal</th>
-              <th>eliminar</th>
+              <th>Cantidad</th>
+              <th>Servicio</th>
+              <th>Precio Unitario</th>
+              <th>Subtotal (Gs)</th>
+              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
-        
+              <%c = 0%>
               <%= f.fields_for :budget_details  ,:wrapper => false do |li| %>
               <tr class="fields">
-                  <th scope="row"><%= li.number_field :cantidad ,:class => ""%></th>
+
+
+                  <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
+                  <% ayudante = "#"+"#{li.object_name}[ayudante]".gsub(/(\])?\[/, "_").chop %>
+                  <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
+
+                  <script>
+                                    
+                  </script>
+                  <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
-                  <td><%= li.number_field  :service_id%></td>
-                  <td><%= li.number_field :subtotal, :readonly => true,:class => ""%></td>
-                  <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
+                  <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
+                  :multiple => true, :update_elements => {:id => id,:precio => ayudante }, value: (!@budget.new_record?)? 
+                  ((Service.find(@my_budget.budget_details[c].service_id).nombre) unless (! @my_budget.budget_details.any? || c>=@my_budget.budget_details.count)) : ''%>
+                  <%= li.hidden_field  :service_id%></td>
+                  <td><%= li.number_field  :ayudante, value: (!@budget.new_record?)? 
+                  ((Service.find(@my_budget.budget_details[c].service_id).precio) unless c>=@my_budget.budget_details.count) : '', class: "escuchable",readonly: true%></td>
+                  <td><%= li.number_field :subtotal,:class => "subtotal",readonly: true%></td>
+                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
               </tr>
+              <%c=c+1%>
               <%end%>
               <tr>
                 <td><%= f.link_to_add "", :budget_details , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
@@ -72,16 +95,15 @@
 
 
 
-
          <div class="row">
              <div class="col-md-4">
-                <%= f.label :descuento %><br>
-                <%= f.text_field :descuento, class: "form-control", placeholder: "" %>
+                <%= f.label "Descuento (%)" %><br>
+                <%= f.number_field :descuento, id:"descuento",min:0,max: 100,class: "form-control", placeholder: "" %>
             </div>
 
              <div class="col-md-4">
-               <%= f.label :total %><br>
-               <%= f.text_field :total, class: "form-control ",  :readonly => true,placeholder: "" %>
+               <%= f.label "Total (Gs)" %><br>
+               <%= f.text_field :total, class: "form-control ",id:"total", placeholder: ""  , readonly: true%>
           </div>
         </div>
         <br></br>

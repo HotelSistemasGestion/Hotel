@@ -38,7 +38,7 @@
 							      	<td><%= @reservation_request.cantidad_de_familias%></td>
 							      	<% dias=(@reservation_request.check_out.to_date - @reservation_request.check_in.to_date).to_i%>
 							      	<td><%=dias%></td>
-							        <td><%= "total de habitaciones" %></td>	
+							        <td><%= (dias*@reservation_request.cantidad_de_familias*100000) %></td>	
 					       		</tr>				       
 					    </tbody>
 
@@ -104,9 +104,9 @@
 					      		<td><%= @reservation_request.check_out%></td>
 					            <td><%= budget.dias %></td>
 					            <td><%= budget.descuento %> %</td>
-					            <% total_sin_servicios = 2 - sum_de_subtotales%>
-					            <td><%= "total sin servicios" %></td>
-					            <td><%= "total con servicios" %></td>
+					            <% total_sin_servicios = budget.total - sum_de_subtotales%>
+					            <td><%= total_sin_servicios %></td>
+					            <td><%= budget.total %></td>
 					           
 					      <% end %>
 					    </tbody>
