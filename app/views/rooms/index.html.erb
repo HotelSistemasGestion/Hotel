@@ -1,33 +1,48 @@
 <body class="room">
 <section>
-
-<div class="page-header">
-  <h1>Listing rooms</h1>
-  <%= link_to new_room_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Room
-  <% end %>
-</div>
 <div class="row">
 <div class="col-sm-1"></div>
 <div class="col-sm-10">
-  <table class="table  table-bordered table-hover">
+<h1 class="titulo page-header">
+            <i class="fa fa-globe"></i>#Hotel-UNI  Listado de Habitaciones
+            
+          </h1>
+</div>        
+</div> 
+
+
+<div class="row">
+  <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+      <%= link_to new_room_path, class: "btn btn-primary" do %>
+      <span class="fa fa-fw fa-bed"></span>
+       Nueva Habitacion
+      <%end%>
+    </div>
+     <div class="col-sm-2"></div>
+</div>
+<BR>
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm-10">
+  <table id="example" class="display nowrap table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Imagenes</p></th>
+        <th>Imagenes</th>
 
-        <th>Identificador</p></th>
+        <th>Identificador</th>
     
         <th>Tipo de Habitacion</th>
     
         <th>Estado</th>
     
         <th>Capacidad</th>
-    
+        <th>Comforts</th>
         <th></th>
         <th></th>
         <th></th>
-        <th></th>
+        
+   
       </tr>
     </thead>
 
@@ -52,13 +67,19 @@
         <td><%= room.state_descripcion %></td>
     
         <td><%= room.capacidad %></td>
-         
+         <td>
+        <% RoomComfort.where("#{:room_id} = ?",room.id).each  do |r|  %>
+      
+           <%= r.comfort_descripcion%>
+           <BR>
+      
+        <% end %>
 
+        </td>
+        <td><%= link_to '', room, class:"glyphicon glyphicon-info-sign", style:"font-size:18px"%></td>
+        <td><%= link_to '', edit_room_path(room), class:"glyphicon glyphicon-edit", style:"font-size:16px" %></td>
+        <td><%= link_to '', room, method: :delete, data: { confirm: 'Are you sure?'},class:"glyphicon glyphicon-trash",style:"font-size:16px" %></td>
 
-        <td style=" padding-bottom:0px;"><%= link_to 'Show', room %></td>
-        <td style=" padding-bottom: 0px;"><%= link_to 'Edit', edit_room_path(room) %></td>
-        <td   style=" padding-bottom: 0px;"><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-     
      </tr>
       <% end %>
     </tbody>
@@ -70,3 +91,7 @@
 
  </section>
 </body>
+
+
+
+

@@ -60,6 +60,7 @@
                   <% precio = "#"+"#{li.object_name}[subtotal]".gsub(/(\])?\[/, "_").chop %>
                   <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
+                  <script type="text/javascript">console.log("<%=:cantidad%>")</script>
                   <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
                   :multiple => false, :update_elements => {:id => id,:precio => precio }%>
                   <%= li.hidden_field  :service_id%></td>
