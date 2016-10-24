@@ -43,7 +43,7 @@
             </div>
             <div class="col-md-4">
                 <%= f.label "Precio Habitacion (Gs)" %><br>
-                <%= f.number_field :precio_habitacion,value: 100000,id: "precio_habitacion", class: "form-control ", placeholder: "" %>
+                <%= f.number_field :precio_habitacion,value: 100000,id: "precio_habitacion" ,:readonly => true, class: "form-control ", placeholder: "" %>
             </div>
           </div>
             
@@ -73,6 +73,7 @@
                   </script>
                   <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
+                  <script type="text/javascript">console.log("<%=:cantidad%>")</script>
                   <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
                   :multiple => true, :update_elements => {:id => id,:precio => ayudante }%>
                   <%= li.hidden_field  :service_id%></td>

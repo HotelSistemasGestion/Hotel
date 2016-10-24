@@ -1,0 +1,45 @@
+<div class="page-header">
+  <%= link_to new_cleaning_room_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Cleaning room
+  <% end %>
+  <h1>Listing cleaning_rooms</h1>
+</div>
+<div class="row">
+<div class ="col-sm-2"></div>
+<div class="col-sm-8 table-responsive">
+<table id="example" class="display nowrap table-bordered" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+            <th>Room</th>
+            <th>Employee</th>
+            <th>Day</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @cleaning_rooms) do |cleaning_room| %>
+            <td><%= cleaning_room.room %></td>
+            <td><%= cleaning_room.employee %></td>
+            <td><%= cleaning_room.day %></td>
+            <td><%= link_to 'Show', cleaning_room %></td>
+        <td><%= link_to 'Edit', edit_cleaning_room_path(cleaning_room) %></td>
+        <td><%= link_to 'Destroy', cleaning_room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class ="col-sm-2"></div>
+</div>
+<div class="row">
+
+<div class ="row">
+  <div class ="col-sm-2"></div>
+  <div  class ="col-sm-8">
+  <div id='calendar'></div>
+</div>
+</div>
+</div>

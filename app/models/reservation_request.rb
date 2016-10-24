@@ -9,5 +9,5 @@ class ReservationRequest < ActiveRecord::Base
 	validates :check_in, :presence => {:message => "en blanco"}
 	validates :check_out, :presence => {:message => "en blanco"}
 
-	paginates_per 5 #solo puse 3 para probar
+	paginates_per 2 #solo puse 3 para probar
 end

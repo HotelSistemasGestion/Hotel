@@ -1,0 +1,1 @@
+json.partial! "cleaning_rooms/cleaning_room", cleaning_room: @cleaning_room

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cleaning_rooms
   resources :photos
   resources :employees
   resources :budget_details
@@ -28,13 +29,16 @@ Rails.application.routes.draw do
   get 'balance_report/balance'
   get 'ledger/mayor'
   get 'diary_book/diario'
+  post 'diary_book/diario'
   resources :reservation_requests
   resources :services do
     get :autocomplete_service_nombre, :on => :collection
-  end
+  end  
   resources :accounts
   resources :invoices
-  resources :clients
+  resources :clients do 
+    get :autocomplete_client_cedula, :on => :collection
+  end
   devise_for :users
 
   get 'dashboard/index'
