@@ -2670,6 +2670,7 @@ a:focus {
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
   border: 1px solid #f4f4f4;
+  border-color: black;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
@@ -2682,20 +2683,40 @@ a:focus {
 }
 .table-color>thead > tr > th{
   text-align: center;
-    background-color: gray;
+    background-color: gray ;
 
 }
 .table-sombra{
       box-shadow: 0 0 9px #333;
 }
-/* .text-center in tables */
+.titulo{
+  color: black;
+  text-align: center;
+  font-size: 40px;
+
+
+}
+/* .text-center in tables ------------------------------------------------------------------------*/
 table.text-center,
 table.text-center td,
 table.text-center th {
   text-align: center;
 }
 .centrar{
+  
   text-align: center;
+overflow-x:hidden; 
+  overflow-y:auto; 
+  
+}
+.scro{
+    border-color: red;
+      border-top-color: white;
+
+
+}
+.s td{
+  border-top-color: transparent;
 }
 .table.align th {
   text-align: left;
@@ -2718,7 +2739,7 @@ padding-top: 10px;
  border-top: 20px;
   text-align: right;
  
-
+font-style: italic;
 }
 /*
  * Component: Label

@@ -30,3 +30,6 @@
 //= require main
 //= require validator.js
 
+//= require rooms
+//= require fullcalendar.min.js
+//= require cleaning_rooms.js

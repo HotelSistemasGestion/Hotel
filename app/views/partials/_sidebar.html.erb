@@ -65,8 +65,16 @@
               <li><a href="<%=balance_report_balance_path%>">Balance de Sumas y Saldos</a></li>
             </ul>
           </li>
-          <li><a href="#">link2</a></li>
-        </ul>
+          <li class="treeview">
+        <a href="#"> <i class='glyphicon glyphicon-link'> </i> <span>Cajas</span> </a>
+        <ul class="treeview-menu">
+              <li><a href="<%=cashes_path%>">Listado de Caja</a></li>
+              <li><a href="<%=opening_cashes_path%>">Apertura de caja</a></li>
+              <li><a href="<%=closing_cashes_path%>">Cierre de caja</a></li>
+              <li><a href="<%=cash_counts_path%>">Arqueo de caja</a></li>
+              <li><a href="<%=cash_movements_path%>">Movimiento de caja</a></li>
+            </ul>
+      </li>        </ul>
       </li>      
 
       <li class="treeview">
