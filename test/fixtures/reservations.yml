@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  apellido: MyString
+  check_in: MyString
+  check_out: MyString
+  type_of_room_id: MyString
+
+two:
+  nombre: MyString
+  apellido: MyString
+  check_in: MyString
+  check_out: MyString
+  type_of_room_id: MyString

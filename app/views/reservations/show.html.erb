@@ -1,0 +1,37 @@
+<div class="box">
+<div class="box-header with-border">
+  <%= link_to reservations_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Atras
+  <% end %>
+  <%= link_to edit_reservation_path(@reservation), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Editar
+  <% end %>
+  <h3 class="box-title"><center>Reservacion</center></h3>
+</div>
+<div class="box-body">
+<dl class="dl-horizontal">
+
+  <dt>Nombre:</dt>
+  <dd><%= @reservation.nombre %></dd>
+
+
+  <dt>Apellido:</dt>
+  <dd><%= @reservation.apellido %></dd>
+
+
+  <dt>Check in:</dt>
+  <dd><%= @reservation.check_in %></dd>
+
+
+  <dt>Check out:</dt>
+  <dd><%= @reservation.check_out %></dd>
+
+
+  <dt>Tipo de Cuarto:</dt>
+  <dd><%= @reservation.type_of_room_id %></dd>
+
+
+</dl>
+</div>

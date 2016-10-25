@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024215944) do
+ActiveRecord::Schema.define(version: 20161025033438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20161024215944) do
   add_index "account_plans", ["accounting_year_id"], name: "index_account_plans_on_accounting_year_id", using: :btree
 
   create_table "account_x_auto_entries", force: :cascade do |t|
+    t.string   "descripcion"
     t.integer  "account_x_entry_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -227,12 +228,9 @@ ActiveRecord::Schema.define(version: 20161024215944) do
 
   create_table "detail_of_cash_movements", force: :cascade do |t|
     t.integer  "sub_monto"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "cash_movement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "detail_of_cash_movements", ["cash_movement_id"], name: "index_detail_of_cash_movements_on_cash_movement_id", using: :btree
 
   create_table "detail_of_payment_types", force: :cascade do |t|
     t.string   "titular"
@@ -319,6 +317,16 @@ ActiveRecord::Schema.define(version: 20161024215944) do
   end
 
   add_index "reservation_requests", ["type_of_room_id"], name: "index_reservation_requests_on_type_of_room_id", using: :btree
+
+  create_table "reservations", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "check_in"
+    t.string   "check_out"
+    t.string   "type_of_room_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "room_comforts", force: :cascade do |t|
     t.integer  "room_id"
@@ -427,7 +435,6 @@ ActiveRecord::Schema.define(version: 20161024215944) do
   add_foreign_key "cleaning_rooms", "rooms"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "complaints", "services"
-  add_foreign_key "detail_of_cash_movements", "cash_movements"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
   add_foreign_key "opening_cashes", "cashes"
