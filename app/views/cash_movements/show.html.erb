@@ -1,19 +1,19 @@
 <div class="page-header">
   <%= link_to cash_movements_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
-    Back
+    Atras
   <% end %>
-  <%= link_to edit_cash_movement_path(@cash_movement), class: 'btn btn-primary' do %>
+  <%= link_to edit_cash_movement_path(@cash_movement), class: 'btn btn-warning' do %>
     <span class="glyphicon glyphicon-pencil"></span>
-    Edit
+    Editar
   <% end %>
-  <h1>Show cash_movement</h1>
 </div>
 
 <dl class="dl-horizontal">
-
+  <dt>ID Apertura:</dt>
+  <dd><%= @cash_movement.opening_cash_id %></dd>
+  <dt>Cliente:</dt>
+  <dd><%= @cash_movement.client.name %></dd>
   <dt>Monto total:</dt>
   <dd><%= @cash_movement.monto_total %></dd>
-
-
 </dl>

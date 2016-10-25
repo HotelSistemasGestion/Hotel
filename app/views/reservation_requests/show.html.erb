@@ -46,6 +46,11 @@
 </p>
 
 <p>
+  <strong>Tipo de Habitacion:</strong>
+  <%= TypeOfRoom.find(@reservation_request.type_of_room_id).tipo %>
+</p>
+
+<p>
   <strong>Comentarios:</strong>
   <%= @reservation_request.comentarios %>
 </p>

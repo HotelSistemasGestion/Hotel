@@ -22,9 +22,12 @@ Comfort.create(descripcion: "frizzer");
 
 Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
 Service.create(nombre: "TV cable Nacionales",descripcion: "100 canales",precio: 10000);
+Service.create(nombre: "Lavanderia",descripcion: "Lavado y planchado",precio: 50000);
 TypesOfEmployee.create(tipo: "administrador", descripcion: "");
 TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
 TypesOfEmployee.create(tipo: "botones", descripcion: "");
+
+Room.create(type_of_room_id: 1,state_id: 1 ,capacidad: 2,identificador: 's',precio: 10000);
 
 AccountingYear.create(anho: "2016",estado: "actual");
 AccountingYear.create(anho: "2015",estado: "antiguo");
