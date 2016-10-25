@@ -46,11 +46,61 @@
       </li>
 
       <li class="treeview">
-        <a href="#"> <i class='fa fa-user-plus'> </i> <span>Personas </span> </a>
+        <a href="#">
+            <i class='fa fa-user-plus'></i> <span>Personas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
         <ul class="treeview-menu">          
           <li><a href="<%=clients_path%>"><i class='fa fa-user'> </i> <span>Clientes </span></a></li>
           <li><a href="<%=employees_path%>"><i class='fa fa-user'> </i> <span>Empleados </span></a></li>
+          <li><a href="<%=employees_path%>"> <i class='glyphicon glyphicon-link'> </i> <span>Empleados</span></a></li>
         </ul>        
+      </li>
+
+      <li class="treeview">
+          <a href="#">
+            <i class='glyphicon glyphicon-plus'></i> <span>Finanzas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        <ul class="treeview-menu">
+          <li class="treeview">
+          <a href="#"> <i class='glyphicon glyphicon-list-alt'> </i> <span>Contabilidad </span> </a>
+            <ul class="treeview-menu">
+              <li><a href="<%=accounting_entries_path%>">Asientos</a></li>
+              <li><a href="<%=diary_book_diario_path%>">Libro Diario</a></li>
+              <li><a href="<%=ledger_mayor_path%>">Libro Mayor</a></li>
+              <li><a href="<%=balance_report_balance_path%>">Balance de Sumas y Saldos</a></li>
+            </ul>
+          </li>
+
+          <li class="treeview">
+              <a href="#"> <i class='glyphicon glyphicon-plus'> </i> <span>Cajas</span> </a>
+              <ul class="treeview-menu">
+                    <li><a href="<%=cashes_path%>">Listado de Caja</a></li>
+                    <li><a href="<%=opening_cashes_path%>">Apertura de caja</a></li>
+                    <li><a href="<%=closing_cashes_path%>">Cierre de caja</a></li>
+                    <li><a href="<%=cash_counts_path%>">Arqueo de caja</a></li>
+                    <li><a href="<%=cash_movements_path%>">Movimiento de caja</a></li>
+                  </ul>
+            </li>        
+          </ul>
+      </li> 
+
+      <li class="treeview">
+          <a href="#">
+            <i class="fa fa-th"></i> <span>Reservas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li><a href="<%=reservation_requests_path%>"><i class="fa fa-circle-o"></i> Pedidos de Reservaciones</a></li>
+            <li class="active"><a href="<%=reservations_path%>"><i class="fa fa-circle-o"></i>Reservas</a></li>
+          </ul>
       </li>
 
       <li class="treeview">
@@ -70,54 +120,18 @@
           </a>
         </li-->
 
-      <li class="treeview">
-        <a href="#"> <i class='glyphicon glyphicon-plus'> </i> <span>Finanzas </span> </a>
-        <ul class="treeview-menu">
-          <li class="treeview">
-          <a href="#"> <i class='glyphicon glyphicon-list-alt'> </i> <span>Contabilidad </span> </a>
-            <ul class="treeview-menu">
-              <li><a href="<%=accounting_entries_path%>">Asientos</a></li>
-              <li><a href="<%=diary_book_diario_path%>">Libro Diario</a></li>
-              <li><a href="<%=ledger_mayor_path%>">Libro Mayor</a></li>
-              <li><a href="<%=balance_report_balance_path%>">Balance de Sumas y Saldos</a></li>
-            </ul>
-          </li>
 
-          <li class="treeview">
-        <a href="#"> <i class='glyphicon glyphicon-plus'> </i> <span>Cajas</span> </a>
-        <ul class="treeview-menu">
-              <li><a href="<%=cashes_path%>">Listado de Caja</a></li>
-              <li><a href="<%=opening_cashes_path%>">Apertura de caja</a></li>
-              <li><a href="<%=closing_cashes_path%>">Cierre de caja</a></li>
-              <li><a href="<%=cash_counts_path%>">Arqueo de caja</a></li>
-              <li><a href="<%=cash_movements_path%>">Movimiento de caja</a></li>
-            </ul>
-      </li>        </ul>
-      </li>      
 
       <li class="treeview">
         <a href="<%=rooms_path%>"> <i class='glyphicon glyphicon-bell'> </i> <span>Habitaciones</span> </a>
       </li>
-       <li class="treeview">
-        <a href="<%=employees_path%>"> <i class='glyphicon glyphicon-link'> </i> <span>Empleados</span> </a>
-      </li>
-         <li class="treeview">
-        <a href="<%=cleaning_rooms_path%>" <i class='glyphicon glyphicon-link'> </i> <span>Limpieza</span> </a>
-      </li>
-
-
+       
       <li class="treeview">
-          <a href="#">
-            <i class="fa fa-th"></i> <span>Reservas</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" style="display: none;">
-            <li><a href="<%=reservation_requests_path%>"><i class="fa fa-circle-o"></i> Pedidos de Reservaciones</a></li>
-            <li class="active"><a href="<%=reservations_path%>"><i class="fa fa-circle-o"></i>Reservas</a></li>
-          </ul>
-        </li>
+        <a href="<%=cleaning_rooms_path%>"> <i class='glyphicon glyphicon-link'> </i> <span>Limpieza</span> </a>
+      </li>
+
+
+
 
     </ul><!-- /.sidebar-menu -->
   </section>

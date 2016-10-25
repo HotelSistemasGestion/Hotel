@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20161025033438) do
   create_table "cleaning_rooms", force: :cascade do |t|
     t.integer  "room_id"
     t.integer  "employee_id"
+    t.datetime "day"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.date     "start"
