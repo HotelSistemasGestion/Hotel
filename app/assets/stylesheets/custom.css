@@ -2729,12 +2729,15 @@ a:focus {
     background-origin: initial;
     background-clip: initial;
     background-color: rgb(255, 255, 255);
+    overflow: auto;
+    white-space: normal !important;
 }
 .containerL {
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+
 }
 .rayita{
     position: absolute;

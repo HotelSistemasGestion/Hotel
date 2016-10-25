@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024215944) do
+ActiveRecord::Schema.define(version: 20161025033438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,9 +172,13 @@ ActiveRecord::Schema.define(version: 20161024215944) do
   create_table "cleaning_rooms", force: :cascade do |t|
     t.integer  "room_id"
     t.integer  "employee_id"
-    t.datetime "day"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.date     "start"
+    t.date     "end"
+    t.string   "title"
+    t.string   "color"
+    t.string   "textColor"
   end
 
   add_index "cleaning_rooms", ["employee_id"], name: "index_cleaning_rooms_on_employee_id", using: :btree
@@ -317,6 +321,16 @@ ActiveRecord::Schema.define(version: 20161024215944) do
   end
 
   add_index "reservation_requests", ["type_of_room_id"], name: "index_reservation_requests_on_type_of_room_id", using: :btree
+
+  create_table "reservations", force: :cascade do |t|
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "check_in"
+    t.string   "check_out"
+    t.string   "type_of_room_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "room_comforts", force: :cascade do |t|
     t.integer  "room_id"

@@ -33,7 +33,7 @@
 
     <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
-      <li class="header">HEADER</li>
+      <li class="header">Accesos Directos:</li>
         <!-- Optionally, you can add icons to the links -->      
       <li class="active"><a href="<%=dashboard_index_path%>"><i class='glyphicon glyphicon-dashboard'></i> <span>dashboard</span></a></li> 
 
@@ -42,13 +42,21 @@
       <% end %>
 
       <li class="treeview">
-        <a href="<%=new_account_path%>" ><i class='glyphicon glyphicon-link'> </i> <span>Registrar Check-In</span> </a>
+        <a href="<%=new_account_path%>" ><i class='glyphicon glyphicon-check'> </i> <span>Registrar Check-In</span> </a>
+      </li>
+
+      <li class="treeview">
+        <a href="#"> <i class='fa fa-user-plus'> </i> <span>Personas </span> </a>
+        <ul class="treeview-menu">          
+          <li><a href="<%=clients_path%>"><i class='fa fa-user'> </i> <span>Clientes </span></a></li>
+          <li><a href="<%=employees_path%>"><i class='fa fa-user'> </i> <span>Empleados </span></a></li>
+        </ul>        
       </li>
 
       <li class="treeview">
         <a href="#"> <i class='fa fa-dollar'> </i> <span>Ingresos </span> </a>
         <ul class="treeview-menu">          
-          <li><a href="<%=clients_path%>"><i class='fa fa-user-plus'> </i> <span>Clientes </span></a></li>
+          <li><a href="<%=accounts_path%>"><i class='glyphicon glyphicon-list-alt'> </i> <span>Cuentas </span></a></li>
           <li><a href="<%=invoices_path%>"><i class='fa fa-credit-card'> </i> <span>Facturas </span></a></li>
         </ul>        
       </li>
@@ -63,7 +71,7 @@
         </li-->
 
       <li class="treeview">
-        <a href="#"> <i class='glyphicon glyphicon-link'> </i> <span>Finanzas </span> </a>
+        <a href="#"> <i class='glyphicon glyphicon-plus'> </i> <span>Finanzas </span> </a>
         <ul class="treeview-menu">
           <li class="treeview">
           <a href="#"> <i class='glyphicon glyphicon-list-alt'> </i> <span>Contabilidad </span> </a>
@@ -76,7 +84,7 @@
           </li>
 
           <li class="treeview">
-        <a href="#"> <i class='glyphicon glyphicon-link'> </i> <span>Cajas</span> </a>
+        <a href="#"> <i class='glyphicon glyphicon-plus'> </i> <span>Cajas</span> </a>
         <ul class="treeview-menu">
               <li><a href="<%=cashes_path%>">Listado de Caja</a></li>
               <li><a href="<%=opening_cashes_path%>">Apertura de caja</a></li>
@@ -88,13 +96,14 @@
       </li>      
 
       <li class="treeview">
-        <a href="<%=rooms_path%>"> <i class='glyphicon glyphicon-link'> </i> <span>Habitaciones</span> </a>
+        <a href="<%=rooms_path%>"> <i class='glyphicon glyphicon-bell'> </i> <span>Habitaciones</span> </a>
       </li>
        <li class="treeview">
         <a href="<%=employees_path%>"> <i class='glyphicon glyphicon-link'> </i> <span>Empleados</span> </a>
       </li>
-
-
+         <li class="treeview">
+        <a href="<%=cleaning_rooms_path%>" <i class='glyphicon glyphicon-link'> </i> <span>Limpieza</span> </a>
+      </li>
 
 
       <li class="treeview">
@@ -106,7 +115,7 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li><a href="<%=reservation_requests_path%>"><i class="fa fa-circle-o"></i> Pedidos de Reservaciones</a></li>
-            <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i>Reservas</a></li>
+            <li class="active"><a href="<%=reservations_path%>"><i class="fa fa-circle-o"></i>Reservas</a></li>
           </ul>
         </li>
 

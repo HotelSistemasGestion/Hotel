@@ -1,3 +1,5 @@
+<section class="invoice">
+  <div class="row invoice-info">
 <%= form_for(@employee,data: {toggle: "validator"}, html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @employee.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
@@ -73,14 +75,7 @@
 </div>
 
 <div class="row"> 
-    <div class="col-sm-6 form-group has-feedback">
-      <%= f.label :telefono, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.number_field :telefono, class: "form-control" ,:required => true%>
-        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-        <div class="help-block with-errors">*requerido</div>
-      </div>
-    </div>
+
 
     <div class="col-sm-6 form-group has-feedback">
       <%= f.label :Cargo, class: "col-sm-2 control-label" %>
@@ -129,3 +124,5 @@
     </div>
   </div>  
 <% end %>
+</div>
+</section>

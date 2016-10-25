@@ -36,9 +36,15 @@
               <td><%= account.fecha_entrada %></td>
               <td><%= account.fecha_salida %></td>
               <td><%= account.total %></td>
-              <td><%= link_to 'Ver', account %></td>
-              <td><%= link_to 'Editar', edit_account_path(account) %></td>
-              <td><%= link_to 'Eliminar', account, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+              <td><%= link_to account, remote: true, class: 'col-sm-2', title: 'Ver Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon glyphicon-eye-open"></span>
+                    <% end %></td>
+              <td><%= link_to edit_account_path(account), remote: true, class: 'col-sm-2', title: 'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon glyphicon-edit"></span>
+                    <% end %></td>
+              <td><%= link_to account, method: :delete, data: { confirm: 'Esta seguro?' }, remote: true, class: 'col-sm-2', title: 'Eliminar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon glyphicon-trash"></span>
+                    <% end %></td>
               </tr>
           <% end %>
         </tbody>
