@@ -17,6 +17,11 @@ class CashMovementsController < ApplicationController
     @cash_movement = CashMovement.new
   end
 
+  def my_new
+    @cash_movement = CashMovement.new
+    @cash_movement.detail_of_cash_movements.build
+    @opening_cash =OpeningCash.find(params[:id])
+  end
   # GET /cash_movements/1/edit
   def edit
   end
@@ -69,6 +74,6 @@ class CashMovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cash_movement_params
-      params.require(:cash_movement).permit(:monto_total)
+      params.require(:cash_movement).permit(:id, :monto_total, :opening_cash_id, :client_id, :detail_of_cash_movements_attributes => [:id, :sub_monto, :_destroy])
     end
 end

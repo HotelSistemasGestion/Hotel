@@ -1,13 +1,12 @@
 <div class="page-header">
   <%= link_to cash_movements_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
-    Back
+    Atras
   <% end %>
-  <%= link_to @cash_movement, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-info-sign"></span>
-    Show
+  <%= link_to @cash_movement, class: 'btn btn-primary', title: 'Ver' do %>
+    <span class="glyphicon glyphicon-eye-open"></span>
+    Mostrar
   <% end %>
-  <h1>Editing cash_movement</h1>
 </div>
 
-<%= render 'form' %>
+<%= render 'form', title: 'Editar Movimiento' %>

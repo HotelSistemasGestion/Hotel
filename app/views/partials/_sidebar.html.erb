@@ -35,7 +35,7 @@
     <ul class="sidebar-menu">
       <li class="header">Accesos Directos:</li>
         <!-- Optionally, you can add icons to the links -->      
-      <!--<li class="active"><a href="<%=dashboard_index_path%>"><i class='glyphicon glyphicon-dashboard'></i> <span>dashboard</span></a></li> -->
+      <li class="active"><a href="<%=dashboard_index_path%>"><i class='glyphicon glyphicon-dashboard'></i> <span>dashboard</span></a></li> 
 
       <% if can? :manage, :all %>
         <li><a href="<%=usuarios_path%>"><i class='fa fa-users'></i><span>Usuarios</span></a></li>
@@ -61,6 +61,15 @@
         </ul>        
       </li>
   
+      <!--li>
+          <a href="widgets.html">
+            <i class="fa fa-th"></i> <span>Link </span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">new</small>
+            </span>
+          </a>
+        </li-->
+
       <li class="treeview">
         <a href="#"> <i class='glyphicon glyphicon-plus'> </i> <span>Finanzas </span> </a>
         <ul class="treeview-menu">
@@ -73,6 +82,7 @@
               <li><a href="<%=balance_report_balance_path%>">Balance de Sumas y Saldos</a></li>
             </ul>
           </li>
+
           <li class="treeview">
         <a href="#"> <i class='glyphicon glyphicon-plus'> </i> <span>Cajas</span> </a>
         <ul class="treeview-menu">
@@ -89,7 +99,19 @@
         <a href="<%=rooms_path%>"> <i class='glyphicon glyphicon-bell'> </i> <span>Habitaciones</span> </a>
       </li>
 
-      <li><a href="<%=reservation_requests_path%>"><i class='glyphicon glyphicon-calendar'></i> <span>Pedidos de Reservaciones</span></a></li>      
+      <li class="treeview">
+          <a href="#">
+            <i class="fa fa-th"></i> <span>Reservas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li><a href="<%=reservation_requests_path%>"><i class="fa fa-circle-o"></i> Pedidos de Reservaciones</a></li>
+            <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i>Reservas</a></li>
+          </ul>
+        </li>
+
     </ul><!-- /.sidebar-menu -->
   </section>
   <!-- /.sidebar -->

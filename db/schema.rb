@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023230726) do
+ActiveRecord::Schema.define(version: 20161024215944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,11 +152,13 @@ ActiveRecord::Schema.define(version: 20161023230726) do
     t.integer  "opening_cash_id"
     t.integer  "accounting_entry_id"
     t.integer  "client_id"
+    t.integer  "payment_type_id"
   end
 
   add_index "cash_movements", ["accounting_entry_id"], name: "index_cash_movements_on_accounting_entry_id", using: :btree
   add_index "cash_movements", ["client_id"], name: "index_cash_movements_on_client_id", using: :btree
   add_index "cash_movements", ["opening_cash_id"], name: "index_cash_movements_on_opening_cash_id", using: :btree
+  add_index "cash_movements", ["payment_type_id"], name: "index_cash_movements_on_payment_type_id", using: :btree
   add_index "cash_movements", ["type_of_cash_movement_id"], name: "index_cash_movements_on_type_of_cash_movement_id", using: :btree
 
   create_table "cashes", force: :cascade do |t|
@@ -225,9 +227,12 @@ ActiveRecord::Schema.define(version: 20161023230726) do
 
   create_table "detail_of_cash_movements", force: :cascade do |t|
     t.integer  "sub_monto"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "cash_movement_id"
   end
+
+  add_index "detail_of_cash_movements", ["cash_movement_id"], name: "index_detail_of_cash_movements_on_cash_movement_id", using: :btree
 
   create_table "detail_of_payment_types", force: :cascade do |t|
     t.string   "titular"
@@ -354,9 +359,12 @@ ActiveRecord::Schema.define(version: 20161023230726) do
 
   create_table "type_of_cash_movements", force: :cascade do |t|
     t.string   "descripcion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "cash_movement_id"
   end
+
+  add_index "type_of_cash_movements", ["cash_movement_id"], name: "index_type_of_cash_movements_on_cash_movement_id", using: :btree
 
   create_table "type_of_rooms", force: :cascade do |t|
     t.string   "tipo"
@@ -413,11 +421,13 @@ ActiveRecord::Schema.define(version: 20161023230726) do
   add_foreign_key "cash_movements", "accounting_entries"
   add_foreign_key "cash_movements", "clients"
   add_foreign_key "cash_movements", "opening_cashes"
+  add_foreign_key "cash_movements", "payment_types"
   add_foreign_key "cash_movements", "type_of_cash_movements"
   add_foreign_key "cleaning_rooms", "employees"
   add_foreign_key "cleaning_rooms", "rooms"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "complaints", "services"
+  add_foreign_key "detail_of_cash_movements", "cash_movements"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
   add_foreign_key "opening_cashes", "cashes"
@@ -428,4 +438,5 @@ ActiveRecord::Schema.define(version: 20161023230726) do
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "states"
   add_foreign_key "rooms", "type_of_rooms"
+  add_foreign_key "type_of_cash_movements", "cash_movements"
 end

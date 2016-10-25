@@ -33,9 +33,15 @@ gem 'kaminari-bootstrap'
 
 #formularios anidados
 gem 'nested_form'
+#Envios de email
+gem 'sendgrid-rails', '~> 2.0'
+
 gem 'carrierwave'
 gem 'cloudinary'
-gem 'sendgrid-rails', '~> 2.0'
+
+#Styling hmtl emails
+gem 'nokogiri'
+gem 'premailer-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -98,4 +104,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'rails4-autocomplete'
