@@ -2,7 +2,13 @@
     <td><%= service.nombre %></td>
     <td><%= service.descripcion %></td>
     <td><%= service.precio %></td>
-    <td><%= link_to 'Ver', service, remote: true %></td>
-    <td><%= link_to 'Editar', edit_service_path(service), remote: true  %></td>
-    <td><%= link_to 'Eliminar', service, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+    <td><%= link_to service, remote: true, class: 'col-sm-2', title: 'Ver Servicio', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon glyphicon-eye-open"></span>
+                    <% end %></td>
+              <td><%= link_to edit_service_path(service), remote: true, class: 'col-sm-2', title: 'Editar Servicio', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon glyphicon-edit"></span>
+                    <% end %></td>
+              <td><%= link_to service, method: :delete, data: { confirm: 'Esta seguro?' }, remote: true, class: 'col-sm-2', title: 'Eliminar Servicio', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon glyphicon-trash"></span>
+                    <% end %></td>
 </tr>

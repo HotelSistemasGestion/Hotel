@@ -1,4 +1,6 @@
+<section class="invoice">
 <%= nested_form_for(@room,html: { class: "form-horizontal", role: "form",data: {toggle:"validator"} }) do |f| %>
+
   <% if @room.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -103,3 +105,4 @@
     </div>
   </div>
 <% end %>
+</section>
