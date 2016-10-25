@@ -1,0 +1,25 @@
+<tr id="<%= cash.id %>">
+    <td><%= cash.descripcion %></td>
+    <td><%= cash.estado %></td>
+    <td>
+        <div class="row">
+            <div class="col-xs-2">
+                <%= link_to cash, remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon-eye-open"></span>
+                    <% end %>    
+            </div>
+            <div class="col-xs-2">
+                <%= link_to edit_cash_path(cash), remote: true, class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon-pencil"></span>
+                    <% end %>    
+            </div>
+            <div class="col-xs-2">
+                <%= link_to cash, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                        <span class= "glyphicon glyphicon-trash"></span>
+                    <% end %>                    
+    
+            </div>
+            
+        </div>
+    </td>
+</tr>

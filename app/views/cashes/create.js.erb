@@ -1,0 +1,6 @@
+<% if @cash.errors.blank? %>
+	$('#product-modal').modal('hide');
+	$('table tbody').append(' <%= j render "row", cash: @cash %>');		
+<% else %>
+  	alert('<%= @cash.errors.full_messages[0] %>');
+<% end %>

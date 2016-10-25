@@ -1,6 +1,7 @@
 class Client < ActiveRecord::Base
     has_many :invoices
     has_many :accounts
+    has_many :cash_movement
     validates :nombre, :apellido, :cedula, :ruc, presence: true
     validates :email, email_format: { message: ': ingrese una direccion de email valida' }
 

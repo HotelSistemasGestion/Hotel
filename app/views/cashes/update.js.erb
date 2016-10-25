@@ -1,0 +1,8 @@
+<% if @cash.errors.blank? %>
+  // add the row to the table, show alert and hide modal
+  $('#product-modal').modal('hide');
+  $('table tbody tr#<%= @cash.id %>').replaceWith(' <%= j render "row", cash: @cash %>');
+  alert('La caja se modifico exitosamente');
+<% else %>
+  alert('<%= @cash.errors.full_messages[0] %>');
+<% end %>

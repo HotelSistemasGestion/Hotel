@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024163208) do
+
+
+ActiveRecord::Schema.define(version: 20161024215944) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +31,6 @@ ActiveRecord::Schema.define(version: 20161024163208) do
   add_index "account_plans", ["accounting_year_id"], name: "index_account_plans_on_accounting_year_id", using: :btree
 
   create_table "account_x_auto_entries", force: :cascade do |t|
-    t.string   "descripcion"
     t.integer  "account_x_entry_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -147,14 +149,26 @@ ActiveRecord::Schema.define(version: 20161024163208) do
 
   create_table "cash_movements", force: :cascade do |t|
     t.integer  "monto_total"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "type_of_cash_movement_id"
+    t.integer  "opening_cash_id"
+    t.integer  "accounting_entry_id"
+    t.integer  "client_id"
+    t.integer  "payment_type_id"
   end
+
+  add_index "cash_movements", ["accounting_entry_id"], name: "index_cash_movements_on_accounting_entry_id", using: :btree
+  add_index "cash_movements", ["client_id"], name: "index_cash_movements_on_client_id", using: :btree
+  add_index "cash_movements", ["opening_cash_id"], name: "index_cash_movements_on_opening_cash_id", using: :btree
+  add_index "cash_movements", ["payment_type_id"], name: "index_cash_movements_on_payment_type_id", using: :btree
+  add_index "cash_movements", ["type_of_cash_movement_id"], name: "index_cash_movements_on_type_of_cash_movement_id", using: :btree
 
   create_table "cashes", force: :cascade do |t|
     t.string   "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "estado"
   end
 
   create_table "cleaning_rooms", force: :cascade do |t|
@@ -220,9 +234,12 @@ ActiveRecord::Schema.define(version: 20161024163208) do
 
   create_table "detail_of_cash_movements", force: :cascade do |t|
     t.integer  "sub_monto"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "cash_movement_id"
   end
+
+  add_index "detail_of_cash_movements", ["cash_movement_id"], name: "index_detail_of_cash_movements_on_cash_movement_id", using: :btree
 
   create_table "detail_of_payment_types", force: :cascade do |t|
     t.string   "titular"
@@ -270,7 +287,12 @@ ActiveRecord::Schema.define(version: 20161024163208) do
     t.integer  "monto_efectivo"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "employee_id"
+    t.integer  "cash_id"
   end
+
+  add_index "opening_cashes", ["cash_id"], name: "index_opening_cashes_on_cash_id", using: :btree
+  add_index "opening_cashes", ["employee_id"], name: "index_opening_cashes_on_employee_id", using: :btree
 
   create_table "payment_types", force: :cascade do |t|
     t.string   "descripcion"
@@ -344,9 +366,12 @@ ActiveRecord::Schema.define(version: 20161024163208) do
 
   create_table "type_of_cash_movements", force: :cascade do |t|
     t.string   "descripcion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "cash_movement_id"
   end
+
+  add_index "type_of_cash_movements", ["cash_movement_id"], name: "index_type_of_cash_movements_on_cash_movement_id", using: :btree
 
   create_table "type_of_rooms", force: :cascade do |t|
     t.string   "tipo"
@@ -400,16 +425,25 @@ ActiveRecord::Schema.define(version: 20161024163208) do
   add_foreign_key "budget_details", "services"
   add_foreign_key "budgets", "reservation_requests"
   add_foreign_key "budgets", "type_of_rooms"
+  add_foreign_key "cash_movements", "accounting_entries"
+  add_foreign_key "cash_movements", "clients"
+  add_foreign_key "cash_movements", "opening_cashes"
+  add_foreign_key "cash_movements", "payment_types"
+  add_foreign_key "cash_movements", "type_of_cash_movements"
   add_foreign_key "cleaning_rooms", "employees"
   add_foreign_key "cleaning_rooms", "rooms"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "complaints", "services"
+  add_foreign_key "detail_of_cash_movements", "cash_movements"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
+  add_foreign_key "opening_cashes", "cashes"
+  add_foreign_key "opening_cashes", "employees"
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservation_requests", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "states"
   add_foreign_key "rooms", "type_of_rooms"
+  add_foreign_key "type_of_cash_movements", "cash_movements"
 end

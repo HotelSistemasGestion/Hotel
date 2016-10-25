@@ -1,4 +1,4 @@
-<%= form_for(@cash_movement, html: { class: "form-horizontal", role: "form" }) do |f| %>
+<%= nested_form_for(@cash_movement, html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @cash_movement.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -11,18 +11,109 @@
       </ul>
     </div>
   <% end %>
+<div class="row">
+<div class="col-sm-12">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <div class="col-sm-2"></div>
+          <h3 class="box-title col-sm-6">
+            <%= title %>
+          </h3>           
+        </div>
+        
+        <form role='form-horizontal'>
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+              <%= f.label 'Apertura' %><br>
+              <%= f.text_field :opening_cash, class: "form-control",placeholder:"ID Apertura", :required => true %>
+              <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            </div>
 
+            <div class="col-md-3">
+              <%= f.label 'Cajero' %><br>
+              <%= f.text_field :opening_cash, id: "cajero", class: "form-control", :required => true %>
+              <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            </div>
 
-  <div class="form-group">
-    <%= f.label :monto_total, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :monto_total, class: "form-control" %>
+            <div class="col-md-3">
+              <%= f.label 'Cliente' %><br>
+              <%= f.autocomplete_field :client, autocomplete_client_cedula_clients_path, class:"form-control", placeholder: "Ingrese numero de cedula"  %>
+            </div>    
+          </div>
+
+          <div class="row">
+            <div class="col-md-1"></div>  
+            <div class="col-md-3">
+              <%= f.label 'Fecha' %><br>
+              <%= f.text_field :opening_cash, class:"form-control datepicker" %>
+            </div>
+  
+            <div class="col-md-3">
+              <%= f.label 'Tipo de movimiento' %><br>
+              <%= f.select :type_of_cash_movement_id ,TypeOfCashMovement.all.collect { |t| [t.descripcion, t.id ] },{include_blank: false},class: "form-control",:required => true %>
+              <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>                
+            </div>
+
+            <div class="col-md-3">
+              <%= f.label 'Tipo de valor' %><br>
+              <%= f.select :payment_type_id ,PaymentType.all.collect { |t| [t.descripcion, t.id ] },{include_blank: false},class: "form-control",:required => true %>
+              <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>                
+            </div>
+          </div>
+          <br></br>
+<div class="row">
+<div class="col-sm-10">
+      <div class="col-sm-2"></div>
+      <table class="table well col-sm-offset-1">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Factura Numero</th>
+              <th>Subtotal</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+        
+              <%= f.fields_for :detail_of_cash_movements  ,:wrapper => false do |li| %>
+              <tr class="fields">
+                  <th scope="row"><%= li.number_field :sub_monto ,:class => ""%></th>
+                  <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
+                  <td><%= li.number_field :sub_monto, :readonly => true,:class => ""%></td>
+                  <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
+              </tr>
+              <%end%>
+              <tr>
+                <td><%= f.link_to_add "", :detail_of_cash_movements , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+</div>
+</div>  
+<div class="row">
+<div class="col-sm-10">
+    <div class="form-group">
+      <div class="col-md-offset-7 col-md-4">
+               <%= f.label :monto_total %><br>
+               <%= f.text_field :monto_total, class: "form-control ",  :readonly => true,placeholder: "" %>
+          </div>    
     </div>
-  </div>
+  
+</div>
+             
+        </div>
+        </form>
+        <div class="box-footer">
+          <div class="col-sm-offset-8 col-sm-10">
+            <%= f.submit "Aceptar", class: "btn btn-primary " %>
+          </div>
+        </div>
+      </div>
+      </div>  
+</div>
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
+                
+</div>
+  <% end %>
