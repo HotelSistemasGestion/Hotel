@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room_id: 
+  employee_id: 
+  day: 2016-10-21 12:43:44
+
+two:
+  room_id: 
+  employee_id: 
+  day: 2016-10-21 12:43:44

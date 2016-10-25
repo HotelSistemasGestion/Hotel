@@ -10,6 +10,7 @@ class OpeningCashesController < ApplicationController
   # GET /opening_cashes/1
   # GET /opening_cashes/1.json
   def show
+
   end
 
   # GET /opening_cashes/new
@@ -25,7 +26,9 @@ class OpeningCashesController < ApplicationController
   # POST /opening_cashes.json
   def create
     @opening_cash = OpeningCash.new(opening_cash_params)
-
+    cash=Cash.find(@opening_cash.cash_id)
+    cash.estado="abierto"
+    cash.save 
     respond_to do |format|
       if @opening_cash.save
         format.html { redirect_to @opening_cash, notice: 'Opening cash was successfully created.' }
@@ -69,6 +72,6 @@ class OpeningCashesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def opening_cash_params
-      params.require(:opening_cash).permit(:fecha_apertura, :monto_efectivo)
+      params.require(:opening_cash).permit(:fecha_apertura, :monto_efectivo, :cash_id, :employee_id)
     end
 end

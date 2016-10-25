@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020021440) do
+ActiveRecord::Schema.define(version: 20161023230726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,15 +147,36 @@ ActiveRecord::Schema.define(version: 20161020021440) do
 
   create_table "cash_movements", force: :cascade do |t|
     t.integer  "monto_total"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "type_of_cash_movement_id"
+    t.integer  "opening_cash_id"
+    t.integer  "accounting_entry_id"
+    t.integer  "client_id"
   end
+
+  add_index "cash_movements", ["accounting_entry_id"], name: "index_cash_movements_on_accounting_entry_id", using: :btree
+  add_index "cash_movements", ["client_id"], name: "index_cash_movements_on_client_id", using: :btree
+  add_index "cash_movements", ["opening_cash_id"], name: "index_cash_movements_on_opening_cash_id", using: :btree
+  add_index "cash_movements", ["type_of_cash_movement_id"], name: "index_cash_movements_on_type_of_cash_movement_id", using: :btree
 
   create_table "cashes", force: :cascade do |t|
     t.string   "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "estado"
   end
+
+  create_table "cleaning_rooms", force: :cascade do |t|
+    t.integer  "room_id"
+    t.integer  "employee_id"
+    t.datetime "day"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "cleaning_rooms", ["employee_id"], name: "index_cleaning_rooms_on_employee_id", using: :btree
+  add_index "cleaning_rooms", ["room_id"], name: "index_cleaning_rooms_on_room_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.string   "nombre"
@@ -255,7 +276,12 @@ ActiveRecord::Schema.define(version: 20161020021440) do
     t.integer  "monto_efectivo"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "employee_id"
+    t.integer  "cash_id"
   end
+
+  add_index "opening_cashes", ["cash_id"], name: "index_opening_cashes_on_cash_id", using: :btree
+  add_index "opening_cashes", ["employee_id"], name: "index_opening_cashes_on_employee_id", using: :btree
 
   create_table "payment_types", force: :cascade do |t|
     t.string   "descripcion"
@@ -385,10 +411,18 @@ ActiveRecord::Schema.define(version: 20161020021440) do
   add_foreign_key "budget_details", "services"
   add_foreign_key "budgets", "reservation_requests"
   add_foreign_key "budgets", "type_of_rooms"
+  add_foreign_key "cash_movements", "accounting_entries"
+  add_foreign_key "cash_movements", "clients"
+  add_foreign_key "cash_movements", "opening_cashes"
+  add_foreign_key "cash_movements", "type_of_cash_movements"
+  add_foreign_key "cleaning_rooms", "employees"
+  add_foreign_key "cleaning_rooms", "rooms"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "complaints", "services"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
+  add_foreign_key "opening_cashes", "cashes"
+  add_foreign_key "opening_cashes", "employees"
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservation_requests", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
