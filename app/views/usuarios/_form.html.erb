@@ -1,103 +1,94 @@
-<%= form_for @usuario, validate: true, url: usuarios_path, html: { method: :post } do |f| %>
+<%= form_for @usuario, url: usuarios_path, html: { method: :post } do |f| %>
+<div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Nuevo Usuario</a></li>              
+            </ul>
+            <div id="user" class="tab-content">
+              <div class="active tab-pane" id="activity">               
+                <!-- Post -->                    
+                    <!-- /.box-header -->
+                    <!-- form start -->                                          <div class="box-body">
+                      <div class="form-group">
+                          <h4 class="box-title">Informacion Personal</h4>
+                            <div class="col-md-12">
+                              <div class="col-md-6">
+                                <label for="exampleInputEmail1">Nombre</label>   <%= f.text_field :username, :maxlength => 35, autofocus: true, :class => 'form-control', placeholder:"Nombre" %>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="exampleInputEmail1">Apellido</label>
+                                 <%= f.text_field :apellido, :maxlength => 35, :class => 'form-control', placeholder:"Apellido" %>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="col-md-6">
+                                <label for="exampleInputEmail1">C.I.N</label>
+                                <%= f.text_field :numero_ci, :maxlength => 7, :class => 'form-control', placeholder:"Cedula" %>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="exampleInputEmail1">Direccion</label>
+                                <%= f.text_field :direccion, :maxlength => 65, :class => 'form-control', placeholder:"Direccion" %>
+                              </div>
+                            </div> 
+                            <div class="col-md-12">
+                              <div class="col-md-6">
+                                <label for="exampleInputEmail1">Telefono</label>
+                                <%= f.text_field :telefono, :maxlength => 12, :class => 'form-control', placeholder:"Telefono" %>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="exampleInputEmail1">Celular</label>
+                                 <%= f.text_field :celular, :maxlength => 12, :class => 'form-control', placeholder:"Celular" %>
+                              </div>
+                            </div>                                   
+                          </div>
+                        </div>
+                      <!-- /.box-body -->
+                      <div class="box-body">
+                        <div class="form-group">
+                        <h4 class="box-title">Informacion de Acceso</h4>
+                          <div class="col-md-12">
+                              <div class="col-md-6">
+                                <label for="exampleInputEmail1">Correo</label>
+                                <%= f.email_field :email, :maxlength => 35, :class => 'form-control', placeholder:"Correo" %>
+                              </div>                                                
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                  <label for="exampleInputEmail1">Contraseña</label>
+                                  <%= f.password_field :password, :maxlength => 50, autocomplete: "off", :class => 'form-control', placeholder:"Contraseña" %>
+                                </div>  
 
-<div class="field col-md-11 form-group">
+                                <div class="col-md-6">
+                                  <label for="exampleInputEmail1">Confirmar contraseña</label>                                
+                                  <%= f.password_field :password_confirmation, :maxlength => 65, autocomplete: "off", :class => 'form-control', placeholder:"Confirmar contraseña" %>
+                                </div> 
+                              </div>
+                            </div>
+                          </div> 
 
-      <div class="field col-md-12 form-group">
-        <h3>Informacion Personal</h3>
-      </div>
-      <form class="form-horizontal">
-        <div class="field col-md-12 form-group">
-          <div class="field col-md-4 form-group required">
-            <%= f.label :username, "Nombre", :class => 'col-md-3 control-label'%>
-            <div class="field col-md-9 form-group">
-              <%= f.text_field :username, :maxlength => 35, autofocus: true, :class => 'form-control' %> 
+                            <div class="box-body">
+                              <div class="form-group">
+                                <h4 class="box-title">Rol</h4>
+                                <div class="col-md-12">
+                                <% for i in 0..4 %>
+                                 <% role = User::ROLES[i] %>
+                                   <%= check_box_tag  "user[roles][#{role}]", role, @usuario.roles.include?(role), {:name => "user[roles][]"}%>
+                                   <%= label_tag "user_roles_#{role}", role.to_s.humanize %><br />
+                                  <% end %>
+                                <%= hidden_field_tag "user[roles][]", "" %> 
+                                </div>                
+                              </div>
+                            </div>       
+                <!-- /.post -->
+              </div>                        
+              <div class="box-footer">                
+                <%= f.submit "Registrar", :class => 'btn btn-success pull-right'%>                
+                <%= link_to 'Cancelar', usuarios_path , class: 'btn btn-danger pull-right' %>
+              </div>
+              <!-- /.tab-pane -->
             </div>
+            <!-- /.tab-content -->
           </div>
-          <div class="field col-md-4 form-group required">
-            <%= f.label :apellido, :class => 'col-md-3 control-label' %>
-            <div class="col-md-9">
-              <%= f.text_field :apellido, :maxlength => 35, :class => 'form-control' %>
-            </div>
-          </div>
-          <div class="field col-md-4 form-group required">
-            <%= f.label :numero_ci, "Cedula", :class => 'col-md-3 control-label' %>
-            <div class="col-md-9">
-              <%= f.text_field :numero_ci, :maxlength => 7, :class => 'form-control' %>
-            </div>
-          </div>
+          <!-- /.nav-tabs-custom -->
         </div>
-        <div class="field col-md-12 form-group">
-          <div class="field col-md-4 form-group required">
-            <%= f.label :direccion, :class => 'col-md-3 control-label'%>
-            <div class="field col-md-9 form-group">
-              <%= f.text_field :direccion, :maxlength => 65, :class => 'form-control' %>
-            </div>
-          </div>
-          <div class="field col-md-4 form-group required">
-            <%= f.label :email, "Correo", :class => 'col-md-3 control-label'%>
-            <div class="col-md-9">
-              <%= f.email_field :email, :maxlength => 35, :class => 'form-control' %>
-            </div>
-          </div>
-          <div class="field col-md-4 form-group required">
-            <%= f.label :telefono, :class => 'col-md-3 control-label' %>
-            <div class="col-md-9">
-              <%= f.text_field :telefono, :maxlength => 12, :class => 'form-control' %>
-            </div>
-          </div>
-        </div>
-        <div class="field col-md-12 form-group">  
-          <div class="field col-md-4 form-group required">
-            <%= f.label :celular, :class => 'col-md-3 control-label' %>
-            <div class="col-md-9">
-              <%= f.text_field :celular, :maxlength => 12, :class => 'form-control' %>
-            </div>
-          </div>
-        </div>
-        <div class="field col-md-12 form-group">
-          <h3>Contraseña</h3>
-        </div>        
-        <div class="field col-md-12 form-group">
-          <div class="field col-md-6 form-group required">
-            <%= f.label :password, "Contraseña", :class => 'col-md-4 control-label'%>
-              <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %>
-            <div class="field col-md-8 form-group">
-              <%= f.password_field :password, :maxlength => 50, autocomplete: "off", :class => 'form-control' %>
-            </div>
-          </div>
-        </div>        
-        <div class="field col-md-12 form-group">
-          <div class="field col-md-6 form-group required">
-            <%= f.label :password_confirmation, "Confirmar Contraseña", :class => 'col-md-4 control-label' %>
-            <div class="col-md-8">
-              <%= f.password_field :password_confirmation, :maxlength => 65, autocomplete: "off", :class => 'form-control' %>
-            </div>                      
-          </div>
-        </div>
-
-        <div class="field col-md-12 form-group">
-          <h3>Rol</h3>
-        </div>
-        <div class="field col-md-12 form-group">            
-         <div class="field col-md-6 form-group required">                            
-            <% for i in 0..1 %>
-             <% role = User::ROLES[i] %>
-               <%= check_box_tag  "user[roles][#{role}]", role, @usuario.roles.include?(role), {:name => "user[roles][]"}%>
-               <%= label_tag "user_roles_#{role}", role.to_s.humanize %><br />
-              <% end %>
-            <%= hidden_field_tag "user[roles][]", "" %> 
-          </div>                        
-        </div> 
-                                 
-        <div class="col-md-10">
-          <div class="actions">
-            <%= f.submit "Agregar", :class => 'btn btn-success btn-lg'%>
-            <%= link_to 'Cancelar',  usuarios_path , class: 'btn btn-primary margen btn-lg' %>
-          </div>
-        </div>
-      </form>  
-   
-    </div>
-<% end %>
+<% end %>        

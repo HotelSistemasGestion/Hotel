@@ -98,7 +98,11 @@ Photo.create(room_id: 1, my_file:"image/upload/v1477017980/dszqxru3husf5tv6toxg.
 
 #Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
 #Service.create(nombre: "TV cable Nacionales",descripcion: "100 canales",precio: 10000);
-#TypesOfEmployee.create(tipo: "administrador", descripcion: "");
-#TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
-#TypesOfEmployee.create(tipo: "botones", descripcion: "");
+
+TypesOfEmployee.create(tipo: "administrador", descripcion: "");
+TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
+TypesOfEmployee.create(tipo: "botones", descripcion: "");
+
+Employee.create(nombre: "Pedro", types_of_employee_id: 2,);
+
 

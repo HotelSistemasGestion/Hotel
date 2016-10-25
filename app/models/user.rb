@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
- ROLES = %i[admin author]
+ ROLES = %i[admin recepcionista cajero supervisorCaja contador]
 
  def roles=(roles)
    roles = [*roles].map { |r| r.to_sym }

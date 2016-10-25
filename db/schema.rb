@@ -171,9 +171,13 @@ ActiveRecord::Schema.define(version: 20161025033438) do
   create_table "cleaning_rooms", force: :cascade do |t|
     t.integer  "room_id"
     t.integer  "employee_id"
-    t.datetime "day"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.date     "start"
+    t.date     "end"
+    t.string   "title"
+    t.string   "color"
+    t.string   "textColor"
   end
 
   add_index "cleaning_rooms", ["employee_id"], name: "index_cleaning_rooms_on_employee_id", using: :btree

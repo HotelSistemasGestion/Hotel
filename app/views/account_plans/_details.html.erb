@@ -1,0 +1,42 @@
+<!-- Modal -->
+<div class="modal fade" id="show-modal">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Datos de Cuenta</h4>
+      </div>
+      
+      <div class="modal-body">          
+
+          <div class="form-group">
+            <p>
+              <strong>Descripcion:</strong>
+              <%= @account_plan.descripcion %>
+            </p>       
+          </div>
+
+          <div class="form-group">
+            <p>
+              <strong>Estado:</strong>
+              <%= @account_plan.estado %>
+            </p>          
+          </div>
+          <div class="form-group">
+            <p>
+              <strong>Version:</strong>
+              <%= @account_plan.version %>
+            </p>          
+          </div>
+
+      </div>
+
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Aceptar</button>
+      </div>
+
+    </div>      
+  </div>
+</div>
