@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20161024215944) do
   add_index "account_plans", ["accounting_year_id"], name: "index_account_plans_on_accounting_year_id", using: :btree
 
   create_table "account_x_auto_entries", force: :cascade do |t|
+    t.string   "descripcion"
     t.integer  "account_x_entry_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -227,12 +228,9 @@ ActiveRecord::Schema.define(version: 20161024215944) do
 
   create_table "detail_of_cash_movements", force: :cascade do |t|
     t.integer  "sub_monto"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "cash_movement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "detail_of_cash_movements", ["cash_movement_id"], name: "index_detail_of_cash_movements_on_cash_movement_id", using: :btree
 
   create_table "detail_of_payment_types", force: :cascade do |t|
     t.string   "titular"
@@ -427,7 +425,6 @@ ActiveRecord::Schema.define(version: 20161024215944) do
   add_foreign_key "cleaning_rooms", "rooms"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "complaints", "services"
-  add_foreign_key "detail_of_cash_movements", "cash_movements"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
   add_foreign_key "opening_cashes", "cashes"

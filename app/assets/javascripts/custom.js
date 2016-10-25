@@ -19,21 +19,7 @@ $(document).ready(function(){
 		  return $(content).insertBefore($tr);
 		  } 
 
-      ///ACA COMIENZA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
-      //Escucho los cambios en cantidad.
-      $(document).on('change','#table .escuchable', function () {                
-                var id = $(this).attr("id");
-                actualizarsubtotal(id,-8);
-            });
-      //Escucho los cambios en el selector de servicios.
-      $(document).on('keyup','#table .ui-autocomplete-input', function () {                
-                var id = $(this).attr("id");
-                actualizarsubtotal(id,-7);
-            });
-      //Cuando borro un Servicio
-      $(document).on('click','#table #borrar', function () {                
-                actualizartotal();
-            });
+      
 
       $('input[name="daterange"]').daterangepicker({
         });
@@ -49,6 +35,21 @@ $(document).ready(function(){
         });
 
   });
+       //ACA COMIENZA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
+      //Escucho los cambios en cantidad.
+      $(document).on('change','#table .escuchable', function () {                
+                var id = $(this).attr("id");
+                actualizarsubtotal(id,-8);
+            });
+      //Escucho los cambios en el selector de servicios.
+      $(document).on('keyup','#table .ui-autocomplete-input', function () {                
+                var id = $(this).attr("id");
+                actualizarsubtotal(id,-7);
+            });
+      //Cuando borro un Servicio
+      $(document).on('click','#table #borrar', function () {                
+                actualizartotal();
+            });
 
     
 
@@ -129,11 +130,11 @@ $(document).ready(function(){
       
 
 
-   function actualizartotal(){
-       
-        $("#total").val(getsumasubtotales());
-        descontartotal();
-    }
+       function actualizartotal(){
+           
+            $("#total").val(getsumasubtotales());
+            descontartotal();
+        }
       //descontar el descuento del total
       function descontartotal(){
         var descuento;
