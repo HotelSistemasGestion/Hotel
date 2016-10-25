@@ -16,6 +16,8 @@
        
             <%while cont2<@array_filtrar.count do %>
             <%ite=0%>
+            <%cant_a=0%>
+			<%cant_d=0%>
              <div class="gall-box ">
                 <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0"style="margin: 0 auto;">
                         <div class="thumbnail"style="text-align: center;">                        
@@ -36,22 +38,36 @@
                                     	
 	                                    	<%if @array_filtrar[cont2]==@algo[ite].accounting_account_id%>
 	                                    		<%if @algo[ite].tipo=="A"||@algo[ite].tipo=="a"%>
-	                                    		<script type="text/javascript">console.log("Estoy en el if");</script>
+	                                    		
 			                                    	<tr>
 			                                    	<td><%=AccountingEntry.find(@algo[ite].accounting_entry_id).numero%></td>
 			                                    	<td><%=AccountingEntry.find(@algo[ite].accounting_entry_id).debe%></td>
 			                                    	<td></td>
 			                                        </tr>
 			                                        <%cant_a +=AccountingEntry.find(@algo[ite].accounting_entry_id).debe%>
+			                                        <%if @algo.count-ite==1%>
+			                                        <tr style=" border-bottom-width: 2px;">
+			                                    	<td colspan="2" scope="row"><%=cant_a%></td>
+			                                    	<td><%=cant_d%></td>
+			                                    	
+			                                        </tr>
+			                                        <%end%>
 			                                    <%else%>
 
-                                    	<script type="text/javascript">console.log("Estoy en el else");</script>
+                                    	
 			                                         <tr>
 				                                    	<td><%=AccountingEntry.find(@algo[ite].accounting_entry_id).numero%></td>
 				                                    	<td></td>
 				                                    	<td><%=AccountingEntry.find(@algo[ite].accounting_entry_id).haber%></td>
 				                                     </tr>
 				                                        <%cant_d += AccountingEntry.find(@algo[ite].accounting_entry_id).haber%>
+				                                    <%if @algo.count-ite==1%>
+			                                        <tr >
+			                                    	<td colspan="2" scope="row"style=" border-bottom-width: 2px;"><%=cant_a%></td>
+			                                    	<td style=" border-bottom-width: 2px;"><%=cant_d%></td>
+			                                    	
+			                                        </tr>
+			                                        <%end%>
 			                                    <%end%>			                                    
 	                                        <%end%>
 	                                        <%ite +=1%>
