@@ -19,12 +19,12 @@
             <%cant_a=0%>
 			<%cant_d=0%>
              <div class="gall-box ">
-                <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0"style="margin: 0 auto;">
-                        <div class="thumbnail"style="text-align: center;">                        
+                <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">
+                        <div class="thumbnail " style=" text-align: center;">                        
 
                             	<%mostrar=AccountingAccount.where("id": @array_filtrar[cont2])%>
-                            	<h4><%=mostrar[0].nombre%></h4>
-                            	  
+                            	<h4 class="textL"><%=mostrar[0].nombre%></h4>
+                            	  <strong class="bloque_rayita"style="margin: 0 auto;"></strong>
                                 <table class="table t-bordered  table-condensed" style="width: 290px;margin: 0 auto;">
                                     <thead >
                                         <tr>
@@ -45,13 +45,7 @@
 			                                    	<td></td>
 			                                        </tr>
 			                                        <%cant_a +=AccountingEntry.find(@algo[ite].accounting_entry_id).debe%>
-			                                        <%if @algo.count-ite==1%>
-			                                        <tr style=" border-bottom-width: 2px;">
-			                                    	<td colspan="2" scope="row"><%=cant_a%></td>
-			                                    	<td><%=cant_d%></td>
-			                                    	
-			                                        </tr>
-			                                        <%end%>
+
 			                                    <%else%>
 
                                     	
@@ -61,15 +55,27 @@
 				                                    	<td><%=AccountingEntry.find(@algo[ite].accounting_entry_id).haber%></td>
 				                                     </tr>
 				                                        <%cant_d += AccountingEntry.find(@algo[ite].accounting_entry_id).haber%>
-				                                    <%if @algo.count-ite==1%>
-			                                        <tr >
-			                                    	<td colspan="2" scope="row"style=" border-bottom-width: 2px;"><%=cant_a%></td>
-			                                    	<td style=" border-bottom-width: 2px;"><%=cant_d%></td>
-			                                    	
-			                                        </tr>
-			                                        <%end%>
+				                                    
 			                                    <%end%>			                                    
 	                                        <%end%>
+	                                        	 <%if (@algo.count-1)==ite%>
+			                                        <tr style="background: #FBF2AF">
+			                                    	<td colspan="2" scope="row"><%=cant_a%></td>
+			                                    	<td><%=cant_d%></td>
+			                                    	
+			                                        </tr>
+			                                         <%if cant_a>cant_d%>
+				                                        <tr style="background: #FEDF90" >
+				                                    	<td colspan="2" scope="row"><%=cant_a-cant_d%></td>
+				                                    	<td></td>
+				                                        </tr>
+			                                         <%else%>
+		                                                <tr style="background: #FEDF90">
+				                                    	<td colspan="2" scope="row"></td>
+				                                    	<td><%=cant_d-cant_a%></td>
+				                                        </tr>
+			                                         <%end%>
+			                                      <%end%>
 	                                        <%ite +=1%>
                                         <%end%>
                                     </tbody>

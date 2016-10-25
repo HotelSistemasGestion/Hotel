@@ -2739,6 +2739,14 @@ a:focus {
     padding-right: 15px;
 
 }
+.textL{
+      padding: 16px 0 0;
+    padding-top: 16px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    font:bold 22px "Trebuchet MS"; 
+}
 .rayita{
     position: absolute;
     top: 0;
@@ -2796,6 +2804,21 @@ overflow-x:hidden;
 
 
 }
+.top {
+  background-color:#EAE9E4;
+  height:75px;
+  h4{
+    padding-top:20px;
+  }
+}
+.purple {
+  background-color:#5D4660;   
+}
+
+.white {
+ color:#FFFFFF; 
+}
+
 .s td{
   border-top-color: transparent;
 }
