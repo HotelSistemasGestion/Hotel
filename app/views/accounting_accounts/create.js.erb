@@ -1,0 +1,6 @@
+<% if @accounting_account.errors.blank? %>
+	$('#product-modal').modal('hide');
+	$('table tbody').append(' <%= j render "row", accounting_account: @accounting_account %>');		
+<% else %>
+  	alert('<%= @accounting_account.errors.full_messages[0] %>');
+<% end %>

@@ -10,11 +10,17 @@ class AccountingAccountsController < ApplicationController
   # GET /accounting_accounts/1
   # GET /accounting_accounts/1.json
   def show
+     @accounting = AccountingAccount.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /accounting_accounts/new
+  
+
   def new
-    @accounting_account = AccountingAccount.new
+  @accounting = AccountingAccount.new
   end
 
   # GET /accounting_accounts/1/edit
@@ -42,8 +48,7 @@ class AccountingAccountsController < ApplicationController
   def update
     respond_to do |format|
       if @accounting_account.update(accounting_account_params)
-        format.html { redirect_to @accounting_account, notice: 'Accounting account was successfully updated.' }
-        format.json { render :show, status: :ok, location: @accounting_account }
+        format.js { }
       else
         format.html { render :edit }
         format.json { render json: @accounting_account.errors, status: :unprocessable_entity }
