@@ -35,7 +35,7 @@
             <td><%= reservation_request.email %></td>
             
             <td align="right"><%if budget.present?%>
-                  <%= link_to 'Confirmar', reservation_request,class: "btn btn-primary" %>
+                  <%= link_to 'Confirmar', {:controller => "reservations", :action => "new", :id => reservation_request.id },class: "btn btn-primary" %>
                 <%end%>        
                 <%if budget.present? %>
                   <%= link_to 'Editar Presupuesto', edit_budget_path(budget),class: "btn btn-primary" %>
