@@ -1,23 +1,24 @@
+<section class="invoice">
 <div class="page-header">
   <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
-    Back
+    Volver
   <% end %>
   <%= link_to edit_cleaning_room_path(@cleaning_room), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
-    Edit
+    Editar
   <% end %>
-  <h1>Show cleaning_room</h1>
+  <h1>Ver limpieza de Habitacion</h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Room:</dt>
-  <dd><%= @cleaning_room.room %></dd>
+  <dt>Habitacion:</dt>
+  <dd><%= @cleaning_room.room_identificador %></dd>
 
-  <dt>Employee:</dt>
-  <dd><%= @cleaning_room.employee %></dd>
+  <dt>Empleado:</dt>
+  <dd><%= @cleaning_room.employee_nombre %></dd>
 
-  <dt>Day:</dt>
-  <dd><%= @cleaning_room.day %></dd>
-
+  <dt>Dia:</dt>
+  <dd><%= @cleaning_room.start %></dd>
 </dl>
+</section>

@@ -1,45 +1,70 @@
-<div class="page-header">
-  <%= link_to new_cleaning_room_path, class: 'btn btn-primary' do %>
+<section class="invoice">
+ <div class="page-header">
+    <h1 class="text-center">Limpieza de Habitaciones</h1>
+ </div>
+
+<div class="box">
+            <div class="box-header ">
+              <h3 class="box-title">Lista</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table class="table table-striped table-bordered table-hover">
+             
+                  <thead>
+                    <tr>
+                      <th>Habitacion</th>
+                      <th>Empleado</th>
+                      <th>Dia</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                   <%= content_tag_for(:tr, @cleaning_rooms) do |cleaning_room| %>
+                    <td><%= cleaning_room.room_identificador %></td>
+                    <td><%= cleaning_room.employee_nombre %></td>
+                    <td><%= cleaning_room.start %></td>
+                    <td><%= link_to 'Show', cleaning_room ,class: "btn btn-primary glyphicon glyphicon-eye-open"%></td>
+                    <td><%= link_to 'Edit', edit_cleaning_room_path(cleaning_room),class: "btn btn-success glyphicon glyphicon-edit" %></td>
+                    <td><%= link_to 'Destroy', cleaning_room,class: "btn btn-danger glyphicon glyphicon-trash",method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+            <!-- /.box-footer -->
+    </div>
+    
+      <div class="box  collapsed-box">
+            <div class="box-header">
+              <h3 class="box-title">Calendario</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+       <div id='calendar'></div>
+            <!-- /.box-footer -->
+          </div>
+        </div>
+    
+    <div class="row">
+ <%= link_to new_cleaning_room_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
-    New Cleaning room
+    Nueva Limpieza
   <% end %>
-  <h1>Listing cleaning_rooms</h1>
-</div>
-<div class="row">
-<div class ="col-sm-2"></div>
-<div class="col-sm-8 table-responsive">
-<table id="example" class="display nowrap table-bordered" cellspacing="0" width="100%">
-    <thead>
-      <tr>
-            <th>Room</th>
-            <th>Employee</th>
-            <th>Day</th>
-            <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+ </div>
 
-    <tbody>
-      <%= content_tag_for(:tr, @cleaning_rooms) do |cleaning_room| %>
-            <td><%= cleaning_room.room %></td>
-            <td><%= cleaning_room.employee %></td>
-            <td><%= cleaning_room.day %></td>
-            <td><%= link_to 'Show', cleaning_room %></td>
-        <td><%= link_to 'Edit', edit_cleaning_room_path(cleaning_room) %></td>
-        <td><%= link_to 'Destroy', cleaning_room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-<div class ="col-sm-2"></div>
-</div>
-<div class="row">
-
-<div class ="row">
-  <div class ="col-sm-2"></div>
-  <div  class ="col-sm-8">
-  <div id='calendar'></div>
-</div>
-</div>
-</div>
+     </section>

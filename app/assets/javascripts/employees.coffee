@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).ready ->
   $('#example').DataTable
-    'scrollX': true
+  
     'language': 'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
   return

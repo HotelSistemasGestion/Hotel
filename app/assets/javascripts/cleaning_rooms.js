@@ -1,12 +1,12 @@
 $(document).ready(function() {
 		
 		$('#calendar').fullCalendar({
-			 height: 650,
+			 height: 500,
 			//theme: true,
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'listDay,month,agendaWeek,agendaDay,listDay,listWeek'
+				right: 'month,agendaWeek,agendaDay,listDay,listWeek'
 			},
             navLinks: true, // can click day/week names to navigate views
 			businessHours: true, // display business hours
@@ -20,27 +20,12 @@ $(document).ready(function() {
 			},
 
 			defaultView: 'month',
-			defaultDate: '2016-09-12',
+			defaultDate: '2016-10-12',
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			
-			   events: [
-        {
-          title: 'Habitacion1 Ruben Fernandez',
-          start: '2016-10-22T14:15:00.000Z',
-       
-         // end: '2016-10-22T19:19:00.000Z',
-          //borderColor: "red",
-          //backgroundColor: "red"
-          //textColor
-           allDay:"true",
-          //color: "red"
-        },
-        {
-          title: 'All Day Event',
-          start: '2016-10-19'
-        }]
+			   events: "cleaning_rooms.json"
 		
 		});
 		
