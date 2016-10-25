@@ -1,42 +1,70 @@
 
 <div class="global indent">
 
-    <div class="containerL">
-        <h1 class="titulo">Libro Mayor
-            <strong class="bloque_rayita">
-               <span class="rayita"></span>
-            </strong>
-        </h1>
-        <div class="row">
-            <div class="gall-box">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                    <div class="thumb-pad8 maxheight" style="height: 486px;"><div class="box_inner">
-                        <div class="thumbnail">
-                          
-                            <div class="caption"style="text-align: center;">
-                                <h4 >Banco</h4>
+<%cont2=0%>
+<%mostrar=[]%>
+<%ite=0%>
+<%cant_a=0%>
+<%cant_d=0%>
+<div class="containerL">
+    <h1 class="titulo">Libro Mayor
+	    <strong class="bloque_rayita">
+	        <span class="rayita"></span>
+	    </strong>
+    </h1>
+    <div class="row">
+       
+            <%while cont2<@array_filtrar.count do %>
+            <%ite=0%>
+             <div class="gall-box ">
+                <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0"style="margin: 0 auto;">
+                        <div class="thumbnail"style="text-align: center;">                        
+
+                            	<%mostrar=AccountingAccount.where("id": @array_filtrar[cont2])%>
+                            	<h4><%=mostrar[0].nombre%></h4>
+                            	  
                                 <table class="table t-bordered  table-condensed" style="width: 290px;margin: 0 auto;">
                                     <thead >
-                                      <tr>
-                                        <th>Debe</th>
-                                        <th>Haber</th>  
-                                      </tr>
+                                        <tr>
+	                                      	<th>N</th>
+	                                        <th>Debe</th>
+	                                        <th>Haber</th>  
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    	<tr>
-                                    	<td></td>
-                                    	<td></td>
-                                        </tr>
+                                    	<% while ite<@algo.count %>
+                                    	
+	                                    	<%if @array_filtrar[cont2]==@algo[ite].accounting_account_id%>
+	                                    		<%if @algo[ite].tipo=="A"||@algo[ite].tipo=="a"%>
+	                                    		<script type="text/javascript">console.log("Estoy en el if");</script>
+			                                    	<tr>
+			                                    	<td><%=AccountingEntry.find(@algo[ite].accounting_entry_id).numero%></td>
+			                                    	<td><%=AccountingEntry.find(@algo[ite].accounting_entry_id).debe%></td>
+			                                    	<td></td>
+			                                        </tr>
+			                                        <%cant_a +=AccountingEntry.find(@algo[ite].accounting_entry_id).debe%>
+			                                    <%else%>
+
+                                    	<script type="text/javascript">console.log("Estoy en el else");</script>
+			                                         <tr>
+				                                    	<td><%=AccountingEntry.find(@algo[ite].accounting_entry_id).numero%></td>
+				                                    	<td></td>
+				                                    	<td><%=AccountingEntry.find(@algo[ite].accounting_entry_id).haber%></td>
+				                                     </tr>
+				                                        <%cant_d += AccountingEntry.find(@algo[ite].accounting_entry_id).haber%>
+			                                    <%end%>			                                    
+	                                        <%end%>
+	                                        <%ite +=1%>
+                                        <%end%>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
+							</div>
+						</div>
                     </div>
+                    <%cont2 +=1%>
+                     <%end%>
                 </div>
-                </div>
-           </div>
-       </div>
-    </div>
-</div>
-
+            </div>           
+        </div>
+   
                
