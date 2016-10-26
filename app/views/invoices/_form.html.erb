@@ -37,25 +37,21 @@
             </div>
             <div class="col-sm-12">
               <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :fecha, id: 'ruc', class:"col-sm-5", placeholder: "RUC"%>                            
+              <%= f.text_field :fecha, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true%>                            
                  
 
             </div>
             <div class="col-sm-12">
-              <%= f.label 'Barrio:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, id: 'direccion', class:"col-sm-6", placeholder: "Barrio" %>
-            </div>
-             <div class="col-sm-12">
-              <%= f.label 'Ciudad:', class: "col-sm-3 control-label" %>                   
-              <%= f.text_field :fecha, id: 'ciudad', class:"col-sm-5", placeholder: "Ciudad" %>
+              <%= f.label 'Direccion:', class: "col-sm-3 control-label" %>        
+              <%= f.text_field :fecha, id: 'direccion', class:"col-sm-6", placeholder: "Barrio", readonly: true %>
             </div>
             <div class="col-sm-12">
               <%= f.label 'Celular:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, id: 'telefono', class:"col-sm-5",placeholder: "Celular" %>
+              <%= f.text_field :fecha, id: 'telefono', class:"col-sm-5",placeholder: "Celular", readonly: true %>
             </div>  
             <div class="col-sm-12">
               <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, id: 'correo', class:"col-sm-6",  placeholder: "Email" %>
+              <%= f.text_field :fecha, id: 'correo', class:"col-sm-6",  placeholder: "Email", readonly: true %>
             </div>                                            
           </div>                              
         </div>
@@ -110,11 +106,11 @@
                   <%= li.hidden_field  :service_id%></td>
                   <td><%= li.number_field  :ayudante,class: "escuchable",readonly: true%></td>
                   <td><%= li.number_field :subtotal,:class => "subtotal",readonly: true%></td>
-                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
+                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn glyphicon glyphicon-trash ", title: 'Eliminar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' %></td>
               </tr>
               <%end%>
               <tr>
-                <td><%= f.link_to_add "", :invoice_details , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
+                <td><%= f.link_to_add "", :invoice_details , :class => "btn glyphicon glyphicon-plus", title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth'%></td>
               </tr>
 
           </tbody>
