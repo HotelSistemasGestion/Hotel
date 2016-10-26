@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_id: 1
+  service_id: 1
+  cantidad: 1
+  precio: 1
+  subtotal: 1
+
+two:
+  account_id: 1
+  service_id: 1
+  cantidad: 1
+  precio: 1
+  subtotal: 1

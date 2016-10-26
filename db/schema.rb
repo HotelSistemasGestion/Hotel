@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025033438) do
+ActiveRecord::Schema.define(version: 20161026135007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_details", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "service_id"
+    t.integer  "cantidad"
+    t.integer  "precio"
+    t.integer  "subtotal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "account_plans", force: :cascade do |t|
     t.integer  "accounting_year_id"
@@ -28,6 +38,7 @@ ActiveRecord::Schema.define(version: 20161025033438) do
   add_index "account_plans", ["accounting_year_id"], name: "index_account_plans_on_accounting_year_id", using: :btree
 
   create_table "account_x_auto_entries", force: :cascade do |t|
+    t.string   "descripcion"
     t.integer  "account_x_entry_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -171,7 +182,6 @@ ActiveRecord::Schema.define(version: 20161025033438) do
   create_table "cleaning_rooms", force: :cascade do |t|
     t.integer  "room_id"
     t.integer  "employee_id"
-    t.datetime "day"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.date     "start"
@@ -261,6 +271,16 @@ ActiveRecord::Schema.define(version: 20161025033438) do
   end
 
   add_index "employees", ["types_of_employee_id"], name: "index_employees_on_types_of_employee_id", using: :btree
+
+  create_table "invoice_details", force: :cascade do |t|
+    t.integer  "invoice_id"
+    t.integer  "service_id"
+    t.integer  "cantidad"
+    t.integer  "precio"
+    t.integer  "subtotal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "invoices", force: :cascade do |t|
     t.integer  "numero"

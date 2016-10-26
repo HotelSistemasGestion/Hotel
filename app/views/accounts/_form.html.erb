@@ -1,4 +1,4 @@
-<%= form_for(@account) do |f| %>
+<%= nested_form_for(@account, html: { class: "form-horizontal", role: "form" }) do |f| %>
   <section class="account">
       <!-- title row -->
       <div class="row">
@@ -72,15 +72,34 @@
             <tr>
               <th>Cantidad</th>
               <th>Servicio</th>
-              <th>Descripcion</th>
+              <th>Precio</th>
               <th>Subtotal</th>
             </tr>
             </thead>
             <tbody>
-            
-              <!-- acá va a ir el nested_form -->
+        
+              <%= f.fields_for :account_details  ,:wrapper => false do |li| %>
+              <tr class="fields">
 
-            </tbody>
+                  <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
+                  <% ayudante = "#"+"#{li.object_name}[ayudante]".gsub(/(\])?\[/, "_").chop %>
+                  <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
+
+                  <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
+                  
+                  <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
+                  :multiple => true, :update_elements => {:id => id,:precio => ayudante },class: "ui-autocomplete-input"%>
+                  <%= li.hidden_field  :service_id%></td>
+                  <td><%= li.number_field  :ayudante,class: "escuchable",readonly: true%></td>
+                  <td><%= li.number_field :subtotal,:class => "subtotal",readonly: true%></td>
+                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
+              </tr>
+              <%end%>
+              <tr>
+                <td><%= f.link_to_add "", :account_details , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
+              </tr>
+
+          </tbody>
           </table>
         </div>
         <!-- /.col -->
