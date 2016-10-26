@@ -13,7 +13,7 @@
                           <h4 class="box-title">Informacion Personal</h4>
                             <div class="col-md-12">
                               <div class="col-md-6">
-                                <label for="exampleInputEmail1">Nombre</label>   <%= f.text_field :username, :maxlength => 35, autofocus: true, :class => 'form-control', placeholder:"Nombre" %>
+                                <label for="exampleInputEmail1">Nombre</label>   <%= f.text_field :username, :maxlength => 35, autofocus: true, :class => 'form-control', placeholder:"Nombre", data: { :validation => "required validate_max_length length50", "validation-error-msg" => "Este campo no puede quedar vacío." } %>
                               </div>
                               <div class="col-md-6">
                                 <label for="exampleInputEmail1">Apellido</label>

@@ -13,7 +13,7 @@
             <div class="row">
 
               <div class="col-md-6">                
-                  <%= f.text_field :nombre, class: "form-control input-lg", placeholder: "Nombre" %>                                     
+                  <%= f.text_field :nombre, class: "form-control input-lg", placeholder: "Nombre", data: { :validation => "required validate_max_length length50", "validation-error-msg" => "No puede dejar este campo vacío." } %>                                     
               </div>
 
               <div class="col-md-6">                

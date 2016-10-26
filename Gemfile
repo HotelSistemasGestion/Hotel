@@ -23,6 +23,8 @@ gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git 
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
 
+gem 'jquery-form-validator-rails'
+
 
 # para el data-table
 gem 'jquery-datatables-rails'

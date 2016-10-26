@@ -115,15 +115,15 @@
               <tbody>
                 <tr>
                   <th>Subtotal:</th>
-                  <td>Gs. 0</td>
+                  <td><%= f.number_field :subtotal,readonly: true, value: 0%></td>
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td>Gs. 0</td>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100,value: 0%></td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td>Gs. 0</td>
+                  <td><%= f.number_field :total,readonly: true, value: 0%></td>
                 </tr>
               </tbody>
             </table>

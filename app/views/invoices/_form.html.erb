@@ -68,10 +68,7 @@
               <%= f.text_field :fecha, class:"col-sm-6", placeholder: "Numero de Factura" %>                      
           </div>         
           <br>
-          <div class="row">
-              <%= f.label 'Descuento:', class: "col-sm-4 control-label" %>
-              <%= f.text_field :fecha, class:"col-sm-2", placeholder: "%" %>                                          
-          </div>              
+                        
         </div>
         </div>
         <!-- /.col -->
@@ -129,15 +126,15 @@
               <tbody>
                 <tr>
                   <th>Subtotal:</th>
-                  <td>Gs. 0</td>
+                  <td><%= f.number_field :subtotal,readonly: true, value: 0%></td>
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td>Gs. 0</td>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100,value: 0%></td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td>Gs. 0</td>
+                  <td><%= f.number_field :total,readonly: true, value: 0%></td>
                 </tr>
               </tbody>
             </table>

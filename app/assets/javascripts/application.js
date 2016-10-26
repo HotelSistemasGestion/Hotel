@@ -5,6 +5,7 @@
 //= require jquery-ui
 //= require jquery-ui/effect-drop
 //= require jquery_nested_form
+//= require jquery.form-validator
 //= require autocomplete-rails
 //= require magnific-popup
 //= require waypoints
@@ -25,3 +26,7 @@
 //= require rooms
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
+
+  $(document).ready(function() {
+    $.validate();
+  });
