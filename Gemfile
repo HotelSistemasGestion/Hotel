@@ -79,7 +79,7 @@ gem 'cancancan', '~> 1.10'
 
 #agregue gemas para funcionamiento de mapas
 #gem 'geocoder'
-gem 'gmaps4rails'
+#gem 'gmaps4rails'
 
 
 

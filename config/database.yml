@@ -21,7 +21,7 @@ development:
   database: sistema_hotel
   pool: 5
   username: postgres
-  password: 12345
+  password: 123456
 
 
 test:
@@ -30,7 +30,7 @@ test:
   database: sistema_hotel_test
   pool: 5
   username: postgres
-  password: 12345
+  password: 123456
 
 production:
   adapter: postgresql
@@ -38,5 +38,5 @@ production:
   database: sistema_hotel_production
   pool: 5
   username: postgres
-  password: 12345
+  password: 123456
 
