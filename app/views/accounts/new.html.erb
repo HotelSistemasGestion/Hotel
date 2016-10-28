@@ -1,11 +1,17 @@
-<div class="row">
-	<div class="col-sm-12 page-header">                    
-        <h2>
-            <i class="fa fa-list-alt"></i> Registrar Check-In            
-        </h2>                                 
-    </div>                                
+<div class="box box-primary">   
+    <div class="box-header">
+		<h1 ><span class="glyphicon glyphicon-check"></span> Registrar Check-In</h1>
+	</div>
+	<div class="box-body">
+
+		<%= render 'form' %>
+
+		<div class="row no-print">
+		    <div class="col-xs-12">
+		        <button type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-check"></i> REGISTRAR
+		        </button>
+		        <a href="<%=accounts_path%>" class="btn btn-danger" role="button">Cancelar</a>        
+		    </div>
+		</div>
+	</div>
 </div>
-
-<%= render 'form' %>
-
-<%= link_to 'Volver', accounts_path %>

@@ -75,7 +75,7 @@
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
                   <script type="text/javascript">console.log("<%=:cantidad%>")</script>
                   <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
-                  :multiple => true, :update_elements => {:id => id,:precio => ayudante }%>
+                  :multiple => true, :update_elements => {:id => id,:precio => ayudante },class: "ui-autocomplete-input"%>
                   <%= li.hidden_field  :service_id%></td>
                   <td><%= li.number_field  :ayudante,class: "escuchable",readonly: true%></td>
                   <td><%= li.number_field :subtotal,:class => "subtotal",readonly: true%></td>

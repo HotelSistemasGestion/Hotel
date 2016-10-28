@@ -1,12 +1,12 @@
 $(document).ready(function() {
 		
 		$('#calendar').fullCalendar({
-			 height: 650,
+			 height: 500,
 			//theme: true,
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'listDay,month,agendaWeek,agendaDay,listDay,listWeek'
+				right: 'month,agendaWeek,agendaDay,listDay,listWeek'
 			},
             navLinks: true, // can click day/week names to navigate views
 			businessHours: true, // display business hours
@@ -20,11 +20,12 @@ $(document).ready(function() {
 			},
 
 			defaultView: 'month',
-			defaultDate: '2016-09-12',
+			defaultDate: '2016-10-12',
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			events: '/cleaning_rooms.json'
+			
+			   events: "cleaning_rooms.json"
 		
 		});
 		

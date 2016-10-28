@@ -1,52 +1,47 @@
 <%= form_for(@account) do |f| %>
-<section class="account">
+  <section class="account">
       <!-- title row -->
       <div class="row">
       <!-- info row -->
       <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">         
-          <address>
-            <h4><strong>Hotel UNI.</strong><br><br>
-            Abog. Lorenzo Zacarias, Km 2<br>
-            Encarnacion, Paraguay<br>
-            Telefono: (071) 207-620<br>
-            Email: info@hoteluni.com
-          </address></h4>
-        </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
           <div class="row">
             <div class="col-sm-12">
+              <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
+              <%= f.autocomplete_field :client, autocomplete_client_cedula_clients_path, class:"col-sm-7", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
+
+              <%= link_to new_client_path, remote: true, class: 'col-sm-2', title: 'Registrar Nuevo Cliente', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon glyphicon-plus"></span><span class= "glyphicon glyphicon glyphicon-user"></span>
+                    <% end %> 
+
+            </div>
+            <div class="col-sm-12">
               <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :ruc, class:"col-sm-7", placeholder: "RUC" %>
+              <%= f.text_field :ruc, id: 'ruc', class:"col-sm-8", placeholder: "RUC"%>                            
+                 
+
             </div>
             <div class="col-sm-12">
-              <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :total, class:"col-sm-8", placeholder: "Nombre y Apellido" %>
-            </div>
-            <div class="col-sm-12">
-              <%= f.label 'Barrio:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :total, class:"col-sm-6", placeholder: "Barrio" %>
-            </div>
-             <div class="col-sm-12">
-              <%= f.label 'Ciudad:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :direccion, class:"col-sm-5", placeholder: "Ciudad" %>
+              <%= f.label 'Direccion:', class: "col-sm-3 control-label" %>        
+              <%= f.text_field :direccion, id: 'direccion', class:"col-sm-6", placeholder: "Barrio" %>
             </div>
             <div class="col-sm-12">
               <%= f.label 'Celular:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :direccion, class:"col-sm-5",placeholder: "Celular" %>
+              <%= f.text_field :fecha_entrada, id: 'telefono', class:"col-sm-5",placeholder: "Celular" %>
             </div>  
             <div class="col-sm-12">
               <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :direccion, class:"col-sm-8",  placeholder: "Email" %>
-            </div>                                            
+              <%= f.text_field :fecha_entrada, id: 'correo', class:"col-sm-8",  placeholder: "Email" %>
+            </div>                                             
           </div>                              
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
           <div class="row">
             <%= f.label 'Check-in:', class: "col-sm-4 control-label" %>            
-            <%= f.text_field :fecha_entrada, class: "datepicker"%>  
+            <%= f.text_field :fecha_entrada, id: "date", class: "datepicker"%>
+            <label id="bt1" class="btn btn-default" role="button" title="Hoy"><span class= "fa fa-calendar-check-o"> Hoy</span></label>  
           </div>
           <br>
           <div class="row">
@@ -75,42 +70,16 @@
           <table class="table table-striped">
             <thead>
             <tr>
-              <th>Qty</th>
-              <th>Product</th>
-              <th>Serial #</th>
+              <th>Cantidad</th>
+              <th>Servicio</th>
               <th>Descripcion</th>
               <th>Subtotal</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>1</td>
-              <td>Call of Duty</td>
-              <td>455-981-221</td>
-              <td>El snort testosterone trophy driving gloves handsome</td>
-              <td>$64.50</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Need for Speed IV</td>
-              <td>247-925-726</td>
-              <td>Wes Anderson umami biodiesel</td>
-              <td>$50.00</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Monsters DVD</td>
-              <td>735-845-642</td>
-              <td>Terry Richardson helvetica tousled street art master</td>
-              <td>$10.70</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Grown Ups Blue Ray</td>
-              <td>422-568-642</td>
-              <td>Tousled lomo letterpress</td>
-              <td>$25.99</td>
-            </tr>
+            
+              <!-- acá va a ir el nested_form -->
+
             </tbody>
           </table>
         </div>
@@ -119,46 +88,36 @@
       <!-- /.row -->
 
       <div class="row">
-        <!-- accepted payments column -->
-        <div class="col-xs-6">
-          
-        </div>
         <!-- /.col -->
-        <div class="col-xs-6">
+        <div class="col-md-6 col-md-offset-6">
 
           <div class="table-responsive">
             <table class="table">
               <tbody>
                 <tr>
-                  <th style="width:50%">Subtotal:</th>
-                  <td>$250.30</td>
+                  <th>Subtotal:</th>
+                  <td>Gs. 0</td>
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td>$10.34</td>
+                  <td>Gs. 0</td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td>$265.24</td>
+                  <td>Gs. 0</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
-
-      <!-- this row will not appear when printing -->
-      <div class="row no-print">
-        <div class="col-xs-12">
-          <a href="" target="_blank" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
-          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Facturar
-          </button>
-          <a href="<%=invoices_path%>" class="btn btn-danger" role="button">Cancelar</a>        
-        </div>
-      </div>   
-      </div>     
-    </section>
+        <!-- /.col -->
+  </section>
 <% end %>    
+
+<script type="text/javascript">
+  $('#bt1').click(function() {
+    $('#date').val('<%= Time.now.strftime("%d-%m-%Y") %>');      
+  }); 
+</script>

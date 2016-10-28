@@ -1,5 +1,7 @@
 <%= form_for(@invoice) do |f| %>
 <section class="invoice">
+  <div class="box box-primary">   
+    <div class="box-header">
       <!-- title row -->
       <div class="row">
         <div class="col-sm-12 page-header">                    
@@ -8,9 +10,12 @@
             </h2>                                 
         <!-- /.col -->
         </div>
+      </div>
+    </div>
+    <div class="box-body">
       <!-- info row -->
       <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">         
+        <div class="col-sm-3 invoice-col">         
           <address>
             <h4><strong>Hotel UNI.</strong><br><br>
             Abog. Lorenzo Zacarias, Km 2<br>
@@ -20,20 +25,20 @@
           </address></h4>
         </div>
         <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
+        <div class="col-sm-5 invoice-col">
           <div class="row">
             <div class="col-sm-12">
               <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
-              <%= f.autocomplete_field :client, autocomplete_client_cedula_clients_path, class:"col-sm-7", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
+              <%= f.autocomplete_field :client, autocomplete_client_cedula_clients_path, class:"col-sm-6", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
 
-              <%= link_to new_client_path, remote: true, class: 'col-sm-2', title: 'Registrar Cliente', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon glyphicon-plus"></span>
+              <%= link_to new_client_path, remote: true, class: 'col-sm-2', title: 'Registrar Nuevo Cliente', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon glyphicon-plus"></span><span class= "glyphicon glyphicon glyphicon-user"></span>
                     <% end %> 
 
             </div>
             <div class="col-sm-12">
               <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :fecha, id: 'ruc', class:"col-sm-8", placeholder: "RUC"%>                            
+              <%= f.text_field :fecha, id: 'ruc', class:"col-sm-5", placeholder: "RUC"%>                            
                  
 
             </div>
@@ -51,7 +56,7 @@
             </div>  
             <div class="col-sm-12">
               <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, id: 'correo', class:"col-sm-8",  placeholder: "Email" %>
+              <%= f.text_field :fecha, id: 'correo', class:"col-sm-6",  placeholder: "Email" %>
             </div>                                            
           </div>                              
         </div>
@@ -60,12 +65,12 @@
           <div class="row">
             <%= f.label 'Fecha:', class: "col-sm-4 control-label" %>            
             <%= f.text_field :fecha, id: 'date',  class: "datepicker"%>                         
-            <label id="bt1" class="btn btn-default" role="button" title="Hoy"><span class= "fa fa-calendar-check-o"></span></label>
+            <label id="bt1" class="btn btn-default" role="button" title="Hoy"><span class= "fa fa-calendar-check-o"> Hoy</span></label>
           </div>
           <br> 
           <div class="row">
               <%= f.label 'Factura #:', class: "col-sm-4 control-label" %>
-              <%= f.text_field :fecha, class:"col-sm-7", placeholder: "Numero de Factura" %>                      
+              <%= f.text_field :fecha, class:"col-sm-6", placeholder: "Numero de Factura" %>                      
           </div>         
           <br>
           <div class="row">
@@ -84,42 +89,16 @@
           <table class="table table-striped">
             <thead>
             <tr>
-              <th>Qty</th>
-              <th>Product</th>
-              <th>Serial #</th>
+              <th>Cantidad</th>
+              <th>Servicio</th>
               <th>Descripcion</th>
               <th>Subtotal</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>1</td>
-              <td>Call of Duty</td>
-              <td>455-981-221</td>
-              <td>El snort testosterone trophy driving gloves handsome</td>
-              <td>$64.50</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Need for Speed IV</td>
-              <td>247-925-726</td>
-              <td>Wes Anderson umami biodiesel</td>
-              <td>$50.00</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Monsters DVD</td>
-              <td>735-845-642</td>
-              <td>Terry Richardson helvetica tousled street art master</td>
-              <td>$10.70</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Grown Ups Blue Ray</td>
-              <td>422-568-642</td>
-              <td>Tousled lomo letterpress</td>
-              <td>$25.99</td>
-            </tr>
+            
+              <!-- acá va a ir el nested_form -->
+
             </tbody>
           </table>
         </div>
@@ -127,35 +106,30 @@
       </div>
       <!-- /.row -->
 
-      <div class="row">
-        <!-- accepted payments column -->
-        <div class="col-xs-6">
-          
-        </div>
+      <div class="row" align="right">
         <!-- /.col -->
-        <div class="col-xs-6">
+        <div class="col-md-6 col-md-offset-6">
 
           <div class="table-responsive">
             <table class="table">
               <tbody>
                 <tr>
-                  <th style="width:50%">Subtotal:</th>
-                  <td>$250.30</td>
+                  <th>Subtotal:</th>
+                  <td>Gs. 0</td>
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td>$10.34</td>
+                  <td>Gs. 0</td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td>$265.24</td>
+                  <td>Gs. 0</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
         </div>
-        <!-- /.col -->
       </div>
       <!-- /.row -->
 
@@ -167,7 +141,9 @@
           </button>
           <a href="<%=invoices_path%>" class="btn btn-danger" role="button">Cancelar</a>        
         </div>
-      </div>      
+      </div>
+    </div>
+  </div>      
     </section>
 <% end %>    
 
