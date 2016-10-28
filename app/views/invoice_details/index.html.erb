@@ -1,0 +1,37 @@
+<div class="page-header">
+  <%= link_to new_invoice_detail_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Invoice detail
+  <% end %>
+  <h1>Listing invoice_details</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Invoice</th>
+            <th>Service</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @invoice_details) do |invoice_detail| %>
+            <td><%= invoice_detail.invoice_id %></td>
+            <td><%= invoice_detail.service_id %></td>
+            <td><%= invoice_detail.cantidad %></td>
+            <td><%= invoice_detail.precio %></td>
+            <td><%= invoice_detail.subtotal %></td>
+            <td><%= link_to 'Show', invoice_detail %></td>
+        <td><%= link_to 'Edit', edit_invoice_detail_path(invoice_detail) %></td>
+        <td><%= link_to 'Destroy', invoice_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

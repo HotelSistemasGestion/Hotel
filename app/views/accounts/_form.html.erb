@@ -1,11 +1,11 @@
-<%= form_for(@account) do |f| %>
+<%= nested_form_for(@account, html: { class: "form-horizontal", role: "form" }) do |f| %>
   <section class="account">
       <!-- title row -->
       <div class="row">
       <!-- info row -->
       <div class="row invoice-info">
         <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
+        <div class="col-sm-6 invoice-col">
           <div class="row">
             <div class="col-sm-12">
               <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
@@ -18,21 +18,21 @@
             </div>
             <div class="col-sm-12">
               <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :ruc, id: 'ruc', class:"col-sm-8", placeholder: "RUC"%>                            
+              <%= f.text_field :ruc, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true %>                            
                  
 
             </div>
             <div class="col-sm-12">
               <%= f.label 'Direccion:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :direccion, id: 'direccion', class:"col-sm-6", placeholder: "Barrio" %>
+              <%= f.text_field :direccion, id: 'direccion', class:"col-sm-5", placeholder: "Barrio", readonly: true %>
             </div>
             <div class="col-sm-12">
               <%= f.label 'Celular:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha_entrada, id: 'telefono', class:"col-sm-5",placeholder: "Celular" %>
+              <%= f.text_field :fecha_entrada, id: 'telefono', class:"col-sm-5",placeholder: "Celular", readonly: true %>
             </div>  
             <div class="col-sm-12">
               <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha_entrada, id: 'correo', class:"col-sm-8",  placeholder: "Email" %>
+              <%= f.text_field :fecha_entrada, id: 'correo', class:"col-sm-8",  placeholder: "Email", readonly: true %>
             </div>                                             
           </div>                              
         </div>
@@ -56,7 +56,7 @@
           <br>
           <div class="row">
               <%= f.label 'Descripcion:', class: "col-sm-4 control-label" %>
-              <%= f.text_field :room_id, class:"col-sm-2", placeholder: "%" %>                                          
+              <%= f.text_field :room_id, class:"col-sm-8", placeholder: "Descripcion de la Habitacion" %>                                          
           </div>              
         </div>
         </div>
@@ -72,15 +72,34 @@
             <tr>
               <th>Cantidad</th>
               <th>Servicio</th>
-              <th>Descripcion</th>
+              <th>Precio</th>
               <th>Subtotal</th>
             </tr>
             </thead>
             <tbody>
-            
-              <!-- acá va a ir el nested_form -->
+        
+              <%= f.fields_for :account_details  ,:wrapper => false do |li| %>
+              <tr class="fields">
 
-            </tbody>
+                  <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
+                  <% ayudante = "#"+"#{li.object_name}[ayudante]".gsub(/(\])?\[/, "_").chop %>
+                  <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
+
+                  <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
+                  
+                  <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
+                  :multiple => true, :update_elements => {:id => id,:precio => ayudante },class: "ui-autocomplete-input"%>
+                  <%= li.hidden_field  :service_id%></td>
+                  <td><%= li.number_field  :ayudante,class: "escuchable",readonly: true%></td>
+                  <td><%= li.number_field :subtotal,:class => "subtotal",readonly: true%></td>
+                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn glyphicon glyphicon-trash", title: 'Eliminar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' %></td>
+              </tr>
+              <%end%>
+              <tr>
+                <td><%= f.link_to_add "", :account_details , :class => "btn glyphicon glyphicon-plus", title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth'%></td>
+              </tr>
+
+          </tbody>
           </table>
         </div>
         <!-- /.col -->
@@ -96,20 +115,27 @@
               <tbody>
                 <tr>
                   <th>Subtotal:</th>
-                  <td>Gs. 0</td>
+                  <td><%= f.number_field :subtotal,readonly: true, value: 0%></td>
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td>Gs. 0</td>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100,value: 0%></td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td>Gs. 0</td>
+                  <td><%= f.number_field :total,readonly: true, value: 0%></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
+        </div>
+      </div>
+      <div class="row no-print">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-check"></i> REGISTRAR
+            </button>
+            <a href="<%=accounts_path%>" class="btn btn-danger" role="button">Cancelar</a>        
         </div>
       </div>
         <!-- /.col -->

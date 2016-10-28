@@ -6,11 +6,11 @@ class Ability
    user ||= User.new
    if user.has_role? :admin
      can :manage, :all
-   else user.has_role? :author
+   else user.has_role? :recepcionista
      can :create, Client # author can create status
      can :update, Client # author can update status
      # can :destroy, Status # #uncomment this line, author can destroy status 
-     can :read, :all
+     can :read, :all   
    end
     # Define abilities for the passed in user here. For example:
     #

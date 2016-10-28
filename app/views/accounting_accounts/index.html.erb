@@ -1,10 +1,16 @@
 <div class="page-header">
-  <%= link_to new_accounting_account_path, class: 'btn btn-primary' do %>
+  <%= link_to new_accounting_account_path, remote: true, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
-    New Accounting account
-  <% end %>
-  <h1>Listing accounting_accounts</h1>
+  Nueva cuenta 
+  <% end %><h4>  </h4> <h4>Ejercicios <SELECT NAME="selCombo" SIZE=0 onChange="javascript:alert('prueba');"> 
+  </SELECT></h4> 
+  <h1 class="titulo">      CUENTAS
+        <strong class="bloque_rayita">
+        <span class="rayita"></span>
+     </strong>
+   </h1>
 </div>
+<<<<<<< HEAD
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
@@ -38,5 +44,35 @@
         <td><%= link_to 'Destroy', accounting_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tbody>
+=======
+        <div class="box-body">
+          <div class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+              <div class="col-sm-6"></div>
+              <div class="col-sm-6"></div>
+            </div>
+            
+            <div class="row">
+              <div class="col-sm-offset-1 col-sm-9">
+                <table class="table t-bordered table-color table-condensed  table-responsive table-sombra">
+                  <thead>
+                    <tr role="row">
+                      <th class="col-sm-2">Grupo</th>
+                      <th class="col-sm-3">Nombre</th>
+                      <th class="col-sm-3">Imputable</th>  
+                      <th class="col-sm-3">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @accounting_accounts.each do |accounting_account| %>
+                    <%= render "row", accounting_account: accounting_account %>
+                    <% end %>
+                  </tbody>  
+                </table>
+              </div>  
+            </div>
+          </div>
+        </div>
+>>>>>>> 8caa060da00680d815ba13d6dcfab8a20684d9e1
   </table>
 </div>
