@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20161024215944) do
     t.integer  "grupo"
     t.string   "nombre"
     t.boolean  "imputable"
+    t.integer  "cuenta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
