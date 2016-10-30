@@ -36,6 +36,8 @@ $(document).on('nested:fieldAdded', function(event) {
   field = event.field;
   dateField = field.find('.datepicker');
   dateField.datepicker();
-  $('#mytabla').validator()
+  field.validator();
+  //$('.datepi').validator();
+
 });
 
