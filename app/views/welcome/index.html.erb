@@ -296,12 +296,12 @@
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
-                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <i class="icon to-animate-2 glyphicon glyphicon-cutlery"></i>
                     <h3>Restaurante &amp; Bar</h3>
                     <p>Podra encontrar toda clase de bebidas y comidas, tenemos tenedor libre y a la carta</p>
                 </div>
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
-                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <i class="icon to-animate-2 glyphicon glyphicon-phone-alt"></i>
                     <h3>Servicio a la Habitacion</h3>
                     <p>Con tan solo marcar el # en el telefono de su habitacion podra llamar directamente a nuestro comedor
                     y ordenar algo para que se lo lleven a la habitacion el servicio esta disponible 24hs</p>
@@ -310,12 +310,12 @@
                 <div class="clearfix visible-sm-block"></div>
 
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
-                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <i class="icon to-animate-2 glyphicon glyphicon-ice-lolly-tasted"></i>
                     <h3>Frigobar</h3>
                     <p>Si lo desea con su reservacion podra pedir que su habitacion tenga un frigobar con bebidas de su agrado</p>
                 </div>
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
-                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <i class="icon to-animate-2 glyphicon glyphicon-bed"></i>
                     <h3>Limpieza &amp; mantenimiento</h3>
                     <p>Cuando este en la habitacion si le incomoda algo o siente que esta sucio, podra llamar las 24hs a nuestro
                     servicio de limpieza para que se encarge de sus inconvenientes</p>
@@ -504,11 +504,7 @@
         <%end%>
         <div id="map" class="to-animate"></div> <!-- aqui va el mapa-->
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgKxTWFKOAtZruNP6J50YvrOZCWYJNRrM">
-            handler = Gmaps.build('Google');
-            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-            markers = handler.addMarkers(<%=raw @hash.to_json %>);
-        </script>
+        
 
 
         <p><center>Aqui va un mapa de localizacion si quieren.</center></p>
