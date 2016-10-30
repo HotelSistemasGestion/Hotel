@@ -11,7 +11,8 @@ class ReservationRequest < ActiveRecord::Base
 	validates :check_out, :presence => {:message => "en blanco"}
 	###
 	validate  :validacion_fecha  #
-
+	
+	paginates_per 6 #solo puse 3 para probar
 
     def validacion_fecha
       if !check_in.blank? && check_in < Date.today
@@ -22,5 +23,6 @@ class ReservationRequest < ActiveRecord::Base
   	    errors.add(:check_out, "no puede ser menor al check_in")	
       end
     end
-	paginates_per 2 #solo puse 3 para probar
+	
+
 end
