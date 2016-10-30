@@ -1,41 +1,41 @@
 <div class="page-header">
-  <%= link_to new_account_plan_path, class: 'btn btn-primary' do %>
+  <%= link_to new_account_plan_path, remote: true, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
-    New Account plan
+    Nuevo plan
   <% end %>
-  <h1>Listing account_plans</h1>
+  <h1 class="titulo">      PLANES DE CUENTAS
+        <strong class="bloque_rayita">
+        <span class="rayita"></span>
+     </strong>
+   </h1>
 </div>
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-    
-        <th>Descripcion</th>
-    
-        <th>Estado</th>
-    
-        <th>Version</th>
-    
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <%= content_tag_for(:tr, @account_plans) do |account_plan| %>
-    
-        <td><%= account_plan.descripcion %></td>
-    
-        <td><%= account_plan.estado %></td>
-    
-        <td><%= account_plan.version %></td>
-    
-        <td><%= link_to 'Show', account_plan %></td>
-        <td><%= link_to 'Edit', edit_account_plan_path(account_plan) %></td>
-        <td><%= link_to 'Destroy', account_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tbody>
+        <div class="box-body">
+          <div class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+              <div class="col-sm-6"></div>
+              <div class="col-sm-6"></div>
+            </div>
+            
+            <div class="row">
+              <div class="col-sm-offset-1 col-sm-9">
+                <table class="table t-bordered table-color table-condensed  table-responsive table-sombra">
+                  <thead>
+                    <tr role="row">
+                      <th class="col-sm-2">Descripcion</th>
+                      <th class="col-sm-3">Estado</th>
+                      <th class="col-sm-3">Version</th>  
+                      <th class="col-sm-3">Opciones</th> 
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @account_plans.each do |account_plan| %>
+                    <%= render "row", account_plan: account_plan %>
+                    <% end %>
+                  </tbody>  
+                </table>
+              </div>  
+            </div>
+          </div>
+        </div>
   </table>
 </div>

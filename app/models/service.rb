@@ -1,4 +1,8 @@
 class Service < ActiveRecord::Base
+
+	has_many :account_details
+	has_many :invoice_details
+
 	validates :nombre, presence: true, length: {minimum: 4, :message => "4 caracteres mínimo."}
 
 	validates :descripcion, presence: true, length: {minimum: 6, :message => "6 caracteres mínimo."}

@@ -5080,3 +5080,7 @@ font-style: italic;
     white-space: normal !important;
   }
 }
+
+#user {
+  color: black;
+}

@@ -5,6 +5,7 @@
 //= require jquery-ui
 //= require jquery-ui/effect-drop
 //= require jquery_nested_form
+//= require jquery.form-validator
 //= require autocomplete-rails
 //= require magnific-popup
 //= require waypoints
@@ -18,10 +19,12 @@
 //= require np
 //= require app
 //= require custom
-//= require underscore
-//= require gmaps/google
 //= require main
 //= require validator.js
 //= require rooms
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
+
+  $(document).ready(function() {
+    $.validate();
+  });
