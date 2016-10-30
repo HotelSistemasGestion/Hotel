@@ -1,7 +1,7 @@
 $(document).ready(function() {
 		
 		$('#calendar').fullCalendar({
-			 height: 500,
+			 height: 450,
 			//theme: true,
 			header: {
 				left: 'prev,next today',
@@ -30,4 +30,12 @@ $(document).ready(function() {
 		});
 		
 	});
+
+$(document).on('nested:fieldAdded', function(event) {
+  var dateField, field;
+  field = event.field;
+  dateField = field.find('.datepicker');
+  dateField.datepicker();
+  $('#mytabla').validator()
+});
 
