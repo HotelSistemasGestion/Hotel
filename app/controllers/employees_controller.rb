@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
-
+  autocomplete :employee, :cedula, :display_value => :full_name, :extra_data => [:nombre, :apellido, :direccion, :telefono]
   # GET /employees
   # GET /employees.json
   def index
