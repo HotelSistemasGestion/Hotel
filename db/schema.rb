@@ -256,9 +256,12 @@ ActiveRecord::Schema.define(version: 20161030025044) do
 
   create_table "detail_of_cash_movements", force: :cascade do |t|
     t.integer  "sub_monto"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "payment_type_id"
   end
+
+  add_index "detail_of_cash_movements", ["payment_type_id"], name: "index_detail_of_cash_movements_on_payment_type_id", using: :btree
 
   create_table "detail_of_payment_types", force: :cascade do |t|
     t.string   "titular"
@@ -407,12 +410,9 @@ ActiveRecord::Schema.define(version: 20161030025044) do
 
   create_table "type_of_cash_movements", force: :cascade do |t|
     t.string   "descripcion"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "cash_movement_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "type_of_cash_movements", ["cash_movement_id"], name: "index_type_of_cash_movements_on_cash_movement_id", using: :btree
 
   create_table "type_of_rooms", force: :cascade do |t|
     t.string   "tipo"
@@ -477,6 +477,7 @@ ActiveRecord::Schema.define(version: 20161030025044) do
   add_foreign_key "cleanings", "rooms"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "complaints", "services"
+  add_foreign_key "detail_of_cash_movements", "payment_types"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
   add_foreign_key "opening_cashes", "cashes"
@@ -487,5 +488,4 @@ ActiveRecord::Schema.define(version: 20161030025044) do
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "states"
   add_foreign_key "rooms", "type_of_rooms"
-  add_foreign_key "type_of_cash_movements", "cash_movements"
 end
