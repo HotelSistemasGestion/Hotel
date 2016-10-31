@@ -24,6 +24,7 @@
 //= require rooms
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
+//= require es.js
 
   $(document).ready(function() {
     $.validate();
