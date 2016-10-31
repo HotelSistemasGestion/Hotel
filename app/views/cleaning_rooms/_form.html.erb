@@ -16,11 +16,14 @@
     <%= f.label "Encargado", class: "control-label" %>
    
       <%= f.select :employee_id ,Employee.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control",:required=>true %>
+   
+  
       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
       <div class="help-block with-errors">*requerido</div>
     
   </div>
 
+  
   <div>
         <table id="mytabla" class="table">
           <thead class="thead-inverse">

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cleanings
   resources :invoice_details
   resources :account_details
   resources :reservations

@@ -24,8 +24,7 @@ $(document).ready(function() {
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			
-			   events: "cleaning_rooms.json"
+			events: "/cleanings.json"
 		
 		});
 		
@@ -35,9 +34,9 @@ $(document).on('nested:fieldAdded', function(event) {
   var dateField, field;
   field = event.field;
   dateField = field.find('.datepicker');
-  dateField.datepicker();
+  dateField.datepicker({format: 'yyyy-mm-dd'});
   field.validator();
-  //$('.datepi').validator();
+  //$('.datepi').validator();'option', {dateFormat: 'dd/mm/yy'}
 
 });
 
