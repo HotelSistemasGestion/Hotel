@@ -1,5 +1,5 @@
-<div class="page-header">
-  <%= link_to cleanings_path, class: 'btn btn-default' do %>
+<div class="box-body">
+  <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
@@ -7,23 +7,23 @@
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
-  <h1>Show cleaning</h1>
-</div>
+  <h1>Limpieza de Habitacion</h1>
+
 
 <dl class="dl-horizontal">
-  <dt>Cleaning room:</dt>
-  <dd><%= @cleaning.cleaning_room %></dd>
 
-  <dt>Room:</dt>
-  <dd><%= @cleaning.room %></dd>
 
-  <dt>Start:</dt>
+  <dt>Habitacion:</dt>
+  <dd><%= @cleaning.room_identificador %></dd>
+
+  <dt>Desde:</dt>
   <dd><%= @cleaning.start %></dd>
 
-  <dt>End:</dt>
+  <dt>Hasta:</dt>
   <dd><%= @cleaning.end %></dd>
 
-  <dt>Title:</dt>
+  <dt>Titulo:</dt>
   <dd><%= @cleaning.title %></dd>
 
 </dl>
+</div>
