@@ -25,7 +25,7 @@ gem 'jquery-ui-rails'
 
 gem 'jquery-form-validator-rails'
 
-
+gem 'bootstrap_form'
 # para el data-table
 gem 'jquery-datatables-rails'
 gem 'kaminari'

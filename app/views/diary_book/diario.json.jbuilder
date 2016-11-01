@@ -1,1 +1,0 @@
-json.array! @diary_books, partial: 'diary_books/diary_book', as: :diary_book
