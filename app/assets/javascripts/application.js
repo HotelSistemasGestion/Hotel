@@ -25,7 +25,11 @@
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
 //= require es.js
+//= require underscore
+//= requrie gmaps/google
 
   $(document).ready(function() {
     $.validate();
   });
+
+

@@ -25,7 +25,7 @@ gem 'jquery-ui-rails'
 
 gem 'jquery-form-validator-rails'
 
-
+gem 'bootstrap_form'
 # para el data-table
 gem 'jquery-datatables-rails'
 gem 'kaminari'
@@ -79,7 +79,7 @@ gem 'cancancan', '~> 1.10'
 
 #agregue gemas para funcionamiento de mapas
 #gem 'geocoder'
-#gem 'gmaps4rails'
+gem 'gmaps4rails'
 
 
 

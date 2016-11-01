@@ -2694,7 +2694,7 @@ a:focus {
 }
 .table-color>thead > tr > th{
   text-align: center;
-    background-color: gray ;
+    background: #E9EAEA ;
 
 }
 .table-sombra{
@@ -2753,7 +2753,7 @@ a:focus {
     left: 0;
     width: 69px;
     height: 100%;
-    background: #fdb902;
+    background: #286090;
     background-image: initial;
     background-position-x: initial;
     background-position-y: initial;
@@ -2763,14 +2763,14 @@ a:focus {
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
-    background-color: rgb(253, 185, 2);
+    background-color: rgb(40, 96, 144);
     display: inline-block;
 }
 .bloque_rayita{
     
     height: 6px;
     width: 85%;
-    background: #fedc80;
+    background: #ABCBE8;
     background-image: initial;
     background-position-x: initial;
     background-position-y: initial;
@@ -2780,10 +2780,14 @@ a:focus {
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
-    background-color: rgb(254, 220, 128);
+    background-color: rgb(171, 203, 232);
     position: relative;
     display: block;
     margin-top: 18px;
+}
+#search{
+  width: 45%;
+
 }
 /* .text-center in tables ------------------------------------------------------------------------*/
 table.text-center,

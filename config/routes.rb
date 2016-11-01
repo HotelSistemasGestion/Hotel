@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   get 'ledger/mayor'
   get 'diary_book/diario'
   post 'diary_book/diario'
+
   resources :reservation_requests
   resources :services do
     get :autocomplete_service_nombre, :on => :collection

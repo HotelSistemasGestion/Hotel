@@ -25,7 +25,6 @@ class BudgetDetailsController < ApplicationController
   # POST /budget_details.json
   def create
     @budget_detail = BudgetDetail.new(budget_detail_params)
-
     respond_to do |format|
       if @budget_detail.save
         format.html { redirect_to @budget_detail, notice: 'Budget detail was successfully created.' }
