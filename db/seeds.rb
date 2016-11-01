@@ -105,4 +105,14 @@ TypesOfEmployee.create(tipo: "botones", descripcion: "");
 
 Employee.create(nombre: "Pedro", types_of_employee_id: 2,);
 
+ComplaintService.create(description: "Limpieza");
+ComplaintService.create(description: "Servicio a Cuarto");
+ComplaintService.create(description: "Atencion al publico");
+ComplaintService.create(description: "Buffet");
+ComplaintService.create(description: "Otros");
 
+Complaint.create(description: "Mal servicio de limpieza a cuarto",complaint_service_id: 1,service_description: "",state: false,room_id: 1);
+Complaint.create(description: "Tuve que esperar 25 minutos para ser atendido en la mesa de consultas",complaint_service_id: 3,service_description: "",state: false,room_id: 1);
+Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complaint_service_id: 2,service_description: "",state: false,room_id: 1);
+Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: false,room_id: 1);
+Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: false,room_id: 1);

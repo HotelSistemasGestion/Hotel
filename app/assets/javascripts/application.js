@@ -19,6 +19,9 @@
 //= require np
 //= require app
 //= require custom
+
+//= require underscore
+//= require gmaps/google
 //= require main
 //= require validator.js
 //= require rooms
