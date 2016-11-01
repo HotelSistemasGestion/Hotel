@@ -1,87 +1,32 @@
-<div class="global indent">
-<div class= "containerL" >
-  <% anterior=AccountingEntry.new %>
+<div class="box">
+ 
   <div class="row">
        <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="thumb-pad6">
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <div class="extra-wrap">
-                                     <h1 class="titulo">Libro Diario
-                                      <strong class="bloque_rayita">
-                                        <span class="rayita"></span>
-                                        </strong>
-                                    </h1>
-
-                                    <h4>Periodo: <input class="input-mini"id="fecha"name="datefilter" type="text"style="width: 17%" >
-                                    <%=link_to "filtrar",diary_book_diario_path, remote: true, class: "btn btn-primary", :id=>"b1" %>
-                                    </h4>
-                                    <h4>Denominacion o razon social: Hotel Uni</h4>
-                                     <div id="respuesta"></div>
-                                      <table class="table t-bordered table-color table-condensed  table-responsive table-sombra">
-                                      <thead >
-                                      <tr>
-                                        <th>N</th>
-                                        <th>Fecha</th>
-                                        <th>Codigo</th>
-                                        <th>Descripcion</th>
-                                        <th>Debe</th>
-                                        <th>Haber</th>
-                                      </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                      <%= content_tag_for(:tr, @diary_books) do |a_x_e| %>
-                                      
-                                        <%if anterior.numero == AccountingEntry.find(a_x_e.accounting_entry_id).numero %>
-                                          <%if a_x_e.tipo=="D"||a_x_e.tipo=="d"%>
-                                            <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td><%=AccountXPlan.find(AccountingAccount.find(a_x_e.accounting_account_id)).cuenta_superior%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
-                                            <td class="haber-ctrol">a <%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
-                                            <td></td>
-                                            <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).haber%></td>
-                                            </tr>
-                                            <tr>
-                                              <td colspan="6" scope="row">Segun factura nº=</td>
-                                            </tr>
-                                          <%end%>
-                                          
-
-                                        <%else %>
-                                          <tr>
-                                          <%anterior=AccountingEntry.find(a_x_e.accounting_entry_id)%>
-                                          <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).numero%></td>
-                                          <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).fecha%></td>
-                                          <td></td>
-                                          <td><%=a_x_e.observacion%></td>
-                                          <td ></td>
-                                          <td ></td>
-                                          </tr>
-
-                                          <%if a_x_e.tipo=="A"||a_x_e.tipo=="a"%>
-                                            <tr>
-                                              <td></td>
-                                              <td></td>
-                                              <td><%=AccountXPlan.find(AccountingAccount.find(a_x_e.accounting_account_id)).cuenta_superior%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
-                                              <td><%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
-                                              <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).debe%></td>
-                                              <td></td>
-                                            </tr>
-
+                    <div class="box-header with-border">
+                                   <h3 class="box-title titulo">Libro Diario</h3>
+                      </div>
+                                
+                                  
+                          <div class="box-body">
+                                <form class="form-inline">
+   
+                                <div class="col-xs-6 col-md-6 col-sm-6"id="stock">
+                                  <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "_search" do %>
+                                     <%=label_tag "Periodo: "%>
+                                     <%= text_field_tag :search, params[:search],class: "form-control"%>
+                                     <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                                              <i class="glyphicon glyphicon-search"></i>
                                           <% end %>
-                                        <% end %>
-                                        <% end %>
-                                  </tbody>
-                                </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                      <%end%>
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-6">
+                                      <h4 style="text-align: center">Denominacion o razon social: Hotel Uni</h4>
+                                    </div>
+                                </form>
+                                    <%= render :partial=>'venta' %>
+
                 </div>
           </div>
-    </div >
+       </div>
 </div>
         

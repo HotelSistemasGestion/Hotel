@@ -1,0 +1,13 @@
+<div class="page-header">
+  <%= link_to cleanings_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to @cleaning, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Show
+  <% end %>
+  <h1>Editing cleaning</h1>
+</div>
+
+<%= render 'form' %>

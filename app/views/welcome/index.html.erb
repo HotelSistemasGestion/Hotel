@@ -505,11 +505,37 @@
             </div>
         </div>
         <%end%>
-        <div id="map" class="to-animate"></div> <!-- aqui va el mapa-->
+        <!--Aca esta el mapa  -->
+        <p><center> <div style='width: 800px;'>
+            <div id="map" style='width: 800px; height: 400px;'></div>
+        </div> </center></p>
+        <script>
 
+            var map;
+            function initMap() {
+                  //lat y lng de paraguay  
+                  var paraguay = {lat: -27.2522918, lng: -55.913586699999996};
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    scaleControl: true,
+                    center: paraguay,
+                    zoom: 10
+                  });
+                  //
+                  var infowindow = new google.maps.InfoWindow;
+                  infowindow.setContent('<b>Hotel-Uni el mejor lugar para estar</b>');
+
+                  var marker = new google.maps.Marker({map: map, position: paraguay});
+                  marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                  });
+                
+            }
+
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLAeVyovPzs8mwvG9wcoZO_jWGswe0quM&callback=initMap"
+        async defer></script>
+        <!--Aca esta el mapa  -->
         
-
-
         <p><center>Aqui va un mapa de localizacion si quieren.</center></p>
     </section>
     
