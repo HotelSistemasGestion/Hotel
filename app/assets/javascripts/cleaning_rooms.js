@@ -34,7 +34,8 @@ $(document).on('nested:fieldAdded', function(event) {
   var dateField, field;
   field = event.field;
   dateField = field.find('.datepicker');
-  dateField.datepicker({format: 'dd-mm-yyyy'});
+  dateField.datepicker({
+  	format: 'dd-mm-yyyy'});
   field.validator();
   //$('.datepi').validator();'option', {dateFormat: 'dd/mm/yy'}
 

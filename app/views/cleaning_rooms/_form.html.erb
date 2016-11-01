@@ -11,8 +11,8 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="form-group has-feedback">
+  <div class="box-body">
+  <div class="form-group has-feedback col-sm-4">
     <%= f.label "Encargado", class: "control-label" %>
    
       <%= f.select :employee_id ,Employee.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control",:required=>true %>
@@ -43,8 +43,10 @@
                       <%= li.text_field :start, class: "datepicker form-control",:required=>true%>
                      <div class="help-block with-errors">*requerido</div>
                     </td>                
+                    <script type="text/javascript">console.log()</script>
                     <td class="form-group has-feedback">
-                      <%= li.text_field :end, class: "datepicker form-control", placeholder:"Fin",:required=>true%>
+                      <%= li.text_field :end,class: "datepicker form-control",
+placeholder:"Fin"%>
                      <div class="help-block with-errors">*requerido</div>
                     </td>
                       <td class="form-group has-feedback">
@@ -63,12 +65,13 @@
           </tbody>
         </table>
     </div>  
-
-
+   </div>
+  <div class="box-body">
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-10">
      
     </div>
   </div>
+</div>
 <% end %>
 

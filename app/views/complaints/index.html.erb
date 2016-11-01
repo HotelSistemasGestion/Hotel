@@ -40,7 +40,9 @@
       <div class="col-lg-4" >
       <div class="input-group">
        <%= form_tag complaints_path, :method => 'get' do %>
+
       <%= text_field_tag :complaint_tag, params[:search], data: { autocomplete:autocomplete_complaint_service_description_complaints_path},type: "text",placeholder: "Buscar por Servicio",class:"form-control"%>
+
       <span class="input-group-btn">
       <%= submit_tag "Go",type:"button",class:"btn btn-default"%>
       </span>

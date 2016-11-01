@@ -8,7 +8,7 @@
           <h4 class="modal-title">Pedido de Reserva</h4>
       </div>
       
-      <div class="modal-body">   
+      <div style="word-wrap: break-word;" class="modal-body">   
         <p id="notice"><%= notice %></p>
 
         <p>
@@ -63,10 +63,10 @@
 
         <p>
           <strong>Comentarios:</strong>
-          <%= @reservation_request.comentarios %>
+          <div class="well "><%= @reservation_request.comentarios %></div>
         </p>
 
-        <%#= link_to 'Edit', edit_reservation_request_path(@reservation_request) %> |
+        <%#= link_to 'Edit', edit_reservation_request_path(@reservation_request) %> 
         <%#= link_to 'Back', reservation_requests_path %>
         </div>
       </div>
