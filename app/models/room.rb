@@ -9,4 +9,5 @@ class Room < ActiveRecord::Base
   delegate :descripcion, to: :state, prefix: true, allow_nil: true
   accepts_nested_attributes_for :room_comforts ,:allow_destroy => true, update_only: true
   accepts_nested_attributes_for :photos ,:allow_destroy => true, update_only: true
+  paginates_per 2 
 end 

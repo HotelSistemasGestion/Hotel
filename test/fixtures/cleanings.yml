@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cleaning_room_id: 
+  room_id: 
+  start: 2016-10-29
+  end: 2016-10-29
+  title: MyString
+
+two:
+  cleaning_room_id: 
+  room_id: 
+  start: 2016-10-29
+  end: 2016-10-29
+  title: MyString

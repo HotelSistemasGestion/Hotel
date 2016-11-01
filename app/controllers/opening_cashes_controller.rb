@@ -18,8 +18,13 @@ class OpeningCashesController < ApplicationController
     @opening_cash = OpeningCash.new
   end
 
+  def my_new
+    @opening_cash = OpeningCash.new
+    @my_cashes = Cash.find(params[:cash_id])
+  end
   # GET /opening_cashes/1/edit
   def edit
+    
   end
 
   # POST /opening_cashes
@@ -27,7 +32,7 @@ class OpeningCashesController < ApplicationController
   def create
     @opening_cash = OpeningCash.new(opening_cash_params)
     cash=Cash.find(@opening_cash.cash_id)
-    cash.estado="abierto"
+    cash.estado="Abierta"
     cash.save 
     respond_to do |format|
       if @opening_cash.save
@@ -72,6 +77,6 @@ class OpeningCashesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def opening_cash_params
-      params.require(:opening_cash).permit(:fecha_apertura, :monto_efectivo, :cash_id, :employee_id)
+      params.require(:opening_cash).permit(:id, :fecha_apertura, :monto_efectivo, :cash_id, :employee_id)
     end
 end

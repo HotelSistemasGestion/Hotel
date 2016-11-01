@@ -18,6 +18,7 @@ init_function();
           //$.fn.bootstrapDP = datepicker;  
           //$("#dp3").bootstrapDP();  
 
+
       $(this).datepicker({format: 'yyyy-mm-dd', autoclose: true});
     });
 
@@ -62,7 +63,6 @@ init_function();
           });
 
    });
-
     
       //Java script para que nested form reconozca los <tr>
       window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
@@ -70,9 +70,6 @@ init_function();
 		  return $(content).insertBefore($tr);
 		  } 
 
-      
-
-  
 
       $('#descuento,#cantidad_de_habitaciones,#dias').change(function(){
         descontartotal();
@@ -82,6 +79,8 @@ init_function();
 
       
 
+
+
   });
        //ACA COMIENZA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
       //Escucho los cambios en cantidad.
@@ -90,10 +89,11 @@ init_function();
                 actualizarsubtotal(id,-8);
             });
       //Escucho los cambios en el selector de servicios.
-      $(document).on('keyup','#table .ui-autocomplete-input', function () {                
+      $(document).on('keyup autocompletechange','#table .ui-autocomplete-input', function () {                
                 var id = $(this).attr("id");
                 actualizarsubtotal(id,-7);
             });
+
       //Cuando borro un Servicio
       $(document).on('click','#table #borrar', function () {                
                 actualizartotal();
@@ -110,6 +110,7 @@ init_function();
     return total;
   }
   function actualizarsubtotal(id,num){
+        console.log("Actualizo subtotal");
         var aux=id.slice(0,num);
         var subtotal_id="#"+aux+"subtotal";
         var ayudante="#"+aux+"ayudante";
@@ -118,7 +119,13 @@ init_function();
         var precio=parseInt($(ayudante).val());
         if(! isNaN(precio)) { 
           $(subtotal_id).val(precio * cantidad);
+          console.log("Tengo Precio");
           actualizartotal();
+        }else{
+          $(subtotal_id).val(0);
+          console.log("No Tengo Precio");
+          actualizartotal();
+
         }
         
       }
@@ -136,8 +143,6 @@ init_function();
         });
         return sum;
     }
-  
-      
 
 
        function actualizartotal(){
@@ -159,7 +164,5 @@ init_function();
         $("#total").val((getPrecioInicial()+subtotales)-descuento);
       }
       ///ACA TERMINA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
-
-
 /*-----------------------------------------------------------------*/
-
+ 

@@ -15,6 +15,7 @@ class CleaningRoomsController < ApplicationController
   # GET /cleaning_rooms/new
   def new
     @cleaning_room = CleaningRoom.new
+    @cleaning_room.cleanings.build
   end
 
   # GET /cleaning_rooms/1/edit
@@ -69,6 +70,6 @@ class CleaningRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cleaning_room_params
-      params.require(:cleaning_room).permit(:room_id, :employee_id, :start,:end,:title)
+      params.require(:cleaning_room).permit(:room_id, :employee_id, :start,:end,:title,:cleanings_attributes => [:room_id,:start,:end,:title,:_destroy])
     end
 end

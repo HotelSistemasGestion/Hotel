@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  resources :cleanings
   resources :invoice_details
   resources :account_details
   resources :reservations
   resources :cleaning_rooms
   resources :photos
-  resources :employees
+  resources :employees do
+    get :autocomplete_employee_cedula, :on => :collection
+  end
   resources :budget_details
   resources :budgets do
   collection do
@@ -18,11 +21,21 @@ Rails.application.routes.draw do
   resources :payment_types
   resources :detail_of_cash_movements
   resources :detail_of_cash_counts
-  resources :cash_movements
+  resources :cash_movements do
+  collection do
+      get 'my_new'
+    end
+  end
+  
   resources :type_of_cash_movements
   resources :cash_counts
   resources :closing_cashes
-  resources :opening_cashes
+  resources :opening_cashes do
+  collection do
+      get 'my_new'
+    end
+  end
+
   resources :cashes
   resources :rooms
   resources :type_of_rooms
