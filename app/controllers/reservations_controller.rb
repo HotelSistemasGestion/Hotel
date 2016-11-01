@@ -17,6 +17,9 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     @my_reservation_requests = ReservationRequest.find(params[:id])
+    #@my_type_of_rooms = TypeOfRoom.find(params[:id])
+    #@my_budgets = Budget.find(params[:id])
+
   end
 
   def my_new
@@ -33,8 +36,8 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params) 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
-        format.json { render :show, status: :created, location: @reservation }
+        format.html { redirect_to reservations_path(), notice: 'Reservacion creada exitosamente.' }
+        #format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }

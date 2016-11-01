@@ -4,8 +4,8 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = Room.all
-   
+    #@rooms = Room.all
+    @rooms = Room.order(created_at: :desc).page params[:page]
   end
 
   # GET /rooms/1
@@ -22,6 +22,7 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
     @room.room_comforts.build
+    @room.photos.build
   end
 
   # GET /rooms/1/edit

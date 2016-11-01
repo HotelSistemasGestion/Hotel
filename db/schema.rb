@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026213439) do
+ActiveRecord::Schema.define(version: 20161030025044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20161026213439) do
     t.integer  "grupo"
     t.string   "nombre"
     t.boolean  "imputable"
+    t.integer  "cuenta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -194,6 +195,19 @@ ActiveRecord::Schema.define(version: 20161026213439) do
   add_index "cleaning_rooms", ["employee_id"], name: "index_cleaning_rooms_on_employee_id", using: :btree
   add_index "cleaning_rooms", ["room_id"], name: "index_cleaning_rooms_on_room_id", using: :btree
 
+  create_table "cleanings", force: :cascade do |t|
+    t.integer  "cleaning_room_id"
+    t.integer  "room_id"
+    t.date     "start"
+    t.date     "end"
+    t.string   "title"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "cleanings", ["cleaning_room_id"], name: "index_cleanings_on_cleaning_room_id", using: :btree
+  add_index "cleanings", ["room_id"], name: "index_cleanings_on_room_id", using: :btree
+
   create_table "clients", force: :cascade do |t|
     t.string   "nombre"
     t.string   "apellido"
@@ -222,16 +236,24 @@ ActiveRecord::Schema.define(version: 20161026213439) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "complaints", force: :cascade do |t|
-    t.integer  "room_id"
-    t.integer  "service_id"
+  create_table "complaint_services", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
+  create_table "complaints", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "complaint_service_id"
+    t.string   "service_description"
+    t.boolean  "state"
+    t.integer  "room_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "complaints", ["complaint_service_id"], name: "index_complaints_on_complaint_service_id", using: :btree
   add_index "complaints", ["room_id"], name: "index_complaints_on_room_id", using: :btree
-  add_index "complaints", ["service_id"], name: "index_complaints_on_service_id", using: :btree
 
   create_table "detail_of_cash_counts", force: :cascade do |t|
     t.integer  "monto_sistema"
@@ -242,9 +264,12 @@ ActiveRecord::Schema.define(version: 20161026213439) do
 
   create_table "detail_of_cash_movements", force: :cascade do |t|
     t.integer  "sub_monto"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "payment_type_id"
   end
+
+  add_index "detail_of_cash_movements", ["payment_type_id"], name: "index_detail_of_cash_movements_on_payment_type_id", using: :btree
 
   create_table "detail_of_payment_types", force: :cascade do |t|
     t.string   "titular"
@@ -393,12 +418,9 @@ ActiveRecord::Schema.define(version: 20161026213439) do
 
   create_table "type_of_cash_movements", force: :cascade do |t|
     t.string   "descripcion"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "cash_movement_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "type_of_cash_movements", ["cash_movement_id"], name: "index_type_of_cash_movements_on_cash_movement_id", using: :btree
 
   create_table "type_of_rooms", force: :cascade do |t|
     t.string   "tipo"
@@ -459,8 +481,11 @@ ActiveRecord::Schema.define(version: 20161026213439) do
   add_foreign_key "cash_movements", "type_of_cash_movements"
   add_foreign_key "cleaning_rooms", "employees"
   add_foreign_key "cleaning_rooms", "rooms"
+  add_foreign_key "cleanings", "cleaning_rooms"
+  add_foreign_key "cleanings", "rooms"
+  add_foreign_key "complaints", "complaint_services"
   add_foreign_key "complaints", "rooms"
-  add_foreign_key "complaints", "services"
+  add_foreign_key "detail_of_cash_movements", "payment_types"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
   add_foreign_key "opening_cashes", "cashes"
@@ -471,5 +496,4 @@ ActiveRecord::Schema.define(version: 20161026213439) do
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "states"
   add_foreign_key "rooms", "type_of_rooms"
-  add_foreign_key "type_of_cash_movements", "cash_movements"
 end

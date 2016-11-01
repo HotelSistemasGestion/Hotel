@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <div class="box box-primary">   
+      <div class="box">   
         <div class="box-header">
           <div class="col-sm-2"></div>
           <h3 class="box-title col-sm-6">
@@ -26,13 +26,30 @@
                       <th>Caja</th>
                       <th>Cajero</th>
                       <th>Fecha</th>
-                      <th>Monto Efectivo</th> 
-                      <th>Opciones</th>  
+                      <th>Monto Efectivo</th>
+                      <th></th> 
+                      <th></th>  
                     </tr>
                   </thead>
                   <tbody>
-                    <% @opening_cashes.each do |opening_cash| %>
-                    <%= render "row", opening_cash: opening_cash %>
+                    <%= content_tag_for(:tr, @opening_cashes) do |opening_cash| %>
+                    <td><%= opening_cash.cash_descripcion %></td>
+                    <td><%= opening_cash.employee.full_name %></td>
+                    <td><%= opening_cash.fecha_apertura %></td>
+                    <td><%= opening_cash.monto_efectivo %></td>
+                    <td>
+                      <%= link_to 'Movimiento', {:controller => "cash_movements", :action => "my_new", :opening_cash_id => opening_cash.id },class: "btn btn-primary" %>
+                    </td>
+                    <td align="center">
+            <%= link_to opening_cash, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon-eye-open"></span>
+                    <% end %>
+                <%= link_to edit_opening_cash_path(opening_cash), class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon-pencil"></span>
+                    <% end %>
+            <%= link_to opening_cash, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                        <span class= "glyphicon glyphicon-trash"></span>
+                    <% end %></td>
                     <% end %>
                   </tbody>  
                 </table>

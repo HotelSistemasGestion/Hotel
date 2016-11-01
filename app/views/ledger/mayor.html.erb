@@ -1,31 +1,30 @@
 
-<div class="global indent">
+<div class="box">
+ 
+ 
 
 <%cont2=0%>
 <%mostrar=[]%>
 <%ite=0%>
 <%cant_a=0%>
 <%cant_d=0%>
-<div class="containerL">
-    <h1 class="titulo">Libro Mayor
-	    <strong class="bloque_rayita">
-	        <span class="rayita"></span>
-	    </strong>
-    </h1>
+<div class="box-header with-border">
+    <h1 class="box-title titulo">Libro Mayor</h1>
+</div>
     <div class="row">
-       
+       <div class="box-body">
             <%while cont2<@array_filtrar.count do %>
             <%ite=0%>
             <%cant_a=0%>
 			<%cant_d=0%>
              <div class="gall-box ">
-                <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">
+                <div class="col-xs-6 col-sm-4 ">
                         <div class="thumbnail " style=" text-align: center;">                        
 
                             	<%mostrar=AccountingAccount.where("id": @array_filtrar[cont2])%>
-                            	<h4 class="textL"><%=mostrar[0].nombre%></h4>
-                            	  <strong class="bloque_rayita"style="margin: 0 auto;"></strong>
-                                <table class="table t-bordered  table-condensed" style="width: 290px;margin: 0 auto;">
+                            	<h4 class="box-title"><%=mostrar[0].nombre%></h4>
+                            	  
+                                <table class="table table-bordered  table-responsive  table-condensed" style="width: 290px;margin: 0 auto;">
                                     <thead >
                                         <tr>
 	                                      	<th>N</th>
@@ -59,18 +58,18 @@
 			                                    <%end%>			                                    
 	                                        <%end%>
 	                                        	 <%if (@algo.count-1)==ite%>
-			                                        <tr style="background: #FBF2AF">
+			                                        <tr style="background: #286090">
 			                                    	<td colspan="2" scope="row"><%=cant_a%></td>
 			                                    	<td><%=cant_d%></td>
 			                                    	
 			                                        </tr>
 			                                         <%if cant_a>cant_d%>
-				                                        <tr style="background: #FEDF90" >
+				                                        <tr style="background: #ABCBE8" >
 				                                    	<td colspan="2" scope="row"><%=cant_a-cant_d%></td>
 				                                    	<td></td>
 				                                        </tr>
 			                                         <%else%>
-		                                                <tr style="background: #FEDF90">
+		                                                <tr style="background: #ABCBE8">
 				                                    	<td colspan="2" scope="row"></td>
 				                                    	<td><%=cant_d-cant_a%></td>
 				                                        </tr>
@@ -87,6 +86,4 @@
                      <%end%>
                 </div>
             </div>           
-        </div>
-   
-               
+     </div> 

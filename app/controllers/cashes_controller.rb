@@ -29,7 +29,7 @@ class CashesController < ApplicationController
   # POST /cashes.json
   def create
     @cash = Cash.new(cash_params)
-    @cash.estado = "cerrada" 
+    @cash.estado = "Cerrada" 
     respond_to do |format|
       if @cash.save
         format.js { } # Hace un render a create.js.erb

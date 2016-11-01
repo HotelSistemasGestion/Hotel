@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  room: 
-  service: 
   description: MyString
+  state: false
+  room: 
 
 two:
-  room: 
-  service: 
   description: MyString
+  state: false
+  room: 

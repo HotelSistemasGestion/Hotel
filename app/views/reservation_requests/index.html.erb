@@ -24,7 +24,7 @@
 
       <tbody>
         <%= content_tag_for(:tr, @reservation_requests) do |reservation_request| %>
-            <% budget = Budget.where("reservation_request_id = ? ",reservation_request.id).first%>  
+            <% budget = my_budget(reservation_request.id) %>  
             <%if budget.present? %>
               <td><span class="label label-success">Atendido</span></td>
             <%else%>
@@ -44,7 +44,7 @@
                 <%end%>
             </td>
             <td align="center">
-            <%= link_to '', reservation_request ,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
+            <%= link_to '', reservation_request, remote: true ,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
                 <%= link_to '', edit_reservation_request_path(reservation_request) ,class: "btn btn-warning glyphicon glyphicon-pencil"%>
             <%= link_to '', reservation_request,class: "btn btn-danger glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>

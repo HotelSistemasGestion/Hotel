@@ -1,5 +1,13 @@
 class ReservationRequestsController < ApplicationController
   before_action :set_reservation_request, only: [:show, :edit, :update, :destroy]
+  helper_method :my_budget
+
+
+
+   def my_budget(reservation_request)
+    budget = Budget.where("reservation_request_id = ? ",reservation_request).first
+    return budget
+  end
 
   # GET /reservation_requests
   # GET /reservation_requests.json
@@ -25,7 +33,9 @@ class ReservationRequestsController < ApplicationController
   # POST /reservation_requests
   # POST /reservation_requests.json
   def create
+    @complaint = Complaint.new
     @reservation_request = ReservationRequest.new(reservation_request_params)
+    
     respond_to do |format|
        #if verify_recaptcha(model: @reservation_request) && @reservation_request.save
        if @reservation_request.save

@@ -1,6 +1,9 @@
 class BudgetsController < ApplicationController
   before_action :set_budget, only: [:show, :edit, :update, :destroy]
 
+
+ 
+
   # GET /budgets
   # GET /budgets.json
   def index
@@ -19,7 +22,7 @@ class BudgetsController < ApplicationController
 
   def my_new
     @budget = Budget.new
-    @budget.budget_details.build
+    @budget.budget_details.build()
     @my_reservation_requests = ReservationRequest.find(params[:id])
   end
   # GET /budgets/1/edit

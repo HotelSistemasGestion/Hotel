@@ -37,7 +37,7 @@
                     <%if !user_signed_in? %>
                         <li><a href="<%=new_user_session_path%>" id="ingresar" ><span>Ingresar</span></a></li>
                     <%else%>
-                        <li><a href="<%=dashboard_index_path%>" id="panel_nav" ><span>Panel</span></a></li>
+                        <li><a href="<%=dashboard_index_path%>" id="ingresar" ><span>Panel</span></a></li>
                     <%end%>
                   </ul>
                     
@@ -296,12 +296,12 @@
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
-                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <i class="icon to-animate-2 glyphicon glyphicon-cutlery"></i>
                     <h3>Restaurante &amp; Bar</h3>
                     <p>Podra encontrar toda clase de bebidas y comidas, tenemos tenedor libre y a la carta</p>
                 </div>
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
-                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <i class="icon to-animate-2 glyphicon glyphicon-phone-alt"></i>
                     <h3>Servicio a la Habitacion</h3>
                     <p>Con tan solo marcar el # en el telefono de su habitacion podra llamar directamente a nuestro comedor
                     y ordenar algo para que se lo lleven a la habitacion el servicio esta disponible 24hs</p>
@@ -310,12 +310,12 @@
                 <div class="clearfix visible-sm-block"></div>
 
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
-                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <i class="icon to-animate-2 glyphicon glyphicon-ice-lolly-tasted"></i>
                     <h3>Frigobar</h3>
                     <p>Si lo desea con su reservacion podra pedir que su habitacion tenga un frigobar con bebidas de su agrado</p>
                 </div>
                 <div class="col-md-6 col-sm-6 fh5co-service to-animate">
-                    <i class="icon to-animate-2 fa fa-github"></i>
+                    <i class="icon to-animate-2 glyphicon glyphicon-bed"></i>
                     <h3>Limpieza &amp; mantenimiento</h3>
                     <p>Cuando este en la habitacion si le incomoda algo o siente que esta sucio, podra llamar las 24hs a nuestro
                     servicio de limpieza para que se encarge de sus inconvenientes</p>
@@ -426,17 +426,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 section-heading text-center">
-                    <h2 class="to-animate">Get In Touch</h2>
+                    <h2 class="to-animate">Contactenos.</h2>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 subtext to-animate">
-                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                            <h3>Envienos su pedido de reserva,en breve recibira un presupuesto detallado con lo que solicito.</h3>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row row-bottom-padded-md">
             
-                <div class="col-md-5 to-animate">
+                <!--div class="col-md-5 to-animate">
                     <h3>Contact Info</h3>
                     <ul class="fh5co-contact-info">
                         <li class="fh5co-contact-address ">
@@ -447,9 +447,12 @@
                         <li><i class="icon-envelope"></i>info@freehtml5.co</li>
                         <li><i class="icon-globe"></i> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></li>
                     </ul>
-                </div>
+                </div-->
                 <!--estaba pedido de reserva-->
-                <div class="col-md-7 to-animate">
+                <div style="float: none;
+                            margin-left: auto;
+                            margin-right: auto;"
+                            class="col-md-9 to-animate">
                     <% if notice %>
                         <div class="alert alert-success alert-dismissable">
                         <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -502,15 +505,37 @@
             </div>
         </div>
         <%end%>
-        <div id="map" class="to-animate"></div> <!-- aqui va el mapa-->
+        <!--Aca esta el mapa  -->
+        <p><center> <div style='width: 800px;'>
+            <div id="map" style='width: 800px; height: 400px;'></div>
+        </div> </center></p>
+        <script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgKxTWFKOAtZruNP6J50YvrOZCWYJNRrM">
-            handler = Gmaps.build('Google');
-            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-            markers = handler.addMarkers(<%=raw @hash.to_json %>);
+            var map;
+            function initMap() {
+                  //lat y lng de paraguay  
+                  var paraguay = {lat: -27.2522918, lng: -55.913586699999996};
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    scaleControl: true,
+                    center: paraguay,
+                    zoom: 10
+                  });
+                  //
+                  var infowindow = new google.maps.InfoWindow;
+                  infowindow.setContent('<b>Hotel-Uni el mejor lugar para estar</b>');
+
+                  var marker = new google.maps.Marker({map: map, position: paraguay});
+                  marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                  });
+                
+            }
+
         </script>
-
-
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLAeVyovPzs8mwvG9wcoZO_jWGswe0quM&callback=initMap"
+        async defer></script>
+        <!--Aca esta el mapa  -->
+        
         <p><center>Aqui va un mapa de localizacion si quieren.</center></p>
     </section>
     

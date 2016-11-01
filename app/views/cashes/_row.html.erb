@@ -1,25 +1,25 @@
 <tr id="<%= cash.id %>">
-    <td><%= cash.descripcion %></td>
-    <td><%= cash.estado %></td>
-    <td>
-        <div class="row">
-            <div class="col-xs-2">
-                <%= link_to cash, remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+    <%if cash.estado == 'Cerrada'  %>
+                        <td><span class="label label-warning">Cerrado</span></td>
+                      <%else%>
+                        <td><span class="label label-success">Abierto</span></td>
+                      <%end%>
+                      <td><%= cash.descripcion %></td>
+                      <td align="center">
+                        <%if cash.estado == 'Cerrada' %>
+                          <%= link_to 'Abrir', {:controller => "opening_cashes", :action => "my_new", :cash_id => cash.id },class: "btn btn-primary" %>
+                        <%else%>
+                          <%= link_to 'Cerrar', {:controller => "closing_cashes", :action => "new", :opening_cash_id => cash.id },class: "btn btn-primary" %>
+                        <% end %>  
+                      </td>
+                      <td align="center">
+            <%= link_to cash, remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-eye-open"></span>
-                    <% end %>    
-            </div>
-            <div class="col-xs-2">
+                    <% end %>
                 <%= link_to edit_cash_path(cash), remote: true, class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-pencil"></span>
-                    <% end %>    
-            </div>
-            <div class="col-xs-2">
-                <%= link_to cash, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <% end %>
+            <%= link_to cash, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                         <span class= "glyphicon glyphicon-trash"></span>
-                    <% end %>                    
-    
-            </div>
-            
-        </div>
-    </td>
+                    <% end %></td>
 </tr>

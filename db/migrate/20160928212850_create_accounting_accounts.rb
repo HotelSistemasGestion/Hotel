@@ -4,7 +4,7 @@ class CreateAccountingAccounts < ActiveRecord::Migration
       t.integer :grupo
       t.string :nombre
       t.boolean :imputable
-
+      t.integer :cuenta
       t.timestamps null: false
     end
   end
