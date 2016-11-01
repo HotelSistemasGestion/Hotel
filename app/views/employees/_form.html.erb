@@ -29,7 +29,7 @@
     <div class="col-sm-6  form-group  has-feedback">
       <%= f.label :apellidos,class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.text_field :apellido, class: "form-control" ,:required => true %>
+        <%= f.text_field :apellido, class: "form-control" ,minlength: 3,:required => true %>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
@@ -40,7 +40,7 @@
      <div class="col-sm-6 form-group   has-feedback">
       <%= f.label :edad, class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.number_field :edad, class: "form-control" ,:required => true %>
+        <%= f.number_field :edad, class: "form-control",min: 18,max: 70 ,:required => true %>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
@@ -49,7 +49,7 @@
      <div class="col-sm-6 form-group   has-feedback">
       <%= f.label :cedula, class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.number_field :cedula, class: "form-control" ,:required => true  %>
+        <%= f.number_field :cedula, class: "form-control",min: 5,max: 10 ,:required => true  %>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
@@ -58,7 +58,7 @@
     <div class="col-sm-6 form-group has-feedback">
       <%= f.label :telefono, class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.number_field :telefono, class: "form-control" ,:required => true%>
+        <%= f.number_field :telefono, class: "form-control",min: 6,max: 12 ,:required => true%>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
@@ -66,7 +66,7 @@
   <div class="col-sm-6 form-group has-feedback">
     <%= f.label :cantidad_de_hijos, class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
-      <%= f.number_field :hijo, class: "form-control",:required => true %>
+      <%= f.number_field :hijo, class: "form-control",min: 0,max: 17 ,:required => true %>
        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
       <div class="help-block with-errors">*requerido</div>
     </div>
@@ -87,14 +87,7 @@
  
  
 
-    <div class="col-sm-6 form-group has-feedback">
-      <%= f.label :telefono, class: "col-sm-3 control-label" %>
-       <div class="col-sm-9">
-        <%= f.number_field :telefono, class: "form-control" ,:required => true%>
-        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-        <div class="help-block with-errors">*requerido</div>
-        </div>
-    </div>
+
   
     <div class="col-sm-6 form-group has-feedback">
       <%= f.label :correo, class: "col-sm-3 control-label" %>
