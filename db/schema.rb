@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161029014004) do
-=======
-ActiveRecord::Schema.define(version: 20161028180135) do
->>>>>>> 42d0772883e27e9d69e79a456508a39465122d91
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +85,7 @@ ActiveRecord::Schema.define(version: 20161028180135) do
     t.integer  "grupo"
     t.string   "nombre"
     t.boolean  "imputable"
+    t.integer  "cuenta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

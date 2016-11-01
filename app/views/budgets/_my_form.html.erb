@@ -35,11 +35,11 @@
           <div class="row">
             <div class="col-md-4">
                 <%= f.label 'cantidad de habitaciones'%><br>
-                <%= f.text_field :cantidad_de_habitaciones,id: "cantidad_de_habitaciones",value: @my_reservation_requests.cantidad_de_familias, class: "form-control", placeholder: "" %>            
+                <%= f.number_field :cantidad_de_habitaciones,min:1,id: "cantidad_de_habitaciones",value: @my_reservation_requests.cantidad_de_familias, class: "form-control", placeholder: "" %>            
             </div>
             <div class="col-md-4">
                 <%= f.label :dias %><br>
-                <%= f.text_field :dias,id:"dias",value: (@my_reservation_requests.check_out.to_date - @my_reservation_requests.check_in.to_date).to_i, class: "form-control ", placeholder: "" %>
+                <%= f.number_field :dias,id:"dias",min:1,value: (@my_reservation_requests.check_out.to_date - @my_reservation_requests.check_in.to_date).to_i, class: "form-control ", placeholder: "" %>
             </div>
             <div class="col-md-4">
                 <%= f.label "Precio Habitacion (Gs)" %><br>
@@ -76,7 +76,8 @@
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
                   <script type="text/javascript">console.log("<%=:cantidad%>")</script>
                   <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
-                  :multiple => true, :update_elements => {:id => id,:precio => ayudante },class: "ui-autocomplete-input"%>
+                  :multiple => true, :update_elements => {:id => id,:precio => ayudante }, value: (!@budget.new_record?) ? 
+                  ((Service.find(@my_budget.budget_details[c].service_id).nombre) unless (! @my_budget.budget_details.any? || c>=@my_budget.budget_details.count)) : ''%>
                   <%= li.hidden_field  :service_id%></td>
                   <td><%= li.number_field  :ayudante,class: "escuchable",readonly: true%></td>
                   <td><%= li.number_field :subtotal,:class => "subtotal",readonly: true%></td>
@@ -97,7 +98,7 @@
          <div class="row">
              <div class="col-md-4">
                 <%= f.label "Descuento (%)" %><br>
-                <%= f.number_field :descuento, id:"descuento",min:0,max: 100,class: "form-control", placeholder: "" %>
+                <%= f.number_field :descuento, id:"descuento",min:0,max: 100,value: 0,class: "form-control", placeholder: "" %>
             </div>
 
              <div class="col-md-4">
