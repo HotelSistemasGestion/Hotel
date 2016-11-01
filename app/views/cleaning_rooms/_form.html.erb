@@ -39,16 +39,17 @@
                       <%= li.select :room_id ,Room.all.collect { |p| [p.identificador, p.id ] },{include_blank: false},class: "form-control",:required=>true %>  
                       <div class="help-block with-errors">*requerido</div>    
                     </td>  
-                    <td class="form-group has-feedback">
-                      <%= li.text_field :start, class: "datepicker form-control",:required=>true%>
-                     <div class="help-block with-errors">*requerido</div>
+                    <td class="form-group">
+                      <%= li.text_field :start, class: "datepicker form-control"%>
+                    
                     </td>                
+                    <script type="text/javascript">console.log()</script>
                     <td class="form-group has-feedback">
-                      <%= li.text_field :end, class: "datepicker form-control", placeholder:"Fin",:required=>true%>
+                      <%= li.text_field :end,class: "datepicker form-control", placeholder:"Fin"%>
                      <div class="help-block with-errors">*requerido</div>
                     </td>
                       <td class="form-group has-feedback">
-                      <%= li.text_field :title, class: "form-control", placeholder:"Fin",:required=>true%>
+                      <%= li.text_field :title, class: "form-control", placeholder:"Fin",minlength: 14,:required=>true%>
                      <div class="help-block with-errors">*requerido</div>
                     </td>
                   <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>

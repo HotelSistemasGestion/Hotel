@@ -1,5 +1,5 @@
-<section class="invoice">
-  <div class="row invoice-info">
+
+  
 <%= form_for(@employee,data: {toggle: "validator"}, html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @employee.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
@@ -16,30 +16,30 @@
 
 
   
-  <div class="alert alert-danger" role="alert" style="display: none;"></div>
-  <div class="row">
+  <!--<div class="alert alert-danger" role="alert" style="display: none;"></div>-->
+   <div class="box-body">
     <div class="col-sm-6 form-group  has-feedback">
-      <%= f.label :nombres, class: "col-sm-2 control-label" %>
-       <div class="col-sm-10">
+      <%= f.label :nombres, class: "col-sm-3 control-label" %>
+       <div class="col-sm-9">
         <%= f.text_field :nombre, class: "form-control" ,minlength: 3,:required => true,placeholder:"Juan Mario" %>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
         </div>
     </div>
     <div class="col-sm-6  form-group  has-feedback">
-      <%= f.label :apellidos,class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
+      <%= f.label :apellidos,class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
         <%= f.text_field :apellido, class: "form-control" ,:required => true %>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
     </div>
-  </div>
 
-<div class="row">   
+
+
      <div class="col-sm-6 form-group   has-feedback">
-      <%= f.label :edad, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
+      <%= f.label :edad, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
         <%= f.number_field :edad, class: "form-control" ,:required => true %>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
@@ -47,51 +47,49 @@
     </div>
 
      <div class="col-sm-6 form-group   has-feedback">
-      <%= f.label :cedula, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
+      <%= f.label :cedula, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
         <%= f.number_field :cedula, class: "form-control" ,:required => true  %>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
     </div>      
-</div>
-<div class="row"> 
+
     <div class="col-sm-6 form-group has-feedback">
-      <%= f.label :telefono, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
+      <%= f.label :telefono, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
         <%= f.number_field :telefono, class: "form-control" ,:required => true%>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
     </div>
   <div class="col-sm-6 form-group has-feedback">
-    <%= f.label :cantidad_de_hijos, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :cantidad_de_hijos, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.number_field :hijo, class: "form-control",:required => true %>
        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
       <div class="help-block with-errors">*requerido</div>
     </div>
   </div>
-</div>
 
-<div class="row"> 
+
 
 
     <div class="col-sm-6 form-group has-feedback">
-      <%= f.label :Cargo, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
+      <%= f.label :Cargo, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
         <%= f.select :types_of_employee_id ,TypesOfEmployee.all.collect { |p| [p.tipo, p.id ] },{include_blank: false},class: "form-control",:required => true %>
          <!--  <%= f.text_field :types_of_employee, class: "form-control" ,:required => true %>-->
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
     </div>
- </div> 
  
-<div class="row"> 
+ 
+
     <div class="col-sm-6 form-group has-feedback">
-      <%= f.label :telefono, class: "col-sm-2 control-label" %>
-       <div class="col-sm-10">
+      <%= f.label :telefono, class: "col-sm-3 control-label" %>
+       <div class="col-sm-9">
         <%= f.number_field :telefono, class: "form-control" ,:required => true%>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
@@ -99,30 +97,27 @@
     </div>
   
     <div class="col-sm-6 form-group has-feedback">
-      <%= f.label :correo, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
+      <%= f.label :correo, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
         <%= f.email_field :correo, class: "form-control" ,type:"email",:required => true%>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
     </div>
- </div>
-
+ 
 
     <div class="col-sm-6 form-group has-feedback">
-    <%= f.label :direccion, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :direccion, class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.text_field :direccion,minlength: 3, class: "form-control" ,:required => true%>
        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
       <div class="help-block with-errors">*requerido</div>
     </div>
   </div>
-
-    <div class="col-sm-4 form-group has-feedback">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
+  </div>
+  
+    <div class ="box-body"> 
+      <%= f.submit "Crear Empleado", class: "btn btn-primary" %>
     </div>
-  </div>  
-<% end %>
 </div>
-</section>
+<% end %>

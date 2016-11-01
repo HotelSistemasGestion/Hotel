@@ -22,6 +22,7 @@ class RoomsController < ApplicationController
   def new
     @room = Room.new
     @room.room_comforts.build
+    @room.photos.build
   end
 
   # GET /rooms/1/edit
