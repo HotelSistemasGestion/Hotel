@@ -59,15 +59,24 @@
           <tbody>
         
               <%= f.fields_for :detail_of_cash_movements  ,:wrapper => false do |li| %>
-              <tr class="fields">
+              <tr class="fields" name="detalle">
                   <th scope="row"><%= li.number_field :invoice ,:class => "form-control"%></th>
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
-                  <td><%= li.number_field :sub_monto, :class => "form-control"%></td>
-                  <td><%= li.select :payment_type_id,PaymentType.all.collect{|p| [p.descripcion, p.id]},{include_blank: false} ,:class => "form-control"%></td>
-                  <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
+                  <th><%= li.number_field :sub_monto, :class => "form-control"%></td>
+                  <th><%= li.select :payment_type_id, PaymentType.all.collect{|p| [p.descripcion, p.id]},{include_blank: false} ,id:"select" ,:class => "form-control"%></td>
+                  
+                  <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>              
               </tr>
+              <tr id="cheque" class="fields" style="display: none">
+                <th>
+
+                  <%= li.text_field :payment_type_id, :class => "form-control" ,placeholder: "Banco"%>
+                </th>
+                    
+                  </tr>
+
               <%end%>
-              <tr>
+                            <tr>
                 <td><%= f.link_to_add "", :detail_of_cash_movements , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
               </tr>
 
@@ -100,4 +109,15 @@
 
                 
 </div>
+<script type="text/javascript">
+<!--
+mostrarCheque = function(){
+      if ($("#select").val() == "2") {
+        $("#cheque").show();
+      } else {
+        $("#cheque").hide();
+      }}
+      $(document).ready(mostrarCheque);
+$("#select").change(mostrarCheque);
+</script>
   <% end %>

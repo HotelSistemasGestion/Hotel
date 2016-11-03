@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161101170148) do
-=======
-ActiveRecord::Schema.define(version: 20161030025044) do
->>>>>>> ab4ec7d245a47600f65964ca9c623371bc7aca12
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,13 +164,11 @@ ActiveRecord::Schema.define(version: 20161030025044) do
     t.integer  "opening_cash_id"
     t.integer  "accounting_entry_id"
     t.integer  "client_id"
-    t.integer  "payment_type_id"
   end
 
   add_index "cash_movements", ["accounting_entry_id"], name: "index_cash_movements_on_accounting_entry_id", using: :btree
   add_index "cash_movements", ["client_id"], name: "index_cash_movements_on_client_id", using: :btree
   add_index "cash_movements", ["opening_cash_id"], name: "index_cash_movements_on_opening_cash_id", using: :btree
-  add_index "cash_movements", ["payment_type_id"], name: "index_cash_movements_on_payment_type_id", using: :btree
   add_index "cash_movements", ["type_of_cash_movement_id"], name: "index_cash_movements_on_type_of_cash_movement_id", using: :btree
 
   create_table "cashes", force: :cascade do |t|
@@ -485,7 +479,6 @@ ActiveRecord::Schema.define(version: 20161030025044) do
   add_foreign_key "cash_movements", "accounting_entries"
   add_foreign_key "cash_movements", "clients"
   add_foreign_key "cash_movements", "opening_cashes"
-  add_foreign_key "cash_movements", "payment_types"
   add_foreign_key "cash_movements", "type_of_cash_movements"
   add_foreign_key "cleaning_rooms", "employees"
   add_foreign_key "cleaning_rooms", "rooms"
@@ -493,12 +486,8 @@ ActiveRecord::Schema.define(version: 20161030025044) do
   add_foreign_key "cleanings", "rooms"
   add_foreign_key "complaints", "complaint_services"
   add_foreign_key "complaints", "rooms"
-<<<<<<< HEAD
-  add_foreign_key "complaints", "services"
   add_foreign_key "detail_of_cash_movements", "cash_movements"
   add_foreign_key "detail_of_cash_movements", "invoices"
-=======
->>>>>>> ab4ec7d245a47600f65964ca9c623371bc7aca12
   add_foreign_key "detail_of_cash_movements", "payment_types"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
