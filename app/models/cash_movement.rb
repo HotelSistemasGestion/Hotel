@@ -11,6 +11,6 @@ class CashMovement < ActiveRecord::Base
 
 	accepts_nested_attributes_for :detail_of_cash_movements, allow_destroy: true , update_only: true
 
-	attr_accessor :opening_cash 
+	attr_accessor :client 
 
 end

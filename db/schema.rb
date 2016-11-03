@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20161029014004) do
-=======
-ActiveRecord::Schema.define(version: 20161028180135) do
->>>>>>> 42d0772883e27e9d69e79a456508a39465122d91
+ActiveRecord::Schema.define(version: 20161101170148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -259,11 +255,15 @@ ActiveRecord::Schema.define(version: 20161028180135) do
 
   create_table "detail_of_cash_movements", force: :cascade do |t|
     t.integer  "sub_monto"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "payment_type_id"
+    t.integer  "cash_movement_id"
+    t.integer  "invoice_id"
   end
 
+  add_index "detail_of_cash_movements", ["cash_movement_id"], name: "index_detail_of_cash_movements_on_cash_movement_id", using: :btree
+  add_index "detail_of_cash_movements", ["invoice_id"], name: "index_detail_of_cash_movements_on_invoice_id", using: :btree
   add_index "detail_of_cash_movements", ["payment_type_id"], name: "index_detail_of_cash_movements_on_payment_type_id", using: :btree
 
   create_table "detail_of_payment_types", force: :cascade do |t|
@@ -480,6 +480,8 @@ ActiveRecord::Schema.define(version: 20161028180135) do
   add_foreign_key "cleanings", "rooms"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "complaints", "services"
+  add_foreign_key "detail_of_cash_movements", "cash_movements"
+  add_foreign_key "detail_of_cash_movements", "invoices"
   add_foreign_key "detail_of_cash_movements", "payment_types"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
