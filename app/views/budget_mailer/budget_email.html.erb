@@ -100,8 +100,8 @@
 					      <%= content_tag_for(:tr, @budget) do |budget| %>
 					      		<td><%= TypeOfRoom.find(@reservation_request.type_of_room_id).tipo%></td>
 					      		<td><%= @reservation_request.cantidad_de_familias%></td>
-					      		<td><%= @reservation_request.check_in%></td>
-					      		<td><%= @reservation_request.check_out%></td>
+					      		<td><%= @reservation_request.check_in.strftime("%d/%m/%Y")%></td>
+					      		<td><%= @reservation_request.check_out.strftime("%d/%m/%Y")%></td>
 					            <td><%= budget.dias %></td>
 					            <td><%= budget.descuento %> %</td>
 					            <% total_sin_servicios = budget.total - sum_de_subtotales%>

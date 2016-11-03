@@ -19,12 +19,20 @@
 //= require np
 //= require app
 //= require custom
+
+//= require underscore
+//= require gmaps/google
 //= require main
 //= require validator.js
 //= require rooms
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
+//= require es.js
+//= require underscore
+//= requrie gmaps/google
 
   $(document).ready(function() {
     $.validate();
   });
+
+

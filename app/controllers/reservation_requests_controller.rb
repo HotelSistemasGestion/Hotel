@@ -33,7 +33,9 @@ class ReservationRequestsController < ApplicationController
   # POST /reservation_requests
   # POST /reservation_requests.json
   def create
+    @complaint = Complaint.new
     @reservation_request = ReservationRequest.new(reservation_request_params)
+    
     respond_to do |format|
        #if verify_recaptcha(model: @reservation_request) && @reservation_request.save
        if @reservation_request.save

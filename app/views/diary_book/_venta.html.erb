@@ -1,0 +1,62 @@
+<div class="box-body" id="table-venta">
+    <% anterior=AccountingEntry.new %>
+ 
+    <table class="table table-bordered  table-responsive ">
+          <thead >
+          <tr>
+            <th>N</th>
+            <th>Fecha</th>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Debe</th>
+            <th>Haber</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <%= content_tag_for(:tr, @diary_books) do |a_x_e| %>
+          
+            <%if anterior.numero == AccountingEntry.find(a_x_e.accounting_entry_id).numero %>
+              <%if a_x_e.tipo=="D"||a_x_e.tipo=="d"%>
+                <tr>
+                <td></td>
+                <td></td>
+                <td><%=AccountXPlan.find(AccountingAccount.find(a_x_e.accounting_account_id)).cuenta_superior%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
+                <td class="haber-ctrol">a <%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
+                <td></td>
+                <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).haber%></td>
+                </tr>
+                <tr>
+                  <td colspan="6" scope="row">Segun factura nº=</td>
+                </tr>
+              <%end%>
+              
+
+            <%else %>
+              <tr>
+              <%anterior=AccountingEntry.find(a_x_e.accounting_entry_id)%>
+              <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).numero%></td>
+              <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).fecha%></td>
+              <td></td>
+              <td><%=a_x_e.observacion%></td>
+              <td ></td>
+              <td ></td>
+              </tr>
+
+              <%if a_x_e.tipo=="A"||a_x_e.tipo=="a"%>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td><%=AccountXPlan.find(AccountingAccount.find(a_x_e.accounting_account_id)).cuenta_superior%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
+                  <td><%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
+                  <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).debe%></td>
+                  <td></td>
+                </tr>
+
+              <% end %>
+            <% end %>
+            <% end %>
+      </tbody>
+    </table>
+    </div>

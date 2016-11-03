@@ -1,7 +1,15 @@
+var init_function;
+init_function=function(){
+  $('#_search').on('ajax:success',function(event,data,status){
+    $('#stock').replaceWith(data);
+    init_function();
+  })
+
+};
+
 $(document).ready(function(){
 
- 
-
+init_function();
 	console.log("Estoy funcionando En custom.Js,Aqui van los Javascript Caseros");
 
       $('.datepicker').each(function(){
@@ -9,9 +17,51 @@ $(document).ready(function(){
           //$.fn.bootstrapDP = datepicker;  
           //$("#dp3").bootstrapDP();  
 
-      $(this).datepicker({format: 'dd-mm-yyyy', autoclose: true});
-      });
 
+      $(this).datepicker({format: 'yyyy-mm-dd', autoclose: true});
+    });
+
+
+       $("#search").each(function(){
+      
+            $(this).daterangepicker({ "locale": {
+              "format": "DD/MM/YYYY",
+              "separator": " - ",
+              "applyLabel": "Aceptar",
+              "cancelLabel": "Cancelar",
+              "fromLabel": "From",
+              "toLabel": "To",
+              "customRangeLabel": "Custom",
+              "daysOfWeek": [
+                  "Do",
+                  "Lu",
+                  "Ma",
+                  "Mi",
+                  "Ju",
+                  "vi",
+                  "S&aacute;"
+              ],
+              "monthNames": [
+                  "Enero",
+                  "Febrero",
+                  "Marzo",
+                  "Abril",
+                  "Mayo",
+                  "Junio",
+                  "Julio",
+                  "Agosto",
+                  "Septiembre",
+                  "Octubre",
+                  "Noviembre",
+                  "Diciembre"
+              ],
+              "firstDay": 1
+          }, autoclose: true,
+          autoSize: true
+
+          });
+
+   });
     
       //Java script para que nested form reconozca los <tr>
       window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
@@ -19,10 +69,6 @@ $(document).ready(function(){
 		  return $(content).insertBefore($tr);
 		  } 
 
-      
-
-      $('input[name="daterange"]').daterangepicker({
-        });
 
       $('#descuento,#cantidad_de_habitaciones,#dias').change(function(){
         descontartotal();
@@ -30,9 +76,7 @@ $(document).ready(function(){
 
       $('#total').val(getPrecioInicial());
 
-       $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
-          $(this).val('');
-        });
+      
 
 
 
@@ -98,7 +142,7 @@ $(document).ready(function(){
         });
         return sum;
     }
-  
+
 
        function actualizartotal(){
            
@@ -119,47 +163,5 @@ $(document).ready(function(){
         $("#total").val((getPrecioInicial()+subtotales)-descuento);
       }
       ///ACA TERMINA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
-/*-----------------------------------------------------------------*/
-  function showF(str1,str2) {
-    var xhttp;    
-    if (str1 == ""&& str2=="") {
-      document.getElementById("txtHint").innerHTML = "";
-    return;
-  }
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("txtHint").innerHTML = this.responseText;
-    }
-  };
-  console.log(str1+"-"+str2)
-}
-
-/*-----------------------------------------------------------------*/
-  $('input[name="datefilter"]').daterangepicker({
-      autoUpdateInput: false,
-      dateFormat: 'DD/MM/YYYY',
-      showOn: 'button',   
-      locale: {
-          cancelLabel: 'Clear'
-      }
-  });
-
-/*-----------------------------------------------------------------*/
-
-  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-    var date_select=  $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-    var date_array=date_select.val().split("-");
-    var date_start=date_array[0];
-    var date_end=date_array[1];
-    $.ajax({
-      url: "diary_book/diario",
-      type: 'POST',})
-  });
-      
-
-
-
-
 /*-----------------------------------------------------------------*/
  

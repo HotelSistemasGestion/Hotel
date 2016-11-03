@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20161101170148) do
+=======
+ActiveRecord::Schema.define(version: 20161030025044) do
+>>>>>>> ab4ec7d245a47600f65964ca9c623371bc7aca12
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +89,7 @@ ActiveRecord::Schema.define(version: 20161101170148) do
     t.integer  "grupo"
     t.string   "nombre"
     t.boolean  "imputable"
+    t.integer  "cuenta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -235,16 +240,24 @@ ActiveRecord::Schema.define(version: 20161101170148) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "complaints", force: :cascade do |t|
-    t.integer  "room_id"
-    t.integer  "service_id"
+  create_table "complaint_services", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
+  create_table "complaints", force: :cascade do |t|
+    t.string   "description"
+    t.integer  "complaint_service_id"
+    t.string   "service_description"
+    t.boolean  "state"
+    t.integer  "room_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "complaints", ["complaint_service_id"], name: "index_complaints_on_complaint_service_id", using: :btree
   add_index "complaints", ["room_id"], name: "index_complaints_on_room_id", using: :btree
-  add_index "complaints", ["service_id"], name: "index_complaints_on_service_id", using: :btree
 
   create_table "detail_of_cash_counts", force: :cascade do |t|
     t.integer  "monto_sistema"
@@ -478,10 +491,14 @@ ActiveRecord::Schema.define(version: 20161101170148) do
   add_foreign_key "cleaning_rooms", "rooms"
   add_foreign_key "cleanings", "cleaning_rooms"
   add_foreign_key "cleanings", "rooms"
+  add_foreign_key "complaints", "complaint_services"
   add_foreign_key "complaints", "rooms"
+<<<<<<< HEAD
   add_foreign_key "complaints", "services"
   add_foreign_key "detail_of_cash_movements", "cash_movements"
   add_foreign_key "detail_of_cash_movements", "invoices"
+=======
+>>>>>>> ab4ec7d245a47600f65964ca9c623371bc7aca12
   add_foreign_key "detail_of_cash_movements", "payment_types"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"

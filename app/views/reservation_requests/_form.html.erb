@@ -1,6 +1,6 @@
 <%= nested_form_for(@reservation_request, html: { class: "form-horizontal", role: "form" }) do |f| %>
   <% if @reservation_request.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert" id="error">
+    <div class="alert alert-danger alert-dismissable" role="alert" id="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
       <h4><%= pluralize(@reservation_request.errors.count, "error") %> Ocurrio un error, por favor verifique los campos:</h4>
 
@@ -93,15 +93,14 @@
     
     <div class="form-group">
       <%= f.label :recaptcha_tags, class: "col-sm-2 sr-only" %>
-      <div class="col-sm-offset-1 col-sm-10">
+      <div class="col-sm-6 col-sm-10">
          <%= recaptcha_tags %>
       </div>
     </div>
    
     <div class="form-group">
-      <div class="col-sm-offset-1 col-sm-10">
+      <div class="col-sm-6 col-sm-10">
         <%= f.submit "Enviar Pedido",class: "btn btn-success" %>
       </div>
     </div>
-  
 <% end %>

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 		
 		$('#calendar').fullCalendar({
-			 height: 450,
+			 height: 600,
 			//theme: true,
 			header: {
 				left: 'prev,next today',
@@ -15,8 +15,8 @@ $(document).ready(function() {
 			// customize the button names,
 			// otherwise they'd all just say "list"
 			views: {
-				listDay: { buttonText: 'list day' },
-				listWeek: { buttonText: 'list week' }
+				listDay: { buttonText: 'listar Dia' },
+				listWeek: { buttonText: 'listar Semana' }
 			},
 
 			defaultView: 'month',
@@ -24,8 +24,7 @@ $(document).ready(function() {
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
-			
-			   events: "cleaning_rooms.json"
+			events: "/cleanings.json"
 		
 		});
 		
@@ -35,7 +34,10 @@ $(document).on('nested:fieldAdded', function(event) {
   var dateField, field;
   field = event.field;
   dateField = field.find('.datepicker');
-  dateField.datepicker();
-  $('#mytabla').validator()
+  dateField.datepicker({
+  	format: 'dd-mm-yyyy'});
+  field.validator();
+  //$('.datepi').validator();'option', {dateFormat: 'dd/mm/yy'}
+
 });
 

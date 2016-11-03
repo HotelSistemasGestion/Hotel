@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :cleanings
   resources :invoice_details
   resources :account_details
   resources :reservations
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
       get 'my_new'
     end
   end
-  resources :complaints
+  
   resources :accounting_entries
   resources :detail_of_payment_types
   resources :payment_types
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
   get 'ledger/mayor'
   get 'diary_book/diario'
   post 'diary_book/diario'
+
   resources :reservation_requests
   resources :services do
     get :autocomplete_service_nombre, :on => :collection
@@ -55,7 +57,9 @@ Rails.application.routes.draw do
     get :autocomplete_client_cedula, :on => :collection
   end
   devise_for :users
-
+  resources :complaints do
+    get :autocomplete_complaint_service_description, :on => :collection
+  end  
   get 'dashboard/index'
   get 'welcome/index'
 

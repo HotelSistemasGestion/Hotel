@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 @import "bootstrap-datepicker3";
 @import "daterangepicker-bs3";
 @import "magnific-popup";
@@ -15,6 +16,7 @@
 @import "skin";
 @import "custom";
 @import "font-awesome";
-
+@import "rails_bootstrap_forms";
 @import "rooms";
 @import "fullcalendar";
+@import "complaints";
