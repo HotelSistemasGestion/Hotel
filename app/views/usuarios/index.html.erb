@@ -1,12 +1,5 @@
-<% if can? :manage, :all %>
-	<div class="table-responsive">
-	  	<center><h1> Administración de Usuarios </h1></center>	  	
-	  			<%= link_to new_usuario_path, class: 'btn btn-success pull-right btn-lg', title: 'Nuevo Usuario', 'data-toggle' => 'tooltip', 'data-placement' => 'left' do %>
-	    			<span class= "glyphicon glyphicon-plus"></span>
-	    		<% end %>	    
-	    <br><br>
-	    <%= render 'table' %>
-	</div>
+<% if can? :manage, :all %>		  							  	    
+	<br><%= render 'table' %>
 <% else %>
 	<script type="text/javascript">
     	window.location.href="/users/sign_in"  // put your correct path in a string here
