@@ -118,7 +118,7 @@ Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complai
 Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: false,room_id: 1);
 Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: false,room_id: 1);
 
-User.create(:email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456',roles_mask:1);
+User.create(:username => "Ariel", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456',roles_mask:1);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", type_of_room_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", type_of_room_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
