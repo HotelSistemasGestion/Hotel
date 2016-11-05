@@ -25,7 +25,6 @@ class ApplicationController < ActionController::Base
  	# Ips permitidos
  	def ip_block
     %w{
-       
         127.0.0.1
         127.0.0.0
         10.0.0.1
@@ -34,7 +33,6 @@ class ApplicationController < ActionController::Base
         192.168.0.0
         0.0.0.0
         localhost
-        
     }
 	end
 

@@ -532,10 +532,26 @@ $(document).ready(function() {
 
 	}
 	
+	var complaintSelector = function(){
+    $("#complaint_selector").change(function(){
+        if($("#complaint_selector").val() == "5"){
+
+
+        	console.log($("#complaint_selector").val());
+          $(".hide_complaint_selector").fadeIn('fast');   
+        }else {
+        	console.log($("#complaint_selector").val());
+         $(".hide_complaint_selector").fadeOut('fast');  
+        }   
+    });        
+;}
+
+	
 	// Call the functions 
 	magnifPopup();
 	magnifVideo();
 	gotoAlert();
 	gotoComplaint();
+	complaintSelector();
 	
 });

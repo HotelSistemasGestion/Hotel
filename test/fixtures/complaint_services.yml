@@ -2,10 +2,6 @@
 
 one:
   description: MyString
-  state: false
-  room: 
 
 two:
   description: MyString
-  state: false
-  room: 

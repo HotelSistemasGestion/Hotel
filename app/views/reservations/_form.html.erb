@@ -14,40 +14,49 @@
 
 
   <div class="form-group">
-    <%= f.label :nombre, class: "col-sm-2 control-label" %>
+    <%= f.label :nombre, class: "col-sm-1 control-label" %>
+    <%= f.label @my_reservation_requests.nombre, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :nombre,value:@my_reservation_requests.nombre, class: "form-control" , :readonly => true%>
+      <%= f.hidden_field :nombre,value:@my_reservation_requests.nombre, class: "form-control" , :readonly => true%>
     </div>
- 
-    <%= f.label :apellido, class: "col-sm-2 control-label" %>
+    <%= f.label :apellido, class: "col-sm-1 control-label" %>
+    <%= f.label @my_reservation_requests.apellido, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :apellido,value:@my_reservation_requests.apellido, class: "form-control" , :readonly => true%>
+      <%= f.hidden_field :apellido,value:@my_reservation_requests.apellido, class: "form-control" , :readonly => true%>
     </div>
   </div>
 
 
   <div class="form-group">
-    <%= f.label :check_in, class: "col-sm-2 control-label" %>
+    <%= f.label :check_in, class: "col-sm-1 control-label" %>
+    <%= f.label @my_reservation_requests.check_in, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :check_in,value:@my_reservation_requests.check_in, class: "form-control", :readonly => true %>
+      <%= f.hidden_field :check_in,value:@my_reservation_requests.check_in, class: "form-control", :readonly => true %>
     </div>
-  
-    <%= f.label :check_out, class: "col-sm-2 control-label" %>
+    <%= f.label :dias, class: "col-sm-1 control-label" %>
+    <%= f.label (@my_reservation_requests.check_out.to_date - @my_reservation_requests.check_in.to_date).to_i, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :check_out,value:@my_reservation_requests.check_out, class: "form-control" , :readonly => true%>
+      <%= f.hidden_field :check_out,value:(@my_reservation_requests.check_out.to_date - @my_reservation_requests.check_in.to_date).to_i, class: "form-control" , :readonly => true%>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :type_of_room_id, class: "col-sm-2 control-label" %>
+    <%#= f.label @my_reservation_requests.type_of_room_id, class: "col-sm-1 control-label" %>
     <div class="col-sm-8">
-      <%= f.text_field :type_of_room_id, value:@my_reservation_requests.type_of_room_id, class: "form-control", :readonly => true %>
+      <%= f.hidden_field :type_of_room_id, value:@my_reservation_requests.type_of_room_id, class: "form-control", :readonly => true %>
+      
+      <%#= f.select :type_of_room_id,TypeOfRoom.all.collect { |p| [ p.tipo , p.id ] },
+                  {:selected =>@my_reservation_requests.type_of_room_id}, {class: "form-control"} %>
+      <%= %>
     </div>
   </div>
 
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
+    <div class="col-sm-10">
+      
+      <%= button_tag( :class => "btn btn-primary") do %>
+        <i class="glyphicon glyphicon-floppy-save"></i> Guardar 
+      <% end %>
     </div>
   </div>
 <% end %>
