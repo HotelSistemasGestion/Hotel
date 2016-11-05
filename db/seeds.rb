@@ -102,9 +102,10 @@ Photo.create(room_id: 1, my_file:"image/upload/v1477017980/dszqxru3husf5tv6toxg.
 TypesOfEmployee.create(tipo: "administrador", descripcion: "");
 TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
 TypesOfEmployee.create(tipo: "botones", descripcion: "");
+TypesOfEmployee.create(tipo: "cajero", descripcion: "");
 
 Employee.create(nombre: "Pedro", types_of_employee_id: 2);
-
+Employee.create(nombre: "Marcos", types_of_employee_id: 4);
 
 ComplaintService.create(description: "Limpieza");
 ComplaintService.create(description: "Servicio a Cuarto");
@@ -128,3 +129,7 @@ ReservationRequest.create(nombre: "Katya", apellido: "Chaparro", email: "katya.c
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", type_of_room_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", type_of_room_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 
+PaymentType.create(descripcion: "efectivo");
+PaymentType.create(descripcion: "cheque");
+PaymentType.create(descripcion: "tarjeta credito");
+PaymentType.create(descripcion: "tarjeta debito");

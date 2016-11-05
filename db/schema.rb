@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101170148) do
+ActiveRecord::Schema.define(version: 20161104172550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -273,16 +273,6 @@ ActiveRecord::Schema.define(version: 20161101170148) do
   add_index "detail_of_cash_movements", ["invoice_id"], name: "index_detail_of_cash_movements_on_invoice_id", using: :btree
   add_index "detail_of_cash_movements", ["payment_type_id"], name: "index_detail_of_cash_movements_on_payment_type_id", using: :btree
 
-  create_table "detail_of_payment_types", force: :cascade do |t|
-    t.string   "titular"
-    t.string   "banco"
-    t.integer  "numero"
-    t.string   "tipo_tarjeta"
-    t.date     "fecha_disponibilidad"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
   create_table "employees", force: :cascade do |t|
     t.integer  "types_of_employee_id"
     t.string   "nombre"
@@ -340,8 +330,13 @@ ActiveRecord::Schema.define(version: 20161101170148) do
 
   create_table "payment_types", force: :cascade do |t|
     t.string   "descripcion"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "titular"
+    t.string   "banco"
+    t.integer  "n_cheque"
+    t.string   "tarjeta_tipo"
+    t.date     "fecha_disponibilidad"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "photos", force: :cascade do |t|

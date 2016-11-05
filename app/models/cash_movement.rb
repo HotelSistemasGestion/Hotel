@@ -3,7 +3,6 @@ class CashMovement < ActiveRecord::Base
 	belongs_to :opening_cash
 	belongs_to :accounting_entry
 	belongs_to :client
-	belongs_to :payment_type
 
 	has_many :detail_of_cash_movements, :dependent => :destroy
 
