@@ -41,6 +41,7 @@ gem 'sendgrid-rails', '~> 2.0'
 gem 'carrierwave'
 gem 'cloudinary'
 
+
 #Styling hmtl emails
 gem 'nokogiri'
 gem 'premailer-rails'

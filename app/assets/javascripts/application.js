@@ -27,6 +27,8 @@
 //= require es.js
 //= require underscore
 //= requrie gmaps/google
+//= require bootstrap-colorpicker
+//= require bootstrap-colorpicker.min
 
   $(document).ready(function() {
     $.validate();
