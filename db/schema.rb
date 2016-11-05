@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104172550) do
+
+ActiveRecord::Schema.define(version: 20161104144522) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -307,11 +309,12 @@ ActiveRecord::Schema.define(version: 20161104172550) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "nombre"
-    t.string   "apellido"
     t.string   "direccion"
     t.string   "ruc"
     t.integer  "total"
     t.integer  "subtotal"
+    t.string   "celular"
+    t.string   "correo"
   end
 
   add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
