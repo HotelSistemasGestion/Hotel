@@ -25,9 +25,9 @@
               </div>  
 
               <div class="col-md-4">
-                  <%= f.label "Tipo de Habitacion" %><br>
+                  <%= f.label "Tipo de Confort" %><br>
                   <%#= f.text_field :type_of_room_id,value: @my_reservation_requests.type_of_room_id, class: "form-control", placeholder: "" %> 
-                  <%= f.select :coomfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ] },
+                  <%= f.select :comfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ] },
                   {:selected =>f.object.comfort_id}, {class: "form-control"} %>
               </div>
 

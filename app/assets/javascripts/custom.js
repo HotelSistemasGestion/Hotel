@@ -13,13 +13,20 @@ $(document).ready(function(){
 init_function();
 	console.log("Estoy funcionando En custom.Js,Aqui van los Javascript Caseros");
 
+ 
+
       $('.datepicker').each(function(){
           //var datepicker = $.fn.datepicker.noConflict();
           //$.fn.bootstrapDP = datepicker;  
           //$("#dp3").bootstrapDP();  
 
 
-      $(this).datepicker({format: 'yyyy-mm-dd', autoclose: true});
+          $(this).datepicker({
+            format: 'dd-mm-yyyy',
+            language: 'es',
+            startDate: '+1d', 
+            autoclose: true}
+            );
     });
 
 

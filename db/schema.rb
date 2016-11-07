@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20161030025044) do
   create_table "budgets", force: :cascade do |t|
     t.integer  "reservation_request_id"
     t.string   "email"
-    t.integer  "type_of_room_id"
+    t.integer  "comfort_id"
     t.integer  "cantidad_de_habitaciones"
     t.integer  "dias"
     t.integer  "descuento"
@@ -147,8 +147,8 @@ ActiveRecord::Schema.define(version: 20161030025044) do
     t.datetime "updated_at",               null: false
   end
 
+  add_index "budgets", ["comfort_id"], name: "index_budgets_on_comfort_id", using: :btree
   add_index "budgets", ["reservation_request_id"], name: "index_budgets_on_reservation_request_id", using: :btree
-  add_index "budgets", ["type_of_room_id"], name: "index_budgets_on_type_of_room_id", using: :btree
 
   create_table "cash_counts", force: :cascade do |t|
     t.date     "fecha_arqueo"
@@ -464,8 +464,8 @@ ActiveRecord::Schema.define(version: 20161030025044) do
   add_foreign_key "accounts", "clients"
   add_foreign_key "budget_details", "budgets"
   add_foreign_key "budget_details", "services"
+  add_foreign_key "budgets", "comforts"
   add_foreign_key "budgets", "reservation_requests"
-  add_foreign_key "budgets", "type_of_rooms"
   add_foreign_key "cash_movements", "accounting_entries"
   add_foreign_key "cash_movements", "clients"
   add_foreign_key "cash_movements", "opening_cashes"
