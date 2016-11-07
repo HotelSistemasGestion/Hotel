@@ -1,5 +1,5 @@
 class ReservationRequest < ActiveRecord::Base
-	belongs_to :type_of_room
+	belongs_to :comfort
 	has_many :budgets
 	validates :nombre, :presence => {:message => "no puede estar en blanco"}
 	validates :apellido, :presence => {:message => "no puede estar en blanco"}

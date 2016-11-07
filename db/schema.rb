@@ -348,7 +348,7 @@ ActiveRecord::Schema.define(version: 20161030025044) do
     t.string   "apellido"
     t.string   "email"
     t.string   "telefono"
-    t.integer  "type_of_room_id"
+    t.integer  "comfort_id"
     t.integer  "cantidad_de_adultos"
     t.integer  "cantidad_de_ninhos"
     t.integer  "cantidad_de_familias"
@@ -359,7 +359,7 @@ ActiveRecord::Schema.define(version: 20161030025044) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "reservation_requests", ["type_of_room_id"], name: "index_reservation_requests_on_type_of_room_id", using: :btree
+  add_index "reservation_requests", ["comfort_id"], name: "index_reservation_requests_on_comfort_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
     t.string   "nombre"
@@ -483,7 +483,7 @@ ActiveRecord::Schema.define(version: 20161030025044) do
   add_foreign_key "opening_cashes", "cashes"
   add_foreign_key "opening_cashes", "employees"
   add_foreign_key "photos", "rooms"
-  add_foreign_key "reservation_requests", "type_of_rooms"
+  add_foreign_key "reservation_requests", "comforts"
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "states"
