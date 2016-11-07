@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get 'my_new'
     end
   end
-  resources :complaints
+  
   resources :accounting_entries
   resources :detail_of_payment_types
   resources :payment_types
@@ -57,7 +57,9 @@ Rails.application.routes.draw do
     get :autocomplete_client_cedula, :on => :collection
   end
   devise_for :users
-
+  resources :complaints do
+    get :autocomplete_complaint_service_description, :on => :collection
+  end  
   get 'dashboard/index'
   get 'welcome/index'
 

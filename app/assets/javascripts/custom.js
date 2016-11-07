@@ -7,7 +7,6 @@ init_function=function(){
 
 };
 
-
 $(document).ready(function(){
 
 init_function();

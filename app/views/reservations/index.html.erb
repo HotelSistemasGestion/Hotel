@@ -18,7 +18,7 @@
         
             <th>Check in</th>
         
-            <th>Check out</th>
+            <th>Dias</th>
         
             <th>Tipo de Cuarto</th>
         
@@ -41,7 +41,7 @@
         
             <td><%= reservation.type_of_room_id %></td>
             
-            <td align="right"><%= link_to '', reservation,class: "btn btn-primary glyphicon glyphicon-eye-open" %>
+            <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
             <%= link_to '', edit_reservation_path(reservation),class: "btn btn-warning glyphicon glyphicon-pencil" %>
             <%= link_to '', reservation,class: "btn btn-danger glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Esta seguro?' } %></td>
           <% end %>
@@ -51,7 +51,7 @@
   </div>
   <div class="box-footer clearfix">
     <ul class="pagination pagination-sm no-margin pull-right">
-         <nav><%= paginate @reservations, :theme => 'twitter-bootstrap-3' %></nav>
+         <nav><%=paginate @reservations, :theme => 'twitter-bootstrap-3' %></nav>
     </ul>
     
   </div>

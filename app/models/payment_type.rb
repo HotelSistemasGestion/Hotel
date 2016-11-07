@@ -1,5 +1,6 @@
 class PaymentType < ActiveRecord::Base
-	has_many :detail_of_payment_type
-	has_many :detail_of_cash_count
-	has_many :cash_movement
+	belongs_to :detail_of_cash_movement
+	
+	has_many :detail_of_cash_counts
+	
 end
