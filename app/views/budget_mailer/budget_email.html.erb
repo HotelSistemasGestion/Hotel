@@ -34,7 +34,7 @@
 						    <tbody>
 						   <tbody>
  								<tr>
-						      		<td><%= TypeOfRoom.find(@reservation_request.type_of_room_id).tipo%></td>
+						      		<td><%= Comfort.find(@reservation_request.comfort_id).descripcion%></td>
 							      	<td><%= @reservation_request.cantidad_de_familias%></td>
 							      	<% dias=(@reservation_request.check_out.to_date - @reservation_request.check_in.to_date).to_i%>
 							      	<td><%=dias%></td>
@@ -98,7 +98,7 @@
 					    </thead>
 					    <tbody>
 					      <%= content_tag_for(:tr, @budget) do |budget| %>
-					      		<td><%= TypeOfRoom.find(@reservation_request.type_of_room_id).tipo%></td>
+					      		<td><%= Comfort.find(@reservation_request.comfort_id).descripcion%></td>
 					      		<td><%= @reservation_request.cantidad_de_familias%></td>
 					      		<td><%= @reservation_request.check_in.strftime("%d/%m/%Y")%></td>
 					      		<td><%= @reservation_request.check_out.strftime("%d/%m/%Y")%></td>

@@ -1,5 +1,6 @@
 class Invoice < ActiveRecord::Base
     belongs_to :client
+    belongs_to :detail_of_cash_movement
 
     has_many :invoice_details
 

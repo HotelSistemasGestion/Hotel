@@ -1,1 +1,0 @@
-json.partial! "detail_of_payment_types/detail_of_payment_type", detail_of_payment_type: @detail_of_payment_type

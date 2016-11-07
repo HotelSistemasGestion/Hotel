@@ -1,1 +1,0 @@
-json.array! @detail_of_payment_types, partial: 'detail_of_payment_types/detail_of_payment_type', as: :detail_of_payment_type
