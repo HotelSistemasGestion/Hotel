@@ -32,19 +32,19 @@
       <div class="input-group">
      </div>
       </div>
-      <div class="col-lg-4" >
+      <div class="col-lg-5" >
       <div class="input-group">
      </div>
       </div>
 
-      <div class="col-lg-4" >
+      <div class="col-lg-3 off-set 3" >
       <div class="input-group">
-       <%= form_tag complaints_path, :method => 'get' do %>
-
-      <%= text_field_tag :complaint_tag, params[:search], data: { autocomplete:autocomplete_complaint_service_description_complaints_path},type: "text",placeholder: "Buscar por Servicio",class:"form-control"%>
-
       <span class="input-group-btn">
-      <%= submit_tag "Go",type:"button",class:"btn btn-default"%>
+       <%= form_tag complaints_path, :method => 'get' do %>
+      <%= text_field_tag :search, params[:search], data: { autocomplete:autocomplete_complaint_service_description_complaints_path},type: "text",placeholder: "Buscar por Servicio",class:"form-control"%>
+      
+      <span class="input-group-btn">
+      <%= submit_tag "Buscar",class:"btn btn-default"%>
       </span>
        <% end %>
       </div>
@@ -52,8 +52,8 @@
       </div><!-- /.row -->
       <p></p>
       <%= content_tag_for(:tr, @complaints.order(id: :desc)) do |complaint| %>
-	    <td><%= complaint.room.identificador %></td>
-	    <td><%= complaint.complaint_service.description + " - " + complaint.service_description.to_s%></td>
+      <td><%= complaint.room.identificador %></td>
+      <td><%= complaint.complaint_service.description + " - " + complaint.service_description.to_s%></td>
       <td><%= complaint.description %></td>
       <td><%= complaint.created_at %></td>
       <td><%= link_to '', complaint,class: "btn btn-danger glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -66,11 +66,11 @@
     </tbody>
   </table>
    </div>
+   <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails, :container => false %>
+ </ul>
+ </div> 
     </div>
-  <div class="flickr_pagination">
-    <div class="page_info">
-      <%= page_entries_info @posts %>
-    </div>
-    <%= will_paginate @posts, :container => false %>
-  </div>
+  
 </div>

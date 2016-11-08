@@ -14,13 +14,13 @@
         
             <th>Nombre</th>
         
-            <th>Apellido</th>
-        
-            <th>Check in</th>
+            <th>Email</th>
         
             <th>Dias</th>
         
             <th>Tipo de Cuarto</th>
+        
+            <th>Total</th>
         
             <th></th>
             <th></th>
@@ -33,13 +33,13 @@
         
             <td><%= reservation.nombre %></td>
         
-            <td><%= reservation.apellido %></td>
+            <td><%= reservation.email %></td>
         
-            <td><%= reservation.check_in %></td>
-        
-            <td><%= reservation.check_out %></td>
+            <td><%= reservation.dias %></td>
         
             <td><%= reservation.type_of_room_id %></td>
+        
+            <td><%= reservation.total %></td>
             
             <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
             <%= link_to '', edit_reservation_path(reservation),class: "btn btn-warning glyphicon glyphicon-pencil" %>
