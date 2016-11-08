@@ -66,7 +66,7 @@
                   <th><%= li.number_field :sub_monto, :class => "form-control"%></td>
                   <th><%= li.select :payment_type_id, PaymentType.all.collect{|p| [p.descripcion, p.id]},{include_blank: false}  ,:class => "select"%></td>
                   
-                  <th class="cheque"  style="display: none">
+                  <th class="cheque" id="cheque-<%= li.index%>" style="display: none">
                       <%= li.text_field :payment_type_id, :class => "form-control" ,placeholder: "Banco"%>
                       <%= li.text_field :payment_type_id, :class => "form-control" ,placeholder: "Titular"%>
                     
