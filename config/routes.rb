@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   resources :complaints do
     get :autocomplete_complaint_service_description, :on => :collection
   end  
+  get 'reports/index'
   get 'dashboard/index'
   get 'welcome/index'
 
