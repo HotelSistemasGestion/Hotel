@@ -1,6 +1,9 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
+  autocomplete :room, :identificador, :extra_data => [:id, :type_of_room_id, :state_id]
+  
+
   # GET /rooms
   # GET /rooms.json
   def index
