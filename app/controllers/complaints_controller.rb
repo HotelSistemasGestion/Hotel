@@ -56,7 +56,7 @@ class ComplaintsController < ApplicationController
   # GET /complaints
   # GET /complaints.json
   def index
-     @complaints = Complaint.search(params[:searchs]).paginate(:per_page => 5, :page => params[:page])
+     @complaints = Complaint.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
      @reservation_request = ReservationRequest.new
 
   end

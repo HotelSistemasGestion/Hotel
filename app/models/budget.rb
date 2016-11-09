@@ -1,5 +1,6 @@
 class Budget < ActiveRecord::Base
 	belongs_to :reservation_request
+  belongs_to :comfort
 
 	has_many :budget_details,:dependent => :destroy 
 
@@ -10,7 +11,7 @@ class Budget < ActiveRecord::Base
 	validates :cantidad_de_habitaciones, 
           :presence => {:message => " no puede dejar en blanco " },
           :numericality  => { :more_than_or_equal_to => 0, :message => " debe ser mayor a 0"}
-    validates :dias, 
+  validates :dias, 
           :presence => {:message => " no puede dejar en blanco" },
           :numericality  => { :more_than_or_equal_to => 0, :message => " debe ser mayor a 0"}
 

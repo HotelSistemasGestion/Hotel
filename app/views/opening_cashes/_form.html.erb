@@ -26,7 +26,7 @@
                   <div class="form-group">
                     <%= f.label :caja, class: "col-sm-5 control-label" %>
                     <div class="col-sm-7">
-                      <%= f.select :cash_id ,Cash.all.collect { |c| [c.descripcion, c.id ] },{include_blank: false},class: "form-control",:required => true %>
+                      <%= f.select :cash_id ,Cash.where(estado: "Cerrada").all.collect { |c| [c.descripcion, c.id ] },{include_blank: false},class: "form-control",:required => true %>
                       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                   </div>  
@@ -36,7 +36,7 @@
                   <div class="form-group">
                     <%= f.label :cajero, class: "col-sm-2 control-label"%>
                     <div class="col-sm-7">
-                      <%= f.select :employee_id ,Employee.all.collect { |e| [e.full_name, e.id ] },{include_blank: false},class: "form-control",:required => true %>
+                      <%= f.select :employee_id ,Employee.joins(:types_of_employee).where(types_of_employees: {tipo: 'cajero'}).all.collect { |e| [e.full_name, e.id ] },{include_blank: false},class: "form-control",:required => true %>
                       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                   </div>  
