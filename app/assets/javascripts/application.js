@@ -36,7 +36,7 @@
 //= underscore-min.map
 
 
-//= require filterrific/filterrific-jquery
+
 
   $(document).ready(function() {
     $.validate();
