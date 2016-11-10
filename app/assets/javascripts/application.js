@@ -32,7 +32,7 @@
 //= require underscore
 //= requrie gmaps/google
 //= require bootstrap-colorpicker
-//= require bootstrap-colorpicker.min
+//= underscore-min.map
 
   $(document).ready(function() {
     $.validate();
