@@ -1,0 +1,30 @@
+<div class="box" style="margin-bottom:10px">
+<div class="box-header">
+<div class="row">
+<%= form_for_filterrific @filterrific do |f| %>
+
+    <div class="col-xs-3" style="width:250px">
+    
+    <%= f.text_field(:sorted_by,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por servicio")%>
+    </div>
+    <div class="col-xs-3" style="width:300px">
+    <%= f.text_field(:created_at_gte, class: 'r_datepicker_complaint  form-control',placeholder:"Desde")%>
+    </div>
+     <div class="col-xs-3" style="width:300px">
+    <%= f.text_field(:created_at_lt, class: 'r_datepicker_complaint_lt  form-control',placeholder:"Hasta")%>
+    </div>
+    <div class="col-xs-3" style="width:255px">
+   <%= f.select(:sorted_by_identificador,
+      @filterrific.select_options[:sorted_by_identificador],
+      { include_blank: '- Habitacion -' },{ :class => 'form-control' })%>
+    </div>
+    
+   <%= render_filterrific_spinner %>
+<% end %>
+</div>
+</div>
+</div>
+<%= render(
+  partial: 'complaints/list',
+  locals: { complaints: @complaints }
+) %>

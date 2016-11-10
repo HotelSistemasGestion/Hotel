@@ -60,6 +60,9 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :complaints do
+    collection do
+      get 'my_new'
+    end
     get :autocomplete_complaint_service_description, :on => :collection
   end  
   get 'reports/index'

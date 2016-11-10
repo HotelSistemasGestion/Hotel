@@ -172,3 +172,16 @@ init_function();
       ///ACA TERMINA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
 /*-----------------------------------------------------------------*/
  
+   ///Scripts para los reportes
+/*-----------------------------------------------------------------*/
+
+ $(document).ready(function(){
+    $('.r_datepicker_complaint').datepicker({
+    format: 'yyyy/mm/dd 00:00:00'
+});
+    $('.r_datepicker_complaint_lt').datepicker({
+    format: 'yyyy/mm/dd 23:59:59'
+});
+})
+  ///Scripts para los reportes
+/*-----------------------------------------------------------------*/

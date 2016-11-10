@@ -31,8 +31,12 @@
 //= require es.js
 //= require underscore
 //= requrie gmaps/google
+
 //= require bootstrap-colorpicker
 //= underscore-min.map
+
+
+//= require filterrific/filterrific-jquery
 
   $(document).ready(function() {
     $.validate();
