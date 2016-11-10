@@ -11,5 +11,5 @@ class OpeningCash < ActiveRecord::Base
     validates :fecha_apertura, presence: true
 
     delegate :descripcion, to: :cash, prefix: true, allow_nil: true
-    delegate :nombre, :apellido, to: :employee, prefix: true, allow_nil: true
+    delegate :nombre, :apellido, :type_of_employee_id, to: :employee, prefix: true, allow_nil: true
 end

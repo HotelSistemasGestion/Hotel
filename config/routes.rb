@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :employees do
     get :autocomplete_employee_cedula, :on => :collection
   end
+  resources :rooms do
+    get :autocomplete_room_identificador, :on => :collection
+  end
   resources :budget_details
   resources :budgets do
   collection do
@@ -37,7 +40,6 @@ Rails.application.routes.draw do
   end
 
   resources :cashes
-  resources :rooms
   resources :type_of_rooms
   resources :accounting_entries
   resources :accounting_accounts
@@ -60,6 +62,7 @@ Rails.application.routes.draw do
   resources :complaints do
     get :autocomplete_complaint_service_description, :on => :collection
   end  
+  get 'reports/index'
   get 'dashboard/index'
   get 'welcome/index'
 
