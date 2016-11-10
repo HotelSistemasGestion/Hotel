@@ -65,6 +65,23 @@ class ComplaintsController < ApplicationController
   def show
   end
 
+  def my_new
+  @filterrific = initialize_filterrific(
+    Complaint,
+    params[:filterrific],select_options: {
+        sorted_by_identificador: Room.options_for_sorted_by_identificador
+      },
+     persistence_id: false
+  ) or return
+
+  @complaints = @filterrific.find.page(params[:page])
+
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
    private
     # Use callbacks to share common setup or constraints between actions.
     def set_complaint

@@ -10,4 +10,9 @@ class Room < ActiveRecord::Base
   accepts_nested_attributes_for :room_comforts ,:allow_destroy => true, update_only: true
   accepts_nested_attributes_for :photos ,:allow_destroy => true, update_only: true
   paginates_per 2 
+
+  #Metodo utilizado por filtros dentro de reportes para quejas
+  def self.options_for_sorted_by_identificador
+    order('LOWER(identificador)').map { |e| [e.identificador, e.id] }
+  end
 end 

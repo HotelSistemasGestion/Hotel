@@ -31,7 +31,7 @@
 //= require es.js
 //= require underscore
 //= requrie gmaps/google
-
+//= require filterrific/filterrific-jquery
   $(document).ready(function() {
     $.validate();
   });
