@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107210018) do
+ActiveRecord::Schema.define(version: 20161108205009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,13 +112,18 @@ ActiveRecord::Schema.define(version: 20161107210018) do
     t.date     "fecha_entrada"
     t.date     "fecha_salida"
     t.integer  "total"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "nombre"
     t.string   "apellido"
     t.string   "direccion"
     t.string   "ruc"
     t.integer  "room_id"
+    t.string   "identificador_hab"
+    t.string   "telefono"
+    t.string   "correo"
+    t.integer  "subtotal"
+    t.integer  "descuento"
   end
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
@@ -152,8 +157,6 @@ ActiveRecord::Schema.define(version: 20161107210018) do
   create_table "budgets", force: :cascade do |t|
     t.integer  "reservation_request_id"
     t.integer  "comfort_id"
-    t.date     "check_in"
-    t.date     "check_out"
     t.text     "comentario"
     t.integer  "descuento"
     t.integer  "total"

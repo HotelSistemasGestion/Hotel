@@ -12,8 +12,8 @@ class ReservationRequestsController < ApplicationController
   # GET /reservation_requests
   # GET /reservation_requests.json
   def index
-    #@reservation_requests = ReservationRequest.all.reverse
-    @reservation_requests = ReservationRequest.order(created_at: :desc).page params[:page]
+    @reservation_requests = ReservationRequest.all
+    @reservation_requests = Kaminari.paginate_array(@reservation_requests).page(params[:page]).per(5)
   end
 
   # GET /reservation_requests/1

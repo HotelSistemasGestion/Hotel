@@ -71,7 +71,7 @@
       <!-- Table row -->
       <div class="row">
         <div class="col-xs-12 table-responsive">
-          <table class="table table-striped">
+          <table class="table table-striped" id="table">
             <thead>
             <tr>
               <th>Cantidad</th>
@@ -81,7 +81,6 @@
             </tr>
             </thead>
             <tbody>
-        
               <%= f.fields_for :invoice_details  ,:wrapper => false do |li| %>
               <tr class="fields">
 
@@ -90,18 +89,19 @@
                   <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
 
                   <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
-
+                  
                   <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
                   :multiple => true, :update_elements => {:id => id,:precio => ayudante },class: "ui-autocomplete-input"%>
                   <%= li.hidden_field  :service_id%></td>
                   <td><%= li.number_field  :ayudante,class: "escuchable",readonly: true%></td>
                   <td><%= li.number_field :subtotal,:class => "subtotal",readonly: true%></td>
-                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn glyphicon glyphicon-trash ", title: 'Eliminar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' %></td>
+                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn glyphicon glyphicon-trash", title: 'Eliminar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' %></td>
               </tr>
               <%end%>
               <tr>
                 <td><%= f.link_to_add "", :invoice_details , :class => "btn glyphicon glyphicon-plus", title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth'%></td>
-              </tr>
+              </tr>        
+             
 
           </tbody>
           </table>
@@ -119,15 +119,15 @@
               <tbody>
                 <tr>
                   <th>Subtotal:</th>
-                  <td><%= f.text_field :subtotal,readonly: true, value: 0%></td>
+                  <td><%= f.text_field :subtotal,readonly: true, id: 'subtotal'%></td>
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td><%= f.number_field :descuento ,min: 0, max: 100,value: 0%></td>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100,id: 'descuento'%></td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td><%= f.text_field :total,readonly: true, value: 0%></td>
+                  <td><%= f.text_field :total,readonly: true, id: 'total' %></td>
                 </tr>
               </tbody>
             </table>
@@ -140,7 +140,7 @@
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
-          <a href="" target="_blank" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
+          <a class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
           <!--<button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Facturar
           </button>-->
           <%= f.submit 'Facturar', class: "btn btn-success pull-right" %>

@@ -12,7 +12,7 @@ class ReservationRequest < ActiveRecord::Base
 	###
 	validate  :validacion_fecha  #
 	
-	paginates_per 6 #solo puse 3 para probar
+	#paginates_per 6 #solo puse 3 para probar
 
     def validacion_fecha
       if !check_in.blank? && check_in < Date.today

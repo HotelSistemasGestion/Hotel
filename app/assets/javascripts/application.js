@@ -33,6 +33,12 @@
 //= require underscore
 //= requrie gmaps/google
 
+//= require bootstrap-colorpicker
+//= underscore-min.map
+
+
+
+
   $(document).ready(function() {
     $.validate();
   });
