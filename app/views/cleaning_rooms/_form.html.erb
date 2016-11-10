@@ -71,20 +71,17 @@ placeholder:"Fin"%>
                      <script>
     $(function() {
         $('#cp7').hide();
-
         $('#cp4').colorpicker({ format: "hex"});
         $('#cp4').colorpicker().on('changeColor', function(e) {
-          //  $('#cp4').style.backgroundColor = e.color.toHex();    <i id="cp6"class="glyphicon glyphicon-text-color colorpicker-component"></i>
-
+         
             $('#cp5').css({"backgroundColor" : e.color.toHex()});
             $('#cp7').val( e.color.toHex());
 
         });
         $('#cp6').colorpicker({ format: "hex"});
         $('#cp6').colorpicker().on('changeColor', function(e) {
-          //  $('#cp4').style.backgroundColor = e.color.toHex();
 
-           $('#cp5').css({'color' : e.color.toHex()});
+            $('#cp5').css({'color' : e.color.toHex()});
          
 
         });
