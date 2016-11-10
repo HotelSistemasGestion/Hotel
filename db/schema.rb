@@ -442,6 +442,7 @@ ActiveRecord::Schema.define(version: 20161108205009) do
   create_table "type_of_rooms", force: :cascade do |t|
     t.string   "tipo"
     t.string   "descripcion"
+    t.integer  "precio"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

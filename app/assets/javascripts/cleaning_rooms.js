@@ -1,6 +1,8 @@
 $(document).ready(function() {
+
 		
 		$('#calendar').fullCalendar({
+
 			 height: 600,
 			//theme: true,
 			header: {
@@ -20,7 +22,7 @@ $(document).ready(function() {
 			},
 
 			defaultView: 'month',
-			defaultDate: '2016-10-12',
+			
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
@@ -41,12 +43,14 @@ $(document).on('nested:fieldAdded', function(event) {
   colorField = field.find('.colorpicker-component');
   inputField = field.find('.input');
   colorField.colorpicker({ format: "hex"});
+   $(inputField[1]).hide();
   $(colorField[0]).colorpicker().on('changeColor', function(e) {
             $(inputField[0]).css({"backgroundColor" : e.color.toHex()})
+            $(inputField[1]).val( e.color.toHex());
   });
   $(colorField[1]).colorpicker().on('changeColor', function(e) {
             $(inputField[0]).css({'color' : e.color.toHex()});
-            $(inputField[1]).val( e.color.toHex());
+
   });
 
   //$('.datepi').validator();'option', {dateFormat: 'dd/mm/yy'}
