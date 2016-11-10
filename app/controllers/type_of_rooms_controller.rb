@@ -1,6 +1,11 @@
 class TypeOfRoomsController < ApplicationController
   before_action :set_type_of_room, only: [:show, :edit, :update, :destroy]
 
+  autocomplete :type_of_room, :tipo, :extra_data => [:id] do |items|
+    respond_to do |format|
+      format.json { render :json => @items }
+    end
+  end
   # GET /type_of_rooms
   # GET /type_of_rooms.json
   def index

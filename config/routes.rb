@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :budget_room_details
+  resources :budget_service_details
   resources :cleanings
   resources :invoice_details
   resources :account_details
@@ -9,7 +11,6 @@ Rails.application.routes.draw do
   resources :employees do
     get :autocomplete_employee_cedula, :on => :collection
   end
-  resources :budget_details
   resources :budgets do
   collection do
       get 'my_new'
@@ -38,7 +39,9 @@ Rails.application.routes.draw do
 
   resources :cashes
   resources :rooms
-  resources :type_of_rooms
+  resources :type_of_rooms do
+     get :autocomplete_type_of_room_tipo, :on => :collection
+  end
   resources :accounting_entries
   resources :accounting_accounts
   resources :account_plans

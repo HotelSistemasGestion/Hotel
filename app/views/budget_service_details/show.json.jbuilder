@@ -1,0 +1,1 @@
+json.partial! "budget_service_details/budget_service_detail", budget_service_detail: @budget_service_detail

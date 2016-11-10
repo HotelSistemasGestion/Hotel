@@ -1,3 +1,4 @@
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -5,10 +6,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-TypeOfRoom.create(tipo: "simple",descripcion:"");
-TypeOfRoom.create(tipo: "doble",descripcion:"");
-TypeOfRoom.create(tipo: "matrimonial",descripcion:"");
-TypeOfRoom.create(tipo: "suite",descripcion:"");
+TypeOfRoom.create(tipo: "Simple",descripcion:"");
+TypeOfRoom.create(tipo: "Doble",descripcion:"");
+TypeOfRoom.create(tipo: "Matrimonial",descripcion:"");
+TypeOfRoom.create(tipo: "Suite",descripcion:"");
 
 State.create(descripcion: "libre");
 State.create(descripcion: "ocupado");
