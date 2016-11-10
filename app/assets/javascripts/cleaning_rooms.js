@@ -46,6 +46,7 @@ $(document).on('nested:fieldAdded', function(event) {
   });
   $(colorField[1]).colorpicker().on('changeColor', function(e) {
             $(inputField[0]).css({'color' : e.color.toHex()});
+            $(inputField[1]).val( e.color.toHex());
   });
 
   //$('.datepi').validator();'option', {dateFormat: 'dd/mm/yy'}

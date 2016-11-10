@@ -204,6 +204,8 @@ ActiveRecord::Schema.define(version: 20161108205009) do
     t.date     "start"
     t.date     "end"
     t.string   "title"
+    t.string   "color"
+    t.string   "textColor"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end

@@ -66,15 +66,18 @@ placeholder:"Fin"%>
                     <td>
                   <button id="cp4"class="btn btn-primary glyphicon glyphicon-text-background colorpicker-component"></button>
                   <button id="cp6"class="btn btn-primary glyphicon glyphicon-text-color colorpicker-component"></button>   
-                  
+                  <%= li.text_field :color, id:"cp7", class: "form-control input "%>
                  
                      <script>
     $(function() {
+        $('#cp7').hide();
+
         $('#cp4').colorpicker({ format: "hex"});
         $('#cp4').colorpicker().on('changeColor', function(e) {
           //  $('#cp4').style.backgroundColor = e.color.toHex();    <i id="cp6"class="glyphicon glyphicon-text-color colorpicker-component"></i>
 
-            $('#cp5').css({"backgroundColor" : e.color.toHex()})
+            $('#cp5').css({"backgroundColor" : e.color.toHex()});
+            $('#cp7').val( e.color.toHex());
 
         });
         $('#cp6').colorpicker({ format: "hex"});
@@ -82,6 +85,7 @@ placeholder:"Fin"%>
           //  $('#cp4').style.backgroundColor = e.color.toHex();
 
            $('#cp5').css({'color' : e.color.toHex()});
+         
 
         });
           
