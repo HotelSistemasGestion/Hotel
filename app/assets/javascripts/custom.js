@@ -148,8 +148,8 @@ init_function();
             }     
         });
         return sum;
-    }
-
+    
+}
 
        function actualizartotal(){
            

@@ -77,6 +77,8 @@ class InvoicesController < ApplicationController
                                       :numero, 
                                       :client_id, 
                                       :fecha, 
-                                      :descuento)
+                                      :descuento,
+                                      :subtotal,
+                                      :total)
     end
 end
