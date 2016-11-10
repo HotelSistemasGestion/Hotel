@@ -21,7 +21,8 @@
   </div>
 <div id="cp2" class="col-sm-1 input-group colorpicker-component">
     
-    <span  class="input-group-addon"><i class="fa fa-fw fa-paint-brush"></i></span>
+    <span  class="input-group-addon"></span>
+    <i class="fa fa-fw fa-paint-brush"></i>
 </div>
 <script>
     $(function() {
@@ -37,6 +38,7 @@
               <th>Desde</th>
               <th>Hasta</th>
               <th>Etiqueta</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -57,9 +59,35 @@
 placeholder:"Fin"%>
                      <div class="help-block with-errors">*requerido</div>
                     </td>
-                      <td class="form-group has-feedback">
-                      <%= li.text_field :title, class: "form-control", placeholder:"Fin",:required=>true%>
-                     <div class="help-block with-errors">*requerido</div>
+                      <td  class="form-group has-feedback">
+                      <%= li.text_field :title,id:"cp5", class: "form-control input ", placeholder:"Fin",:required=>true%>
+                     <div class="help-block with-errors">*requerido</div>   
+                    </td>
+                    <td>
+                  <button id="cp4"class="btn btn-primary glyphicon glyphicon-text-background colorpicker-component"></button>
+                  <button id="cp6"class="btn btn-primary glyphicon glyphicon-text-color colorpicker-component"></button>   
+                  
+                 
+                     <script>
+    $(function() {
+        $('#cp4').colorpicker({ format: "hex"});
+        $('#cp4').colorpicker().on('changeColor', function(e) {
+          //  $('#cp4').style.backgroundColor = e.color.toHex();    <i id="cp6"class="glyphicon glyphicon-text-color colorpicker-component"></i>
+
+            $('#cp5').css({"backgroundColor" : e.color.toHex()})
+
+        });
+        $('#cp6').colorpicker({ format: "hex"});
+        $('#cp6').colorpicker().on('changeColor', function(e) {
+          //  $('#cp4').style.backgroundColor = e.color.toHex();
+
+           $('#cp5').css({'color' : e.color.toHex()});
+
+        });
+          
+    });
+    
+</script>
                     </td>
                   <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
               </tr>
