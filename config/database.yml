@@ -22,6 +22,7 @@ development:
   pool: 5
   username: postgres
   password: admin
+
 test:
   adapter: postgresql
   encoding: unicode
