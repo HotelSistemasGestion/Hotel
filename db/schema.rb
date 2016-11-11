@@ -156,8 +156,15 @@ ActiveRecord::Schema.define(version: 20161108205009) do
 
   create_table "budgets", force: :cascade do |t|
     t.integer  "reservation_request_id"
+<<<<<<< HEAD
     t.integer  "comfort_id"
     t.text     "comentario"
+=======
+    t.string   "email"
+    t.integer  "comfort_id"
+    t.integer  "cantidad_de_habitaciones"
+    t.integer  "dias"
+>>>>>>> 1ff5dfc... Añadido boton y funcionalidad para imprimir reporte de quejas
     t.integer  "descuento"
     t.integer  "total"
     t.datetime "created_at",             null: false
@@ -487,10 +494,8 @@ ActiveRecord::Schema.define(version: 20161108205009) do
   add_foreign_key "account_x_plans", "account_plans"
   add_foreign_key "account_x_plans", "accounting_accounts"
   add_foreign_key "accounts", "clients"
-  add_foreign_key "budget_room_details", "budgets"
-  add_foreign_key "budget_room_details", "type_of_rooms"
-  add_foreign_key "budget_service_details", "budgets"
-  add_foreign_key "budget_service_details", "services"
+  add_foreign_key "budget_details", "budgets"
+  add_foreign_key "budget_details", "services"
   add_foreign_key "budgets", "comforts"
   add_foreign_key "budgets", "reservation_requests"
   add_foreign_key "cash_movements", "accounting_entries"
