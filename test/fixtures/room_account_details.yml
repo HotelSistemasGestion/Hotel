@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_id: 1
+  room_id: 1
+  precio: 1
+
+two:
+  account_id: 1
+  room_id: 1
+  precio: 1
