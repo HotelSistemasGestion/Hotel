@@ -21,14 +21,14 @@ development:
   database: sistema_hotel
   pool: 5
   username: postgres
-  password: 12345
+  password: admin
 test:
   adapter: postgresql
   encoding: unicode
   database: sistema_hotel_test
   pool: 5
   username: postgres
-  password: 12345
+  password: admin
 
   
 production:
@@ -37,5 +37,5 @@ production:
   database: sistema_hotel_production
   pool: 5
   username: postgres
-  password: 12345
+  password: admin
 
