@@ -18,16 +18,21 @@ class BudgetsController < ApplicationController
   # GET /budgets/new
   def new
     @budget = Budget.new
+    @budget.budget_service_details.build()
+    @budget.budget_room_details.build()
+    @my_reservation_requests = ReservationRequest.find(params[:id])
   end
 
   def my_new
     @budget = Budget.new
-    @budget.budget_details.build()
+    @budget.budget_service_details.build()
     @my_reservation_requests = ReservationRequest.find(params[:id])
   end
   # GET /budgets/1/edit
   def edit
     @my_budget = Budget.find(params[:id])
+    @my_reservation_requests = ReservationRequest.find(params[:id])
+
 
   end
 
@@ -38,7 +43,7 @@ class BudgetsController < ApplicationController
     @budget1 =  @budget
     respond_to do |format|
       if @budget.save
-        BudgetMailer.budget_email(@budget1).deliver_now
+        #BudgetMailer.budget_email(@budget1).deliver_now
         format.html { redirect_to @budget, notice: 'Budget was successfully created.' }
         format.json { render :show, status: :created, location: @budget }
       else
@@ -55,7 +60,7 @@ class BudgetsController < ApplicationController
     @budget1 =  @budget
     respond_to do |format|
       if @budget.update(budget_params)
-        BudgetMailer.budget_email(@budget1).deliver_now
+        #BudgetMailer.budget_email(@budget1).deliver_now
         format.html { redirect_to @budget, notice: 'Budget was successfully updated.' }
         format.json { render :show, status: :ok, location: @budget }
       else
@@ -83,6 +88,6 @@ class BudgetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def budget_params
-      params.require(:budget).permit(:id,:reservation_request_id, :email,:type_of_room_id,:cantidad_de_habitaciones, :dias, :descuento, :total, :budget_details_attributes => [:id, :cantidad, :service_id, :subtotal, :_destroy])
+      params.require(:budget).permit(:id,:reservation_request_id,:comfort_id,:comentario, :descuento, :total,:budget_room_details_attributes => [:id, :cantidad, :type_of_room_id,:check_in, :check_out, :subtotal, :_destroy], :budget_service_details_attributes => [:id, :cantidad, :service_id, :subtotal, :_destroy])
     end
 end

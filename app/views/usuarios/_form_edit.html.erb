@@ -8,7 +8,8 @@
               <div class="active tab-pane" id="activity">               
                 <!-- Post -->                    
                     <!-- /.box-header -->
-                    <!-- form start -->                                          <div class="box-body">
+                    <!-- form start -->                                          
+                    <div class="box-body">
                       <div class="form-group">
                           <h4 class="box-title">Informacion Personal</h4>
                             <div class="col-md-12">
@@ -55,24 +56,19 @@
                         </div>
                       </div> 
 
-                            <div class="box-body">
+                           <div class="box-body">
                               <div class="form-group">
                                 <h4 class="box-title">Rol</h4>
                                 <div class="col-md-12">
-                                <% for i in 0..4 %>
-                                 <% role = User::ROLES[i] %>
-                                   <%= check_box_tag  "user[roles][#{role}]", role, @usuario.roles.include?(role), {:name => "user[roles][]"}%>
-                                   <%= label_tag "user_roles_#{role}", role.to_s.humanize %><br />
-                                  <% end %>
-                                <%= hidden_field_tag "user[roles][]", "" %> 
+                                <%= f.select :rol_ids, Rol.all.collect {|x| [x.role, x.id]},{}, {:multiple => true, class: "selectpicker"} %>
                                 </div>                
                               </div>
-                            </div>       
+                            </div>     
                 <!-- /.post -->
               </div>                        
               <div class="box-footer">                
                 <%= f.submit "Actualizar", :class => 'btn btn-success pull-right'%>                
-                <%= link_to 'Cancelar', usuarios_path , class: 'btn btn-danger pull-right' %>
+                <%= link_to 'Cancelar', usuarios_path , class: 'btn btn-default pull-right' %>
               </div>
               <!-- /.tab-pane -->
             </div>
@@ -81,3 +77,11 @@
           <!-- /.nav-tabs-custom -->
         </div>
 <% end %>        
+
+<script type="text/javascript">
+  $('.selectpicker').selectpicker({
+    liveSearch: true,    
+    size: 5,
+    maxOptions: 1
+  });
+</script>

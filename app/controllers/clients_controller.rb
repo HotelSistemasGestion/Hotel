@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
   #load_and_authorize_resource
   before_action :set_client, only: [:show, :edit, :update, :destroy]
   #autocomplete :client, :cedula, :extra_data => [:email, :direccion, :ruc, :telefono]
-  autocomplete :client, :cedula, :display_value => :name, :extra_data => [:nombre, :apellido, :email, :direccion, :ruc, :telefono]
+  autocomplete :client, :cedula, :display_value => :name, :extra_data => [:id, :nombre, :apellido, :email, :direccion, :ruc, :telefono]
   #autocomplete :client, :cedula, :extra_data => [:ruc , :direccion] do |items|
   #  respond_to do |format|
    # format.json { render :json => @items }
@@ -69,6 +69,7 @@ class ClientsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

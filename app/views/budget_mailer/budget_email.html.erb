@@ -34,7 +34,7 @@
 						    <tbody>
 						   <tbody>
  								<tr>
-						      		<td><%= TypeOfRoom.find(@reservation_request.type_of_room_id).tipo%></td>
+						      		<td><%= Comfort.find(@reservation_request.comfort_id).descripcion%></td>
 							      	<td><%= @reservation_request.cantidad_de_familias%></td>
 							      	<% dias=(@reservation_request.check_out.to_date - @reservation_request.check_in.to_date).to_i%>
 							      	<td><%=dias%></td>
@@ -48,7 +48,7 @@
 						</div>
 		            </div>
 	            <!--ACA Van los servicios solicitados y/o propuestos de sugerencias. -->
-	            <%if  !@budget_details.empty? %>
+	            <%if  !@budget_service_details.empty? %>
 		            <div class="box" style= "background-color:#d2d6de !important" >
 		            	<div class="box-header with-border">
 		              		<h3 class="box-title" align="center">Detallado de Servicios que puedan interesarte.</h3>
@@ -64,12 +64,12 @@
 						      </tr>
 						    </thead>
 						    <tbody>
-						      <%= content_tag_for(:tr, @budget_details) do |budget_detail| %>
+						      <%= content_tag_for(:tr, @budget_service_details) do |budget_service_detail| %>
 
-						      		<% sum_de_subtotales=sum_de_subtotales+budget_detail.subtotal%>
-						            <td><%= budget_detail.cantidad %></td>
-						            <td><%= Service.find(budget_detail.service_id).nombre %></td>
-						            <td><%= budget_detail.subtotal %></td>
+						      		<% sum_de_subtotales=sum_de_subtotales+budget_service_detail.subtotal%>
+						            <td><%= budget_service_detail.cantidad %></td>
+						            <td><%= Service.find(budget_service_detail.service_id).nombre %></td>
+						            <td><%= budget_service_detail.subtotal %></td>
 						      <% end %>
 						    </tbody>
 						  </table>
@@ -98,7 +98,7 @@
 					    </thead>
 					    <tbody>
 					      <%= content_tag_for(:tr, @budget) do |budget| %>
-					      		<td><%= TypeOfRoom.find(@reservation_request.type_of_room_id).tipo%></td>
+					      		<td><%= Comfort.find(@reservation_request.comfort_id).descripcion%></td>
 					      		<td><%= @reservation_request.cantidad_de_familias%></td>
 					      		<td><%= @reservation_request.check_in.strftime("%d/%m/%Y")%></td>
 					      		<td><%= @reservation_request.check_out.strftime("%d/%m/%Y")%></td>

@@ -4,8 +4,8 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    #@reservations = Reservation.all
-    @reservations = Reservation.order(created_at: :desc).page params[:page]
+    @reservations = Reservation.all
+    @reservations = Kaminari.paginate_array(@reservations).page(params[:page]).per(2)
   end
 
   # GET /reservations/1
@@ -18,7 +18,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     @my_reservation_requests = ReservationRequest.find(params[:id])
     #@my_type_of_rooms = TypeOfRoom.find(params[:id])
-    #@my_budgets = Budget.find(params[:id])
+    @my_budgets = Budget.find(params[:id])
 
   end
 
@@ -77,6 +77,9 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:nombre, :apellido, :check_in, :check_out, :type_of_room_id)
+     # params.require(:reservation).permit(:nombre, :apellido, :check_in, :check_out, :type_of_room_id)
+     #json.extract! reservation, :id, :nombre, :apellido, :check_in, :check_out, :type_of_room_id, :created_at, :updated_at
+     #json.url reservation_url(reservation, format: :json)
+     params.require(:reservation).permit(:nombre, :email, :dias, :type_of_room_id, :total)
     end
 end

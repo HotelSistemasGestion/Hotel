@@ -19,6 +19,8 @@
 //= require np
 //= require app
 //= require custom
+//= require cash_module
+//= require budgets
 
 //= require underscore
 //= require gmaps/google
@@ -30,6 +32,12 @@
 //= require es.js
 //= require underscore
 //= requrie gmaps/google
+
+//= require bootstrap-colorpicker
+//= underscore-min.map
+//= require filterrific/filterrific-jquery
+
+
 
   $(document).ready(function() {
     $.validate();
