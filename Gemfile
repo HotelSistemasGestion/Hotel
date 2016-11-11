@@ -35,6 +35,9 @@ gem 'kaminari-bootstrap'
 #gema para paginacion de tablas
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
+gem 'sprockets-rails', '2.3.3'
+gem 'filterrific'
+
 #formularios anidados
 gem 'nested_form'
 #Envios de email
@@ -42,6 +45,7 @@ gem 'sendgrid-rails', '~> 2.0'
 
 gem 'carrierwave'
 gem 'cloudinary'
+
 
 #Styling hmtl emails
 gem 'nokogiri'

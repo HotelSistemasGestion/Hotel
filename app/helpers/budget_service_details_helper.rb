@@ -1,0 +1,2 @@
+module BudgetServiceDetailsHelper
+end

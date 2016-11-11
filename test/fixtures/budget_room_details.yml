@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  budget_id: 1
-  service_id: 1
+  budget: 1
   cantidad: 1
+  type_of_room: 1
   subtotal: 1
 
 two:
-  budget_id: 1
-  service_id: 1
+  budget: 1
   cantidad: 1
+  type_of_room: 1
   subtotal: 1

@@ -37,7 +37,21 @@ $(document).on('nested:fieldAdded', function(event) {
   dateField.datepicker({
   	format: 'dd-mm-yyyy'});
   field.validator();
+  var colorField  ,inputField;
+  colorField = field.find('.colorpicker-component');
+  inputField = field.find('.input');
+  colorField.colorpicker({ format: "hex"});
+  $(colorField[0]).colorpicker().on('changeColor', function(e) {
+            $(inputField[0]).css({"backgroundColor" : e.color.toHex()})
+  });
+  $(colorField[1]).colorpicker().on('changeColor', function(e) {
+            $(inputField[0]).css({'color' : e.color.toHex()});
+            $(inputField[1]).val( e.color.toHex());
+  });
+
   //$('.datepi').validator();'option', {dateFormat: 'dd/mm/yy'}
+      
+       
 
 });
 

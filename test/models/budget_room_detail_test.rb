@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BudgetDetailTest < ActiveSupport::TestCase
+class BudgetRoomDetailTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

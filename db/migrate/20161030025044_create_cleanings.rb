@@ -6,7 +6,9 @@ class CreateCleanings < ActiveRecord::Migration
       t.date :start
       t.date :end
       t.string :title
-
+      t.string :color
+      t.string :textColor
+      
       t.timestamps null: false
     end
   end

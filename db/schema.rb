@@ -112,28 +112,47 @@ ActiveRecord::Schema.define(version: 20161109152813) do
     t.date     "fecha_entrada"
     t.date     "fecha_salida"
     t.integer  "total"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "nombre"
     t.string   "apellido"
     t.string   "direccion"
     t.string   "ruc"
     t.integer  "room_id"
+    t.string   "identificador_hab"
+    t.string   "telefono"
+    t.string   "correo"
+    t.integer  "subtotal"
+    t.integer  "descuento"
   end
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
 
-  create_table "budget_details", force: :cascade do |t|
+  create_table "budget_room_details", force: :cascade do |t|
     t.integer  "budget_id"
-    t.integer  "service_id"
     t.integer  "cantidad"
+    t.integer  "type_of_room_id"
+    t.date     "check_in"
+    t.date     "check_out"
+    t.integer  "subtotal"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "budget_room_details", ["budget_id"], name: "index_budget_room_details_on_budget_id", using: :btree
+  add_index "budget_room_details", ["type_of_room_id"], name: "index_budget_room_details_on_type_of_room_id", using: :btree
+
+  create_table "budget_service_details", force: :cascade do |t|
+    t.integer  "budget_id"
+    t.integer  "cantidad"
+    t.integer  "service_id"
     t.integer  "subtotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "budget_details", ["budget_id"], name: "index_budget_details_on_budget_id", using: :btree
-  add_index "budget_details", ["service_id"], name: "index_budget_details_on_service_id", using: :btree
+  add_index "budget_service_details", ["budget_id"], name: "index_budget_service_details_on_budget_id", using: :btree
+  add_index "budget_service_details", ["service_id"], name: "index_budget_service_details_on_service_id", using: :btree
 
   create_table "budgets", force: :cascade do |t|
     t.integer  "reservation_request_id"
@@ -143,8 +162,8 @@ ActiveRecord::Schema.define(version: 20161109152813) do
     t.integer  "dias"
     t.integer  "descuento"
     t.integer  "total"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "budgets", ["comfort_id"], name: "index_budgets_on_comfort_id", using: :btree
@@ -199,6 +218,8 @@ ActiveRecord::Schema.define(version: 20161109152813) do
     t.date     "start"
     t.date     "end"
     t.string   "title"
+    t.string   "color"
+    t.string   "textColor"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -484,8 +505,15 @@ ActiveRecord::Schema.define(version: 20161109152813) do
   add_foreign_key "account_x_plans", "account_plans"
   add_foreign_key "account_x_plans", "accounting_accounts"
   add_foreign_key "accounts", "clients"
+<<<<<<< HEAD
   add_foreign_key "budget_details", "budgets"
   add_foreign_key "budget_details", "services"
+=======
+  add_foreign_key "budget_room_details", "budgets"
+  add_foreign_key "budget_room_details", "type_of_rooms"
+  add_foreign_key "budget_service_details", "budgets"
+  add_foreign_key "budget_service_details", "services"
+>>>>>>> c9acb93d70a7d52ee9c37d44dbc68b894b9cd103
   add_foreign_key "budgets", "comforts"
   add_foreign_key "budgets", "reservation_requests"
   add_foreign_key "cash_movements", "accounting_entries"
