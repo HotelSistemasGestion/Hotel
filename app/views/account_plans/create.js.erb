@@ -1,0 +1,6 @@
+<% if @account_plan.errors.blank? %>
+	$('#product-modal').modal('hide');
+	$('table tbody').append(' <%= j render "row", account_plan: @account_plan %>');		
+<% else %>
+  	alert('<%= @account_plan.errors.full_messages[0] %>');
+<% end %>

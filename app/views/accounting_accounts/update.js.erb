@@ -4,5 +4,5 @@
   $('table tbody tr#<%= @accounting_account.id %>').replaceWith(' <%= j render "row", accounting_account: @accounting_account %>');
   alert('La cuenta se modifico exitosamente');
 <% else %>
-  alert('<%= @accounting.errors.full_messages[0] %>');
+  alert('<%= @accounting_account.errors.full_messages[0] %>');
 <% end %>
