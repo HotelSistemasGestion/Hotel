@@ -128,6 +128,18 @@ ActiveRecord::Schema.define(version: 20161108205009) do
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
 
+  create_table "budget_details", force: :cascade do |t|
+    t.integer  "budget_id"
+    t.integer  "service_id"
+    t.integer  "cantidad"
+    t.integer  "subtotal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "budget_details", ["budget_id"], name: "index_budget_details_on_budget_id", using: :btree
+  add_index "budget_details", ["service_id"], name: "index_budget_details_on_service_id", using: :btree
+
   create_table "budget_room_details", force: :cascade do |t|
     t.integer  "budget_id"
     t.integer  "cantidad"
@@ -157,18 +169,24 @@ ActiveRecord::Schema.define(version: 20161108205009) do
   create_table "budgets", force: :cascade do |t|
     t.integer  "reservation_request_id"
 <<<<<<< HEAD
+<<<<<<< HEAD
     t.integer  "comfort_id"
     t.text     "comentario"
 =======
+=======
+>>>>>>> 71ce9a4... Añadido requerimiento de filterrific dentro de application.js
     t.string   "email"
     t.integer  "comfort_id"
     t.integer  "cantidad_de_habitaciones"
     t.integer  "dias"
+<<<<<<< HEAD
 >>>>>>> 1ff5dfc... Añadido boton y funcionalidad para imprimir reporte de quejas
+=======
+>>>>>>> 71ce9a4... Añadido requerimiento de filterrific dentro de application.js
     t.integer  "descuento"
     t.integer  "total"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "budgets", ["comfort_id"], name: "index_budgets_on_comfort_id", using: :btree
@@ -223,8 +241,6 @@ ActiveRecord::Schema.define(version: 20161108205009) do
     t.date     "start"
     t.date     "end"
     t.string   "title"
-    t.string   "color"
-    t.string   "textColor"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -496,6 +512,10 @@ ActiveRecord::Schema.define(version: 20161108205009) do
   add_foreign_key "accounts", "clients"
   add_foreign_key "budget_details", "budgets"
   add_foreign_key "budget_details", "services"
+  add_foreign_key "budget_room_details", "budgets"
+  add_foreign_key "budget_room_details", "type_of_rooms"
+  add_foreign_key "budget_service_details", "budgets"
+  add_foreign_key "budget_service_details", "services"
   add_foreign_key "budgets", "comforts"
   add_foreign_key "budgets", "reservation_requests"
   add_foreign_key "cash_movements", "accounting_entries"
