@@ -35,7 +35,7 @@
 
 //= require bootstrap-colorpicker
 //= underscore-min.map
-
+//= require filterrific/filterrific-jquery
 
 
 
