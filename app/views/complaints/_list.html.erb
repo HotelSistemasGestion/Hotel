@@ -1,10 +1,11 @@
+
 <div id="filterrific_results">
 
 
 
 <div class="box">
  <div class="box-header with-border">
-  <h1 class="box-title">Listado de clientes Registrados</h1>
+  <h1 class="box-title">Listado de quejas</h1>
   </div>
 
 <div class="box-body">
@@ -42,16 +43,17 @@
   </div>
    <div class="input-group-control", style="float: right">
    
-      <%= submit_tag "Imprimir",type:"button",class:"btn btn-primary"%>
-   
+       <%= link_to "Imprimir", '#', class: "btn btn-primary no-print", 
+            onclick: 'window.print();return false;' %>
   
   
-      <%= submit_tag "Ver como PDF",type:"button",class:"btn btn-primary"%>
+      <%= submit_tag "Ver como PDF",type:"button",class:"btn btn-primary no-print"%>
          </div>
     
 
     </div>
 
     <%= will_paginate @complaints%>
+</div>
 </div>
 </div>
