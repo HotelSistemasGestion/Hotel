@@ -9,9 +9,15 @@ class Ability
    elsif user.has_role? "Cajero"
      can :create, CashMovement
      can :read, CashMovement
+   elsif user.has_role? "Supervisor"
+     can :manage, Cash
+     can :manage, OpeningCash
+     can :manage, ClosingCash
+     can :manage, CashCount
+     can :read, CashMovement
    else
       can :read, Client
-   end
+  end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

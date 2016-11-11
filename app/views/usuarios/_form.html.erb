@@ -74,11 +74,7 @@
                                 <%= f.select :rol_ids, Rol.all.collect {|x| [x.role, x.id]},{}, {:multiple => true, class: "selectpicker"} %>
                                 </div>                
                               </div>
-                            </div>
-
-                            <div class="col-md-6">
-                              
-                            </div>       
+                            </div>                                                           
                 <!-- /.post -->
               </div>                        
               <div class="box-footer">                
@@ -96,8 +92,9 @@
 
 <script type="text/javascript">
   $('.selectpicker').selectpicker({
-    liveSearch: true,    
+    //liveSearch: true,    
     size: 5,
-    maxOptions: 2
+    maxOptions: 1
   });
+  
 </script>

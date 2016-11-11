@@ -11,9 +11,9 @@
               <th>Nombre</th>
               <th>Apellido</th>
               <th>Correo</th>
-              <th>Fecha de Alta</th>                             
-              <th></th>   
-              <th></th>   
+              <th>Fecha de Alta</th>
+              <th>Rol</th>                            
+              <th></th>               
             </tr>
           </thead>
         <tbody>
@@ -22,16 +22,17 @@
                 <td><%= usuario.username %></td>
                 <td><%= usuario.apellido %></td>
                 <td><%= usuario.email %></td>  
-                <td><%= usuario.created_at.strftime("%d-%m-%Y") +' a las '+ usuario.created_at.strftime("%I:%M %p")%></td> 
-                             
+                <td><%= usuario.created_at.strftime("%d-%m-%Y")%></td> 
+                <td><span class="label label-success"><%= usuario.rols.first.role%></span></td>              
                 <td align="center">
+
+                    <%= link_to '', usuario_path(usuario), remote: true ,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
+
                   <% if can? :edit, User %>
                     <%= link_to edit_usuario_path(usuario), class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-pencil"></span>
                     <% end %>                
-                <% end %>
-                </td> 
-                <td align="center">
+                <% end %>                           
                   <% if can? :destroy, User %>
                     <%= link_to admin_destroy_user_path(usuario), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-trash"></span>
