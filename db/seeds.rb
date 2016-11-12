@@ -98,6 +98,7 @@ TypesOfEmployee.create(tipo: "administrador", descripcion: "");
 TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
 TypesOfEmployee.create(tipo: "botones", descripcion: "");
 TypesOfEmployee.create(tipo: "cajero", descripcion: "");
+Employee.create(types_of_employee_id: 1, nombre: "Fernando", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
 
 
 
