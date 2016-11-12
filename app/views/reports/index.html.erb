@@ -1,62 +1,190 @@
- 
+  
 <div class="box">
  <div class="box-header with-border">
   <h1 class="box-title">Reportes </h1>
   </div>
 
-<div class="box-body">
+<div class="box-body bg-gray">
 
       
+   <div class="row">
+    <div class="col-md-6">
+     <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Habitaciones</h3>
 
-       
-     
-      <ul class="list-group product-category-all">
-       <li class="list-group-item"><span class="pull-right">
-        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></span>
-        <h4 style="margin:1px"><B> Habitaciones</B></h4>
-        <i><p>Lista las habitaciones disponibles por estado y tipo de habitacion</p></i>
-    </li>
-    <li class="list-group-item"><span class="pull-right">
-        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></span>
-        <h4 style="margin:1px"><B>Clientes</B></h4>
-        <i><p>Lista los clientes registrados dentro del Hotel</p></i> 
-    </li>
-    <li class="list-group-item"><span class="pull-right">
-        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></span>
-       <h4 style="margin:1px"><B>Servicios y Precios</B></h4>
-       <i><p>Lista los servicios con sus respectivos precios</p></i>
-    </li>
-    <li class="list-group-item"><span class="pull-right">
-        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></span>
-        <h4 style="margin:1px"><B>Cuentas de las Habitaciones</B></h4>
-        <i><p>Lista los servicios registrados dentro de la cuenta de una habitacion</p></i>
-    </li>
-    <li class="list-group-item"><span class="pull-right">
-        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></span>
-       <h4 style="margin:1px"><B>Limpieza</B></h4>
-       <i><p>Lista los servicios de limpieza y quien los realizo en rango de fechas</p></i>
-    </li>
-    <li class="list-group-item"><span class="pull-right">
-        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></span>
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-9">
+                   <p>Lista las habitaciones disponibles por estado y tipo de habitacion</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button>
+                </div>
+               
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Quejas</h3>
 
-      <h4 style="margin:1px"><B>Quejas</B></h4>
-      <i><p>Lista las quejas por habitacion, servicio relacionado y/o fecha</p></i>
-    </li>
-     <li class="list-group-item"><span class="pull-right">
-        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></span>
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-9">
+                   <p>Lista las quejas por habitacion, servicio relacionado y/o fecha</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><%= link_to 'Ver Reporte', my_new_complaints_path, style: "color:white"%></button>
+                </div>
+               
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
 
-      <h4 style="margin:1px"><B>Ingresos</B></h4>
-      <i><p>Lista los ingresos del hotel por rango de fechas</p></i>
-    </li>
-    <li class="list-group-item"><span class="pull-right">
-        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></span>
-        <h4 style="margin:1px"><B>Pedido de Reservas</B></h4>
-        <i><p>Lista los pedidos de reserva y su actual estado</p></i>
-    </li>
-    <li class="list-group-item"><span class="pull-right">
-        <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></span>
-       <h4 style="margin:1px"><B>Valores</B></h4>
-       <i><p>Lista los valores recibidos del hotel</p></i>
-    </li>
+<div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Clientes</h3>
+
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-9">
+                   <p>Lista los clientes registrados dentro del Hotel</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button>
+                </div>
+               
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Servicios y Precios</h3>
+
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-9">
+                   <p>Lista los servicios con sus respectivos precios</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button>
+                </div>
+               
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Cuentas de las Habitaciones</h3>
+
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-9">
+                   <p>Lista los servicios registrados dentro de la cuenta de una habitacion</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button>
+                </div>
+               
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+          </div>
+          
+          <div class="col-md-6">
+
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Limpieza</h3>
+
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-9">
+                   <p>Lista los servicios de limpieza y quien los realizo en rango de fechas</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button>
+                </div>
+               
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
   
-</ul>
+
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Ingresos</h3>
+
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-9">
+                   <p>Lista los ingresos del hotel por rango de fechas</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button>
+                </div>
+               
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+   
+    
+     <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Pedido de Reservas</h3>
+
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-9">
+                   <p>Lista los pedidos de reserva y su actual estado</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button>
+                </div>
+               
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+       
+        <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Valores</h3>
+
+            </div>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-9">
+                   <p>Lista los valores recibidos del hotel</p>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button>
+                </div>
+               
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+    </div>
+
+</div>
+</div>

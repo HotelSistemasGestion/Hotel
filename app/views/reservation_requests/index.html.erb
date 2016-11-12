@@ -40,7 +40,7 @@
                 <%if budget.present? %>
                   <%= link_to 'Editar Presupuesto', edit_budget_path(budget),class: "btn btn-primary" %>
                 <%else%>
-                  <%= link_to 'Presupuestar', {:controller => "budgets", :action => "my_new", :id => reservation_request.id },class: "btn btn-primary" %>
+                  <%= link_to 'Presupuestar', {:controller => "budgets", :action => "new", :id => reservation_request.id },class: "btn btn-primary" %>
                 <%end%>
             </td>
             <td align="center">

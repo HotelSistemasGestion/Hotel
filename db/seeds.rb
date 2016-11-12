@@ -1,3 +1,4 @@
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -5,10 +6,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-TypeOfRoom.create(tipo: "simple",descripcion:"");
-TypeOfRoom.create(tipo: "doble",descripcion:"");
-TypeOfRoom.create(tipo: "matrimonial",descripcion:"");
-TypeOfRoom.create(tipo: "suite",descripcion:"");
+TypeOfRoom.create(tipo: "Simple",descripcion:"");
+TypeOfRoom.create(tipo: "Doble",descripcion:"");
+TypeOfRoom.create(tipo: "Matrimonial",descripcion:"");
+TypeOfRoom.create(tipo: "Suite",descripcion:"");
 
 State.create(descripcion: "libre");
 State.create(descripcion: "ocupado");
@@ -119,7 +120,10 @@ Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complai
 Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: false,room_id: 1);
 Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: false,room_id: 1);
 
-User.create(:username => "Ariel", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456',roles_mask:1);
+Rol.create(role: "Admin");
+Rol.create(role: "Cajero");
+Rol.create(role: "Supervisor");
+User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 1);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");

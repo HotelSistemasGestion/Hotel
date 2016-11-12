@@ -20,7 +20,7 @@ class AccountingAccountsController < ApplicationController
   
 
   def new
-  @accounting = AccountingAccount.new
+  @accounting_account = AccountingAccount.new
   end
 
   # GET /accounting_accounts/1/edit
@@ -34,8 +34,7 @@ class AccountingAccountsController < ApplicationController
 
     respond_to do |format|
       if @accounting_account.save
-        format.html { redirect_to @accounting_account, notice: 'Accounting account was successfully created.' }
-        format.json { render :show, status: :created, location: @accounting_account }
+        format.json {}
       else
         format.html { render :new }
         format.json { render json: @accounting_account.errors, status: :unprocessable_entity }
@@ -61,7 +60,7 @@ class AccountingAccountsController < ApplicationController
   def destroy
     @accounting_account.destroy
     respond_to do |format|
-      format.html { redirect_to accounting_accounts_url, notice: 'Accounting account was successfully destroyed.' }
+      format.html { redirect_to accounting_accounts_url, notice: 'La cuenta ha sido eliminada.' }
       format.json { head :no_content }
     end
   end

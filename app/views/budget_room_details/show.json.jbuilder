@@ -1,0 +1,1 @@
+json.partial! "budget_room_details/budget_room_detail", budget_room_detail: @budget_room_detail

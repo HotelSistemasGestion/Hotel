@@ -1,0 +1,1 @@
+json.array! @budget_room_details, partial: 'budget_room_details/budget_room_detail', as: :budget_room_detail

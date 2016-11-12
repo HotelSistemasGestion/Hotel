@@ -1,4 +1,6 @@
 class CashCountsController < ApplicationController
+  load_and_authorize_resource
+  before_action :authenticate_user!
   before_action :set_cash_count, only: [:show, :edit, :update, :destroy]
 
   # GET /cash_counts
