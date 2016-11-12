@@ -44,7 +44,7 @@
           </div>
 
           <br></br>
-<div class="row">
+          <div class="row">
 <div class="col-sm-10">
       <div class="col-sm-2"></div>
       <table class="table well col-sm-offset-1">
@@ -52,27 +52,17 @@
             <tr>
               <th>Factura Numero</th>
               <th>Subtotal</th>
-              <th>Valor</th>
-              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody class="contenedor">
         
               <%= f.fields_for :detail_of_cash_movements  ,:wrapper => false do |li| %>
-              <tr id="fields">
+              <tr class="fields">
 
                   <th scope="row"><%= li.number_field :invoices ,:class => "form-control"%></th>
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
-                  <th><%= li.number_field :sub_monto, :class => "form-control"%></td>
-                  <th><%= li.select :payment_type_id, PaymentType.all.collect{|p| [p.descripcion, p.id]},{include_blank: false}  ,:class => "select"%></td>
-                  
-                  <th class="cheque" id="cheque-<%= li.index%>" style="display: none">
-                      <%= li.text_field :payment_type_id, :class => "form-control" ,placeholder: "Banco"%>
-                      <%= li.text_field :payment_type_id, :class => "form-control" ,placeholder: "Titular"%>
-                    
-                      <%= li.text_field :payment_type_id, :class => "form-control datepicker" ,placeholder: "Fecha Disponibilidad"%> 
-                  
-                  </th>
+                  <th><%= li.number_field :sub_monto, :class => "form-control subtotal"%></td>
+                                    
                   <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>              
                   
               </tr>
@@ -86,13 +76,58 @@
         </table>
 
 </div>
-</div>  
+</div>
+
+<div class="row">
+<div class="col-sm-10">
+      <div class="col-sm-2"></div>
+      <table class="table well col-sm-offset-1 tabla2">
+          <thead class="thead-inverse">
+            <tr>
+              <th>Valor</th>
+              <th>Subtotal</th>
+              
+            </tr>
+          </thead>
+          <tbody class="contenedor ">
+        
+              <%= f.fields_for :payment_types  ,:wrapper => false do |li| %>
+              <tr class="fields">
+
+                  
+                  <th class="col-sm-4"><%= li.select :descripcion, PaymentType.all.collect{|p| [p.descripcion, p.id]},{include_blank: false}  ,:class => "form-control select"%></td>
+                  <th class="col-sm-4"><%= li.number_field :banco, :class => "form-control "%>
+                  </td>
+                  <th class="detalle" id="detalle-<%= li.index%>" style="display: none">
+                      <%= li.text_field :banco, :style => "display: none", :class => "form-control cheque" ,placeholder: "Banco"%>
+                      <%= li.text_field :titular, :style => "display: none",:class => "form-control cheque" ,placeholder: "Titular"%>
+                    
+                      <%= li.text_field :fecha_disponibilidad, :style => "display: none",:class => "form-control datepicker cheque" ,placeholder: "Fecha Disponibilidad"%> 
+                      <%= li.text_field :tarjeta_tipo, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Tipo Tarjeta"%>
+                      <%= li.text_field :n_cheque, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Numero Verificacion"%>
+                  
+                  </th>
+                  <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>              
+                  
+              </tr>
+
+              <%end%>
+              <tr>
+                <td><%= f.link_to_add "", :payment_types , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+</div>
+</div>
+
 <div class="row">
 <div class="col-sm-10">
     <div class="form-group">
       <div class="col-md-offset-7 col-md-4">
                <%= f.label :Total %><br>
-               <%= f.text_field :monto_total, class: "form-control ",  :readonly => true,placeholder: "" %>
+               <%= f.text_field :monto_total, class: "form-control total",  :readonly => true,placeholder: "" %>
           </div>    
     </div>
   
@@ -113,3 +148,4 @@
 </div>
 
   <% end %>
+<script type="text/javascript" src="assets/javascripts/cash_module.js"></script>
