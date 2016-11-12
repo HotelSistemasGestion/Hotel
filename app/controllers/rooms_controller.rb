@@ -14,17 +14,17 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-    @room_comfort = RoomComfort.where("#{:room_id} = ?", params[:id])
-    @room_comfort.each do |room| 
-      destruir_repetidos(room.room_id,room.comfort_id);
-    end  
-    @room_comforts =RoomComfort.all;
+    #@room_comfort = RoomComfort.where("#{:room_id} = ?", params[:id])
+    #@room_comfort.each do |room| 
+     # destruir_repetidos(room.room_id,room.comfort_id);
+    #end  
+    #@room_comforts =RoomComfort.all;
   end
 
   # GET /rooms/new
   def new
     @room = Room.new
-    @room.room_comforts.build
+    #@room.room_comforts.build
     @room.photos.build
   end
 
@@ -52,11 +52,11 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1.json
   def update
     respond_to do |format|
-      @room_comforts = RoomComfort.all
+     # @room_comforts = RoomComfort.all
       if @room.update(room_params)
-        @room_comforts.each do |room| 
-         destruir_repetidos(room.room_id,room.comfort_id);
-        end  
+        #@room_comforts.each do |room| 
+        # destruir_repetidos(room.room_id,room.comfort_id);
+        #end  
         format.html { redirect_to @room, notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
       else
@@ -84,13 +84,13 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:type_of_room_id, :state_id, :capacidad, :identificador,:room_comforts_attributes => [:room_id,:comfort_id,:_destroy],:photos_attributes => [:id,:room_id,:my_file,:_destroy])
+      params.require(:room).permit(:type_of_room_id, :state_id, :capacidad, :identificador,:photos_attributes => [:id,:room_id,:my_file,:_destroy])
     end
-    def destruir_repetidos(room_id,comfort_id)
-      if(RoomComfort.where("room_id = ? and comfort_id = ?" , room_id,comfort_id).count >=  2)
-        RoomComfort.where("room_id = ? and  comfort_id = ?" , room_id,comfort_id).second.delete
-        destruir_repetidos(room_id,comfort_id)
-      end
-    end
+    #def destruir_repetidos(room_id,comfort_id)
+    #  if(RoomComfort.where("room_id = ? and comfort_id = ?" , room_id,comfort_id).count >=  2)
+    #    RoomComfort.where("room_id = ? and  comfort_id = ?" , room_id,comfort_id).second.delete
+    #    destruir_repetidos(room_id,comfort_id)
+    #  end
+    #end
 end
 

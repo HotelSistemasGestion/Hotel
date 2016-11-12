@@ -27,11 +27,7 @@
 
  
   
-   <dt>Comforts: </dt>
-  <% RoomComfort.where("#{:room_id} = ?",@room.id).each  do |room|  %>     
-      <dd><%= room.comfort_descripcion%></dd>
-  <% end %>
- 
+  
   </div>
   <div class="col-sm-8">
     
