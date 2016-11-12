@@ -29,32 +29,68 @@ $(document).ready(function() {
 			events: "/cleanings.json"
 		
 		});
+          $('#sandbox-container  .input-daterange').datepicker({
+});
 		
 	});
 
 $(document).on('nested:fieldAdded', function(event) {
+  var dateFormat = "mm/dd/yy";
+      $('#sandbox-container  .input-daterange').datepicker({
+});
   var dateField, field;
+
+
   field = event.field;
-  dateField = field.find('.datepicker');
+  dateField = field.find('.input-daterange');
+  
   dateField.datepicker({
-  	format: 'dd-mm-yyyy'});
+      format: 'dd-mm-yyyy',
+   //  startDate: "12/12/2016"
+   });
+
+  
+  // $(dateField[0]).datepicker({format: 'dd-mm-yyyy'}).on( "change", function() {
+    //   $(dateField[1]).datepicker({format: 'dd-mm-yyyy', startDate: $(this).val() } );
+         
+      //    console.log($(this).val());
+  //});
+  // $(dateField[1]).datepicker({format: 'dd-mm-yyyy'}).on( "change", function() {
+    
+    //   $(dateField[0]).datepicker({format: 'dd-mm-yyyy',  endDate: $(dateField[1]).val() } );
+         
+    //       console.log($(this).val());
+  //});
+ //$(dateField[1]).datepicker({format: 'dd-mm-yyyy'}).on( "change", function() {
+   //    $(dateField[0]).datepicker({format: 'dd-mm-yyyy', endDate: $(this).val() } );
+         
+    //       console.log($(this).val());
+  //});
+  //$(dateField[1]).datepicker({format: 'dd-mm-yyyy', minDate: "11/25/2016" } );
+
+ // $(dateField[1]).datepicker({format: 'dd-mm-yyyy'}).on( "change", function() {
+   //        // $(dateField[0]).datepicker( "option", "maxDate",  $(this).val() );
+     //        console.log($(this).val());
+  //});
+
+
   field.validator();
+
   var colorField  ,inputField;
   colorField = field.find('.colorpicker-component');
   inputField = field.find('.input');
   colorField.colorpicker({ format: "hex"});
-   $(inputField[1]).hide();
+  
+  $(inputField[1]).hide();
+  $(inputField[2]).hide();
   $(colorField[0]).colorpicker().on('changeColor', function(e) {
             $(inputField[0]).css({"backgroundColor" : e.color.toHex()})
             $(inputField[1]).val( e.color.toHex());
   });
   $(colorField[1]).colorpicker().on('changeColor', function(e) {
             $(inputField[0]).css({'color' : e.color.toHex()});
-
-  });
-
-  //$('.datepi').validator();'option', {dateFormat: 'dd/mm/yy'}
-      
+            $(inputField[2]).val( e.color.toHex());
+  });      
        
 
 });
