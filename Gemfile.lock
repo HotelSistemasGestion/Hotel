@@ -93,6 +93,8 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20160826)
       unf (>= 0.0.5, < 1.0.0)
+    enumerize (2.0.1)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14-x86-mingw32)
@@ -273,6 +275,7 @@ DEPENDENCIES
   cloudinary
   coffee-rails (~> 4.1.0)
   devise
+  enumerize
   font-awesome-rails
   gmaps4rails
   jbuilder (~> 2.0)
