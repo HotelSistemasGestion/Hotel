@@ -65,16 +65,130 @@
                                 </div> 
                               </div>
                             </div>
-                          </div> 
+                          </div>                             
 
-                            <div class="box-body">
-                              <div class="form-group">
-                                <h4 class="box-title">Rol</h4>
-                                <div class="col-md-12">
-                                <%= f.select :rol_ids, Rol.all.collect {|x| [x.role, x.id]},{}, {:multiple => true, class: "selectpicker"} %>
-                                </div>                
-                              </div>
-                            </div>                                                           
+                      <div class="box-body">
+                        <div class="form-group">
+                          <h4 class="box-title">Roles</h4>
+                          <div class="col-md-12">
+                            <div class="col-md-3">
+                              <h5>Movimiento de Caja</h5>
+                              <% for i in 2..5 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                          </div>
+                          <div class="col-md-3">
+                              <h5>Caja</h5>
+                              <% for i in 6..9 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                          </div>
+
+                          <div class="col-md-3">
+                              <h5>Apertura</h5>
+                              <% for i in 10..13 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                          </div>
+
+                          <div class="col-md-3">
+                              <h5>Cierre</h5>
+                              <% for i in 14..17 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                          </div>
+
+                          </div>
+
+                          <div style="margin-top: 30px;" class="col-md-12">
+
+                            <div class="col-md-3">
+                              <h5>Arqueo</h5>
+                              <% for i in 18..21 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                            </div> 
+
+                            <div class="col-md-3">
+                              <h5>Pedidos de Reservaciones</h5>
+                              <% for i in 22..25 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                            </div> 
+
+                            <div class="col-md-3">
+                              <h5>Reservaciones</h5>
+                              <% for i in 26..29 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                            </div>
+
+                            <div class="col-md-3">
+                              <h5>Facturas</h5>
+                              <% for i in 30..33 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                            </div>      
+
+                          </div>
+
+                          <div style="margin-top: 30px;" class="col-md-12">
+
+                            <div class="col-md-3">
+                              <h5>Cuentas</h5>
+                              <% for i in 34..37 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                            </div>
+
+                            <div class="col-md-3">
+                              <h5>Clientes</h5>
+                              <% for i in 38..41 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                            </div>
+
+                            <div class="col-md-3">
+                              <h5>Servicios</h5>
+                              <% for i in 42..45 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                            </div>
+
+                            <div class="col-md-3">
+                              <h5>Contabilidad</h5>
+                              <% for i in 46..48 %>
+                              <% role = Rol.find(i) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                              <% end %>                                
+                            </div>                                
+
+                          </div>                                                                                                           
+                        </div>
+                    </div>                      
                 <!-- /.post -->
               </div>                        
               <div class="box-footer">                
@@ -88,13 +202,3 @@
           <!-- /.nav-tabs-custom -->
         </div>
 <% end %>        
-
-
-<script type="text/javascript">
-  $('.selectpicker').selectpicker({
-    //liveSearch: true,    
-    size: 5,
-    maxOptions: 1
-  });
-  
-</script>
