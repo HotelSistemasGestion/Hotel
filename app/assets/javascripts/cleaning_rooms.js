@@ -45,7 +45,7 @@ $(document).on('nested:fieldAdded', function(event) {
   dateField = field.find('.input-daterange');
   
   dateField.datepicker({
-      format: 'dd-mm-yyyy',
+      format: 'dd-mm-yyyy'
    //  startDate: "12/12/2016"
    });
 
