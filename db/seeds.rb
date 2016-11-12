@@ -21,7 +21,9 @@ State.create(descripcion: "fuera de servicio");
 Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
 Service.create(nombre: "TV cable Nacionales",descripcion: "100 canales",precio: 10000);
 Service.create(nombre: "Lavanderia",descripcion: "Lavado y planchado",precio: 50000);
-
+Comfort.create(descripcion: "una estrella");
+Comfort.create(descripcion: "dos estrellas");
+Comfort.create(descripcion: "tres estrellas");
 Room.create(type_of_room_id: 1, state_id:1,capacidad: 4, identificador: "habitacion 1", precio: 100000);
 
 
