@@ -23,7 +23,6 @@ development:
   username: postgres
   password: 12345
 
-
 test:
   adapter: postgresql
   encoding: unicode

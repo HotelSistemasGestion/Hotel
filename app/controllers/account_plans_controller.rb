@@ -10,6 +10,9 @@ class AccountPlansController < ApplicationController
   # GET /account_plans/1
   # GET /account_plans/1.json
   def show
+    @account_plan = AccountPlan.find(params[:id])
+    respond_to do |format|
+      format.js
   end
 
   # GET /account_plans/new
@@ -28,7 +31,6 @@ class AccountPlansController < ApplicationController
 
     respond_to do |format|
       if @account_plan.save
-        format.html { redirect_to @account_plan, notice: 'Account plan was successfully created.' }
         format.json { render :show, status: :created, location: @account_plan }
       else
         format.html { render :new }
@@ -37,12 +39,12 @@ class AccountPlansController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /account_plans/1
   # PATCH/PUT /account_plans/1.json
   def update
     respond_to do |format|
       if @account_plan.update(account_plan_params)
-        format.html { redirect_to @account_plan, notice: 'Account plan was successfully updated.' }
         format.json { render :show, status: :ok, location: @account_plan }
       else
         format.html { render :edit }
@@ -50,13 +52,13 @@ class AccountPlansController < ApplicationController
       end
     end
   end
-
+end
   # DELETE /account_plans/1
   # DELETE /account_plans/1.json
   def destroy
     @account_plan.destroy
     respond_to do |format|
-      format.html { redirect_to account_plans_url, notice: 'Account plan was successfully destroyed.' }
+      format.html { redirect_to account_plans_url, notice: 'El plan de cuentas ha sido eliminado' }
       format.json { head :no_content }
     end
   end
