@@ -54,8 +54,8 @@
                 <div class="input-daterange" id="datepicker">
                
                   <div class="col-sm-6">
-                          <%= li.text_field :start, class: "form-control" %>
-                  </div>
+                          <%
+                  </div>= li.text_field :start, class: "form-control" %>
                   
                   <div class="col-sm-6">
                           <%= li.text_field :end,class: "form-control"%>
@@ -74,6 +74,7 @@
                   <td>
                  
                   <button id="cp6"class="btn btn-primary glyphicon glyphicon-text-color colorpicker-component"></button>   
+                  
                   <%= li.text_field :color, id:"cp7", class: "form-control input "%>
                   <%= li.text_field :textColor, id:"cp8", class: "form-control input "%>
   <script>

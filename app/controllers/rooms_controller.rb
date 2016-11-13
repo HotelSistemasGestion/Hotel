@@ -84,7 +84,7 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:type_of_room_id, :state_id, :capacidad, :identificador,:photos_attributes => [:id,:room_id,:my_file,:_destroy])
+      params.require(:room).permit(:type_of_room_id, :state_id, :capacidad, :identificador,:comfort_id,:photos_attributes => [:id,:room_id,:my_file,:_destroy])
     end
     #def destruir_repetidos(room_id,comfort_id)
     #  if(RoomComfort.where("room_id = ? and comfort_id = ?" , room_id,comfort_id).count >=  2)

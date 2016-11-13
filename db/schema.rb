@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111185002) do
+ActiveRecord::Schema.define(version: 20161112160207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -428,8 +428,10 @@ ActiveRecord::Schema.define(version: 20161111185002) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "precio"
+    t.integer  "comfort_id"
   end
 
+  add_index "rooms", ["comfort_id"], name: "index_rooms_on_comfort_id", using: :btree
   add_index "rooms", ["state_id"], name: "index_rooms_on_state_id", using: :btree
   add_index "rooms", ["type_of_room_id"], name: "index_rooms_on_type_of_room_id", using: :btree
 
@@ -539,6 +541,7 @@ ActiveRecord::Schema.define(version: 20161111185002) do
   add_foreign_key "reservation_requests", "comforts"
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
+  add_foreign_key "rooms", "comforts"
   add_foreign_key "rooms", "states"
   add_foreign_key "rooms", "type_of_rooms"
   add_foreign_key "user_roles", "rols"
