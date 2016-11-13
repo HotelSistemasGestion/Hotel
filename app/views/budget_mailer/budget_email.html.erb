@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<% sum_de_subtotales = 0 %>
+<% sum_de_subtotales_servicios= 0 %>
 <% total=0%>
 <html>
 <head>
@@ -16,37 +16,37 @@
 
             <div class="box-body" style= "background-color:#d2d6de  " >
 	            
-            	 <div class="box" style= "background-color:#d2d6de !important" >
+            	 <%if  !@budget_room_details.empty? %>
+		            <div class="box" style= "background-color:#d2d6de !important" >
 		            	<div class="box-header with-border">
-		              		<h3 class="box-title" align="center">Presupuesto de Habitaciones.</h3>
+		              		<h3 class="box-title" align="center">Detalle de habitaciones.</h3>
 		            	</div>
 		            	<div class="box-body">
 						  <table class="table table-bordered">
 						    <thead>
 						      <tr>	
-						      		<th>Tipo de Habitacion.</th>
-						            <th>Cantidad de Habitaciones.</th>
-						            <th>Cantidad de dias.</th>
-						            <th>Total de Habitaciones.</th>
+						      		<th>Cantidad.</th>
+						            <th>Tipo de Habitacion.</th>
+						            <th>Check_in.</th>
+						            <th>Check_out.</th>
+						            <th>Subtotal(Gs).</th>
 
 						      </tr>
 						    </thead>
 						    <tbody>
-						   <tbody>
- 								<tr>
-						      		<td><%= Comfort.find(@reservation_request.comfort_id).descripcion%></td>
-							      	<td><%= @reservation_request.cantidad_de_familias%></td>
-							      	<% dias=(@reservation_request.check_out.to_date - @reservation_request.check_in.to_date).to_i%>
-							      	<td><%=dias%></td>
-							        <td><%= (dias*@reservation_request.cantidad_de_familias*100000) %></td>	
-					       		</tr>				       
-					    </tbody>
+						      <%= content_tag_for(:tr, @budget_room_details) do |budget_room_detail| %>
 
-
-
+						            <td><%= budget_room_detail.cantidad %></td>
+						            <td><%= TypeOfRoom.find(budget_room_detail.type_of_room_id).tipo %></td>
+						            <td><%= @budget.check_in.strftime("%d/%m/%Y") %></td>
+						            <td><%= @budget.check_out.strftime("%d/%m/%Y")%></td>
+						            <td><%= budget_room_detail.subtotal %></td>
+						      <% end %>
+						    </tbody>
 						  </table>
 						</div>
 		            </div>
+	            <%end%>
 	            <!--ACA Van los servicios solicitados y/o propuestos de sugerencias. -->
 	            <%if  !@budget_service_details.empty? %>
 		            <div class="box" style= "background-color:#d2d6de !important" >
@@ -66,7 +66,7 @@
 						    <tbody>
 						      <%= content_tag_for(:tr, @budget_service_details) do |budget_service_detail| %>
 
-						      		<% sum_de_subtotales=sum_de_subtotales+budget_service_detail.subtotal%>
+						      <% sum_de_subtotales_servicios=sum_de_subtotales_servicios+budget_service_detail.subtotal%>
 						            <td><%= budget_service_detail.cantidad %></td>
 						            <td><%= Service.find(budget_service_detail.service_id).nombre %></td>
 						            <td><%= budget_service_detail.subtotal %></td>
@@ -77,19 +77,19 @@
 		            </div>
 	            <%end%>
 
+
+	            <%if  !@budget_room_details.empty? %>
 	            <div class="box" style= "background-color: #d2d6de !important" >
 	            	<div class="box-header with-border">
-	              		<h3 class="box-title" align="center">Presupuesto de Habitación con servicios.</h3>
+	              		<h3 class="box-title" align="center">Resumen de Habitación con servicios.</h3>
 	            	</div>
 	            	<div class="box-body">
 					  <table class="table table-bordered">
 					    <thead>
 					      <tr>	
 					      		<th>Tipo de habitacion</th>
-					      		<th>Cantidad de habitaciones</th>
 					      		<th>Fecha de entrada</th>
 					      		<th>Fecha Salidad</th>
-					            <th>Cantidad de Dias</th>
 					            <th>Descuento</th>
 					            <th>Total(Sin servicios)</th>
 					            <th>Total(Con servicios)</th>
@@ -97,22 +97,21 @@
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <%= content_tag_for(:tr, @budget) do |budget| %>
-					      		<td><%= Comfort.find(@reservation_request.comfort_id).descripcion%></td>
-					      		<td><%= @reservation_request.cantidad_de_familias%></td>
-					      		<td><%= @reservation_request.check_in.strftime("%d/%m/%Y")%></td>
-					      		<td><%= @reservation_request.check_out.strftime("%d/%m/%Y")%></td>
-					            <td><%= budget.dias %></td>
-					            <td><%= budget.descuento %> %</td>
-					            <% total_sin_servicios = budget.total - sum_de_subtotales%>
-					            <td><%= total_sin_servicios %></td>
-					            <td><%= budget.total %></td>
-					           
+					      <%= content_tag_for(:tr, @budget_room_details) do |budget_room_detail| %>
+					      		<td><%= Comfort.find(@budget.comfort_id).descripcion%></td>
+					      		<td><%= @budget.check_in.strftime("%d/%m/%Y")%></td>
+					      		<td><%= @budget.check_out.strftime("%d/%m/%Y")%></td>
+					            <td><%= @budget.descuento %> %</td>
+					            <% total_con_servicios = budget_room_detail.subtotal + sum_de_subtotales_servicios%>
+					            <td><%= budget_room_detail.subtotal %></td>
+					            <td><%= total_con_servicios %></td>
+			          
 					      <% end %>
 					    </tbody>
 					  </table>
 					</div>
 	            </div>
+	            <%end%>
 
             </div>
      </div>
