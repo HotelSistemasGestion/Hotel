@@ -32,7 +32,7 @@
               <td><%= invoice.nombre%></td>
               <td><%= invoice.fecha %></td>
               <td><%= invoice.descuento %></td>
-              <td><%= link_to invoice, class: 'col-sm-2', title: 'Ver Factura', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+              <td><%= link_to invoice, remote: true, class: 'col-sm-2', title: 'Ver Factura', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon glyphicon-eye-open"></span>
                     <% end %></td>
               <td><%= link_to edit_invoice_path(invoice), class: 'col-sm-2', title: 'Editar Factura', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
