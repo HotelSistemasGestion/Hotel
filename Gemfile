@@ -32,6 +32,11 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 #gem 'ransack', github: 'activerecord-hackery/ransack' #para buscar
 gem 'kaminari-bootstrap'
+#gema para paginacion de tablas
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
+gem 'sprockets-rails', '2.3.3'
+gem 'filterrific'
 
 #formularios anidados
 gem 'nested_form'
@@ -106,3 +111,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

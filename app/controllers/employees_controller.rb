@@ -5,6 +5,7 @@ class EmployeesController < ApplicationController
   # GET /employees.json
   def index
     @employees = Employee.all
+    @employees = Kaminari.paginate_array(@employees).page(params[:page]).per(2)
   end
 
   # GET /employees/1

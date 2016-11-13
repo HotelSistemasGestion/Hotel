@@ -1,0 +1,18 @@
+<div class="box-body" id="table-ven">
+    <table class="table table-bordered  table-responsive ">
+          <thead >
+          <tr>
+            <th>Numero</th>
+            <th>Fecha</th>
+            <th>Iva</th>
+            <th>Debe</th>
+            <th>Haber</th>
+          </tr>
+        </thead>
+          <tbody>
+                    <% @accounting_entries.each do |accounting_entry| %>
+                    <%= render "row", accounting_entry: accounting_entry%>
+                    <% end %>
+          </tbody> 
+    </table>
+    </div>

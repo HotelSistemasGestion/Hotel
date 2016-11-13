@@ -32,13 +32,15 @@
     <!-- /.search form -->
 
     <!-- Sidebar Menu -->
+    <%if current_user.has_role? "Admin" %>
+
+    
     <ul class="sidebar-menu">
       <li class="header">Accesos Directos:</li>
         <!-- Optionally, you can add icons to the links -->      
       <li class="active"><a href="<%=dashboard_index_path%>"><i class='glyphicon glyphicon-dashboard'></i> <span>dashboard</span></a></li> 
 
-      
-
+    
       <li class="treeview">
         <a href="<%=new_account_path%>" ><i class='glyphicon glyphicon-check'> </i> <span>Registrar Check-In</span> </a>
       </li>
@@ -118,17 +120,6 @@
         </ul>        
       </li>
   
-      <!--li>
-          <a href="widgets.html">
-            <i class="fa fa-th"></i> <span>Link </span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-          </a>
-        </li-->
-
-
-
       <li class="treeview">
         <a href="<%=rooms_path%>"> <i class='glyphicon glyphicon-bell'> </i> <span>Habitaciones</span> </a>
       </li>
@@ -137,10 +128,39 @@
         <a href="<%=cleaning_rooms_path%>"> <i class='glyphicon glyphicon-link'> </i> <span>Limpieza</span> </a>
       </li>
 
+      <li><a href="<%=complaints_path%>"><i class='glyphicon glyphicon-link'></i> <span>Quejas</span></a></li>
+      <li><a href="<%=reports_index_path%>"><i class='glyphicon glyphicon-link'></i> <span>Reportes</span></a></li>
 
+      
+    </ul><!-- /.sidebar-menu -->  
 
+    <%elsif current_user.has_role? "Supervisor"%>
 
-    </ul><!-- /.sidebar-menu -->
+      <ul class="sidebar-menu">
+          <li class="header">Accesos Directos:</li>          
+              <li class="active treeview">
+                <a href="#"> <i class='glyphicon glyphicon-plus'> </i> <span>Cajas</span> </a>
+                <ul class="treeview-menu">
+                      <li><a href="<%=cashes_path%>">Listado de Caja</a></li>
+                      <li><a href="<%=opening_cashes_path%>">Apertura de caja</a></li>
+                      <li><a href="<%=closing_cashes_path%>">Cierre de caja</a></li>
+                      <li><a href="<%=cash_counts_path%>">Arqueo de caja</a></li>
+                      <li><a href="<%=cash_movements_path%>">Movimiento de caja</a></li>
+                </ul>
+            </li>                          
+      </ul><!-- /.sidebar-menu --> 
+
+    <%elsif current_user.has_role? "Cajero"%>
+
+      <ul class="sidebar-menu">
+          <li class="header">Accesos Directos:</li>          
+              <li class="active">
+                <a href="<%=cash_movements_path%>"> <i class='glyphicon glyphicon-plus'> </i> <span>Movimiento de caja</span></a>                
+              </li>                          
+      </ul><!-- /.sidebar-menu --> 
+      
+    <%end%>
+ 
   </section>
   <!-- /.sidebar -->
 </aside>

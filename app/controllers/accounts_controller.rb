@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
+        format.html { redirect_to @account, notice: 'La Cuenta fue creada exitosamente.' }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
+        format.html { redirect_to @account, notice: 'La Cuenta fue editada exitosamente.' }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, notice: 'La Cuenta fue eliminada exitosamente.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,7 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:client_id, :fecha_entrada, :fecha_salida, :total, :room_id)
+      params.require(:account).permit(:client_id,:fecha_entrada, :fecha_salida, :total, :room_id, :identificador_hab, :telefono,
+       :correo, :nombre, :direccion, :ruc, :subtotal, :descuento)
     end
 end

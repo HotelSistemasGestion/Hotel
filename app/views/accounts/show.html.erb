@@ -2,22 +2,22 @@
 
 <p>
   <strong>Cliente:</strong>
-  <%= @account.client.nombre+' '+@account.client.apellido %>
+  <%= @account.nombre %>
 </p>
 
 <p>
   <strong>Direccion:</strong>
-  <%= @account.client.direccion %>
+  <%= @account.direccion %>
 </p>
 
 <p>
-  <strong>Cliente:</strong>
-  <%= @account.client.ruc %>
+  <strong>RUC:</strong>
+  <%= @account.ruc %>
 </p>
 
 <p>
   <strong>Habitacion:</strong>
-  <%= @account.room_id %>
+  <%= @account.identificador_hab %>
 </p>
 
 <p>
@@ -37,3 +37,20 @@
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>
+
+<a href="<%=invoices_path%>" id="fact" class="btn btn-success"><i class="fa fa-credit-card"></i>Facturar</a>
+
+<script type="text/javascript">
+  $('#fact').click(function() {                                                 
+    <%Invoice.create(nombre: @account.nombre,
+                     ruc: @account.ruc,
+                     direccion: @account.direccion,
+                     celular: @account.telefono,
+                     correo: @account.correo,
+                     client_id: @account.client_id,
+                     fecha: Time.now.strftime("%d-%m-%Y"),                   
+                     descuento: @account.descuento,
+                     subtotal: @account.subtotal,
+                     total: @account.total)%>                    
+  }); 
+</script>

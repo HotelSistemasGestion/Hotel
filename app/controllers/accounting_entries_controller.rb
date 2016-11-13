@@ -10,7 +10,11 @@ class AccountingEntriesController < ApplicationController
   # GET /accounting_entries/1
   # GET /accounting_entries/1.json
   def show
+    @accounting_entry = AccountingEntry.find(params[:id])
+    respond_to do |format|
+    format.js
   end
+end
 
   # GET /accounting_entries/new
   def new
@@ -25,10 +29,9 @@ class AccountingEntriesController < ApplicationController
   # POST /accounting_entries.json
   def create
     @accounting_entry = AccountingEntry.new(accounting_entry_params)
-
     respond_to do |format|
       if @accounting_entry.save
-        format.html { redirect_to @accounting_entry, notice: 'Accounting entry was successfully created.' }
+        format.html { redirect_to @accounting_entry, notice: 'Se ha creado con exito.' }
         format.json { render :show, status: :created, location: @accounting_entry }
       else
         format.html { render :new }
@@ -37,12 +40,13 @@ class AccountingEntriesController < ApplicationController
     end
   end
 
+  
   # PATCH/PUT /accounting_entries/1
   # PATCH/PUT /accounting_entries/1.json
   def update
     respond_to do |format|
       if @accounting_entry.update(accounting_entry_params)
-        format.html { redirect_to @accounting_entry, notice: 'Accounting entry was successfully updated.' }
+        format.html { redirect_to @accounting_entry, notice: 'Se ha actualizado con exito.' }
         format.json { render :show, status: :ok, location: @accounting_entry }
       else
         format.html { render :edit }
@@ -51,12 +55,14 @@ class AccountingEntriesController < ApplicationController
     end
   end
 
+
+
   # DELETE /accounting_entries/1
   # DELETE /accounting_entries/1.json
   def destroy
     @accounting_entry.destroy
     respond_to do |format|
-      format.html { redirect_to accounting_entries_url, notice: 'Accounting entry was successfully destroyed.' }
+      format.html { redirect_to accounting_entries_url, notice: 'Se ha eliminado con exito!.' }
       format.json { head :no_content }
     end
   end

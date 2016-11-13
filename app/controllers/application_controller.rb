@@ -5,8 +5,12 @@ class ApplicationController < ActionController::Base
   add_flash_types :my_type
   protect_from_forgery with: :exception
   def after_sign_in_path_for(resource)         
-    if resource.roles_mask == 1
+    if resource.has_role? "Admin"
       usuarios_path
+    elsif resource.has_role? "Cajero"
+      new_cash_movement_path
+    elsif resource.has_role? "Supervisor"
+      cashes_path
     else
       dashboard_index_path
     end
@@ -25,7 +29,6 @@ class ApplicationController < ActionController::Base
  	# Ips permitidos
  	def ip_block
     %w{
-       
         127.0.0.1
         127.0.0.0
         10.0.0.1
@@ -34,7 +37,6 @@ class ApplicationController < ActionController::Base
         192.168.0.0
         0.0.0.0
         localhost
-        
     }
 	end
 

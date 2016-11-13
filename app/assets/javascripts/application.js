@@ -19,6 +19,10 @@
 //= require np
 //= require app
 //= require custom
+//= require budgets
+
+//= require underscore
+//= require gmaps/google
 //= require main
 //= require validator.js
 //= require rooms
@@ -28,6 +32,12 @@
 //= require contabilidad
 
 //= requrie gmaps/google
+
+//= require bootstrap-colorpicker
+//= underscore-min.map
+//= require filterrific/filterrific-jquery
+
+
 
   $(document).ready(function() {
     $.validate();

@@ -8,7 +8,7 @@
           <h4 class="modal-title">Pedido de Reserva</h4>
       </div>
       
-      <div class="modal-body">   
+      <div style="word-wrap: break-word;" class="modal-body">   
         <p id="notice"><%= notice %></p>
 
         <p>
@@ -37,7 +37,7 @@
         </p>
 
         <p>
-          <strong>Cantidad de ninhos:</strong>
+          <strong>Cantidad de niños:</strong>
           <%= @reservation_request.cantidad_de_ninhos %>
         </p>
 
@@ -57,16 +57,16 @@
         </p>
 
         <p>
-          <strong>Tipo de Habitacion:</strong>
-          <%= TypeOfRoom.find(@reservation_request.type_of_room_id).tipo %>
+          <strong>Tipo de Confort:</strong>
+          <%= Comfort.find(@reservation_request.comfort_id).descripcion %>
         </p>
 
         <p>
           <strong>Comentarios:</strong>
-          <%= @reservation_request.comentarios %>
+          <div class="well "><%= @reservation_request.comentarios %></div>
         </p>
 
-        <%#= link_to 'Edit', edit_reservation_request_path(@reservation_request) %> |
+        <%#= link_to 'Edit', edit_reservation_request_path(@reservation_request) %> 
         <%#= link_to 'Back', reservation_requests_path %>
         </div>
       </div>

@@ -28,10 +28,9 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
-        format.json { render :show, status: :created, location: @invoice }
+        format.html { redirect_to invoices_url }        
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'La Factura fue creada correctamente.' }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +41,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to @invoice, notice: 'La Factura fue editada correctamente.' }
         format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit }
@@ -56,7 +55,7 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice.destroy
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
+      format.html { redirect_to invoices_url, notice: 'La Factura fue eliminada correctamente.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +68,16 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:numero, :client_id, :fecha, :descuento)
+      params.require(:invoice).permit(:nombre,
+                                      :ruc, 
+                                      :direccion, 
+                                      :celular,
+                                      :correo,
+                                      #:numero, 
+                                      :client_id, 
+                                      :fecha, 
+                                      :descuento,
+                                      :subtotal,
+                                      :total)
     end
 end

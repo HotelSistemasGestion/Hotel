@@ -1,1 +1,0 @@
-json.array! @budget_details, partial: 'budget_details/budget_detail', as: :budget_detail

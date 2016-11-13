@@ -5083,6 +5083,9 @@ font-style: italic;
   .table-responsive > .table tr td {
     white-space: normal !important;
   }
+  .box-header .with-border{
+    float:center;
+  }
 }
 
 #user {

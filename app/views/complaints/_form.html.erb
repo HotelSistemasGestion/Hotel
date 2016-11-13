@@ -1,11 +1,10 @@
-<%= nested_form_for(Complaint.new, html: { class: "form-horizontal", role: "form" }) do |f| %>
-  <% if Complaint.new.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert" id="error">
+<%= nested_form_for(@complaint, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @complaint.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert" id="my_type">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(Complaint.new.errors.count, "error") %> Check the erros:</h4>
-
+      <h4><%= pluralize(@complaint.errors.count, "error") %> Check the erros:</h4>
       <ul>
-      <% Complaint.new.errors.full_messages.each do |msg| %>
+      <% @complaint.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -23,8 +22,15 @@
   <div class="form-group">
     <%= f.label :"Servicio relacionado", class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.select :service_id,Service.all.collect { |s| [ s.descripcion , s.id ] },{:style => "width:100%"}, include_blank: true, class: "form-control" %>
+      <%= f.select :complaint_service_id,ComplaintService.all.collect { |s| [ s.description , s.id ] },{:style => "width:100%"}, id: "complaint_selector",class: "form-control" %>
     </div>
+  </div>
+  
+  <div class="form-group hide_complaint_selector">
+    <%= f.label :"Describa el servicio", class: "col-sm-2 control-label" %>
+    <div class="col-sm-10 hide_complaint_selector">
+      <%= f.text_field :service_description,class: "form-control"%>
+    </div>  
   </div>
 
    <div class="form-group">
@@ -40,4 +46,5 @@
     </div>
   </div>
   
+     
 <% end %>
