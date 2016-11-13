@@ -5,10 +5,12 @@ class CashMovement < ActiveRecord::Base
 	belongs_to :client
 
 	has_many :detail_of_cash_movements, :dependent => :destroy
+	has_many :payment_types, :dependent => :destroy
 
 	delegate :descripcion, to: :type_of_cash_movement, prefix: true, allow_nil: true
 
-	accepts_nested_attributes_for :detail_of_cash_movements, allow_destroy: true , update_only: true
+	accepts_nested_attributes_for :detail_of_cash_movements, allow_destroy: true , update_only: true 
+	accepts_nested_attributes_for :payment_types, allow_destroy: true , update_only: true
 
 	attr_accessor :client 
 

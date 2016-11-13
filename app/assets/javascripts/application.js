@@ -19,7 +19,6 @@
 //= require np
 //= require app
 //= require custom
-//= require cash_module
 //= require budgets
 
 //= require underscore
