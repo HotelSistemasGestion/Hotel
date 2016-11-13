@@ -6,64 +6,110 @@
 
       <ul>
       <% @cleaning_room.errors.full_messages.each do |msg| %>
+
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
   <div class="box-body">
-  <div class="form-group has-feedback col-sm-4">
+  <div class="form-group col-sm-4">
     <%= f.label "Encargado", class: "control-label" %>
    
-      <%= f.select :employee_id ,Employee.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control",:required=>true %>
-      <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-      <div class="help-block with-errors">*requerido</div>
+      <%= f.select :employee_id ,Employee.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control" %>
   </div>
-<div id="cp2" class="col-sm-1 input-group colorpicker-component">
-    
-    <span  class="input-group-addon"><i class="fa fa-fw fa-paint-brush"></i></span>
-</div>
-<script>
-    $(function() {
-        $('#cp2').colorpicker();
-    });
-</script>
-  
   <div>
         <table id="mytabla" class="table">
           <thead class="thead-inverse">
             <tr>
               <th>Habitacion</th>
-              <th>Desde</th>
-              <th>Hasta</th>
+              <th><i align="center">Desde - Hasta</i></th>
+          
               <th>Etiqueta</th>
+              <th></th>
+               <th></th>
             </tr>
           </thead>
           <tbody>
         
               <%= f.fields_for :cleanings ,:wrapper => false do |li| %>
               <tr class="fields">
-                    <td class="form-group has-feedback">
-                      <%= li.select :room_id ,Room.all.collect { |p| [p.identificador, p.id ] },{include_blank: false},class: "form-control",:required=>true %>  
-                      <div class="help-block with-errors">*requerido</div>    
-                    </td>  
-                    <td class="form-group has-feedback">
-                      <%= li.text_field :start, class: "datepicker form-control",:required=>true%>
-                     <div class="help-block with-errors">*requerido</div>
-                    </td>                
-                    <script type="text/javascript">console.log()</script>
-                    <td class="form-group has-feedback">
-                      <%= li.text_field :end,class: "datepicker form-control",
-placeholder:"Fin"%>
-                     <div class="help-block with-errors">*requerido</div>
-                    </td>
-                      <td class="form-group has-feedback">
-                      <%= li.text_field :title, class: "form-control", placeholder:"Fin",:required=>true%>
-                     <div class="help-block with-errors">*requerido</div>
+                  <td class="form-group" >
+                      <%= li.select :room_id ,Room.all.collect { |p| [p.identificador, p.id ] },{include_blank: false},class: "form-control"%>  
+                      
+                  </td>  
+           <!--       <td>
+           <div class="input-daterange" id="datepicker">
+    <input type="text" class="input-small" name="start" />
+    <span class="add-on">to</span>
+    <input type="text" class="input-small" name="end" />
+</div>
+</td>
+<div class="input-daterange" id="datepicker">
+    <input type="text" class="input-small" name="start" />
+    <span class="add-on">to</span>
+    <input type="text" class="input-small" name="end" />
+</div>
+-->           <td>
+                <div class="input-daterange" id="datepicker">
+               
+                  <div class="col-sm-6">
+                          <%
+                  </div>= li.text_field :start, class: "form-control" %>
+                  
+                  <div class="col-sm-6">
+                          <%= li.text_field :end,class: "form-control"%>
+                  </div>
+                </div>
+                </td>
+                  
+
+                  <td  class="form-group has-feedback">
+                         <%= li.text_field :title,id:"cp5", class: "form-control input ", placeholder:"HOLA MUNDO",:required=>true%> 
+                         <div class="help-block with-errors">*requerido</div>   
+                  </td>
+                  <td>
+                     <button id="cp4"class="btn btn-primary glyphicon glyphicon-text-background colorpicker-component"></button>
+                  </td>
+                  <td>
+                 
+                  <button id="cp6"class="btn btn-primary glyphicon glyphicon-text-color colorpicker-component"></button>   
+                  
+                  <%= li.text_field :color, id:"cp7", class: "form-control input "%>
+                  <%= li.text_field :textColor, id:"cp8", class: "form-control input "%>
+  <script>
+    $(function() {
+       
+        $(' .input-daterange').datepicker({  format: 'dd/mm/yyyy', calendarWeeks: true});
+        $('#cp7').hide();
+        $('#cp8').hide();
+        $('#cp4').colorpicker({ format: "hex"});
+        $('#cp4').colorpicker().on('changeColor', function(e) {
+            
+            $('#cp5').css({"backgroundColor" : e.color.toHex()});
+            $('#cp7').val( e.color.toHex());
+
+        });
+        $('#cp6').colorpicker({ format: "hex"});
+        $('#cp6').colorpicker().on('changeColor', function(e) {
+
+            $('#cp5').css({'color' : e.color.toHex()});
+             $('#cp8').val( e.color.toHex());
+         
+
+        });
+          
+    });
+    
+</script>
                     </td>
                   <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
               </tr>
               <%end%>
+           
+
+
+
               <tr>
                 <td><%= f.link_to_add "", :cleanings, :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
               </tr>

@@ -1,0 +1,42 @@
+<div class="modal fade" id="show-modal">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Informacion de Usuario</h4>
+      </div>
+      
+      <div style="word-wrap: break-word;" class="modal-body">   
+        <p id="notice"><%= notice %></p>
+
+        <p>
+          <strong>Nombre:</strong>
+          <%= @usuario.username %>
+        </p>
+
+        <p>
+          <strong>Apellido:</strong>
+          <%= @usuario.apellido %>
+        </p>
+
+        <p>
+          <strong>Email:</strong>
+          <%= @usuario.email %>
+        </p>
+
+        <p>
+          <strong>C.I.N:</strong>
+          <%= @usuario.numero_ci %>
+        </p>     
+        <p>
+          <strong>Celular:</strong>
+          <%= @usuario.celular %>
+        </p>  
+        <%#= link_to 'Edit', edit_reservation_request_path(@reservation_request) %> 
+        <%#= link_to 'Back', reservation_requests_path %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 class CashMovementsController < ApplicationController
+  load_and_authorize_resource
+  before_action :authenticate_user!
   before_action :set_cash_movement, only: [:show, :edit, :update, :destroy]
   
   # GET /cash_movements
@@ -15,12 +17,15 @@ class CashMovementsController < ApplicationController
   # GET /cash_movements/new
   def new
     @cash_movement = CashMovement.new
-    @cash_movement.detail_of_cash_movements.build
+    @cash_movement.detail_of_cash_movements.build()
+    @cash_movement.payment_types.build()
 
   end
 
   def my_new
     @cash_movement = CashMovement.new
+    @cash_movement.detail_of_cash_movements.build()
+    @cash_movement.payment_types.build()
     @my_openings =OpeningCash.find(params[:opening_cash_id])
   end
   # GET /cash_movements/1/edit
@@ -74,6 +79,6 @@ class CashMovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cash_movement_params
-      params.require(:cash_movement).permit(:id, :monto_total, :opening_cash_id, :type_of_cash_movement_id , :client_id, :detail_of_cash_movements_attributes => [:id, :sub_monto,:payment_types, :_destroy])
+      params.require(:cash_movement).permit(:id, :monto_total, :opening_cash_id, :type_of_cash_movement_id , :client_id, :detail_of_cash_movements_attributes => [:id, :sub_monto,:payment_types, :_destroy], :payment_types_attributes =>[:id, :descripcion,:titular,:banco,:n_cheque,:tarjeta_tipo,:fecha_disponibilidad,:_destroy])
     end
 end

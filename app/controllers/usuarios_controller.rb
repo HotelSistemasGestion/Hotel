@@ -14,7 +14,7 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/new
   def new
-    @usuario = User.new
+    @usuario = User.new    
   end
 
   # GET /usuarios/1/edit
@@ -70,7 +70,7 @@ class UsuariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation , :apellido, :numero_ci, :direccion, :telefono, :celular, roles: [])
+      params.require(:user).permit(:username, :email, :password, :password_confirmation , :apellido, :numero_ci, :direccion, :telefono, :celular, rol_ids: [])
     end
 end
 

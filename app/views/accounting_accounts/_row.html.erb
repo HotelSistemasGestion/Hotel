@@ -1,5 +1,6 @@
 <tr id="<%= accounting_account.id %>">
     <td><%= accounting_account.grupo %></td>
+    <td><%= accounting_account.cuenta %></td>
     <td><%= accounting_account.nombre %></td>
     <td><%= accounting_account.imputable %></td>
     <td>
@@ -10,7 +11,8 @@
                     <% end %>    
             </div>
             <div class="col-xs-2">
-                <%= link_to edit_accounting_account_path(accounting_account), remote: true, class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                <%= link_to edit_accounting_account_path(accounting_account), remote: true, class: 'btn btn-warning', title: 
+                'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-pencil"></span>
                     <% end %>    
             </div>
