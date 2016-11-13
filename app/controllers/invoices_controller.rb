@@ -74,7 +74,7 @@ class InvoicesController < ApplicationController
                                       :direccion, 
                                       :celular,
                                       :correo,
-                                      :numero, 
+                                      #:numero, 
                                       :client_id, 
                                       :fecha, 
                                       :descuento,
