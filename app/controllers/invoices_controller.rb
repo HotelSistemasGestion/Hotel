@@ -30,7 +30,7 @@ class InvoicesController < ApplicationController
       if @invoice.save
         format.html { redirect_to invoices_url }        
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'La Factura fue creada correctamente.' }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
     end
@@ -41,7 +41,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to @invoice, notice: 'La Factura fue editada correctamente.' }
         format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit }
@@ -55,7 +55,7 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice.destroy
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
+      format.html { redirect_to invoices_url, notice: 'La Factura fue eliminada correctamente.' }
       format.json { head :no_content }
     end
   end
