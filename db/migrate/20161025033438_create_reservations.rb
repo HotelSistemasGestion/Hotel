@@ -4,9 +4,11 @@ class CreateReservations < ActiveRecord::Migration
       t.string :nombre
       t.string :email
       t.string :dias
-      t.string :type_of_room_id
+      t.date :check_in
+      t.date :check_out
+      t.references :type_of_room, index: true, foreign_key: true
+      t.references :room, index: true, foreign_key: true
       t.string :total
-
       t.timestamps null: false
     end
   end

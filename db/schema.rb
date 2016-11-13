@@ -132,8 +132,6 @@ ActiveRecord::Schema.define(version: 20161112160207) do
     t.integer  "budget_id"
     t.integer  "cantidad"
     t.integer  "type_of_room_id"
-    t.date     "check_in"
-    t.date     "check_out"
     t.integer  "subtotal"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -157,6 +155,8 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   create_table "budgets", force: :cascade do |t|
     t.integer  "reservation_request_id"
     t.integer  "comfort_id"
+    t.date     "check_in"
+    t.date     "check_out"
     t.text     "comentario"
     t.integer  "descuento"
     t.integer  "total"
@@ -391,11 +391,17 @@ ActiveRecord::Schema.define(version: 20161112160207) do
     t.string   "nombre"
     t.string   "email"
     t.string   "dias"
-    t.string   "type_of_room_id"
+    t.date     "check_in"
+    t.date     "check_out"
+    t.integer  "type_of_room_id"
+    t.integer  "room_id"
     t.string   "total"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
+  add_index "reservations", ["type_of_room_id"], name: "index_reservations_on_type_of_room_id", using: :btree
 
   create_table "rols", force: :cascade do |t|
     t.string   "role"
@@ -540,6 +546,8 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   add_foreign_key "payment_types", "cash_movements"
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservation_requests", "comforts"
+  add_foreign_key "reservations", "rooms"
+  add_foreign_key "reservations", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "comforts"

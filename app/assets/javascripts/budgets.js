@@ -27,7 +27,7 @@
       });
 
     
-
+ 
   //Funciones
   function getPrecioInicial(){
     //var dias=parseInt($("#dias").val());

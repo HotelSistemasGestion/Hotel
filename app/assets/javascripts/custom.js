@@ -77,6 +77,12 @@ init_function();
 		  } 
 
 
+      
+
+      
+
+
+
   });
 
  
@@ -90,6 +96,6 @@ init_function();
     $('.r_datepicker_complaint_lt').datepicker({
     format: 'yyyy/mm/dd 23:59:59'
 });
-});
+})
   ///Scripts para los reportes
 /*-----------------------------------------------------------------*/
