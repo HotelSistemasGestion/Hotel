@@ -29,7 +29,8 @@
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
 //= require es.js
-//= require underscore
+//= require contabilidad
+
 //= requrie gmaps/google
 
 //= require bootstrap-colorpicker

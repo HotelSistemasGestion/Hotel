@@ -29,52 +29,18 @@ init_function();
     });
 
 
-       $("#search").each(function(){
-      
-            $(this).daterangepicker({ "locale": {
-              "format": "DD/MM/YYYY",
-              "separator": " - ",
-              "applyLabel": "Aceptar",
-              "cancelLabel": "Cancelar",
-              "fromLabel": "From",
-              "toLabel": "To",
-              "customRangeLabel": "Custom",
-              "daysOfWeek": [
-                  "Do",
-                  "Lu",
-                  "Ma",
-                  "Mi",
-                  "Ju",
-                  "vi",
-                  "S&aacute;"
-              ],
-              "monthNames": [
-                  "Enero",
-                  "Febrero",
-                  "Marzo",
-                  "Abril",
-                  "Mayo",
-                  "Junio",
-                  "Julio",
-                  "Agosto",
-                  "Septiembre",
-                  "Octubre",
-                  "Noviembre",
-                  "Diciembre"
-              ],
-              "firstDay": 1
-          }, autoclose: true,
-          autoSize: true
-
-          });
-
-   });
     
       //Java script para que nested form reconozca los <tr>
       window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
 		  var $tr = $(link).closest('tr');
 		  return $(content).insertBefore($tr);
 		  } 
+
+
+      
+
+      
+
 
 
   });
@@ -90,6 +56,6 @@ init_function();
     $('.r_datepicker_complaint_lt').datepicker({
     format: 'yyyy/mm/dd 23:59:59'
 });
-});
+})
   ///Scripts para los reportes
 /*-----------------------------------------------------------------*/

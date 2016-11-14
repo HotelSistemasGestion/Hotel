@@ -91,6 +91,27 @@ AccountXEntry.create(accounting_entry_id:"14",accounting_account_id:"12",monto:"
 
 
 
+Room.create(type_of_room_id: 1,state_id: 1, capacidad: 2, identificador:"A1",precio: 10000);
+Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'A2',precio: 10000);
+
+Room.create(type_of_room_id: 3,state_id: 2 ,capacidad: 2,identificador: 'C3',precio: 10000);
+
+Room.create(type_of_room_id: 2,state_id: 3, capacidad: 2, identificador:"B1",precio: 10000);
+Room.create(type_of_room_id: 2,state_id: 3 ,capacidad: 2,identificador: 'B2',precio: 10000);
+
+Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',precio: 10000);
+
+
+Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 4,total: 10000);
+Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
+Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+8).to_s, check_out: (Date.today+9).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
+
+
+RoomComfort.create(room_id: 1 , comfort_id: 1);
+RoomComfort.create(room_id: 1 , comfort_id: 2);
+Photo.create(room_id: 1, my_file:"image/upload/v1477017980/dszqxru3husf5tv6toxg.jpg");
+
+
 #Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
 #Service.create(nombre: "TV cable Nacionales",descripcion: "100 canales",precio: 10000);
 
@@ -185,6 +206,7 @@ ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtamb
 ReservationRequest.create(nombre: "Katya", apellido: "Chaparro", email: "katya.chaparro.2010@gmail.com", telefono: "0012", comfort_id: 2, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+5).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
+
 
 PaymentType.create(descripcion: "efectivo");
 PaymentType.create(descripcion: "cheque");
