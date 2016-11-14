@@ -104,3 +104,57 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis mi eu elit tempor facilisis id et neque. Nulla sit amet sem sapien. Vestibulum imperdiet porta ante ac ornare. Nulla et lorem eu nibh adipiscing ultricies nec at lacus. Cras laoreet ultricies sem, at blandit mi eleifend aliquam. Nunc enim ipsum, vehicula non pretium varius, cursus ac tortor. Vivamus fringilla congue laoreet. Quisque ultrices sodales orci, quis rhoncus justo auctor in. Phasellus dui eros, bibendum eu feugiat ornare, faucibus eu mi. Nunc aliquet tempus sem, id aliquam diam varius ac. Maecenas nisl nunc, molestie vitae eleifend vel, iaculis sed magna. Aenean tempus lacus vitae orci posuere porttitor eget non felis. Donec lectus elit, aliquam nec eleifend sit amet, vestibulum sed nunc.
     </p>
   </div>
+
+
+
+<div class="container">
+    <div id="main_area">
+        <!-- Slider -->
+        <div class="row">
+            <div class="col-sm-6" id="slider-thumbs">
+                <!-- Bottom switcher of slider -->
+                         <ul class="hide-bullets">
+      
+                    <% Photo.all.each do |p| %>
+                     <li class="col-sm-3">                
+                       <a class="thumbnail" id="carousel-selector-0">
+                        <%=image_tag p.my_file_url.to_s%>
+                       
+                        </a>
+                    </li>
+                   
+                    <%end%>
+                   
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-xs-12" id="slider">
+                    <!-- Top part of the slider -->
+                    <div class="row">
+                        <div class="col-sm-12" id="carousel-bounding-box">
+                            <div class="carousel slide" id="myCarousel">
+                                <!-- Carousel items -->
+                                <div class="carousel-inner">
+
+
+                                  <% Photo.all.each do |p| %>
+                                   <div class="item">
+                                   <%=image_tag p.my_file_url.to_s%>
+
+                                   </div>
+
+
+                
+                                  <% end %>
+                         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/Slider-->
+        </div>
+
+    </div>
+</div>
+</div>

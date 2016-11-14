@@ -5091,7 +5091,19 @@ font-style: italic;
 #user {
   color: black;
 }
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
 
+.thumbnail {
+    padding: 0;
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+}
 /*prueba carrusel*/
 /*.hide-bullets {
     list-style:none;
@@ -5182,6 +5194,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
     }
 
 */
+/*
 #first-slider .main-container {
   padding: 0;
 }
@@ -5213,7 +5226,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
   background-image: none;
 }
 #first-slider .carousel .item {
-  /*min-height: 400px;*/
+ 
   height: 400px;
   width: 100%;
 }
@@ -5338,9 +5351,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
 }
 
 
-/********************************/
-/*       Slides backgrounds     */
-/********************************/
+
 #first-slider .slide1 {
     background-image: url(https://res.cloudinary.com/dqgld1gyl/image/upload/v1477154406/hotel_pwhpdh.jpg);
       background-size: cover;
@@ -5373,9 +5384,6 @@ now override the 3.3 new styles for modern browsers & apply opacity
 
 
 
-/********************************/
-/*          Media Queries       */
-/********************************/
 @media screen and (min-width: 980px){
       
 }
@@ -5383,7 +5391,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
       
 }
 
-
+*/
 .accordian {
   width: 950px; height: 320px;
   overflow: hidden;
