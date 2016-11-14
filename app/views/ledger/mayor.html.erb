@@ -11,6 +11,25 @@
 <div class="box-header with-border">
     <h1 class="box-title titulo">Libro Mayor</h1>
 </div>
+                          <div class="box-body">
+                                <form class="form-inline">
+   
+                                <div class="col-xs-6 col-md-6 col-sm-6"id="stock">
+                                  <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "search_conta" do %>
+                                     <%=label_tag "Periodo: "%>
+                                     <%= text_field_tag :search_conta, params[:search_conta],class: "form-control"%>
+                                     <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                                              <i class="glyphicon glyphicon-search"></i>
+                                          <% end %>
+                                      <%end%>
+                                      </div>
+                                      <div class="col-lg-6 col-md-6 col-sm-6">
+
+                                    </div>
+                                </form>
+                                 
+
+                </div>
     <div class="row">
        <div class="box-body">
             <%while cont2<@array_filtrar.count do %>

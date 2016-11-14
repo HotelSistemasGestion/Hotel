@@ -54,11 +54,11 @@
                 <div class="input-daterange" id="datepicker">
                
                   <div class="col-sm-6">
-                          <%= li.text_field :start, class: "form-control" ,name:"start"%>
-                  </div>
+                          <%
+                  </div>= li.text_field :start, class: "form-control" %>
                   
                   <div class="col-sm-6">
-                          <%= li.text_field :end,class: "form-control",name:"end"%>
+                          <%= li.text_field :end,class: "form-control"%>
                   </div>
                 </div>
                 </td>
@@ -74,12 +74,13 @@
                   <td>
                  
                   <button id="cp6"class="btn btn-primary glyphicon glyphicon-text-color colorpicker-component"></button>   
+                  
                   <%= li.text_field :color, id:"cp7", class: "form-control input "%>
                   <%= li.text_field :textColor, id:"cp8", class: "form-control input "%>
-                     <script>
+  <script>
     $(function() {
        
-        $(' .input-daterange').datepicker({  format: 'dd-mm-yyyy', calendarWeeks: true});
+        $(' .input-daterange').datepicker({  format: 'dd/mm/yyyy', calendarWeeks: true});
         $('#cp7').hide();
         $('#cp8').hide();
         $('#cp4').colorpicker({ format: "hex"});
@@ -105,6 +106,10 @@
                   <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
               </tr>
               <%end%>
+           
+
+
+
               <tr>
                 <td><%= f.link_to_add "", :cleanings, :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
               </tr>
