@@ -396,15 +396,16 @@ ActiveRecord::Schema.define(version: 20161111185002) do
     t.datetime "updated_at",      null: false
   end
 
-<<<<<<< HEAD
+  create_table "rols", force: :cascade do |t|
+    t.string   "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "room_account_details", force: :cascade do |t|
     t.integer  "account_id"
     t.integer  "room_id"
     t.integer  "precio"
-=======
-  create_table "rols", force: :cascade do |t|
-    t.string   "role"
->>>>>>> b7cdf96a407e133fa7fd6297437869daee06a2a8
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
