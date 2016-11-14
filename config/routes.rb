@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'notificacion/index'
+  get 'gallery/index'
+
 
   resources :budget_room_details
   resources :budget_service_details

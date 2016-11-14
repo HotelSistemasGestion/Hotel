@@ -18,6 +18,7 @@ class AccountPlansController < ApplicationController
   # GET /account_plans/new
   def new
     @account_plan = AccountPlan.new
+    @account_plans.accounting_year.build()
   end
 
   # GET /account_plans/1/edit
@@ -28,17 +29,15 @@ class AccountPlansController < ApplicationController
   # POST /account_plans.json
   def create
     @account_plan = AccountPlan.new(account_plan_params)
-
     respond_to do |format|
       if @account_plan.save
-        format.json { render :show, status: :created, location: @account_plan }
+        format.js { } # Hace un render a create.js.erb
       else
         format.html { render :new }
         format.json { render json: @account_plan.errors, status: :unprocessable_entity }
       end
     end
   end
-
 
   # PATCH/PUT /account_plans/1
   # PATCH/PUT /account_plans/1.json
@@ -71,6 +70,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_plan_params
-      params.require(:account_plan).permit(:descripcion, :estado, :version)
+      params.require(:account_plan).permit(:descripcion, :estado, :version,:accounting_year_attributes => [:id,:estado, :_destroy])
     end
 end
