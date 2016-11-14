@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'notificacion/index'
+
   resources :budget_room_details
   resources :budget_service_details
   resources :cleanings
@@ -36,16 +38,18 @@ Rails.application.routes.draw do
   resources :cash_counts
   resources :closing_cashes
   resources :opening_cashes do
-  collection do
-      get 'my_new'
+    resources :cash_movements, :except => [:show, :destroy] do 
+      collection do
+        get 'new'
+      end
     end
-  end
+  end 
 
   resources :cashes
   resources :type_of_rooms do
      get :autocomplete_type_of_room_tipo, :on => :collection
   end
-
+  
   resources :accounting_entries
   resources :accounting_accounts
   resources :account_plans
