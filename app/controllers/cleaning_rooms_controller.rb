@@ -70,6 +70,6 @@ class CleaningRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cleaning_room_params
-      params.require(:cleaning_room).permit(:room_id, :employee_id, :start,:end,:title,:cleanings_attributes => [:room_id,:start,:end,:title,:color,:_destroy])
+      params.require(:cleaning_room).permit(:room_id, :employee_id,:title,:cleanings_attributes => [:room_id,:start,:end,:title,:color,:textColor,:_destroy])
     end
 end

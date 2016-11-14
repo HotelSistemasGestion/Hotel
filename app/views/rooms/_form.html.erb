@@ -16,21 +16,18 @@
  
  <div class="box-body">
  <!--  <div class="alert alert-danger" role="alert" style="play: none;"></div>-->
-  <div class="form-group has-feedback col-sm-6">
+  <div class="form-group col-sm-6">
     <%= f.label "Tipo de Habitacion", class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
-      <%= f.select :type_of_room_id ,TypeOfRoom.all.collect { |p| [p.tipo, p.id ] },{include_blank: false},class: "form-control",:required=>true %>
-      <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-      <div class="help-block with-errors">*requerido</div>
+      <%= f.select :type_of_room_id ,TypeOfRoom.all.collect { |p| [p.tipo, p.id ] },{include_blank: false},class: "form-control" %>
     </div>
   </div>
 
-  <div class="form-group has-feedback col-sm-6">
+  <div class="form-group  col-sm-6">
     <%= f.label "Estado", class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
-      <%= f.select :state_id ,State.all.collect { |p| [p.descripcion, p.id ] },{include_blank: false},class: "form-control",:required =>true%>
-      <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-      <div class="help-block with-errors">*requerido</div>
+      <%= f.select :state_id ,State.all.collect { |p| [p.descripcion, p.id ] },{include_blank: false},class: "form-control"%>
+
     </div>
   </div>
 
@@ -53,30 +50,16 @@
   </div>
 
 
-
   <div class="form-group col-sm-6">
-        <table class="table">
-          <thead class="thead-inverse">
-            <tr>
-              <th>Conforts</th>
-            </tr>
-          </thead>
-          <tbody>
-        
-              <%= f.fields_for :room_comforts  ,:wrapper => false do |li| %>
-              <tr class="fields">
-                  <th scope="row"> <%= li.select :comfort_id, Comfort.all.collect { |p| [ p.descripcion, p.id ] },{include_blank: false},class: "form-control"%></th>
-                 
-                  <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
-              </tr>
-              <%end%>
-              <tr>
-                <td><%= f.link_to_add "", :room_comforts, :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
-              </tr>
+    <%= f.label "Comfort", class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+       <%= f.select :comfort_id, Comfort.all.collect { |p| [ p.descripcion, p.id ] },{include_blank: false},class: "form-control"%>
 
-          </tbody>
-        </table>
-    </div>  
+    </div>
+  </div>
+
+
+
 
       <div class="form-group  col-sm-6">
         <table class="table">

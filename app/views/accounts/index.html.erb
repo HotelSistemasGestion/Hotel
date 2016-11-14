@@ -42,7 +42,7 @@
               <td><%= link_to edit_account_path(account), class: 'col-sm-2', title: 'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon glyphicon-edit"></span>
                     <% end %></td>
-              <td><%= link_to account, method: :delete, data: { confirm: 'Esta seguro?' }, remote: true, class: 'col-sm-2', title: 'Eliminar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+              <td><%= link_to account, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'col-sm-2', title: 'Eliminar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon glyphicon-trash"></span>
                     <% end %></td>
               </tr>

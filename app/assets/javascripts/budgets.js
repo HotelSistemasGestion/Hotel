@@ -1,9 +1,10 @@
-      $(document).ready(function (){
+      $(document).ready(function (){  
+        
         $('#descuento,#cantidad_de_habitaciones,#dias').change(function(){
            actualizartotal();
-        });
-
+        });    
         $('#total').val(getPrecioInicial());
+        $('#totales').val(getPrecioInicial());
 
       });
       
@@ -26,13 +27,15 @@
         actualizartotal();
       });
 
-    
+      $(document).on('change','#table_totals #descount', function () {     
+        actualizartotal();
+      });
 
-  //Funciones
-  function getPrecioInicial(){
-    //var dias=parseInt($("#dias").val());
-    //var precio_de_habitacion=parseInt($("#precio_habitacion").val());
-    //var cantidad_de_habitaciones=parseInt($("#cantidad_de_habitaciones").val());
+      $(document).on('keyup','#table_totals #descount', function () {                
+        actualizartotal();
+      });
+
+  function getPrecioInicial(){    
     var total=0;
     return total;
   }
@@ -73,12 +76,6 @@
         });
         return sum;
     }
-
-
-      //function {
-          //$("#total").val(getsumasubtotales());
-        //  descontartotal();
-      //}
       //Actualiza el total con su respectivo descuento.
       function actualizartotal(){
         console.log("Estoy descontando");
@@ -87,6 +84,10 @@
         var subtotales=getsumasubtotales();
         var descuento=((getPrecioInicial()+subtotales) *  desc_value);
         $("#total").val(( getPrecioInicial()+subtotales) - descuento);
+        var val2=(parseInt($("#descount").val())/100);
+        var desc_val=!isNaN(val2) ? val2 : 0;
+        var d=((getPrecioInicial()+subtotales) *  desc_val);
+        $("#totales").val(( getPrecioInicial()+subtotales) - d);
       }
       ///ACA TERMINA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
 /*-----------------------------------------------------------------*/     

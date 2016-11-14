@@ -49,21 +49,24 @@
             </div>
           </div>
           <br></br>
+
+
+
 <div class="row">
 <div class="col-sm-10">
       <div class="col-sm-2"></div>
       <table class="table well col-sm-offset-1">
           <thead class="thead-inverse">
             <tr>
-              <th>Factura Numero</th>
-              <th>Subtotal</th>
+              <th>Tipo</th>
+              <th>SubTotal</th>
               <th>Valor</th>
               <th>Eliminar</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="contenedor">
         
-              <%= f.fields_for :detail_of_cash_movements  ,:wrapper => false do |li| %>
+              <%= f.fields_for :payment_types  ,:wrapper => false do |li| %>
               <tr class="fields">
                   <th scope="row"><%= li.number_field :sub_monto ,:class => "form-control"%></th>
                   <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
@@ -74,14 +77,16 @@
               </tr>
               <%end%>
               <tr>
-                <td><%= f.link_to_add "", :detail_of_cash_movements , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
+                <td><%= f.link_to_add "", :payment_types , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
               </tr>
 
           </tbody>
         </table>
 
 </div>
+
 </div>  
+
 <div class="row">
 <div class="col-sm-10">
     <div class="form-group">
