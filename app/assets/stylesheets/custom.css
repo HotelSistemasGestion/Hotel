@@ -5162,13 +5162,9 @@ width: 1200px;
 
 .carousel-fade .carousel-control {
   z-index: 2;
-}*/
+}
 
-/*
-WHAT IS NEW IN 3.3: "Added transforms to improve carousel performance in modern browsers."
-now override the 3.3 new styles for modern browsers & apply opacity
-*/
-/*@media all and (transform-3d), (-webkit-transform-3d) {
+@media all and (transform-3d), (-webkit-transform-3d) {
     .carousel-fade .carousel-inner > .item.next,
     .carousel-fade .carousel-inner > .item.active.right {
       opacity: 0;
@@ -5192,9 +5188,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
 .topspace{
     margin:100px auto;max-width:805px;
     }
-
 */
-/*
 #first-slider .main-container {
   padding: 0;
 }
@@ -5391,13 +5385,13 @@ now override the 3.3 new styles for modern browsers & apply opacity
       
 }
 
-*/
+
 .accordian {
-  width: 950px; height: 320px;
+  width: 600px; height: 320px;
   overflow: hidden;
   
   /*Time for some styling*/
-  margin: 20px auto;
+  margin: 2px auto;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
   -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
   -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
@@ -5413,7 +5407,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
 .accordian li {
   position: relative;
   display: block;
-  width: 160px;
+  width: 20px;
   float: left;
 
   border-left: 1px solid #888;
@@ -5431,7 +5425,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
 }
 
 /*Reduce with of un-hovered elements*/
-.accordian ul:hover li {width: 40px;}
+.accordian ul:hover li {width: 30px;}
 /*Lets apply hover effects now*/
 /*The LI hover style should override the UL hover style*/
 .accordian ul li:hover {width: 640px;}

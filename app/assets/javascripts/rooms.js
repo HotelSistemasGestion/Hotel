@@ -105,7 +105,7 @@ $(document).ready(function() {
 			});
 });
   jQuery(document).ready(function($) {
- 
+       
         $('#myCarousel').carousel({
                 interval: 5000
         });
@@ -126,5 +126,5 @@ $(document).ready(function() {
                  var id = $('.item.active').data('slide-number');
                 $('#carousel-text').html($('#slide-content-'+id).html());
         });
+        $( '.item:first' ).addClass( 'active');
 });
-$( '.item:first' ).addClass( 'active');
