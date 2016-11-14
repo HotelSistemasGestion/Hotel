@@ -135,3 +135,12 @@ $(document).on('nested:fieldAdded', function(event) {
     });
   
 })
+$(document).ready(function() {
+    $("#single_1").fancybox({
+          helpers: {
+              title : {
+                  type : 'float'
+              }
+          }
+      });
+ });
