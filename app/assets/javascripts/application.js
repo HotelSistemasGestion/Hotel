@@ -18,7 +18,9 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require np
 //= require app
+//= require cash_module
 //= require custom
+
 //= require budgets
 
 //= require underscore
@@ -29,7 +31,8 @@
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
 //= require es.js
-//= require underscore
+//= require contabilidad
+
 //= requrie gmaps/google
 
 //= require bootstrap-colorpicker
