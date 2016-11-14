@@ -78,6 +78,7 @@ class InvoicesController < ApplicationController
                                       :fecha, 
                                       :descuento,
                                       :subtotal,
-                                      :total)
+                                      :total,
+                                      :invoice_details_attributes => [:id, :service_id, :cantidad, :cantidad, :precio, :subtotal])
     end
 end
