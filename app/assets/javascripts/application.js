@@ -32,6 +32,10 @@
 //= require cleaning_rooms.js
 //= require jquery.fancybox.js
 //= require jquery.fancybox.pack.js
+//= require chosen.jquery.js
+//= require chosen.jquery.min.js
+//= require chosen.proto.js
+//= require chosen.proto.min.js
 //= require es.js
 //= require contabilidad
 

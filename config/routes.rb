@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'gallery/index'
+
   resources :budget_room_details
   resources :budget_service_details
   resources :cleanings
