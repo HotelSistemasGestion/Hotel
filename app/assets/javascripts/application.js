@@ -18,7 +18,9 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require np
 //= require app
+//= require cash_module
 //= require custom
+
 //= require budgets
 
 //= require underscore
