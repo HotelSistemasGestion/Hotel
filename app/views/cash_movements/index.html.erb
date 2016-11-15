@@ -7,10 +7,7 @@
           <div class="col-sm-2"></div>
           <h3 class="box-title col-sm-6">
             Movimientos de Caja
-          </h3>
-          <% if current_user.has_role? "Ver movimiento" or current_user.has_role? "Admin" %>                           
-            <%= link_to 'Nuevo Movimiento', new_cash_movement_path, class: "btn btn-primary" %>
-          <% end %>                     
+          </h3>                     
         </div> 
         
         <div class="box-body">
@@ -33,9 +30,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <% @cash_movements.each do |cash_movement| %>
-                    <%= render "row", cash_movement: cash_movement %>
+                    <%= content_tag_for(:tr, @cash_movements) do |cash_movement| %>
+                    <td><%= cash_movement.opening_cash.fecha_apertura %></td>
+                    <td><%= cash_movement.type_of_cash_movement_descripcion %></td>
+                    <td><%= cash_movement.client.name %></td>
+                    <td><%= cash_movement.monto_total %></td>
+                    <td align="center">
+            <%= link_to cash_movement, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon-eye-open"></span>
                     <% end %>
+                </td>
+                    <% end %>
+
                   </tbody>  
                 </table>
               </div>  

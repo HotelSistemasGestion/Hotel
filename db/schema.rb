@@ -401,12 +401,9 @@ ActiveRecord::Schema.define(version: 20161112160207) do
     t.datetime "updated_at",      null: false
   end
 
-<<<<<<< HEAD
-=======
   add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
   add_index "reservations", ["type_of_room_id"], name: "index_reservations_on_type_of_room_id", using: :btree
 
->>>>>>> 81cf89480b93ed8150beba48af11384630fd451e
   create_table "rols", force: :cascade do |t|
     t.string   "role"
     t.datetime "created_at", null: false
