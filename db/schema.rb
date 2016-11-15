@@ -390,23 +390,21 @@ ActiveRecord::Schema.define(version: 20161112160207) do
 
   create_table "reservations", force: :cascade do |t|
     t.string   "nombre"
+    t.string   "apellido"
     t.string   "email"
     t.string   "dias"
     t.date     "check_in"
     t.date     "check_out"
-    t.integer  "type_of_room_id"
     t.integer  "room_id"
+    t.integer  "type_of_room_id"
     t.string   "total"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-<<<<<<< HEAD
-=======
   add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
   add_index "reservations", ["type_of_room_id"], name: "index_reservations_on_type_of_room_id", using: :btree
 
->>>>>>> 81cf89480b93ed8150beba48af11384630fd451e
   create_table "rols", force: :cascade do |t|
     t.string   "role"
     t.datetime "created_at", null: false
