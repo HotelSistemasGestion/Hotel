@@ -11,7 +11,7 @@
       <div class="modal-body">   
         <p id="notice"><%= notice %></p>
 
-        <p>
+       <p>
           <strong>Nombre:</strong>
           <%= @reservation.nombre %>
         </p>
@@ -19,23 +19,42 @@
 
         <p>
           <strong>Apellido:</strong>
-          <%= @reservation.email %>
+          <%= @reservation.apellido %>
         </p>
 
 
+        <p>
+          <strong>Email:</strong>
+          <%= @reservation.email %>
+        </p>
 
         <p>
-          <strong>Check in:</strong>
+          <strong>Dias:</strong>
           <%= @reservation.dias %>
         </p>
 
         <p>
-          <strong>Check out:</strong>
-          <%= @reservation.type_of_room_id %>
+          <strong>Check_in:</strong>
+          <%= @reservation.check_in %>
         </p>
 
         <p>
-          <strong>Tipo de Cuarto:</strong>
+          <strong>Check_out:</strong>
+          <%= @reservation.check_out %>
+        </p>
+
+        <p>
+          <strong>Cuarto:</strong>
+          <%= @reservation.room_id %>
+        </p>
+
+        <p>
+          <strong>Tipo_de_Cuarto:</strong>
+          <%= @reservation.total %>
+        </p>
+
+        <p>
+          <strong>Total:</strong>
           <%= @reservation.total %>
         </p>
 

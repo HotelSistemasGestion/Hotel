@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
+
+  get 'picture/index'
+
   get 'notificacion/index'
+
   get 'gallery/index'
 
 
@@ -64,7 +68,11 @@ Rails.application.routes.draw do
   resources :services do
     get :autocomplete_service_nombre, :on => :collection
   end  
-  resources :accounts
+  resources :accounts do
+    member do
+      get :facturar
+    end
+  end
   resources :invoices
   resources :clients do 
     get :autocomplete_client_cedula, :on => :collection
