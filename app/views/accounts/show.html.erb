@@ -35,22 +35,26 @@
   <%= @account.total %>
 </p>
 
+<p>
+  <strong>Numero de Factura:</strong>
+  <%= @account.numero %>
+</p>
+
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>
+<%= link_to 'Facturar', facturar_account_path(@account), remote: true, class: "btn btn-success" %> 
 
-<a href="<%=invoices_path%>" id="fact" class="btn btn-success"><i class="fa fa-credit-card"></i>Facturar</a>
-
-<script type="text/javascript">
-  $('#fact').click(function() {                                                 
+    <%if @account.numero.present? %>                                                 
     <%Invoice.create(nombre: @account.nombre,
                      ruc: @account.ruc,
                      direccion: @account.direccion,
+                     numero: @account.numero,
                      celular: @account.telefono,
                      correo: @account.correo,
                      client_id: @account.client_id,
                      fecha: Time.now.strftime("%d-%m-%Y"),                   
                      descuento: @account.descuento,
                      subtotal: @account.subtotal,
-                     total: @account.total)%>                    
-  }); 
-</script>
+                     total: @account.total)%>
+    <%= link_to 'Ver Factura', invoices_path, class: "btn btn-info" %>
+    <%end%>                    
