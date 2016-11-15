@@ -16,9 +16,9 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
-    @my_reservation_requests = ReservationRequest.find(params[:id])
-    #@my_type_of_rooms = TypeOfRoom.find(params[:id])
-    @my_budgets = Budget.find(params[:id])
+    #@my_reservation_requests = ReservationRequest.find(params[:id])
+    #@my_type_of_rooms =  TypeOfRoom.find(params[:id])
+    #@my_budgets = Budget.find(params[:id])
 
   end
 
@@ -80,6 +80,6 @@ class ReservationsController < ApplicationController
      # params.require(:reservation).permit(:nombre, :apellido, :check_in, :check_out, :type_of_room_id)
      #json.extract! reservation, :id, :nombre, :apellido, :check_in, :check_out, :type_of_room_id, :created_at, :updated_at
      #json.url reservation_url(reservation, format: :json)
-     params.require(:reservation).permit(:nombre, :email, :dias, :type_of_room_id, :total)
+     params.require(:reservation).permit(:nombre, :apellido, :email, :dias, :check_in, :check_out, :room_id, :type_of_room_id, :total)
     end
 end

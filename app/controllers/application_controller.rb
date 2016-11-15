@@ -7,8 +7,20 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)         
     if resource.has_role? "Admin"
       usuarios_path
-    elsif resource.has_role? "Cajero"
-      new_cash_movement_path
+    elsif resource.has_role? "Crear Movimiento"
+      user_ci = resource.numero_ci.to_i
+      cajero = Employee.find_by(cedula: user_ci)
+      apertura = OpeningCash.find_by(employee_id: cajero.id)
+    
+      #Si existe una apertura destinado para el cajero lo redirecciona
+      #a la vista de movimientos sino lo redirecciona a una pagina
+      #donde le mostrara un mensaje
+      if apertura.nil?
+          notificacion_index_path
+      else
+          @id_apertura = apertura.id
+          new_cash_movement_path(opening_cash_id: @id_apertura)    
+      end
     elsif resource.has_role? "Supervisor"
       cashes_path
     else

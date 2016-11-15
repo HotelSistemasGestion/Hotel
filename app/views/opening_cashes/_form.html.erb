@@ -47,11 +47,10 @@
                 <div class="col-sm-5">
                   <div class="form-group">
                     <%= f.label :fecha, class: "col-sm-5 control-label" %>
-                    <div class="col-sm-5">
-                      <%= f.text_field :fecha_apertura,id: "date", class: "form-control datepicker",:required => true %>
-                      <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <div class="col-sm-7">
+                      <%= f.text_field :fecha_apertura,value: Time.now.strftime("%d-%m-%Y"), class: "form-control", :readonly => true%>
                     </div>
-                    <label id="bt1" class="btn btn-default col-sm-1" role="button" title="Hoy"><span class= "fa fa-calendar-check-o"></span></label>
+                    
                   </div>  
                 </div>
                 
@@ -75,9 +74,3 @@
         </div>
       </div>  
 <% end %>
-
-<script type="text/javascript">
-  $('#bt1').click(function() {
-    $('#date').val('<%= Time.now.strftime("%d-%m-%Y") %>');      
-  }); 
-</script>
