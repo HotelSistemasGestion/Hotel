@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :reservation_rooms
   get 'picture/index'
 
   get 'notificacion/index'
