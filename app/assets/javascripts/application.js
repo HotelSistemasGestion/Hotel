@@ -38,7 +38,7 @@
 //= require chosen.proto.min.js
 //= require es.js
 //= require contabilidad
-
+//= require picture.js
 //= requrie gmaps/google
 
 //= require bootstrap-colorpicker

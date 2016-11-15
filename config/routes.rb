@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
+
+  get 'picture/index'
+
   get 'notificacion/index'
+
   get 'gallery/index'
 
 
