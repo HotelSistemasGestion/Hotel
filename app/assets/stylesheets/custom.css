@@ -5389,7 +5389,6 @@ width: 1200px;
 .accordian {
   width: 600px; height: 320px;
   overflow: hidden;
-  
   /*Time for some styling*/
   margin: 2px auto;
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
