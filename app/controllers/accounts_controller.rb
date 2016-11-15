@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_account, only: [:show, :edit, :update, :destroy, :facturar]
 
   # GET /accounts
   # GET /accounts.json
@@ -10,6 +10,10 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+  end
+
+  def facturar
+    
   end
 
   # GET /accounts/new
@@ -42,8 +46,9 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'La Cuenta fue editada exitosamente.' }
-        format.json { render :show, status: :ok, location: @account }
+        #format.html { redirect_to @account, notice: 'La Cuenta fue editada exitosamente.' }
+        #format.json { render :show, status: :ok, location: @account }
+        format.js { }
       else
         format.html { render :edit }
         format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -70,6 +75,6 @@ class AccountsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
       params.require(:account).permit(:client_id,:fecha_entrada, :fecha_salida, :total, :room_id, :identificador_hab, :telefono,
-       :correo, :nombre, :direccion, :ruc, :subtotal, :descuento)
+       :correo, :nombre, :direccion, :ruc, :subtotal, :descuento, :numero)
     end
 end

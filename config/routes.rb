@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
+
   get 'picture/index'
 
+  get 'notificacion/index'
+
   get 'gallery/index'
+
 
   resources :budget_room_details
   resources :budget_service_details
@@ -40,16 +44,18 @@ Rails.application.routes.draw do
   resources :cash_counts
   resources :closing_cashes
   resources :opening_cashes do
-  collection do
-      get 'my_new'
+    resources :cash_movements, :except => [:show, :destroy] do 
+      collection do
+        get 'new'
+      end
     end
-  end
+  end 
 
   resources :cashes
   resources :type_of_rooms do
      get :autocomplete_type_of_room_tipo, :on => :collection
   end
-
+  
   resources :accounting_entries
   resources :accounting_accounts
   resources :account_plans
@@ -62,7 +68,11 @@ Rails.application.routes.draw do
   resources :services do
     get :autocomplete_service_nombre, :on => :collection
   end  
-  resources :accounts
+  resources :accounts do
+    member do
+      get :facturar
+    end
+  end
   resources :invoices
   resources :clients do 
     get :autocomplete_client_cedula, :on => :collection

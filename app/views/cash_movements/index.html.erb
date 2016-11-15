@@ -8,7 +8,7 @@
           <h3 class="box-title col-sm-6">
             Movimientos de Caja
           </h3>
-          <% if current_user.has_role? "Cajero" or current_user.has_role? "Admin" %>                           
+          <% if current_user.has_role? "Ver movimiento" or current_user.has_role? "Admin" %>                           
             <%= link_to 'Nuevo Movimiento', new_cash_movement_path, class: "btn btn-primary" %>
           <% end %>                     
         </div> 

@@ -5,24 +5,28 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><%= title %></h4>
       </div>
-      <%= form_for @account_plan, remote: true do |f| %>        
+      <%= nested_form_for @account_plan, remote: true do |f| %>        
         <div class="modal-body">
 
           <div class="form-group">
 
             <div class="row">
 
-              <div class="col-md-6">   
-                  <%= f.text_field :descripcion, class: "form-control input-lg", placeholder: "Descripcion" ,:required => true %>             
+              <div class="col-md-6">                
+                  <%= f.text_field :descripcion, class: "form-control input-lg", placeholder: "Descripción" ,:required => true %>
                   <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
                   <div class="help-block with-errors"></div> 
-                  <%= f.text_field :estado, class: "form-control input-lg", placeholder: "Estado" ,:required => true %>             
+                  <%= f.text_field :estado, class: "form-control input-lg", placeholder: "Estado" ,:required => true %>
                   <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                  <div class="help-block with-errors"></div>  
-                  <%= f.number_field :version, class: "form-control input-lg", placeholder: "Version" ,:required => true %>             
+                  <div class="help-block with-errors"></div> 
+                  <%= f.number_field :version, class: "form-control input-lg", placeholder: "Version" ,:required => true %>
                   <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                  <div class="help-block with-errors"></div>  
-                
+                  <div class="help-block with-errors">*requerido</div>
+                  <div>
+                  <%= f.fields_for :accounting_years  ,:wrapper => false do |li| %>
+                    <th><%= li.text_field :estado, :class => "form-control"%></td>
+                  <%end%>
+                  </div>
               </div>
 
             </div>  
