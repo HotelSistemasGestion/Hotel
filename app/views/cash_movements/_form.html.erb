@@ -13,8 +13,6 @@
   <% end %>
 
 <div class="row">
-  <% id = "#"+"#{f.object_name}[client_id]".gsub(/(\])?\[/, "_").chop %>
-  <% id_apertura = "#"+"#{f.object_name}[opening_cash_id]".gsub(/(\])?\[/, "_").chop %>
   <div class="col-md-4">
     <%= f.label 'Apertura' ,class: "col-sm-2" %><br>
     <%= f.text_field :opening_cash,id: "apertura", class: "form-control col-md-2",:value => @apertura.fecha_apertura,:readonly => true %>
@@ -23,13 +21,14 @@
 
   <div class="col-md-4">
     <%= f.label 'Cliente' %><br>
-    <%= f.autocomplete_field :client, autocomplete_client_cedula_clients_path,:update_elements => {:id => id}, class:"form-control", placeholder: "Ingrese numero de cedula", :required => true %>
-    <%= f.hidden_field  :client_id%>
+    <%= f.autocomplete_field :clientes, autocomplete_client_cedula_clients_path, class:"form-control", placeholder: "Ingrese numero de cedula",:multiple => false, :update_elements => {:id => '#cli_id'}, :required => true %>
+    <%= f.hidden_field  :client_id, id: 'cli_id' %>
   </div>
 
   <div class="col-md-4">
     <%= f.label 'Tipo de movimiento' %><br>
     <%= f.select :type_of_cash_movement_id ,TypeOfCashMovement.all.collect { |t| [t.descripcion, t.id ] },{include_blank: false},class: "form-control",:required => true %>
+
   </div>
 </div>
 
@@ -54,11 +53,15 @@
             <tbody>
               <%= f.fields_for :detail_of_cash_movements  ,:wrapper => false do |li| %>
               <tr class="fields">
-                  <td scope="row">
-                    <%= li.number_field :invoices ,:class => "form-control"%>
+                   <% id = "#"+"#{li.object_name}[invoice_id]".gsub(/(\])?\[/, "_").chop %>
+                   <td>
+                   
+                    <%= li.autocomplete_field :invoice, autocomplete_invoice_numero_invoices_path, :placeholder => "Seleccione una factura", 
+                  :multiple => true, :update_elements => {:id => id},class: "ui-autocomplete-input"%>  
+                  <%= li.number_field  :invoice_id%>
                   </td>
                   <td>
-                    <%= li.number_field :sub_monto, :class => "form-control subtotal"%>
+                    <%= li.number_field :sub_monto, id: 'factotal', :class => "form-control subtotal"%>
                   </td>
                   <td>
                     <%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %>

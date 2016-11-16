@@ -19,7 +19,7 @@ class CashMovementsController < ApplicationController
     @cash_movement = CashMovement.new
     @cash_movement.detail_of_cash_movements.build()
     @cash_movement.payment_types.build()
-    @apertura = OpeningCash.find(params[:opening_cash_id])  
+    @apertura = OpeningCash.find(params[:opening_cash_id])
   end
 
   # GET /cash_movements/1/edit

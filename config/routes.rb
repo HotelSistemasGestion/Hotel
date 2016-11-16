@@ -74,7 +74,9 @@ Rails.application.routes.draw do
       get :facturar
     end
   end
-  resources :invoices
+  resources :invoices do 
+    get :autocomplete_invoice_numero, :on => :collection
+  end
   resources :clients do 
     get :autocomplete_client_cedula, :on => :collection
   end
