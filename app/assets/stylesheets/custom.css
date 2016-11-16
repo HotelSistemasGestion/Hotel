@@ -5469,3 +5469,7 @@ width: 1200px;
 .tipos-h3 {
     color: #fff;
 }
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
