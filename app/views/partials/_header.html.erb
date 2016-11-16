@@ -2,7 +2,7 @@
 <header class="main-header">
 
   <!-- Logo -->
-  <a href="<%=welcome_index_path%>" class="logo">
+  <a href="<%= welcome_index_path unless current_user.has_role? "Crear Movimiento" %>" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>H</b>UNI</span>
     <!-- logo for regular state and mobile devices -->
@@ -130,6 +130,7 @@
               </div>
             </li>-->
             <!-- Menu Footer-->
+
             <li class="user-footer">            
               <div class="pull-right">
                 <a href="<%=destroy_user_session_path%>" data-method="delete" class="btn btn-default btn-flat">Salir</a>

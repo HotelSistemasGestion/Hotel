@@ -1,0 +1,41 @@
+<div class="page-header">
+  <%= link_to new_reservation_room_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Reservation room
+  <% end %>
+  <h1>Listing reservation_rooms</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+        <th>Reservation</th>
+    
+        <th>Room</th>
+    
+        <th>Subtotal</th>
+    
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @reservation_rooms) do |reservation_room| %>
+    
+        <td><%= reservation_room.reservation_id %></td>
+    
+        <td><%= reservation_room.room_id %></td>
+    
+        <td><%= reservation_room.subtotal %></td>
+    
+        <td><%= link_to 'Show', reservation_room %></td>
+        <td><%= link_to 'Edit', edit_reservation_room_path(reservation_room) %></td>
+        <td><%= link_to 'Destroy', reservation_room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

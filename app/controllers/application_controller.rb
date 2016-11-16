@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 	def is_ip_allowed  
     if ip_block.include?(request.remote_ip).to_s
 			return true
-		else 
+		else  
 			return false
 		end
 	end

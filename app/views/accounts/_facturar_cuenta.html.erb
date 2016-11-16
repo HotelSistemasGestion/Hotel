@@ -5,7 +5,12 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><%= title %></h4>
       </div>
+   
+
       <%= form_for @account, remote: true do |f| %>         
+
+      <% if @account.fecha_salida!=nil %>  
+
         <div class="modal-body">
 
           <div class="form-group">
@@ -37,6 +42,17 @@
           <%= f.submit 'Aceptar', class: "btn btn-primary btn-lg" %>
         </div>
         
+      <% else %>
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title"><center>Error!</center></h3>
+          </div>
+          <div class="panel-body">
+            <h4><center>Debe guardar el Check-Out!</center></h4>
+          </div>
+        </div>
+      <% end %>
+
       <% end %>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
