@@ -23,8 +23,7 @@
           <thead class="thead-inverse">
             <tr>
               <th>Habitacion</th>
-              <th><i align="center">Desde - Hasta</i></th>
-          
+              <th></th>
               <th>Etiqueta</th>
               <th></th>
                <th></th>
@@ -38,27 +37,14 @@
                       <%= li.select :room_id ,Room.all.collect { |p| [p.identificador, p.id ] },{include_blank: false},class: "form-control"%>  
                       
                   </td>  
-           <!--       <td>
-           <div class="input-daterange" id="datepicker">
-    <input type="text" class="input-small" name="start" />
-    <span class="add-on">to</span>
-    <input type="text" class="input-small" name="end" />
-</div>
-</td>
-<div class="input-daterange" id="datepicker">
-    <input type="text" class="input-small" name="start" />
-    <span class="add-on">to</span>
-    <input type="text" class="input-small" name="end" />
-</div>
--->           <td>
-                <div class="input-daterange" id="datepicker">
-               
+               <td>
+                <div class="input-daterange" id="datepicker">             
                   <div class="col-sm-6">
-                          <%= li.text_field :start, class: "form-control" %>
+                          <%= li.text_field :start, class: "form-control", placeholder: "Desde el Dia" %>
                   </div>
                   
                   <div class="col-sm-6">
-                          <%= li.text_field :end,class: "form-control"%>
+                          <%= li.text_field :end,class: "form-control",placeholder: "Hasta el Dia"%>
                   </div>
                 </div>
                 </td>
@@ -69,12 +55,11 @@
                          <div class="help-block with-errors">*requerido</div>   
                   </td>
                   <td>
-                     <button id="cp4"class="btn btn-primary glyphicon glyphicon-text-background colorpicker-component"></button>
-                  </td>
-                  <td>
-                 
+                  <button id="cp4"class="btn btn-primary glyphicon glyphicon-text-background colorpicker-component"></button>
                   <button id="cp6"class="btn btn-primary glyphicon glyphicon-text-color colorpicker-component"></button>   
                   
+                  
+
                   <%= li.text_field :color, id:"cp7", class: "form-control input "%>
                   <%= li.text_field :textColor, id:"cp8", class: "form-control input "%>
   <script>
