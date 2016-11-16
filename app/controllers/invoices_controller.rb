@@ -73,12 +73,13 @@ class InvoicesController < ApplicationController
                                       :direccion, 
                                       :celular,
                                       :correo,
-                                      #:numero, 
+                                      :numero, 
                                       :client_id, 
                                       :fecha, 
                                       :descuento,
                                       :subtotal,
                                       :total,
+                                      :state,
                                       :invoice_details_attributes => [:id, :service_id, :cantidad, :cantidad, :precio, :subtotal])
     end
 end

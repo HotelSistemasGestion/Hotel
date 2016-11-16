@@ -46,9 +46,12 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        #format.html { redirect_to @account, notice: 'La Cuenta fue editada exitosamente.' }
-        #format.json { render :show, status: :ok, location: @account }
-        format.js { }
+        if @account.numero.nil?
+          format.html { redirect_to @account, notice: 'La Cuenta fue editada exitosamente.' }
+          format.json { render :show, status: :ok, location: @account }
+        else
+          format.js { }
+        end
       else
         format.html { render :edit }
         format.json { render json: @account.errors, status: :unprocessable_entity }

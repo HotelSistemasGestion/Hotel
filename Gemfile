@@ -86,7 +86,7 @@ gem 'cancancan', '~> 1.10'
 #gem 'geocoder'
 gem 'gmaps4rails'
 
-
+gem 'enumerize'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115023639) do
+ActiveRecord::Schema.define(version: 20161115162348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -333,6 +333,7 @@ ActiveRecord::Schema.define(version: 20161115023639) do
     t.integer  "subtotal"
     t.string   "celular"
     t.string   "correo"
+    t.string   "state"
   end
 
   add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
@@ -390,6 +391,14 @@ ActiveRecord::Schema.define(version: 20161115023639) do
   end
 
   add_index "reservation_requests", ["comfort_id"], name: "index_reservation_requests_on_comfort_id", using: :btree
+
+  create_table "reservation_rooms", force: :cascade do |t|
+    t.integer  "reservation_id"
+    t.string   "room_id"
+    t.integer  "subtotal"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "reservations", force: :cascade do |t|
     t.string   "nombre"
