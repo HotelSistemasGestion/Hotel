@@ -22,6 +22,7 @@
                            fecha: Time.now.strftime("%d-%m-%Y"),                   
                            descuento: @account.descuento,
                            subtotal: @account.subtotal,
+                           account_id: @account.id,
                            total: @account.total)%>
           <%= link_to 'Ver Factura', invoices_path, class: "btn btn-info" %>
         <% end %>

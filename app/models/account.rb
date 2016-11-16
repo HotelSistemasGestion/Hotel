@@ -2,6 +2,7 @@ class Account < ActiveRecord::Base
     belongs_to :client   
     belongs_to :room
 
+
     has_many :account_details
     has_many :room_account_details
 

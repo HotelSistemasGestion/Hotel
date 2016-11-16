@@ -80,6 +80,7 @@ class InvoicesController < ApplicationController
                                       :subtotal,
                                       :total,
                                       :state,
+                                      :account_id,
                                       :invoice_details_attributes => [:id, :service_id, :cantidad, :cantidad, :precio, :subtotal])
     end
 end
