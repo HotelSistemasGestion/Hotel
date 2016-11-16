@@ -1,4 +1,5 @@
 class Client < ActiveRecord::Base
+	audited
     has_many :invoices
     has_many :accounts
     has_many :cash_movement
