@@ -286,10 +286,12 @@ ActiveRecord::Schema.define(version: 20161115023639) do
     t.datetime "updated_at",       null: false
     t.integer  "cash_movement_id"
     t.integer  "invoice_id"
+    t.integer  "payment_type_id"
   end
 
   add_index "detail_of_cash_movements", ["cash_movement_id"], name: "index_detail_of_cash_movements_on_cash_movement_id", using: :btree
   add_index "detail_of_cash_movements", ["invoice_id"], name: "index_detail_of_cash_movements_on_invoice_id", using: :btree
+  add_index "detail_of_cash_movements", ["payment_type_id"], name: "index_detail_of_cash_movements_on_payment_type_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.integer  "types_of_employee_id"
@@ -391,13 +393,12 @@ ActiveRecord::Schema.define(version: 20161115023639) do
 
   create_table "reservations", force: :cascade do |t|
     t.string   "nombre"
-    t.string   "apellido"
     t.string   "email"
     t.string   "dias"
     t.date     "check_in"
     t.date     "check_out"
-    t.integer  "room_id"
     t.integer  "type_of_room_id"
+    t.integer  "room_id"
     t.string   "total"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -542,6 +543,7 @@ ActiveRecord::Schema.define(version: 20161115023639) do
   add_foreign_key "complaints", "rooms"
   add_foreign_key "detail_of_cash_movements", "cash_movements"
   add_foreign_key "detail_of_cash_movements", "invoices"
+  add_foreign_key "detail_of_cash_movements", "payment_types"
   add_foreign_key "employees", "types_of_employees"
   add_foreign_key "invoices", "clients"
   add_foreign_key "opening_cashes", "cashes"
