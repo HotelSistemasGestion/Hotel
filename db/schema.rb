@@ -341,7 +341,7 @@ ActiveRecord::Schema.define(version: 20161116150619) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.integer  "numero"
+    t.string   "numero"
     t.integer  "client_id"
     t.date     "fecha"
     t.integer  "descuento"
