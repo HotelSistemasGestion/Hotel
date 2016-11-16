@@ -34,6 +34,7 @@ class ServicesController < ApplicationController
   # POST /services.json
   def create
     @service = Service.new(service_params)
+    @service.audits.username=current_user.username
     respond_to do |format|
       if @service.save        
         format.js { } # Hace un render a create.js.erb
