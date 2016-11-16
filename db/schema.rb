@@ -362,6 +362,7 @@ ActiveRecord::Schema.define(version: 20161116020618) do
   create_table "opening_cashes", force: :cascade do |t|
     t.date     "fecha_apertura"
     t.integer  "monto_efectivo"
+    t.string   "estado"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "employee_id"
@@ -422,12 +423,13 @@ ActiveRecord::Schema.define(version: 20161116020618) do
 
   create_table "reservations", force: :cascade do |t|
     t.string   "nombre"
+    t.string   "apellido"
     t.string   "email"
     t.string   "dias"
     t.date     "check_in"
     t.date     "check_out"
-    t.integer  "type_of_room_id"
     t.integer  "room_id"
+    t.integer  "type_of_room_id"
     t.string   "total"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
