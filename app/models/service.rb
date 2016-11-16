@@ -1,9 +1,9 @@
 class Service < ActiveRecord::Base
-
+	audited
 	has_many :account_details
 	has_many :invoice_details
 	has_many :budget_details
-
+	
 	validates :nombre, presence: true, length: {minimum: 4, :message => "4 caracteres mínimo."}
 
 	validates :descripcion, presence: true, length: {minimum: 6, :message => "6 caracteres mínimo."}

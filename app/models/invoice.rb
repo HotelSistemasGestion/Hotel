@@ -4,6 +4,9 @@ class Invoice < ActiveRecord::Base
     belongs_to :client
     belongs_to :detail_of_cash_movement
 
+
+    validates :account_id, uniqueness: true
+
     has_many :invoice_details
 
     #validates :numero, :fecha, :client_id, presence: true
