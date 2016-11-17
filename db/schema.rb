@@ -410,12 +410,9 @@ ActiveRecord::Schema.define(version: 20161030025044) do
 
   create_table "type_of_cash_movements", force: :cascade do |t|
     t.string   "descripcion"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "cash_movement_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "type_of_cash_movements", ["cash_movement_id"], name: "index_type_of_cash_movements_on_cash_movement_id", using: :btree
 
   create_table "type_of_rooms", force: :cascade do |t|
     t.string   "tipo"
@@ -491,5 +488,4 @@ ActiveRecord::Schema.define(version: 20161030025044) do
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "states"
   add_foreign_key "rooms", "type_of_rooms"
-  add_foreign_key "type_of_cash_movements", "cash_movements"
 end

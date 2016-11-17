@@ -16,7 +16,7 @@
 //= require daterangepicker
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require np
+//= require np.js
 //= require app
 //= require custom
 //= require main
@@ -25,8 +25,7 @@
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
 //= require es.js
-//= require contabilidad
-
+//= require contabilidad.js
 //= requrie gmaps/google
 
   $(document).ready(function() {
