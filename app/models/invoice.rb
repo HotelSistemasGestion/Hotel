@@ -1,6 +1,11 @@
 class Invoice < ActiveRecord::Base
+	extend Enumerize
+	enumerize :state, in: %w(pagado pendiente cancelado), predicates: true
     belongs_to :client
     belongs_to :detail_of_cash_movement
+
+
+    validates :account_id, uniqueness: true
 
     has_many :invoice_details
 

@@ -1,5 +1,5 @@
 class CashMovementsController < ApplicationController
-  load_and_authorize_resource
+  
   before_action :authenticate_user!
   before_action :set_cash_movement, only: [:show, :edit, :update, :destroy]
   
@@ -19,15 +19,9 @@ class CashMovementsController < ApplicationController
     @cash_movement = CashMovement.new
     @cash_movement.detail_of_cash_movements.build()
     @cash_movement.payment_types.build()
-
+    @apertura = OpeningCash.find(params[:opening_cash_id])  
   end
 
-  def my_new
-    @cash_movement = CashMovement.new
-    @cash_movement.detail_of_cash_movements.build()
-    @cash_movement.payment_types.build()
-    @my_openings =OpeningCash.find(params[:opening_cash_id])
-  end
   # GET /cash_movements/1/edit
   def edit
   end
@@ -38,7 +32,7 @@ class CashMovementsController < ApplicationController
     @cash_movement = CashMovement.new(cash_movement_params)
     respond_to do |format|
       if @cash_movement.save
-        format.html { redirect_to @cash_movement, notice: 'Cash movement was successfully created.' }
+        format.html{ redirect_to new_cash_movement_path(opening_cash_id: @cash_movement.opening_cash_id) }
         format.json { render :show, status: :created, location: @cash_movement }
       else
         format.html { render :new }

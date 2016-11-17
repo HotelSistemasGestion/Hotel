@@ -25,7 +25,6 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
     respond_to do |format|
       if @invoice.save
         format.html { redirect_to invoices_url }        
@@ -53,9 +52,10 @@ class InvoicesController < ApplicationController
   # DELETE /invoices/1
   # DELETE /invoices/1.json
   def destroy
-    @invoice.destroy
+    @invoice.state="cancelado"
+    @invoice.save
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: 'La Factura fue eliminada correctamente.' }
+      format.html { redirect_to invoices_url, notice: 'La Factura fue cancelada correctamente.' }
       format.json { head :no_content }
     end
   end
@@ -73,12 +73,14 @@ class InvoicesController < ApplicationController
                                       :direccion, 
                                       :celular,
                                       :correo,
-                                      #:numero, 
+                                      :numero, 
                                       :client_id, 
                                       :fecha, 
                                       :descuento,
                                       :subtotal,
                                       :total,
+                                      :state,
+                                      :account_id,
                                       :invoice_details_attributes => [:id, :service_id, :cantidad, :cantidad, :precio, :subtotal])
     end
 end

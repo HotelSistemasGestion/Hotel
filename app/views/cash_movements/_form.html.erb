@@ -14,9 +14,11 @@
 
 <div class="row">
   <% id = "#"+"#{f.object_name}[client_id]".gsub(/(\])?\[/, "_").chop %>
+  <% id_apertura = "#"+"#{f.object_name}[opening_cash_id]".gsub(/(\])?\[/, "_").chop %>
   <div class="col-md-4">
     <%= f.label 'Apertura' ,class: "col-sm-2" %><br>
-    <%= f.text_field :opening_cash_id, class: "form-control col-md-2",placeholder:"ID Apertura", :required => true %>
+    <%= f.text_field :opening_cash,id: "apertura", class: "form-control col-md-2",:value => @apertura.fecha_apertura,:readonly => true %>
+    <%= f.hidden_field  :opening_cash_id, :value => @apertura.id%>
   </div>
 
   <div class="col-md-4">

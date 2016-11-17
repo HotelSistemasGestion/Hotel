@@ -37,9 +37,6 @@
                     <td><%= opening_cash.employee.full_name %></td>
                     <td><%= opening_cash.fecha_apertura %></td>
                     <td><%= opening_cash.monto_efectivo %></td>
-                    <td>
-                      <%= link_to 'Movimiento', {:controller => "cash_movements", :action => "my_new", :opening_cash_id => opening_cash.id },class: "btn btn-primary" %>
-                    </td>
                     <td align="center">
             <%= link_to opening_cash, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-eye-open"></span>
