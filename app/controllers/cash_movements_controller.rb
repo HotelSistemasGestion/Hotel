@@ -1,4 +1,6 @@
 class CashMovementsController < ApplicationController
+  
+  before_action :authenticate_user!
   before_action :set_cash_movement, only: [:show, :edit, :update, :destroy]
   
   # GET /cash_movements
@@ -15,14 +17,11 @@ class CashMovementsController < ApplicationController
   # GET /cash_movements/new
   def new
     @cash_movement = CashMovement.new
-    @cash_movement.detail_of_cash_movements.build
-
+    @cash_movement.detail_of_cash_movements.build()
+    @cash_movement.payment_types.build()
+    @apertura = OpeningCash.find(params[:opening_cash_id])  
   end
 
-  def my_new
-    @cash_movement = CashMovement.new
-    @my_openings =OpeningCash.find(params[:opening_cash_id])
-  end
   # GET /cash_movements/1/edit
   def edit
   end
@@ -33,7 +32,7 @@ class CashMovementsController < ApplicationController
     @cash_movement = CashMovement.new(cash_movement_params)
     respond_to do |format|
       if @cash_movement.save
-        format.html { redirect_to @cash_movement, notice: 'Cash movement was successfully created.' }
+        format.html{ redirect_to new_cash_movement_path(opening_cash_id: @cash_movement.opening_cash_id) }
         format.json { render :show, status: :created, location: @cash_movement }
       else
         format.html { render :new }
@@ -74,6 +73,6 @@ class CashMovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cash_movement_params
-      params.require(:cash_movement).permit(:id, :monto_total, :client_id, :opening_cash_attributes => [:id, :fecha_apertura, :_destroy], :detail_of_cash_movements_attributes => [:id, :sub_monto, :_destroy])
+      params.require(:cash_movement).permit(:id, :monto_total, :opening_cash_id, :type_of_cash_movement_id , :client_id, :detail_of_cash_movements_attributes => [:id, :sub_monto,:payment_types, :_destroy], :payment_types_attributes =>[:id, :descripcion,:titular,:banco,:n_cheque,:tarjeta_tipo,:fecha_disponibilidad,:_destroy])
     end
 end

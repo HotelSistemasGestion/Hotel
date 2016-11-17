@@ -1,8 +1,15 @@
-<div class="page-header">
-  <%= link_to cash_movements_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    Atras
-  <% end %>
-</div>
+<div class="box box-primary">
 
-<%= render 'form', title: "Nuevo Movimiento" %>
+	<div class="box-header with-border">
+	  <%if !current_user.has_role? "Crear Movimiento"%>
+	  <%= link_to cash_movements_path, class: 'btn btn-default' do %>
+	    <span class="glyphicon glyphicon-chevron-left"></span>
+	    Atras
+	  <% end %>
+	  <% end %>
+	  <h3><center>Nuevo Movimiento</center></h3>
+	</div>
+	<div class="box-body">
+		<%= render 'form' %>
+	</div>
+</div>

@@ -60,15 +60,8 @@
         <td><%= room.state_descripcion %></td>
     
         <td><%= room.capacidad %></td>
-         <td>
-        <% RoomComfort.where("#{:room_id} = ?",room.id).each  do |r|  %>
-      
-           <%= r.comfort_descripcion%>
-           <BR>
-      
-        <% end %>
+        <td><%= room.comfort_descripcion %></td>
 
-        </td>
         <td align="center"><%= link_to '', room,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
         <%= link_to '', edit_room_path(room), class: "btn btn-warning glyphicon glyphicon-pencil"%>
         <%= link_to '', room, method: :delete, data: { confirm: 'Are you sure?'},class: "btn btn-danger glyphicon glyphicon-trash" %></td>
@@ -90,7 +83,5 @@
 
 
  </div>
-
-
 
 

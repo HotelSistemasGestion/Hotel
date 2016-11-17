@@ -1,9 +1,11 @@
-<div class="page-header">
-  <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
+<div class="box">
+<div class="box-header with-border">
+  <h3 class="box-title">Nueva Limpieza</h3>
+    <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
    Volver
   <% end %>
-  <h1>Nueva Limpieza</h1>
 </div>
 
 <%= render 'form' %>
+</div>

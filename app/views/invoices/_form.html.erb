@@ -13,50 +13,44 @@
     </div>
     <div class="box-body">
       <!-- info row -->
-      <div class="row invoice-info">
-        <div class="col-sm-3 invoice-col">         
-          <address>
-            <h4><strong>Hotel UNI.</strong><br><br>
-            Abog. Lorenzo Zacarias, Km 2<br>
-            Encarnacion, Paraguay<br>
-            Telefono: (071) 207-620<br>
-            Email: info@hoteluni.com
-          </address></h4>
-        </div>
+      <div class="row invoice-info">       
         <!-- /.col -->
-        <div class="col-sm-5 invoice-col">
+        <div class="col-sm-6 invoice-col">
           <div class="row">
             <div class="col-sm-12">
               <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
-              <%= f.autocomplete_field :client, autocomplete_client_cedula_clients_path, class:"col-sm-6", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
+              <%= f.autocomplete_field :nombre, autocomplete_client_cedula_clients_path, class:"col-sm-6", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
 
               <%= link_to new_client_path, remote: true, class: 'col-sm-2', title: 'Registrar Nuevo Cliente', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon glyphicon-plus"></span><span class= "glyphicon glyphicon glyphicon-user"></span>
                     <% end %> 
 
+              <%= f.hidden_field :client_id, id: 'cli_id' %>
+              <%= f.hidden_field :state, value: 'pendiente' %>
+
             </div>
             <div class="col-sm-12">
               <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :fecha, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true%>                            
+              <%= f.text_field :ruc, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true%>                            
                  
 
             </div>
             <div class="col-sm-12">
               <%= f.label 'Direccion:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, id: 'direccion', class:"col-sm-6", placeholder: "Barrio", readonly: true %>
+              <%= f.text_field :direccion, id: 'direccion', class:"col-sm-6", placeholder: "Barrio", readonly: true %>
             </div>
             <div class="col-sm-12">
               <%= f.label 'Celular:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, id: 'telefono', class:"col-sm-5",placeholder: "Celular", readonly: true %>
+              <%= f.text_field :celular, id: 'telefono', class:"col-sm-5",placeholder: "Celular", readonly: true %>
             </div>  
             <div class="col-sm-12">
               <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha, id: 'correo', class:"col-sm-6",  placeholder: "Email", readonly: true %>
+              <%= f.text_field :correo, id: 'correo', class:"col-sm-6",  placeholder: "Email", readonly: true %>
             </div>                                            
           </div>                              
         </div>
         <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
+        <div class="col-sm-6 invoice-col">
           <div class="row">
             <%= f.label 'Fecha:', class: "col-sm-4 control-label" %>            
             <%= f.text_field :fecha, id: 'date',  class: "datepicker"%>                         
@@ -65,7 +59,7 @@
           <br> 
           <div class="row">
               <%= f.label 'Factura #:', class: "col-sm-4 control-label" %>
-              <%= f.text_field :fecha, class:"col-sm-6", placeholder: "Numero de Factura" %>                      
+              <%= f.text_field :numero, class:"col-sm-6", placeholder: "Numero de Factura" %>                      
           </div>         
           <br>
                         
@@ -78,7 +72,7 @@
       <!-- Table row -->
       <div class="row">
         <div class="col-xs-12 table-responsive">
-          <table class="table table-striped">
+          <table class="table table-striped" id="table">
             <thead>
             <tr>
               <th>Cantidad</th>
@@ -87,9 +81,8 @@
               <th>Subtotal</th>
             </tr>
             </thead>
-            <tbody>
-        
-              <%= f.fields_for :invoice_details  ,:wrapper => false do |li| %>
+            <tbody>              
+               <%= f.fields_for :invoice_details  ,:wrapper => false do |li| %>
               <tr class="fields">
 
                   <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
@@ -97,18 +90,19 @@
                   <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
 
                   <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
-
+                  
                   <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
                   :multiple => true, :update_elements => {:id => id,:precio => ayudante },class: "ui-autocomplete-input"%>
                   <%= li.hidden_field  :service_id%></td>
-                  <td><%= li.number_field  :ayudante,class: "escuchable",readonly: true%></td>
+                  <td><%= li.number_field  :ayudante, class: "escuchable",readonly: true%></td>
                   <td><%= li.number_field :subtotal,:class => "subtotal",readonly: true%></td>
-                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn glyphicon glyphicon-trash ", title: 'Eliminar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' %></td>
+                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn glyphicon glyphicon-trash", title: 'Eliminar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' %></td>
               </tr>
               <%end%>
               <tr>
                 <td><%= f.link_to_add "", :invoice_details , :class => "btn glyphicon glyphicon-plus", title: 'Agregar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth'%></td>
-              </tr>
+</tr>      
+             
 
           </tbody>
           </table>
@@ -122,22 +116,22 @@
         <div class="col-md-6 col-md-offset-6">
 
           <div class="table-responsive">
-            <table class="table">
+            <table class="table" id="table_totals">
               <tbody>
                 <tr>
                   <th>Subtotal:</th>
-                  <td><%= f.number_field :subtotal,readonly: true, value: 0%></td>
+                  <td><%= f.text_field :subtotal,readonly: true, id: 'total', value: 0%></td>
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td><%= f.number_field :descuento ,min: 0, max: 100,value: 0%></td>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100,id: 'descount', value: 0%></td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td><%= f.number_field :total,readonly: true, value: 0%></td>
+                  <td><%= f.text_field :total,readonly: true, id: 'totales', value: 0%></td>
                 </tr>
               </tbody>
-            </table>
+</table>
           </div>
 
         </div>
@@ -147,10 +141,11 @@
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
-          <a href="" target="_blank" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
-          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Facturar
-          </button>
-          <a href="<%=invoices_path%>" class="btn btn-danger" role="button">Cancelar</a>        
+          <a class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir</a>
+          <!--<button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Facturar
+          </button>-->
+          <%= f.submit 'Facturar', class: "btn btn-success pull-right" %>
+          <a href="<%=invoices_path%>" class="btn btn-default" role="button">Cancelar</a>        
         </div>
       </div>
     </div>
@@ -160,5 +155,5 @@
 <script type="text/javascript">
   $('#bt1').click(function() {
     $('#date').val('<%= Time.now.strftime("%d-%m-%Y") %>');      
-  }); 
+  });
 </script>

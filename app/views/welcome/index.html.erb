@@ -31,7 +31,7 @@
                     <%if !user_signed_in? %>
                         <li><a href="<%=new_user_session_path%>" id="ingresar" ><span>Ingresar</span></a></li>
                     <%else%>
-                        <li><a href="<%=dashboard_index_path%>" id="panel_nav" ><span>Panel</span></a></li>
+                        <li><a href="<%=dashboard_index_path%>" id="ingresar" ><span>Panel</span></a></li>
                     <%end%>
                   </ul>
                     
@@ -420,17 +420,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 section-heading text-center">
-                    <h2 class="to-animate">Get In Touch</h2>
+                    <h2 class="to-animate">Contactenos.</h2>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2 subtext to-animate">
-                            <h3>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</h3>
+                            <h3>Envienos su pedido de reserva,en breve recibira un presupuesto detallado con lo que solicito.</h3>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row row-bottom-padded-md">
             
-                <div class="col-md-5 to-animate">
+                <!--div class="col-md-5 to-animate">
                     <h3>Contact Info</h3>
                     <ul class="fh5co-contact-info">
                         <li class="fh5co-contact-address ">
@@ -441,9 +441,12 @@
                         <li><i class="icon-envelope"></i>info@freehtml5.co</li>
                         <li><i class="icon-globe"></i> <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></li>
                     </ul>
-                </div>
+                </div-->
                 <!--estaba pedido de reserva-->
-                <div class="col-md-7 to-animate">
+                <div style="float: none;
+                            margin-left: auto;
+                            margin-right: auto;"
+                            class="col-md-9 to-animate">
                     <% if notice %>
                         <div class="alert alert-success alert-dismissable">
                         <i class="fa fa-check"></i><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

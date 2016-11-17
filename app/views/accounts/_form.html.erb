@@ -5,59 +5,98 @@
       <!-- info row -->
       <div class="row invoice-info">
         <!-- /.col -->
-        <div class="col-sm-6 invoice-col">
+        <div class="col-sm-5 invoice-col">
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-10">
               <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
-              <%= f.autocomplete_field :client, autocomplete_client_cedula_clients_path, class:"col-sm-7", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
+              <%= f.autocomplete_field :nombre, autocomplete_client_cedula_clients_path, class:"col-sm-7", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
 
               <%= link_to new_client_path, remote: true, class: 'col-sm-2', title: 'Registrar Nuevo Cliente', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon glyphicon-plus"></span><span class= "glyphicon glyphicon glyphicon-user"></span>
                     <% end %> 
+              <%= f.hidden_field :client_id, id: 'cli_id' %>
 
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="margin-top:10px;">
               <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :ruc, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true %>                            
-                 
-
+              <%= f.text_field :ruc, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true %>
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="margin-top:5px;">
               <%= f.label 'Direccion:', class: "col-sm-3 control-label" %>        
               <%= f.text_field :direccion, id: 'direccion', class:"col-sm-5", placeholder: "Barrio", readonly: true %>
             </div>
-            <div class="col-sm-12">
-              <%= f.label 'Celular:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha_entrada, id: 'telefono', class:"col-sm-5",placeholder: "Celular", readonly: true %>
+            <div class="col-sm-12" style="margin-top:5px;">
+              <%= f.label 'Telefono:', class: "col-sm-3 control-label" %>        
+              <%= f.text_field :telefono, id: 'telefono', class:"col-sm-5",placeholder: "Celular", readonly: true %>
             </div>  
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="margin-top:5px;">
               <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :fecha_entrada, id: 'correo', class:"col-sm-8",  placeholder: "Email", readonly: true %>
+              <%= f.text_field :correo, id: 'correo', class:"col-sm-6",  placeholder: "Correo electronico", readonly: true %>
             </div>                                             
           </div>                              
         </div>
         <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-          <div class="row">
-            <%= f.label 'Check-in:', class: "col-sm-4 control-label" %>            
-            <%= f.text_field :fecha_entrada, id: "date", class: "datepicker"%>
-            <label id="bt1" class="btn btn-default" role="button" title="Hoy"><span class= "fa fa-calendar-check-o"> Hoy</span></label>  
-          </div>
-          <br>
-          <div class="row">
-            <%= f.label 'Check-out:', class: "col-sm-4 control-label" %>            
-            <%= f.text_field :fecha_salida, class: "datepicker"%>  
-          </div>
+        <div class="col-sm-6 invoice-col">
+
+          
+            <div class="row">
+
+                <%= f.label 'Check-in:', class: "col-sm-3" %>            
+                <%= f.text_field :fecha_entrada, id: "date", class: "datepicker col-sm-3"%>
+                <%= f.label "",  class: 'btn btn-inverse col-sm-1', id: "bt1", title: 'Hoy', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "fa fa-calendar-check-o"></span>
+                    <% end %> 
+
+                <%#= f.label 'Hoy', class: "col-sm-3" do <span class= "fa fa-calendar-check-o"> Hoy</span> <% end %>    
+                <!--label id="bt1" class="btn btn-default col-sm-3" role="button" title="Hoy"><span class= "fa fa-calendar-check-o"> Hoy</span></label-->
+                
+            </div>
+            <div class="row">
+
+                <%= f.label 'Check-out:', class: "col-sm-3" %>            
+                <%= f.text_field :fecha_salida, class: "datepicker"%>
+
+            </div>
+
           <br> 
-          <div class="row">
-              <%= f.label 'Habitacion:', class: "col-sm-4 control-label" %>
-              <%= f.text_field :room_id, class:"col-sm-7", placeholder: "Numero de Factura" %>                      
-          </div>         
           <br>
-          <div class="row">
-              <%= f.label 'Descripcion:', class: "col-sm-4 control-label" %>
-              <%= f.text_field :room_id, class:"col-sm-8", placeholder: "Descripcion de la Habitacion" %>                                          
-          </div>              
+
+
+
+
+      
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-striped" id="table">
+            <thead>
+            <tr>
+              <th>Habitacion</th>
+              <th>Tipo</th>
+              <th>Estado</th>
+              <th>Precio por dia</th>
+            </tr>
+            </thead>
+            <tbody>
+        
+              <%= f.fields_for :room_account_details  ,:wrapper => false do |li| %>
+              <tr class="fields">
+
+                  <th scope="row"><%= f.autocomplete_field :identificador_hab, autocomplete_room_identificador_rooms_path, class:"col-sm-7", placeholder: "Ingrese Identificador", :multiple => false, :update_elements => {:id => '#room_id', :type_of_room_id => '#tipo', :state_id => '#estado'}  %></th>     
+
+                  <%= f.hidden_field :room_id, id: 'room_id' %>     
+                  
+                  <td><input id="tipo" class="col-sm-8"></td>
+                  <td><input id="estado" class="col-sm-8"></td>
+                  <td><input id="estado" class="col-sm-8"></td>
+                  <td><%= li.link_to_remove "",id: "borrar", :class => "btn glyphicon glyphicon-trash", title: 'Eliminar habitacion', 'data-toggle' => 'tooltip', 'data-placement' => 'left' %></td>
+              </tr>
+              <%end%>
+              <tr>
+                <td><%= f.link_to_add "", :room_account_details , :class => "btn glyphicon glyphicon-plus", title: 'Agregar habitacion', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth'%></td>
+              </tr>
+
+          </tbody>
+          </table>
+        </div>             
         </div>
         </div>
         <!-- /.col -->
@@ -65,9 +104,18 @@
       <!-- /.row -->
 
       <!-- Table row -->
-      <div class="row">
+        <div class="box box-primary box-solid collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Detalle Servicios</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body" style="display: none;">
         <div class="col-xs-12 table-responsive">
-          <table class="table table-striped">
+          <table class="table table-striped" id="table">
             <thead>
             <tr>
               <th>Cantidad</th>
@@ -102,8 +150,9 @@
           </tbody>
           </table>
         </div>
+        </div>
+        </div>
         <!-- /.col -->
-      </div>
       <!-- /.row -->
 
       <div class="row">
@@ -115,15 +164,15 @@
               <tbody>
                 <tr>
                   <th>Subtotal:</th>
-                  <td><%= f.number_field :subtotal,readonly: true, value: 0%></td>
+                  <td><%= f.text_field :subtotal,readonly: true, id: "subtotal"%></td>
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td><%= f.number_field :descuento ,min: 0, max: 100,value: 0%></td>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100, id: "descuento"%></td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td><%= f.number_field :total,readonly: true, value: 0%></td>
+                  <td><%= f.text_field :total,readonly: true, id: "total"%></td>
                 </tr>
               </tbody>
             </table>
@@ -133,9 +182,8 @@
       </div>
       <div class="row no-print">
         <div class="col-xs-12">
-            <button type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-check"></i> REGISTRAR
-            </button>
-            <a href="<%=accounts_path%>" class="btn btn-danger" role="button">Cancelar</a>        
+            <%= f.submit 'Guardar', class: "btn btn-success pull-right" %>
+            <a href="<%=accounts_path%>" class="btn btn-default" role="button">Cancelar</a>        
         </div>
       </div>
         <!-- /.col -->

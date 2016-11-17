@@ -26,11 +26,12 @@ class CleaningRoomsController < ApplicationController
   # POST /cleaning_rooms.json
   def create
     @cleaning_room = CleaningRoom.new(cleaning_room_params)
-
+   
     respond_to do |format|
       if @cleaning_room.save
-        format.html { redirect_to @cleaning_room, notice: 'Cleaning room was successfully created.' }
-        format.json { render :show, status: :created, location: @cleaning_room }
+        format.html { redirect_to cleaning_rooms_url }
+        #format.json { render :show, status: :created, location: @cleaning_room }
+        #format.json { head :no_content }
       else
         format.html { render :new }
         format.json { render json: @cleaning_room.errors, status: :unprocessable_entity }
@@ -70,6 +71,6 @@ class CleaningRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cleaning_room_params
-      params.require(:cleaning_room).permit(:room_id, :employee_id, :start,:end,:title,:cleanings_attributes => [:room_id,:start,:end,:title,:_destroy])
+      params.require(:cleaning_room).permit(:room_id, :employee_id,:title,:cleanings_attributes => [:room_id,:start,:end,:title,:color,:textColor,:_destroy])
     end
 end

@@ -69,6 +69,6 @@ class DetailOfCashMovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def detail_of_cash_movement_params
-      params.require(:detail_of_cash_movement).permit(:cash_movement_id, :sub_monto)
+      params.require(:detail_of_cash_movement).permit(:cash_movement_id,:invoice_id, :sub_monto)
     end
 end

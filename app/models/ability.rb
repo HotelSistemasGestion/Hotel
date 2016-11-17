@@ -4,14 +4,138 @@ class Ability
   def initialize(user)
 
    user ||= User.new
-   if user.has_role? :admin
+   if user.has_role? "Admin"
      can :manage, :all
-   else user.has_role? :recepcionista
-     can :create, Client # author can create status
-     can :update, Client # author can update status
-     # can :destroy, Status # #uncomment this line, author can destroy status 
-     can :read, :all   
-   end
+   elsif user.has_role? "Ver Movimiento"     
+     can :read, CashMovement
+   elsif user.has_role? "Crear Movimiento"
+     can :create, CashMovement
+     can :read, CashMovement
+   elsif user.has_role? "Editar Movimiento"
+     can :edit, CashMovement
+     can :read, CashMovement
+  elsif user.has_role? "Eliminar Movimiento"
+     can :destroy, CashMovement
+     can :read, CashMovement    
+  elsif user.has_role? "Ver Caja"
+     can :read, Cash
+  elsif user.has_role? "Crear Caja"
+     can :create, Cash
+     can :read, Cash
+  elsif user.has_role? "Editar Caja"
+     can :edit, Cash
+     can :read, Cash
+  elsif user.has_role? "Eliminar Caja"
+     can :destroy, Cash
+     can :read, Cash
+  elsif user.has_role? "Ver Apertura"
+     can :read, OpeningCash
+  elsif user.has_role? "Crear Apertura"
+     can :create, OpeningCash
+     can :read, OpeningCash
+  elsif user.has_role? "Editar Apertura"
+     can :edit, OpeningCash
+     can :read, OpeningCash
+  elsif user.has_role? "Eliminar Apertura"
+     can :destroy, OpeningCash
+     can :read, OpeningCash
+  elsif user.has_role? "Ver Cierre"
+     can :read, ClosingCash
+  elsif user.has_role? "Crear Cierre"
+     can :create, ClosingCash
+     can :read, ClosingCash
+  elsif user.has_role? "Editar Cierre"
+     can :edit, ClosingCash
+     can :read, ClosingCash
+  elsif user.has_role? "Eliminar Cierre"
+     can :destroy, ClosingCash
+     can :read, ClosingCash
+  elsif user.has_role? "Ver Arqueo"
+     can :read, CashCount
+  elsif user.has_role? "Crear Arqueo"
+     can :create, CashCount
+     can :read, CashCount
+  elsif user.has_role? "Editar Arqueo"
+     can :edit, CashCount
+     can :read, CashCount
+  elsif user.has_role? "Eliminar Arqueo"
+     can :destroy, CashCount
+     can :read, CashCount
+  elsif user.has_role? "Ver Pedido"
+     can :read, ReservationRequest
+  elsif user.has_role? "Crear Pedido"
+     can :create, ReservationRequest
+     can :read, ReservationRequest
+  elsif user.has_role? "Editar Pedido"
+     can :edit, ReservationRequest
+     can :read, ReservationRequest
+  elsif user.has_role? "Eliminar Pedido"
+     can :destroy, ReservationRequest
+     can :read, ReservationRequest
+  elsif user.has_role? "Ver Reservacion"
+     can :read, Reservation
+  elsif user.has_role? "Crear Reservacion"
+     can :create, Reservation
+     can :read, Reservation
+  elsif user.has_role? "Editar Reservacion"
+     can :edit, Reservation
+     can :read, Reservation
+  elsif user.has_role? "Eliminar Reservacion"
+     can :destroy, Reservation
+     can :read, Reservation         
+  elsif user.has_role? "Ver Factura"
+     can :read, Invoice
+  elsif user.has_role? "Crear Factura"
+     can :create, Invoice
+     can :read, Invoice
+  elsif user.has_role? "Editar Factura"
+     can :edit, Invoice
+     can :read, Invoice
+  elsif user.has_role? "Eliminar Factura"
+     can :destroy, Invoice
+     can :read, Invoice
+  elsif user.has_role? "Ver Cuenta"
+     can :read, Account
+  elsif user.has_role? "Crear Cuenta"
+     can :create, Account
+     can :read, Account
+  elsif user.has_role? "Editar Cuenta"
+     can :edit, Account
+     can :read, Account
+  elsif user.has_role? "Eliminar Cuenta"
+     can :destroy, Account
+     can :read, Account
+  elsif user.has_role? "Ver Cliente"
+     can :read, Client
+  elsif user.has_role? "Crear Cliente"
+     can :create, Client
+     can :read, Client
+  elsif user.has_role? "Editar Cliente"
+     can :edit, Client
+     can :read, Client
+  elsif user.has_role? "Eliminar Cliente"
+     can :destroy, Client
+     can :read, Client
+  elsif user.has_role? "Ver Servicio"
+     can :read, Service
+  elsif user.has_role? "Crear Servicio"
+     can :create, Service
+     can :read, Service
+  elsif user.has_role? "Editar Servicio"
+     can :edit, Service
+     can :read, Service
+  elsif user.has_role? "Eliminar Servicio"
+     can :destroy, Service
+     can :read, Service
+  elsif user.has_role? "Control de Asientos"
+     can :manage, AccountingEntry  
+  elsif user.has_role? "Control de Cuentas"
+     can :manage, AccountingAccount     
+  elsif user.has_role? "Control de Planes de Cuentas"
+     can :manage, AccountPlan
+   else
+      can :read, Client
+  end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

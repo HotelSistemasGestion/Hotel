@@ -1,13 +1,5 @@
-<div class="page-header">
-  <%= link_to account_plans_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to @account_plan, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-info-sign"></span>
-    Show
-  <% end %>
-  <h1>Editing account_plan</h1>
-</div>
+$('<%= j render "my_form", title: "Editar Plan" %>').on('hidden.bs.modal', function (e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}).modal();
 
-<%= render 'form' %>

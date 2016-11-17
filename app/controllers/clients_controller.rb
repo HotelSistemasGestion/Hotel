@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
   #load_and_authorize_resource
   before_action :set_client, only: [:show, :edit, :update, :destroy]
   #autocomplete :client, :cedula, :extra_data => [:email, :direccion, :ruc, :telefono]
-  autocomplete :client, :cedula, :display_value => :name, :extra_data => [:nombre, :apellido, :email, :direccion, :ruc, :telefono]
+  autocomplete :client, :cedula, :display_value => :name, :extra_data => [:id, :nombre, :apellido, :email, :direccion, :ruc, :telefono]
   #autocomplete :client, :cedula, :extra_data => [:ruc , :direccion] do |items|
   #  respond_to do |format|
    # format.json { render :json => @items }
@@ -41,7 +41,7 @@ class ClientsController < ApplicationController
       if @client.save
          format.js { } # Hace un render a create.js.erb
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'El Cliente fue creado correctamente.' }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +54,7 @@ class ClientsController < ApplicationController
       if @client.update(client_params)
         format.js { }
       else
-        format.html { render :edit }
+        format.html { render :edit, notice: 'El Cliente fue editado correctamente.' }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
@@ -65,10 +65,11 @@ class ClientsController < ApplicationController
   def destroy
     @client.destroy
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
+      format.html { redirect_to clients_url, notice: 'El Cliente fue eliminado correctamente.' }
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

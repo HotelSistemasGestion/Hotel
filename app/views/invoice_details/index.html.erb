@@ -11,7 +11,7 @@
     <thead>
       <tr>
             <th>Invoice</th>
-            <th>Service</th>
+            <th>Servicio</th>
             <th>Cantidad</th>
             <th>Precio</th>
             <th>Subtotal</th>
@@ -24,7 +24,7 @@
     <tbody>
       <%= content_tag_for(:tr, @invoice_details) do |invoice_detail| %>
             <td><%= invoice_detail.invoice_id %></td>
-            <td><%= invoice_detail.service_id %></td>
+            <td><%= Service.find(invoice_detail.service_id).nombre %></td>
             <td><%= invoice_detail.cantidad %></td>
             <td><%= invoice_detail.precio %></td>
             <td><%= invoice_detail.subtotal %></td>

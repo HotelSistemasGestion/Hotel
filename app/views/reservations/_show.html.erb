@@ -1,0 +1,65 @@
+<div class="modal fade" id="show-modal">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Reservaciones</h4>
+      </div>
+      
+      <div class="modal-body">   
+        <p id="notice"><%= notice %></p>
+
+       <p>
+          <strong>Nombre:</strong>
+          <%= @reservation.nombre %>
+        </p>
+
+
+        <p>
+          <strong>Apellido:</strong>
+          <%= @reservation.apellido %>
+        </p>
+
+
+        <p>
+          <strong>Email:</strong>
+          <%= @reservation.email %>
+        </p>
+
+        <p>
+          <strong>Dias:</strong>
+          <%= @reservation.dias %>
+        </p>
+
+        <p>
+          <strong>Check_in:</strong>
+          <%= @reservation.check_in %>
+        </p>
+
+        <p>
+          <strong>Check_out:</strong>
+          <%= @reservation.check_out %>
+        </p>
+
+        <p>
+          <strong>Cuarto:</strong>
+          <%= @reservation.room_id %>
+        </p>
+
+        <p>
+          <strong>Tipo_de_Cuarto:</strong>
+          <%= @reservation.total %>
+        </p>
+
+        <p>
+          <strong>Total:</strong>
+          <%= @reservation.total %>
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+</div>

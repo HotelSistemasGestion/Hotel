@@ -1,4 +1,6 @@
 class ClosingCashesController < ApplicationController
+  load_and_authorize_resource
+  before_action :authenticate_user!
   before_action :set_closing_cash, only: [:show, :edit, :update, :destroy]
 
   # GET /closing_cashes

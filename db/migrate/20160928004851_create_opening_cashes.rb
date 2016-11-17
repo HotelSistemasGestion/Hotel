@@ -3,7 +3,7 @@ class CreateOpeningCashes < ActiveRecord::Migration
     create_table :opening_cashes do |t|
       t.date :fecha_apertura
       t.integer :monto_efectivo
-
+      t.string :estado
       t.timestamps null: false
     end
   end

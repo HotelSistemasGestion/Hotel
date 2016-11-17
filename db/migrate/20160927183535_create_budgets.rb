@@ -2,10 +2,10 @@ class CreateBudgets < ActiveRecord::Migration
   def change
     create_table :budgets do |t|
       t.references :reservation_request, index: true, foreign_key: true
-      t.string :email
-      t.references :type_of_room, index: true, foreign_key: true
-      t.integer :cantidad_de_habitaciones
-      t.integer :dias
+      t.references :comfort, index: true, foreign_key: true
+      t.date :check_in
+      t.date :check_out
+      t.text :comentario
       t.integer :descuento
       t.integer :total
 

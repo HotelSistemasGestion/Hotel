@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reservation_id: 1
+  room_id: MyString
+  subtotal: 1
+
+two:
+  reservation_id: 1
+  room_id: MyString
+  subtotal: 1
