@@ -5,7 +5,8 @@ class Invoice < ActiveRecord::Base
     belongs_to :detail_of_cash_movement
 
 
-    validates :account_id, uniqueness: true
+    validates :numero, uniqueness: true, 
+    				   presence: { message: "de factura no puede ser nulo" }
 
     has_many :invoice_details
 

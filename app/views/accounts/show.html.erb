@@ -24,7 +24,7 @@
                            subtotal: @account.subtotal,
                            account_id: @account.id,
                            total: @account.total)%>
-          <%= link_to 'Ver Factura', Invoice.find(@account.id), remote: true, class: "btn btn-info" %>
+          <%= link_to 'Ver Factura', Invoice.find_by(account_id: @account.id), remote: true, class: "btn btn-info" %>
         <% end %>
       </div>
   </div>

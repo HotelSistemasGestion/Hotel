@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_invoice, only: [:show, :update, :destroy]
 
   # GET /invoices
   # GET /invoices.json
@@ -15,10 +15,6 @@ class InvoicesController < ApplicationController
   # GET /invoices/new
   def new
     @invoice = Invoice.new
-  end
-
-  # GET /invoices/1/edit
-  def edit
   end
 
   # POST /invoices
@@ -81,6 +77,6 @@ class InvoicesController < ApplicationController
                                       :total,
                                       :state,
                                       :account_id,
-                                      :invoice_details_attributes => [:id, :service_id, :cantidad, :cantidad, :precio, :subtotal])
+                                      :invoice_details_attributes => [:id, :service_id, :cantidad, :precio, :subtotal])
     end
 end

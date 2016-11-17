@@ -80,7 +80,7 @@ Rails.application.routes.draw do
       get :facturar
     end
   end
-  resources :invoices
+  resources :invoices, :except => [:edit]
   resources :clients do 
     get :autocomplete_client_cedula, :on => :collection
   end
