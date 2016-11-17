@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112160207) do
+ActiveRecord::Schema.define(version: 20161115063556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,15 +27,12 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   end
 
   create_table "account_plans", force: :cascade do |t|
-    t.integer  "accounting_year_id"
     t.string   "descripcion"
     t.string   "estado"
     t.string   "version"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "account_plans", ["accounting_year_id"], name: "index_account_plans_on_accounting_year_id", using: :btree
 
   create_table "account_x_auto_entries", force: :cascade do |t|
     t.string   "descripcion"
@@ -103,9 +100,12 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   create_table "accounting_years", force: :cascade do |t|
     t.integer  "anho"
     t.string   "estado"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "account_plan_id"
   end
+
+  add_index "accounting_years", ["account_plan_id"], name: "index_accounting_years_on_account_plan_id", using: :btree
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "client_id"
@@ -155,11 +155,8 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   create_table "budgets", force: :cascade do |t|
     t.integer  "reservation_request_id"
     t.integer  "comfort_id"
-<<<<<<< HEAD
-=======
     t.date     "check_in"
     t.date     "check_out"
->>>>>>> 440342496ecfb9b706571c5ef1c47a42d9546492
     t.text     "comentario"
     t.integer  "descuento"
     t.integer  "total"
@@ -403,12 +400,9 @@ ActiveRecord::Schema.define(version: 20161112160207) do
     t.datetime "updated_at",      null: false
   end
 
-<<<<<<< HEAD
-=======
   add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
   add_index "reservations", ["type_of_room_id"], name: "index_reservations_on_type_of_room_id", using: :btree
 
->>>>>>> 81cf89480b93ed8150beba48af11384630fd451e
   create_table "rols", force: :cascade do |t|
     t.string   "role"
     t.datetime "created_at", null: false
@@ -518,7 +512,6 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "account_plans", "accounting_years"
   add_foreign_key "account_x_auto_entries", "account_x_entries"
   add_foreign_key "account_x_auto_entry_dets", "account_x_auto_entries"
   add_foreign_key "account_x_auto_entry_dets", "accounting_accounts"
@@ -526,6 +519,7 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   add_foreign_key "account_x_entries", "accounting_entries"
   add_foreign_key "account_x_plans", "account_plans"
   add_foreign_key "account_x_plans", "accounting_accounts"
+  add_foreign_key "accounting_years", "account_plans"
   add_foreign_key "accounts", "clients"
   add_foreign_key "budget_room_details", "budgets"
   add_foreign_key "budget_room_details", "type_of_rooms"

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'accounting_years/index'
+
   get 'gallery/index'
 
   resources :budget_room_details
@@ -51,6 +53,7 @@ Rails.application.routes.draw do
   resources :accounting_entries
   resources :accounting_accounts
   resources :account_plans
+  resources :accounting_years
   get 'balance_report/balance'
   get 'ledger/mayor'
   get 'diary_book/diario'

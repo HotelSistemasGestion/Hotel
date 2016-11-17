@@ -28,9 +28,7 @@ Room.create(type_of_room_id: 1, state_id:1,capacidad: 4, identificador: "habitac
 
 
 
-AccountingYear.create(anho: "2016",estado: "actual");
-AccountingYear.create(anho: "2015",estado: "antiguo");
-AccountingYear.create(anho: "2014",estado: "antiguo");
+
 AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
 AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "0",haber: "10000");
 AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "0",debe: "1000",haber: "0");
@@ -60,7 +58,7 @@ AccountingAccount.create(grupo:"001",nombre:"Bebidas",imputable:"true");
 AccountingAccount.create(grupo:"04",nombre:"Ingreso de Telefono",imputable:"true");
 AccountingAccount.create(grupo:"001",nombre:"Llamadas internacionales",imputable:"true");
 AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true");
-AccountPlan.create(accounting_year_id: "1",descripcion:"no se",estado:"vigente",version:"1");
+
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3",cuenta_superior:"2");
