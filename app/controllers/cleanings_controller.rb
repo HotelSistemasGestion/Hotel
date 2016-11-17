@@ -4,7 +4,15 @@ class CleaningsController < ApplicationController
   # GET /cleanings
   # GET /cleanings.json
   def index
-    @cleanings = Cleaning.all
+    if(params[:id] == nil) 
+      @cleanings = Cleaning.all
+      puts "entre"
+    else
+      @cleanings = Cleaning.where("#{:room_id} = ?", params[:id]) 
+      #redirect_to cleaning_rooms_url
+      render "cleaning_rooms/index"
+    end
+    
   end
 
   # GET /cleanings/1
