@@ -78,6 +78,8 @@ class AccountsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
       params.require(:account).permit(:client_id,:fecha_entrada, :fecha_salida, :total, :room_id, :identificador_hab, :telefono,
-       :correo, :nombre, :direccion, :ruc, :subtotal, :descuento, :numero)
+       :correo, :nombre, :direccion, :ruc, :subtotal, :descuento, :numero,
+                                      #:room_account_details_attributes => [:id, :room_id, :precio, :subtotal, :_destroy],
+                                      :account_details_attributes => [:id, :service_id, :cantidad, :precio, :subtotal, :_destroy])
     end
 end
