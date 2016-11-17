@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Facturacion Manual</h4>
+        <h4 class="modal-title">Factura n°: <%= @invoice.numero %></h4>
       </div>
       <%#= form_for @invoice, remote: true do |f| %>        
         <div class="modal-body">
@@ -61,29 +61,30 @@
             <div class="col-md-12">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title"><center><strong>Detalle</strong></center></h3>
+                  <h3 class="panel-title"><center><strong>Detalles</strong></center></h3>
                 </div>
                 <div class="panel-body">
                   <div class="table-responsive">
                     <table class="table table-condensed">
                       <thead>
                         <tr>
-                          <td><strong>Item</strong></td>
-                          <td class="text-center"><strong>Price</strong></td>
-                          <td class="text-center"><strong>Quantity</strong></td>
-                          <td class="text-right"><strong>Total</strong></td>
+                          <td><strong>Cantidad</strong></td>
+                          <td style="margin-left: 20px;" class="text-center"><strong>Servicio</strong></td>
+                          <td class="text-center"><strong>Precio</strong></td>
+                          <td class="text-right"><strong>Subtotal</strong></td>
                         </tr>
                       </thead>
-                      <tbody>     
-
+                      <tbody>                           
+                      <% @invoice.invoice_details.each do |details| %>                 
                         <tr>
-                          <td>BS-200</td>
-                          <td class="text-center">$10.99</td>
-                          <td class="text-center">1</td>
-                          <td class="text-right">$10.99</td>
+                          <td><%= details.cantidad %></td>                          
+                          <td style="margin-left: 80px;" class="text-center"><%= Service.find(details.service_id).nombre %></td> 
+                          <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
+                          <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
                         </tr>
+                        <%end%>
 
-                        <tr>
+                        <!--<tr>
                           <td>BS-400</td>
                           <td class="text-center">$20.00</td>
                           <td class="text-center">3</td>
@@ -95,7 +96,7 @@
                           <td class="text-center">$600.00</td>
                           <td class="text-center">1</td>
                           <td class="text-right">$600.00</td>
-                        </tr>                        
+                        </tr>        -->               
 
                       </tbody>
                   </table>
@@ -113,6 +114,15 @@
               <div class="form-group text-right">
                 <strong>Total: </strong>           
               </div> 
+          </div>
+          <div class="col-md-4">        
+            <p><%= number_to_currency_py(@invoice.subtotal) %></p>
+          </div>
+          <div style="margin-top: 5px;" class="col-md-4">        
+            <p><%= @invoice.descuento %> %</p>
+          </div>
+           <div style="margin-top: 5px;" class="col-md-4">        
+            <p><%= number_to_currency_py(@invoice.total) %></p>
           </div>
         </div><!-- /.tabla-content -->
       </div>
