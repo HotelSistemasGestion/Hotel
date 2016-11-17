@@ -1,7 +1,7 @@
 <div class="box box-primary">
   <div class="box-header with-border">
     <h3 class="box-title"><center>Facturas</center></h3>
-    <a href="<%=new_invoice_path%>" class="btn btn-primary pull-right" role="button">Nueva Factura</a> 
+    <a href="<%=new_invoice_path%>" class="btn btn-primary pull-right no-print" role="button">Nueva Factura</a> 
   </div>
   <div class="box-body">
     <div class="table-responsive">
@@ -13,7 +13,7 @@
               <th>Cliente</th>
               <th>Estado</th> 
               <th>Total</th>                                     
-              <th></th>               
+              <th class="no-print"></th>               
             </tr>
           </thead>
         <tbody>
@@ -38,7 +38,7 @@
                 <!--Se formatea el total en formato local -->
                 <td> <%= number_to_currency_py(invoice.total)%> </td>
 
-                <td align="center">
+                <td align="center" class="no-print">
 
                     <%= link_to invoice, remote: true, class: 'btn btn-primary', title: 'Ver Factura', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-eye-open"></span>
@@ -56,9 +56,12 @@
       </table>
     </div>
   </div>
-  <div class="box-footer clearfix">
+  <div class="box-footer clearfix no-print">
+  
     <ul class="pagination pagination-sm no-margin pull-right">
          <nav><%=paginate @invoices, :theme => 'twitter-bootstrap-3' %></nav>
-    </ul>    
+    </ul>
+    <a class="btn btn-default" onclick="window.print();return false;"><i class="glyphicon glyphicon-print"></i> Imprimir</a>  
+
   </div>
 </div>
