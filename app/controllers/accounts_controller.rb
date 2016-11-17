@@ -3,8 +3,8 @@ class AccountsController < ApplicationController
 
   # GET /accounts
   # GET /accounts.json
-  def index
-    @accounts = Account.all
+  def index    
+    @accounts = Account.page(params[:page]).per(5)
   end
 
   # GET /accounts/1

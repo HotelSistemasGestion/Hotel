@@ -4,7 +4,8 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    #@invoices = Invoice.all
+    @invoices = Invoice.page(params[:page]).per(5)
   end
 
   # GET /invoices/1
