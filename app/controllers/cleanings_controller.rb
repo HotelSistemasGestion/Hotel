@@ -4,13 +4,14 @@ class CleaningsController < ApplicationController
   # GET /cleanings
   # GET /cleanings.json
   def index
-    if(params[:id] == nil) 
+    if(params[:dato] == nil) 
       @cleanings = Cleaning.all
-      puts "entre"
+      puts "entre en cleanings es nulo dato"
     else
-      @cleanings = Cleaning.where("#{:room_id} = ?", params[:id]) 
+      @cleanings = Cleaning.where("#{:room_id} = ?", params[:dato]) 
+      @dato = params[:dato]
       #redirect_to cleaning_rooms_url
-      render "cleaning_rooms/index"
+     # render "cleaning_rooms/index"
     end
     
   end
@@ -18,6 +19,7 @@ class CleaningsController < ApplicationController
   # GET /cleanings/1
   # GET /cleanings/1.json
   def show
+    #  @cleanings = Cleaning.where("#{:room_id} = ?", params[:id]) 
   end
 
   # GET /cleanings/new
