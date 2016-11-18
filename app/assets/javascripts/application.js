@@ -33,6 +33,7 @@
 //= require cleanings.js
 //= require jquery.fancybox.js
 //= require jquery.fancybox.pack.js
+//= require least.min.js
 //= require chosen.jquery.js
 //= require chosen.jquery.min.js
 //= require chosen.proto.js
