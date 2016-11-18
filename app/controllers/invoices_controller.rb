@@ -4,8 +4,8 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    #@invoices = Invoice.all
-    @invoices = Invoice.page(params[:page]).per(5)
+    @invoices = Invoice.all.order(:created_at).reverse
+    @invoices = Kaminari.paginate_array(@invoices).page(params[:page]).per(5)
   end
 
   # GET /invoices/1
