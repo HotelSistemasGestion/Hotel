@@ -10,7 +10,7 @@
                     <% end %>    
             </div>
             <div class="col-xs-2">
-                <%= link_to edit_account_plan_path(account_plan), remote: true, class: 'btn btn-warning', title: 'Editar Plan', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                <%= link_to edit_account_plan_path(account_plan), class: 'btn btn-warning', title: 'Editar Plan', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-pencil"></span>
                     <% end %>    
             </div>
@@ -20,12 +20,6 @@
                     <% end %>                    
     
             </div>
-
-             <div class="col-xs-2">
-                <%= link_to account_plan, remote: true, class: 'btn btn-link', title: 'Agregar Ejerccio', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon-eye-open"></span>
-                    <% end %>    
-            </div>
         </div>
-    </td>
+    </td>   
 </tr>

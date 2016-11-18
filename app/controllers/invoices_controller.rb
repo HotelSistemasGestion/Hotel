@@ -1,10 +1,11 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_invoice, only: [:show, :update, :destroy]
 
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.all.order(:created_at).reverse
+    @invoices = Kaminari.paginate_array(@invoices).page(params[:page]).per(5)
   end
 
   # GET /invoices/1
@@ -17,15 +18,10 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
   end
 
-  # GET /invoices/1/edit
-  def edit
-  end
-
   # POST /invoices
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
     respond_to do |format|
       if @invoice.save
         format.html { redirect_to invoices_url }        
@@ -53,9 +49,10 @@ class InvoicesController < ApplicationController
   # DELETE /invoices/1
   # DELETE /invoices/1.json
   def destroy
-    @invoice.destroy
+    @invoice.state="cancelado"
+    @invoice.save
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: 'La Factura fue eliminada correctamente.' }
+      format.html { redirect_to invoices_url, notice: 'La Factura fue cancelada correctamente.' }
       format.json { head :no_content }
     end
   end
@@ -80,6 +77,7 @@ class InvoicesController < ApplicationController
                                       :subtotal,
                                       :total,
                                       :state,
-                                      :invoice_details_attributes => [:id, :service_id, :cantidad, :cantidad, :precio, :subtotal])
+                                      :account_id,
+                                      :invoice_details_attributes => [:id, :service_id, :cantidad, :precio, :subtotal])
     end
 end

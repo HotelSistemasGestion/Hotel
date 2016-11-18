@@ -29,8 +29,12 @@
               <tr>              	
                 <td><span class="label label-<%=btn%>"><%= audit.action %></span></td>
                 <td><%= audit.auditable_type %></td>
-                <% usuario = User.find(audit.user_id) %>                
-                <td><%= usuario.username + " " + usuario.apellido %></td>  
+                <% if !audit.user_id.nil? %> 
+                  <% usuario = User.find(audit.user_id) %>
+                  <td><%= usuario.username + " " + usuario.apellido  %></td>
+                <%elsif%>
+                <td>default</td>   
+                <%end%>                
                 <td><%= audit.created_at.strftime("%d-%m-%Y - %R") %></td>                
               </tr>
             <% end %>

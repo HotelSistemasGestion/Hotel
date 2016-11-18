@@ -6,6 +6,69 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Rol.create(role: "Admin");
+#Roles para Movimientos
+Rol.create(role: "Ver Movimiento");
+Rol.create(role: "Crear Movimiento");
+Rol.create(role: "Editar Movimiento");
+Rol.create(role: "Eliminar Movimiento");
+#Roles para Caja
+Rol.create(role: "Ver Caja");
+Rol.create(role: "Crear Caja");
+Rol.create(role: "Editar Caja");
+Rol.create(role: "Eliminar Caja");
+#Roles para Apertura
+Rol.create(role: "Ver Apertura");
+Rol.create(role: "Crear Apertura");
+Rol.create(role: "Editar Apertura");
+Rol.create(role: "Eliminar Apertura");
+#Roles para Cierre
+Rol.create(role: "Ver Cierre");
+Rol.create(role: "Crear Cierre");
+Rol.create(role: "Editar Cierre");
+Rol.create(role: "Eliminar Cierre");
+#Roles para Arqueo
+Rol.create(role: "Ver Arqueo");
+Rol.create(role: "Crear Arqueo");
+Rol.create(role: "Editar Arqueo");
+Rol.create(role: "Eliminar Arqueo");
+#Roles para Pedidos de Reservaciones
+Rol.create(role: "Ver Pedido");
+Rol.create(role: "Crear Pedido");
+Rol.create(role: "Editar Pedido");
+Rol.create(role: "Eliminar Pedido");
+#Roles para Reservaciones
+Rol.create(role: "Ver Reservacion");
+Rol.create(role: "Crear Reservacion");
+Rol.create(role: "Editar Reservacion");
+Rol.create(role: "Eliminar Reservacion");
+#Roles para Facturas
+Rol.create(role: "Ver Factura");
+Rol.create(role: "Crear Factura");
+Rol.create(role: "Editar Factura");
+Rol.create(role: "Eliminar Factura");
+#Roles para Cuentas
+Rol.create(role: "Ver Cuenta");
+Rol.create(role: "Crear Cuenta");
+Rol.create(role: "Editar Cuenta");
+Rol.create(role: "Eliminar Cuenta");
+#Roles para Clientes
+Rol.create(role: "Ver Cliente");
+Rol.create(role: "Crear Cliente");
+Rol.create(role: "Editar Cliente");
+Rol.create(role: "Eliminar Cliente");
+#Roles para Servicios
+Rol.create(role: "Ver Servicio");
+Rol.create(role: "Crear Servicio");
+Rol.create(role: "Editar Servicio");
+Rol.create(role: "Eliminar Servicio");
+#Roles para Contabilidad
+Rol.create(role: "Control de Asientos");
+Rol.create(role: "Control de Cuentas");
+Rol.create(role: "Control de Planes de Cuentas");
+
+User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 1);
+
 TypeOfRoom.create(tipo: "Simple",descripcion:"");
 TypeOfRoom.create(tipo: "Doble",descripcion:"");
 TypeOfRoom.create(tipo: "Matrimonial",descripcion:"");
@@ -28,9 +91,7 @@ Room.create(type_of_room_id: 1, state_id:1,capacidad: 4, identificador: "habitac
 
 
 
-AccountingYear.create(anho: "2016",estado: "actual");
-AccountingYear.create(anho: "2015",estado: "antiguo");
-AccountingYear.create(anho: "2014",estado: "antiguo");
+
 AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
 AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "0",haber: "10000");
 AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "0",debe: "1000",haber: "0");
@@ -60,7 +121,7 @@ AccountingAccount.create(grupo:"001",nombre:"Bebidas",imputable:"true");
 AccountingAccount.create(grupo:"04",nombre:"Ingreso de Telefono",imputable:"true");
 AccountingAccount.create(grupo:"001",nombre:"Llamadas internacionales",imputable:"true");
 AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true");
-AccountPlan.create(accounting_year_id: "1",descripcion:"no se",estado:"vigente",version:"1");
+
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3",cuenta_superior:"2");
@@ -134,70 +195,6 @@ Complaint.create(description: "Tuve que esperar 25 minutos para ser atendido en 
 Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complaint_service_id: 2,service_description: "",state: false,room_id: 1);
 Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: false,room_id: 1);
 Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: false,room_id: 1);
-
-Rol.create(role: "Admin");
-#Roles para Movimientos
-Rol.create(role: "Ver Movimiento");
-Rol.create(role: "Crear Movimiento");
-Rol.create(role: "Editar Movimiento");
-Rol.create(role: "Eliminar Movimiento");
-#Roles para Caja
-Rol.create(role: "Ver Caja");
-Rol.create(role: "Crear Caja");
-Rol.create(role: "Editar Caja");
-Rol.create(role: "Eliminar Caja");
-#Roles para Apertura
-Rol.create(role: "Ver Apertura");
-Rol.create(role: "Crear Apertura");
-Rol.create(role: "Editar Apertura");
-Rol.create(role: "Eliminar Apertura");
-#Roles para Cierre
-Rol.create(role: "Ver Cierre");
-Rol.create(role: "Crear Cierre");
-Rol.create(role: "Editar Cierre");
-Rol.create(role: "Eliminar Cierre");
-#Roles para Arqueo
-Rol.create(role: "Ver Arqueo");
-Rol.create(role: "Crear Arqueo");
-Rol.create(role: "Editar Arqueo");
-Rol.create(role: "Eliminar Arqueo");
-#Roles para Pedidos de Reservaciones
-Rol.create(role: "Ver Pedido");
-Rol.create(role: "Crear Pedido");
-Rol.create(role: "Editar Pedido");
-Rol.create(role: "Eliminar Pedido");
-#Roles para Reservaciones
-Rol.create(role: "Ver Reservacion");
-Rol.create(role: "Crear Reservacion");
-Rol.create(role: "Editar Reservacion");
-Rol.create(role: "Eliminar Reservacion");
-#Roles para Facturas
-Rol.create(role: "Ver Factura");
-Rol.create(role: "Crear Factura");
-Rol.create(role: "Editar Factura");
-Rol.create(role: "Eliminar Factura");
-#Roles para Cuentas
-Rol.create(role: "Ver Cuenta");
-Rol.create(role: "Crear Cuenta");
-Rol.create(role: "Editar Cuenta");
-Rol.create(role: "Eliminar Cuenta");
-#Roles para Clientes
-Rol.create(role: "Ver Cliente");
-Rol.create(role: "Crear Cliente");
-Rol.create(role: "Editar Cliente");
-Rol.create(role: "Eliminar Cliente");
-#Roles para Servicios
-Rol.create(role: "Ver Servicio");
-Rol.create(role: "Crear Servicio");
-Rol.create(role: "Editar Servicio");
-Rol.create(role: "Eliminar Servicio");
-#Roles para Contabilidad
-Rol.create(role: "Control de Asientos");
-Rol.create(role: "Control de Cuentas");
-Rol.create(role: "Control de Planes de Cuentas");
-
-
-User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 1);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");

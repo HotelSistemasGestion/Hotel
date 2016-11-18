@@ -1,6 +1,6 @@
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title"><center>Cuentas</center></h3>
+    <h2 class="box-title"><center>Cuenta</center></h2>
       <div class="pull-right">
         <%= link_to accounts_path, class: 'col-sm-3', title: 'Volver a Cuentas', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
           <span class= "glyphicon glyphicon glyphicon-share-alt"></span>
@@ -22,8 +22,9 @@
                            fecha: Time.now.strftime("%d-%m-%Y"),                   
                            descuento: @account.descuento,
                            subtotal: @account.subtotal,
+                           account_id: @account.id,
                            total: @account.total)%>
-          <%= link_to 'Ver Factura', invoices_path, class: "btn btn-info" %>
+          <%= link_to 'Ver Factura', Invoice.find_by(account_id: @account.id), remote: true, class: "btn btn-info" %>
         <% end %>
       </div>
   </div>
@@ -73,13 +74,10 @@
                         <tr>
                           <td><strong>Habitacion</strong></td>
                           <td class="text-center"><strong>Precio</strong></td>
-                          <td class="text-right"><strong>Total</strong></td>
+                          <td class="text-right"><strong>Subtotal</strong></td>
                         </tr>
                       </thead>
-                      <tbody>     
-
-                                                
-
+                      <tbody>          
                       </tbody>
                   </table>
                 </div>
@@ -99,13 +97,18 @@
                           <td><strong>Servicio</strong></td>
                           <td class="text-center"><strong>Cantidad</strong></td>
                           <td class="text-center"><strong>Precio</strong></td>
-                          <td class="text-right"><strong>Total</strong></td>
+                          <td class="text-right"><strong>Subtotal</strong></td>
                         </tr>
                       </thead>
-                      <tbody>     
-
-                                                
-
+                      <tbody>                      
+                        <% @account.account_details.each do |details| %>                 
+                          <tr>                    
+                            <td style="margin-left: 80px;"><%= Service.find(details.service_id).nombre %></td> 
+                            <td class="text-center"><%= details.cantidad %></td>      
+                            <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
+                            <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
+                          </tr>
+                        <%end%>
                       </tbody>
                   </table>
                 </div>
@@ -114,20 +117,24 @@
           </div>
     </div>
 
-        <div class="col-md-8">
-            <div class="form-group text-right">
-              <strong>Subtotal: </strong>        
-              <%= @account.subtotal %>    
-            </div> 
-            <div class="form-group text-right">
-              <strong>Descuento: </strong>          
-              <%= @account.descuento %>         
-            </div> 
-            <div class="form-group text-right">
-              <strong>Total: </strong>           
-              <%= @account.total %>        
-            </div> 
-         </div>
+        <div class="col-md-4 pull-right">
+          <table class="table">
+              <tbody>
+                <tr>
+                  <th>Subtotal:</th>
+                  <td><%=number_to_currency_py(@account.subtotal) %></td>
+                </tr>
+                <tr>
+                  <th>Descuento: </th>
+                  <td><%= @account.descuento %> %</td>
+                </tr>            
+                <tr>
+                  <th>Total:</th>
+                  <td><%= number_to_currency_py(@account.total) %></td>
+                </tr>
+              </tbody>
+            </table> 
+        </div>
 
   </div>
 </div>

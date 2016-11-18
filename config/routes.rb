@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
 
 
+  get 'accounting_years/index'
+
   get 'audit/index'
 
   resources :reservation_rooms
   get 'picture/index'
 
   get 'notificacion/index'
+
 
   get 'gallery/index'
 
@@ -62,6 +65,7 @@ Rails.application.routes.draw do
   resources :accounting_entries
   resources :accounting_accounts
   resources :account_plans
+  resources :accounting_years
   get 'balance_report/balance'
   get 'ledger/mayor'
   get 'diary_book/diario'
@@ -76,7 +80,7 @@ Rails.application.routes.draw do
       get :facturar
     end
   end
-  resources :invoices
+  resources :invoices, :except => [:edit]
   resources :clients do 
     get :autocomplete_client_cedula, :on => :collection
   end

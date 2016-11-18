@@ -1,7 +1,7 @@
 class CreateInvoices < ActiveRecord::Migration
   def change
     create_table :invoices do |t|
-      t.integer :numero
+      t.string :numero
       t.references :client, index: true, foreign_key: true
       t.date :fecha
       t.integer :descuento
