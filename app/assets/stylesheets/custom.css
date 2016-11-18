@@ -5221,7 +5221,7 @@ width: 1200px;
 }
 #first-slider .carousel .item {
  
-  height: 400px;
+  height: 600px;
   width: 100%;
 }
 
@@ -5354,7 +5354,7 @@ width: 1200px;
     
 }
 #first-slider .slide2 {
-  background-image: url(https://res.cloudinary.com/dqgld1gyl/image/upload/v1477020111/hotel_eurostars_zaragoza_07_diinw9.jpg);
+  background-image: url(https://res.cloudinary.com/dqgld1gyl/image/upload/v1479439895/Pano-1_cbfkwp.jpg);
       background-size: cover;
       background-position: center;
     background-repeat: no-repeat;
@@ -5470,6 +5470,10 @@ width: 1200px;
     color: #fff;
 }
 #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+#calendario {
     max-width: 900px;
     margin: 0 auto;
   }

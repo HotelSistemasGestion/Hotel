@@ -30,8 +30,10 @@
 //= require rooms.js
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
+//= require cleanings.js
 //= require jquery.fancybox.js
 //= require jquery.fancybox.pack.js
+//= require least.min.js
 //= require chosen.jquery.js
 //= require chosen.jquery.min.js
 //= require chosen.proto.js
