@@ -11,25 +11,37 @@
       </ul>
     </div>
   <% end %>
-
 <div class="row">
-  <div class="col-md-4">
-    <%= f.label 'Apertura' ,class: "col-sm-2" %><br>
-    <%= f.text_field :opening_cash,id: "apertura", class: "form-control col-md-2",:value => @apertura.fecha_apertura,:readonly => true %>
-    <%= f.hidden_field  :opening_cash_id, :value => @apertura.id%>
+  <div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label 'Apertura:' ,class: "col-sm-3 control-label" %>
+    <%= f.text_field :opening_cash,id: "apertura", class: "col-sm-6",:value => @apertura.fecha_apertura,:readonly => true, remote: true %>
+    <%= f.hidden_field  :opening_cash_id, :value => @apertura.id%>  
+      </div>    
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label 'Tipo:',class: "col-sm-3 control-label" %>
+        <%= f.select :type_of_cash_movement_id ,TypeOfCashMovement.all.collect { |t| [t.descripcion, t.id ] },{include_blank: false},class: "col-sm-6",:required => true %>
+      </div>    
+    </div>   
   </div>
 
-  <div class="col-md-4">
-    <%= f.label 'Cliente' %><br>
-    <%= f.autocomplete_field :clientes, autocomplete_client_cedula_clients_path, class:"form-control", placeholder: "Ingrese numero de cedula",:multiple => false, :update_elements => {:id => '#cli_id'}, :required => true %>
-    <%= f.hidden_field  :client_id, id: 'cli_id' %>
-  </div>
-
-  <div class="col-md-4">
-    <%= f.label 'Tipo de movimiento' %><br>
-    <%= f.select :type_of_cash_movement_id ,TypeOfCashMovement.all.collect { |t| [t.descripcion, t.id ] },{include_blank: false},class: "form-control",:required => true %>
-
-  </div>
+  <div class="col-sm-6">
+      <div class="row">
+        <div class="col-sm-12">
+          <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
+              <%= f.autocomplete_field :nombre, autocomplete_client_cedula_clients_path, class:"col-sm-6", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'},id: 'cliente'  %>
+          <%= f.hidden_field  :client_id, id: 'cli_id' %>      
+        </div>
+        <div class="col-sm-12">
+          <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
+          <%= f.text_field :ruc, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true%>
+        </div>
+      </div>
+    </div>
+  
 </div>
 
       <br></br>
@@ -50,30 +62,8 @@
                 <th>Subtotal</th>
               </tr>
             </thead>
-            <tbody>
-              <%= f.fields_for :detail_of_cash_movements  ,:wrapper => false do |li| %>
-              <tr class="fields">
-                   <% id = "#"+"#{li.object_name}[invoice_id]".gsub(/(\])?\[/, "_").chop %>
-                   <td>
-                   
-                    <%= li.autocomplete_field :invoice, autocomplete_invoice_numero_invoices_path, :placeholder => "Seleccione una factura", 
-                  :multiple => true, :update_elements => {:id => id},class: "ui-autocomplete-input"%>  
-                  <%= li.number_field  :invoice_id%>
-                  </td>
-                  <td>
-                    <%= li.number_field :sub_monto, id: 'factotal', :class => "form-control subtotal"%>
-                  </td>
-                  <td>
-                    <%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %>
-                  </td>              
-              </tr>
-              <%end%>
+            <tbody id="invoice">
               
-              <tr>
-                <td>
-                  <%= f.link_to_add "", :detail_of_cash_movements , :class => "btn btn-primary glyphicon glyphicon-plus"%>
-                </td>
-              </tr>
           </tbody>
         </table>
       </div>
@@ -91,7 +81,7 @@
           </div>
           <div class="box-body" style="display: none;">
             <div class="table-responsive well">
-              <table class="table table-striped table-bordered table-hover">
+              <table class="table table-striped table-bordered table-hover" id="table">
                 <thead class="thead-inverse">
                   <tr>
                     <th>Valor</th>
@@ -137,7 +127,7 @@
         <div class="form-group">
           <div class="col-md-offset-7 col-md-4">
             <%= f.label :Total %><br>
-            <%= f.text_field :monto_total, class: "form-control total",  :readonly => true,placeholder: "" %>
+            <%= f.text_field :monto_total,id: "Total", class: "form-control totales",  :readonly => true,placeholder: "" %>
           </div>    
         </div>
       </div>         

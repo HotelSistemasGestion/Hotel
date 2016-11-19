@@ -42,8 +42,7 @@ Rails.application.routes.draw do
       get 'my_new'
     end
   end
-  
-  resources :type_of_cash_movements
+    resources :type_of_cash_movements
   resources :cash_counts
   resources :closing_cashes
   resources :opening_cashes do
@@ -52,7 +51,13 @@ Rails.application.routes.draw do
         get 'new'
       end
     end
+    collection do
+      get 'my_new'
+    end
+
   end 
+
+  get "client_invoices/:client_id" => "cash_movements#client_invoices"
 
   resources :cashes
   resources :type_of_rooms do
