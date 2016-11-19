@@ -85,13 +85,7 @@ Rails.application.routes.draw do
       get :facturar
     end
   end
-<<<<<<< HEAD
-  resources :invoices do 
-    get :autocomplete_invoice_numero, :on => :collection
-  end
-=======
   resources :invoices, :except => [:edit]
->>>>>>> baccc8a311a50403aae3cd913b5c18d4cb027cc7
   resources :clients do 
     get :autocomplete_client_cedula, :on => :collection
   end
