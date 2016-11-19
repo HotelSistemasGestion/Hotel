@@ -1,6 +1,11 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :update, :destroy]
-
+  
+  autocomplete :invoice, :numero,:extra_data => [:id,:total] do |items|
+    respond_to do |format|
+    format.json { render :json => @items }
+    end
+  end
   # GET /invoices
   # GET /invoices.json
   def index

@@ -13,5 +13,7 @@ class CashMovement < ActiveRecord::Base
 	accepts_nested_attributes_for :detail_of_cash_movements, allow_destroy: true , update_only: true 
 	accepts_nested_attributes_for :payment_types, allow_destroy: true , update_only: true
 
-	 attr_accessor :client
+	validates :client_id, presence: true
+	validates :type_of_cash_movement_id, presence: true
+	 attr_accessor :clientes
 end
