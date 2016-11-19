@@ -5,6 +5,7 @@ class CleaningRoomsController < ApplicationController
   # GET /cleaning_rooms.json
   def index
     @cleaning_rooms = CleaningRoom.all
+    @room = Room.new;
   end
 
   # GET /cleaning_rooms/1

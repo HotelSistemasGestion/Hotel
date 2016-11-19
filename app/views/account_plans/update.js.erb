@@ -1,0 +1,8 @@
+<% if @account_plan.errors.blank? %>
+  // add the row to the table, show alert and hide modal
+  $('#product-modal').modal('hide');
+  $('table tbody tr#<%= @account_plan.id %>').replaceWith(' <%= j render "row", account_plan: @account_plan %>');
+  alert('El plan se modifico exitosamente');
+<% else %>
+  alert('<%= @account_plan.errors.full_messages[0] %>');
+<% end %>

@@ -10,15 +10,19 @@ class AccountPlansController < ApplicationController
   # GET /account_plans/1
   # GET /account_plans/1.json
   def show
-    @account_plan = AccountPlan.find(params[:id])
+    @account = AccountPlan.find(params[:id])
+    @accounting_years=AccountingYear.where("account_plan_id = ?" ,params[:id])
+
     respond_to do |format|
       format.js
+    end
+
   end
 
   # GET /account_plans/new
   def new
     @account_plan = AccountPlan.new
-    @account_plans.accounting_year.build()
+    @account_plan.accounting_years.build()
   end
 
   # GET /account_plans/1/edit
@@ -29,9 +33,11 @@ class AccountPlansController < ApplicationController
   # POST /account_plans.json
   def create
     @account_plan = AccountPlan.new(account_plan_params)
+
     respond_to do |format|
       if @account_plan.save
-        format.js { } # Hace un render a create.js.erb
+        format.html { redirect_to account_plans_path, notice: 'El plan ha sido agregado con exito' }
+        format.json { render :show, status: :created, location: @account_plan }
       else
         format.html { render :new }
         format.json { render json: @account_plan.errors, status: :unprocessable_entity }
@@ -44,6 +50,7 @@ class AccountPlansController < ApplicationController
   def update
     respond_to do |format|
       if @account_plan.update(account_plan_params)
+        format.html { redirect_to account_plans_path, notice: 'El plan de cuentas ha sido actualizado.' }
         format.json { render :show, status: :ok, location: @account_plan }
       else
         format.html { render :edit }
@@ -51,13 +58,14 @@ class AccountPlansController < ApplicationController
       end
     end
   end
-end
+
   # DELETE /account_plans/1
   # DELETE /account_plans/1.json
   def destroy
+    
     @account_plan.destroy
     respond_to do |format|
-      format.html { redirect_to account_plans_url, notice: 'El plan de cuentas ha sido eliminado' }
+      format.html { redirect_to account_plans_path, notice: 'El plan ha sido eliminado correctamente!! ' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +78,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_plan_params
-      params.require(:account_plan).permit(:descripcion, :estado, :version,:accounting_year_attributes => [:id,:estado, :_destroy])
+      params.require(:account_plan).permit(:id ,:descripcion, :estado, :version ,:accounting_years_attributes => [:id, :anho,:estado ,:_destroy])
     end
 end

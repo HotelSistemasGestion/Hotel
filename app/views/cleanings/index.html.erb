@@ -1,37 +1,44 @@
-<div class="page-header">
-  <%= link_to new_cleaning_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Cleaning
-  <% end %>
-  <h1>Listing cleanings</h1>
+<div class="box">
+ 
+ <div class="box-body">
+
+ <div id='calendario'></div>
+           
 </div>
+      
+      <script type="text/javascript">
+      $(function() {
 
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-            <th>Cleaning room</th>
-            <th>Room</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Title</th>
-            <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+    
+    $('#calendario').fullCalendar({
 
-    <tbody>
-      <%= content_tag_for(:tr, @cleanings) do |cleaning| %>
-            <td><%= cleaning.cleaning_room %></td>
-            <td><%= cleaning.room %></td>
-            <td><%= cleaning.start %></td>
-            <td><%= cleaning.end %></td>
-            <td><%= cleaning.title %></td>
-            <td><%= link_to 'Show', cleaning %></td>
-        <td><%= link_to 'Edit', edit_cleaning_path(cleaning) %></td>
-        <td><%= link_to 'Destroy', cleaning, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-    </tbody>
-  </table>
+       height: 600,
+      //theme: true,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,basicWeek,basicDay,listDay,listWeek'
+      },
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: false,
+      eventLimit: false,
+      // customize the button names,
+      // otherwise they'd all just say "list"
+      views: {
+        listDay: { buttonText: 'listar Dia' },
+        listWeek: { buttonText: 'listar Semana' }
+      },
+
+      defaultView: 'month',
+      events: "/cleanings?dato=+<%=@dato%>+"
+    
+    
+    });
+
+     //permite el rango entre dos datepicker 
+     $('#sandbox-container  .input-daterange').datepicker({
+});
+    
+  });</script>
 </div>

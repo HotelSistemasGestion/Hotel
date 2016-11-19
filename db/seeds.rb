@@ -212,7 +212,6 @@ ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtamb
 PaymentType.create(descripcion: "efectivo");
 PaymentType.create(descripcion: "cheque");
 PaymentType.create(descripcion: "tarjeta credito");
-PaymentType.create(descripcion: "tarjeta debito");
 TypeOfCashMovement.create(descripcion: "entrada");
 
 Cash.create(descripcion: "Resturant&Bar");

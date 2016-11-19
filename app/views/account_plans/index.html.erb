@@ -7,7 +7,7 @@
                                     <thead>
                                     <tr role="row">
                                      <th class="col-sm-2"><h3 class="box-title titulo">PLANES DE CUENTAS</h3></th>
-                                     <th class="col-sm-2"><h3 class="box-title titulo"><%= link_to new_account_plan_path, remote: true, class: 'btn btn-primary' do %><span class="glyphicon glyphicon-plus"></span>
+                                     <th class="col-sm-2"><h3 class="box-title titulo"><%= link_to new_account_plan_path, class: 'btn btn-primary' do %><span class="glyphicon glyphicon-plus"></span>
                                        <% end %></h3></th>
                                     </tr>
                                     </thead>
@@ -22,20 +22,22 @@
             </div>
             
             <div class="row">
-              <div class="col-sm-offset-1 col-sm-9">
+              <div class="col-sm-offset-1 col-sm-10">
                 <table class="table table-bordered  table-responsive ">
                   <thead>
                     <tr role="row">
                       <th class="col-sm-2">Descripcion</th>
-                      <th class="col-sm-3">Estado</th>
-                      <th class="col-sm-3">Version</th>
-                      <th class="col-sm-3">Opciones</th> 
+                      <th class="col-sm-2">Estado</th>
+                      <th class="col-sm-2">Version</th>
+                      <th class="col-sm-2">Opciones</th> 
                     </tr>
                   </thead>
                   <tbody>
+                  <div>
                     <% @account_plans.each do |account_plan| %>
                     <%= render "row", account_plan: account_plan %>
                     <% end %>
+                   </div>
                   </tbody> 
                 </table>
               </div>  
