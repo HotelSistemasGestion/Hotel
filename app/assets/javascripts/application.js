@@ -40,6 +40,11 @@
 //= require chosen.proto.min.js
 //= require es.js
 //= require contabilidad
+//= require blueimp-helper.js
+//= require blueimp-gallery.js
+//= require blueimp-gallery-fullscreen.js
+//= require blueimp-gallery-indicator.js
+//= require jquery.blueimp-gallery.js
 //= require picture.js
 //= requrie gmaps/google
 
