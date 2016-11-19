@@ -591,5 +591,4 @@ ActiveRecord::Schema.define(version: 20161116150619) do
   add_foreign_key "rooms", "type_of_rooms"
   add_foreign_key "user_roles", "rols"
   add_foreign_key "user_roles", "users"
-
 end

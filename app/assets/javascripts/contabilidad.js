@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
 
+
        $("#search_conta").each(function(){
       
             $(this).daterangepicker({ "locale": {
@@ -42,4 +43,36 @@ $(document).ready(function(){
 
      });
 
+   var config = {'.chosen-select' : {}};
+
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    };
+   
+
+    $('.chosen-select').on('change', function (e) {
+      populateFields();
+    });
+
   });
+function populateFields () {
+        var label = $(".chosen-select option:selected").text();
+
+        var arr_cont=label.split('.');
+      $("div.ocultable").each(function(){
+        $(this).hide();//oculto todo
+
+      });
+          for (var j = 0; j < arr_cont.length; j++) {             
+              if(arr_cont[j]!=null){
+               $("#"+arr_cont[j]+"").show(); //muestro mediante id
+
+               };
+
+              }
+
+  };
+      
+       
+
+
