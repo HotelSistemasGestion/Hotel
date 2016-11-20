@@ -9,8 +9,10 @@
                                      <th class="col-sm-2"><h3 class="box-title titulo">CUENTAS</h3></th>
                                      <th class="col-sm-2"><h3 class="box-title titulo"><%= link_to new_accounting_account_path, remote: true, class: 'btn btn-primary' do %><span class="glyphicon glyphicon-plus"></span>
                                        <% end %></h3></th>
-                                     <th class="col-sm-2"><h3 class="box-title titulo">Ejercicios <SELECT NAME="selCombo" SIZE=0 onChange="javascript:alert('prueba');"> 
-                                    </SELECT></h3></th>  
+                                     <th class="col-sm-2"><td class="col-sm-2"><h3 class="box-title titulo">Ejercicios</h3></td> <td class="col-sm-2"><%= form_for @accounting_years= AccountingYear.new do |f| %>
+                                    <%= select("accounting_year", "accounting_year_id", AccountingYear.all.collect {|p| [ p.anho, p.id ] }, {include_blank: 'Seleccione'}) %>
+                                    <% end %></td></th>
+
                                     </tr>
                                     </thead>
                                     </table>

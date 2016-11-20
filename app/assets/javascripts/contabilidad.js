@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+var cont=0;
 
        $("#search_conta").each(function(){
       
@@ -42,4 +43,57 @@ $(document).ready(function(){
 
      });
 
+   var config = {'.chosen-select' : {}};
+
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    };
+
+   
+
+    $('.chosen-select').on('change', function (e) {
+      populateFields();
+    });
+
+
+
   });
+
+
+
+function cuentas_cant (num){
+    if(num!=0){
+  
+      $(".seleccion").show(); //muestro mediante id   
+    }else{
+     $(".seleccion").hide(); //muestro mediante id  
+    }
+};
+
+function populateFields () {
+        var label = $(".chosen-select option:selected").text();
+
+        var arr_cont=label.split('.');
+      $("div.ocultable").each(function(){
+        $(this).hide();//oculto todo
+
+      });
+          for (var j = 0; j < arr_cont.length; j++) { 
+
+        
+              if(arr_cont[j]!=null){
+               $("#"+arr_cont[j]+"").show(); //muestro mediante id
+
+               };
+
+              }
+
+  };
+
+function select(num){
+
+};
+      
+       
+
+

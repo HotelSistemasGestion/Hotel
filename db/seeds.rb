@@ -47,6 +47,7 @@ AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "0",debe: "20000",habe
 AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "0",debe: "0",haber: "20000");
 AccountingEntry.create(numero:"8",fecha:"2016/10/25",iva: "0",debe: "10000",haber: "0");
 AccountingEntry.create(numero:"8",fecha:"2016/10/25",iva: "0",debe: "0",haber: "10000");
+
 AccountingAccount.create(grupo:"00",nombre:"Cuentas por cobrar",imputable:"true");
 AccountingAccount.create(grupo:"01",nombre:"Clientes",imputable:"true");
 AccountingAccount.create(grupo:"00",nombre:"Ingreso",imputable:"true");
@@ -74,6 +75,7 @@ AccountXPlan.create(account_plan_id:"1",accounting_account_id:"10",cuenta_superi
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"11",cuenta_superior:"2");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"12",cuenta_superior:"2.4");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"13",cuenta_superior:"2.4");
+
 AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
 AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
 AccountXEntry.create(accounting_entry_id:"3",accounting_account_id:"2",monto:"20000",observacion:"Sector Bar y Restaurant ",tipo:"A");
