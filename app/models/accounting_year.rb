@@ -1,3 +1,3 @@
 class AccountingYear < ActiveRecord::Base
-	has_many :account_plans
+	belongs_to :account_plan
 end

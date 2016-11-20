@@ -9,21 +9,22 @@
 @import "jquery-ui.css";
 @import "dataTables/jquery.dataTables";
 @import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
-
 @import "style";
 @import "animate";
-
 @import "skin";
 @import "custom";
 @import "font-awesome";
 @import "rails_bootstrap_forms";
 @import "rooms";
 @import "fullcalendar";
-
-
+@import "chosen.css";
+@import "chosen.min.css";
+@import "prism.css";
 @import "bootstrap-colorpicker";
-
-
+@import "jquery.fancybox.css";
+@import "least.min.css";
+@import "blueimp-gallery.css";
+@import "blueimp-gallery-indicator.css";
 
 @import "complaints";
 

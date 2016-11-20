@@ -1,5 +1,4 @@
 
-
 $(document).ready(function (){
         $('div#budgets #budget_check_in').change(function(){
            $("table.services").find('tr.fields:visible').each(function(){ 
@@ -22,7 +21,7 @@ $(document).ready(function (){
 
         $('div#budgets #total').val(getPrecioInicial());
 
- 
+
 
       });
       
@@ -61,7 +60,6 @@ $(document).ready(function (){
     
  
   //Funciones
-  //Ve si tiene todos los datos para llamar al ajax
 
   //Checkea La disponibilidad
   function checkDisponibility(my_tr){
@@ -73,7 +71,7 @@ $(document).ready(function (){
         var comfort_id=parseInt($("#budget_comfort_id").val());
         var type_of_room_id= parseInt($tr.find(".type_of_room").val());
         var cantidad = parseInt($tr.find('.escuchable').val()); 
-
+        //Ve si tiene todos los datos para llamar al ajax
         if(!isNaN(comfort_id) && !isNaN(type_of_room_id) && !isNaN(cantidad)  && ($("#budget_check_out").val().length > 0) && ($("#budget_check_in").val().length > 0)){
           $.ajax({
             type:"GET",
@@ -106,10 +104,9 @@ $(document).ready(function (){
         }
       }
 
-  function getPrecioInicial(){
-    //var dias=parseInt($("#dias").val());
-    //var precio_de_habitacion=parseInt($("#precio_habitacion").val());
-    //var cantidad_de_habitaciones=parseInt($("#cantidad_de_habitaciones").val());
+
+
+  function getPrecioInicial(){    
     var total=0;
     return total;
   }
@@ -150,12 +147,6 @@ $(document).ready(function (){
         });
         return sum;
     }
-
-
-      //function {
-          //$("#total").val(getsumasubtotales());
-        //  descontartotal();
-      //}
       //Actualiza el total con su respectivo descuento.
       function actualizartotal(){
         console.log("Estoy descontando");
@@ -164,6 +155,10 @@ $(document).ready(function (){
         var subtotales=getsumasubtotales();
         var descuento=((getPrecioInicial()+subtotales) *  desc_value);
         $("#total").val(( getPrecioInicial()+subtotales) - descuento);
+        var val2=(parseInt($("#descount").val())/100);
+        var desc_val=!isNaN(val2) ? val2 : 0;
+        var d=((getPrecioInicial()+subtotales) *  desc_val);
+        $("#totales").val(( getPrecioInicial()+subtotales) - d);
       }
       ///ACA TERMINA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
 /*-----------------------------------------------------------------*/     

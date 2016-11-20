@@ -11,9 +11,9 @@
                                 <form class="form-inline">
    
                                 <div class="col-xs-6 col-md-6 col-sm-6"id="stock">
-                                  <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "_search" do %>
+                                  <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "_search_conta" do %>
                                      <%=label_tag "Periodo: "%>
-                                     <%= text_field_tag :search, params[:search],class: "form-control"%>
+                                     <%= text_field_tag :search_conta, params[:search_conta],class: "form-control"%>
                                      <%= button_tag(type: :submit, class: "btn btn-primary") do %>
                                               <i class="glyphicon glyphicon-search"></i>
                                           <% end %>

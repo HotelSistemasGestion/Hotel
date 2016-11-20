@@ -1,15 +1,19 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_account, only: [:show, :edit, :update, :destroy, :facturar]
 
   # GET /accounts
   # GET /accounts.json
-  def index
-    @accounts = Account.all
+  def index    
+    @accounts = Account.page(params[:page]).per(5)
   end
 
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+  end
+
+  def facturar
+    
   end
 
   # GET /accounts/new
@@ -28,7 +32,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
+        format.html { redirect_to @account, notice: 'La Cuenta fue creada exitosamente.' }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new }
@@ -42,8 +46,12 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
-        format.json { render :show, status: :ok, location: @account }
+        if @account.numero.nil?
+          format.html { redirect_to @account, notice: 'La Cuenta fue editada exitosamente.' }
+          format.json { render :show, status: :ok, location: @account }
+        else
+          format.js { }
+        end
       else
         format.html { render :edit }
         format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -56,7 +64,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, notice: 'La Cuenta fue eliminada exitosamente.' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +78,8 @@ class AccountsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
       params.require(:account).permit(:client_id,:fecha_entrada, :fecha_salida, :total, :room_id, :identificador_hab, :telefono,
-       :correo, :nombre, :direccion, :ruc, :subtotal, :descuento)
+       :correo, :nombre, :direccion, :ruc, :subtotal, :descuento, :numero,
+                                      #:room_account_details_attributes => [:id, :room_id, :precio, :subtotal, :_destroy],
+                                      :account_details_attributes => [:id, :service_id, :cantidad, :precio, :subtotal, :_destroy])
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112160207) do
+ActiveRecord::Schema.define(version: 20161118022255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,15 +27,12 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   end
 
   create_table "account_plans", force: :cascade do |t|
-    t.integer  "accounting_year_id"
     t.string   "descripcion"
     t.string   "estado"
     t.string   "version"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "account_plans", ["accounting_year_id"], name: "index_account_plans_on_accounting_year_id", using: :btree
 
   create_table "account_x_auto_entries", force: :cascade do |t|
     t.string   "descripcion"
@@ -103,9 +100,12 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   create_table "accounting_years", force: :cascade do |t|
     t.integer  "anho"
     t.string   "estado"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "account_plan_id"
   end
+
+  add_index "accounting_years", ["account_plan_id"], name: "index_accounting_years_on_account_plan_id", using: :btree
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "client_id"
@@ -124,9 +124,33 @@ ActiveRecord::Schema.define(version: 20161112160207) do
     t.string   "correo"
     t.integer  "subtotal"
     t.integer  "descuento"
+    t.string   "numero"
   end
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
+
+  create_table "audits", force: :cascade do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "associated_id"
+    t.string   "associated_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "audited_changes"
+    t.integer  "version",         default: 0
+    t.string   "comment"
+    t.string   "remote_address"
+    t.string   "request_uuid"
+    t.datetime "created_at"
+  end
+
+  add_index "audits", ["associated_id", "associated_type"], name: "associated_index", using: :btree
+  add_index "audits", ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
+  add_index "audits", ["created_at"], name: "index_audits_on_created_at", using: :btree
+  add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
+  add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
 
   create_table "budget_room_details", force: :cascade do |t|
     t.integer  "budget_id"
@@ -181,6 +205,10 @@ ActiveRecord::Schema.define(version: 20161112160207) do
     t.integer  "opening_cash_id"
     t.integer  "accounting_entry_id"
     t.integer  "client_id"
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "ruc"
+    t.string   "direccion"
   end
 
   add_index "cash_movements", ["accounting_entry_id"], name: "index_cash_movements_on_accounting_entry_id", using: :btree
@@ -317,7 +345,7 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.integer  "numero"
+    t.string   "numero"
     t.integer  "client_id"
     t.date     "fecha"
     t.integer  "descuento"
@@ -330,6 +358,8 @@ ActiveRecord::Schema.define(version: 20161112160207) do
     t.integer  "subtotal"
     t.string   "celular"
     t.string   "correo"
+    t.string   "state"
+    t.integer  "account_id"
   end
 
   add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
@@ -337,6 +367,7 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   create_table "opening_cashes", force: :cascade do |t|
     t.date     "fecha_apertura"
     t.integer  "monto_efectivo"
+    t.string   "estado"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "employee_id"
@@ -387,14 +418,25 @@ ActiveRecord::Schema.define(version: 20161112160207) do
 
   add_index "reservation_requests", ["comfort_id"], name: "index_reservation_requests_on_comfort_id", using: :btree
 
+  create_table "reservation_rooms", force: :cascade do |t|
+    t.integer  "reservation_id"
+    t.string   "room_id"
+    t.integer  "subtotal"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.date     "start"
+    t.date     "end"
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.string   "nombre"
+    t.string   "apellido"
     t.string   "email"
     t.string   "dias"
     t.date     "check_in"
     t.date     "check_out"
-    t.integer  "type_of_room_id"
     t.integer  "room_id"
+    t.integer  "type_of_room_id"
     t.string   "total"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -512,7 +554,6 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "account_plans", "accounting_years"
   add_foreign_key "account_x_auto_entries", "account_x_entries"
   add_foreign_key "account_x_auto_entry_dets", "account_x_auto_entries"
   add_foreign_key "account_x_auto_entry_dets", "accounting_accounts"
@@ -520,6 +561,7 @@ ActiveRecord::Schema.define(version: 20161112160207) do
   add_foreign_key "account_x_entries", "accounting_entries"
   add_foreign_key "account_x_plans", "account_plans"
   add_foreign_key "account_x_plans", "accounting_accounts"
+  add_foreign_key "accounting_years", "account_plans"
   add_foreign_key "accounts", "clients"
   add_foreign_key "budget_room_details", "budgets"
   add_foreign_key "budget_room_details", "type_of_rooms"

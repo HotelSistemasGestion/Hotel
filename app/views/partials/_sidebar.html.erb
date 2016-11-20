@@ -1,3 +1,4 @@
+
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 
@@ -150,16 +151,9 @@
             </li>                          
       </ul><!-- /.sidebar-menu --> 
 
-    <%elsif current_user.has_role? "Cajero"%>
-
-      <ul class="sidebar-menu">
-          <li class="header">Accesos Directos:</li>          
-              <li class="active">
-                <a href="<%=cash_movements_path%>"> <i class='glyphicon glyphicon-plus'> </i> <span>Movimiento de caja</span></a>                
-              </li>                          
-      </ul><!-- /.sidebar-menu --> 
-      
     <%end%>
+
+      
  
   </section>
   <!-- /.sidebar -->

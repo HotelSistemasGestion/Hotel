@@ -8,12 +8,12 @@ $(document).ready(function() {
 			header: {
 				left: 'prev,next today',
 				center: 'title',
-				right: 'month,agendaWeek,agendaDay,listDay,listWeek'
+				right: 'month,basicWeek,basicDay,listDay,listWeek'
 			},
-            navLinks: true, // can click day/week names to navigate views
+      navLinks: true, // can click day/week names to navigate views
 			businessHours: true, // display business hours
-			editable: true,
-			eventLimit: true,
+			editable: false,
+			eventLimit: false,
 			// customize the button names,
 			// otherwise they'd all just say "list"
 			views: {
@@ -22,14 +22,13 @@ $(document).ready(function() {
 			},
 
 			defaultView: 'month',
-			
-			navLinks: true, // can click day/week names to navigate views
-			editable: true,
-			eventLimit: true, // allow "more" link when too many events
 			events: "/cleanings.json"
+    
 		
 		});
-          $('#sandbox-container  .input-daterange').datepicker({
+
+     //permite el rango entre dos datepicker 
+     $('#sandbox-container  .input-daterange').datepicker({
 });
 		
 	});

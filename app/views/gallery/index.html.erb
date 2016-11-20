@@ -1,0 +1,132 @@
+<h2><img src="https://res.cloudinary.com/dqgld1gyl/image/upload/v1479526122/cooltext216714265064138_fm7ire.png"></h2>
+<!-- The container for the list of example images -->
+<div  class="links">
+     <% Photo.all.each do |p| %>              
+       
+        <a href= <%= p.my_file %>  title="River Bend Reflections" data-gallery=""> 
+          <%=cl_image_tag(p.my_file_url.to_s, :border=>"2px_solid_rgb:fff", :height=>100, :width=>100, :crop=>"scale")%>
+        </a>
+    <%end%>
+  <!--  <a href="https://res.cloudinary.com/dqgld1gyl/image/upload/v1479440923/91efd-6-Ayada_Maldives-Sunset-Ocean-Sutes_qca6qw.jpg" title="River Bend Reflections" data-gallery=""><img src="https://res.cloudinary.com/dqgld1gyl/image/upload/bo_2px_solid_rgb:fff,c_scale,h_100,w_100/v1479440923/91efd-6-Ayada_Maldives-Sunset-Ocean-Sutes_qca6qw.jpg"></a>
+<a href="https://res.cloudinary.com/dqgld1gyl/image/upload/v1479438093/c4dce2_f16a699da7784fb7ae3a24925fae3a15_rrjmft.webp" title="River Bend Reflections" data-gallery=""><img src="https://res.cloudinary.com/dqgld1gyl/image/upload/bo_2px_solid_rgb:fff,c_scale,h_100,w_100/v1479438093/c4dce2_f16a699da7784fb7ae3a24925fae3a15_rrjmft.webp"></a>
+<a href="https://res.cloudinary.com/dqgld1gyl/image/upload/v1479439216/c4dce2_0d80f06f62af4d8c99101769bef43c5f_zrxxnh.webp" title="River Bend Reflections" data-gallery=""><img src="https://res.cloudinary.com/dqgld1gyl/image/upload/bo_2px_solid_rgb:fff,c_scale,h_100,w_100/v1479439216/c4dce2_0d80f06f62af4d8c99101769bef43c5f_zrxxnh.webp"></a>
+-->
+</div>
+<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+<!--<div class="container">
+  <div class="row">
+    <h2>Media Slider Carousel BS3</h2>
+  </div>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="carousel slide media-carousel" id="media">
+        <div class="carousel-inner">
+          <div class="item  active">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="http://res.cloudinary.com/dqgld1gyl/image/upload/c_scale,h_300,w_550/v1479440923/91efd-6-Ayada_Maldives-Sunset-Ocean-Sutes_qca6qw.jpg"></a>
+              </div>          
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="https://res.cloudinary.com/dqgld1gyl/image/upload/c_scale,h_300,w_550/v1479439895/Pano-1_cbfkwp.jpg"></a>
+              </div>
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="https://res.cloudinary.com/dqgld1gyl/image/upload/c_scale,h_350,w_500/v1479438093/c4dce2_f16a699da7784fb7ae3a24925fae3a15_rrjmft.webp"></a>
+              </div>        
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="http://res.cloudinary.com/dqgld1gyl/image/upload/c_scale,h_350,w_500/v1479437960/c4dce2_a35c6365062c46ad9f0cecaf480433bb_hmcesy.webp"></a>
+              </div>          
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
+              </div>
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
+              </div>        
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
+              </div>          
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
+              </div>
+              <div class="col-md-4">
+                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
+              </div>      
+            </div>
+          </div>
+        </div>
+        <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+        <a data-slide="next" href="#media" class="right carousel-control">›</a>
+      </div>                          
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#media').carousel({
+    pause: true,
+    interval: 4000,
+  });
+});
+</script>-->
+<style type="text/css">
+body {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 1em;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  background: #222;
+  background-image: url(http://res.cloudinary.com/dqgld1gyl/image/upload/v1479525260/ayada-resort-maldives_ku8rn8.jpg);
+  background-position:center;
+  background-attachment: fixed;
+  color: #fff;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+a {
+  color: orange;
+  text-decoration: none;
+}
+img {
+  border: 0;
+  vertical-align: middle;
+}
+h1 {
+  line-height: 1em;
+}
+h2,
+.links {
+  text-align: center;
+}
+
+@media (min-width: 481px) {
+  .navigation {
+    list-style: none;
+    padding: 0;
+  }
+  .navigation li {
+    display: inline-block;
+  }
+  .navigation li:not(:first-child):before {
+    content: '| ';
+  }
+}
+
+</style>

@@ -1,10 +1,16 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_invoice, only: [:show, :update, :destroy]
+  
+  autocomplete :invoice, :numero,:extra_data => [:id,:total] do |items|
+    respond_to do |format|
+    format.json { render :json => @items }
+    end
+  end
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.all.order(:created_at).reverse
+    @invoices = Kaminari.paginate_array(@invoices).page(params[:page]).per(5)
   end
 
   # GET /invoices/1
@@ -17,21 +23,15 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
   end
 
-  # GET /invoices/1/edit
-  def edit
-  end
-
   # POST /invoices
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
-        format.json { render :show, status: :created, location: @invoice }
+        format.html { redirect_to invoices_url }        
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'La Factura fue creada correctamente.' }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +42,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to @invoice, notice: 'La Factura fue editada correctamente.' }
         format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit }
@@ -54,9 +54,10 @@ class InvoicesController < ApplicationController
   # DELETE /invoices/1
   # DELETE /invoices/1.json
   def destroy
-    @invoice.destroy
+    @invoice.state="cancelado"
+    @invoice.save
     respond_to do |format|
-      format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
+      format.html { redirect_to invoices_url, notice: 'La Factura fue cancelada correctamente.' }
       format.json { head :no_content }
     end
   end
@@ -79,6 +80,9 @@ class InvoicesController < ApplicationController
                                       :fecha, 
                                       :descuento,
                                       :subtotal,
-                                      :total)
+                                      :total,
+                                      :state,
+                                      :account_id,
+                                      :invoice_details_attributes => [:id, :service_id, :cantidad, :precio, :subtotal])
     end
 end

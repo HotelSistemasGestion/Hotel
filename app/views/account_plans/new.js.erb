@@ -1,4 +1,4 @@
-$('<%= j render "form", title: "Nuevo Plan" %>').on('hidden.bs.modal', function (e) {
+$('<%= j render "my_form", title: "Nuevo Plan" %>').on('hidden.bs.modal', function (e) {
   $(this).remove();
   $('.modal-backdrop').remove();
 }).modal();

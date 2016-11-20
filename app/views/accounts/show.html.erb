@@ -1,39 +1,140 @@
-<p id="notice"><%= notice %></p>
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h2 class="box-title"><center>Cuenta</center></h2>
+      <div class="pull-right">
+        <%= link_to accounts_path, class: 'col-sm-3', title: 'Volver a Cuentas', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+          <span class= "glyphicon glyphicon glyphicon-share-alt"></span>
+        <% end %>
+        <% if (@account.numero.nil?) %>
+          <%= link_to edit_account_path(@account), class: 'col-sm-3', title: 'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+            <span class= "glyphicon glyphicon glyphicon-edit"></span>
+          <% end %>
+          <%= link_to 'Facturar', facturar_account_path(@account), remote: true, class: "btn btn-primary" %> 
+        <% else %>
+          <%Invoice.create(nombre: @account.nombre,
+                           ruc: @account.ruc,
+                           direccion: @account.direccion,
+                           numero: @account.numero,
+                           state: 'pendiente',
+                           celular: @account.telefono,
+                           correo: @account.correo,
+                           client_id: @account.client_id,
+                           fecha: Time.now.strftime("%d-%m-%Y"),                   
+                           descuento: @account.descuento,
+                           subtotal: @account.subtotal,
+                           account_id: @account.id,
+                           total: @account.total)%>
+          <%= link_to 'Ver Factura', Invoice.find_by(account_id: @account.id), remote: true, class: "btn btn-info" %>
+        <% end %>
+      </div>
+  </div>
+  <div class="box-body">
 
-<p>
-  <strong>Cliente:</strong>
-  <%= @account.nombre %>
-</p>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Nombre: </label>
+          <%= @account.nombre %>            
+        </div> 
+        <div class="form-group">
+          <label>RUC: </label>
+          <%= @account.ruc %>            
+        </div> 
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Telefono: </label>
+          <%= @account.telefono %> 
+        </div>
+        <div class="form-group">
+          <label>Correo: </label>
+          <%= @account.correo %> 
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label>Direccion: </label>
+          <%= @account.direccion %> 
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Direccion:</strong>
-  <%= @account.direccion %>
-</p>
 
-<p>
-  <strong>RUC:</strong>
-  <%= @account.ruc %>
-</p>
 
-<p>
-  <strong>Habitacion:</strong>
-  <%= @account.identificador_hab %>
-</p>
+    <div class="row">
+      <div class="col-md-5">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><center>Detalle Habitaciones</center></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                          <td><strong>Habitacion</strong></td>
+                          <td class="text-center"><strong>Precio</strong></td>
+                          <td class="text-right"><strong>Subtotal</strong></td>
+                        </tr>
+                      </thead>
+                      <tbody>          
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="col-md-7">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><center>Detalle Servicios</center></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                          <td><strong>Servicio</strong></td>
+                          <td class="text-center"><strong>Cantidad</strong></td>
+                          <td class="text-center"><strong>Precio</strong></td>
+                          <td class="text-right"><strong>Subtotal</strong></td>
+                        </tr>
+                      </thead>
+                      <tbody>                      
+                        <% @account.account_details.each do |details| %>                 
+                          <tr>                    
+                            <td style="margin-left: 80px;"><%= Service.find(details.service_id).nombre %></td> 
+                            <td class="text-center"><%= details.cantidad %></td>      
+                            <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
+                            <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
+                          </tr>
+                        <%end%>
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
 
-<p>
-  <strong>Fecha entrada:</strong>
-  <%= @account.fecha_entrada %>
-</p>
+        <div class="col-md-4 pull-right">
+          <table class="table">
+              <tbody>
+                <tr>
+                  <th>Subtotal:</th>
+                  <td><%=number_to_currency_py(@account.subtotal) %></td>
+                </tr>
+                <tr>
+                  <th>Descuento: </th>
+                  <td><%= @account.descuento %> %</td>
+                </tr>            
+                <tr>
+                  <th>Total:</th>
+                  <td><%= number_to_currency_py(@account.total) %></td>
+                </tr>
+              </tbody>
+            </table> 
+        </div>
 
-<p>
-  <strong>Fecha salida:</strong>
-  <%= @account.fecha_salida %>
-</p>
-
-<p>
-  <strong>Total:</strong>
-  <%= @account.total %>
-</p>
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+  </div>
+</div>

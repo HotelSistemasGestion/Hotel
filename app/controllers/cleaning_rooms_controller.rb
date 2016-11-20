@@ -5,6 +5,7 @@ class CleaningRoomsController < ApplicationController
   # GET /cleaning_rooms.json
   def index
     @cleaning_rooms = CleaningRoom.all
+    @room = Room.new;
   end
 
   # GET /cleaning_rooms/1
@@ -26,11 +27,12 @@ class CleaningRoomsController < ApplicationController
   # POST /cleaning_rooms.json
   def create
     @cleaning_room = CleaningRoom.new(cleaning_room_params)
-
+   
     respond_to do |format|
       if @cleaning_room.save
-        format.html { redirect_to @cleaning_room, notice: 'Cleaning room was successfully created.' }
-        format.json { render :show, status: :created, location: @cleaning_room }
+        format.html { redirect_to cleaning_rooms_url }
+        #format.json { render :show, status: :created, location: @cleaning_room }
+        #format.json { head :no_content }
       else
         format.html { render :new }
         format.json { render json: @cleaning_room.errors, status: :unprocessable_entity }

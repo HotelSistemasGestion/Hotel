@@ -110,7 +110,8 @@ init_function();
 
           });
 
-   });
+        });
+
     
       //Java script para que nested form reconozca los <tr>
       window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
