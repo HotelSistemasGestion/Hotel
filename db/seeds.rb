@@ -62,7 +62,7 @@ AccountingAccount.create(grupo:"04",nombre:"Ingreso de Telefono",imputable:"true
 AccountingAccount.create(grupo:"001",nombre:"Llamadas internacionales",imputable:"true");
 AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true");
 
-AccountPlan.create(accounting_year_id: "1",descripcion:"no se",estado:"vigente",version:"1");
+AccountPlan.create(descripcion:"no se",estado:"vigente",version:"1");
 
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
