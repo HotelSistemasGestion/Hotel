@@ -1,29 +1,33 @@
-<div class="box-body">
-  <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to edit_cleaning_path(@cleaning), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-  <h1>Limpieza de Habitacion</h1>
+<div class="box">
+    <div class="box-body">
+     
+      <h3 class="box-title">Limpieza de Habitacion</h3>
 
 
-<dl class="dl-horizontal">
+    <dl class="dl-horizontal">
 
 
-  <dt>Habitacion:</dt>
-  <dd><%= @cleaning.room_identificador %></dd>
+      <dt>Habitacion:</dt>
+      <dd><%= @cleaning.room_identificador %></dd>
 
-  <dt>Desde:</dt>
-  <dd><%= @cleaning.start %></dd>
+      <dt>Desde:</dt>
+      <dd><%= @cleaning.start %></dd>
 
-  <dt>Hasta:</dt>
-  <dd><%= @cleaning.end %></dd>
+      <dt>Hasta:</dt>
+      <dd><%= @cleaning.end %></dd>
 
-  <dt>Titulo:</dt>
-  <dd><%= @cleaning.title %></dd>
+      <dt>Titulo:</dt>
+      <dd><%= @cleaning.title %></dd>
 
-</dl>
+    </dl>
+     <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-list-alt"></span>
+    
+      <% end %>
+      <%= link_to edit_cleaning_path(@cleaning), class: 'btn btn-primary' do %>
+        <span class="glyphicon glyphicon-pencil"></span>
+    
+      <% end %>
+      <%= link_to '', @cleaning, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-danger glyphicon glyphicon-trash"%>
+    </div>
 </div>

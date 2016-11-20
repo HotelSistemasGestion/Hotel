@@ -19,7 +19,16 @@ class CashMovementsController < ApplicationController
     @cash_movement = CashMovement.new
     @cash_movement.detail_of_cash_movements.build()
     @cash_movement.payment_types.build()
-    @apertura = OpeningCash.find(params[:opening_cash_id])  
+    @apertura = OpeningCash.find(params[:opening_cash_id])
+  end
+
+  
+  def client_invoices
+      client_id = params[:client_id]
+      @invoices = Invoice.where(client_id: client_id,state: "pendiente")
+      respond_to do |format|
+        format.json { render json: @invoices.to_json }
+      end
   end
 
   # GET /cash_movements/1/edit

@@ -8,52 +8,36 @@
       <%#= form_for @invoice, remote: true do |f| %>        
         <div class="modal-body">
           <div class="alert alert-danger" role="alert" style="display: none;"></div>
-          <div class="form-group">
-
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <%#= f.label 'Numero de Factura' %><br>
-                  <%#= f.text_field :numero, class: "form-control input-lg", placeholder: "Numero de factura" %> 
-                </div>               
-              </div>
-
-              <div class="col-md-4">
-                <div class="form-group">
-                  <%#= f.label :fecha %><br>
-                  <%#= f.text_field :fecha, class: "form-control input-lg", placeholder: "Fecha" %>                                            
-                </div>
-              </div>  
-
-              <div class="col-md-4">
-                <div class="form-group">
-                  <%#= f.label 'Forma de pago' %><br>
-                  <%#= f.text_field :numero, class: "form-control input-lg", placeholder: "Forma de Pago" %> 
-                </div>               
-              </div>
-
-            </div>  
+          <div class="form-group"> 
 
           </div>
 
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label>Nombre</label>
+                <label>Nombre: </label>
                 <%= @invoice.nombre %>            
+              </div> 
+              <div class="form-group">
+                <label>RUC: </label>
+                <%= @invoice.ruc %>            
               </div> 
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>Apellido</label>
-                <%#= f.text_field :descuento, class: "form-control input-lg", placeholder: "Apellido" %>
-              </div>
+                <label>Telefono: </label>
+                <%= @invoice.celular %>            
+              </div> 
+              <div class="form-group">
+                <label>Correo: </label>
+                <%= @invoice.correo %>            
+              </div> 
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label>C.I.N</label>
-                <%#= f.text_field :descuento, class: "form-control input-lg", placeholder: "Numero de cedula" %>
-              </div>
+                <label>Direccion: </label>
+                <%= @invoice.direccion %>            
+              </div> 
             </div>
           </div>
 
@@ -75,29 +59,14 @@
                         </tr>
                       </thead>
                       <tbody>                           
-                      <% @invoice.invoice_details.each do |details| %>                 
-                        <tr>
-                          <td><%= details.cantidad %></td>                          
-                          <td style="margin-left: 80px;" class="text-center"><%= Service.find(details.service_id).nombre %></td> 
-                          <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
-                          <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
-                        </tr>
-                        <%end%>
-
-                        <!--<tr>
-                          <td>BS-400</td>
-                          <td class="text-center">$20.00</td>
-                          <td class="text-center">3</td>
-                          <td class="text-right">$60.00</td>
-                        </tr>
-
-                        <tr>
-                          <td>BS-1000</td>
-                          <td class="text-center">$600.00</td>
-                          <td class="text-center">1</td>
-                          <td class="text-right">$600.00</td>
-                        </tr>        -->               
-
+                        <% @invoice.invoice_details.each do |details| %>                 
+                          <tr>
+                            <td><%= details.cantidad %></td>                          
+                            <td style="margin-left: 80px;" class="text-center"><%= Service.find(details.service_id).nombre %></td> 
+                            <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
+                            <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
+                          </tr>
+                        <%end%>  
                       </tbody>
                   </table>
                 </div>

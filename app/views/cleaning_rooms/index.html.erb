@@ -4,6 +4,21 @@
     <span class="glyphicon glyphicon-plus"></span>
     Nueva Limpieza
   <% end %>
+    
+    <%= select(@room, @room.id, Room.all.collect {|p| [ p.identificador, p.id ] }, {include_blank:false},id:"selecionar") %>
+    
+
+         <button id="s" type="button"  class="btn btn-primary">redireccionar</button> 
+<script type="text/javascript">
+    $(function() {
+        
+        $('#s').click(function() {
+          p = $("#selecionar").val();
+          $(location).attr('href',"/cleanings?dato="+p+""); 
+        });
+      });
+</script>
+
  </div>
    <div class="box ">
             <div class="box-header">
@@ -18,7 +33,7 @@
          
             <div class="box-body">
        <div id='calendar'></div>
-           
+        
           </div>
       </div>
  </div>   

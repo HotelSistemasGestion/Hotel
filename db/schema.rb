@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116150619) do
+
+ActiveRecord::Schema.define(version: 20161118022255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,6 +206,10 @@ ActiveRecord::Schema.define(version: 20161116150619) do
     t.integer  "opening_cash_id"
     t.integer  "accounting_entry_id"
     t.integer  "client_id"
+    t.string   "nombre"
+    t.string   "apellido"
+    t.string   "ruc"
+    t.string   "direccion"
   end
 
   add_index "cash_movements", ["accounting_entry_id"], name: "index_cash_movements_on_accounting_entry_id", using: :btree
@@ -420,6 +425,8 @@ ActiveRecord::Schema.define(version: 20161116150619) do
     t.integer  "subtotal"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.date     "start"
+    t.date     "end"
   end
 
   create_table "reservations", force: :cascade do |t|

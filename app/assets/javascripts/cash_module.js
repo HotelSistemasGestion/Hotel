@@ -1,3 +1,6 @@
+$(document).ready(function(){
+    search_invoices();
+});
 
 // cuando selecciono un valor de pago
 $(document).on("change", ".select", function(){
@@ -6,10 +9,30 @@ $(document).on("change", ".select", function(){
         mostrarCheque(id,cheque);
     });
 
-$(document).on("change", ".subtotal", function(){
+$(document).on("change", "#invoice", function(){
         var id = "#"+$(this).attr("id");
         $(".total").val(sumarSubtotales());
     });
+
+function search_invoices(){
+    $("#cliente").on('railsAutocomplete.select', function (event,data) {                
+            var client = data.item.id;
+            console.log(client);
+            $.ajax({
+                type: "GET",
+                url: "/client_invoices/"+client,
+                dataType: "json",
+                data: {"cliente_id" : client},
+                success: function(result){
+
+                    $.each(result,function(index){
+                        $("#invoice").append('<tr><td><input class="form-control" value='+result[index].numero+'></input></td><td><input class="form-control subtotal" id="subtotal" value='+result[index].total+'></input></td></tr>');    
+                    
+                    })
+                } 
+            });
+    });
+}
 
 // funcion para mostrar o ocultar campos ocultos
 function mostrarCheque(id,detalle){

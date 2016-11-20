@@ -30,14 +30,21 @@
 //= require rooms.js
 //= require fullcalendar.min.js
 //= require cleaning_rooms.js
+//= require cleanings.js
 //= require jquery.fancybox.js
 //= require jquery.fancybox.pack.js
+//= require least.min.js
 //= require chosen.jquery.js
 //= require chosen.jquery.min.js
 //= require chosen.proto.js
 //= require chosen.proto.min.js
 //= require es.js
 //= require contabilidad
+//= require blueimp-helper.js
+//= require blueimp-gallery.js
+//= require blueimp-gallery-fullscreen.js
+//= require blueimp-gallery-indicator.js
+//= require jquery.blueimp-gallery.js
 //= require picture.js
 //= requrie gmaps/google
 
