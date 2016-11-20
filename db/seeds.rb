@@ -60,7 +60,7 @@ AccountingAccount.create(grupo:"001",nombre:"Bebidas",imputable:"true");
 AccountingAccount.create(grupo:"04",nombre:"Ingreso de Telefono",imputable:"true");
 AccountingAccount.create(grupo:"001",nombre:"Llamadas internacionales",imputable:"true");
 AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true");
-AccountPlan.create(accounting_year_id: "1",descripcion:"no se",estado:"vigente",version:"1");
+AccountPlan.create(descripcion:"no se",estado:"vigente",version:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3",cuenta_superior:"2");
@@ -198,7 +198,7 @@ Rol.create(role: "Control de Planes de Cuentas");
 
 
 User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 1);
-User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 4);
+User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 3);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
