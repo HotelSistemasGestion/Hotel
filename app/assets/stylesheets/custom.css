@@ -2789,6 +2789,9 @@ a:focus {
   width: 45%;
 
 }
+.text_balance{
+    text-align: center;
+}
 /* .text-center in tables ------------------------------------------------------------------------*/
 table.text-center,
 table.text-center td,
