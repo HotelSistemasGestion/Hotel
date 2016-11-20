@@ -26,9 +26,10 @@ function search_invoices(){
                 success: function(result){
 
                     $.each(result,function(index){
-                        $("#invoice").append('<tr><td><input class="form-control" value='+result[index].numero+'></input></td><td><input class="form-control subtotal" id="subtotal" value='+result[index].total+'></input></td></tr>');    
+                        $("#invoice").append('<tr><td><input class="form-control" value='+result[index].numero+'></input></td><td><input class="form-control subtotal" id="subtotal" value='+result[index].total+'></input></td><td><a class="btn btn-primary" title="" data-toggle="tooltip" data-placement="rigth" data-remote="true" href='+"/invoices/"+result[index].id+' data-original-title="Ver Factura"><span class="glyphicon glyphicon-eye-open"></span></td></tr>');    
                     
                     })
+                    $(".total").val(sumarSubtotales());
                 } 
             });
     });
@@ -53,26 +54,6 @@ function mostrarCheque(id,detalle){
     }
 }
       
-function mostrarEncabezado(){
-    var bol=false;
-    var id;
-    $(".select").each(function(){
-        var aux = $(this).val();
-        if(aux == 2 || aux == 3  || aux == 4){
-            bol = true;
-            id = $(this).attr("id");
-        }
-        console.log(aux);
-    });
-    if(bol == true){
-        $("#det").show();
-        $("#opc").show();
-    } else {
-        $("#det").hide();
-        $("#opc").hide();
-    }
-    
-}
 
 function sumarSubtotales(){
     var sum=0;
