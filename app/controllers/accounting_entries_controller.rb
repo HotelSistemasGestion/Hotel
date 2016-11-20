@@ -31,7 +31,7 @@ end
     @accounting_entry = AccountingEntry.new(accounting_entry_params)
     respond_to do |format|
       if @accounting_entry.save
-        format.html { redirect_to @accounting_entry, notice: 'Se ha creado con exito.' }
+        format.html { redirect_to accounting_entries_path, notice: 'El asiento ha sido agregado con exito' }
         format.json { render :show, status: :created, location: @accounting_entry }
       else
         format.html { render :new }

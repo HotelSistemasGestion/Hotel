@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20161116150619) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -343,7 +341,7 @@ ActiveRecord::Schema.define(version: 20161116150619) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.string   "numero"
+    t.integer  "numero"
     t.integer  "client_id"
     t.date     "fecha"
     t.integer  "descuento"
@@ -365,7 +363,6 @@ ActiveRecord::Schema.define(version: 20161116150619) do
   create_table "opening_cashes", force: :cascade do |t|
     t.date     "fecha_apertura"
     t.integer  "monto_efectivo"
-    t.string   "estado"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "employee_id"
@@ -426,13 +423,12 @@ ActiveRecord::Schema.define(version: 20161116150619) do
 
   create_table "reservations", force: :cascade do |t|
     t.string   "nombre"
-    t.string   "apellido"
     t.string   "email"
     t.string   "dias"
     t.date     "check_in"
     t.date     "check_out"
-    t.integer  "room_id"
     t.integer  "type_of_room_id"
+    t.integer  "room_id"
     t.string   "total"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
