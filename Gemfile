@@ -49,6 +49,8 @@ gem 'cloudinary'
 #Styling hmtl emails
 gem 'nokogiri'
 gem 'premailer-rails'
+#validaciones del lado del servidor y del cliente
+gem 'client_side_validations'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'

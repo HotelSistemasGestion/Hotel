@@ -13,7 +13,7 @@
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
   <%= javascript_include_tag 'application'%>
-  <%=javascript_include_tag "autocomplete-rails.js"%>
+  <%= javascript_include_tag "autocomplete-rails.js"%>
   <%= csrf_meta_tags %>
   
   <!-- Selectpicker -->
@@ -52,7 +52,9 @@
                   <b><%= alert %></b>
                 </div>
               <% end %>
+              <div id="<%= controller_name %>">
               <%= yield %>
+              </div>
             </section><!-- /.content -->
           </div><!-- /.content-wrapper -->
 

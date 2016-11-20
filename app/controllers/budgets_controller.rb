@@ -7,19 +7,30 @@ class BudgetsController < ApplicationController
 
 
 
-   def hay_disponible(cantidad,type_of_room_id,comfort_id,check_in,check_out)
+   def hay_disponible()
+    cantidad = Integer(params[:cantidad])
+    type_of_room_id= params[:type_of_room_id]
+    comfort_id = params[:comfort_id]
+    check_in = params[:check_in]
+    check_out = params[:check_out]
+
+    @result
     count = 0 
     #Primero miro si hay alguna habitacion con lo requerido que su estado sea "Libre"
-    room= Room.where(["type_of_room_id = ? and state_id = ?", type_of_room_id,1])
+    room= Room.where(["type_of_room_id = ? and comfort_id = ? and state_id = ?", type_of_room_id,comfort_id,1])
     #Si hay,retorno true
     count=room.count
     if count >= cantidad
+      @result={"result": true}
+      respond_to do |format|
+        format.json { render json: @result.to_json }
+      end
       return true
       #Se acaba la funcion por que ya comprobe que hay una habitacion disponible
     end
     #Si no hay ninguna "Libre",debemos buscar en las reservadas si esta disponible en nuestro rango de fechas.
     #Buscamos las habitaciones reservadas.
-    room_ids= Room.where(["type_of_room_id = ? and state_id != ? and state_id != ?", type_of_room_id,1,4]).select("id")
+    room_ids= Room.where(["type_of_room_id = ? and comfort_id = ? and state_id != ? and state_id != ?", type_of_room_id,comfort_id,1,4]).select("id")
     #Sacamos las reservaciones de habitaciones que ahora estan en estado reservada.
     filter=Reservation.where(room_id:room_ids)
     for i in 0..filter.length-1
@@ -28,9 +39,17 @@ class BudgetsController < ApplicationController
       count=count+1
      end
      if count >= cantidad
+      @result={"result": true}
+      respond_to do |format|
+        format.json { render json: @result.to_json }
+      end
       return true
      end
     end
+    @result={"result": false}
+      respond_to do |format|
+        format.json { render json: @result.to_json }
+      end
     return false
   end
 
@@ -52,6 +71,10 @@ class BudgetsController < ApplicationController
     @budget.budget_service_details.build()
     @budget.budget_room_details.build()
     @my_reservation_requests = ReservationRequest.find(params[:id])
+    #busco los servicios en los detalles de este presupuesto y retorno su id
+    @services_details=@budget.budget_service_details.select("service_id").collect(&:service_id)
+    #retorno los nombre de los servicios
+    @service_name=Service.where("id": @services_details).pluck(:nombre,:precio)
   else
     @budget = Budget.new
   end 
@@ -59,17 +82,18 @@ class BudgetsController < ApplicationController
     
   end
 
-  def my_new
-    @budget = Budget.new
-    @budget.budget_service_details.build()
-    @my_reservation_requests = ReservationRequest.find(params[:id])
-  end
   # GET /budgets/1/edit
   def edit
     @my_budget = Budget.find(params[:id])
     @my_reservation_requests = ReservationRequest.find(params[:id])
-
-
+    #busco los servicios en los detalles de este presupuesto y retorno su id
+    @services_details=@budget.budget_service_details.select("service_id").collect(&:service_id)
+    #retorno los nombre de los servicios
+    @service_name=Service.where("id": @services_details).pluck(:nombre,:precio)
+    #busco los tipos de habitaciones en los detalles de este presupuesto y retorno su id
+    @room_details=@budget.budget_room_details.select("type_of_room_id").collect(&:type_of_room_id)
+    #retorno los nombre de los servicios
+    @room_name=TypeOfRoom.where("id": @room_details).pluck(:tipo,:precio)
   end
 
   # POST /budgets
@@ -81,8 +105,6 @@ class BudgetsController < ApplicationController
       if @budget.save
         BudgetMailer.budget_email(@budget1).deliver_now
         format.html { redirect_to reservation_requests_path, notice: 'Presupuesto creado exitosamente.' }
-        #format.html { redirect_to reservations_path(), notice: 'Reservacion creada exitosamente.' }
-        #format.json { render :index, status: :created, location: @budget }
       else
         @my_reservation_requests = ReservationRequest.find(budget_params[:reservation_request_id])
         @budget.budget_service_details.build()
@@ -101,11 +123,11 @@ class BudgetsController < ApplicationController
     respond_to do |format|
       if @budget.update(budget_params)
         BudgetMailer.budget_email(@budget1).deliver_now
-        format.html { redirect_to @budget, notice: 'Budget was successfully updated.' }
-        format.json { render :show, status: :ok, location: @budget }
+        format.html { redirect_to reservation_requests_path, notice: 'Presupuesto modificado exitosamente.' }
       else
         @my_reservation_requests = ReservationRequest.find(budget_params[:reservation_request_id])
         @my_budget = Budget.find(params[:id])
+        @services_details=@my_budget.budget_service_details
         format.html { render :edit }
         format.json { render json: @budget.errors, status: :unprocessable_entity }
       end

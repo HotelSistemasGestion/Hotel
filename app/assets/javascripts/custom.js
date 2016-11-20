@@ -64,7 +64,49 @@ init_function();
               ],
               "firstDay": 1
           }, autoclose: true,
-          autoSize: true
+          autoSize: true,
+
+          });
+
+   });
+
+       $("#reservation_range").each(function(){
+      
+            $(this).daterangepicker({ "locale": {
+              "format": "DD/MM/YYYY",
+              "separator": " - ",
+              "applyLabel": "Aceptar",
+              "cancelLabel": "Cancelar",
+              "fromLabel": "From",
+              "toLabel": "To",
+              "customRangeLabel": "Custom",
+              "daysOfWeek": [
+                  "Do",
+                  "Lu",
+                  "Ma",
+                  "Mi",
+                  "Ju",
+                  "vi",
+                  "S&aacute;"
+              ],
+              "monthNames": [
+                  "Enero",
+                  "Febrero",
+                  "Marzo",
+                  "Abril",
+                  "Mayo",
+                  "Junio",
+                  "Julio",
+                  "Agosto",
+                  "Septiembre",
+                  "Octubre",
+                  "Noviembre",
+                  "Diciembre"
+              ],
+              "firstDay": 1
+          }, autoclose: true,
+          autoSize: true,
+          minDate: moment().add(1,'days'),
 
           });
 

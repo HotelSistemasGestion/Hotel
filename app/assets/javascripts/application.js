@@ -35,11 +35,13 @@
 //= require bootstrap-colorpicker
 //= underscore-min.map
 //= require filterrific/filterrific-jquery
-
-
+//= require rails.validations
+//= require rails.validations.nested_form
 
   $(document).ready(function() {
     $.validate();
   });
+
+
 
 
