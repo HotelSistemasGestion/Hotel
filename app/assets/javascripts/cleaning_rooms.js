@@ -21,11 +21,14 @@ $(document).ready(function() {
 				listWeek: { buttonText: 'listar Semana' }
 			},
 
-			defaultView: 'month',	
+			defaultView: 'month',
 			events: "/cleanings.json"
+    
 		
 		});
-          $('#sandbox-container  .input-daterange').datepicker({
+
+     //permite el rango entre dos datepicker 
+     $('#sandbox-container  .input-daterange').datepicker({
 });
 		
 	});

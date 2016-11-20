@@ -1,10 +1,16 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_invoice, only: [:show, :update, :destroy]
+  
+  autocomplete :invoice, :numero,:extra_data => [:id,:total] do |items|
+    respond_to do |format|
+    format.json { render :json => @items }
+    end
+  end
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.all.order(:created_at).reverse
+    @invoices = Kaminari.paginate_array(@invoices).page(params[:page]).per(5)
   end
 
   # GET /invoices/1
@@ -15,10 +21,6 @@ class InvoicesController < ApplicationController
   # GET /invoices/new
   def new
     @invoice = Invoice.new
-  end
-
-  # GET /invoices/1/edit
-  def edit
   end
 
   # POST /invoices
@@ -81,6 +83,6 @@ class InvoicesController < ApplicationController
                                       :total,
                                       :state,
                                       :account_id,
-                                      :invoice_details_attributes => [:id, :service_id, :cantidad, :cantidad, :precio, :subtotal])
+                                      :invoice_details_attributes => [:id, :service_id, :cantidad, :precio, :subtotal])
     end
 end
