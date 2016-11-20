@@ -1,7 +1,7 @@
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
-  <script src="javascripts/chosen.jquery.js" type="text/javascript"></script>
-  <script src="javascripts/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="/assets/docsupport/style.css">
+  <link rel="stylesheet" href="/assets/docsupport/prism.css">
+
 
 <div class="box">
 <%cont2=0%>
@@ -9,6 +9,7 @@
 <%ite=0%>
 <%cant_a=0%>
 <%cant_d=0%>
+<%contador_selector=0%>
 <div class="box-header with-border">
     <h1 class="box-title titulo">Libro Mayor</h1>
 </div>
@@ -19,29 +20,44 @@
                                   <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "search_conta" do %>
                                      <%=label_tag "Periodo: "%>
                                      <%= text_field_tag :search_conta, params[:search_conta],class: "form-control"%>
-                                     <%= button_tag(type: :submit, class: "btn btn-primary") do %>
-                                              <i class="glyphicon glyphicon-search"></i>
+                                     <%= button_tag(type: :submit, class: "btn btn-primary " ,id:"button1") do %>
+
+                                        <i class="glyphicon glyphicon-search"></i>
                                           <% end %>
                                       <%end%>
                                       </div>
-                                      <div class="col-lg-6 col-md-6 col-sm-6">
 
-                                    </div>
-                                </form>
+                                <div class="col-lg-6 col-md-6 col-sm-6 seleccion">
+                                     <%=label_tag "Cuenta:"%>   
+                                    <select data-placeholder="Seleccione las cuentas..." class="chosen-select " multiple style="width:300px;">
+                                     
+                                      <%while contador_selector<@array_filtrar.count do %>
+                                      <%mostrar=AccountingAccount.where("id": @array_filtrar[contador_selector])%>
+                                      <option value=""+<%=mostrar[0].nombre%>+""><%=mostrar[0].nombre%>.</option>
+                                      <%contador_selector +=1%>
+                                      <%end%>
+                                    </select>
+                                      <script >
+                                          cuentas_cant(<%=contador_selector%>);
+                                     </script>
+
                                  
-
+                              </div>
+                          </form>                            
                 </div>
     <div class="row">
        <div class="box-body">
-            <%while cont2<@array_filtrar.count do %>
+        <%mostrar=[]%>
+        <%while cont2<@array_filtrar.count do %>
             <%ite=0%>
             <%cant_a=0%>
-			<%cant_d=0%>
-             <div class="gall-box ">
+			       <%cant_d=0%>
+             <%mostrar=AccountingAccount.where("id": @array_filtrar[cont2])%>
+
+             <div class="gall-box ocultable"id=<%=mostrar[0].nombre%>>
                 <div class="col-xs-6 col-sm-4 ">
                         <div class="thumbnail " style=" text-align: center;">                        
-
-                            	<%mostrar=AccountingAccount.where("id": @array_filtrar[cont2])%>
+                      	
                             	<h4 class="box-title"><%=mostrar[0].nombre%></h4>
                             	  
                                 <table class="table table-bordered  table-responsive  table-condensed" style="width: 290px;margin: 0 auto;">
