@@ -6,7 +6,8 @@ class CashMovementsController < ApplicationController
   # GET /cash_movements
   # GET /cash_movements.json
   def index
-    @cash_movements = CashMovement.all
+    @cash_movements = CashMovement.all.order(created_at: :desc)
+    @cash_movements = Kaminari.paginate_array(@cash_movements).page(params[:page]).per(5)
   end
 
   # GET /cash_movements/1
@@ -17,7 +18,6 @@ class CashMovementsController < ApplicationController
   # GET /cash_movements/new
   def new
     @cash_movement = CashMovement.new
-    @cash_movement.detail_of_cash_movements.build()
     @cash_movement.payment_types.build()
     @apertura = OpeningCash.find(params[:opening_cash_id])
   end
@@ -41,19 +41,32 @@ class CashMovementsController < ApplicationController
   def create
     @cash_movement = CashMovement.new(cash_movement_params)
     client_id = params[:client_id]
-    invoices = Invoice.where("state = ? and client_id = ?" , "pendiente", @cash_movement.client_id)
-    invoices.each do |invoice|
-      factura = Invoice.find(invoice.id)  
-      cash_movement_detail = DetailOfCashMovement.new
-      cash_movement_detail.cash_movement_id = @cash_movement.id
-      cash_movement_detail.invoice_id = invoice.id
-      cash_movement_detail.sub_monto = invoice.total
-      cash_movement_detail.save      
-      factura.state = "pagado"
-      factura.save         
-    end
+    
     respond_to do |format|
       if @cash_movement.save
+        payment_types = PaymentType.where("cash_movement_id = ?",@cash_movement.id)
+        payment_types.each do |payment|
+          if payment.payment_value_id == 2
+            cheque = Check.new
+            cheque.banco = payment.banco
+            cheque.titular = payment.titular
+            cheque.n_cheque = payment.n_cheque
+            cheque.fecha_disponibilidad = payment.fecha_disponibilidad
+            cheque.total = payment.total
+            cheque.save
+          end
+        end
+        
+        invoices = Invoice.where("state = ? and client_id = ?" , "pendiente", @cash_movement.client_id)
+        invoices.each do |invoice|  
+          cash_movement_detail = DetailOfCashMovement.new
+          cash_movement_detail.cash_movement_id = @cash_movement.id
+          cash_movement_detail.invoice_id = invoice.id
+          cash_movement_detail.sub_monto = invoice.total
+          cash_movement_detail.save      
+          invoice.state = "pagado"
+          invoice.save         
+        end
         format.html{ redirect_to new_cash_movement_path(opening_cash_id: @cash_movement.opening_cash_id) }
         format.json { render :show, status: :created, location: @cash_movement }
       else
@@ -95,6 +108,6 @@ class CashMovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cash_movement_params
-      params.require(:cash_movement).permit(:id, :monto_total, :opening_cash_id, :type_of_cash_movement_id , :client_id, :detail_of_cash_movements_attributes => [:id, :sub_monto,:payment_types, :_destroy], :payment_types_attributes =>[:id, :descripcion,:titular,:banco,:n_cheque,:tarjeta_tipo,:fecha_disponibilidad,:_destroy])
+      params.require(:cash_movement).permit(:id, :monto_total, :opening_cash_id, :type_of_cash_movement_id , :client_id, :payment_types_attributes =>[:id,:titular,:banco,:n_cheque,:tarjeta_tipo,:fecha_disponibilidad,:payment_value_id,:total,:_destroy])
     end
 end

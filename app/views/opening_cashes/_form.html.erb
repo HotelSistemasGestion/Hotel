@@ -58,7 +58,7 @@
                   <div class="form-group">
                     <%= f.label :monto_efectivo, class: "col-sm-2 control-label"%>
                     <div class="col-sm-7">
-                      <%= f.text_field :monto_efectivo, class: "form-control",:required => true %>
+                      <%= f.text_field :monto_efectivo,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, class: "form-control",:required => true %>
                       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                   </div>  
