@@ -4,10 +4,12 @@ class Reservation < ActiveRecord::Base
 	#validates :check_in, :presence => {:message => "en blanco"}
 	#validates :check_out, :presence => {:message => "en blanco"}
 	#paginates_per 2 #solo puse 2 para probar
+	belongs_to :reservation_request
+	belongs_to :budget
 	has_many :reservation_rooms,:dependent => :destroy
-  
+
 	#
-	#accepts_nested_attributes_for :reservation_details, allow_destroy: true , update_only: true,:reject_if => lambda { |c| c[:room_id].blank? }
+	accepts_nested_attributes_for :reservation_rooms, allow_destroy: true, update_only: true,:reject_if => lambda { |c| c[:type_of_room_id].blank? }
 	#
 	validate :reserva_fecha
 	validate :validacion_fecha
