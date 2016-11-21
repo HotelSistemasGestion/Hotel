@@ -111,7 +111,6 @@ Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (
 RoomComfort.create(room_id: 1 , comfort_id: 1);
 RoomComfort.create(room_id: 1 , comfort_id: 2);
 
-Photo.create(room_id: 1, my_file:"image/upload/v1477017980/dszqxru3husf5tv6toxg.jpg");
 
 
 #Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
