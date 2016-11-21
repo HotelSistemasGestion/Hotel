@@ -39,7 +39,7 @@ class OpeningCashesController < ApplicationController
     cash.save 
     respond_to do |format|
       if @opening_cash.save
-        format.html { redirect_to @opening_cash, notice: 'Opening cash was successfully created.' }
+        format.html { redirect_to opening_cashes_url}
         format.json { render :show, status: :created, location: @opening_cash }
       else
         format.html { render :new }
