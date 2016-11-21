@@ -54,15 +54,25 @@
     <%= f.label "Comfort", class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
        <%= f.select :comfort_id, Comfort.all.collect { |p| [ p.descripcion, p.id ] },{include_blank: false},class: "form-control"%>
-
     </div>
   </div>
 
- <div class="form-group  col-sm-6">
- </div>
+   
+       <div class="form-group  col-sm-6">
+        <div class="col-sm-3">
+          <br>
+        </div>
+        <div class="col-sm-9">
+        <div class="box box-primary box-solid collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Imagenes</h3>
 
-
-      <div class="form-group  col-sm-6">
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          <div class="box-body" style="display: none;">
         <table class="table">
           <thead class="thead-inverse">
             <tr>
@@ -85,6 +95,15 @@
           </tbody>
         </table>
     </div>
+  </div>
+</div>
+</div>
+  <div class="form-group col-sm-8">
+   <br>
+  </div>
+
+
+
     </div>         
   <div class ="box-body">  
 
