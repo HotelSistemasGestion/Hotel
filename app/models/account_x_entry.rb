@@ -6,8 +6,8 @@ class AccountXEntry < ActiveRecord::Base
   def self.search_conta(search_conta)
   	if search_conta.nil?
       @time=Time.now
-      @arr=@time.strftime("%d/%m/%Y") 		
-  		find_by_sql("SELECT * FROM account_x_entries INNER JOIN accounting_entries ON account_x_entries.accounting_entry_id=accounting_entries.id WHERE accounting_entries.fecha BETWEEN '#{@arr}' AND '#{@arr}'")
+      @arr=@time.strftime("%d/%m/%Y").to_date.to_s		
+  		find_by_sql("SELECT * FROM account_x_entries INNER JOIN accounting_entries ON account_x_entries.accounting_entry_id=accounting_entries.id WHERE accounting_entries.fecha='#{@arr}'")
   		
   	else 
   		 @date_array=search_conta.split('-')
