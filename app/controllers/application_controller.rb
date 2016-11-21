@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     elsif resource.has_role? "Crear Movimiento"
       user_ci = resource.numero_ci.to_i
       cajero = Employee.find_by(cedula: user_ci)
-      apertura = OpeningCash.find_by(employee_id: cajero.id)
+      apertura = OpeningCash.find_by("employee_id = ? and estado = ?",cajero.id,"Activo")
     
       #Si existe una apertura destinado para el cajero lo redirecciona
       #a la vista de movimientos sino lo redirecciona a una pagina
