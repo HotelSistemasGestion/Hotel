@@ -8,8 +8,17 @@
     <%= select(@room, @room.id, Room.all.collect {|p| [ p.identificador, p.id ] }, {include_blank:false},id:"selecionar") %>
     
 
-         <button id="s" type="button"  class="btn btn-primary">redireccionar</button> 
+         <button id="s" type="button"  class="btn btn-primary">Filtrar</button> 
+<script type="text/javascript">
+    $(function() {
+        
+        $('#s').click(function() {
+          p = $("#selecionar").val();
+          $(location).attr('href',"/cleanings?dato="+p+""); 
+        });
+      });
 
+</script>
 
  </div>
    <div class="box ">
@@ -29,34 +38,62 @@
           </div>
       </div>
  </div>   
-<a id="inline1" href="#inline1" title="Morning on Camaret (Tony N.)">
-  <img src="http://farm9.staticflickr.com/8140/30366640446_eb359921c5_m.jpg" alt="" />
-</a>
 
-  <div id="inline1" style="width:400px;display: none;">
 
-   <div id='calendar'></div>
 
-  </div>
-<script type="text/javascript">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+         <div id='calendario'></div>
+         <script type="text/javascript">
     $(function() {
         
-        $('#s').click(function() {
-          p = $("#selecionar").val();
-          $(location).attr('href',"/cleanings?dato="+p+""); 
-        });
+        $('#calendario').fullCalendar({
+
+       height: 600,
+      //theme: true,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,basicWeek,basicDay,listDay,listWeek'
+      },
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: false,
+      eventLimit: false,
+      // customize the button names,
+      // otherwise they'd all just say "list"
+      views: {
+        listDay: { buttonText: 'listar Dia' },
+        listWeek: { buttonText: 'listar Semana' }
+      },
+
+      defaultView: 'month',
+      events: "/cleanings.json"
+    
+    
+    });
       });
-    $(document).ready(function() {
-    $("#single_1").fancybox({
-          helpers: {
-              title : {
-                  type : 'float'
-              }
-          }
-      });
- });
 
 </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
  <!--<div class="page-header">
     <h4>Limpieza de Habitaciones</h4>
  </div>-->
