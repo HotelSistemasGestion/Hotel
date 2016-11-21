@@ -42,7 +42,7 @@ gem 'filterrific'
 gem 'nested_form'
 #Envios de email
 gem 'sendgrid-rails', '~> 2.0'
-
+gem 'autonumeric-rails'
 gem 'carrierwave'
 gem 'cloudinary'
 
