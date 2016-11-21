@@ -1,8 +1,12 @@
-<div class="page-header">
-  <%= link_to cashes_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    Atras
-  <% end %>
+<div class="box box-primary">
+	<div class="box-header with-border">
+	  <%= link_to cashes_path, class: 'btn btn-default' do %>
+    	<span class="glyphicon glyphicon-chevron-left"></span>
+    	Atras
+  	<% end %>
+	  <h3><center>Nueva Apertura</center></h3>
+	</div>
+	<div class="box-body">
+		<%= render 'my_form' %>
+	</div>
 </div>
-
-<%= render 'my_form', title: "Nueva Apertura" %>

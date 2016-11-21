@@ -1,8 +1,13 @@
-<div class="page-header">
-  <%= link_to opening_cashes_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    Atras
-  <% end %>
- </div>
 
-<%= render 'form', title: "Editar Apertura" %>
+<div class="box box-primary">
+	<div class="box-header with-border">
+	  <%= link_to opening_cashes_path, class: 'btn btn-default' do %>
+	    <span class="glyphicon glyphicon-chevron-left"></span>
+	    Atras
+	  <% end %>
+	  <h3><center>Editar Movimiento</center></h3>
+	</div>
+	<div class="box-body">
+		<%= render 'form' %>
+	</div>
+</div>
