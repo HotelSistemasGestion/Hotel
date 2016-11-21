@@ -5053,6 +5053,7 @@ font-style: italic;
   .main-sidebar,
   .left-side,
   .main-header,
+  .main-footer,
   .content-header {
     display: none !important;
   }
@@ -5087,9 +5088,58 @@ font-style: italic;
   .table-responsive > .table tr td {
     white-space: normal !important;
   }
-  .box-header .with-border{
-    float:center;
+  
+  /*CSS RELACIONADO AL IMPRIMIR LOS REPORTES*/ 
+  .box{
+    border-style:none;
+    margin-top:10px;
+  }  
+  .box-header.with-border{
+    border-bottom:0px;
+    text-align:center;
   }
+  .form-control{
+    border:none;
+    padding:6px 0px;
+
+  }
+  .hide{
+  display:block !important;
+  }
+  .report_header{
+    margin-bottom:60px !important;
+  }
+ 
+  .report_information{
+    float:right;
+  }
+  .box-header.with-border.report_title{
+    text-align:center;
+    margin-top:130px;
+  }
+::-webkit-input-placeholder {
+color: transparent !important;
+}
+ 
+:-moz-placeholder { /* Firefox 18- */
+color: transparent  !important; 
+}
+ 
+::-moz-placeholder {  /* Firefox 19+ */
+color: transparent  !important;  
+}
+ 
+:-ms-input-placeholder { 
+color: transparent  !important; 
+}
+
+  select{
+     -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+  }
+
+/* FIN DEL CSS RELACIONADO AL IMPRIMIR LOS REPORTES */  
 }
 
 #user {
@@ -5483,6 +5533,7 @@ width: 1200px;
 .tipos-h3 {
     color: #fff;
 }
+
 #calendar {
     max-width: 900px;
     margin: 0 auto;
@@ -5545,6 +5596,8 @@ width: 1200px;
   height: 300px
 }
 /* End carousel */
+
 .popover{
     max-width: 100%; 
 }
+

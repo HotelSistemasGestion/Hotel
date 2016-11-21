@@ -1,22 +1,55 @@
-<div class="box no-print" style="margin-bottom:10px">
+
+<div class="row">
+  <div class="col-xs-4">
+    <div class="report_header">
+      <%=image_tag("logo.png", size: "130x130", class: "hide")%>
+    </div>
+  </div>
+  <div class="col-xs-4" >
+  <div class="box-header with-border report_title">
+  <h1 class="box-title hide">Listado de quejas</h1>
+  </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="report_information">
+      <p class="hide"><%= Time.now.strftime("%m/%d/%Y %T")%></p>
+      <p class="hide">Impreso por:<%=%></p>
+    </div>
+  </div>
+</div>
+
+<div class="box box-primary">
 <div class="box-header">
 <div class="row">
 <%= form_for_filterrific @filterrific do |f| %>
 
+
     <div class="col-xs-3">
-    
+    <div class="hide">
+
+    Servicio:
+    </div>
     <%= f.text_field(:sorted_by,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por servicio")%>
     </div>
     <div class="col-xs-3">
+     <div class="hide">
+    Desde:
+    </div>
     <%= f.text_field(:created_at_gte, class: 'r_datepicker_complaint  form-control',placeholder:"Desde")%>
     </div>
      <div class="col-xs-3">
+      <div class="hide">
+     Hasta:
+     </div>
     <%= f.text_field(:created_at_lt, class: 'r_datepicker_complaint_lt  form-control',placeholder:"Hasta")%>
     </div>
     <div class="col-xs-3">
+     <div class="hide">
+    Habitacion:
+    </div>
    <%= f.select(:sorted_by_identificador,
       @filterrific.select_options[:sorted_by_identificador],
-      { include_blank: '- Habitacion -' },{ :class => 'form-control' })%>
+      { include_blank: 'Todas las Habitaciones' },{ :class => 'form-control' })%>
     </div>
     
    <%= render_filterrific_spinner %>

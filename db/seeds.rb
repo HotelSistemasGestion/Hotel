@@ -55,7 +55,6 @@ AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true")
 
 AccountPlan.create(descripcion:"no se",estado:"vigente",version:"1");
 
-
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3",cuenta_superior:"2");
