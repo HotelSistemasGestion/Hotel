@@ -120,7 +120,10 @@ TypesOfEmployee.create(tipo: "administrador", descripcion: "");
 TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
 TypesOfEmployee.create(tipo: "botones", descripcion: "");
 TypesOfEmployee.create(tipo: "cajero", descripcion: "");
-Employee.create(types_of_employee_id: 1, nombre: "Fernando", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+Employee.create(types_of_employee_id: 2, nombre: "Enrique", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+Employee.create(types_of_employee_id: 2, nombre: "Julio", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+
 Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 666, correo: "miguel@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
 
 
