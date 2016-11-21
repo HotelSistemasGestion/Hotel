@@ -31,6 +31,7 @@ class CashMovementsController < ApplicationController
       end
   end
 
+
   # GET /cash_movements/1/edit
   def edit
   end
@@ -39,6 +40,18 @@ class CashMovementsController < ApplicationController
   # POST /cash_movements.json
   def create
     @cash_movement = CashMovement.new(cash_movement_params)
+    client_id = params[:client_id]
+    invoices = Invoice.where("state = ? and client_id = ?" , "pendiente", @cash_movement.client_id)
+    invoices.each do |invoice|
+      factura = Invoice.find(invoice.id)  
+      cash_movement_detail = DetailOfCashMovement.new
+      cash_movement_detail.cash_movement_id = @cash_movement.id
+      cash_movement_detail.invoice_id = invoice.id
+      cash_movement_detail.sub_monto = invoice.total
+      cash_movement_detail.save      
+      factura.state = "pagado"
+      factura.save         
+    end
     respond_to do |format|
       if @cash_movement.save
         format.html{ redirect_to new_cash_movement_path(opening_cash_id: @cash_movement.opening_cash_id) }

@@ -12,7 +12,7 @@ class ReservationRequestsController < ApplicationController
   # GET /reservation_requests
   # GET /reservation_requests.json
   def index
-    @reservation_requests = ReservationRequest.all
+    @reservation_requests = ReservationRequest.all.order(created_at: :desc)
     @reservation_requests = Kaminari.paginate_array(@reservation_requests).page(params[:page]).per(5)
   end
 
@@ -35,6 +35,10 @@ class ReservationRequestsController < ApplicationController
   def create
     @complaint = Complaint.new
     @reservation_request = ReservationRequest.new(reservation_request_params)
+    range_date = reservation_request_params[:date_range].split('-')
+    @reservation_request.check_in = range_date[0]
+    @reservation_request.check_out = range_date[1]
+
     
     respond_to do |format|
        #if verify_recaptcha(model: @reservation_request) && @reservation_request.save
@@ -82,6 +86,6 @@ class ReservationRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_request_params
-      params.require(:reservation_request).permit(:nombre, :apellido, :email, :telefono,:comfort_id, :cantidad_de_adultos, :cantidad_de_ninhos, :cantidad_de_familias, :check_in, :check_out, :comentarios)
+      params.require(:reservation_request).permit(:nombre, :apellido, :email, :telefono,:comfort_id, :cantidad_de_adultos, :cantidad_de_ninhos, :cantidad_de_familias, :date_range, :comentarios)
     end
 end

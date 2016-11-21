@@ -29,6 +29,89 @@ init_function();
     });
 
 
+       $("#search").each(function(){
+      
+            $(this).daterangepicker({ "locale": {
+              "format": "DD/MM/YYYY",
+              "separator": " - ",
+              "applyLabel": "Aceptar",
+              "cancelLabel": "Cancelar",
+              "fromLabel": "From",
+              "toLabel": "To",
+              "customRangeLabel": "Custom",
+              "daysOfWeek": [
+                  "Do",
+                  "Lu",
+                  "Ma",
+                  "Mi",
+                  "Ju",
+                  "vi",
+                  "S&aacute;"
+              ],
+              "monthNames": [
+                  "Enero",
+                  "Febrero",
+                  "Marzo",
+                  "Abril",
+                  "Mayo",
+                  "Junio",
+                  "Julio",
+                  "Agosto",
+                  "Septiembre",
+                  "Octubre",
+                  "Noviembre",
+                  "Diciembre"
+              ],
+              "firstDay": 1
+          }, autoclose: true,
+          autoSize: true,
+
+          });
+
+   });
+
+       $("#reservation_range").each(function(){
+      
+            $(this).daterangepicker({ "locale": {
+              "format": "DD/MM/YYYY",
+              "separator": " - ",
+              "applyLabel": "Aceptar",
+              "cancelLabel": "Cancelar",
+              "fromLabel": "From",
+              "toLabel": "To",
+              "customRangeLabel": "Custom",
+              "daysOfWeek": [
+                  "Do",
+                  "Lu",
+                  "Ma",
+                  "Mi",
+                  "Ju",
+                  "vi",
+                  "S&aacute;"
+              ],
+              "monthNames": [
+                  "Enero",
+                  "Febrero",
+                  "Marzo",
+                  "Abril",
+                  "Mayo",
+                  "Junio",
+                  "Julio",
+                  "Agosto",
+                  "Septiembre",
+                  "Octubre",
+                  "Noviembre",
+                  "Diciembre"
+              ],
+              "firstDay": 1
+          }, autoclose: true,
+          autoSize: true,
+          minDate: moment().add(1,'days'),
+
+          });
+
+        });
+
     
       //Java script para que nested form reconozca los <tr>
       window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {

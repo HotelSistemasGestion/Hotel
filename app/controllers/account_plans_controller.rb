@@ -5,6 +5,7 @@ class AccountPlansController < ApplicationController
   # GET /account_plans.json
   def index
     @account_plans = AccountPlan.all
+    @accounting_years=AccountingYear.all
   end
 
   # GET /account_plans/1
