@@ -6,15 +6,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-TypeOfRoom.create(tipo: "Simple",descripcion:"");
-TypeOfRoom.create(tipo: "Doble",descripcion:"");
-TypeOfRoom.create(tipo: "Matrimonial",descripcion:"");
-TypeOfRoom.create(tipo: "Suite",descripcion:"");
 
-State.create(descripcion: "libre");
-State.create(descripcion: "ocupado");
-State.create(descripcion: "reservado");
-State.create(descripcion: "fuera de servicio");
 
 
 
@@ -24,7 +16,6 @@ Service.create(nombre: "Lavanderia",descripcion: "Lavado y planchado",precio: 50
 Comfort.create(descripcion: "una estrella");
 Comfort.create(descripcion: "dos estrellas");
 Comfort.create(descripcion: "tres estrellas");
-Room.create(type_of_room_id: 1, state_id:1,capacidad: 4, identificador: "habitacion 1", precio: 100000);
 
 
 
@@ -61,7 +52,9 @@ AccountingAccount.create(grupo:"001",nombre:"Bebidas",imputable:"true");
 AccountingAccount.create(grupo:"04",nombre:"Ingreso de Telefono",imputable:"true");
 AccountingAccount.create(grupo:"001",nombre:"Llamadas internacionales",imputable:"true");
 AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true");
+
 AccountPlan.create(descripcion:"no se",estado:"vigente",version:"1");
+
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3",cuenta_superior:"2");
@@ -93,24 +86,30 @@ AccountXEntry.create(accounting_entry_id:"14",accounting_account_id:"12",monto:"
 
 
 
-Room.create(type_of_room_id: 1,state_id: 1, capacidad: 2, identificador:"A1",precio: 10000);
-Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'A2',precio: 10000);
+TypeOfRoom.create(tipo: "Simple",descripcion:"",precio: 10000);
+TypeOfRoom.create(tipo: "Doble",descripcion:"",precio: 1000);
+TypeOfRoom.create(tipo: "Matrimonial",descripcion:"Cama matrimonial y una cama para el baby",precio: 1000);
+TypeOfRoom.create(tipo: "Suite",descripcion:"",precio: 1000);
 
-Room.create(type_of_room_id: 3,state_id: 2 ,capacidad: 2,identificador: 'C3',precio: 10000);
+State.create(descripcion: "libre");
+State.create(descripcion: "ocupado");
+State.create(descripcion: "reservado");
+State.create(descripcion: "fuera de servicio");
 
-Room.create(type_of_room_id: 2,state_id: 3, capacidad: 2, identificador:"B1",precio: 10000);
-Room.create(type_of_room_id: 2,state_id: 3 ,capacidad: 2,identificador: 'B2',precio: 10000);
+Room.create(type_of_room_id: 1,state_id: 3, capacidad: 2, identificador:"A1",precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'A2',precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 3,state_id: 2 ,capacidad: 2,identificador: 'C3',precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 3, capacidad: 2, identificador:"B1",precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 3 ,capacidad: 2,identificador: 'B2',precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',precio: 10000,comfort_id: 1);
 
-Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',precio: 10000);
 
-
-Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 4,total: 10000);
+Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 1,total: 10000);
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+8).to_s, check_out: (Date.today+9).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
-
-
 RoomComfort.create(room_id: 1 , comfort_id: 1);
 RoomComfort.create(room_id: 1 , comfort_id: 2);
+
 Photo.create(room_id: 1, my_file:"image/upload/v1477017980/dszqxru3husf5tv6toxg.jpg");
 
 
@@ -216,7 +215,6 @@ TypeOfCashMovement.create(descripcion: "entrada");
 Cash.create(descripcion: "Resturant&Bar");
 OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abierta",fecha_apertura: (Date.today+1).to_s);
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
-
 PaymentValue.create(descripcion:"efectivo");
 PaymentValue.create(descripcion:"cheque");
 PaymentValue.create(descripcion:"tarjeta crédito");

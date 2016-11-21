@@ -1,0 +1,103 @@
+
+ 		<div class="tab-content ">
+ 			<%mostrar=[]%>
+			<%cont2=0%>
+			<%sum_a=0%>
+            <%sum_d=0%>
+            <%array_clave=[]%>
+			<%array_valor=[]%>
+			<div class="tab-pane active" id="tab_3-2">
+				<div class="box-body">
+					<table class="table table-bordered  table-responsive  table-condensed" style="width: 790px;margin: 0 auto;">
+						<thead>
+							<tr>
+								<th class="text_balance">Cuentas</th>
+								<th></th>
+								<th></th>  
+							</tr>
+						</thead>
+						<%while cont2<@array_filtrar.count do %>
+						<%ite=0%>
+						<%cant_a=0%>
+						<%cant_d=0%>
+						<%mostrar=AccountingAccount.where("id": @array_filtrar[cont2])%>
+						<tbody>
+							<% while ite<@algo.count %>
+							<%if @array_filtrar[cont2]==@algo[ite].accounting_account_id%>
+							<%if @algo[ite].tipo=="A"||@algo[ite].tipo=="a"%>
+							<%cant_a +=AccountingEntry.find(@algo[ite].accounting_entry_id).debe%>
+							<%else%>
+							<%cant_d += AccountingEntry.find(@algo[ite].accounting_entry_id).haber%>
+							<%end%>
+							<%end%>
+							<%ite +=1%>
+							<%end%>
+							<tr>
+								<td class="text_balance"><%=mostrar[0].nombre%></td>
+								<td ><%=cant_a%></td>
+								<%sum_a+=cant_a%>
+								<td><%=cant_d%></td>
+								<%sum_d+=cant_d%>
+							</tr>
+							<%if cant_a>cant_d%>
+								<%array_clave[cont2]="A"%>
+								<%array_valor[cont2]=cant_a-cant_d%>
+                 			<%else%>
+	                 			<%array_clave[cont2]="D"%>
+	                 			<%array_valor[cont2]=cant_d-cant_a%>
+                 			<%end%>
+							<%cont2 +=1%>
+            				<%end%>
+            				<tr style="background: #ABCBE8">
+            					<td></td>
+            					<td><b><%=sum_a%></b></td>
+            					<td><b><%=sum_d%></b></td>
+
+            				</tr>
+            			</tbody>
+                	</table>
+                </div>
+            </div>
+            <div class="tab-pane " id="tab_2-2">
+            	<%mostrar=[]%>
+            	<%cont2=0%>
+            	<%suma=0%>
+            	<%sumd=0%>
+            		<div class="box-body">
+					<table class="table table-bordered  table-responsive  table-condensed" style="width: 790px;margin: 0 auto;">
+						<thead>
+							<tr>
+								<th class="text_balance">Cuentas</th>
+								<th></th>
+								<th></th>  
+							</tr>
+						</thead>
+						<%while cont2<@array_filtrar.count do %>
+						<%mostrar=AccountingAccount.where("id": @array_filtrar[cont2])%>
+						<tbody>
+							<tr>
+								<td class="text_balance"><%=mostrar[0].nombre%></td>
+								<%if array_clave[cont2]=="A"%>
+									<td><%=array_valor[cont2]%></td>
+									<td></td>
+								<%suma+=array_valor[cont2]%>
+								<%else%>
+									<td ></td>
+									<td><%=array_valor[cont2]%></td>
+								<%sumd+=array_valor[cont2]%>
+								<%end%>
+
+							</tr>
+							<%cont2 +=1%>
+            				<%end%>
+            				   <tr style="background: #ABCBE8">
+            					<td></td>
+            					<td><b><%=suma%></b></td>
+            					<td><b><%=sumd%></b></td>
+
+            				</tr>
+            			</tbody>
+                	</table>
+            		</div>
+            	</div>
+            </div>

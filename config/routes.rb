@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'accounting_report/mayor'
+
+  get 'accounting_report/balance'
+
   get 'accounting_years/index'
 
   get 'audit/index'
@@ -30,9 +34,16 @@ Rails.application.routes.draw do
     get :autocomplete_room_identificador, :on => :collection
   end
   resources :budgets do
-  collection do
-      get 'my_new'
+    collection do
+        get 'my_new'
     end
+    collection do
+        get 'hay_disponible'
+    end
+    collection do
+        get 'disponibles'
+    end
+     
   end
   
   resources :accounting_entries
@@ -71,10 +82,10 @@ Rails.application.routes.draw do
   resources :accounting_accounts
   resources :account_plans
   resources :accounting_years
-  get 'balance_report/balance'
-  get 'ledger/mayor'
+  get 'accounting_report/balance'
+  get 'accounting_report/mayor'
   get 'diary_book/diario'
-  post 'diary_book/diario'
+
 
   resources :reservation_requests
   resources :services do
