@@ -32,7 +32,7 @@
       <div class="row">
         <div class="col-sm-12">
           <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
-              <%= f.autocomplete_field :nombre, autocomplete_client_cedula_clients_path, class:"col-sm-6", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'},id: 'cliente'  %>
+              <%= f.autocomplete_field :nombre, autocomplete_client_cedula_clients_path, class:"col-sm-6", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'},id: 'cliente',:required => true  %>
           <%= f.hidden_field  :client_id, id: 'cli_id' %>      
         </div>
         <div class="col-sm-12">
@@ -92,23 +92,25 @@
 
                 <tbody>
                 <%= f.fields_for :payment_types  ,:wrapper => false do |li| %>
-              <tr class="fields">    
-                <td class="col-sm-4">
-                  <%= li.select :descripcion, PaymentType.all.collect{|p| [p.descripcion, p.id]},{include_blank: false}  ,:class => "form-control select"%></td>
-                <td class="col-sm-4"><%= li.number_field :banco, :class => "form-control "%></td>
+                <tr class="fields">    
+                  <td class="col-sm-4">
+                    <%= li.select :payment_value_id, PaymentValue.all.collect{|p| [p.descripcion, p.id]},{include_blank: false}  ,:class => "form-control select",:required => true %>
+                  </td>
                   
-                <td class="detalle" id="detalle-<%= li.index%>" style="display: none">
-                  <%= li.text_field :banco, :style => "display: none", :class => "form-control cheque" ,placeholder: "Banco"%>
+                  <td class="col-sm-4"><%= li.text_field :total, :class => "form-control ",:required => true%>
+                  </td>
                   
-                  <%= li.text_field :titular, :style => "display: none",:class => "form-control cheque" ,placeholder: "Titular"%>  
+                  <td class="detalle" id="detalle-<%= li.index%>" style="display: none">
+                    <%= li.text_field :banco, :style => "display: none", :class => "form-control cheque" ,placeholder: "Banco"%>
                   
-                  <%= li.text_field :fecha_disponibilidad, :style => "display: none",:class => "form-control datepicker cheque" ,placeholder: "Fecha Disponibilidad"%> 
+                   <%= li.text_field :titular, :style => "display: none",:class => "form-control cheque" ,placeholder: "Titular"%>  
+                  
+                    <%= li.text_field :fecha_disponibilidad, :style => "display: none",:class => "form-control datepicker cheque" ,placeholder: "Fecha Disponibilidad"%> 
                      
-                  <%= li.text_field :tarjeta_tipo, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Tipo Tarjeta"%>
+                    <%= li.text_field :tarjeta_tipo, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Tipo Tarjeta"%>
                     
-                  <%= li.text_field :n_cheque, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Numero Verificacion"%>
-                  
-                </td>
+                    <%= li.text_field :n_cheque, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Numero Verificacion"%>
+                  </td>
                 <td>
                   <%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %>
                 </td>               
