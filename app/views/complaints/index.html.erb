@@ -34,7 +34,7 @@
       <div class="col-md-3" style="float:right">
       <div class="input-group">
        <%= form_tag complaints_path, :method => 'get' do %>
-       <%= text_field_tag :search, params[:search], data: { autocomplete:autocomplete_complaint_service_description_complaints_path},type: "text",placeholder: "Buscar por Servicio",class:"form-control"%>
+       <%= text_field_tag :search, params[:search],id: 'complaint_autocomplete', data: { autocomplete:autocomplete_complaint_service_description_complaints_path},type: "text",placeholder: "Buscar por Servicio",class:"form-control"%>
       
       <span class="input-group-btn">
       <%= submit_tag "Buscar",class:"btn btn-default"%>
@@ -70,6 +70,6 @@
     <%= will_paginate @posts, renderer: BootstrapPagination::Rails, :container => false %>
     </ul>
     </div> 
-    </div>
+    </div> 
   
 </div>
