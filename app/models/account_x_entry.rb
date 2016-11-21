@@ -11,8 +11,8 @@ class AccountXEntry < ActiveRecord::Base
   		
   	else 
   		 @date_array=search_conta.split('-')
-        @s=@date_array[0]
-        @e=@date_array[1]
+        @s=@date_array[0].to_date.to_s
+        @e=@date_array[1].to_date.to_s
       
   		find_by_sql("SELECT * FROM account_x_entries INNER JOIN accounting_entries ON account_x_entries.accounting_entry_id=accounting_entries.id WHERE accounting_entries.fecha BETWEEN '#{@s}' AND '#{@e}'")
   		
