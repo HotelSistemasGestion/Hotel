@@ -173,7 +173,18 @@
                                 <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
                                 <%= role.role %><br>
                               <% end %>                                
-                            </div>                                
+                            </div>  
+                            </div>  
+                          <div style="margin-top: 30px;" class="col-md-12">
+                            <div class="col-md-3">
+                              <h5>Habitaciones</h5>
+                       
+                              <% role = Rol.find(49) %>
+                                <%= check_box_tag  "user[rol_ids][]", role.id, f.object.rols.include?(role) %>
+                                <%= role.role %><br>
+                                                       
+                            </div>
+                          </div>                               
 
                           </div>                                                                                                           
                         </div>                                                       

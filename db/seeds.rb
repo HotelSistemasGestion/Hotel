@@ -199,7 +199,8 @@ Rol.create(role: "Eliminar Servicio");
 Rol.create(role: "Control de Asientos");
 Rol.create(role: "Control de Cuentas");
 Rol.create(role: "Control de Planes de Cuentas");
-
+#Roles para Habitaciones
+Rol.create(role: "Ver habitaciones");
 
 User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 1);
 User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 3);
