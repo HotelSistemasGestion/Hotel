@@ -52,13 +52,10 @@ AccountingAccount.create(grupo:"001",nombre:"Bebidas",imputable:"true");
 AccountingAccount.create(grupo:"04",nombre:"Ingreso de Telefono",imputable:"true");
 AccountingAccount.create(grupo:"001",nombre:"Llamadas internacionales",imputable:"true");
 AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true");
-<<<<<<< HEAD
 
 AccountPlan.create(descripcion:"no se",estado:"vigente",version:"1");
 
-=======
-AccountPlan.create(descripcion:"no se",estado:"vigente",version:"1");
->>>>>>> 02dae85c82be430d224a42ff9342773f2b400f8e
+
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3",cuenta_superior:"2");

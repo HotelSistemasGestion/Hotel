@@ -53,6 +53,25 @@ class BudgetsController < ApplicationController
     return false
   end
 
+
+def disponibles
+  cantidad = Integer(params[:cantidad])
+  type_of_room_id= params[:type_of_room_id]
+  comfort_id = params[:comfort_id]
+  check_in = params[:check_in]
+  check_out = params[:check_out]
+
+  dias = check_out.to_i - check_in.to_i
+
+  n = 0
+  #while 3>n do
+   # puts dias
+  #end
+  @result={"result": dias}
+  respond_to do |format|
+    format.json { render json: @result.to_json }
+  end
+end
   # GET /budgets
   # GET /budgets.json
   def index
@@ -107,8 +126,8 @@ class BudgetsController < ApplicationController
         format.html { redirect_to reservation_requests_path, notice: 'Presupuesto creado exitosamente.' }
       else
         @my_reservation_requests = ReservationRequest.find(budget_params[:reservation_request_id])
-        @budget.budget_service_details.build()
-        @budget.budget_room_details.build()
+        @budget.budget_service_details.build
+        @budget.budget_room_details.build
         format.html { render :new }
         format.json { render json: @budget.errors, status: :unprocessable_entity }
       end
@@ -128,6 +147,8 @@ class BudgetsController < ApplicationController
         @my_reservation_requests = ReservationRequest.find(budget_params[:reservation_request_id])
         @my_budget = Budget.find(params[:id])
         @services_details=@my_budget.budget_service_details
+        @budget.budget_service_details.build
+        @budget.budget_room_details.build
         format.html { render :edit }
         format.json { render json: @budget.errors, status: :unprocessable_entity }
       end
