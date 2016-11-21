@@ -107,6 +107,13 @@ Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',pre
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 1,total: 10000);
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+8).to_s, check_out: (Date.today+9).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
+
+######
+ReservationRoom.create(room_id:1,budget_id:1,cantidad: 2,type_of_room_id:1,subtotal:10000);
+ReservationRoom.create(room_id:4,budget_id:2,cantidad: 2,type_of_room_id:2,subtotal:10000);
+#######
+
+
 RoomComfort.create(room_id: 1 , comfort_id: 1);
 RoomComfort.create(room_id: 1 , comfort_id: 2);
 

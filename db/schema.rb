@@ -439,13 +439,21 @@ ActiveRecord::Schema.define(version: 20161121183040) do
 
   create_table "reservation_rooms", force: :cascade do |t|
     t.integer  "reservation_id"
-    t.string   "room_id"
+    t.integer  "room_id"
+    t.integer  "budget_id"
+    t.integer  "cantidad"
+    t.integer  "type_of_room_id"
     t.integer  "subtotal"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.date     "start"
     t.date     "end"
   end
+
+  add_index "reservation_rooms", ["budget_id"], name: "index_reservation_rooms_on_budget_id", using: :btree
+  add_index "reservation_rooms", ["reservation_id"], name: "index_reservation_rooms_on_reservation_id", using: :btree
+  add_index "reservation_rooms", ["room_id"], name: "index_reservation_rooms_on_room_id", using: :btree
+  add_index "reservation_rooms", ["type_of_room_id"], name: "index_reservation_rooms_on_type_of_room_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
     t.string   "nombre"
@@ -456,11 +464,15 @@ ActiveRecord::Schema.define(version: 20161121183040) do
     t.date     "check_out"
     t.integer  "room_id"
     t.integer  "type_of_room_id"
+    t.integer  "reservation_request_id"
+    t.integer  "budget_id"
     t.string   "total"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
+  add_index "reservations", ["budget_id"], name: "index_reservations_on_budget_id", using: :btree
+  add_index "reservations", ["reservation_request_id"], name: "index_reservations_on_reservation_request_id", using: :btree
   add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
   add_index "reservations", ["type_of_room_id"], name: "index_reservations_on_type_of_room_id", using: :btree
 
@@ -608,6 +620,12 @@ ActiveRecord::Schema.define(version: 20161121183040) do
   add_foreign_key "payment_types", "payment_values"
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservation_requests", "comforts"
+  add_foreign_key "reservation_rooms", "budgets"
+  add_foreign_key "reservation_rooms", "reservations"
+  add_foreign_key "reservation_rooms", "rooms"
+  add_foreign_key "reservation_rooms", "type_of_rooms"
+  add_foreign_key "reservations", "budgets"
+  add_foreign_key "reservations", "reservation_requests"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
