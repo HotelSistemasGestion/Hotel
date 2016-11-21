@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'accounting_report/mayor'
+
+  get 'accounting_report/balance'
+
   get 'accounting_years/index'
 
   get 'audit/index'
@@ -71,10 +75,10 @@ Rails.application.routes.draw do
   resources :accounting_accounts
   resources :account_plans
   resources :accounting_years
-  get 'balance_report/balance'
-  get 'ledger/mayor'
+  get 'accounting_report/balance'
+  get 'accounting_report/mayor'
   get 'diary_book/diario'
-  post 'diary_book/diario'
+
 
   resources :reservation_requests
   resources :services do
