@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/assets/docsupport/style.css">
 <link rel="stylesheet" href="/assets/docsupport/prism.css">
 
+
 <div class="box">
 <%cont2=0%>
 <%mostrar=[]%>
@@ -19,9 +20,10 @@
             <%=label_tag "Periodo: "%>
             <%= text_field_tag :search_conta, params[:search_conta],class: "form-control"%>
             <%= button_tag(type: :submit, class: "btn btn-primary " ,id:"button1") do %>
-            <i class="glyphicon glyphicon-search"></i>
-            <% end %>
+              <i class="glyphicon glyphicon-search"></i>
+              <% end %>
           <%end%>
+
           
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 seleccion">
@@ -104,15 +106,15 @@
         </div>
         <%cont2 +=1%>
         <%end%>
-        <%if cont2==0%>
-        <div class="gall-box ocultable">
-          <div class="col-xs-6 col-sm-4 ">
-            <div class="thumbnail " style=" text-align: center;">                        
-              <h4 class="box-title">No se ha hecho aun un asiento con ese rango de fechas</h4>
-            </div>
+      <%if cont2==0%>
+        <div class="box-header">
+           <div class="callout callout-info">
+            <h4>No se ha hecho aun un asiento con ese rango de fechas</h4>
+
           </div>
         </div>
         <%end%>
+
       </div>
     </div>
   </div> 

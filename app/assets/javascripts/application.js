@@ -20,7 +20,7 @@
 //= require app
 //= require cash_module
 //= require custom
-
+//= require autonumeric
 //= require budgets
 
 //= require underscore

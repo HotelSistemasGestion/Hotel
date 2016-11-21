@@ -55,7 +55,6 @@ AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true")
 
 AccountPlan.create(descripcion:"no se",estado:"vigente",version:"1");
 
-
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3",cuenta_superior:"2");
@@ -211,11 +210,12 @@ ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgo
 ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 
 
-PaymentType.create(descripcion: "efectivo");
-PaymentType.create(descripcion: "cheque");
-PaymentType.create(descripcion: "tarjeta credito");
 TypeOfCashMovement.create(descripcion: "entrada");
 
 Cash.create(descripcion: "Resturant&Bar");
 OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abierta",fecha_apertura: (Date.today+1).to_s);
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
+PaymentValue.create(descripcion:"efectivo");
+PaymentValue.create(descripcion:"cheque");
+PaymentValue.create(descripcion:"tarjeta crédito");
+PaymentValue.create(descripcion:"tarjeta dédito");

@@ -36,7 +36,7 @@
                     <td><%= opening_cash.cash_descripcion %></td>
                     <td><%= opening_cash.employee.full_name %></td>
                     <td><%= opening_cash.fecha_apertura %></td>
-                    <td><%= opening_cash.monto_efectivo %></td>
+                    <td><%= number_to_currency_py(opening_cash.monto_efectivo) %></td>
                     <td align="center">
             <%= link_to opening_cash, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-eye-open"></span>
@@ -54,6 +54,12 @@
             </div>
           </div>
         </div>
+        <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+         <nav><%= paginate @opening_cashes, :theme => 'twitter-bootstrap-3' %></nav>
+    </ul>
+    
+  </div>
       </div>  
     </div>
   </div>

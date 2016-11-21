@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  banco: MyString
+  titular: MyString
+  fecha_disponibilidad: 2016-11-20
+  n_cheque: MyString
+  total: 1
+
+two:
+  banco: MyString
+  titular: MyString
+  fecha_disponibilidad: 2016-11-20
+  n_cheque: MyString
+  total: 1

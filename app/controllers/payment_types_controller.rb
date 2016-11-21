@@ -70,6 +70,6 @@ class PaymentTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_type_params
-      params.require(:payment_type).permit(:descripcion,:banco,:titular,:n_cheque,:tarjeta_tipo,:fecha_disponibilidad)
+      params.require(:payment_type).permit(:banco,:titular,:n_cheque,:tarjeta_tipo,:fecha_disponibilidad,:payment_value_id,:total)
     end
 end

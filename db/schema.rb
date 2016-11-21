@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118022255) do
+ActiveRecord::Schema.define(version: 20161121022928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -223,6 +223,16 @@ ActiveRecord::Schema.define(version: 20161118022255) do
     t.string   "estado"
   end
 
+  create_table "checks", force: :cascade do |t|
+    t.string   "banco"
+    t.string   "titular"
+    t.date     "fecha_disponibilidad"
+    t.string   "n_cheque"
+    t.integer  "total"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
   create_table "cleaning_rooms", force: :cascade do |t|
     t.integer  "room_id"
     t.integer  "employee_id"
@@ -378,7 +388,8 @@ ActiveRecord::Schema.define(version: 20161118022255) do
   add_index "opening_cashes", ["employee_id"], name: "index_opening_cashes_on_employee_id", using: :btree
 
   create_table "payment_types", force: :cascade do |t|
-    t.string   "descripcion"
+    t.string   "valor"
+    t.string   "total"
     t.string   "titular"
     t.string   "banco"
     t.integer  "n_cheque"
@@ -387,9 +398,17 @@ ActiveRecord::Schema.define(version: 20161118022255) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "cash_movement_id"
+    t.integer  "payment_value_id"
   end
 
   add_index "payment_types", ["cash_movement_id"], name: "index_payment_types_on_cash_movement_id", using: :btree
+  add_index "payment_types", ["payment_value_id"], name: "index_payment_types_on_payment_value_id", using: :btree
+
+  create_table "payment_values", force: :cascade do |t|
+    t.string   "descripcion"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "photos", force: :cascade do |t|
     t.integer  "room_id"
@@ -586,6 +605,7 @@ ActiveRecord::Schema.define(version: 20161118022255) do
   add_foreign_key "opening_cashes", "cashes"
   add_foreign_key "opening_cashes", "employees"
   add_foreign_key "payment_types", "cash_movements"
+  add_foreign_key "payment_types", "payment_values"
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservation_requests", "comforts"
   add_foreign_key "reservations", "rooms"
