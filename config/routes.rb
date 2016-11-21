@@ -30,8 +30,11 @@ Rails.application.routes.draw do
     get :autocomplete_room_identificador, :on => :collection
   end
   resources :budgets do
-  collection do
-      get 'my_new'
+    collection do
+        get 'my_new'
+    end
+    collection do
+        get 'hay_disponible'
     end
   end
   

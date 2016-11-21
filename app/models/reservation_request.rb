@@ -9,6 +9,9 @@ class ReservationRequest < ActiveRecord::Base
 	###
 	validates :check_in, :presence => {:message => "en blanco"}
 	validates :check_out, :presence => {:message => "en blanco"}
+	
+	attr_accessor :date_range
+
 	###
 	validate  :validacion_fecha  #
 	

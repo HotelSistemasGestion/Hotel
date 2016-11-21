@@ -43,7 +43,7 @@
     <div class="form-group">
       <%#= f.label "Confort de la Habitacion", class: "col-sm-3" %> <!--aun no se ve ya que no hay nada en el-->
       <div class="col-sm-6">
-        <%= f.select :comfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ] }, {:prompt => "Elegir Comfort de la Habitacion",include_blank: true},{ class: "form-control selectpicker", data: { live_search: 'true' } } %>
+        <%= f.select :comfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ] }, {:prompt => "Elegir Comfort de la Habitacion",include_blank: true},{ class: "form-control", data: { live_search: 'true' } } %>
       </div>
     </div>
 
@@ -72,14 +72,11 @@
     <div class="form-group">
       <%= f.label :check_in, class: "col-sm-2 sr-only" %>
       <div class="col-sm-6">
-        <%= f.text_field :check_in, class: "datepicker form-control", placeholder:"Check_in"%>
+        <%= f.text_field :date_range, class: "form-control", placeholder:"Rango de Fechas",id: "reservation_range" %>
       </div>
     
-      <%= f.label :check_out, class: "col-sm-2 sr-only" %>
       <div class="col-sm-6">
-        <%= f.text_field :check_out, class: "datepicker form-control", placeholder:"Check_out"%>
       </div>
-
     </div>
 
 

@@ -1,39 +1,110 @@
-      $(document).ready(function (){  
-        
-        $('#descuento,#cantidad_de_habitaciones,#dias').change(function(){
+
+$(document).ready(function (){
+        $('div#budgets #budget_check_in').change(function(){
+           $("table.services").find('tr.fields:visible').each(function(){ 
+            checkDisponibility($(this));
+          });
+        });
+        $('div#budgets #budget_check_out').change(function(){
+          $("table.services").find('tr.fields:visible').each(function(){ 
+            checkDisponibility($(this));
+          });
+        });
+        $('div#budgets #budget_comfort_id').change(function(){
+          $(".table.services").find('tr.fields:visible').each(function(){ 
+            checkDisponibility($(this));
+          });
+        });
+        $('div#budgets #descuento').change(function(){
            actualizartotal();
-        });    
-        $('#total').val(getPrecioInicial());
-        $('#totales').val(getPrecioInicial());
+        });
+
+        $('div#budgets #total').val(getPrecioInicial());
+
+
 
       });
       
+        $(document).on('nested:fieldAdded','div#budgets form', function(event) {
+       //$("form").live("nested:fieldAdded", function(event) {
+          console.log("Agregado");
+         $(event.target).find(':input').enableClientSideValidations();
+        });
 
 
-      //ACA COMIENZA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
+      //ACA COMIENZA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR    
+      $(document).on('click','div#budgets #table #my_button', function () { 
+        var $tr =  $(this).closest('tr'); 
+        checkDisponibility($tr);
+      });
       //Escucho los cambios en cantidad.
-      $(document).on('change','#table .escuchable', function () {                
+      $(document).on('change','div#budgets #table .escuchable', function () {                
         var id = $(this).attr("id");
         actualizarsubtotal(id,-8);
+        var $tr =  $(this).closest('tr'); 
+        checkDisponibility($tr);
       });
       //Escucho los cambios en el selector de servicios.
-      $(document).on('keyup autocompletechange','#table .ui-autocomplete-input', function () {                
+      $(document).on('focusout keyup autocompletechange','div#budgets #table .ui-autocomplete-input', function () {                
         var id = $(this).attr("id");
         actualizarsubtotal(id,-7);
+        actualizarsubtotal(id,-12);
+        var $tr =  $(this).closest('tr'); 
+        checkDisponibility($tr);
       });
 
       //Cuando borro un Servicio
-      $(document).on('click','#table #borrar', function () {                
+      $(document).on('click','div#budgets #table #borrar', function () {                
         actualizartotal();
       });
+    
+ 
+  //Funciones
 
-      $(document).on('change','#table_totals #descount', function () {     
-        actualizartotal();
-      });
+  //Checkea La disponibilidad
+  function checkDisponibility(my_tr){
+        var $tr=my_tr;
 
-      $(document).on('keyup','#table_totals #descount', function () {                
-        actualizartotal();
-      });
+        var mybutton=$tr.find("#my_button");
+        var check_in=$("#budget_check_in").val();
+        var check_out=$("#budget_check_out").val();
+        var comfort_id=parseInt($("#budget_comfort_id").val());
+        var type_of_room_id= parseInt($tr.find(".type_of_room").val());
+        var cantidad = parseInt($tr.find('.escuchable').val()); 
+        //Ve si tiene todos los datos para llamar al ajax
+        if(!isNaN(comfort_id) && !isNaN(type_of_room_id) && !isNaN(cantidad)  && ($("#budget_check_out").val().length > 0) && ($("#budget_check_in").val().length > 0)){
+          $.ajax({
+            type:"GET",
+            url:"/budgets/hay_disponible",
+            my_button: mybutton,
+            dataType:"json",
+            data: { "cantidad" : cantidad ,
+                    "type_of_room_id" : type_of_room_id,
+                    "comfort_id" : comfort_id,
+                    "check_in" : check_in ,
+                    "check_out" : check_out},
+            success:function(result){
+              if (result["result"]===true){
+                  this.my_button.removeClass(this.my_button.attr("class")).addClass('btn btn-success');
+                  this.my_button.find("span").removeClass(this.my_button.find("span").attr("class")).addClass('glyphicon glyphicon-ok-circle');
+              }
+              if (result["result"] ===false){
+                 this.my_button.removeClass(this.my_button.attr("class")).addClass('btn btn-danger');
+                 this.my_button.find("span").removeClass(this.my_button.find("span").attr("class")).addClass('glyphicon glyphicon-remove-circle');
+              }
+            },error: function(result) {
+              this.my_button.removeClass(this.my_button.attr("class")).addClass('btn btn-primary');
+              this.my_button.find("span").removeClass(this.my_button.find("span").attr("class")).addClass('glyphicon glyphicon-calendar');
+        }
+          });
+        }else{
+          mybutton.removeClass(mybutton.attr("class")).addClass('btn btn-primary');
+          mybutton.find("span").removeClass(mybutton.find("span").attr("class")).addClass('glyphicon glyphicon-calendar');
+
+        }
+      }
+
+
 
   function getPrecioInicial(){    
     var total=0;

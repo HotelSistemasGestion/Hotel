@@ -2789,6 +2789,9 @@ a:focus {
   width: 45%;
 
 }
+.text_balance{
+    text-align: center;
+}
 /* .text-center in tables ------------------------------------------------------------------------*/
 table.text-center,
 table.text-center td,
@@ -5091,6 +5094,16 @@ font-style: italic;
 
 #user {
   color: black;
+}
+
+.field_with_errors label {
+  padding: 2px;
+  color:#dd4b39;
+}
+
+.field_with_errors input[type="text"] {
+  padding: 3px 2px;
+  border: 1px solid #dd4b39;
 }
 .hide-bullets {
     list-style:none;
