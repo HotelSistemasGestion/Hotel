@@ -18,10 +18,8 @@ class Budget < ActiveRecord::Base
             :presence => {:message => " No puede dejar en blanco " }
   validates :check_out, 
             :presence => {:message => " No puede dejar en blanco " }
-  #validates :dias, 
-   #       :presence => {:message => " no puede dejar en blanco" },
-    #      :numericality  => { :more_than_or_equal_to => 0, :message => " debe ser mayor a 0"}
-
+  validates :descuento, 
+            :presence => {:message => " No puede dejar en blanco " }
 
   def default_values
   	#total_services=BudgetServiceDetail.where("budget_id": self.id).sum("subtotal");

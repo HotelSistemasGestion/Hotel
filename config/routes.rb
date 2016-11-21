@@ -36,6 +36,10 @@ Rails.application.routes.draw do
     collection do
         get 'hay_disponible'
     end
+    collection do
+        get 'disponibles'
+    end
+     
   end
   
   resources :accounting_entries
