@@ -6,7 +6,8 @@ class OpeningCashesController < ApplicationController
   # GET /opening_cashes
   # GET /opening_cashes.json
   def index
-    @opening_cashes = OpeningCash.all
+    @opening_cashes = OpeningCash.all.order(created_at: :desc)
+    @opening_cashes = Kaminari.paginate_array(@opening_cashes).page(params[:page]).per(5)
   end
 
   # GET /opening_cashes/1

@@ -6,7 +6,8 @@ class CashMovementsController < ApplicationController
   # GET /cash_movements
   # GET /cash_movements.json
   def index
-    @cash_movements = CashMovement.all
+    @cash_movements = CashMovement.all.order(created_at: :desc)
+    @cash_movements = Kaminari.paginate_array(@cash_movements).page(params[:page]).per(5)
   end
 
   # GET /cash_movements/1

@@ -27,7 +27,7 @@ function search_invoices(){
                 success: function(result){
 
                     $.each(result,function(index){
-                        $("#invoice").append('<tr><td><input class="form-control" value='+result[index].numero+'></input></td><td><input class="form-control subtotal" id="subtotal" value='+result[index].total+'></input></td><td><a class="btn btn-primary" title="" data-toggle="tooltip" data-placement="rigth" data-remote="true" href='+"/invoices/"+result[index].id+' data-original-title="Ver Factura"><span class="glyphicon glyphicon-eye-open"></span></td></tr>');    
+                        $("#invoice").append('<tr><td><input class="form-control" value='+result[index].numero+' readonly></input></td><td><input class="form-control subtotal" id="subtotal" value='+result[index].total+' readonly ></input></td><td><a class="btn btn-primary" title="" data-toggle="tooltip" data-placement="rigth" data-remote="true" href='+"/invoices/"+result[index].id+' data-original-title="Ver Factura"><span class="glyphicon glyphicon-eye-open"></span></td></tr>');    
                     
                     })
                     $(".total").val(sumarSubtotales());
