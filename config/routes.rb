@@ -72,7 +72,7 @@ Rails.application.routes.draw do
   end 
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
-
+  get "montos_cierre/:opening_cash_id" => "closing_cashes#montos_cierre"
   resources :cashes
   resources :type_of_rooms do
      get :autocomplete_type_of_room_tipo, :on => :collection

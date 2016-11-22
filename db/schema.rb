@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121183040) do
+ActiveRecord::Schema.define(version: 20161121205318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -281,9 +281,16 @@ ActiveRecord::Schema.define(version: 20161121183040) do
     t.integer  "monto_cheque"
     t.integer  "monto_tcredito"
     t.integer  "monto_tdebito"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "existente_efe"
+    t.integer  "existente_cheque"
+    t.integer  "existente_tcre"
+    t.integer  "existente_tdb"
+    t.integer  "opening_cash_id"
   end
+
+  add_index "closing_cashes", ["opening_cash_id"], name: "index_closing_cashes_on_opening_cash_id", using: :btree
 
   create_table "comforts", force: :cascade do |t|
     t.string   "descripcion"
@@ -597,6 +604,7 @@ ActiveRecord::Schema.define(version: 20161121183040) do
   add_foreign_key "cleaning_rooms", "rooms"
   add_foreign_key "cleanings", "cleaning_rooms"
   add_foreign_key "cleanings", "rooms"
+  add_foreign_key "closing_cashes", "opening_cashes"
   add_foreign_key "complaints", "complaint_services"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "detail_of_cash_movements", "cash_movements"

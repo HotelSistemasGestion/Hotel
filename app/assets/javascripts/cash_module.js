@@ -1,6 +1,5 @@
 $(document).ready(function(){
     search_invoices();
-    $("#fecha").datepicker();
 });
 
 // cuando selecciono un valor de pago
@@ -28,6 +27,20 @@ function search_invoices(){
                     })
                     $(".total").val(sumarSubtotales());
                 } 
+            });
+    });
+}
+
+function search_opening(){
+    $("#caja").on('change', function () {                
+            apertura = parseInt($(this).val());
+            console.log($(this).val());
+            $.ajax({
+                type: "GET",
+                url: "/montos_cierre/"+apertura,
+                dataType: "json",
+                data: {"opening_cash_id" : apertura},
+                 
             });
     });
 }

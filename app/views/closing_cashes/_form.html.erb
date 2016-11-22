@@ -11,46 +11,84 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <%= f.label :caja, class: "col-sm-5 control-label" %>
+                    <div class="col-sm-7">
+                      <%= f.select :opening_cash_id ,OpeningCash.where(estado: "Activo").all.collect { |c| [c.cash.descripcion, c.id ] },{include_blank: false},class: "form-control",:required => true ,id:"caja"%>
+                      <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                  </div>  
+                </div>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <%= f.label :apertura, class: "col-sm-5 control-label" %>
+                    <div class="col-sm-7">
+                      <%= f.text_field :opening_cash_id ,class:"form-control",id:"apertura",readonly: true%>
+                      <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    </div>
+                  </div>  
+                </div>
+            </div>
+            <div class="row"><div class="col-sm-12"></div></div>
+            <div class="row">
+              <div class="col-sm-offset-1 col-sm-10">
+                <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-inverse">
+              <tr>
+                <th>Valor</th>
+                <th>Montos Registrados</th>
+                <th>Montos Existentes</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%=f.label :efectivo,class:"control-label"%></td>
+                <td><%=f.text_field :monto_efectivo ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                </td>
+                <td><%=f.text_field :existente_efe ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                </td>
+                <td><button class="btn btn-primary glyphicon glyphicon-ok"></button></td>
+              </tr>
+              
+              <tr>
+                <td><%=f.label :cheque,class:"control-label"%></td>
+                <td><%=f.text_field :monto_cheque ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                </td>
+                <td><%=f.text_field :existente_cheque ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                </td>
+                <td><button class="btn btn-primary glyphicon glyphicon-ok"></button></td>
+              </tr>
+              
+              <tr>
+                <td><%=f.label :tarjeta_credito,class:"control-label"%></td>
+                <td><%=f.text_field :monto_tcredito ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                </td>
+                <td><%=f.text_field :existente_tcre ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                </td>
+                <td><button class="btn btn-primary glyphicon glyphicon-ok"></button></td>
+              </tr>
+              
+              <tr>
+                <td><%=f.label :tarjeta_debito,class:"control-label"%></td>
+                <td><%=f.text_field :monto_tdebito ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                </td>
+                <td><%=f.text_field :existente_tdb ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                </td>
+                <td><button class="btn btn-primary glyphicon glyphicon-ok"></button></td>
+              </tr>
+          </tbody>
+        </table>  
+              </div>
+                
+            </div>
+            
 
-
-  <div class="form-group">
-    <%= f.label :fecha_cierre, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.date_select :fecha_cierre, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :monto_efectivo, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :monto_efectivo, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :monto_cheque, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :monto_cheque, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :monto_tcredito, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :monto_tcredito, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :monto_tdebito, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.number_field :monto_tdebito, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-  </div>
+  <div class="box-footer">
+          <div class="col-sm-offset-8 col-sm-10">
+            <%= f.submit "Aceptar", class: "btn btn-primary " %>
+          </div>
+        </div>
 <% end %>
