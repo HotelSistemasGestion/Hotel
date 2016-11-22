@@ -2,6 +2,7 @@ $(document).ready(function(){
     search_invoices();
 });
 
+
 // cuando selecciono un valor de pago
 $(document).on("change", ".select", function(){
         var id = "#"+$(this).attr("id");

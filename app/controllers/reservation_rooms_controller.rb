@@ -30,6 +30,7 @@ class ReservationRoomsController < ApplicationController
       if @reservation_room.save
         format.html { redirect_to @reservation_room, notice: 'Reservation room was successfully created.' }
         format.json { render :show, status: :created, location: @reservation_room }
+        @reservation_room.update({:start =>@reservation_room.check_in, :end => @reservation_room.check_out})
       else
         format.html { render :new }
         format.json { render json: @reservation_room.errors, status: :unprocessable_entity }

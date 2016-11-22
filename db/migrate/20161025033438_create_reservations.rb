@@ -9,6 +9,10 @@ class CreateReservations < ActiveRecord::Migration
       t.date :check_out
       t.references :room, index: true, foreign_key: true
       t.references :type_of_room, index: true, foreign_key: true
+      #
+      t.references :reservation_request, index: true, foreign_key: true
+      t.references :budget, index: true, foreign_key: true
+      #
       t.string :total
       t.timestamps null: false
     end
