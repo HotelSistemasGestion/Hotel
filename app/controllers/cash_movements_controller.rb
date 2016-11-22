@@ -14,7 +14,7 @@ class CashMovementsController < ApplicationController
   # GET /cash_movements/1.json
   def show
   end
-
+ 
   # GET /cash_movements/new
   def new
     @cash_movement = CashMovement.new

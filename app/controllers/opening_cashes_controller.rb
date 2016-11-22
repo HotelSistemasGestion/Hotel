@@ -27,18 +27,21 @@ class OpeningCashesController < ApplicationController
   end
   # GET /opening_cashes/1/edit
   def edit
-    
   end
 
   # POST /opening_cashes
   # POST /opening_cashes.json
   def create
-    @opening_cash = OpeningCash.new(opening_cash_params)
-    cash=Cash.find(@opening_cash.cash_id)
-    cash.estado="Abierta"
-    cash.save 
+    @opening_cash = OpeningCash.new(opening_cash_params) 
+    employee = Employee.find(@opening_cash.employee_id)
     respond_to do |format|
+      @opening_cash.estado = "Activo"
       if @opening_cash.save
+        cash=Cash.find(@opening_cash.cash_id)
+        cash.estado="Abierta"
+        cash.save
+        employee.estado = "Ocupado"
+        employee.save
         format.html { redirect_to opening_cashes_url}
         format.json { render :show, status: :created, location: @opening_cash }
       else

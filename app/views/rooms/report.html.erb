@@ -7,7 +7,7 @@
   </div>
   <div class="col-xs-4" >
   <div class="box-header with-border report_title">
-  <h1 class="box-title hide">Listado de quejas</h1>
+  <h1 class="box-title hide">Listado de habitaciones</h1>
   </div>
   </div>
   <div class="col-xs-4">
@@ -24,32 +24,23 @@
 <%= form_for_filterrific @filterrific do |f| %>
 
 
+   
     <div class="col-xs-3">
-    <div class="hide">
+     <div class="hide">
+    Estado:
+    </div>
+   <%= f.select(:sorted_by_state,
+      @filterrific.select_options[:sorted_by_state],
+      { include_blank: 'Todas los Estados' },{ :class => 'form-control' })%>
+    </div>
 
-    Servicio:
-    </div>
-    <%= f.text_field(:sorted_by,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por servicio")%>
-    </div>
-    <div class="col-xs-3">
-     <div class="hide">
-    Desde:
-    </div>
-    <%= f.text_field(:created_at_gte, class: 'r_datepicker_complaint  form-control',placeholder:"Desde")%>
-    </div>
      <div class="col-xs-3">
-      <div class="hide">
-     Hasta:
-     </div>
-    <%= f.text_field(:created_at_lt, class: 'r_datepicker_complaint_lt  form-control',placeholder:"Hasta")%>
-    </div>
-    <div class="col-xs-3">
      <div class="hide">
-    Habitacion:
+    Tipo de habitacion:
     </div>
-   <%= f.select(:sorted_by_identificador,
-      @filterrific.select_options[:sorted_by_identificador],
-      { include_blank: 'Todas las Habitaciones' },{ :class => 'form-control' })%>
+   <%= f.select(:sorted_by_type,
+      @filterrific.select_options[:sorted_by_type],
+      { include_blank: 'Todas los tipos' },{ :class => 'form-control' })%>
     </div>
     
    <%= render_filterrific_spinner %>
@@ -58,6 +49,6 @@
 </div>
 </div>
 <%= render(
-  partial: 'complaints/list',
-  locals: { complaints: @complaints }
+  partial: 'rooms/list',
+  locals: { rooms: @rooms }
 ) %>
