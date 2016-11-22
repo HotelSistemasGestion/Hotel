@@ -5,15 +5,17 @@
 				<h1 class="box-title titulo text_balance">HOTEL UNI</h1>
 			</div>
 			<div class="col-xs-8 col-md-8 col-sm-8">
-				<form class="form-inline">
+				<form class="form-inline" style="top-left: 50px;">
 					<%=label_tag "Periodo: "%>
 					<%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "search_conta" do %>
 					<%= text_field_tag :search_conta, params[:search_conta],class: "form-control"%>
-					<%= button_tag(type: :submit, class: "btn btn-primary " ) do %>
+					<%= button_tag(type: :submit, class: "btn btn-primary no-print " ) do %>
 					<i class="glyphicon glyphicon-search"></i>
 					<% end %>
 					<%end%>
+
 				</form>
+				<%= link_to ''.html_safe, '#', class: "btn btn-primary no-print glyphicon glyphicon-print alineado_balance", onclick: 'window.print();return false;'%>
 			</div>
 		</div>
 		<ul class="nav nav-tabs nav-justified ">
