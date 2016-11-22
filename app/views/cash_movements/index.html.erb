@@ -34,9 +34,9 @@
                     <td><%= cash_movement.opening_cash.fecha_apertura %></td>
                     <td><%= cash_movement.type_of_cash_movement_descripcion %></td>
                     <td><%= cash_movement.client.name %></td>
-                    <td><%= cash_movement.monto_total %></td>
+                    <td><%= number_to_currency_py(cash_movement.monto_total) %></td>
                     <td align="center">
-            <%= link_to cash_movement, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+            <%= link_to cash_movement,remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-eye-open"></span>
                     <% end %>
                 </td>
@@ -48,6 +48,13 @@
             </div>
           </div>
         </div>
+        <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+         <nav><%= paginate @cash_movements, :theme => 'twitter-bootstrap-3' %></nav>
+    </ul>
+    
+  </div>
       </div>  
     </div>
+    
   </div>

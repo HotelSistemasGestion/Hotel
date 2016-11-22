@@ -12,15 +12,6 @@
     </div>
   <% end %>
 
-      <div class="box box-primary">   
-        <div class="box-header with-border">
-          <div class="col-xs-2"></div>
-          <h3 class="box-title col-xs-6">
-            <%= title %>
-          </h3>           
-        </div> 
-        <form role="form-horizontal">
-          <div class="box-body">
             <div class="row">
                 <div class="col-sm-5">
                   <div class="form-group">
@@ -48,11 +39,9 @@
                 <div class="col-sm-5">
                   <div class="form-group">
                     <%= f.label :fecha, class: "col-sm-5 control-label" %>
-                    <div class="col-sm-5">
-                      <%= f.text_field :fecha_apertura,id: "date", class: "form-control datepicker",:required => true %>
-                      <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <div class="col-sm-7">
+                      <%= f.text_field :fecha_apertura,value: Time.now.strftime("%d-%m-%Y"), class: "form-control", :readonly => true%>
                     </div>
-                    <label id="bt1" class="btn btn-default col-sm-1" role="button" title="Hoy"><span class= "fa fa-calendar-check-o"></span></label>
                   </div>  
                 </div>
                 
@@ -60,25 +49,18 @@
                   <div class="form-group">
                     <%= f.label :monto_efectivo, class: "col-sm-2 control-label"%>
                     <div class="col-sm-7">
-                      <%= f.text_field :monto_efectivo, class: "form-control",:required => true %>
+                      <%= f.text_field :monto_efectivo,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, class: "form-control",:required => true %>
                       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                   </div>  
                 </div>
             </div> 
-          </div>
-          <div class="row"></div> 
-        </form>
+            <div class="row"></div> 
+
         <div class="box-footer">
           <div class="col-sm-offset-8 col-sm-10">
             <%= f.submit "Aceptar", class: "btn btn-primary " %>
           </div>
-        </div>
-      </div>  
+        </div> 
 <% end %>
 
-<script type="text/javascript">
-  $('#bt1').click(function() {
-    $('#date').val('<%= Time.now.strftime("%d-%m-%Y") %>');      
-  }); 
-</script>
