@@ -8,7 +8,7 @@ class Invoice < ActiveRecord::Base
     validates :numero, uniqueness: true, 
     				   presence: { message: "de factura no puede ser nulo" }
 
-    has_many :invoice_details
+    has_many :invoice_details, :dependent => :destroy
 
     attr_accessor :client
 
