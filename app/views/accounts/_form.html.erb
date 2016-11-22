@@ -42,7 +42,7 @@
             <div class="row">
 
                 <%= f.label 'Check-in:', class: "col-sm-3" %>            
-                <%= f.text_field :fecha_entrada, id: "date", class: "datepicker col-sm-3"%>
+                <%= f.text_field :fecha_entrada, id: "date", class: "datepicker col-sm-3", placeholder: "Fecha de entrada"%>
                 <%= f.label "",  class: 'btn btn-inverse col-sm-1', id: "bt1", title: 'Hoy', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "fa fa-calendar-check-o"></span>
                     <% end %> 
@@ -54,7 +54,7 @@
             <div class="row">
 
                 <%= f.label 'Check-out:', class: "col-sm-3" %>            
-                <%= f.text_field :fecha_salida, class: "datepicker"%>
+                <%= f.text_field :fecha_salida, class: "datepicker", placeholder: "Fecha de salida"%>
 
             </div>
 
@@ -178,7 +178,7 @@
             </table>
           </div>
 
-        </div>d
+        </div>
       </div>
       <div class="row no-print">
         <div class="col-xs-12">
