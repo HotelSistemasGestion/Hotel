@@ -4,6 +4,8 @@ class ReservationRoom < ActiveRecord::Base
 	belongs_to :budget
 	belongs_to :type_of_room
 
+	belongs_to :comfort
+
 	validates :subtotal, :presence => {:message => "No puede dejar en blanco Cantidad" }, 
 	:numericality  => { :more_than_or_equal_to => 0, :message => "Cantidad debe ser mayor a 0"}
 
