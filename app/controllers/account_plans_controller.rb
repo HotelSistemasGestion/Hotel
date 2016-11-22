@@ -79,6 +79,6 @@ class AccountPlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_plan_params
-      params.require(:account_plan).permit(:id ,:descripcion, :estado, :version ,:accounting_years_attributes => [:id, :anho,:estado ,:_destroy])
+      params.require(:account_plan).permit(:id ,:descripcion, :estado, :version ,:accounting_years_attributes => [:id, :anho,:estado,:_destroy])
     end
 end

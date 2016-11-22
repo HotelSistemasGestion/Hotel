@@ -8,8 +8,11 @@ class AccountingAccountsController < ApplicationController
   def index
     
     #@accounting_accounts = AccountingAccount.all.order(:grupo)
-    @accounting_accounts = AccountingAccount.all.order(grupo: :desc)
-    @accounting_years=AccountingYear.all
+    #@accounting_accounts = AccountingAccount.all.order(grupo: :desc)
+    @accounting_years=AccountingYear.all.order(anho: :asc)
+    @year=AccountingYear.find_by(estado: "vigente")
+    @id=@year.id
+    @accounting_accounts = AccountingAccount.where(ejercicio: @id).order(grupo: :asc)
   end
 
   # GET /accounting_accounts/1
@@ -24,16 +27,16 @@ class AccountingAccountsController < ApplicationController
   end
 
 def accountiong_account_years
-      accounting_year_id = params[:accounting_year_id]
+      #accounting_year_id = params[:accounting_year_id]
       #@accounting_year= AccountingYear.where("id = ?" ,accounting_year_id)
 
       #@accountplan=AccountPlan.find(1)
 
       #@account_x_plan=AccountXPlan.where("account_plan_id = ?" ,1)
 
-      @accounts = AccountingAccount.where("ejercicio = ?" ,accounting_year_id)
+      @accounts = AccountingAccount.where(ejercicio: params[:accounting_year_id]).order(grupo: :asc)
       respond_to do |format|
-        format.json { render json: @accounts.to_json }
+        format.js
       end
   end
   # GET /accounting_accounts/new
