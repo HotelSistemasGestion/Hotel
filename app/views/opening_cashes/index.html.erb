@@ -38,7 +38,7 @@
                     <td><%= opening_cash.fecha_apertura %></td>
                     <td><%= number_to_currency_py(opening_cash.monto_efectivo) %></td>
                     <td align="center">
-            <%= link_to opening_cash, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+            <%= link_to opening_cash,remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-eye-open"></span>
                     <% end %>
                 <%= link_to edit_opening_cash_path(opening_cash), class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>

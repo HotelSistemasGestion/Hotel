@@ -12,15 +12,6 @@
     </div>
   <% end %>
 
-      <div class="box box-primary">   
-        <div class="box-header with-border">
-          <div class="col-xs-2"></div>
-          <h3 class="box-title col-xs-6">
-            <%= title %>
-          </h3>           
-        </div> 
-        <form role="form-horizontal">
-          <div class="box-body">
             <div class="row">
                 <div class="col-sm-5">
                   <div class="form-group">
@@ -36,7 +27,7 @@
                   <div class="form-group">
                     <%= f.label :cajero, class: "col-sm-2 control-label"%>
                     <div class="col-sm-7">
-                      <%= f.select :employee_id ,Employee.joins(:types_of_employee).where(types_of_employees: {tipo: 'cajero'}).all.collect { |e| [e.full_name, e.id ] },{include_blank: false},class: "form-control",:required => true %>
+                      <%= f.select :employee_id ,Employee.joins(:types_of_employee).where(types_of_employees: {tipo: 'cajero'}, estado: "Libre").all.collect { |e| [e.full_name, e.id ] },{include_blank: false},class: "form-control",:required => true %>
                       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                   </div>  
@@ -66,11 +57,9 @@
             </div> 
           </div>
           <div class="row"></div> 
-        </form>
         <div class="box-footer">
           <div class="col-sm-offset-8 col-sm-10">
             <%= f.submit "Aceptar", class: "btn btn-primary " %>
           </div>
-        </div>
-      </div>  
+        </div> 
 <% end %>

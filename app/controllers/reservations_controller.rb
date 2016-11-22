@@ -5,7 +5,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.all
-    @reservations = Kaminari.paginate_array(@reservations).page(params[:page]).per(2)
+    @reservations = Kaminari.paginate_array(@reservations).page(params[:page]).per(8)
   end
 
   # GET /reservations/1
@@ -15,19 +15,32 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-    @reservation = Reservation.new
-    #@my_reservation_requests = ReservationRequest.find(params[:id])
-    #@my_type_of_rooms =  TypeOfRoom.find(params[:id])
-    #@my_budgets = Budget.find(params[:id])
+    if params[:id]
+      @reservation = Reservation.new
+      @my_reservation_requests = ReservationRequest.find(params[:id])
+      @reservation.reservation_rooms.build()
+      #@my_type_of_rooms =  TypeOfRoom.find(params[:id])
+      @my_budgets = Budget.where("reservation_request_id = ?" ,@my_reservation_requests.id).first
+    else
+      @reservation = Reservation.new
+    end
+    
 
   end
 
   def my_new
     @reservation = Reservation.new
+    @my_reservation_requests = ReservationRequest.find(params[:id])
+    @reservation.reservation_rooms.build()
+    #@reservation.budget_room_details.build()
+    #@my_type_of_rooms =  TypeOfRoom.find(params[:id])
+    @my_budgets = Budget.find(params[:id])
   end
 
   # GET /reservations/1/edit
   def edit
+    @reservation = Reservation.find(params[:id])
+    @my_reservation_requests = ReservationRequest.find(params[:id])
   end
 
   # POST /reservations
@@ -39,11 +52,17 @@ class ReservationsController < ApplicationController
         format.html { redirect_to reservations_path(), notice: 'Reservacion creada exitosamente.' }
         #format.json { render :show, status: :created, location: @reservation }
       else
+        @my_reservation_requests = ReservationRequest.find(reservation_params[:reservation_request_id])
+        #@reservation.reservation_requests.build()
+        @reservation.reservation_rooms.build()
+        @my_budgets = Budget.find(params[:budget_id])
         format.html { render :new }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end
   end
+
+
 
   # PATCH/PUT /reservations/1
   # PATCH/PUT /reservations/1.json
@@ -80,6 +99,9 @@ class ReservationsController < ApplicationController
      # params.require(:reservation).permit(:nombre, :apellido, :check_in, :check_out, :type_of_room_id)
      #json.extract! reservation, :id, :nombre, :apellido, :check_in, :check_out, :type_of_room_id, :created_at, :updated_at
      #json.url reservation_url(reservation, format: :json)
-     params.require(:reservation).permit(:nombre, :apellido, :email, :dias, :check_in, :check_out, :room_id, :type_of_room_id, :total)
+     params.require(:reservation).permit(:id, :reservation_request_id, :budget_id, :nombre, :apellido, :email, :dias, :check_in, :check_out, :room_id, :type_of_room_id, :total,
+      :reservation_rooms_attributes => [:id, :cantidad,:reservation_id,:room_id, :type_of_room,:budget, :subtotal, :_destroy],
+      :reservation_requests_attributes => [:id, :nombre, :apellido, :email, :telefono,:comfort_id, :cantidad_de_adultos, :cantidad_de_ninhos, :cantidad_de_familias, 
+        :check_in, :check_out, :comentarios, :_destroy])
     end
 end

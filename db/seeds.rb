@@ -22,22 +22,22 @@ Comfort.create(descripcion: "tres estrellas");
 AccountingYear.create(anho: "2016",estado: "actual");
 AccountingYear.create(anho: "2015",estado: "antiguo");
 AccountingYear.create(anho: "2014",estado: "antiguo");
-AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
-AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "0",haber: "10000");
-AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "0",debe: "1000",haber: "0");
-AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "0",debe: "0",haber: "1000");
-AccountingEntry.create(numero:"3",fecha:"2016/07/18",iva: "0",debe: "100",haber: "0");
-AccountingEntry.create(numero:"3",fecha:"2016/07/18",iva: "0",debe: "0",haber: "100");
-AccountingEntry.create(numero:"4",fecha:"2016/08/01",iva: "0",debe: "100000",haber: "0");
-AccountingEntry.create(numero:"4",fecha:"2016/08/01",iva: "0",debe: "0",haber: "100000");
-AccountingEntry.create(numero:"5",fecha:"2016/09/23",iva: "0",debe: "20000",haber: "0");
-AccountingEntry.create(numero:"5",fecha:"2016/09/23",iva: "0",debe: "0",haber: "20000");
-AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "0",debe: "4000",haber: "0");
-AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "0",debe: "0",haber: "4000");
-AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "0",debe: "20000",haber: "0");
-AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "0",debe: "0",haber: "20000");
-AccountingEntry.create(numero:"8",fecha:"2016/10/25",iva: "0",debe: "10000",haber: "0");
-AccountingEntry.create(numero:"8",fecha:"2016/10/25",iva: "0",debe: "0",haber: "10000");
+AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "10000",haber: "0");
+AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
+AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "1000",haber: "0");
+AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "0",haber: "1000");
+AccountingEntry.create(numero:"3",fecha:"2016/07/18",iva: "10",debe: "100",haber: "0");
+AccountingEntry.create(numero:"3",fecha:"2016/07/18",iva: "10",debe: "0",haber: "100");
+AccountingEntry.create(numero:"4",fecha:"2016/08/01",iva: "10",debe: "100000",haber: "0");
+AccountingEntry.create(numero:"4",fecha:"2016/08/01",iva: "10",debe: "0",haber: "100000");
+AccountingEntry.create(numero:"5",fecha:"2016/09/23",iva: "10",debe: "20000",haber: "0");
+AccountingEntry.create(numero:"5",fecha:"2016/09/23",iva: "10",debe: "0",haber: "20000");
+AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "10",debe: "4000",haber: "0");
+AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "10",debe: "0",haber: "4000");
+AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "10",debe: "20000",haber: "0");
+AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "10",debe: "0",haber: "20000");
+AccountingEntry.create(numero:"8",fecha:"2016/10/25",iva: "10",debe: "10000",haber: "0");
+AccountingEntry.create(numero:"8",fecha:"2016/10/25",iva: "10",debe: "0",haber: "10000");
 
 AccountingAccount.create(grupo:"00",nombre:"Cuentas por cobrar",imputable:"true");
 AccountingAccount.create(grupo:"01",nombre:"Clientes",imputable:"true");
@@ -107,6 +107,13 @@ Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',pre
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 1,total: 10000);
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+8).to_s, check_out: (Date.today+9).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
+
+######
+#ReservationRoom.create(reservation_id: 1,room_id:1,budget_id:1,cantidad: 2,type_of_room_id:1,subtotal:10000);
+#ReservationRoom.create(reservation_id: 1,room_id:4,budget_id:2,cantidad: 2,type_of_room_id:2,subtotal:10000);
+#######
+
+
 RoomComfort.create(room_id: 1 , comfort_id: 1);
 RoomComfort.create(room_id: 1 , comfort_id: 2);
 

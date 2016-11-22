@@ -3,7 +3,8 @@ class DetailOfCashMovement < ActiveRecord::Base
 	
 	has_many :invoices
 	
-	attr_accessor :invoice,:ayudante	 
-
+	validates :sub_monto, presence: true, length: {minimum: 4, maximum: 12, :message => "4 dígitos minimo; 12 máximo."}, :numericality => {:only_integer => true, :message => "Solo puede ingresar numeros enteros"}	 
+	validates :cash_movement_id, presence: true
+	validates :invoice_id, presence: true
 end
  
