@@ -131,6 +131,8 @@ class Ability
      can :manage, AccountingEntry  
   elsif user.has_role? "Control de Cuentas"
      can :manage, AccountingAccount     
+  elsif user.has_role? "Ver habitaciones"
+     can :read,Room
   elsif user.has_role? "Control de Planes de Cuentas"
      can :manage, AccountPlan
    else

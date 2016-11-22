@@ -59,8 +59,8 @@ var cont=0;
         $('#tb1').removeClass('no-print');
      
     });
-  $('#tb2').on('click', function (e) {
-        $('#tb1').addClass('no-print');
+      $('#tb2').on('click', function (e) {
+         $('#tb1').addClass('no-print');
          $('#tb2').removeClass('no-print');
      
     });
