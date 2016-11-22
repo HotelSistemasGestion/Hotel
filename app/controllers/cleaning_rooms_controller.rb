@@ -31,9 +31,16 @@ class CleaningRoomsController < ApplicationController
    
     respond_to do |format|
       if @cleaning_room.save
+         
+          
         format.html { redirect_to cleaning_rooms_url }
         #format.json { render :show, status: :created, location: @cleaning_room }
         #format.json { head :no_content }
+         Cleaning.where("#{:cleaning_room_id} = ?" ,@cleaning_room.id).each do |p|
+           
+            p.update({:employee_id => @cleaning_room.employee_id})
+            puts "entre en el for"
+           end
       else
         format.html { render :new }
         format.json { render json: @cleaning_room.errors, status: :unprocessable_entity }
@@ -73,6 +80,6 @@ class CleaningRoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cleaning_room_params
-      params.require(:cleaning_room).permit(:room_id, :employee_id,:title,:cleanings_attributes => [:room_id,:start,:end,:title,:color,:textColor,:_destroy])
+      params.require(:cleaning_room).permit(:room_id, :employee_id,:title,:cleanings_attributes => [:room_id,:employee_id,:start,:end,:title,:color,:textColor,:_destroy])
     end
 end
