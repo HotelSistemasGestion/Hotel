@@ -1,14 +1,17 @@
 <div class="box">
  <div class="box-body">
+  <div class="col-sm-2">
  <%= link_to new_cleaning_room_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     Nueva Limpieza
   <% end %>
-    
-    <%= select(@room, @room.id, Room.all.collect {|p| [ p.identificador, p.id ] }, {include_blank:false},id:"selecionar") %>
-    
-
+    </div>
+    <div class="col-sm-2">
+    <%= select(@room, @room.id, Room.all.collect {|p| [ p.identificador, p.id ] }, {include_blank:false},id:"selecionar",class: "form-control") %>
+    </div>
+    <div class="col-sm-2">
          <button id="s" type="button"  class="btn btn-primary">Filtrar</button> 
+    </div>
 <script type="text/javascript">
     $(function() {
         

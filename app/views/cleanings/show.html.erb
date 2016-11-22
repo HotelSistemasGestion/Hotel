@@ -30,4 +30,8 @@
       <% end %>
       <%= link_to '', @cleaning, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-danger glyphicon glyphicon-trash"%>
     </div>
+    <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Volver
+  <% end %>
 </div>
