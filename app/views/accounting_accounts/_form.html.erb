@@ -1,42 +1,62 @@
-<div id="product-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><%= title %></h4>
-      </div>
-      <%= form_for @accounting_account, remote: true do |f| %>        
-        <div class="modal-body">
+<%= form_for(@accounting_account,data: {toggle: "validator"}, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @accounting_account.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@accounting_account.errors.count, "error") %> prohibited this employee from being saved:</h4>
 
-          <div class="form-group">
-
-            <div class="row">
-
-              <div class="col-md-6">   
-                  <%= f.number_field :grupo, class: "form-control input-lg", placeholder: "Grupo" ,:required => true %>             
-                  <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                  <div class="help-block with-errors"></div> 
-                  <%= f.number_field :cuenta, class: "form-control input-lg", placeholder: "Cuenta" ,:required => true %>             
-                  <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                  <div class="help-block with-errors"></div>  
-                  <%= f.text_field :nombre, class: "form-control input-lg", placeholder: "Nombre" ,:required => true %>             
-                  <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                  <div class="help-block with-errors"></div> 
-                  <%= f.check_box :imputable %>              
-                  <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                  <div class="help-block with-errors">*requerido</div> 
-
-              </div>
-
-            </div>  
-          </div>
-            
-        </div><!-- /.modal-body -->
-
-        <div class="modal-footer">
-          <%= f.submit 'Aceptar', class: "btn btn-primary btn-lg"%>
-        </div>
+      <ul>
+      <% @accounting_account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+      </ul>
+    </div>
+  <% end %>
+
+
+  
+  <!--<div class="alert alert-danger" role="alert" style="display: none;"></div>-->
+   <div class="box-body">
+    <div class="col-sm-6 form-group  has-feedback">
+      <%= f.label :grupo, class: "col-sm-3 control-label" %>
+       <div class="col-sm-9">
+        <%= f.number_field :grupo, class: "form-control",:required => true %>
+        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        </div>
+    </div>
+   <div class="col-sm-6 form-group   has-feedback">
+    <%= f.label :cuenta, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <%= f.number_field :cuenta, class: "form-control",:required => true %>
+        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+      </div>
+    </div>
+
+     <div class="col-sm-6 form-group   has-feedback">
+      <%= f.label :nombre, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <%= f.text_field :nombre, class: "form-control",:required => true %>
+        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+      </div>
+    </div>
+    <div class="col-sm-6 form-group   has-feedback">
+      <%= f.label :ejercicio, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+       <%= f.select :ejercicio ,AccountingYear.all.collect { |p| [p.anho, p.id ] },{include_blank: false},class: "form-control"%>              
+       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    </div>
+    </div>
+    <div class="col-sm-6 form-group   has-feedback">
+      <%= f.label :imputable, class: "col-sm-3 control-label" %>
+      <div class="col-sm-9">
+        <%= f.check_box :imputable %>              
+       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    </div>
+    </div>
+</div>
+  <div class="box-footer">
+      <div class="col-sm-offset-8 col-sm-10"> 
+      <%= f.submit "Crear Cuenta", class: "btn btn-primary" %>
+    </div>
+    </div>
+<% end %>
+

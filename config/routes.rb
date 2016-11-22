@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'gallery/index'
 
-
+ 
   resources :budget_room_details
   resources :budget_service_details
   resources :cleanings
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :rooms do
     get :autocomplete_room_identificador, :on => :collection
-  end
+  end 
   resources :budgets do
   collection do
       get 'my_new'
@@ -62,6 +62,8 @@ Rails.application.routes.draw do
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
 
+  get "accountiong_account_years/:accounting_year_id" => "accounting_accounts#accountiong_account_years"
+
   resources :cashes
   resources :type_of_rooms do
      get :autocomplete_type_of_room_tipo, :on => :collection
@@ -89,6 +91,7 @@ Rails.application.routes.draw do
   resources :clients do 
     get :autocomplete_client_cedula, :on => :collection
   end
+  
   devise_for :users
   resources :complaints do
     collection do
