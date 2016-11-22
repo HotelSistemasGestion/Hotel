@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121183040) do
+ActiveRecord::Schema.define(version: 20161121222802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20161121183040) do
     t.integer  "cuenta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "ejercicio"
   end
 
   create_table "accounting_entries", force: :cascade do |t|
@@ -258,9 +259,11 @@ ActiveRecord::Schema.define(version: 20161121183040) do
     t.string   "textColor"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "employee_id"
   end
 
   add_index "cleanings", ["cleaning_room_id"], name: "index_cleanings_on_cleaning_room_id", using: :btree
+  add_index "cleanings", ["employee_id"], name: "index_cleanings_on_employee_id", using: :btree
   add_index "cleanings", ["room_id"], name: "index_cleanings_on_room_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
@@ -607,6 +610,7 @@ ActiveRecord::Schema.define(version: 20161121183040) do
   add_foreign_key "cleaning_rooms", "employees"
   add_foreign_key "cleaning_rooms", "rooms"
   add_foreign_key "cleanings", "cleaning_rooms"
+  add_foreign_key "cleanings", "employees"
   add_foreign_key "cleanings", "rooms"
   add_foreign_key "complaints", "complaint_services"
   add_foreign_key "complaints", "rooms"

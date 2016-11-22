@@ -8,7 +8,7 @@
     <%= select(@room, @room.id, Room.all.collect {|p| [ p.identificador, p.id ] }, {include_blank:false},id:"selecionar") %>
     
 
-         <button id="s" type="button"  class="btn btn-primary">redireccionar</button> 
+         <button id="s" type="button"  class="btn btn-primary">Filtrar</button> 
 <script type="text/javascript">
     $(function() {
         
@@ -17,6 +17,7 @@
           $(location).attr('href',"/cleanings?dato="+p+""); 
         });
       });
+
 </script>
 
  </div>
@@ -40,6 +41,59 @@
 
 
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+         <div id='calendario'></div>
+         <script type="text/javascript">
+    $(function() {
+        
+        $('#calendario').fullCalendar({
+
+       height: 600,
+      //theme: true,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,basicWeek,basicDay,listDay,listWeek'
+      },
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: false,
+      eventLimit: false,
+      // customize the button names,
+      // otherwise they'd all just say "list"
+      views: {
+        listDay: { buttonText: 'listar Dia' },
+        listWeek: { buttonText: 'listar Semana' }
+      },
+
+      defaultView: 'month',
+      events: "/cleanings.json"
+    
+    
+    });
+      });
+
+</script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
  <!--<div class="page-header">
     <h4>Limpieza de Habitaciones</h4>
  </div>-->

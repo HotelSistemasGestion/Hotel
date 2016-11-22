@@ -8,17 +8,21 @@
                           <div class="box-body">
                                 <form class="form-inline">
    
-                                <div class="col-xs-6 col-md-6 col-sm-6"id="stock">
+                                <div class="col-xs-6 col-md-6 col-sm-6">
                                   <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "_search_conta" do %>
                                      <%=label_tag "Periodo: "%>
                                      <%= text_field_tag :search_conta, params[:search_conta],class: "form-control"%>
-                                     <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+                                     <%= button_tag(type: :submit, class: "btn btn-primary no-print") do %>
                                               <i class="glyphicon glyphicon-search"></i>
                                           <% end %>
                                       <%end%>
+                                             
+                                                 
+                                               
                                       </div>
                                       <div class="col-lg-6 col-md-6 col-sm-6">
                                       <h4 style="text-align: center">Denominacion o razon social: Hotel Uni</h4>
+                                      <%= link_to ''.html_safe, '#', class: "btn btn-primary no-print glyphicon glyphicon-print alineado", onclick: 'window.print();return false;'%>
                                     </div>
                                 </form>
                                     <%= render :partial=>'venta' %>

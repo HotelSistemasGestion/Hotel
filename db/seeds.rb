@@ -117,7 +117,6 @@ Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (
 RoomComfort.create(room_id: 1 , comfort_id: 1);
 RoomComfort.create(room_id: 1 , comfort_id: 2);
 
-Photo.create(room_id: 1, my_file:"image/upload/v1477017980/dszqxru3husf5tv6toxg.jpg");
 
 
 #Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
@@ -127,7 +126,10 @@ TypesOfEmployee.create(tipo: "administrador", descripcion: "");
 TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
 TypesOfEmployee.create(tipo: "botones", descripcion: "");
 TypesOfEmployee.create(tipo: "cajero", descripcion: "");
-Employee.create(types_of_employee_id: 1, nombre: "Fernando", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+Employee.create(types_of_employee_id: 2, nombre: "Enrique", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+Employee.create(types_of_employee_id: 2, nombre: "Julio", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+
 Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 666, correo: "miguel@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
 
 
@@ -203,7 +205,8 @@ Rol.create(role: "Eliminar Servicio");
 Rol.create(role: "Control de Asientos");
 Rol.create(role: "Control de Cuentas");
 Rol.create(role: "Control de Planes de Cuentas");
-
+#Roles para Habitaciones
+Rol.create(role: "Ver habitaciones");
 
 User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 1);
 User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 3);
@@ -222,7 +225,19 @@ TypeOfCashMovement.create(descripcion: "entrada");
 Cash.create(descripcion: "Resturant&Bar");
 OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abierta",fecha_apertura: (Date.today+1).to_s);
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
+
+CleaningRoom.create(employee_id: 1);
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-01",end: "2016-11-05" ,title: "Habitacion A1" ,color: "#33ff00",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-06",end: "2016-11-08" ,title: "Habitacion A1" ,color: "#80f442",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-03",end: "2016-11-10" ,title: "Habitacion A1" ,color: "#f45342",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-12",end: "2016-11-20" ,title: "Habitacion A1" ,color: "#eef442",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-02",end: "2016-11-15" ,title: "Habitacion A1" ,color: "#42f4d7",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-14",end: "2016-11-16" ,title: "Habitacion A1" ,color: "#425cf4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-28",end: "2016-11-30" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-03",end: "2016-11-14" ,title: "Habitacion A1" ,color: "#f44295",textColor: "#ffffff");
+
 PaymentValue.create(descripcion:"efectivo");
 PaymentValue.create(descripcion:"cheque");
 PaymentValue.create(descripcion:"tarjeta crédito");
 PaymentValue.create(descripcion:"tarjeta dédito");
+

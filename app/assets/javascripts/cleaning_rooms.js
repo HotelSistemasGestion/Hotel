@@ -28,8 +28,8 @@ $(document).ready(function() {
 		});
 
      //permite el rango entre dos datepicker 
-     $('#sandbox-container  .input-daterange').datepicker({
-});
+     $('#sandbox-container  .input-daterange').datepicker({});
+     $('.fancybox').fancybox();
 		
 	});
 

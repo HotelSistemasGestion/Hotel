@@ -1,7 +1,8 @@
 $(document).ready(function(){
     search_invoices();
-    $("#fecha").datepicker();
+
 });
+
 
 // cuando selecciono un valor de pago
 $(document).on("change", ".select", function(){

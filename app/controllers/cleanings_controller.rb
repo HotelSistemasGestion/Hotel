@@ -34,8 +34,10 @@ class CleaningsController < ApplicationController
   # POST /cleanings
   # POST /cleanings.json
   def create
+ 
     @cleaning = Cleaning.new(cleaning_params)
 
+    puts "entre"
     respond_to do |format|
       if @cleaning.save
         format.html { redirect_to @cleaning, notice: 'Cleaning was successfully created.' }
@@ -79,6 +81,6 @@ class CleaningsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cleaning_params
-      params.require(:cleaning).permit(:cleaning_room_id, :room_id, :start, :end, :title)
+      params.require(:cleaning).permit(:cleaning_room_id,:employee_id, :room_id, :start, :end, :title)
     end
 end
