@@ -62,18 +62,6 @@
     <td><%= f.hidden_field :budget,value: @my_budgets.id,readonly: true,class: "form-control"%>
   </div>
 
- <!-- <div class="form-group">
-    <%= f.label :room_id, class: "col-sm-1 control-label" %>
-    <div class="col-sm-3">
-      <%= f.text_field :room_id, class: "form-control" %>
-    </div>
-
-    <%= f.label :type_of_room_id, class: "col-sm-1 control-label" %>
-    <div class="col-sm-3">
-      <%= f.text_field :type_of_room_id, class: "form-control" %>
-    </div>
-    
-  </div>-->
 
   <div class="box box-primary box-solid collapsed-box">
             <div class="box-header with-border">
@@ -101,7 +89,7 @@
                     <!-- begin-->
                     <%= f.fields_for :reservation_rooms,:validate => true ,:wrapper => false do |li| %>
                     <tr class="fields">
-                        <%# cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
+                        <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
                         <% subtotal = "#"+"#{li.object_name}[subtotal]".gsub(/(\])?\[/, "_").chop %>
                         <% id = "#"+"#{li.object_name}[type_of_room_id]".gsub(/(\])?\[/, "_").chop %>
 
@@ -111,13 +99,16 @@
                           <%end%> 
                         <%end%>
 
-                         <td><%= li.autocomplete_field :type_of_room, autocomplete_type_of_room_tipo_type_of_rooms_path, :placeholder => "Seleccione un tipo habitacion", 
-                        :multiple => true, :update_elements => {:id => id} %>
-                        <%= li.hidden_field :type_of_room_id%></td>
 
-
-                        <td><%= li.number_field :subtotal,:class => "subtotal"%></td>
-
+                          <td><%= li.select :type_of_room, TypeOfRoom.all.collect{ |p| [ p.tipo, p.id ]}, {:prompt => "Elegir Tipo de Habitacion"}%></td>
+                          <td><%= li.number_field :subtotal,:class => "subtotal"%></td>
+                          <td><%= li.hidden_field :type_of_room_id%></td>
+                         <!--<td><%#= li.autocomplete_field :type_of_room, autocomplete_type_of_room_tipo_type_of_rooms_path, :placeholder => "Seleccione un tipo habitacion", 
+                        :multiple => true, :update_elements => {:id => id} %>-->
+                        <script>
+                        console.log("<%cantidad%>")
+                    
+                        </script>
                         
                         <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
                     </tr>

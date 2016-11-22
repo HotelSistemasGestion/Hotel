@@ -108,11 +108,6 @@ Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
 Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+8).to_s, check_out: (Date.today+9).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
 
-######
-ReservationRoom.create(room_id:1,budget_id:1,cantidad: 2,type_of_room_id:1,subtotal:10000);
-ReservationRoom.create(room_id:4,budget_id:2,cantidad: 2,type_of_room_id:2,subtotal:10000);
-#######
-
 
 RoomComfort.create(room_id: 1 , comfort_id: 1);
 RoomComfort.create(room_id: 1 , comfort_id: 2);
@@ -219,6 +214,12 @@ ReservationRequest.create(nombre: "Katya", apellido: "Chaparro", email: "katya.c
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 
+######
+Budget.create(reservation_request_id: 1,comfort_id: 3, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,comentario:"a",descuento: 10,total:10000);
+Budget.create(reservation_request_id: 2,comfort_id: 2, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,comentario:"a",descuento: 10,total:10000);
+ReservationRoom.create(reservation_id:1, room_id:1,budget_id:1,cantidad: 2,type_of_room_id:1,subtotal:10000);
+ReservationRoom.create(reservation_id:2, room_id:4,budget_id:2,cantidad: 2,type_of_room_id:2,subtotal:10000);
+######
 
 TypeOfCashMovement.create(descripcion: "entrada");
 
