@@ -76,6 +76,28 @@ class RoomsController < ApplicationController
     end
   end
 
+  # metodo utilizado para reporte
+  def report
+  @filterrific = initialize_filterrific(
+    Room,
+    params[:filterrific],select_options: {
+        sorted_by_type: TypeOfRoom.options_for_sorted_by_type,
+        sorted_by_state: State.options_for_sorted_by_state
+      },
+     persistence_id: false
+  ) or return
+
+  @rooms = @filterrific.find.page(params[:page])
+
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_room

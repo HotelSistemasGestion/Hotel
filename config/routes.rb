@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
 
+  get 'accounting_report/mayor'
+
+  get 'accounting_report/balance'
+
   get 'accounting_years/index'
 
   get 'audit/index'
 
   resources :reservation_rooms
+
   get 'picture/index'
 
   get 'notificacion/index'
@@ -13,7 +18,7 @@ Rails.application.routes.draw do
 
   get 'gallery/index'
 
-
+ 
   resources :budget_room_details
   resources :budget_service_details
   resources :cleanings
@@ -27,8 +32,13 @@ Rails.application.routes.draw do
   end
 
   resources :rooms do
-    get :autocomplete_room_identificador, :on => :collection
+
+    collection do
+      get 'report'
+    end
+    get :autocomplete_room_identificador, :on => :collection 
   end
+
   resources :budgets do
     collection do
         get 'my_new'
@@ -69,6 +79,8 @@ Rails.application.routes.draw do
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
 
+  get "accountiong_account_years/:accounting_year_id" => "accounting_accounts#accountiong_account_years"
+
   resources :cashes
   resources :type_of_rooms do
      get :autocomplete_type_of_room_tipo, :on => :collection
@@ -78,10 +90,10 @@ Rails.application.routes.draw do
   resources :accounting_accounts
   resources :account_plans
   resources :accounting_years
-  get 'balance_report/balance'
-  get 'ledger/mayor'
+  get 'accounting_report/balance'
+  get 'accounting_report/mayor'
   get 'diary_book/diario'
-  post 'diary_book/diario'
+
 
   resources :reservation_requests
   resources :services do
@@ -96,6 +108,7 @@ Rails.application.routes.draw do
   resources :clients do 
     get :autocomplete_client_cedula, :on => :collection
   end
+  
   devise_for :users
   resources :complaints do
     collection do

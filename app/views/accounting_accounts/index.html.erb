@@ -7,18 +7,35 @@
                                     <thead>
                                     <tr role="row">
                                      <th class="col-sm-2"><h3 class="box-title titulo">CUENTAS</h3></th>
-                                     <th class="col-sm-2"><h3 class="box-title titulo"><%= link_to new_accounting_account_path, remote: true, class: 'btn btn-primary' do %><span class="glyphicon glyphicon-plus"></span>
+                                     <th class="col-sm-2"><h3 class="box-title titulo"><%= link_to new_accounting_account_path, class: 'btn btn-primary' do %><span class="glyphicon glyphicon-plus"></span>
                                        <% end %></h3></th>
-                                     <th class="col-sm-2"><td class="col-sm-2"><h3 class="box-title titulo">Ejercicios</h3></td> <td class="col-sm-2"><%= form_for @accounting_years= AccountingYear.new do |f| %>
-                                    <%= select("accounting_year", "accounting_year_id", AccountingYear.all.collect {|p| [ p.anho, p.id ] }, {include_blank: 'Seleccione'}) %>
-                                    <% end %></td></th>
-
+                                       
+                                       <th class="col-sm-2"><h2 class="box-title titulo">Ejercicio</h2><%= form_for(@accounting_account=AccountingAccount.new,data: {toggle: "validator"}, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @accounting_account.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@accounting_account.errors.count, "error") %> prohibited this employee from being saved:</h4>
+      <ul>
+      <% @accounting_account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <td>
+   <div class="box-body">
+       <%= f.select :eje1 ,AccountingYear.all.collect { |p| [p.anho, p.id ] },{include_blank: 'Lista de Planes'},class: "form-control" ,id:"select"%>              
+       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    </div>
+    </td>
+<% end %></th>
                                     </tr>
                                     </thead>
                                     </table>
                                     </div> 
                       </div>
-        <div class="box-body">
+
+      <div class="box-body">
           <div class="dataTables_wrapper form-inline dt-bootstrap">
             <div class="row">
               <div class="col-sm-6"></div>
@@ -32,23 +49,52 @@
                     <tr role="row">
                       <th class="col-sm-2">Grupo</th>
                       <th class="col-sm-2">Cuenta</th>
-                      <th class="col-sm-2">Nombre</th>
-                      <th class="col-sm-2">Imputable</th>  
-                      <th class="col-sm-2">Opciones</th>  
+                      <th class="col-sm-2">Nombre</th> 
+                      <th class="col-sm-2">Imputable</th> 
+                      <th class="col-sm-2">Opciones</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <% @accounting_accounts.each do |accounting_account| %>
-                    <%= render "row", accounting_account: accounting_account %>
-                    <% end %>
+                  <tbody id="partial">
+                    
                   </tbody> 
                 </table>
               </div>  
             </div>
           </div>
         </div>
-  </table>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#select").on("change",function(){
+      console.log($(this).val());
+    });
+  });
+</script>
+
+<script type="text/javascript">
+function search_invoices(){
+    $("#select").on('change', function (event,data) {                
+            var ejercicio_id = $(this).val()
+            console.log($(this).val());
+            $.ajax({
+                type: "GET",
+                url: "/accountiong_account_years/"+ejercicio_id,
+                dataType: "json",
+                data: {"accounting_year_id" : ejercicio_id},
+                success: function(result){
+                    $("#partial").empty();
+                    $.each(result,function(index){
+                        $("#partial").append('<tr><td><label class="control-label" >'+result[index].grupo+'</label></td><td><label class="control-label" >'+result[index].cuenta+'</label></td><td><label class="control-label" >'+result[index].nombre+'</label></td><td><label class="control-label" >'+result[index].imputable+'</label></td><td><a class="btn btn-primary" title=""data-toggle="tooltip" data-placement="rigth" data-remote="true" href='+"/accounting_accounts/"+result[index].id+' data-original-title="Ver"><span class="glyphicon glyphicon-eye-open"></span> <a class="btn btn-warning" title=""data-toggle="tooltip" data-placement="rigth"  href='+"/accounting_accounts/"+result[index].id+/edit/+' data-original-title="Editar"><span class="glyphicon glyphicon-pencil"></span><a class="btn btn-danger" title=""data-toggle="tooltip" data-placement="rigth" data-remote="true" href='+"/accounting_accounts/"+result[index].id+' data-original-title="Ver"><span class="glyphicon glyphicon-trash"></span></td></tr>');
+                        
+                    })
+                    
+                } 
+            });
+    });
+}      
+</script>
 </div>
 </div>
-       </div>
-</div>
+ </div>

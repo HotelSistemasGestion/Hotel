@@ -1,0 +1,29 @@
+ <div class="box-body">
+          <div class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+              <div class="col-sm-6"></div>
+              <div class="col-sm-6"></div>
+            </div>
+            
+            <div class="row">
+              <div class="col-sm-offset-1 col-sm-9">
+                <table class="table table-bordered  table-responsive ">
+                  <thead>
+                    <tr role="row">
+                      <th class="col-sm-2">Grupo</th>
+                      <th class="col-sm-2">Cuenta</th>
+                      <th class="col-sm-2">Nombre</th>
+                      <th class="col-sm-2">Imputable</th>  
+                      <th class="col-sm-2">Opciones</th>  
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @accounting_accounts.each do |accounting_account| %>
+                    <%= render "row", accounting_account: accounting_account %>
+                    <% end %>
+                  </tbody> 
+                </table>
+              </div>  
+            </div>
+          </div>
+        </div>
