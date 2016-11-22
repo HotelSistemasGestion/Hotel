@@ -1,4 +1,5 @@
-<tr id="<%= accounting_account.id %>">
+<% @accounts.each do |accounting_account| %>
+    <tr id="<%= accounting_account.id %>">
     <td><%= accounting_account.grupo %></td>
     <td><%= accounting_account.cuenta %></td>
     <td><%= accounting_account.nombre %></td> 
@@ -25,4 +26,5 @@
             
         </div>
     </td>
-</tr>
+</tr>                    
+<% end %>

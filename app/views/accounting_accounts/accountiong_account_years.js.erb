@@ -1,0 +1,3 @@
+$("#partial2").empty();
+$("#partial").empty();
+$("#partial").append("<%= j render partial: 'accounting_accounts/row',locals:{accounting_accounts: @accounts} %>").html_safe()
