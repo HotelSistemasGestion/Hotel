@@ -11,22 +11,26 @@
 <%contador_selector=0%>
   <div class="box-header with-border">
       <h1 class="box-title titulo">Libro Mayor</h1>
+       
+        <%= link_to ''.html_safe, '#', class: "btn btn-primary no-print glyphicon glyphicon-print alineado_mayor", onclick: 'window.print();return false;'%>
+        
   </div>
      <div class="box-body">
       <form class="form-inline">
-        <div class="col-xs-6 col-md-6 col-sm-6"id="stock">
+        <div class="col-xs-6 col-md-6 col-sm-6">
 
           <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "search_conta" do %>
             <%=label_tag "Periodo: "%>
             <%= text_field_tag :search_conta, params[:search_conta],class: "form-control"%>
-            <%= button_tag(type: :submit, class: "btn btn-primary " ,id:"button1") do %>
+            <%= button_tag(type: :submit, class: "btn btn-primary no-print" ,id:"button1") do %>
               <i class="glyphicon glyphicon-search"></i>
               <% end %>
-          <%end%>
-
-          
+          <%end%>  
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 seleccion">
+
+
+        <div class="col-lg-6 col-md-6 col-sm-6 seleccion no-print">
+
           <%=label_tag "Cuenta:"%>   
           <select data-placeholder="Seleccione las cuentas..." class="chosen-select " multiple style="width:300px;">
             <!-- while para obtner todas los opcion del select dado las cuentas que se filtraron (array_filtrar)-->   
@@ -36,8 +40,10 @@
               <option value=""+<%=mostrar[0].nombre%>+""><%=mostrar[0].nombre%>.</option>
               <%contador_selector +=1%>
             <%end%>
+
           </select>
           <script>cuentas_cant(<%=contador_selector%>);</script>
+
         </div>
       </form>                            
     </div>
@@ -107,7 +113,7 @@
         <%cont2 +=1%>
         <%end%>
       <%if cont2==0%>
-        <div class="box-header">
+        <div class="box-body">
            <div class="callout callout-info">
             <h4>No se ha hecho aun un asiento con ese rango de fechas</h4>
 

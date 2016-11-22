@@ -2811,6 +2811,17 @@ overflow-x:hidden;
 
 
 }
+.alineado{
+  float: right;
+   top: -48px;
+}
+.alineado_balance{
+  float: right;
+   top: -35px;
+}
+.alineado_mayor{
+  float: right;
+}
 
 .top {
   background-color:#EAE9E4;
