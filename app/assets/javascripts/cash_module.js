@@ -10,10 +10,6 @@ $(document).on("change", ".select", function(){
         mostrarCheque(id,cheque);
     });
 
-$(document).on("change", "#invoice", function(){
-        var id = "#"+$(this).attr("id");
-        $(".total").val(sumarSubtotales());
-    });
 
 function search_invoices(){
     $("#cliente").on('railsAutocomplete.select', function (event,data) {                
