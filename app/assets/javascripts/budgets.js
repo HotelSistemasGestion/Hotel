@@ -1,5 +1,8 @@
 
-$(document).ready(function (){
+$(document).ready(function(){
+        $('.money').maskMoney({thousands:'.', decimal:'.', allowZero:true,precision: 0 });
+
+
         $('div#budgets #budget_check_in').change(function(){
            $("table.services").find('tr.fields:visible').each(function(){ 
             checkDisponibility($(this));

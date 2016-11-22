@@ -388,8 +388,7 @@ ActiveRecord::Schema.define(version: 20161121022928) do
   add_index "opening_cashes", ["employee_id"], name: "index_opening_cashes_on_employee_id", using: :btree
 
   create_table "payment_types", force: :cascade do |t|
-    t.string   "valor"
-    t.string   "total"
+    t.string   "descripcion"
     t.string   "titular"
     t.string   "banco"
     t.integer  "n_cheque"

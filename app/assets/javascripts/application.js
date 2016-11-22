@@ -54,6 +54,8 @@
 //= require rails.validations
 //= require rails.validations.nested_form
 
+//= require maskmoney
+
   $(document).ready(function() {
     $.validate();
   });
