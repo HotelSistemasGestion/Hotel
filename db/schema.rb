@@ -192,12 +192,6 @@ ActiveRecord::Schema.define(version: 20161122045023) do
   add_index "budgets", ["comfort_id"], name: "index_budgets_on_comfort_id", using: :btree
   add_index "budgets", ["reservation_request_id"], name: "index_budgets_on_reservation_request_id", using: :btree
 
-  create_table "cash_counts", force: :cascade do |t|
-    t.date     "fecha_arqueo"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "cash_movements", force: :cascade do |t|
     t.integer  "monto_total"
     t.datetime "created_at",               null: false
@@ -284,9 +278,16 @@ ActiveRecord::Schema.define(version: 20161122045023) do
     t.integer  "monto_cheque"
     t.integer  "monto_tcredito"
     t.integer  "monto_tdebito"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "existente_efe"
+    t.integer  "existente_cheque"
+    t.integer  "existente_tcre"
+    t.integer  "existente_tdb"
+    t.integer  "opening_cash_id"
   end
+
+  add_index "closing_cashes", ["opening_cash_id"], name: "index_closing_cashes_on_opening_cash_id", using: :btree
 
   create_table "comforts", force: :cascade do |t|
     t.string   "descripcion"
@@ -312,13 +313,6 @@ ActiveRecord::Schema.define(version: 20161122045023) do
 
   add_index "complaints", ["complaint_service_id"], name: "index_complaints_on_complaint_service_id", using: :btree
   add_index "complaints", ["room_id"], name: "index_complaints_on_room_id", using: :btree
-
-  create_table "detail_of_cash_counts", force: :cascade do |t|
-    t.integer  "monto_sistema"
-    t.integer  "monto_caja"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
 
   create_table "detail_of_cash_movements", force: :cascade do |t|
     t.integer  "sub_monto"
@@ -615,6 +609,7 @@ ActiveRecord::Schema.define(version: 20161122045023) do
   add_foreign_key "cleanings", "cleaning_rooms"
   add_foreign_key "cleanings", "employees"
   add_foreign_key "cleanings", "rooms"
+  add_foreign_key "closing_cashes", "opening_cashes"
   add_foreign_key "complaints", "complaint_services"
   add_foreign_key "complaints", "rooms"
   add_foreign_key "detail_of_cash_movements", "cash_movements"

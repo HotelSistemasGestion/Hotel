@@ -79,6 +79,8 @@ Rails.application.routes.draw do
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
 
+  get "montos_cierre/:opening_cash_id" => "closing_cashes#montos_cierre"
+
   get "accountiong_account_years/:accounting_year_id" => "accounting_accounts#accountiong_account_years"
 
   resources :cashes

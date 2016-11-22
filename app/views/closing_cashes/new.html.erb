@@ -1,9 +1,12 @@
-<div class="page-header">
-  <%= link_to closing_cashes_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <h1>New closing_cash</h1>
+<div class="box box-primary">
+	<div class="box-header with-border">
+	  <%= link_to closing_cashes_path, class: 'btn btn-default' do %>
+    	<span class="glyphicon glyphicon-chevron-left"></span>
+    	Atras
+  	<% end %>
+	  <h3><center>Nuevo Cierre</center></h3>
+	</div>
+	<div class="box-body">
+		<%= render 'form' %>
+	</div>
 </div>
-
-<%= render 'form' %>
