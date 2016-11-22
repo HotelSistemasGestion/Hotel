@@ -54,7 +54,16 @@ var cont=0;
     $('.chosen-select').on('change', function (e) {
       populateFields();
     });
-
+    $('#tb1').on('click', function (e) {
+        $('#tb2').addClass('no-print');
+        $('#tb1').removeClass('no-print');
+     
+    });
+  $('#tb2').on('click', function (e) {
+        $('#tb1').addClass('no-print');
+         $('#tb2').removeClass('no-print');
+     
+    });
 
 
   });
@@ -66,7 +75,7 @@ function cuentas_cant (num){
   
       $(".seleccion").show(); //muestro mediante id   
     }else{
-     $(".seleccion").hide(); //muestro mediante id  
+     $(".seleccion").hide(); //oculto mediante id  
     }
 };
 

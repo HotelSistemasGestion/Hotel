@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20161121183040) do
-
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -467,11 +465,8 @@ ActiveRecord::Schema.define(version: 20161121183040) do
     t.date     "check_out"
     t.integer  "room_id"
     t.integer  "type_of_room_id"
-<<<<<<< HEAD
-=======
     t.integer  "reservation_request_id"
     t.integer  "budget_id"
->>>>>>> b179a865c39d2b47d4b8e1943b774a18c6969d37
     t.string   "total"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
