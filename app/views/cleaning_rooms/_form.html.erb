@@ -16,7 +16,7 @@
   <div class="form-group col-sm-4">
     <%= f.label "Encargado", class: "control-label" %>
    
-      <%= f.select :employee_id ,Employee.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control" %>
+      <%= f.select :employee_id ,@employees.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control" %>
   </div>
   <div>
         <table id="mytabla" class="table">
@@ -37,6 +37,7 @@
                       <%= li.select :room_id ,Room.all.collect { |p| [p.identificador, p.id ] },{include_blank: false},class: "form-control"%>  
                       
                   </td>  
+             
                <td>
                 <div class="input-daterange" id="datepicker">             
                   <div class="col-sm-6">
@@ -52,7 +53,7 @@
 
                   <td  class="form-group has-feedback">
                          <%= li.text_field :title,id:"cp5", class: "form-control input ", placeholder:"HOLA MUNDO",:required=>true%> 
-                         <div class="help-block with-errors">*requerido</div>   
+                           
                   </td>
                   <td>
                   <button id="cp4"class="btn btn-primary glyphicon glyphicon-text-background colorpicker-component"></button>

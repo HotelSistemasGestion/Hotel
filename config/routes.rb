@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'audit/index'
 
   resources :reservation_rooms
+
   get 'picture/index'
 
   get 'notificacion/index'
@@ -31,8 +32,13 @@ Rails.application.routes.draw do
   end
 
   resources :rooms do
-    get :autocomplete_room_identificador, :on => :collection
-  end 
+
+    collection do
+      get 'report'
+    end
+    get :autocomplete_room_identificador, :on => :collection 
+  end
+
   resources :budgets do
     collection do
         get 'my_new'
@@ -72,6 +78,8 @@ Rails.application.routes.draw do
   end 
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
+
+  get "montos_cierre/:opening_cash_id" => "closing_cashes#montos_cierre"
 
   get "accountiong_account_years/:accounting_year_id" => "accounting_accounts#accountiong_account_years"
 
