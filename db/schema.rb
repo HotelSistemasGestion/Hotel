@@ -451,8 +451,9 @@ ActiveRecord::Schema.define(version: 20161122045023) do
     t.datetime "updated_at",      null: false
     t.date     "start"
     t.date     "end"
-    t.string   "text"
+    t.string   "title"
     t.string   "textColor"
+    t.string   "color"
   end
 
   add_index "reservation_rooms", ["budget_id"], name: "index_reservation_rooms_on_budget_id", using: :btree
