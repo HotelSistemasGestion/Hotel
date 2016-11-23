@@ -462,8 +462,6 @@ ActiveRecord::Schema.define(version: 20161122045023) do
     t.string   "apellido"
     t.string   "email"
     t.string   "dias"
-    t.integer  "room_id"
-    t.integer  "type_of_room_id"
     t.integer  "reservation_request_id"
     t.integer  "budget_id"
     t.string   "total"
@@ -473,8 +471,6 @@ ActiveRecord::Schema.define(version: 20161122045023) do
 
   add_index "reservations", ["budget_id"], name: "index_reservations_on_budget_id", using: :btree
   add_index "reservations", ["reservation_request_id"], name: "index_reservations_on_reservation_request_id", using: :btree
-  add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
-  add_index "reservations", ["type_of_room_id"], name: "index_reservations_on_type_of_room_id", using: :btree
 
   create_table "rols", force: :cascade do |t|
     t.string   "role"
@@ -628,8 +624,6 @@ ActiveRecord::Schema.define(version: 20161122045023) do
   add_foreign_key "reservation_rooms", "type_of_rooms"
   add_foreign_key "reservations", "budgets"
   add_foreign_key "reservations", "reservation_requests"
-  add_foreign_key "reservations", "rooms"
-  add_foreign_key "reservations", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "comforts"
