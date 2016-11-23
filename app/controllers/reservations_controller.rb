@@ -20,7 +20,7 @@ class ReservationsController < ApplicationController
       @my_reservation_requests = ReservationRequest.find(params[:id])
       @reservation.reservation_rooms.build()
       #@my_type_of_rooms =  TypeOfRoom.find(params[:id])
-      @my_budgets = Budget.find(params[:id])
+      @my_budgets = Budget.where("reservation_request_id = ?", @my_reservation_requests.id).first
     else
       @reservation = Reservation.new
     end
@@ -99,8 +99,8 @@ class ReservationsController < ApplicationController
      # params.require(:reservation).permit(:nombre, :apellido, :check_in, :check_out, :type_of_room_id)
      #json.extract! reservation, :id, :nombre, :apellido, :check_in, :check_out, :type_of_room_id, :created_at, :updated_at
      #json.url reservation_url(reservation, format: :json)
-     params.require(:reservation).permit(:id, :reservation_request_id, :budget_id, :nombre, :apellido, :email, :dias, :check_in, :check_out, :total,
-      :reservation_rooms_attributes => [:id, :cantidad,:reservation_id,:room_id, :type_of_room,:budget, :subtotal, :_destroy],
+     params.require(:reservation).permit(:id, :reservation_request_id, :budget_id, :nombre, :apellido, :email, :dias, :total,
+      :reservation_rooms_attributes => [:id, :cantidad,:reservation_id,:room_id, :type_of_room,:budget,:check_in,:check_out, :subtotal, :_destroy],
       :reservation_requests_attributes => [:id, :nombre, :apellido, :email, :telefono,:comfort_id, :cantidad_de_adultos, :cantidad_de_ninhos, :cantidad_de_familias, 
         :check_in, :check_out, :comentarios, :_destroy])
     end
