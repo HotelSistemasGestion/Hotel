@@ -45,22 +45,23 @@
   </div>
 
 
-  <div class="form-group">
-    <%= f.label :check_in, class: "col-sm-1 control-label" %>
+  <!--<div class="form-group">
+    <%#= f.label :check_in, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :check_in, value: @my_reservation_requests.check_in, class: "datepicker form-control"%>
+      <%#= f.text_field :check_in, value: @my_reservation_requests.check_in, class: "datepicker form-control"%>
       <%#= f.text_field :check_in, class: "datepicker form-control"%>
-    </div>
+    </div>-->
 
-    <%= f.label :check_out, class: "col-sm-1 control-label" %>
-    <div class="col-sm-3">
-      <%= f.text_field :check_out, value: @my_reservation_requests.check_out, class: "datepicker form-control" %>
+    <%#= f.label :check_out, class: "col-sm-1 control-label" %>
+    <!--<div class="col-sm-3">
+      <%#= f.text_field :check_out, value: @my_reservation_requests.check_out, class: "datepicker form-control" %>
       <%#= f.text_field :check_out, class: "datepicker form-control" %>
-    </div>
+    </div>-->
+    <div class="col-sm-3">
     <!--Consultar el porque-->
     <td><%= f.hidden_field :reservation_request_id,value: @my_reservation_requests.id,readonly: true,class: "form-control"%>
     <td><%= f.hidden_field :budget,value: @my_budgets.id,readonly: true,class: "form-control"%>
-  </div>
+    </div>
 
 
   <div class="box box-primary box-solid collapsed-box">
