@@ -23,10 +23,7 @@ class ClosingCashesController < ApplicationController
   def edit
   end
   def montos_cierre
-      @movimientos = CashMovement.find_by(opening_cash_id: params[:opening_cash_id])
-      movimientos.each do |mov|
-        valores = PaymentTypes.where("cash_movement_id=?",mov.id)  
-      end
+      @apertura = OpeningCash.find(params[:opening_cash_id])
       respond_to do |format|
         format.js 
       end    

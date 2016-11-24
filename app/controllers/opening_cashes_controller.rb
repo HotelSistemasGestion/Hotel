@@ -36,6 +36,10 @@ class OpeningCashesController < ApplicationController
     employee = Employee.find(@opening_cash.employee_id)
     respond_to do |format|
       @opening_cash.estado = "Activo"
+      @opening_cash.final_efectivo = 0
+      @opening_cash.final_cheque = 0
+      @opening_cash.final_credito = 0
+      @opening_cash.final_debito = 0
       if @opening_cash.save
         cash=Cash.find(@opening_cash.cash_id)
         cash.estado="Abierta"

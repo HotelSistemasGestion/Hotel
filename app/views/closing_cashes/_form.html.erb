@@ -25,7 +25,7 @@
                   <div class="form-group">
                     <%= f.label :apertura, class: "col-sm-5 control-label" %>
                     <div class="col-sm-7">
-                      <%= f.text_field :opening_cash_id ,class:"form-control",id:"apertura",readonly: true%>
+                      <%= f.text_field :opening_cash_id ,class:"form-control",id:"aux"%>
                       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     </div>
                   </div>  
@@ -46,7 +46,7 @@
             <tbody>
               <tr>
                 <td><%=f.label :efectivo,class:"control-label"%></td>
-                <td><%=f.text_field :monto_efectivo ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                <td><%=f.text_field :monto_efectivo ,class: "form-control aux",id:"efectivo"%>
                 </td>
                 <td><%=f.text_field :existente_efe ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
                 </td>
@@ -55,7 +55,7 @@
               
               <tr>
                 <td><%=f.label :cheque,class:"control-label"%></td>
-                <td><%=f.text_field :monto_cheque ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                <td><%=f.text_field :monto_cheque ,class: "form-control",id:"cheque"%>
                 </td>
                 <td><%=f.text_field :existente_cheque ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
                 </td>
@@ -64,7 +64,7 @@
               
               <tr>
                 <td><%=f.label :tarjeta_credito,class:"control-label"%></td>
-                <td><%=f.text_field :monto_tcredito ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                <td><%=f.text_field :monto_tcredito ,class: "form-control",id:"credito"%>
                 </td>
                 <td><%=f.text_field :existente_tcre ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
                 </td>
@@ -73,7 +73,7 @@
               
               <tr>
                 <td><%=f.label :tarjeta_debito,class:"control-label"%></td>
-                <td><%=f.text_field :monto_tdebito ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                <td><%=f.text_field :monto_tdebito ,class: "form-control",id:"debito"%>
                 </td>
                 <td><%=f.text_field :existente_tdb ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
                 </td>

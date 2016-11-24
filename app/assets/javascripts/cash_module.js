@@ -1,5 +1,6 @@
 $(document).ready(function(){
     search_invoices();
+    search_opening();
 });
 
 
@@ -39,7 +40,7 @@ function search_opening(){
             $.ajax({
                 type: "GET",
                 url: "/montos_cierre/"+apertura,
-                dataType: "json",
+                dataType: "script",
                 data: {"opening_cash_id" : apertura},
                  
             });
