@@ -18,6 +18,7 @@
                            state: 'pendiente',
                            celular: @account.telefono,
                            correo: @account.correo,
+                           iva: @account.iva,
                            client_id: @account.client_id,
                            fecha: Time.now.strftime("%d-%m-%Y"),                   
                            descuento: @account.descuento,
@@ -131,6 +132,10 @@
                 <tr>
                   <th>Total:</th>
                   <td><%= number_to_currency_py(@account.total) %></td>
+                </tr>        
+                <tr>
+                  <th>Iva:</th>
+                  <td><%= number_to_currency_py(@account.iva) %></td>
                 </tr>
               </tbody>
             </table> 

@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20161124020601) do
-
+ActiveRecord::Schema.define(version: 20161124133639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +126,7 @@ ActiveRecord::Schema.define(version: 20161124020601) do
     t.integer  "subtotal"
     t.integer  "descuento"
     t.string   "numero"
+    t.integer  "iva"
   end
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
@@ -370,6 +369,7 @@ ActiveRecord::Schema.define(version: 20161124020601) do
     t.string   "correo"
     t.string   "state"
     t.integer  "account_id"
+    t.integer  "iva"
   end
 
   add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
@@ -392,11 +392,10 @@ ActiveRecord::Schema.define(version: 20161124020601) do
   add_index "opening_cashes", ["employee_id"], name: "index_opening_cashes_on_employee_id", using: :btree
 
   create_table "payment_types", force: :cascade do |t|
-    t.string   "valor"
     t.string   "total"
     t.string   "titular"
     t.string   "banco"
-    t.integer  "n_cheque"
+    t.string   "n_cheque"
     t.string   "tarjeta_tipo"
     t.date     "fecha_disponibilidad"
     t.datetime "created_at",           null: false
@@ -443,19 +442,15 @@ ActiveRecord::Schema.define(version: 20161124020601) do
 
   create_table "reservation_rooms", force: :cascade do |t|
     t.integer  "reservation_id"
-<<<<<<< HEAD
-    t.string   "room_id"
-=======
     t.integer  "room_id"
     t.date     "check_in"
     t.date     "check_out"
     t.integer  "budget_id"
     t.integer  "cantidad"
     t.integer  "type_of_room_id"
->>>>>>> 9c7e7b2cfc9c2f4f45e8f34b975ef7f2c26eacb5
     t.integer  "subtotal"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.date     "start"
     t.date     "end"
     t.string   "title"
@@ -463,32 +458,25 @@ ActiveRecord::Schema.define(version: 20161124020601) do
     t.string   "color"
   end
 
+  add_index "reservation_rooms", ["budget_id"], name: "index_reservation_rooms_on_budget_id", using: :btree
+  add_index "reservation_rooms", ["reservation_id"], name: "index_reservation_rooms_on_reservation_id", using: :btree
+  add_index "reservation_rooms", ["room_id"], name: "index_reservation_rooms_on_room_id", using: :btree
+  add_index "reservation_rooms", ["type_of_room_id"], name: "index_reservation_rooms_on_type_of_room_id", using: :btree
+
   create_table "reservations", force: :cascade do |t|
     t.string   "nombre"
     t.string   "apellido"
     t.string   "email"
     t.string   "dias"
-<<<<<<< HEAD
-    t.date     "check_in"
-    t.date     "check_out"
-    t.integer  "room_id"
-    t.integer  "type_of_room_id"
-=======
     t.integer  "reservation_request_id"
     t.integer  "budget_id"
->>>>>>> 9c7e7b2cfc9c2f4f45e8f34b975ef7f2c26eacb5
     t.string   "total"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-<<<<<<< HEAD
-  add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
-  add_index "reservations", ["type_of_room_id"], name: "index_reservations_on_type_of_room_id", using: :btree
-=======
   add_index "reservations", ["budget_id"], name: "index_reservations_on_budget_id", using: :btree
   add_index "reservations", ["reservation_request_id"], name: "index_reservations_on_reservation_request_id", using: :btree
->>>>>>> 9c7e7b2cfc9c2f4f45e8f34b975ef7f2c26eacb5
 
   create_table "rols", force: :cascade do |t|
     t.string   "role"
@@ -636,17 +624,12 @@ ActiveRecord::Schema.define(version: 20161124020601) do
   add_foreign_key "payment_types", "payment_values"
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservation_requests", "comforts"
-<<<<<<< HEAD
-  add_foreign_key "reservations", "rooms"
-  add_foreign_key "reservations", "type_of_rooms"
-=======
   add_foreign_key "reservation_rooms", "budgets"
   add_foreign_key "reservation_rooms", "reservations"
   add_foreign_key "reservation_rooms", "rooms"
   add_foreign_key "reservation_rooms", "type_of_rooms"
   add_foreign_key "reservations", "budgets"
   add_foreign_key "reservations", "reservation_requests"
->>>>>>> 9c7e7b2cfc9c2f4f45e8f34b975ef7f2c26eacb5
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "comforts"

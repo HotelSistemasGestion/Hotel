@@ -80,6 +80,7 @@ class InvoicesController < ApplicationController
                                       :fecha, 
                                       :descuento,
                                       :subtotal,
+                                      :iva,
                                       :total,
                                       :state,
                                       :account_id,
