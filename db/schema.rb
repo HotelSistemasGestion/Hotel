@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122045023) do
+ActiveRecord::Schema.define(version: 20161124003921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,12 @@ ActiveRecord::Schema.define(version: 20161122045023) do
   end
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
+
+  create_table "actions", force: :cascade do |t|
+    t.string   "accion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "audits", force: :cascade do |t|
     t.integer  "auditable_id"
@@ -472,8 +478,18 @@ ActiveRecord::Schema.define(version: 20161122045023) do
   add_index "reservations", ["budget_id"], name: "index_reservations_on_budget_id", using: :btree
   add_index "reservations", ["reservation_request_id"], name: "index_reservations_on_reservation_request_id", using: :btree
 
+  create_table "rol_actions", force: :cascade do |t|
+    t.integer  "rol_id"
+    t.integer  "action_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "rol_actions", ["action_id"], name: "index_rol_actions_on_action_id", using: :btree
+  add_index "rol_actions", ["rol_id"], name: "index_rol_actions_on_rol_id", using: :btree
+
   create_table "rols", force: :cascade do |t|
-    t.string   "role"
+    t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -546,16 +562,6 @@ ActiveRecord::Schema.define(version: 20161122045023) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "user_roles", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "rol_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "user_roles", ["rol_id"], name: "index_user_roles_on_rol_id", using: :btree
-  add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -576,10 +582,12 @@ ActiveRecord::Schema.define(version: 20161122045023) do
     t.string   "celular"
     t.integer  "roles_mask"
     t.string   "direccion"
+    t.integer  "rol_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["rol_id"], name: "index_users_on_rol_id", using: :btree
 
   add_foreign_key "account_x_auto_entries", "account_x_entries"
   add_foreign_key "account_x_auto_entry_dets", "account_x_auto_entries"
@@ -624,11 +632,12 @@ ActiveRecord::Schema.define(version: 20161122045023) do
   add_foreign_key "reservation_rooms", "type_of_rooms"
   add_foreign_key "reservations", "budgets"
   add_foreign_key "reservations", "reservation_requests"
+  add_foreign_key "rol_actions", "actions"
+  add_foreign_key "rol_actions", "rols"
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "comforts"
   add_foreign_key "rooms", "states"
   add_foreign_key "rooms", "type_of_rooms"
-  add_foreign_key "user_roles", "rols"
-  add_foreign_key "user_roles", "users"
+  add_foreign_key "users", "rols"
 end
