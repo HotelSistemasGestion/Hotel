@@ -129,6 +129,10 @@
                 <tr>
                   <th>Total:</th>
                   <td><%= f.text_field :total,readonly: true, id: 'totales', value: 0%></td>
+                </tr>       
+                <tr>
+                  <th>IVA:</th>
+                  <td><%= f.text_field :iva, readonly: true, id: "iva", value: 0%></td>
                 </tr>
               </tbody>
 </table>
@@ -234,6 +238,7 @@
         var desc_val=!isNaN(val2) ? val2 : 0;
         var d=((getPrecioInicial()+subtotales) *  desc_val);
         $("#totales").val(( getPrecioInicial()+subtotales) - d);
+        $("#iva").val((( getPrecioInicial()+subtotales) - d) * 0.1);
       }
 
       $('#bt1').click(function() {

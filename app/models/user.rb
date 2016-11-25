@@ -3,10 +3,19 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable  
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :user_roles, dependent: :destroy
-  has_many :rols, through: :user_roles, dependent: :destroy
   
+  belongs_to :rol
+    
   def has_role?(rol)
-    !self.rols.find_by(role: rol).nil?     
+    !self.rol.actions.find_by(accion: rol).nil?     
   end
+
+  def rol_name?(rol)
+    if self.rol.nombre == rol 
+    	return true     
+    else
+    	return false
+    end
+  end
+
 end
