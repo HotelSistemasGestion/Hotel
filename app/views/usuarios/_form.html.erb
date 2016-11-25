@@ -1,4 +1,4 @@
-<%= form_for @usuario, url: usuarios_path, html: { method: :post } do |f| %>
+<%= form_for @usuario, url: usuarios_path, html: { method: :post }, :validate => true do |f| %>
 <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -24,7 +24,7 @@
                             <div class="col-md-12">
                               <div class="col-md-6">
                                 <label for="exampleInputEmail1">C.I.N</label>
-                                <%= f.text_field :numero_ci, :maxlength => 7, :class => 'form-control', placeholder:"Cedula" %>
+                                <%= f.text_field :numero_ci, :maxlength => 8, :class => 'form-control', placeholder:"Cedula" %>
                               </div>
                               <div class="col-md-6">
                                 <label for="exampleInputEmail1">Direccion</label>
