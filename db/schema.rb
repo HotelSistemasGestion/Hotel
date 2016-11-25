@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20161124003921) do
     t.integer  "subtotal"
     t.integer  "descuento"
     t.string   "numero"
+    t.integer  "iva"
   end
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
@@ -374,6 +375,7 @@ ActiveRecord::Schema.define(version: 20161124003921) do
     t.string   "correo"
     t.string   "state"
     t.integer  "account_id"
+    t.integer  "iva"
   end
 
   add_index "invoices", ["client_id"], name: "index_invoices_on_client_id", using: :btree
@@ -386,6 +388,10 @@ ActiveRecord::Schema.define(version: 20161124003921) do
     t.datetime "updated_at",     null: false
     t.integer  "employee_id"
     t.integer  "cash_id"
+    t.integer  "final_efectivo"
+    t.integer  "final_cheque"
+    t.integer  "final_credito"
+    t.integer  "final_debito"
   end
 
   add_index "opening_cashes", ["cash_id"], name: "index_opening_cashes_on_cash_id", using: :btree

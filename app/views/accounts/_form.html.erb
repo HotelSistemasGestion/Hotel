@@ -106,7 +106,7 @@
       <!-- Table row -->
         <div class="box box-primary box-solid collapsed-box">
             <div class="box-header with-border">
-              <h3 class="box-title">Detalle Servicios</h3>
+              <h3 class="box-title" style="color:white">Detalle Servicios</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -173,6 +173,10 @@
                 <tr>
                   <th>Total:</th>
                   <td><%= f.text_field :total, readonly: true, id: "totales", value: 0%></td>
+                </tr>         
+                <tr>
+                  <th>IVA:</th>
+                  <td><%= f.text_field :iva, readonly: true, id: "iva", value: 0%></td>
                 </tr>
               </tbody>
             </table>
@@ -273,6 +277,7 @@
         var desc_val=!isNaN(val2) ? val2 : 0;
         var d=((getPrecioInicial()+subtotales) *  desc_val);
         $("#totales").val(( getPrecioInicial()+subtotales) - d);
+        $("#iva").val((( getPrecioInicial()+subtotales) - d) * 0.1);
       }
 
       $('#bt1').click(function() {
