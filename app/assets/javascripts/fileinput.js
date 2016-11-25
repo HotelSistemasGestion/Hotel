@@ -18,7 +18,7 @@
 (function ($) {
     var MAIN_TEMPLATE_1 = '{preview}\n' +
         '<div class="input-group {class}">\n' +
-       
+        '   {caption}\n' +
         '   <div class="input-group-btn">\n' +
         '       {remove}\n' +
         '       {browse}\n' +

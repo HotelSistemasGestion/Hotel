@@ -93,7 +93,7 @@
 }
 
 .loading {
-    background: transparent url('../img/loading.gif') no-repeat scroll center center content-box !important;
+    background: transparent url(https://res.cloudinary.com/dqgld1gyl/image/upload/v1479519884/loading_utdb0j.gif) no-repeat scroll center center content-box !important;
 }
 
 .wrap-indicator {
