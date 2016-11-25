@@ -1,61 +1,75 @@
-<div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-8 page-header">
-    <h1>Habitacion</h1>
-  </div>
-  <div class="col-sm-2"></div>
-</div>
-
-<div class="row">
-  <div class="col-sm-2"></div>
-  <div class="col-sm-2">
-
-  <dt>Identificador:</dt>
-  <dd><%= @room.identificador %></dd>
-
-  <dt>Tipo de Habitacion:</dt>
-  <dd><%= @room.type_of_room_tipo %></dd>
-
-
-  <dt>Estado:</dt>
-  <dd><%= @room.state_descripcion %></dd>
-
-
-  <dt>Capacidad:</dt>
-  <dd><%= @room.capacidad %></dd>
+<div class="box">
   
-  <dt>Comfort:</dt>
-  <dd><%= @room.comfort_id %></dd>
-
+  
+     
+      <div class="box-header with-border">
+        <h3 class="box-title">Habitacion <%= @room.identificador %></h3>
+      </div>
+      
  
-  
-  
-  </div>
-  <div class="col-sm-8">
+
+    <div class="box-body">
+
+      <div class="col-sm-2">
+
+      <dd>Identificador: <%= @room.identificador %></dd>
+      <dd></dd>
+
+      <dt>Tipo de Habitacion:</dt>
+      <dd><%= @room.type_of_room_tipo %></dd>
+      <dt>Estado:</dt>
+      
+          <!--Se determina el color del label dependiendo del estado NO UTILIZO ENUMERIZE, -->                   
+                <%if @room.state_descripcion == "libre" %>
+                  <% btn = 'warning' %>
+                <%elsif @room.state_descripcion == "fuera de servicio" %>
+                  <% btn = 'success' %>
+               
+                <%else %>
+                  <% btn = 'default' %>
+                <%end%>     
+                <dd><span class="label label-<%=btn%>"><%= @room.state_descripcion %></span></dd>
+
     
-  <% Photo.where("#{:room_id} = ?" , @room.id).each do |p|%>
-    <div class="col-sm-2">
-         <a  href= "<%=p.my_file.url%>"  class="image-popup">
-         <%= image_tag p.my_file.url,:width => 200, :height => 200%>
-         </a>
-    </div>
-  <%end%>
 
-  </div>    
- </div>
 
- <BR>
- <BR>
- <div class="row">
-    <div class="col-sm-2"></div>
-    <div>
-      <%= link_to rooms_path, class: 'btn btn-default' do %>
-      <span class="glyphicon glyphicon-list-alt"></span>
-      Volver
-      <% end %>
-     <%= link_to edit_room_path(@room),class: "btn btn-default" do %>
-     <span class="glyphicon glyphicon-edit"></span>
-     Editar
-     <%end%> 
+      <dt>Capacidad:</dt>
+      <dd><%= @room.capacidad %></dd>
+      
+      <dt>Comfort:</dt>
+      <dd><%= @room.comfort_descripcion %></dd>
+
+     
+      
+      
+      </div>
+      <div class="col-sm-8">
+        
+      <% Photo.where("#{:room_id} = ?" , @room.id).each do |p|%>
+        <div class="col-sm-2">
+             <a  href= "<%=p.my_file.url%>"  class="image-popup">
+             <%= image_tag p.my_file.url,:width => 200, :height => 200%>
+             </a>
+        </div>
+      <%end%>
+
+      </div>    
+     </div>
+
+     <BR>
+     <BR>
+     <div class="box-body">
+    
+        <div>
+          <%= link_to rooms_path, class: 'btn btn-default' do %>
+          <span class="glyphicon glyphicon-list-alt"></span>
+          Volver
+          <% end %>
+         <%= link_to edit_room_path(@room),class: "btn btn-default" do %>
+         <span class="glyphicon glyphicon-edit"></span>
+         Editar
+         <%end%> 
+        </div>
     </div>
+ 
 </div>
