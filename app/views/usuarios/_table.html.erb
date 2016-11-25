@@ -33,15 +33,19 @@
                 <td><%= usuario.apellido %></td>
                 <td><%= usuario.email %></td>  
                 <td><%= usuario.created_at.strftime("%d-%m-%Y")%></td>
-                <%if !usuario.rol.nil? %>                
-                  <td><span class="label label-success"><%= usuario.rol.nombre %></span></td> 
+                <%if !usuario.rol.nil? %>
+                  <%if usuario.rol.nombre == "Admin" %>
+                    <td><span class="label label-warning">Superadmin</span></td>
+                  <%else%>
+                    <td><span class="label label-success"><%= usuario.rol.nombre %></span></td>
+                  <%end%>                                   
                 <%else%>
                   <td><%= link_to 'Asignar Rol', new_rol_path %></td> 
                 <%end%>  
                 <!--<td><span class="label label-success"><%#= usuario.rols.first.role%></span></td>-->              
                 <td align="center">
 
-                    <%= link_to '', usuario_path(usuario), remote: true ,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
+                    <%= link_to '', usuario_path(usuario), remote: true ,class: "btn btn-primary glyphicon glyphicon-eye-open", title: 'Info', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth'%>
 
                   <% if can? :edit, User %>
                     <%= link_to edit_usuario_path(usuario), class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
