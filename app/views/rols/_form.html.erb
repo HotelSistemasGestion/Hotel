@@ -1,0 +1,175 @@
+<%= form_for @rol, html: { method: :post } do |f| %>
+  <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab">Nuevo Rol</a></li>              
+            </ul>
+            <div id="user" class="tab-content">
+              <div class="active tab-pane" id="activity">               
+                <!-- Post -->                    
+                    <!-- /.box-header -->
+                    <!-- form start -->                                          
+                    <div class="box-body">
+                      <div class="form-group">
+                          <h4 class="box-title">Rol</h4>
+                            <div class="col-md-12">
+                              <div class="col-md-6">
+                                <label for="exampleInputEmail1">Nombre</label>   
+                                <%= f.text_field :nombre, :maxlength => 35, autofocus: true, :class => 'form-control', placeholder:"Nombre del Rol" %>
+                              </div>
+                              <%if User.where(rol_id: nil).count > 0%>
+                                <div class="col-md-6">
+                                  <label for="exampleInputEmail1">Asignar a</label>   
+                                  <%= f.select :user_ids, User.where(rol_id: nil).collect {|x| [x.username, x.id]},{}, {:multiple => true, class: "selectpicker form-control"} %>
+                                </div>
+                              <%end%>                            
+                            </div>                           
+                      </div>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="form-group">
+                          <h4 class="box-title">Acciones</h4>
+                          <div class="col-md-12">
+                            <div class="col-md-3">
+                              <h5>Movimiento de Caja</h5>
+                              <% for i in 2..5 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                          </div>
+                          <div class="col-md-3">
+                              <h5>Caja</h5>
+                              <% for i in 6..9 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                          </div>
+
+                          <div class="col-md-3">
+                              <h5>Apertura</h5>
+                              <% for i in 10..13 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                          </div>
+
+                          <div class="col-md-3">
+                              <h5>Cierre</h5>
+                              <% for i in 14..17 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                          </div>
+
+                          </div>
+
+                          <div style="margin-top: 30px;" class="col-md-12">
+
+                            <div class="col-md-3">
+                              <h5>Arqueo</h5>
+                              <% for i in 18..21 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                            </div> 
+
+                            <div class="col-md-3">
+                              <h5>Pedidos de Reservaciones</h5>
+                              <% for i in 22..25 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                            </div> 
+
+                            <div class="col-md-3">
+                              <h5>Reservaciones</h5>
+                              <% for i in 26..29 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                            </div>
+
+                            <div class="col-md-3">
+                              <h5>Facturas</h5>
+                              <% for i in 30..33 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                            </div>      
+
+                          </div>
+
+                          <div style="margin-top: 30px;" class="col-md-12">
+
+                            <div class="col-md-3">
+                              <h5>Cuentas</h5>
+                              <% for i in 34..37 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                            </div>
+
+                            <div class="col-md-3">
+                              <h5>Clientes</h5>
+                              <% for i in 38..41 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                            </div>
+
+                            <div class="col-md-3">
+                              <h5>Servicios</h5>
+                              <% for i in 42..45 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                            </div>
+
+                            <div class="col-md-3">
+                              <h5>Contabilidad</h5>
+                              <% for i in 46..48 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                            </div>
+                          </div>                                              
+                        </div>
+                    </div>  
+
+
+                                              
+
+                                         
+                <!-- /.post -->
+              </div>                        
+              <div class="box-footer">                
+                <%= f.submit "Aceptar", :class => 'btn btn-success pull-right'%>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+<% end %>
+
+<script type="text/javascript">
+  $('.selectpicker').selectpicker({
+    liveSearch: true,    
+    size: 5,
+    maxOptions: 2
+  });
+</script>  

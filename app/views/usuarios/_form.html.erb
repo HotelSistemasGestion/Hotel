@@ -51,7 +51,7 @@
                               <div class="col-md-6">
                                 <label for="exampleInputEmail1">Correo</label>
                                 <%= f.email_field :email, :maxlength => 35, :class => 'form-control', placeholder:"Correo" %>
-                              </div>                                                
+                              </div>                                            
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-6">
@@ -65,17 +65,15 @@
                                 </div> 
                               </div>
                             </div>
-                          </div>                             
-
-                      <div class="box-body">
-                        <div class="form-group">
-                          <h4 class="box-title">Roles</h4>
-                          <div class="col-md-12">
-                          
                           </div>
-                                                                                                                                
-                        </div>
-                    </div>                      
+                          <div class="box-body">
+                              <div class="form-group">
+                                <h4 class="box-title">Rol</h4>
+                                <div class="col-md-12">
+                                <%= f.select :rol_id, Rol.all.collect {|x| [x.nombre, x.id]},{}, {:multiple => false, class: "selectpicker"} %>
+                                </div>                
+                              </div>
+                          </div>                                                
                 <!-- /.post -->
               </div>                        
               <div class="box-footer">                
@@ -88,4 +86,13 @@
           </div>
           <!-- /.nav-tabs-custom -->
         </div>
-<% end %>        
+<% end %>
+
+<script type="text/javascript">
+  $('.selectpicker').selectpicker({
+    liveSearch: true,    
+    size: 5,
+    maxOptions: 1,
+    title: "Seleccione un rol"
+  });
+</script>        
