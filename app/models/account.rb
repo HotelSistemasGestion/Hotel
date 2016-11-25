@@ -1,4 +1,5 @@
 class Account < ActiveRecord::Base
+	audited
     belongs_to :client   
     belongs_to :room
 
