@@ -17,7 +17,7 @@
  <div class="box-body">
  <!--  <div class="alert alert-danger" role="alert" style="play: none;"></div>-->
   <div class="form-group col-sm-6">
-    <%= f.label "Tipo de Habitacion", class: "col-sm-3 control-label" %>
+    <%= f.label "Tipos", class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
       <%= f.select :type_of_room_id ,TypeOfRoom.all.collect { |p| [p.tipo, p.id ] },{include_blank: false},class: "form-control" %>
     </div>
@@ -30,7 +30,7 @@
 
     </div>
   </div>
-
+<!--
   <div class="form-group has-feedback col-sm-6">
     <%= f.label "Capacidad", class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
@@ -38,7 +38,7 @@
       <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
       <div class="help-block with-errors">*requerido</div>
     </div>
-  </div>
+  </div>-->
 
   <div class="form-group has-feedback col-sm-6">
     <%= f.label "Indentificador", class: "col-sm-3 control-label" %>
@@ -83,7 +83,7 @@
         
               <%= f.fields_for :photos  ,:wrapper => false do |li| %>
               <tr class="fields">
-                  <th scope="row"> <%= li.file_field :my_file, class: "form-control" %></th>
+                  <th scope="row"> <%= li.file_field :my_file, class: "form-control" ,type:"file" ,class: "file"  %></th>
                  
                   <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
               </tr>
