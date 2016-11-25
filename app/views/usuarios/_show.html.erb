@@ -33,6 +33,16 @@
         <p>
           <strong>Celular:</strong>
           <%= @usuario.celular %>
+        </p>
+        <p>
+          <strong>Rol:</strong>
+          <%= @usuario.rol.nombre %>
+        </p>
+        <p>
+          <strong>Acciones:</strong>       
+          <% @usuario.rol.actions.each do |acc| %>         
+              <%= acc.accion + ' - ' %>           
+          <%end%> 
         </p>  
         <%#= link_to 'Edit', edit_reservation_request_path(@reservation_request) %> 
         <%#= link_to 'Back', reservation_requests_path %>

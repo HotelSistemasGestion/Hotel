@@ -28,8 +28,12 @@ class RolsController < ApplicationController
 
     respond_to do |format|
       if @rol.save
-        format.html { redirect_to @rol, notice: 'Rol was successfully created.' }
-        format.json { render :show, status: :created, location: @rol }
+        if @rol.users.count > 0
+          format.html { redirect_to usuarios_path, notice: 'El usuario fue creado exitosamente.' }          
+        else
+          format.html { redirect_to usuarios_path, notice: 'Se creó un nuevo rol exitosamente!.' }
+          format.json { render :show, status: :created, location: @rol }
+        end        
       else
         format.html { render :new }
         format.json { render json: @rol.errors, status: :unprocessable_entity }

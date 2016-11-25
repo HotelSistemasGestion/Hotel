@@ -29,8 +29,12 @@ class UsuariosController < ApplicationController
 
     respond_to do |format|
       if @usuario.save
-        format.html { redirect_to usuarios_url, success: 'Creaste un usuario correctamente.' }
-        format.json { render :show, status: :created, location: @usuario }
+        if @usuario.rol_id.nil?
+          format.html { redirect_to new_rol_path, notice: 'El usuario fue creado, asignele un nuevo rol.' }
+        else
+          format.html { redirect_to usuarios_url, notice: 'El usuario fue creado exitosamente.' }
+          format.json { render :show, status: :created, location: @usuario }
+        end
       else
         format.html { render :new }
         format.json { render json: @usuario.errors, status: :unprocessable_entity }
