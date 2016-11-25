@@ -46,9 +46,9 @@
             <tbody>
               <tr>
                 <td><%=f.label :efectivo,class:"control-label"%></td>
-                <td><%=f.text_field :monto_efectivo ,class: "form-control aux",id:"efectivo"%>
+                <td><%=f.text_field :monto_efectivo ,class: "form-control aux",id:"efectivo",data: {autonumeric: {aSign: 'Gs ',mDec: 0}},readonly: true%>
                 </td>
-                <td><%=f.text_field :existente_efe ,class: "form-control",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
+                <td><%=f.text_field :existente_efe ,class: "form-control aux",data: {autonumeric: {aSign: 'Gs ',mDec: 0}}%>
                 </td>
                 <td><button class="btn btn-primary glyphicon glyphicon-ok"></button></td>
               </tr>

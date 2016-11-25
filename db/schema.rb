@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20161124133639) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,6 +201,12 @@ ActiveRecord::Schema.define(version: 20161124133639) do
   add_index "budgets", ["comfort_id"], name: "index_budgets_on_comfort_id", using: :btree
   add_index "budgets", ["reservation_request_id"], name: "index_budgets_on_reservation_request_id", using: :btree
 
+  create_table "cash_counts", force: :cascade do |t|
+    t.date     "fecha_arqueo"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "cash_movements", force: :cascade do |t|
     t.integer  "monto_total"
     t.datetime "created_at",               null: false
@@ -320,6 +328,13 @@ ActiveRecord::Schema.define(version: 20161124133639) do
 
   add_index "complaints", ["complaint_service_id"], name: "index_complaints_on_complaint_service_id", using: :btree
   add_index "complaints", ["room_id"], name: "index_complaints_on_room_id", using: :btree
+
+  create_table "detail_of_cash_counts", force: :cascade do |t|
+    t.integer  "monto_sistema"
+    t.integer  "monto_caja"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "detail_of_cash_movements", force: :cascade do |t|
     t.integer  "sub_monto"
@@ -448,12 +463,16 @@ ActiveRecord::Schema.define(version: 20161124133639) do
 
   create_table "reservation_rooms", force: :cascade do |t|
     t.integer  "reservation_id"
+<<<<<<< HEAD
+    t.string   "room_id"
+=======
     t.integer  "room_id"
     t.date     "check_in"
     t.date     "check_out"
     t.integer  "budget_id"
     t.integer  "cantidad"
     t.integer  "type_of_room_id"
+>>>>>>> cc88645906d8afdca81b99d10b5cfce8d13f4ab8
     t.integer  "subtotal"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -474,13 +493,24 @@ ActiveRecord::Schema.define(version: 20161124133639) do
     t.string   "apellido"
     t.string   "email"
     t.string   "dias"
+<<<<<<< HEAD
+    t.date     "check_in"
+    t.date     "check_out"
+    t.integer  "room_id"
+    t.integer  "type_of_room_id"
+=======
     t.integer  "reservation_request_id"
     t.integer  "budget_id"
+>>>>>>> cc88645906d8afdca81b99d10b5cfce8d13f4ab8
     t.string   "total"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
+<<<<<<< HEAD
+  add_index "reservations", ["room_id"], name: "index_reservations_on_room_id", using: :btree
+  add_index "reservations", ["type_of_room_id"], name: "index_reservations_on_type_of_room_id", using: :btree
+=======
   add_index "reservations", ["budget_id"], name: "index_reservations_on_budget_id", using: :btree
   add_index "reservations", ["reservation_request_id"], name: "index_reservations_on_reservation_request_id", using: :btree
 
@@ -493,6 +523,7 @@ ActiveRecord::Schema.define(version: 20161124133639) do
 
   add_index "rol_actions", ["action_id"], name: "index_rol_actions_on_action_id", using: :btree
   add_index "rol_actions", ["rol_id"], name: "index_rol_actions_on_rol_id", using: :btree
+>>>>>>> cc88645906d8afdca81b99d10b5cfce8d13f4ab8
 
   create_table "rols", force: :cascade do |t|
     t.string   "nombre"
@@ -632,6 +663,10 @@ ActiveRecord::Schema.define(version: 20161124133639) do
   add_foreign_key "payment_types", "payment_values"
   add_foreign_key "photos", "rooms"
   add_foreign_key "reservation_requests", "comforts"
+<<<<<<< HEAD
+  add_foreign_key "reservations", "rooms"
+  add_foreign_key "reservations", "type_of_rooms"
+=======
   add_foreign_key "reservation_rooms", "budgets"
   add_foreign_key "reservation_rooms", "reservations"
   add_foreign_key "reservation_rooms", "rooms"
@@ -640,6 +675,7 @@ ActiveRecord::Schema.define(version: 20161124133639) do
   add_foreign_key "reservations", "reservation_requests"
   add_foreign_key "rol_actions", "actions"
   add_foreign_key "rol_actions", "rols"
+>>>>>>> cc88645906d8afdca81b99d10b5cfce8d13f4ab8
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "comforts"
