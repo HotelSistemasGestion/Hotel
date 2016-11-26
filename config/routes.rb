@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   resources :account_details
   resources :reservations
   resources :cleaning_rooms
-  resources :photos
+  resources :photos  
+  resources :rols 
   resources :employees do
     get :autocomplete_employee_cedula, :on => :collection
   end

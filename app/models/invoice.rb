@@ -1,4 +1,5 @@
 class Invoice < ActiveRecord::Base
+	audited
 	extend Enumerize
 	enumerize :state, in: %w(pagado pendiente cancelado), predicates: true
     belongs_to :client
@@ -6,7 +7,7 @@ class Invoice < ActiveRecord::Base
 
 
     validates :numero, uniqueness: true, 
-    				   presence: { message: "de factura no puede ser nulo" }
+    				   presence: { message: "Numero de factura no puede ser nulo" }
 
     has_many :invoice_details, :dependent => :destroy
 

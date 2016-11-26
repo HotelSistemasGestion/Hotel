@@ -106,7 +106,7 @@
                   <%@s = Photo.all.where("#{:user_id} = ?", current_user.id)%>
                   <%= image_tag @s[0].my_file.url ,:width => 30, :height => 20%>
               <%else%>
-                  <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg",:width => 30, :height => 30, :class =>"img-circle" , alt: "User Image" %>
+                  <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg",:width => 30, :height => 20%>
               <%end%>
             <!-- hidden-xs hides the username on small devices so only the image appears. -->         
             <% if current_user.username.present? %>

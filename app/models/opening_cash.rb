@@ -1,4 +1,5 @@
 class OpeningCash < ActiveRecord::Base
+    audited
 	belongs_to :cash
 	belongs_to :employee	
 	
