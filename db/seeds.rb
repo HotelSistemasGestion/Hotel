@@ -104,9 +104,8 @@ Room.create(type_of_room_id: 2,state_id: 3 ,capacidad: 2,identificador: 'B2',pre
 Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',precio: 10000,comfort_id: 1);
 
 
-Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,total: 10000);
-Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,total: 10000);
-Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,total: 10000);
+Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",telefono: 1 ,total: 10000);
+Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",telefono: 1 ,total: 10000);
 
 
 RoomComfort.create(room_id: 1 , comfort_id: 1);
@@ -219,8 +218,8 @@ ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtamb
 ######
 Budget.create(reservation_request_id: 1,comfort_id: 3, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,comentario:"a",descuento: 10,total:10000);
 Budget.create(reservation_request_id: 2,comfort_id: 2, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,comentario:"a",descuento: 10,total:10000);
-ReservationRoom.create(reservation_id:1, room_id:1,budget_id:1,cantidad: 2,type_of_room_id:1,subtotal:10000,start:(Date.today+1).to_s,end: (Date.today+7).to_s,title: "Habitacion 1",color: "#33ff00",textColor: "#ffffff");
-ReservationRoom.create(reservation_id:2, room_id:4,budget_id:2,cantidad: 2,type_of_room_id:2,subtotal:10000,start:(Date.today+1).to_s,end: (Date.today+7).to_s,title: "Habitacion 4",color: "#80f442",textColor: "#ffffff");
+#ReservationRoom.create(reservation_id:1, room_id:1,budget_id:1,cantidad: 2,type_of_room_id:1,subtotal:10000,start:(Date.today+1).to_s,end: (Date.today+7).to_s,title: "Habitacion 1",color: "#33ff00",textColor: "#ffffff");
+#ReservationRoom.create(reservation_id:2, room_id:4,budget_id:2,cantidad: 2,type_of_room_id:2,subtotal:10000,start:(Date.today+1).to_s,end: (Date.today+7).to_s,title: "Habitacion 4",color: "#80f442",textColor: "#ffffff");
 ######
 
 TypeOfCashMovement.create(descripcion: "entrada");
