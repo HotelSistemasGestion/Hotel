@@ -55,29 +55,6 @@
                           </div>                            
                         </div>
                       </div> 
-                      <div class="box-body">
-                              
-                              <table class="table">
-                                <thead class="thead-inverse">
-                                  <tr>
-                                    <th>Imagenes</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                              
-                                    <%= f.fields_for :photos  ,:wrapper => false do |li| %>
-                                    <tr class="fields">
-                                        <th scope="row"> <%= li.file_field :my_file, class: "form-control" ,type:"file" ,class: "file"  %></th>
-                                       
-                                        <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
-                                    </tr>
-                                    <%end%>
-                                    
-
-                                </tbody>
-                              </table>
-                        
-                      </div>
                  
                       <div class="box-body">
                               <div class="form-group">
