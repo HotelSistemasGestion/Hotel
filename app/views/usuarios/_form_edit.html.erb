@@ -1,4 +1,4 @@
-<%= form_for @usuario, url: usuario_path, html: { method: :put } do |f| %>
+<%= nested_form_for @usuario, url: usuario_path, html: { method: :put } do |f| %>
 <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -55,7 +55,30 @@
                           </div>                            
                         </div>
                       </div> 
+                      <div class="box-body">
+                              
+                              <table class="table">
+                                <thead class="thead-inverse">
+                                  <tr>
+                                    <th>Imagenes</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                              
+                                    <%= f.fields_for :photos  ,:wrapper => false do |li| %>
+                                    <tr class="fields">
+                                        <th scope="row"> <%= li.file_field :my_file, class: "form-control" ,type:"file" ,class: "file"  %></th>
+                                       
+                                        <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
+                                    </tr>
+                                    <%end%>
+                                    
 
+                                </tbody>
+                              </table>
+                        
+                      </div>
+                 
                       <div class="box-body">
                         <div class="form-group">
                           <h4 class="box-title">Roles</h4>

@@ -120,6 +120,7 @@ Rails.application.routes.draw do
   end  
   get 'reports/index'
   get 'dashboard/index'
+  get 'dashboard/new'
   get 'welcome/index'
 
   resources :usuarios

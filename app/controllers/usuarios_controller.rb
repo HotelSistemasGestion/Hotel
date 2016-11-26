@@ -31,6 +31,8 @@ class UsuariosController < ApplicationController
       if @usuario.save
         format.html { redirect_to usuarios_url, success: 'Creaste un usuario correctamente.' }
         format.json { render :show, status: :created, location: @usuario }
+        @photo = Photo.new({:user_id =>@usuario.id})
+        @photo.save
       else
         format.html { render :new }
         format.json { render json: @usuario.errors, status: :unprocessable_entity }
