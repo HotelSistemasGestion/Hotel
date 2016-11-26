@@ -4,7 +4,7 @@ class CreateReservations < ActiveRecord::Migration
       t.string :nombre
       t.string :apellido
       t.string :email
-      t.string :dias
+      t.string :telefono
       #
       t.references :reservation_request, index: true, foreign_key: true
       t.references :budget, index: true, foreign_key: true
