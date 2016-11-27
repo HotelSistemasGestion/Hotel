@@ -22,6 +22,7 @@ Comfort.create(descripcion: "tres estrellas");
 AccountingYear.create(anho: "2016",estado: "actual");
 AccountingYear.create(anho: "2015",estado: "antiguo");
 AccountingYear.create(anho: "2014",estado: "antiguo");
+
 AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "10000",haber: "0");
 AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
 AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "1000",haber: "0");
@@ -36,8 +37,19 @@ AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "10",debe: "4000",habe
 AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "10",debe: "0",haber: "4000");
 AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "10",debe: "20000",haber: "0");
 AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "10",debe: "0",haber: "20000");
-AccountingEntry.create(numero:"8",fecha:"2016/10/25",iva: "10",debe: "10000",haber: "0");
-AccountingEntry.create(numero:"8",fecha:"2016/10/25",iva: "10",debe: "0",haber: "10000");
+
+
+AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "15000",haber: "0");
+AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "10000",haber: "0");
+AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "25000",haber: "0");
+AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "0",haber: "50000");
+
+AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "54000",haber: "0");
+AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
+AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
+AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "19000");
+
+
 
 AccountingAccount.create(grupo:"00",nombre:"Cuentas por cobrar",imputable:"true");
 AccountingAccount.create(grupo:"01",nombre:"Clientes",imputable:"true");
@@ -53,7 +65,7 @@ AccountingAccount.create(grupo:"04",nombre:"Ingreso de Telefono",imputable:"true
 AccountingAccount.create(grupo:"001",nombre:"Llamadas internacionales",imputable:"true");
 AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true");
 
-AccountPlan.create(descripcion:"no se",estado:"vigente",version:"1");
+AccountPlan.create(descripcion:"Hotel",estado:"vigente",version:"1");
 
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
@@ -83,6 +95,16 @@ AccountXEntry.create(accounting_entry_id:"11",accounting_account_id:"2",monto:"2
 AccountXEntry.create(accounting_entry_id:"12",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
 AccountXEntry.create(accounting_entry_id:"13",accounting_account_id:"2",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
 AccountXEntry.create(accounting_entry_id:"14",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+
+AccountXEntry.create(accounting_entry_id:"15",accounting_account_id:"2",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+AccountXEntry.create(accounting_entry_id:"16",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+AccountXEntry.create(accounting_entry_id:"17",accounting_account_id:"7",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+AccountXEntry.create(accounting_entry_id:"18",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+
+AccountXEntry.create(accounting_entry_id:"19",accounting_account_id:"12",monto:"20000",observacion:"Hospedaje",tipo:"A");
+AccountXEntry.create(accounting_entry_id:"20",accounting_account_id:"8",monto:"20000",observacion:"Hospedaje",tipo:"D");
+AccountXEntry.create(accounting_entry_id:"21",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"D");
+AccountXEntry.create(accounting_entry_id:"22",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
 
 
 
