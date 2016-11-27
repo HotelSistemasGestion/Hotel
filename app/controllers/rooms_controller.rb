@@ -8,7 +8,8 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     #@rooms = Room.all
-    @rooms = Room.order(created_at: :desc).page params[:page]
+    @rooms = Room.all.order(created_at: :desc)
+    @rooms = Kaminari.paginate_array(@rooms).page(params[:page]).per(5)
   end
 
   # GET /rooms/1
