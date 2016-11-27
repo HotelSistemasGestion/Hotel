@@ -20,3 +20,5 @@ class AccountXEntry < ActiveRecord::Base
   		end
   	end
 end
+
+

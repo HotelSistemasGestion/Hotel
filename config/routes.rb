@@ -109,6 +109,9 @@ Rails.application.routes.draw do
 
   resources :reservation_requests
   resources :services do
+     collection do
+      get 'report'
+    end
     get :autocomplete_service_nombre, :on => :collection
   end  
   resources :accounts do

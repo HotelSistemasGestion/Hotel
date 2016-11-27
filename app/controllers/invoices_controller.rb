@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_invoice, only: [:show, :update, :destroy]
   
   autocomplete :invoice, :numero,:extra_data => [:id,:total] do |items|
