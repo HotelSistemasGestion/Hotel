@@ -68,6 +68,24 @@ class ServicesController < ApplicationController
     end
   end
 
+  
+  def report
+  @filterrific = initialize_filterrific(
+    Service,
+    params[:filterrific],select_options: {
+        sorted_by_service: Service.options_for_sorted_by_service
+      },
+     persistence_id: false
+  ) or return
+
+  @services = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @services_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service
