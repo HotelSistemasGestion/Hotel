@@ -37,7 +37,10 @@ var cont=0;
               ],
               "firstDay": 1
           }, autoclose: true,
-          autoSize: true
+          autoSize: true,
+          minDate: new Date(2015,12,1),
+          maxDate: new Date(2016,11,31)
+
 
           });
 

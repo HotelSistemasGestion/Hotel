@@ -15,8 +15,7 @@
     </div>
   </div>
 
-<div class="box-body">
-<div class="table-responsive">
+<div class="box-body no-print">
    <div id="filterrific_results">
   <table class="table table-striped table-bordered table-hover">
   <colgroup>
@@ -44,6 +43,50 @@
        <td><%= complaint.description %></td>
        <td><%= complaint.created_at.strftime("%F %T") %></td>
     <% end %>
+    
+    </tbody>
+     
+  </table>
+  <div class="box-footer clearfix" style="margin-right:-10px">
+    <ul class="pagination pagination-sm no-margin pull-right">
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails, :container => false %>
+    </ul>
+    </div>
+  </div>
+ 
+ 
+ 
+
+</div>
+
+<div class="box-body hide">
+   <div id="filterrific_results">
+  <table class="table table-striped table-bordered table-hover">
+  <colgroup>
+    <col style="width:20%">
+    <col style="width:20%">
+    <col style="width:40%">
+    <col style="width:20%">
+  </colgroup>
+    <thead>
+      <tr>
+        <th>Habitacion</th>
+        <th>Servicio relacionado</th>
+        <th>Queja</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+
+   
+    <tbody>
+    
+    
+      <%= content_tag_for(:tr, @complaints_report.order(id: :desc)) do |complaint| %>
+       <td><%= complaint.room.identificador %></td>
+       <td><%= complaint.complaint_service.description + " - " + complaint.service_description.to_s%></td>
+       <td><%= complaint.description %></td>
+       <td><%= complaint.created_at.strftime("%F %T") %></td>
+    <% end %>
     </tbody>
 
   </table>
@@ -52,6 +95,7 @@
 
  
    
+
 </div>
 </div>
 </div>
