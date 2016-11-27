@@ -41,12 +41,26 @@ class CashMovementsController < ApplicationController
   def create
     @cash_movement = CashMovement.new(cash_movement_params)
     client_id = params[:client_id]
-    
+    apertura = OpeningCash.find(@cash_movement.opening_cash_id)
+    #Se obtiene el ultimo valor final de los valores
+    efectivo = apertura.final_efectivo
+    total_cheque = apertura.final_cheque
+    credito = apertura.final_credito
+    debito = apertura.final_debito
+
     respond_to do |format|
       if @cash_movement.save
         payment_types = PaymentType.where("cash_movement_id = ?",@cash_movement.id)
         payment_types.each do |payment|
+          if payment.payment_value_id == 1
+            efectivo+=payment.total.to_i
+            apertura.final_efectivo = efectivo
+            apertura.save
+          end
           if payment.payment_value_id == 2
+            total_cheque+=payment.total.to_i
+            apertura.final_cheque = total_cheque
+            apertura.save
             cheque = Check.new
             cheque.banco = payment.banco
             cheque.titular = payment.titular
@@ -54,6 +68,16 @@ class CashMovementsController < ApplicationController
             cheque.fecha_disponibilidad = payment.fecha_disponibilidad
             cheque.total = payment.total
             cheque.save
+          end
+          if payment.payment_value_id == 3
+            credito+=payment.total.to_i
+            apertura.final_credito = credito
+            apertura.save
+          end
+          if payment.payment_value.id == 4
+            debito+=payment.total.to_i
+            apertura.final_debito = debito
+            apertura.save
           end
         end
         

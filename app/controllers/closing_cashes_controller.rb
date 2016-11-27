@@ -22,12 +22,18 @@ class ClosingCashesController < ApplicationController
   # GET /closing_cashes/1/edit
   def edit
   end
-
+  def montos_cierre
+      @apertura = OpeningCash.find(params[:opening_cash_id])
+      respond_to do |format|
+        format.js 
+      end    
+  end
   # POST /closing_cashes
   # POST /closing_cashes.json
   def create
     @closing_cash = ClosingCash.new(closing_cash_params)
-
+    apertura = OpeningCash.find(@closing_cash.opening_cash.id)
+    empleado = Employee.find(apertura.employee.id)
     respond_to do |format|
       if @closing_cash.save
         format.html { redirect_to @closing_cash, notice: 'Closing cash was successfully created.' }

@@ -1,1 +1,0 @@
-json.array! @cash_counts, partial: 'cash_counts/cash_count', as: :cash_count
