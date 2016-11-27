@@ -36,7 +36,8 @@ Rails.application.routes.draw do
     end
   end
   resources :cleaning_rooms
-  resources :photos
+  resources :photos  
+  resources :rols 
   resources :employees do
     get :autocomplete_employee_cedula, :on => :collection
   end
@@ -129,6 +130,7 @@ Rails.application.routes.draw do
   end  
   get 'reports/index'
   get 'dashboard/index'
+  get 'dashboard/new'
   get 'welcome/index'
 
   resources :usuarios

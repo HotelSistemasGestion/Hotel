@@ -45,6 +45,7 @@
 //= require blueimp-gallery-fullscreen.js
 //= require blueimp-gallery-indicator.js
 //= require jquery.blueimp-gallery.js
+//= require fileinput.js
 //= require picture.js
 //= require reservation_rooms.js
 //= requrie gmaps/google

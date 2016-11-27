@@ -5,7 +5,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.all
-    @reservations = Kaminari.paginate_array(@reservations).page(params[:page]).per(8)
+    @reservations = Kaminari.paginate_array(@reservations).page(params[:page]).per(4)
   end
 
   #Encargado de llenar el dropdown de habitaciones en reservations
@@ -59,16 +59,23 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     if params[:id]
-      @reservation = Reservation.new
+      #construimos el la reservacion cuando apretamos confirmar
       @my_reservation_requests = ReservationRequest.find(params[:id])
-      @reservation.reservation_rooms.build()
-      #@my_type_of_rooms =  TypeOfRoom.find(params[:id])
-      @my_budgets = Budget.where("reservation_request_id = ?" ,@my_reservation_requests.id).first
+      @my_budgets = Budget.where("reservation_request_id = ?", @my_reservation_requests.id).first
+      @reservation = Reservation.new(nombre: @my_reservation_requests.nombre,apellido: @my_reservation_requests.apellido,telefono: @my_reservation_requests.telefono,email: @my_reservation_requests.email)
+      iterar = @my_budgets.budget_room_details
+      iterar.each do |budget_room_detail|
+        (1..budget_room_detail.cantidad).each do |r|
+          @reservation.reservation_rooms.new(type_of_room_id: budget_room_detail.type_of_room_id,comfort_id:@my_budgets.comfort_id,check_in:@my_budgets.check_in.strftime("%d-%m-%Y"),check_out:@my_budgets.check_out.strftime("%d-%m-%Y"),subtotal: budget_room_detail.subtotal)
+        end
+      end
 
-    else
+    @reservation.reservation_rooms.build()
+    #@my_type_of_rooms =  TypeOfRoom.find(params[:id])      
+    else 
       @reservation = Reservation.new
+      @reservation.reservation_rooms.build()
     end
-    
 
   end
 
@@ -94,10 +101,7 @@ class ReservationsController < ApplicationController
       else
         #@my_reservation_requests = ReservationRequest.find(reservation_params[:reservation_request_id])
         #@reservation.reservation_requests.build()
-        @reservation.reservation_rooms.build()
-        if !params[:budget_id].blank?
-          @my_budgets = Budget.find(params[:budget_id])
-        end  
+        @reservation.reservation_rooms.build() 
         format.html { render :new }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
@@ -143,5 +147,6 @@ class ReservationsController < ApplicationController
      #json.url reservation_url(reservation, format: :json)
      params.require(:reservation).permit(:id, :budget_id, :nombre, :apellido, :email, :telefono, :total,
       :reservation_rooms_attributes => [:id, :type_of_room_id,:comfort_id,:room_id,:check_in,:check_out, :subtotal, :_destroy])
+
     end
 end

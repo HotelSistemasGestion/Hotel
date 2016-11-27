@@ -7,4 +7,5 @@ Recaptcha.configure do |config|
   #ESTO ES PARA HEROKU
   #config.site_key  = '6LdQ_wYUAAAAABN4xlJ9Ym1bBSxqcis5mVk8mJ2M'
   #config.secret_key = '6LdQ_wYUAAAAAA4LjqQDUyIWVrzdWCVC_S3zUC9L'
+
 end

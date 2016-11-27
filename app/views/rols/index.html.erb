@@ -1,0 +1,29 @@
+<div class="page-header">
+  <%= link_to new_rol_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Rol
+  <% end %>
+  <h1>Listing rols</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Nombre</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @rols) do |rol| %>
+            <td><%= rol.nombre %></td>
+            <td><%= link_to 'Show', rol %></td>
+        <td><%= link_to 'Edit', edit_rol_path(rol) %></td>
+        <td><%= link_to 'Destroy', rol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

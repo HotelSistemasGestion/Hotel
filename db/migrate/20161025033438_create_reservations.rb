@@ -5,9 +5,6 @@ class CreateReservations < ActiveRecord::Migration
       t.string :apellido
       t.string :email
       t.string :telefono
-      #t.string :dias
-      #
-      #t.references :reservation_request, index: true, foreign_key: true
       t.references :budget_id #NO PUEDE SER FK POR QUE HAY RESERVAS SIN PRESUPIUESTO!
       t.string :total, limit: 8
       t.timestamps null: false

@@ -17,7 +17,7 @@ class AccountingYearsController < ApplicationController
   # GET /detail_of_cash_movements/1/edit
   def edit
   end
-
+ 
   # POST /detail_of_cash_movements
   # POST /detail_of_cash_movements.json
   def create

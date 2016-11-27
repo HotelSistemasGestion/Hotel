@@ -1,6 +1,6 @@
 <div class="box">
 <div class="box-header with-border">
-<%= link_to '', {:controller => "reservations", :action => "my_new"},class: "btn btn-primary glyphicon glyphicon-plus" %> 
+<%= link_to '', {:controller => "reservations", :action => "new"},class: "btn btn-primary glyphicon glyphicon-plus" %> 
 
   <%#= link_to my_new_reservation_path,           class: 'btn btn-primary' do %>
     <!--span class="glyphicon glyphicon-plus"></span-->
@@ -19,6 +19,8 @@
             <th>Apellido</th>
         
             <th>Email</th>
+
+            <th>Telefono</th>
         
             <th>Total</th>
         
@@ -35,7 +37,9 @@
             <td><%= reservation.apellido %></td>
         
             <td><%= reservation.email %></td>
-        
+
+            <td><%= reservation.telefono %></td>
+
             <td><%= reservation.total %></td>
             
             <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>

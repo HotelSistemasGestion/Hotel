@@ -120,13 +120,15 @@ init_function();
 		  } 
 
       $(document).on('nested:fieldAdded', function(event){
-      // this field was just inserted into your form
-      $(".datepicker").datepicker({
-            format: 'dd-mm-yyyy',
-            language: 'es',
-            startDate: '+1d'}
-            );
+        // this field was just inserted into your form
+        $(".datepicker").datepicker({
+              format: 'dd-mm-yyyy',
+              language: 'es',
+              startDate: '+1d'
+            });
       });
+
+
 
       
 

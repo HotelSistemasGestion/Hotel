@@ -65,14 +65,16 @@
                         <% id = "#"+"#{li.object_name}[type_of_room_id]".gsub(/(\])?\[/, "_").chop %>
 
                     
-                    <td><%= li.select :type_of_room_id,options_for_select(TypeOfRoom.all.collect{ |p| [ p.tipo, p.id,{'precio'=>p.precio}]}),{:prompt => "Tipo de Habitacion"},{ class: "form-control sincronizador1"}%></td>
+                    <td><%= li.select :type_of_room_id,TypeOfRoom.all.collect{ |p| [ p.tipo, p.id,{'precio'=>p.precio}]},{selected: li.object.type_of_room_id,:prompt => "Tipo de Habitacion"},{ class: "form-control sincronizador1"}%></td>
 
-                    <td><%= li.select :comfort_id,options_for_select( Comfort.all.collect{ |p| [ p.descripcion, p.id,{'precio'=>p.precio} ]}), {:prompt => "Confort"},{ class: "form-control sincronizador2",style: "width: 110px"}%></td>
+                    <td><%= li.select :comfort_id,Comfort.all.collect{ |p| [ p.descripcion, p.id,{'precio'=>p.precio} ]}, {selected: li.object.comfort_id,:prompt => "Confort"},{ class: "form-control sincronizador2",style: "width: 110px"}%></td>
 
-                    <td><%= li.select :room_id,{},{:prompt => "Elegir Habitacion"},{ class: "form-control room_id",style: "width: 110px"}%></td>
+                    <td><%= li.select :room_id,Room.all.collect{ |p| [ p.identificador, p.id]},{selected: li.object.room_id,:prompt => "Elegir Habitacion"},{ class: "form-control room_id",style: "width: 110px"}%></td>
                     
-                    <td><%= li.text_field :check_in,style: "width: 105px",class: "datepicker form-control check_in"%></td>
-                    <td><%= li.text_field :check_out,style: "width: 105px",class: "datepicker form-control check_out"%></td>
+                    <td><%= li.text_field :check_in,style: "width: 105px",class: "datepicker form-control check_in",
+                    value: (li.object.check_in.strftime("%d/%m/%Y") unless li.object.check_in.nil?) %></td>
+                    <td><%= li.text_field :check_out,style: "width: 105px",class: "datepicker form-control check_out",
+                    value: (li.object.check_out.strftime("%d/%m/%Y") unless li.object.check_out.nil?) %></td>
                     <td><%= li.text_field :subtotal,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},class: "form-control subtotal"%></td>
                     <td>
                         <button type="button" class="btn btn-primary" id="my_button">
@@ -120,6 +122,7 @@
 $(document).on('nested:fieldAdded','form', function(event) {
   //$("form").live("nested:fieldAdded", function(event) {
   $(event.target).find(':input').enableClientSideValidations();
+
 });
 
 $(document).on('click','#borrar', function () {                
