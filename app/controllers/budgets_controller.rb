@@ -32,11 +32,10 @@ class BudgetsController < ApplicationController
     #Buscamos las habitaciones reservadas.
     room_ids= Room.where(["type_of_room_id = ? and comfort_id = ? and state_id != ? and state_id != ?", type_of_room_id,comfort_id,1,4]).select("id")
     #Sacamos las reservaciones de habitaciones que ahora estan en estado reservada.
-    filter=Reservation.where(room_id:room_ids)#debe buscar en reservation room 
+    filter=ReservationRoom.where(room_id:room_ids)#debe buscar en reservation room 
     for i in 0..filter.length-1
       #pregunto si se superponen las fechas
-      #filter debe sacar la fecha de su papa "Reservacion"
-     if !(filter[i].check_in.to_s..filter[i].check_out.to_s).overlaps?(check_in..check_out)
+     if !(filter[i].check_in.to_s..filter[i].check_out.to_s).overlaps?(check_in.to_date.to_s..check_out.to_date.to_s)
       count=count+1
      end
      if count >= cantidad
@@ -55,24 +54,7 @@ class BudgetsController < ApplicationController
   end
 
 
-def disponibles
-  cantidad = Integer(params[:cantidad])
-  type_of_room_id= params[:type_of_room_id]
-  comfort_id = params[:comfort_id]
-  check_in = params[:check_in]
-  check_out = params[:check_out]
 
-  dias = check_out.to_i - check_in.to_i
-
-  n = 0
-  #while 3>n do
-   # puts dias
-  #end
-  @result={"result": dias}
-  respond_to do |format|
-    format.json { render json: @result.to_json }
-  end
-end
   # GET /budgets
   # GET /budgets.json
   def index

@@ -22,7 +22,15 @@ class ClosingCashesController < ApplicationController
   # GET /closing_cashes/1/edit
   def edit
   end
-
+  def montos_cierre
+      @movimientos = CashMovement.find_by(opening_cash_id: params[:opening_cash_id])
+      movimientos.each do |mov|
+        valores = PaymentTypes.where("cash_movement_id=?",mov.id)  
+      end
+      respond_to do |format|
+        format.js 
+      end    
+  end
   # POST /closing_cashes
   # POST /closing_cashes.json
   def create

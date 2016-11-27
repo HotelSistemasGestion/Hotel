@@ -24,7 +24,17 @@ Rails.application.routes.draw do
   resources :cleanings
   resources :invoice_details
   resources :account_details
-  resources :reservations
+  resources :reservations  do
+    collection do
+      get 'habitaciones'
+    end
+    collection do
+      get 'hay_disponible'
+    end
+    collection do
+        get 'my_new'
+    end
+  end
   resources :cleaning_rooms
   resources :photos
   resources :employees do
@@ -32,7 +42,6 @@ Rails.application.routes.draw do
   end
 
   resources :rooms do
-
     collection do
       get 'report'
     end
@@ -78,6 +87,8 @@ Rails.application.routes.draw do
   end 
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
+
+  get "montos_cierre/:opening_cash_id" => "closing_cashes#montos_cierre"
 
   get "accountiong_account_years/:accounting_year_id" => "accounting_accounts#accountiong_account_years"
 

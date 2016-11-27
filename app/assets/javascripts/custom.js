@@ -23,8 +23,7 @@ init_function();
           $(this).datepicker({
             format: 'dd-mm-yyyy',
             language: 'es',
-            startDate: '+1d', 
-            autoclose: true}
+            startDate: '+1d'}
             );
     });
 
@@ -102,9 +101,10 @@ init_function();
                   "Octubre",
                   "Noviembre",
                   "Diciembre"
-              ],
-              "firstDay": 1
-          }, autoclose: true,
+              ]
+          },startDate: moment().add(1,'days'),
+          endDate: moment().add(2,'days'),
+          autoclose: true,
           autoSize: true,
           minDate: moment().add(1,'days'),
 
@@ -119,6 +119,14 @@ init_function();
 		  return $(content).insertBefore($tr);
 		  } 
 
+      $(document).on('nested:fieldAdded', function(event){
+      // this field was just inserted into your form
+      $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            language: 'es',
+            startDate: '+1d'}
+            );
+      });
 
       
 

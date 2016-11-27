@@ -4,20 +4,26 @@ class ReservationRoom < ActiveRecord::Base
 	belongs_to :budget
 	belongs_to :type_of_room
 
-	validates :subtotal, :presence => {:message => "No puede dejar en blanco Cantidad" }, 
-	:numericality  => { :more_than_or_equal_to => 0, :message => "Cantidad debe ser mayor a 0"}
+	belongs_to :comfort
 
-	validates :reservation_id, :presence => {:message => "No puede estar en blanco" }
+	#validates :subtotal, :presence => {:message => "No puede dejar en blanco Cantidad" }, 
+	#:numericality  => { :more_than_or_equal_to => 0, :message => "Cantidad debe ser mayor a 0"}
+
+	#validates :reservation_id, :presence => {:message => "No puede estar en blanco" }
 
 	validates :room_id, :presence => {:message => "No puede estar en blanco" }
+	validates :type_of_room_id, :presence => {:message => "No puede estar en blanco" }
+	validates :comfort_id, :presence => {:message => "No puede estar en blanco" }
+	validates :check_in, :presence => {:message => "No puede estar en blanco" }
+	validates :check_out, :presence => {:message => "No puede estar en blanco" }
 
-	def disponibilidad
-		 ReservationRoom.all.each do |room|
-		 	if self.type_of_room = room.type_of_room
-		 		errors.add(:type_of_room, "Este cuarto esta reservado")
-			end
-		 end
-	end
+	#def disponibilidad
+	#	 ReservationRoom.all.each do |room|
+	#	 	if self.type_of_room = room.type_of_room
+	#	 		errors.add(:type_of_room, "Este cuarto esta reservado")
+	#		end
+	#	 end
+	#end
 
   	 
 end
