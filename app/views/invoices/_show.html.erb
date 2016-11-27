@@ -59,13 +59,24 @@
                         </tr>
                       </thead>
                       <tbody>                           
-                        <% @invoice.invoice_details.each do |details| %>                 
-                          <tr>
-                            <td><%= details.cantidad %></td>                          
-                            <td style="margin-left: 80px;" class="text-center"><%= Service.find(details.service_id).nombre %></td> 
-                            <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
-                            <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
-                          </tr>
+                        <% if @invoice.account_id.nil?
+                          @invoice.invoice_details.each do |details|%>
+                            <tr>
+                              <td><%= details.cantidad %></td>                          
+                              <td style="margin-left: 80px;" class="text-center"><%= Service.find(details.service_id).nombre %></td> 
+                              <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
+                              <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
+                            </tr>
+                          <%end%> 
+                        <%else
+                          Account.find(@invoice.account_id).account_details.each do |details|%>
+                            <tr>
+                              <td><%= details.cantidad %></td>                          
+                              <td style="margin-left: 80px;" class="text-center"><%= Service.find(details.service_id).nombre %></td> 
+                              <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
+                              <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
+                            </tr>
+                          <%end%>  
                         <%end%>  
                       </tbody>
                   </table>
@@ -83,6 +94,9 @@
               <div class="form-group text-right">
                 <strong>Total: </strong>           
               </div> 
+              <div class="form-group text-right">
+                <strong>Iva: </strong>           
+              </div> 
           </div>
           <div class="col-md-4">        
             <p><%= number_to_currency_py(@invoice.subtotal) %></p>
@@ -92,6 +106,9 @@
           </div>
            <div style="margin-top: 5px;" class="col-md-4">        
             <p><%= number_to_currency_py(@invoice.total) %></p>
+          </div>
+           <div style="margin-top: 5px;" class="col-md-4">        
+            <p><%= number_to_currency_py(@invoice.iva) %></p>
           </div>
         </div><!-- /.tabla-content -->
       </div>

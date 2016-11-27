@@ -104,9 +104,8 @@ Room.create(type_of_room_id: 2,state_id: 3 ,capacidad: 2,identificador: 'B2',pre
 Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',precio: 10000,comfort_id: 1);
 
 
-Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 1,total: 10000);
-Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
-Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",dias: 1 ,check_in: (Date.today+8).to_s, check_out: (Date.today+9).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
+Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",telefono: 1 ,total: 10000);
+Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",telefono: 1 ,total: 10000);
 
 
 RoomComfort.create(room_id: 1 , comfort_id: 1);
@@ -140,71 +139,73 @@ Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complai
 Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: false,room_id: 1);
 Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: false,room_id: 1);
 
-Rol.create(role: "Admin");
-#Roles para Movimientos
-Rol.create(role: "Ver Movimiento");
-Rol.create(role: "Crear Movimiento");
-Rol.create(role: "Editar Movimiento");
-Rol.create(role: "Eliminar Movimiento");
-#Roles para Caja
-Rol.create(role: "Ver Caja");
-Rol.create(role: "Crear Caja");
-Rol.create(role: "Editar Caja");
-Rol.create(role: "Eliminar Caja");
-#Roles para Apertura
-Rol.create(role: "Ver Apertura");
-Rol.create(role: "Crear Apertura");
-Rol.create(role: "Editar Apertura");
-Rol.create(role: "Eliminar Apertura");
-#Roles para Cierre
-Rol.create(role: "Ver Cierre");
-Rol.create(role: "Crear Cierre");
-Rol.create(role: "Editar Cierre");
-Rol.create(role: "Eliminar Cierre");
-#Roles para Arqueo
-Rol.create(role: "Ver Arqueo");
-Rol.create(role: "Crear Arqueo");
-Rol.create(role: "Editar Arqueo");
-Rol.create(role: "Eliminar Arqueo");
-#Roles para Pedidos de Reservaciones
-Rol.create(role: "Ver Pedido");
-Rol.create(role: "Crear Pedido");
-Rol.create(role: "Editar Pedido");
-Rol.create(role: "Eliminar Pedido");
-#Roles para Reservaciones
-Rol.create(role: "Ver Reservacion");
-Rol.create(role: "Crear Reservacion");
-Rol.create(role: "Editar Reservacion");
-Rol.create(role: "Eliminar Reservacion");
-#Roles para Facturas
-Rol.create(role: "Ver Factura");
-Rol.create(role: "Crear Factura");
-Rol.create(role: "Editar Factura");
-Rol.create(role: "Eliminar Factura");
-#Roles para Cuentas
-Rol.create(role: "Ver Cuenta");
-Rol.create(role: "Crear Cuenta");
-Rol.create(role: "Editar Cuenta");
-Rol.create(role: "Eliminar Cuenta");
-#Roles para Clientes
-Rol.create(role: "Ver Cliente");
-Rol.create(role: "Crear Cliente");
-Rol.create(role: "Editar Cliente");
-Rol.create(role: "Eliminar Cliente");
-#Roles para Servicios
-Rol.create(role: "Ver Servicio");
-Rol.create(role: "Crear Servicio");
-Rol.create(role: "Editar Servicio");
-Rol.create(role: "Eliminar Servicio");
-#Roles para Contabilidad
-Rol.create(role: "Control de Asientos");
-Rol.create(role: "Control de Cuentas");
-Rol.create(role: "Control de Planes de Cuentas");
-#Roles para Habitaciones
-Rol.create(role: "Ver habitaciones");
 
-User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 1);
-User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 3);
+Action.create(accion: "Admin");
+#Acciones para Movimientos
+Action.create(accion: "Ver Movimiento");
+Action.create(accion: "Crear Movimiento");
+Action.create(accion: "Editar Movimiento");
+Action.create(accion: "Eliminar Movimiento");
+#Acciones para Caja
+Action.create(accion: "Ver Caja");
+Action.create(accion: "Crear Caja");
+Action.create(accion: "Editar Caja");
+Action.create(accion: "Eliminar Caja");
+#Acciones para Apertura
+Action.create(accion: "Ver Apertura");
+Action.create(accion: "Crear Apertura");
+Action.create(accion: "Editar Apertura");
+Action.create(accion: "Eliminar Apertura");
+#Acciones para Cierre
+Action.create(accion: "Ver Cierre");
+Action.create(accion: "Crear Cierre");
+Action.create(accion: "Editar Cierre");
+Action.create(accion: "Eliminar Cierre");
+#Acciones para Arqueo
+Action.create(accion: "Ver Arqueo");
+Action.create(accion: "Crear Arqueo");
+Action.create(accion: "Editar Arqueo");
+Action.create(accion: "Eliminar Arqueo");
+#Acciones para Pedidos de Reservaciones
+Action.create(accion: "Ver Pedido");
+Action.create(accion: "Crear Pedido");
+Action.create(accion: "Editar Pedido");
+Action.create(accion: "Eliminar Pedido");
+#Acciones para Reservaciones
+Action.create(accion: "Ver Reservacion");
+Action.create(accion: "Crear Reservacion");
+Action.create(accion: "Editar Reservacion");
+Action.create(accion: "Eliminar Reservacion");
+#Acciones para Facturas
+Action.create(accion: "Ver Factura");
+Action.create(accion: "Crear Factura");
+Action.create(accion: "Editar Factura");
+Action.create(accion: "Eliminar Factura");
+#Acciones para Cuentas
+Action.create(accion: "Ver Cuenta");
+Action.create(accion: "Crear Cuenta");
+Action.create(accion: "Editar Cuenta");
+Action.create(accion: "Eliminar Cuenta");
+#Acciones para Clientes
+Action.create(accion: "Ver Cliente");
+Action.create(accion: "Crear Cliente");
+Action.create(accion: "Editar Cliente");
+Action.create(accion: "Eliminar Cliente");
+#Acciones para Servicios
+Action.create(accion: "Ver Servicio");
+Action.create(accion: "Crear Servicio");
+Action.create(accion: "Editar Servicio");
+Action.create(accion: "Eliminar Servicio");
+#Acciones para Contabilidad
+Action.create(accion: "Control de Asientos");
+Action.create(accion: "Control de Cuentas");
+Action.create(accion: "Control de Planes de Cuentas");
+
+
+Rol.create(:nombre => "Admin", :action_ids => [1])
+User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 1);
+#User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 3);
+Photo.create(:user_id => 1);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
@@ -217,8 +218,8 @@ ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtamb
 ######
 Budget.create(reservation_request_id: 1,comfort_id: 3, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,comentario:"a",descuento: 10,total:10000);
 Budget.create(reservation_request_id: 2,comfort_id: 2, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,comentario:"a",descuento: 10,total:10000);
-ReservationRoom.create(reservation_id:1, room_id:1,budget_id:1,cantidad: 2,type_of_room_id:1,subtotal:10000,start:(Date.today+1).to_s,end: (Date.today+7).to_s,title: "Habitacion 1",color: "#33ff00",textColor: "#ffffff");
-ReservationRoom.create(reservation_id:2, room_id:4,budget_id:2,cantidad: 2,type_of_room_id:2,subtotal:10000,start:(Date.today+1).to_s,end: (Date.today+7).to_s,title: "Habitacion 4",color: "#80f442",textColor: "#ffffff");
+#ReservationRoom.create(reservation_id:1, room_id:1,budget_id:1,cantidad: 2,type_of_room_id:1,subtotal:10000,start:(Date.today+1).to_s,end: (Date.today+7).to_s,title: "Habitacion 1",color: "#33ff00",textColor: "#ffffff");
+#ReservationRoom.create(reservation_id:2, room_id:4,budget_id:2,cantidad: 2,type_of_room_id:2,subtotal:10000,start:(Date.today+1).to_s,end: (Date.today+7).to_s,title: "Habitacion 4",color: "#80f442",textColor: "#ffffff");
 ######
 
 TypeOfCashMovement.create(descripcion: "entrada");

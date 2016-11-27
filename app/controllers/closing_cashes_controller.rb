@@ -23,10 +23,7 @@ class ClosingCashesController < ApplicationController
   def edit
   end
   def montos_cierre
-      @movimientos = CashMovement.find_by(opening_cash_id: params[:opening_cash_id])
-      movimientos.each do |mov|
-        valores = PaymentTypes.where("cash_movement_id=?",mov.id)  
-      end
+      @apertura = OpeningCash.find(params[:opening_cash_id])
       respond_to do |format|
         format.js 
       end    
@@ -35,7 +32,8 @@ class ClosingCashesController < ApplicationController
   # POST /closing_cashes.json
   def create
     @closing_cash = ClosingCash.new(closing_cash_params)
-
+    apertura = OpeningCash.find(@closing_cash.opening_cash.id)
+    empleado = Employee.find(apertura.employee.id)
     respond_to do |format|
       if @closing_cash.save
         format.html { redirect_to @closing_cash, notice: 'Closing cash was successfully created.' }

@@ -29,8 +29,16 @@ class UsuariosController < ApplicationController
 
     respond_to do |format|
       if @usuario.save
-        format.html { redirect_to usuarios_url, success: 'Creaste un usuario correctamente.' }
-        format.json { render :show, status: :created, location: @usuario }
+        @photo = Photo.new({:user_id =>@usuario.id})
+        @photo.save
+
+        if @usuario.rol_id.nil?
+          format.html { redirect_to new_rol_path, notice: 'El usuario fue creado, asignele un nuevo rol.' }
+        else
+          format.html { redirect_to usuarios_url, notice: 'El usuario fue creado exitosamente.' }
+          format.json { render :show, status: :created, location: @usuario }
+        end
+
       else
         format.html { render :new }
         format.json { render json: @usuario.errors, status: :unprocessable_entity }
@@ -70,7 +78,16 @@ class UsuariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation , :apellido, :numero_ci, :direccion, :telefono, :celular, rol_ids: [])
+      params.require(:user).permit(:username,
+                                   :email, 
+                                   :password, 
+                                   :password_confirmation, 
+                                   :apellido, 
+                                   :numero_ci, 
+                                   :direccion, 
+                                   :telefono, 
+                                   :celular,
+                                   :rol_id)
     end
 end
 

@@ -100,7 +100,15 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <!-- The user image in the navbar-->
             <!--img src="/assets/user2-160x160.jpg" class="user-image" alt="User Image"/-->
-            <%= image_tag "user2-160x160.jpg", :class =>"user-image" , alt: "User Image" %>
+             <% @p = Photo.where("#{:user_id} = ?", current_user.id)%>
+             
+              <% if @p[0].my_file.present?%>
+                  <%@s = Photo.all.where("#{:user_id} = ?", current_user.id)%>
+                  <%= cl_image_tag(@s[0].my_file.filename, :effect=>"grayscale", :gravity=>"face", :radius=>"max", :crop=>"crop" ,:class =>"user-image")%>
+                 
+              <%else%>
+                  <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg",:width => 30, :height => 20%>
+              <%end%>
             <!-- hidden-xs hides the username on small devices so only the image appears. -->         
             <% if current_user.username.present? %>
                 <span class="hidden-xs"><%= current_user.username + ' '+ current_user.apellido %></span>
@@ -111,7 +119,16 @@
           <ul class="dropdown-menu">
             <!-- The user image in the menu -->
             <li class="user-header">
-            <%= image_tag "user2-160x160.jpg", :class =>"img-circle" , alt: "User Image" %>
+           
+               <% @p = Photo.where("#{:user_id} = ?", current_user.id)%>
+             
+              <% if @p[0].my_file.present?%>
+                  <%@s = Photo.all.where("#{:user_id} = ?", current_user.id)%>
+                    <%= cl_image_tag(@s[0].my_file.filename, :effect=>"grayscale", :gravity=>"face", :radius=>"max", :crop=>"crop" ,:class =>"img-circle" , alt: "User Image"  )%>
+              
+              <%else%>
+                  <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg", :class =>"img-circle" , alt: "User Image" %>
+              <%end%>
               <p>
                 <%=current_user.email%>
                 <small><%=current_user.remember_created_at%></small>
@@ -134,6 +151,9 @@
             <li class="user-footer">            
               <div class="pull-right">
                 <a href="<%=destroy_user_session_path%>" data-method="delete" class="btn btn-default btn-flat">Salir</a>
+
+                <% @p = Photo.where("#{:user_id} = ?", current_user.id)%>
+                <a href="/photos/+<%=@p[0].id%>+/edit"  class="btn btn-default btn-flat">Agregar Imagen</a>
               </div>
             </li>
           </ul>
