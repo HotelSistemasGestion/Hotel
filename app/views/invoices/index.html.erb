@@ -43,7 +43,7 @@
                     <%= link_to invoice, remote: true, class: 'btn btn-primary', title: 'Ver Factura', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon-eye-open"></span>
                     <% end %>
-                    <%if !invoice.cancelado? and !invoice.pagado?%>          
+                    <%if !invoice.cancelado? and !invoice.pagado? and invoice.account_id.nil? %>          
                       <%= link_to invoice, method: :delete, data: { confirm: "Desea cancelar esta factura?" }, class: 'btn btn-danger', title: 'Cancelar Factura', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                       <span class= "glyphicon glyphicon-remove"></span>
                       <% end %>

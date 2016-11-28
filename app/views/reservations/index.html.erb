@@ -1,10 +1,39 @@
 <div class="box">
 <div class="box-header with-border">
-  <%#= link_to new_reservation_path, class: 'btn btn-primary' do %>
-    <!--<span class="glyphicon glyphicon-plus"></span>
-    New Reservation
-  <%# end %>-->
-  <h3 class="box-title"><center>Reservaciones</center></h3>
+
+<button><%= link_to '', {:controller => "reservations", :action => "new"} , class: "btn btn-primary glyphicon glyphicon-plus" %></button> 
+
+  <%#= link_to my_new_reservation_path,           class: 'btn btn-primary' do %>
+    <!--span class="glyphicon glyphicon-plus"></span-->
+    
+  <%# end %>
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  <span class="glyphicon glyphicon-calendar"></span>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+         <div id='calendario'></div>
+            <script type="text/javascript">
+    
+            </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3><center>Reservaciones</center></h3>
 </div>
   <div class="box-body">
     <div class="table-responsive">
@@ -23,8 +52,7 @@
             <th>Total</th>
         
             <th></th>
-            <th></th>
-            <th></th>
+
           </tr>
         </thead>
 
@@ -38,12 +66,12 @@
             <td><%= reservation.email %></td>
 
             <td><%= reservation.telefono %></td>
-        
-            <td><%= reservation.total %></td>
+
+            <td><%= number_to_currency_py(reservation.total) %></td>
             
             <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
             <%= link_to '', edit_reservation_path(reservation),class: "btn btn-warning glyphicon glyphicon-pencil" %>
-            <%= link_to '', reservation,class: "btn btn-danger glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+            <%= link_to '', reservation,class: "btn btn-danger glyphicon glyphicon-trash borrar", method: :delete, data: { confirm: 'Esta seguro?' }, :remote => true %></td>
           <% end %>
         </tbody>
       </table>

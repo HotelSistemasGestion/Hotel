@@ -1,17 +1,22 @@
 
-$(document).ready(function (){
+$(document).ready(function(){
+
+
         $('div#budgets #budget_check_in').change(function(){
-           $("table.services").find('tr.fields:visible').each(function(){ 
+           $("table.services").find('tr.fields:visible').each(function(){             
+            actualizarsubtotal($(this).find(".subtotal").attr("id"),-8);
             checkDisponibility($(this));
           });
         });
         $('div#budgets #budget_check_out').change(function(){
           $("table.services").find('tr.fields:visible').each(function(){ 
+            actualizarsubtotal($(this).find(".subtotal").attr("id"),-8);
             checkDisponibility($(this));
           });
         });
         $('div#budgets #budget_comfort_id').change(function(){
-          $(".table.services").find('tr.fields:visible').each(function(){ 
+          $(".table.services").find('tr.fields:visible').each(function(){
+            actualizarsubtotal($(this).find(".subtotal").attr("id"),-8); 
             checkDisponibility($(this));
           });
         });
@@ -160,10 +165,18 @@ $(document).ready(function (){
         var subtotal_id="#"+aux+"subtotal";
         var ayudante="#"+aux+"ayudante";
         var cantidad="#"+aux+"cantidad";
+
+        var check_in=moment($("#budget_check_in").val(),'D/M/YYYY');
+        var check_out=moment($("#budget_check_out").val(),'D/M/YYYY');
+        var dias = parseInt(check_out.diff(check_in,"days"));
+        var budget_comfort_id = parseInt($("#budget_comfort_id").find(":selected").attr("precio"));
+
+        console.log(dias);
+
         cantidad=parseInt($(cantidad).val());
         var precio=parseInt($(ayudante).val());
-        if(! isNaN(precio)) { 
-          $(subtotal_id).val(precio * cantidad);
+        if(!isNaN(precio) && !isNaN(dias)) { 
+          $(subtotal_id).val((precio + budget_comfort_id) * cantidad * dias);
           console.log("Tengo Precio");
           actualizartotal();
         }

@@ -70,6 +70,23 @@ class AccountsController < ApplicationController
     end
   end
 
+  def report
+  @filterrific = initialize_filterrific(
+    Account,
+    params[:filterrific],select_options: {
+        sorted_by_state: Account.options_for_sorted_by_state
+      },
+     persistence_id: false
+  ) or return
+
+  @accounts = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @accounts_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account

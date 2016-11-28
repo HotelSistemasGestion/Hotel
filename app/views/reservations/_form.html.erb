@@ -1,4 +1,4 @@
-<%=nested_form_for(@reservation, html: { class: "form-horizontal", role: "form" }) do |f| %>
+<%=nested_form_for(@reservation, html: { class: "form-horizontal", role: "form" },validate: true) do |f| %>
   <% if @reservation.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -12,17 +12,16 @@
     </div>
   <% end %>
 
-
   <div class="form-group">
     <%= f.label :nombre, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :nombre, value:@my_reservation_requests.nombre,  class: "form-control" %>
+      <%= f.text_field :nombre, class: "form-control" %>
       <%#= f.text_field :nombre,  class: "form-control" %>
     </div>
 
     <%= f.label :apellido, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :apellido, value:@my_reservation_requests.apellido, class: "form-control" %>
+      <%= f.text_field :apellido,class: "form-control" %>
       <%#= f.text_field :apellido, class: "form-control" %>
     </div>
     
@@ -32,81 +31,60 @@
   <div class="form-group">
     <%= f.label :email, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :email, value:@my_reservation_requests.email, class: "form-control"%>
-      <%#= f.text_field :email, class: "form-control"%>
+      <%= f.text_field :email, class: "form-control"%>
     </div>
-
     <%= f.label :telefono, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :telefono,value: @my_reservation_requests.telefono, class: "form-control" %>
-      <%#= f.text_field :dias, class: "form-control" %>
+      <%= f.text_field :telefono, class: "form-control"%>
     </div>
+
     
   </div>
 
 
-  <!--<div class="form-group">
-    <%#= f.label :check_in, class: "col-sm-1 control-label" %>
-    <div class="col-sm-3">
-      <%#= f.text_field :check_in, value: @my_reservation_requests.check_in, class: "datepicker form-control"%>
-      <%#= f.text_field :check_in, class: "datepicker form-control"%>
-    </div>-->
-
-    <%#= f.label :check_out, class: "col-sm-1 control-label" %>
-    <!--<div class="col-sm-3">
-      <%#= f.text_field :check_out, value: @my_reservation_requests.check_out, class: "datepicker form-control" %>
-      <%#= f.text_field :check_out, class: "datepicker form-control" %>
-    </div>-->
-    <div class="col-sm-3">
-    <!--Consultar el porque-->
-    <td><%= f.hidden_field :reservation_request_id,value: @my_reservation_requests.id,readonly: true,class: "form-control"%>
-    <td><%= f.hidden_field :budget,value: @my_budgets.id,readonly: true,class: "form-control"%>
-    </div>
-
-
-            
-             <div class="box-body">
               <div class="table-responsive well">
               <table class="table table-striped table-bordered table-hover services" id="table">
                 <thead class="thead-inverse">
                   <tr>
-                    
-                    <th>Habitacion</th>
-                    <th>Tipo de Habitacion</th>
-                    <th>Comfort</th>
-                    <th>Check In</th>
-                    <th>Check Out</th>
-                    <th>Precio</th>
-                    <th>Eliminar</th>
+                    <th>Tipo de Habitacion.</th>
+                    <th>Confort.</th>
+                    <th>Habitacion.</th>
+                    <th>check_in.</th>
+                    <th>check_out.</th>
+                    <th>Subtotal (Gs).</th>
+                    <th>Disponible.</th> 
+                    <th>Eliminar.</th>
                   </tr>
                 </thead>
                 <tbody>
-                    <%c = 0%>
-                    <%a = 0%>
+                    <!-- begin-->
                     <%= f.fields_for :reservation_rooms,:validate => true ,:wrapper => false do |li| %>
-                      <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
-                      <% type_room = "#"+"#{li.object_name}[type_of_room_id]".gsub(/(\])?\[/, "_").chop %>
-                      <% room = "#"+"#{li.object_name}[type_of_room_id]".gsub(/(\])?\[/, "_").chop %>
-                      
-                          <tr class="fields">
-                            
+                    <tr class="fields">
+                        <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
+                        <% subtotal = "#"+"#{li.object_name}[subtotal]".gsub(/(\])?\[/, "_").chop %>
+                        <% id = "#"+"#{li.object_name}[comfort_id]".gsub(/(\])?\[/, "_").chop %>
 
-                            <td><%= li.select :room_id, Room.all.collect{ |p| [ p.identificador, p.id ]}, {:prompt => "Elegir Habitacion"}%></td>
+                    
+                    <td><%= li.select :type_of_room_id,options_for_select(TypeOfRoom.all.collect{ |p| [ p.tipo, p.id,{'precio'=>p.precio}]}),{:prompt => "Tipo de Habitacion"},{ class: "form-control sincronizador1"}%></td>
 
-                            <td><%= li.select :type_of_room_id, TypeOfRoom.all.collect{ |p| [ p.tipo, p.id ]}, {:prompt => "Elegir Tipo de Habitacion"}%></td>
+                    <td><%= li.select :comfort_id,options_for_select( Comfort.all.collect{ |p| [ p.descripcion, p.id,{'precio'=>p.precio} ]}), {:prompt => "Confort"},{ class: "form-control sincronizador2",style: "width: 110px"}%></td>
 
-                            <th><%= li.select :comfort_id, Comfort.all.collect{ |p| [p.descripcion , p.id ]}, {:prompt => "Elegir Comfort"}%></th>
+                    <td><%= li.select :room_id,{},{:prompt => "Elegir Habitacion"},{ class: "form-control room_id",style: "width: 110px"}%></td>
+                    
+                    <td><%= li.text_field :check_in,style: "width: 105px",class: "datepicker form-control check_in"%></td>
+                    <td><%= li.text_field :check_out,style: "width: 105px",class: "datepicker form-control check_out"%></td>
+                    <td><%= li.text_field :subtotal,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},class: "form-control subtotal"%></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" id="my_button">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                        </button>
+                    </td>
+                         <!--<td><%#= li.autocomplete_field :type_of_room, autocomplete_type_of_room_tipo_type_of_rooms_path, :placeholder => "Seleccione un tipo habitacion", 
+                        :multiple => true, :update_elements => {:id => id} %>-->
 
-                            <th><%= li.text_field :check_in, class: "datepicker form-control"%></th>
-
-                            <th><%= li.text_field :check_out, class: "datepicker form-control"%></th>
-
-                            <td><%= li.number_field :subtotal%></td>
-                  
-                            <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
-                              
-                          </tr>
-
+                    <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
+                    </tr>
+                    <!--aca suma-->
                     <%end%>
                     <tr>
                       <td><%= f.link_to_add "", :reservation_rooms , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
@@ -115,15 +93,13 @@
                 </tbody>
               </table>
               </div>
-            </div>
-        
-        
+
    
 <div class="form-group">
 
     <%= f.label :total, class: "col-sm-1 control-label" %>
     <div class="col-sm-3">
-      <%= f.text_field :total, class: "form-control"%>
+      <%= f.text_field :total,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, class: "form-control",id: "total"%>
       <!--porque no funciona asi-->
       <%#= f.text_field :total,value:@my_reservation_requests.id, class: "form-control"%>
     </div>
@@ -133,9 +109,206 @@
 
   <div class="form-group">
     <div class="col-sm-10">
-      <%= button_tag( :class => "btn btn-primary") do %>
+      <%= button_tag( :class => "btn btn-primary",id: "guardar") do %>
         <i class="glyphicon glyphicon-floppy-save"></i> Guardar 
       <% end %>
     </div>
   </div>
 <% end %>
+<script type="text/javascript">
+  $(function(){
+    $(".sincronizador1").each(function(){
+    cargarSelectDeHabitaciones($(this).attr("id"),-15);
+    });
+  });
+
+  $(document).on('nested:fieldAdded','form', function(event) {
+    //$("form").live("nested:fieldAdded", function(event) {
+    $(event.target).find(':input').enableClientSideValidations();
+    $(".datepicker").datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'es',
+                startDate: '+1d'
+              });
+  });
+
+  $(document).on('click','#borrar', function () {                
+    actualizartotal();
+    guardar();
+  });
+
+  $(document).on('change','.sincronizador1', function () { 
+    var id = $(this).attr("id");              
+    cargarSelectDeHabitaciones(id,-15);
+    var $tr =  $(this).closest('tr');
+    console.log("actualizo");
+    checkDisponibility($tr);
+    actualizarsubtotal($tr);
+    //$tr.find(".subtotal").val($(this).find(":selected").attr("precio")); 
+
+    });
+  $(document).on('change','.sincronizador2', function () {  
+    var id = $(this).attr("id");              
+    cargarSelectDeHabitaciones(id,-10); 
+    var $tr =  $(this).closest('tr');
+    console.log("actualizo");
+    checkDisponibility($tr);
+    actualizarsubtotal($tr);
+
+      });
+
+  //detecto cambios y actualizo el estado
+  $(document).on('change','#table .room_id,#table .check_out,#table .check_in', function () {  
+    var $tr =  $(this).closest('tr');
+    console.log("actualizo");
+    checkDisponibility($tr);
+    actualizarsubtotal($tr);
+      });
+
+  //llamo al cuando aprieto boton    
+        $(document).on('click',' #my_button', function () { 
+          var $tr =  $(this).closest('tr'); 
+          checkDisponibility($tr);
+        });
+  //Actualizo el subtotal
+  function actualizarsubtotal(my_tr){
+          var subtotal="#"+my_tr.find(".subtotal").attr("id");
+          var check_in=moment(my_tr.find(".check_in").val(),'D/M/YYYY');
+          var check_out=moment(my_tr.find(".check_out").val(),'D/M/YYYY');
+          var dias = parseInt(check_out.diff(check_in,"days")); 
+          var comfort=parseInt(my_tr.find(".sincronizador1").find(":selected").attr("precio"));
+          var type_of_room=parseInt(my_tr.find(".sincronizador2").find(":selected").attr("precio"));
+
+          console.log(dias,comfort,type_of_room);
+          //var precio=parseInt($(ayudante).val());
+          if(!isNaN(dias) && !isNaN(type_of_room) && !isNaN(comfort)) { 
+            $(subtotal).val(dias * (type_of_room + comfort)).keyup();
+            actualizartotal();
+          }
+          else{
+            $(subtotal).val(0).keyup();
+            actualizartotal();
+
+          }
+          
+    }
+      function getsumasubtotales(){
+         var sum = 0;
+          $(".subtotal").each(function() {
+              var id=$(this).attr("id");
+              var val = $(this).val();
+              if ($("#" + id).parent().closest('tr').css('display') !== "none"){
+                if ( val ) {
+                  val = Number(val.replace(/[^0-9\.]+/g,""));
+                  sum += !isNaN(val) ? val : 0;
+              }
+              }     
+          });
+          return sum;
+      }
+        //Actualiza el total con su respectivo descuento.
+        function actualizartotal(){
+          var subtotales=getsumasubtotales();
+          $("#total").val(subtotales).keyup();
+        }
+
+
+
+  function cargarSelectDeHabitaciones(id,num){
+    console.log("cargo habitaciones");
+    var room_id ="#"+ id.slice(0,num) + "room_id";
+    var type_of_room_id = "#"+id.slice(0,num) + "type_of_room_id";
+    var comfort_id ="#"+ id.slice(0,num) + "comfort_id";
+    if ( $(comfort_id).val() !== "" && $(type_of_room_id).val() !== ""){
+      console.log("Debo sincronizar" + room_id);
+       $.ajax({
+               type: 'GET',
+               url: "/reservations/habitaciones",
+               my_room_id: room_id,
+               data: {
+                 type_of_room_id: $(type_of_room_id).val(),
+                 comfort_id: $(comfort_id).val()
+               },
+               dataType: "json",
+               error: function(XMLHttpRequest, errorTextStatus, error){
+                          alert("Failed: "+ errorTextStatus+" ;"+error);
+                      },
+               success: function(data){
+                  // here we iterate the json result
+                  $(this.my_room_id).empty();
+                  $(room_id).empty().append(new Option("Ninguna"));
+                  for(var i in data){
+                    if (i == 0){
+                      $(this.my_room_id).empty();
+                    }
+                    var id = data[i].id;
+                    var identificador = data[i].identificador;
+                    $(this.my_room_id).append(new Option(identificador, id));
+                    //Disparo este evento,porque al cargar ya quiero que actualice su disponibilidad
+                    $(this.my_room_id).trigger('change');
+                  }
+          
+               }
+             });
+    }else{
+      $(room_id).empty().append(new Option("Ninguna"));
+
+    }            
+  }
+
+
+  //Checkea La disponibilidad
+    function checkDisponibility(my_tr){
+          var $tr=my_tr;
+
+          var mybutton=$tr.find("#my_button");
+          var check_in=$tr.find(".check_in").val();
+          var check_out=$tr.find(".check_out").val();
+          var room_id=parseInt($tr.find('.room_id').val());
+          //Ve si tiene todos los datos para llamar al ajax
+          if(check_in!=="" && check_out!=="" && !isNaN(room_id)){
+            $.ajax({
+              type:"GET",
+              url:"/reservations/hay_disponible",
+              my_button: mybutton,
+              dataType:"json",
+              data: { "room_id" : room_id,
+                      "check_in" : check_in ,
+                      "check_out" : check_out},
+              success:function(result){
+                if (result["result"]===true){
+                  //si es exitoso pinto en verde el boton de disponibilidad
+                  this.my_button.removeClass(this.my_button.attr("class")).addClass('btn btn-success');
+                  this.my_button.find("span").removeClass(this.my_button.find("span").attr("class")).addClass('glyphicon glyphicon-ok-circle');
+                  guardar();
+                }
+                if (result["result"] ===false){
+                  //si no hay pinto en rojo el boton de disponibilidad
+                  this.my_button.removeClass(this.my_button.attr("class")).addClass('btn btn-danger field_with_errors');
+                  this.my_button.find("span").removeClass(this.my_button.find("span").attr("class")).addClass('glyphicon glyphicon-remove-circle');
+                   guardar();
+                }
+              },error: function(result) {
+                //Si ocurre algun error dejo el boton azul de "Falta verificar"
+                this.my_button.removeClass(this.my_button.attr("class")).addClass('btn btn-primary');
+                this.my_button.find("span").removeClass(this.my_button.find("span").attr("class")).addClass('glyphicon glyphicon-calendar');
+          }
+            });
+          }else{
+            mybutton.removeClass(mybutton.attr("class")).addClass('btn btn-primary');
+            mybutton.find("span").removeClass(mybutton.find("span").attr("class")).addClass('glyphicon glyphicon-calendar');
+
+          }
+
+
+        }
+
+  function guardar(){
+    if ($('.field_with_errors:visible').length > 0) {
+      $("#guardar").attr('disabled', true);
+    }else{
+      $("#guardar").attr('disabled', false);
+  }
+
+  }
+</script>

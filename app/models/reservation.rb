@@ -9,9 +9,14 @@ class Reservation < ActiveRecord::Base
 	has_many :reservation_rooms,:dependent => :destroy
 
 	#
-	accepts_nested_attributes_for :reservation_rooms, allow_destroy: true, update_only: true,:reject_if => lambda { |c| c[:type_of_room_id].blank? }
+	accepts_nested_attributes_for :reservation_rooms, allow_destroy: true, update_only: true,:reject_if => lambda { |c| c[:room_id].blank? }
 	#
-	#validate :reserva_fecha
+	validates :nombre, :presence => {:message => "No puede estar en blanco" }
+	validates :apellido, :presence => {:message => "No puede estar en blanco" }
+	validates :telefono, :presence => {:message => "No puede estar en blanco" }
+
+
+
 	#validate :validacion_fecha
 
 	#def reserva_fecha
