@@ -1,4 +1,5 @@
 class CashMovement < ActiveRecord::Base
+	audited
 	belongs_to :type_of_cash_movement
 	belongs_to :opening_cash
 	belongs_to :accounting_entry

@@ -5098,8 +5098,10 @@ font-style: italic;
   .table-responsive > .table tr th,
   .table-responsive > .table tr td {
     white-space: normal !important;
+   page-break-inside:avoid !important;
+   page-break-after:auto !important;
   }
-  
+
   /*CSS RELACIONADO AL IMPRIMIR LOS REPORTES*/ 
   .box{
     border-style:none;
@@ -5150,6 +5152,10 @@ color: transparent  !important;
       appearance: none;
   }
 
+
+
+
+
 /* FIN DEL CSS RELACIONADO AL IMPRIMIR LOS REPORTES */  
 }
 
@@ -5166,7 +5172,7 @@ color: transparent  !important;
   padding: 3px 2px;
   border: 1px solid #dd4b39;
 }
-.hide-bullets {
+/*.hide-bullets {
     list-style:none;
     margin-left: -40px;
     margin-top:20px;
@@ -5178,7 +5184,7 @@ color: transparent  !important;
 
 .carousel-inner>.item>img, .carousel-inner>.item>a>img {
     width: 100%;
-}
+}*/
 /*prueba carrusel*/
 /*.hide-bullets {
     list-style:none;
@@ -5296,7 +5302,7 @@ width: 1200px;
 }
 #first-slider .carousel .item {
  
-  height: 600px;
+  height: 700px;
   width: 100%;
 }
 

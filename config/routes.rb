@@ -24,7 +24,17 @@ Rails.application.routes.draw do
   resources :cleanings
   resources :invoice_details
   resources :account_details
-  resources :reservations
+  resources :reservations  do
+    collection do
+      get 'habitaciones'
+    end
+    collection do
+      get 'hay_disponible'
+    end
+    collection do
+        get 'my_new'
+    end
+  end
   resources :cleaning_rooms
   resources :photos  
   resources :rols 
@@ -33,7 +43,6 @@ Rails.application.routes.draw do
   end
 
   resources :rooms do
-
     collection do
       get 'report'
     end
@@ -102,11 +111,17 @@ Rails.application.routes.draw do
 
   resources :reservation_requests
   resources :services do
+     collection do
+      get 'report'
+    end
     get :autocomplete_service_nombre, :on => :collection
   end  
   resources :accounts do
     member do
       get :facturar
+    end
+    collection do
+      get 'report'
     end
   end
   resources :invoices, :except => [:edit]
@@ -123,6 +138,7 @@ Rails.application.routes.draw do
   end  
   get 'reports/index'
   get 'dashboard/index'
+  get 'dashboard/new'
   get 'welcome/index'
 
   resources :usuarios

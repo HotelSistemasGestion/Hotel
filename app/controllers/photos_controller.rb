@@ -14,11 +14,12 @@ class PhotosController < ApplicationController
 
   # GET /photos/new
   def new
-    @photo = Photo.new
+    
   end
 
   # GET /photos/1/edit
   def edit
+   # @photo = Photo.find({:user_id=> params[:user_id]})
   end
 
   # POST /photos
@@ -69,6 +70,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:room_id, :my_file)
+      params.require(:photo).permit(:user_id,:room_id, :my_file)
     end
 end

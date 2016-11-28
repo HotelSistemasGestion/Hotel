@@ -1,4 +1,5 @@
-class UsuariosController < ApplicationController    
+class UsuariosController < ApplicationController
+  before_action :authenticate_user!    
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 
   # GET /usuarios
@@ -29,12 +30,16 @@ class UsuariosController < ApplicationController
 
     respond_to do |format|
       if @usuario.save
+        @photo = Photo.new({:user_id =>@usuario.id})
+        @photo.save
+
         if @usuario.rol_id.nil?
           format.html { redirect_to new_rol_path, notice: 'El usuario fue creado, asignele un nuevo rol.' }
         else
           format.html { redirect_to usuarios_url, notice: 'El usuario fue creado exitosamente.' }
           format.json { render :show, status: :created, location: @usuario }
         end
+
       else
         format.html { render :new }
         format.json { render json: @usuario.errors, status: :unprocessable_entity }

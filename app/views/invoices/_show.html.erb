@@ -58,26 +58,15 @@
                           <td class="text-right"><strong>Subtotal</strong></td>
                         </tr>
                       </thead>
-                      <tbody>                           
-                        <% if @invoice.account_id.nil?
-                          @invoice.invoice_details.each do |details|%>
+                      <tbody>                                           
+                          <% @invoice.invoice_details.each do |details|%>
                             <tr>
                               <td><%= details.cantidad %></td>                          
                               <td style="margin-left: 80px;" class="text-center"><%= Service.find(details.service_id).nombre %></td> 
                               <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
                               <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
                             </tr>
-                          <%end%> 
-                        <%else
-                          Account.find(@invoice.account_id).account_details.each do |details|%>
-                            <tr>
-                              <td><%= details.cantidad %></td>                          
-                              <td style="margin-left: 80px;" class="text-center"><%= Service.find(details.service_id).nombre %></td> 
-                              <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
-                              <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
-                            </tr>
-                          <%end%>  
-                        <%end%>  
+                          <%end%>                       
                       </tbody>
                   </table>
                 </div>

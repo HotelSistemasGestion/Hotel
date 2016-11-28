@@ -1,4 +1,5 @@
 class Cash < ActiveRecord::Base
+	audited
 	has_many :opening_cash
 
 	validates :descripcion, presence: { message: " No puede dejar en blanco "}, length: {maximum: 20}
