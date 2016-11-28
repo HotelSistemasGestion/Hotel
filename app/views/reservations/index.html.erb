@@ -44,7 +44,7 @@
             
             <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
             <%= link_to '', edit_reservation_path(reservation),class: "btn btn-warning glyphicon glyphicon-pencil" %>
-            <%= link_to '', reservation,class: "btn btn-danger glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+            <%= link_to '', reservation,class: "btn btn-danger glyphicon glyphicon-trash borrar", method: :delete, data: { confirm: 'Esta seguro?' }, :remote => true %></td>
           <% end %>
         </tbody>
       </table>

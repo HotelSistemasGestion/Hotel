@@ -115,8 +115,8 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reservation }
+        format.html { redirect_to reservations_path(), notice: 'Reservacion actualizada.'}
+        #format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
@@ -127,11 +127,14 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
+    @reservation = Reservation.find(params[:id])
     @reservation.destroy
-    respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+   
+   respond_to do |format|
+      format.html { redirect_to reservations_url }
       format.json { head :no_content }
-    end
+      format.js   { render :layout => false }
+   end
   end
 
   private
