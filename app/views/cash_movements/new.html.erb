@@ -1,8 +1,9 @@
 <div class="box box-primary">
 
 	<div class="box-header with-border">
-	  <%=link_to 'Movimientos',list_path(@id), class: "btn btn-primary" %>
-	  <h1><center>Caja: <%=@caja%></center></h1>
+		<%=link_to 'Movimientos',list_path(@id), class: "btn btn-primary" %>
+	  	<div class="col-sm-2"></div>
+	  	<h3 class="box-title col-sm-8"><center>Caja: <%=@caja%></center></h3>
 	</div>
 	<div class="box-body">
 		<%= render 'form' %>
