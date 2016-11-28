@@ -1,32 +1,43 @@
-<%= form_for(@photo, html: { class: "form-horizontal", role: "form" }) do |f| %>
-  <% if @photo.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h4>
+<div class="box-body">
+  <%= form_for(@photo, html: { class: "form-horizontal", role: "form" }) do |f| %>
+    <% if @photo.errors.any? %>
+      <div class="alert alert-danger alert-dismissable" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h4>
 
-      <ul>
-      <% @photo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @photo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :Imagen_Actual, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+         <% @p = Photo.where("#{:user_id} = ?", current_user.id)%>
+               <% if @p[0].my_file.present?%>
+                  <%@s = Photo.all.where("#{:user_id} = ?", current_user.id)%>
+                  <%= cl_image_tag(@s[0].my_file.filename,:width => 100, :height =>100)%>
+                 
+              <%else%>
+                  <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg",:width => 30, :height => 20%>
+              <%end%>
+
+       
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :Nueva_Imagen, class: "col-sm-2 control-label" %>
+      <div class="col-sm-7">
+        <%= f.file_field :my_file, class: "form-control" ,type:"file" ,class: "file"  %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Cambiar foto",class: "btn btn-primary" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :user_id, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :user_id, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :my_file, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.file_field :my_file, class: "form-control" ,type:"file" ,class: "file"  %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
+</div>

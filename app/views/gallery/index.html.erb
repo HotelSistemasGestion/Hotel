@@ -1,10 +1,10 @@
 <h2><img src="https://res.cloudinary.com/dqgld1gyl/image/upload/v1479526122/cooltext216714265064138_fm7ire.png"></h2>
 <!-- The container for the list of example images -->
 <div  class="links">
-     <% Photo.all.each do |p| %>              
+     <% Photo.where("#{:room_id} > ?",0).each do |p| %>              
        
         <a href= <%= p.my_file %>  title="River Bend Reflections" data-gallery=""> 
-          <%=cl_image_tag(p.my_file_url.to_s, :border=>"2px_solid_rgb:fff", :height=>100, :width=>100, :crop=>"scale")%>
+          <%=cl_image_tag(p.my_file.filename, :border=>"2px_solid_rgb:fff", :height=>100, :width=>100, :crop=>"scale")%>
         </a>
     <%end%>
   <!--  <a href="https://res.cloudinary.com/dqgld1gyl/image/upload/v1479440923/91efd-6-Ayada_Maldives-Sunset-Ocean-Sutes_qca6qw.jpg" title="River Bend Reflections" data-gallery=""><img src="https://res.cloudinary.com/dqgld1gyl/image/upload/bo_2px_solid_rgb:fff,c_scale,h_100,w_100/v1479440923/91efd-6-Ayada_Maldives-Sunset-Ocean-Sutes_qca6qw.jpg"></a>

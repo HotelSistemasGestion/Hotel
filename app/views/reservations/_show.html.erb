@@ -11,55 +11,84 @@
       <div class="modal-body">   
         <p id="notice"><%= notice %></p>
 
-       <p>
-          <strong>Nombre:</strong>
-          <%= @reservation.nombre %>
-        </p>
+       <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Nombre: </label>
+              <%= @reservation.nombre %>            
+              </div> 
+            <div class="form-group">
+                <label>Apellido: </label>
+                <%= @reservation.apellido %>            
+              </div> 
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Email: </label>
+                <%=@reservation.email %>            
+            </div> 
+              <div class="form-group">
+                <label>Telefono: </label>
+                <%= @reservation.telefono %>            
+              </div> 
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Direccion: </label>
+              <%= @reservation.total %>            
+            </div> 
+          </div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><center><strong>Habitaciones</strong></center></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                          <td><strong>Tipo de Habitacion</strong></td>
+                          <td><strong>Comfort</strong></td>
+                          <td><strong>Cuarto</strong></td>
+                          <td><strong>Check_in</strong></td>
+                          <td><strong>Check_out</strong></td>
+                          <td><strong>Subtotal</strong></td>
+                        </tr>
+                      </thead>
+                      <tbody>                                           
+                          <% @reservation.reservation_rooms.each do |detalle| %>
+                            <tr>
+                              <td><%= detalle.type_of_room_id %></td>                          
+                              <td><%= detalle.comfort_id %></td> 
+                              <td><%= detalle.room_id %></td>
+                              <td><%= detalle.check_in %></td> 
+                              <td><%= detalle.check_out %></td> 
+                              <td><%= detalle.subtotal %></td>  
+                            </tr>
+                          <%end%>                       
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <p>
-          <strong>Apellido:</strong>
-          <%= @reservation.apellido %>
-        </p>
-
-
-        <p>
-          <strong>Email:</strong>
-          <%= @reservation.email %>
-        </p>
-
-        <p>
-          <strong>Dias:</strong>
-          <%= @reservation.dias %>
-        </p>
-
-        <p>
-          <strong>Check_in:</strong>
-          <%= @reservation.check_in %>
-        </p>
-
-        <p>
-          <strong>Check_out:</strong>
-          <%= @reservation.check_out %>
-        </p>
-
-        <p>
+        <!--<p>
           <strong>Cuarto:</strong>
-          <%= @reservation.room_id %>
-        </p>
-
-        <p>
-          <strong>Tipo_de_Cuarto:</strong>
-          <%= @reservation.total %>
-        </p>
-
-        <p>
-          <strong>Total:</strong>
-          <%= @reservation.total %>
-        </p>
+          <%# @reservation.reservation_rooms.each do |a| %>
+          <%#= a.room_id%>
+          <%#end%>
+        </p>-->
 
       </div>
+
     </div>
 
   </div>
 </div>
+

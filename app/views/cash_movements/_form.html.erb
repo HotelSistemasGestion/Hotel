@@ -1,4 +1,4 @@
-<%= nested_form_for(@cash_movement, html: { class: "form-horizontal", role: "form" },data: {toggle:"validator"}) do |f| %>
+<%= nested_form_for(@cash_movement, html: { class: "form-horizontal", role: "form" },:validate => true) do |f| %>
   <% if @cash_movement.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -11,51 +11,92 @@
       </ul>
     </div>
   <% end %>
-<div class="row"> 
-  <div class="col-sm-6">
-    <div class="row">
-      <div class="col-sm-12">
-        <%= f.label 'Apertura:' ,class: "col-sm-3 control-label" %>
-    <%= f.text_field :opening_cash,id: "apertura", class: "col-sm-6",:value => @apertura.fecha_apertura,:readonly => true, remote: true %>
-    <%= f.hidden_field  :opening_cash_id, :value => @apertura.id%>  
-      </div>    
+<div class="row">
+<div class="col-sm-4">
+  <div class="row">
+    <div class="form-group">
+      <%= f.label 'Fecha:' ,class: "col-sm-6 control-label" %>
+        <div class="col-sm-6">
+          <%= f.text_field :fecha,value: Time.now.strftime("%d-%m-%Y"), class: "form-control", :readonly => true%>
+          <%= f.hidden_field  :opening_cash_id, :value => @id%>      
+        </div>  
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <%= f.label 'Tipo:',class: "col-sm-3 control-label" %>
-        <%= f.select :type_of_cash_movement_id ,TypeOfCashMovement.all.collect { |t| [t.descripcion, t.id ] },{include_blank: false},class: "col-sm-6",:required => true %>
-      </div>    
-    </div>   
   </div>
-
-  <div class="col-sm-6">
-      <div class="row">
-        <div class="col-sm-12">
-          <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
-              <%= f.autocomplete_field :nombre, autocomplete_client_cedula_clients_path, class:"col-sm-6", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'},id: 'cliente',:required => true  %>
-          <%= f.hidden_field  :client_id, id: 'cli_id' %>      
+  <div class="row">
+    <div class="form-group">
+      <%= f.label 'Tipo:',class: "col-sm-6 control-label" %>
+        <div class="col-sm-6">
+          <%= f.select :type_of_cash_movement_id ,TypeOfCashMovement.all.collect { |t| [t.descripcion, t.id ] },{include_blank: true},class: "form-control" %>
         </div>
-        <div class="col-sm-12">
-          <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
-          <%= f.text_field :ruc, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true%>
+    </div>
+  </div>  
+</div>
+<div class="col-sm-8">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label 'Cliente:', class: "col-sm-5 control-label" %>
+        <div class="col-sm-7">
+          <%= f.autocomplete_field :nombre,  autocomplete_client_cedula_clients_path,:validate => true, class:"form-control", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'},id: 'cliente'  %>
+          <%= f.hidden_field  :client_id, id: 'cli_id' %>
+        </div>                    
+      </div>  
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label 'RUC:', class: "col-sm-2 control-label" %>
+        <div class="col-sm-7">
+          <%= f.text_field :ruc, id: 'ruc', class:"form-control", readonly: true%>  
         </div>
       </div>
     </div>
-  
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label 'Direccion:', class: "col-sm-5 control-label" %>
+        <div class="col-sm-7">
+          <%= f.text_field :direccion, id: 'direccion', class:"form-control", readonly: true%>  
+        </div>
+      </div>  
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label 'Celular:', class: "col-sm-2 control-label" %>
+        <div class="col-sm-7">
+          <%= f.text_field :direccion, id: 'telefono', class:"form-control", readonly: true%>  
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6"></div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label 'Email:', class: "col-sm-2 control-label" %>
+        <div class="col-sm-7">
+          <%= f.text_field :direccion, id: 'correo', class:"form-control", readonly: true%>  
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
 </div>
 
-      <br></br>
-        <div class="box box-default box-solid collapsed-box">
-          <div class="box-header with-border">
-            <h3 class="box-title"><center>Detalles de Movimiento</center></h3>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                </button>
-              </div>
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10">
+    <div class="box box-primary box-solid collapsed-box">
+      <div class="box-header with-border">
+        <h3 class="box-title" style="color:white"><center>Detalles de Movimiento</center></h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
           </div>
-            <div class="box-body" style="display: none;">
-            <div class="table-responsive well">
-            <table class="table table-striped table-bordered table-hover">
+      </div>
+      <div class="box-body" style="display: none;">
+        <div class="table-responsive well">
+          <table class="table table-striped table-bordered table-hover">
             <thead class="thead-inverse">
               <tr>
                 <th>Factura Numero</th>
@@ -65,16 +106,14 @@
             </thead>
             <tbody id="invoice">
                   
-          </tbody>
+            </tbody>
         </table>
       </div>
     </div>
-</div>
-        
-
-        <div class="box box-default box-solid collapsed-box">
+  </div>
+<div class="box box-primary box-solid collapsed-box">
           <div class="box-header with-border">
-            <h3 class="box-title"><center>Valores</center></h3>
+            <h3 class="box-title" style="color:white"><center>Valores</center></h3>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
                 </button>
@@ -90,26 +129,28 @@
                   </tr>
                 </thead>
 
-                <tbody>
-                <%= f.fields_for :payment_types  ,:wrapper => false do |li| %>
+                <tbody id="payment">
+                <%= f.fields_for :payment_types, :validate => true ,:wrapper => false do |li| %>
                 <tr class="fields">    
                   <td class="col-sm-4">
-                    <%= li.select :payment_value_id, PaymentValue.all.collect{|p| [p.descripcion, p.id]},{include_blank: false}  ,:class => "form-control select",:required => true %>
+                    <%= li.select :payment_value_id, PaymentValue.all.collect{|p| [p.descripcion, p.id]},{include_blank: false}  ,:class => "form-control select"%>
                   </td>
                   
-                  <td class="col-sm-4"><%= li.text_field :total,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, :class => "form-control auto",:required => true%>
+                  <td class="col-sm-4"><%= li.text_field :total,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, :class => "form-control auto"%>
                   </td>
                   
                   <td class="detalle" id="detalle-<%= li.index%>" style="display: none">
                     <%= li.text_field :banco, :style => "display: none", :class => "form-control cheque" ,placeholder: "Banco"%>
                   
                    <%= li.text_field :titular, :style => "display: none",:class => "form-control cheque" ,placeholder: "Titular"%>  
-                  
-                    <%= li.text_field :fecha_disponibilidad, :style => "display: none",:class => "form-control datepicker cheque" ,placeholder: "Fecha Disponibilidad"%> 
+                   
+                   <%= li.text_field :n_cheque, :style => "display: none",:class => "form-control cheque" ,placeholder: "Numero cheque"%>
+                   
+                   <%= li.text_field :fecha_disponibilidad, :style => "display: none",:class => "form-control datepicker cheque" ,placeholder: "Fecha Disponibilidad"%> 
                      
-                    <%= li.text_field :tarjeta_tipo, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Tipo Tarjeta"%>
+                   <%= li.text_field :tarjeta_tipo, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Tipo Tarjeta"%>
                     
-                    <%= li.text_field :n_cheque, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Numero Verificacion"%>
+                   <%= li.text_field :n_cheque, :style => "display: none", :class => "form-control tarjeta" ,placeholder: "Numero Verificacion"%>
                   </td>
                 <td>
                   <%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %>
@@ -124,11 +165,13 @@
         </table>
       </div>
     </div>
-  </div>  
+  </div>
+</div>
+</div>
     <div class="row">
       <div class="col-sm-10">
         <div class="form-group">
-          <div class="col-md-offset-7 col-md-4">
+          <div class="col-md-offset-9 col-md-4">
             <%= f.label :Total %><br>
             <%= f.text_field :monto_total,id: "Total", class: "form-control total",  :readonly => true,placeholder: "" %>
           </div>    
@@ -136,10 +179,8 @@
       </div>         
     </div>
     <div class="box-footer">
-      <div class="col-sm-offset-8 col-sm-10">
-        <%= f.submit "Aceptar", class: "btn btn-primary " %>
+      <div class="col-sm-offset-9 col-sm-10">
+        <%= f.submit "Aceptar", class: "btn btn-primary" ,id:"btnAceptar"%>
       </div>
     </div>
-  </div>
-
   <% end %>
