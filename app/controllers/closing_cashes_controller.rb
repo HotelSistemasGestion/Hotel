@@ -1,5 +1,4 @@
 class ClosingCashesController < ApplicationController
-  load_and_authorize_resource
   before_action :authenticate_user!
   before_action :set_closing_cash, only: [:show, :edit, :update, :destroy]
 
@@ -40,7 +39,7 @@ class ClosingCashesController < ApplicationController
         apertura.save
         empleado.estado = "Libre"
         empleado.save
-        format.html { redirect_to @closing_cash, notice: 'Closing cash was successfully created.' }
+        format.html { redirect_to closing_cashes_url, notice: 'Closing cash was successfully created.' }
         format.json { render :show, status: :created, location: @closing_cash }
       else
         format.html { render :new }
@@ -81,6 +80,6 @@ class ClosingCashesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def closing_cash_params
-      params.require(:closing_cash).permit(:fecha_cierre, :monto_efectivo, :monto_cheque, :monto_tcredito, :monto_tdebito)
+      params.require(:closing_cash).permit(:fecha_cierre, :monto_efectivo, :monto_cheque, :monto_tcredito, :monto_tdebito,:existente_efe,:existente_cheque,:existente_tcre,:existente_tdb,:opening_cash_id)
     end
 end
