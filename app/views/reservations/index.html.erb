@@ -33,7 +33,7 @@
   </div>
 </div>
 
-<h3 class="box-title"><center>Reservaciones</center></h3>
+<h3><center>Reservaciones</center></h3>
 </div>
   <div class="box-body">
     <div class="table-responsive">
@@ -67,7 +67,7 @@
 
             <td><%= reservation.telefono %></td>
 
-            <td><%= reservation.total %></td>
+            <td><%= number_to_currency_py(reservation.total) %></td>
             
             <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
             <%= link_to '', edit_reservation_path(reservation),class: "btn btn-warning glyphicon glyphicon-pencil" %>
