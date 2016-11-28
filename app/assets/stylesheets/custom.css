@@ -2019,7 +2019,7 @@ a:focus {
  */
 .info-box {
   display: block;
-  height: 40px;
+  height: 50px;
   background: #fff;
   width: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -2045,8 +2045,8 @@ a:focus {
 
   display: block;
   float: left;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   text-align: left;
   font-size: 45px;
 
