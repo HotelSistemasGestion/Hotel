@@ -3,6 +3,6 @@ class PaymentType < ActiveRecord::Base
 	belongs_to :payment_value
 
 	has_one :check
-	has_many :detail_of_cash_counts
-	
+	validates :payment_value_id, :presence => {:message => " Seleccione un tipo de valor " }
+	validates :total, :presence => {:message => " Ingrese el monto " }
 end

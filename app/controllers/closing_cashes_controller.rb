@@ -36,6 +36,10 @@ class ClosingCashesController < ApplicationController
     empleado = Employee.find(apertura.employee.id)
     respond_to do |format|
       if @closing_cash.save
+        apertura.estado = "finalizado"
+        apertura.save
+        empleado.estado = "Libre"
+        empleado.save
         format.html { redirect_to @closing_cash, notice: 'Closing cash was successfully created.' }
         format.json { render :show, status: :created, location: @closing_cash }
       else

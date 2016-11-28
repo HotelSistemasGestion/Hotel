@@ -7,10 +7,10 @@ class OpeningCash < ActiveRecord::Base
 
 	has_many :cash_movement
 
-    validates :monto_efectivo, presence: true, length: {minimum: 4, maximum: 12, :message => "4 dígitos minimo; 12 máximo."}, :numericality => {:only_integer => true, :message => "Solo puede ingresar numeros enteros"}
-    validates :fecha_apertura, presence: true
-    validates :cash_id, presence: true
-    validates :employee_id, presence: true
+    validates :monto_efectivo, :presence => {:message => " No puede dejar en blanco " }, length: {minimum: 4, maximum: 12, :message => "4 dígitos minimo; 12 máximo."}
+    validates :fecha_apertura, :presence => {:message => " No puede dejar en blanco " }
+    validates :cash_id, :presence => {:message => " No puede dejar en blanco " }
+    validates :employee_id, :presence => {:message => " No puede dejar en blanco " }
     validates :estado, presence: true
     
     delegate :descripcion, to: :cash, prefix: true, allow_nil: true
