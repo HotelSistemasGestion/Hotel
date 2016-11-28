@@ -1,12 +1,39 @@
 <div class="box">
 <div class="box-header with-border">
-<%= link_to '', {:controller => "reservations", :action => "new"},class: "btn btn-primary glyphicon glyphicon-plus" %> 
+
+<button><%= link_to '', {:controller => "reservations", :action => "new"} , class: "btn btn-primary glyphicon glyphicon-plus" %></button> 
 
   <%#= link_to my_new_reservation_path,           class: 'btn btn-primary' do %>
     <!--span class="glyphicon glyphicon-plus"></span-->
     
   <%# end %>
-  <h3 class="box-title"><center>Reservaciones</center></h3>
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  <span class="glyphicon glyphicon-calendar"></span>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+         <div id='calendario'></div>
+            <script type="text/javascript">
+    
+            </script>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="box-title"><center>Reservaciones</center></h3>
 </div>
   <div class="box-body">
     <div class="table-responsive">
