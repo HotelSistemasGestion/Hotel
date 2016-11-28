@@ -5,7 +5,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.all
-    @reservations = Kaminari.paginate_array(@reservations).page(params[:page]).per(8)
+    @reservations = Kaminari.paginate_array(@reservations).page(params[:page]).per(4)
   end
 
   # GET /reservations/1
@@ -18,13 +18,23 @@ class ReservationsController < ApplicationController
     if params[:id]
       @reservation = Reservation.new
       @my_reservation_requests = ReservationRequest.find(params[:id])
+
+      @my_budgets = Budget.where("reservation_request_id = ?", @my_reservation_requests.id).first
+      iterar = @my_budgets.budget_room_details
+
+      iterar.each do |budget_room_detail|
+        (1..budget_room_detail.cantidad).each do |r|
+          @reservation.reservation_rooms.new(type_of_room_id: budget_room_detail.type_of_room_id,comfort_id:@my_budgets.comfort_id,check_in:@my_budgets.check_in,check_out:@my_budgets.check_out,subtotal: budget_room_detail.subtotal)
+        end
+      end
+
       @reservation.reservation_rooms.build()
       #@my_type_of_rooms =  TypeOfRoom.find(params[:id])
-      @my_budgets = Budget.find(params[:id])
-    else
+      
+      
+    else 
       @reservation = Reservation.new
     end
-    
 
   end
 
@@ -99,9 +109,7 @@ class ReservationsController < ApplicationController
      # params.require(:reservation).permit(:nombre, :apellido, :check_in, :check_out, :type_of_room_id)
      #json.extract! reservation, :id, :nombre, :apellido, :check_in, :check_out, :type_of_room_id, :created_at, :updated_at
      #json.url reservation_url(reservation, format: :json)
-     params.require(:reservation).permit(:id, :reservation_request_id, :budget_id, :nombre, :apellido, :email, :dias, :check_in, :check_out, :total,
-      :reservation_rooms_attributes => [:id, :cantidad,:reservation_id,:room_id, :type_of_room,:budget, :subtotal, :_destroy],
-      :reservation_requests_attributes => [:id, :nombre, :apellido, :email, :telefono,:comfort_id, :cantidad_de_adultos, :cantidad_de_ninhos, :cantidad_de_familias, 
-        :check_in, :check_out, :comentarios, :_destroy])
+     params.require(:reservation).permit(:id, :reservation_request_id, :budget_id, :nombre, :apellido, :email, :telefono, :total,
+      :reservation_rooms_attributes => [:id, :cantidad,:reservation_id,:comfort_id,:room_id, :type_of_room_id,:budget,:check_in,:check_out, :subtotal, :_destroy])
     end
 end

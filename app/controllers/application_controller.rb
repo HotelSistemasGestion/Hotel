@@ -31,15 +31,15 @@ class ApplicationController < ActionController::Base
   # Metodos necesarios para el bloqueo por IP
   private
   helper_method :is_ip_allowed
-	def is_ip_allowed  
+  def is_ip_allowed  
     if ip_block.include?(request.remote_ip).to_s
-			return true
-		else  
-			return false
-		end
-	end
- 	# Ips permitidos
- 	def ip_block
+      return true
+    else  
+      return false
+    end
+  end
+  # Ips permitidos
+  def ip_block
     %w{
         127.0.0.1
         127.0.0.0
@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
         0.0.0.0
         localhost
     }
-	end
+  end
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   protected

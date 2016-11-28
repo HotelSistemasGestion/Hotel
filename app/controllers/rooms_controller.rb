@@ -8,7 +8,8 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     #@rooms = Room.all
-    @rooms = Room.order(created_at: :desc).page params[:page]
+    @rooms = Room.all.order(created_at: :desc)
+    @rooms = Kaminari.paginate_array(@rooms).page(params[:page]).per(5)
   end
 
   # GET /rooms/1
@@ -87,8 +88,8 @@ class RoomsController < ApplicationController
      persistence_id: false
   ) or return
 
-  @rooms = @filterrific.find.page(params[:page])
-
+  @rooms = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @rooms_report = @filterrific.find
   respond_to do |format|
     format.html
     format.js

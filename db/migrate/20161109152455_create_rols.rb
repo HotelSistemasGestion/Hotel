@@ -1,7 +1,7 @@
 class CreateRols < ActiveRecord::Migration
   def change
     create_table :rols do |t|
-      t.string :role
+      t.string :nombre
 
       t.timestamps null: false
     end

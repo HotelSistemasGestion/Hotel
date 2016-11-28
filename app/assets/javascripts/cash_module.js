@@ -1,6 +1,7 @@
+
 $(document).ready(function(){
     search_invoices();
-
+    search_opening();
 });
 
 
@@ -10,6 +11,8 @@ $(document).on("change", ".select", function(){
         var cheque =  "#"+$(this).parents().siblings(".detalle").attr("id");
         mostrarCheque(id,cheque);
     });
+
+
 
 
 function search_invoices(){
@@ -31,6 +34,39 @@ function search_invoices(){
                 } 
             });
     });
+}
+
+function search_opening(){
+    $("#caja").on('change', function () {                
+            apertura = parseInt($(this).val());
+            console.log($(this).val());
+            $.ajax({
+                type: "GET",
+                url: "/montos_cierre/"+apertura,
+                dataType: "script",
+                data: {"opening_cash_id" : apertura},
+                 
+            });
+    });
+
+    $(document).on('nested:fieldAdded', function(event){
+  // this field was just inserted into your form
+  var field = event.field; 
+  // it's a jQuery object already! Now you can find date input
+  var dateField = field.find('.datepicker');
+  
+  dateField.datepicker();
+  $(document).trigger('refresh_autonumeric');
+})
+}
+
+var check = function(){
+   var inputs = $(".auto");
+   var total = 0;
+   $.each(inputs, function(campo){
+       total += campo.val();
+   });
+   $("#btnAceptar").attr("disabled", !(total == $("#total").val()) );
 }
 
 // funcion para mostrar o ocultar campos ocultos

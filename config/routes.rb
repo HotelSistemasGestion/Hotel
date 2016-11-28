@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   resources :account_details
   resources :reservations
   resources :cleaning_rooms
-  resources :photos
+  resources :photos  
+  resources :rols 
   resources :employees do
     get :autocomplete_employee_cedula, :on => :collection
   end
@@ -79,6 +80,8 @@ Rails.application.routes.draw do
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
 
+  get "montos_cierre/:opening_cash_id" => "closing_cashes#montos_cierre"
+
   get "accountiong_account_years/:accounting_year_id" => "accounting_accounts#accountiong_account_years"
 
   resources :cashes
@@ -97,6 +100,9 @@ Rails.application.routes.draw do
 
   resources :reservation_requests
   resources :services do
+     collection do
+      get 'report'
+    end
     get :autocomplete_service_nombre, :on => :collection
   end  
   resources :accounts do
@@ -118,6 +124,7 @@ Rails.application.routes.draw do
   end  
   get 'reports/index'
   get 'dashboard/index'
+  get 'dashboard/new'
   get 'welcome/index'
 
   resources :usuarios
