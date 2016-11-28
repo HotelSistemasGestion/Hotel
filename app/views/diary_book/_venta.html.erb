@@ -1,4 +1,5 @@
 <div class="box-body" id="table-venta">
+  <!-- anterior_asiento tiene como funcion ir un siento atrasado para poder obtener todos los sientos que sean del mismo numero-->
     <% anterior_asiento=AccountingEntry.new %>
 
     <%factura_num=0%>
@@ -16,10 +17,10 @@
 
         <tbody>
           <%= content_tag_for(:tr, @diary_books) do |a_x_e| %>
-    
-
+     
+            <!-- comparo si el anterior es igual al asiento en esta iteracion-->
             <%if anterior_asiento.numero == AccountingEntry.find(a_x_e.accounting_entry_id).numero %>
-              
+              <!-- Si es de tipo deudor va a tener un estilo diferente -->
               <%if a_x_e.tipo=="D"||a_x_e.tipo=="d"%>
                 <tr>
                   <td></td>
@@ -30,7 +31,7 @@
                   <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).haber%></td>
                 </tr>
               <%end%>
-              
+                <!-- Si es de tipo acreedor va a tener un estilo diferente -->
               <%if a_x_e.tipo=="A"||a_x_e.tipo=="a"%>
                 <tr>
                   <td></td>
@@ -40,9 +41,33 @@
                   <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).debe%></td>
                   <td></td>
                 </tr>
-              <% end %>     
+              <% end %>  
+              <!-- Si el que sigue de este asiento es nil significa que el objeto en esta iteracion es el ultimo o si el numero  de asiento de la siguiente iteracion es distinto al de estaa iteracion significa que es el ultimo  con el mismo numero de asiento-->
+              <%if(AccountingEntry.where("id > ?",a_x_e .accounting_entry_id).first.nil?) ? nil :
+                anterior_asiento.numero != AccountingEntry.where("id > ?",a_x_e .accounting_entry_id).first.numero%>
+                <%cont=0%>
+                <%numeroFac=AccountingEntry.find_by_sql("SELECT invoices.id, invoices.numero ,accounting_entries.numero AS num_asiento FROM accounting_entries ,cash_movements,detail_of_cash_movements ,invoices WHERE cash_movements.accounting_entry_id=accounting_entries.id AND  detail_of_cash_movements.cash_movement_id=cash_movements.id AND detail_of_cash_movements.invoice_id=invoices.id")%>
+                <%numeroFac.each do |n_f|%>
+                  <%if n_f.num_asiento == AccountingEntry.find(a_x_e.accounting_entry_id).numero%> 
+                    <tr>               
+                      <% Invoice.all.each do |invoice| %>
+                        <%if invoice.id==numeroFac[cont].id%>
+                          <td colspan="6" scope="row">Segun factura nº=
+                            <%= link_to numeroFac[cont].numero ,invoice  , remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'rigth'%>
+                          </td>
+                        <%end%>
+                      <%end%>    
+                    </tr>
+                  <%end%>
+                <%cont+=1%>  
+                <%end%>
+
+              <%end%>
+
+               
 
             <%else %>
+
               <tr>
               <%anterior_asiento=AccountingEntry.find(a_x_e.accounting_entry_id)%>
               <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).numero%></td>
@@ -64,6 +89,7 @@
                 </tr>
 
               <% end %>
+
             <% end %>
               
                
