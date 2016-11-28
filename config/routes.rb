@@ -118,6 +118,9 @@ Rails.application.routes.draw do
     member do
       get :facturar
     end
+    collection do
+      get 'report'
+    end
   end
   resources :invoices, :except => [:edit]
   resources :clients do 
