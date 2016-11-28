@@ -49,6 +49,11 @@ AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: 
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "19000");
 
+AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "54000",haber: "0");
+AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
+AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
+
+
 
 
 AccountingAccount.create(grupo:"00",nombre:"Cuentas por cobrar",imputable:"true");
@@ -105,6 +110,11 @@ AccountXEntry.create(accounting_entry_id:"19",accounting_account_id:"12",monto:"
 AccountXEntry.create(accounting_entry_id:"20",accounting_account_id:"8",monto:"20000",observacion:"Hospedaje",tipo:"D");
 AccountXEntry.create(accounting_entry_id:"21",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"D");
 AccountXEntry.create(accounting_entry_id:"22",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
+
+AccountXEntry.create(accounting_entry_id:"23",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+AccountXEntry.create(accounting_entry_id:"24",accounting_account_id:"13",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+AccountXEntry.create(accounting_entry_id:"25",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+
 
 
 

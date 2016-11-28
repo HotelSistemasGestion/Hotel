@@ -1,7 +1,10 @@
 <div class="box-body" id="table-venta">
   <!-- anterior_asiento tiene como funcion ir un siento atrasado para poder obtener todos los sientos que sean del mismo numero-->
     <% anterior_asiento=AccountingEntry.new %>
-
+    <!--Suma total del debe de todos los asientos-->
+    <%sum_debe=0%>
+    <!--Suma total del haber de todos los asientos-->
+    <%sum_haber=0%>
     <%factura_num=0%>
     <table class="table table-bordered  table-responsive ">
           <thead >
@@ -29,6 +32,7 @@
                   <td class="haber-ctrol">a <%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
                   <td></td>
                   <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).haber%></td>
+                  <%sum_haber+=AccountingEntry.find(a_x_e.accounting_entry_id).haber%>
                 </tr>
               <%end%>
                 <!-- Si es de tipo acreedor va a tener un estilo diferente -->
@@ -39,19 +43,26 @@
                   <td><%=AccountXPlan.find(AccountingAccount.find(a_x_e.accounting_account_id)).cuenta_superior%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
                   <td><%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
                   <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).debe%></td>
+                  <%sum_debe+=AccountingEntry.find(a_x_e.accounting_entry_id).debe%>
                   <td></td>
                 </tr>
               <% end %>  
+              <!--Tiene como fin cerrar el asiento-->
               <!-- Si el que sigue de este asiento es nil significa que el objeto en esta iteracion es el ultimo o si el numero  de asiento de la siguiente iteracion es distinto al de estaa iteracion significa que es el ultimo  con el mismo numero de asiento-->
               <%if(AccountingEntry.where("id > ?",a_x_e .accounting_entry_id).first.nil?) ? nil :
                 anterior_asiento.numero != AccountingEntry.where("id > ?",a_x_e .accounting_entry_id).first.numero%>
                 <%cont=0%>
+                <!-- Obtengo todas las facturas que esten relacionadas al asiento-->
                 <%numeroFac=AccountingEntry.find_by_sql("SELECT invoices.id, invoices.numero ,accounting_entries.numero AS num_asiento FROM accounting_entries ,cash_movements,detail_of_cash_movements ,invoices WHERE cash_movements.accounting_entry_id=accounting_entries.id AND  detail_of_cash_movements.cash_movement_id=cash_movements.id AND detail_of_cash_movements.invoice_id=invoices.id")%>
+
                 <%numeroFac.each do |n_f|%>
+                <!-- Recorro todos los resultados para comparar si el numero de asiento en esta posicion es igual a algun elemento que este en numeroFac-->
                   <%if n_f.num_asiento == AccountingEntry.find(a_x_e.accounting_entry_id).numero%> 
-                    <tr>               
+                    <tr>      
                       <% Invoice.all.each do |invoice| %>
+                        <!--Recorro todas las facturas exitentes para comparar si algun elemento de numeroFac son iguales-->
                         <%if invoice.id==numeroFac[cont].id%>
+                        <!--Si son iguales muestro la factura correspondiente a este asiento-->
                           <td colspan="6" scope="row">Segun factura nº=
                             <%= link_to numeroFac[cont].numero ,invoice  , remote: true, 'data-toggle' => 'tooltip', 'data-placement' => 'rigth'%>
                           </td>
@@ -60,14 +71,13 @@
                     </tr>
                   <%end%>
                 <%cont+=1%>  
-                <%end%>
-
               <%end%>
+            <%end%>
 
                
 
             <%else %>
-
+              <!--Iniciando asiento con su respectivo formato -->
               <tr>
               <%anterior_asiento=AccountingEntry.find(a_x_e.accounting_entry_id)%>
               <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).numero%></td>
@@ -77,7 +87,7 @@
               <td ></td>
               <td ></td>
               </tr>
-
+             <!-- Si es de tipo acreedor va a tener un estilo diferente -->
               <%if a_x_e.tipo=="A"||a_x_e.tipo=="a"%>
                 <tr>
                   <td></td>
@@ -85,6 +95,7 @@
                   <td><%=AccountXPlan.find(AccountingAccount.find(a_x_e.accounting_account_id)).cuenta_superior%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
                   <td><%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
                   <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).debe%></td>
+                  <%sum_debe+=AccountingEntry.find(a_x_e.accounting_entry_id).debe%>
                   <td></td>
                 </tr>
 
@@ -94,6 +105,12 @@
               
                
           <% end %>
+        <tr class="text-balance "style="background: #ABCBE8">
+          <td></td><td></td><td></td><td></td>
+          <td><%=sum_debe%></td>
+          <td><%=sum_haber%></td>
+
+        </tr>
       </tbody>
     </table>
     </div>
