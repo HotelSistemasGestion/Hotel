@@ -14,7 +14,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" role="document" id="myMod">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -22,9 +22,6 @@
       </div>
       <div class="modal-body">
          <div id='calendario'></div>
-            <script type="text/javascript">
-    
-            </script>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -32,7 +29,12 @@
     </div>
   </div>
 </div>
-
+<style type="text/css">
+#calendario { width: 1000px;}
+  #myMod{
+      width: 75% !important;
+    }
+</style>
 <h3><center>Reservaciones</center></h3>
 </div>
   <div class="box-body">
