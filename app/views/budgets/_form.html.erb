@@ -22,7 +22,7 @@
               <div class="col-md-3">
                   <%= f.label "Tipo de Confort" %>
                   <%#= f.text_field :type_of_room_id,value: @my_reservation_requests.type_of_room_id, class: "form-control", placeholder: "" %> 
-                  <%= f.select :comfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ] },
+                  <%= f.select :comfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ,{'precio'=>p.precio},] },
                   {:selected =>@my_reservation_requests.comfort_id}, {class: "form-control"} %>
               </div>
               <div class="col-md-3">
@@ -38,7 +38,7 @@
 
             
           <br></br>
-        <div class="box box-primary box-solid collapsed-box">
+        <div class="box box-default box-solid collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title" style="color:white"><center>Cargar Habitaciones</center></h3>
 
@@ -167,7 +167,7 @@
 
              <div class="col-md-3">
                <%= f.label "Total (Gs)" %><br>
-               <%= f.text_field :total, class: "form-control money",id:"total", placeholder: "" ,readonly: true %>
+               <%= f.text_field :total,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, class: "form-control money",id:"total", placeholder: "" ,readonly: true %>
           </div>
           
         </div>

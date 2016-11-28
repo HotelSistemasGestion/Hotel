@@ -49,7 +49,8 @@ function search_opening(){
             });
     });
 
-    $(document).on('nested:fieldAdded', function(event){
+}
+$(document).on('nested:fieldAdded', function(event){
   // this field was just inserted into your form
   var field = event.field; 
   // it's a jQuery object already! Now you can find date input
@@ -57,10 +58,9 @@ function search_opening(){
   
   dateField.datepicker();
   $(document).trigger('refresh_autonumeric');
-})
-}
-
-var check = function(){
+  $(event.target).find(':input').enableClientSideValidations();
+});
+function controlar_valores(){
    var inputs = $(".auto");
    var total = 0;
    $.each(inputs, function(campo){

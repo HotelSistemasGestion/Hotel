@@ -89,6 +89,8 @@ Rails.application.routes.draw do
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
 
+  get "list/:opening_cash_id" => "cash_movements#list",as: "list"
+
   get "montos_cierre/:opening_cash_id" => "closing_cashes#montos_cierre"
 
   get "accountiong_account_years/:accounting_year_id" => "accounting_accounts#accountiong_account_years"
@@ -117,6 +119,9 @@ Rails.application.routes.draw do
   resources :accounts do
     member do
       get :facturar
+    end
+    collection do
+      get 'report'
     end
   end
   resources :invoices, :except => [:edit]

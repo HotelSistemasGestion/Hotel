@@ -49,6 +49,11 @@ AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: 
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "19000");
 
+AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "54000",haber: "0");
+AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
+AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
+
+
 
 
 AccountingAccount.create(grupo:"00",nombre:"Cuentas por cobrar",imputable:"true");
@@ -106,6 +111,11 @@ AccountXEntry.create(accounting_entry_id:"20",accounting_account_id:"8",monto:"2
 AccountXEntry.create(accounting_entry_id:"21",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"D");
 AccountXEntry.create(accounting_entry_id:"22",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
 
+AccountXEntry.create(accounting_entry_id:"23",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+AccountXEntry.create(accounting_entry_id:"24",accounting_account_id:"13",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+AccountXEntry.create(accounting_entry_id:"25",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+
+
 
 
 TypeOfRoom.create(tipo: "Simple",descripcion:"",precio: 10000);
@@ -126,8 +136,8 @@ Room.create(type_of_room_id: 2,state_id: 1 ,capacidad: 2,identificador: 'B2',pre
 Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',precio: 10000,comfort_id: 1);
 
 
-Reservation.create(nombre: "Fabri",apellido: "Gonzalez",email: "fabri@gmail.com",telefono: "0901212",total: 10000);
-ReservationRoom.create(reservation_id: 1,type_of_room_id:1,comfort_id: 1,room_id: 1,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,subtotal: 10000)
+Reservation.create(nombre: "Leo",apellido: "Mesi",email: "Messi@gmail.com",telefono: "0901212",total: 10000);
+ReservationRoom.create(reservation_id: 1,type_of_room_id:1,comfort_id: 1,room_id: 1,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,subtotal: 10000,start: "2016-11-29",end: "2016-12-06" ,title: "Habitacion A1 Reservada" ,color: "#33ff00",textColor: "#ffffff");
 #Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
 #Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",check_in: (Date.today+8).to_s, check_out: (Date.today+9).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
 
