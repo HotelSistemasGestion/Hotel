@@ -24,18 +24,20 @@
                   <thead>
                     <tr role="row">
                       <th>Fecha</th>
-                      <th>Monto efectivo</th>
-                      <th>Monto cheque</th> 
+                      <th>Caja</th>
+                      <th>Cajero</th>
+                      <th>Diferencia Registrada</th> 
                       <th></th>  
                     </tr>
                   </thead>
                   <tbody>
                     <%= content_tag_for(:tr, @closing_cashes) do |closing_cash| %>
                     <td><%= closing_cash.fecha_cierre %></td>
-                    <td><%= number_to_currency_py(closing_cash.monto_efectivo) %></td>
-                    <td><%= number_to_currency_py(closing_cash.monto_cheque) %></td>
+                    <td><%= closing_cash.opening_cash.cash.descripcion %></td>
+                    <td><%= closing_cash.opening_cash.employee.full_name %></td>
+                    <td><%= number_to_currency_py(closing_cash.dif_registrada) %></td>
                     <td align="center">
-                      <%= link_to closing_cash, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                      <%= link_to closing_cash,remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                         <span class= "glyphicon glyphicon-eye-open"></span>
                       <% end %>
                     </td>
