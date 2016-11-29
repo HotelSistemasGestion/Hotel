@@ -40,7 +40,9 @@ class User < ActiveRecord::Base
     def convert
       self.username = self.username.strip.downcase.capitalize
       self.apellido = self.apellido.strip.downcase.capitalize
-      self.direccion = self.direccion.strip.downcase.capitalize
+      if self.direccion.present?
+        self.direccion = self.direccion.strip.downcase.capitalize
+      end
     end
 
 end
