@@ -3,7 +3,6 @@ class AccountDetail < ActiveRecord::Base
 	belongs_to :services
 	belongs_to :accounts
 
-	attr_accessor :service,:ayudante
 
 	before_save :set_precio
 	filterrific(available_filters: [:sorted_by])
