@@ -52,7 +52,9 @@ class Account < ActiveRecord::Base
       ['Actualmente dentro del hotel', 'clients_actually']
     ]
     end
-
+    def self.options_for_sorted_by_identificador
+    order('LOWER(identificador_hab)').map { |e| [e.identificador_hab, e.id] }
+    end
 
     private
         #Cuando se elimina una cuenta que ya se facturo pero aun no se pago

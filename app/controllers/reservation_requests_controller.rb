@@ -13,7 +13,18 @@ class ReservationRequestsController < ApplicationController
   # GET /reservation_requests.json
   def index
     @reservation_requests = ReservationRequest.all.order(created_at: :desc)
-    @reservation_requests = Kaminari.paginate_array(@reservation_requests).page(params[:page]).per(5)
+    #@reservation_requests = Kaminari.paginate_array(@reservation_requests).page(params[:page]).per(5)
+    @filterrific = initialize_filterrific(
+    ReservationRequest,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @reservation_requests = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /reservation_requests/1
