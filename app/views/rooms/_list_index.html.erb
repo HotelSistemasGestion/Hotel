@@ -1,0 +1,116 @@
+
+<div id="filterrific_results">
+
+
+
+<div class="box-body">
+<div class="box-body no-print">
+
+   <div id="filterrific_results">
+  <table class="table table-striped table-bordered table-hover">
+<!--  <colgroup>
+    <col style="width:20%">
+    <col style="width:20%">
+    <col style="width:40%">
+    <col style="width:20%">
+  </colgroup>-->
+    <thead>
+      <tr>
+        <th>Imagenes</th>
+
+        <th>Identificador</th>
+    
+        <th>Tipo de Habitacion</th>
+    
+        <th>Estado</th>
+    
+        <th>Capacidad</th>
+        <th>Comforts</th>
+        <th></th>
+    
+        
+   
+      </tr>
+    </thead>
+
+   
+    <tbody>
+    
+    
+      <%= content_tag_for(:tr, @rooms.order(id: :desc)) do |room| %>
+     <td>
+         <% Photo.where("#{:room_id} = ?" , room.id).each do |p|%>
+         <a  href= "<%=p.my_file.url%>"  class="image-popup">
+         <%= image_tag p.my_file.url,:width => 50, :height => 50%>
+         </a>
+         <%end%>
+        </td>
+
+                
+                              
+        <td><%= room.identificador %></td>
+
+        <td><%= room.type_of_room_tipo %></td>
+    
+        <td><%= room.state_descripcion %></td>
+    
+        <td><%= room.capacidad %></td>
+        <td><%= room.comfort_descripcion %></td>
+
+        <td align="center"><%= link_to '', room,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
+        <%= link_to '', edit_room_path(room), class: "btn btn-warning glyphicon glyphicon-pencil"%>
+        <%= link_to '', room, method: :delete, data: { confirm: 'Are you sure?'},class: "btn btn-danger glyphicon glyphicon-trash" %>
+      </td>
+    <% end %>
+    </tbody>
+
+  </table>
+
+ <div class="box-footer clearfix" style="margin-right:-10px">
+    <ul class="pagination pagination-sm no-margin pull-right">
+    <%= will_paginate @rooms, renderer: BootstrapPagination::Rails, :container => false %>
+    </ul>
+    </div>
+  </div>
+
+  </div>
+
+ 
+   
+<div class="box-body hide">
+   <div id="filterrific_results">
+  <table class="table table-striped table-bordered table-hover">
+  <colgroup>
+    <col style="width:20%">
+    <col style="width:20%">
+    <col style="width:40%">
+    <col style="width:20%">
+  </colgroup>
+    <thead>
+      <tr>
+        <th>Habitacion</th>
+        <th>Estado</th>
+        <th>Tipo de Habitacion</th>
+      </tr>
+    </thead>
+
+   
+    <tbody>
+    
+    
+      <%= content_tag_for(:tr, @rooms_report.order(id: :desc)) do |room| %>
+       <td><%= room.identificador%></td>
+       <td><%= room.state.descripcion %></td>
+       <td><%= room.type_of_room.tipo %></td>
+    <% end %>
+    </tbody>
+
+  </table>
+  </div>
+ 
+
+ 
+   
+</div>
+</div>
+</div>
