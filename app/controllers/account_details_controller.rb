@@ -61,6 +61,22 @@ class AccountDetailsController < ApplicationController
     end
   end
 
+   def report
+  @filterrific = initialize_filterrific(
+    AccountDetail,
+    params[:filterrific],
+     persistence_id: false
+  ) or return
+  @Account = Account.new
+  @account_details = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @account_details_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account_detail
@@ -69,6 +85,6 @@ class AccountDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_detail_params
-      params.require(:account_detail).permit(:account_id, :service_id, :cantidad, :precio, :subtotal)
+      params.require(:account_detail).permit(:account_id, :service_id, :servicio, :cantidad, :precio, :subtotal)
     end
 end
