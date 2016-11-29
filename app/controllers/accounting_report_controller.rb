@@ -13,7 +13,7 @@ class AccountingReportController < ApplicationController
 
   	  @array_filtrar=@array_cuenta.uniq
 
-       while $cont2<@ledgers.count do  
+       while $cont2  <@ledgers.count do  
        if(@ledgers[$cont2].accounting_account_id ==@array_cuenta[$cont2])
          @algo[$cont2]=@ledgers[$cont2]
        end   
