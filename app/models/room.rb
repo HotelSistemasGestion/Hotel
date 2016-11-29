@@ -4,6 +4,7 @@ class Room < ActiveRecord::Base
   belongs_to :comfort
   
   has_many :room_account_details
+  has_many :reservation_rooms
   has_many :photos, :dependent => :destroy
   validates :identificador, presence: true
   delegate :tipo, to: :type_of_room, prefix: true, allow_nil: true

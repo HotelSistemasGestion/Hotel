@@ -87,7 +87,6 @@ class ReservationsController < ApplicationController
   # GET /reservations/1/edit
   def edit
     @reservation = Reservation.find(params[:id])
-    @my_reservation_requests = ReservationRequest.find(params[:id])
   end
 
   # POST /reservations
@@ -96,6 +95,14 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params) 
     respond_to do |format|
       if @reservation.save
+
+        Reservation.last.reservation_rooms.each do |reservation|
+          #Cambio el estado de la habitacion
+          reservation.update({start: reservation.check_in, end: reservation.check_out})
+          #Le pongo check_in y check_out para el calendario
+          Room.find(reservation.room_id).update({state_id: 3})
+        end
+
         format.html { redirect_to reservations_path(), notice: 'Reservacion creada exitosamente.' }
         #format.json { render :show, status: :created, location: @reservation }
       else
@@ -113,28 +120,54 @@ class ReservationsController < ApplicationController
   # PATCH/PUT /reservations/1
   # PATCH/PUT /reservations/1.json
   def update
+    @reservation.reservation_rooms.each do |reservation|
+      my_room=Room.find(reservation.room_id)
+      #si tiene reservaciones pendientes
+      if my_room.reservation_rooms.where.not("reservation_id = ?",@reservation.id).where("check_out > ?",(Date.today).to_s).empty?
+        #Le pongo check_in y check_out para el calendario
+        my_room.update({state_id: 1})
+      end
+
     respond_to do |format|
       if @reservation.update(reservation_params)
         format.html { redirect_to reservations_path(), notice: 'Reservacion actualizada.'}
         #format.json { render :show, status: :ok, location: @reservation }
+        Reservation.all.order("updated_at Desc").first.reservation_rooms.each do |reservation|
+          #Cambio el estado de la habitacion
+          reservation.update({start: reservation.check_in, end: reservation.check_out})
+          #Le pongo check_in y check_out para el calendario
+          Room.find(reservation.room_id).update({state_id: 3})
+        end
+
       else
         format.html { render :edit }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end
   end
+  end
 
   # DELETE /reservations/1
   # DELETE /reservations/1.json
   def destroy
     @reservation = Reservation.find(params[:id])
-    @reservation.destroy
-   
-   respond_to do |format|
-      format.html { redirect_to reservations_url }
-      format.json { head :no_content }
-      format.js   { render :layout => false }
-   end
+
+    @reservation.reservation_rooms.each do |reservation|
+      my_room=Room.find(reservation.room_id)
+      #si tiene reservaciones pendientes
+      #ignoro los que voy a eliminar mas abajo
+      if my_room.reservation_rooms.where.not("reservation_id = ?",@reservation.id).where("check_out > ?",(Date.today).to_s).empty?
+        #Le pongo check_in y check_out para el calendario
+        my_room.update({state_id: 1})
+      end
+    end
+      @reservation.destroy
+        respond_to do |format|
+          format.html { redirect_to reservations_url }
+          format.json { head :no_content }
+          format.js   { render :layout => false }
+        end
+
   end
 
   private
