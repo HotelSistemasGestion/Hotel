@@ -37,7 +37,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
 gem 'sprockets-rails', '2.3.3'
 gem 'filterrific'
-
+gem 'maskmoney-rails'
 #formularios anidados
 gem 'nested_form'
 #Envios de email

@@ -71,7 +71,7 @@
                     <li><a href="<%=cashes_path%>">Listado de Caja</a></li>
                     <li><a href="<%=opening_cashes_path%>">Apertura de caja</a></li>
                     <li><a href="<%=closing_cashes_path%>">Cierre de caja</a></li>
-                    <li><a href="<%=cash_counts_path%>">Arqueo de caja</a></li>
+
                     <li><a href="<%=cash_movements_path%>">Movimiento de caja</a></li>
                   </ul>
             </li>        
@@ -118,18 +118,16 @@
       
     </ul><!-- /.sidebar-menu -->  
 
-    <%elsif current_user.has_role? "Supervisor"%>
+    <%elsif current_user.rol_name? "Supervisor"%>
 
-      <ul class="sidebar-menu">
-          <li class="header">Accesos Directos:</li>          
+      <ul class="sidebar-menu">          
               <li class="active treeview">
                 <a href="#"> <i class='glyphicon glyphicon-plus'> </i> <span>Cajas</span> </a>
                 <ul class="treeview-menu">
-                      <li><a href="<%=cashes_path%>">Listado de Caja</a></li>
-                      <li><a href="<%=opening_cashes_path%>">Apertura de caja</a></li>
-                      <li><a href="<%=closing_cashes_path%>">Cierre de caja</a></li>
-                      <li><a href="<%=cash_counts_path%>">Arqueo de caja</a></li>
-                      <li><a href="<%=cash_movements_path%>">Movimiento de caja</a></li>
+                      <li><a href="<%=cashes_path%>">Listado de Cajas</a></li>
+                      <li><a href="<%=opening_cashes_path%>">Aperturas de cajas</a></li>
+                      <li><a href="<%=closing_cashes_path%>">Cierres de cajas</a></li>
+                      <li><a href="<%=cash_movements_path%>">Movimientos de cajas</a></li>
                 </ul>
             </li>                          
       </ul><!-- /.sidebar-menu --> 

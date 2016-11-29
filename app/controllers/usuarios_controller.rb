@@ -1,4 +1,5 @@
-class UsuariosController < ApplicationController    
+class UsuariosController < ApplicationController
+  before_action :authenticate_user!    
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 
   # GET /usuarios
@@ -63,6 +64,14 @@ class UsuariosController < ApplicationController
   # DELETE /usuarios/1
   # DELETE /usuarios/1.json
   def destroy
+   
+    #eliminar foto de perfil 
+    r = Photo.where("#{:user_id} =?",params[:id])
+    #solo eliminar si posee foto de perfil 
+    if r.present?
+       r.destroy_all
+    end
+
     @usuario.destroy
     respond_to do |format|
       format.html { redirect_to usuarios_url, success: 'Eliminaste un usuario correctamenteed.' }

@@ -18,17 +18,22 @@
 				<%= link_to ''.html_safe, '#', class: "btn btn-primary no-print glyphicon glyphicon-print alineado_balance", onclick: 'window.print();return false;'%>
 			</div>
 		</div>
-		<ul class="nav nav-tabs nav-justified ">
-			<li class="active" id="tb1"><a href="#tab_3-2" data-toggle="tab" aria-expanded="true"><h4 class="text_balance">BALANCE DE COMPROBACION POR <b>SUMAS</b> </h4></a></li>
-			<li class="no-print" id="tb2"><a href="#tab_2-2" data-toggle="tab" aria-expanded="false"><h4 class="text_balance">BALANCE DE COMPROBACION POR <b>SALDOS</b></h4></a></li>
-			<script >
-
-
-			</script>
-
-
-		</ul>
-		<%= render :partial=>'balan' %>
+<!--Comprueba si hay o no asientos en el periodo seleccionado-->
+		<%if @array_filtrar.count==0%>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="callout callout-info callout-dismissible fade in" role="callout">
+						<strong><i class="icon fa fa-info"></i></strong> No se han realizado aun asientos en ese periodo.
+					</div>
+				</div>
+			</div>
+		<%else%>
+			<ul class="nav nav-tabs nav-justified ">
+				<li class="active" id="tb1"><a href="#tab_3-2" data-toggle="tab" aria-expanded="true"><h4 class="text_balance">BALANCE DE COMPROBACION POR <b>SUMAS</b> </h4></a></li>
+				<li class="no-print" id="tb2"><a href="#tab_2-2" data-toggle="tab" aria-expanded="false"><h4 class="text_balance">BALANCE DE COMPROBACION POR <b>SALDOS</b></h4></a></li>
+			</ul>
+			<%= render :partial=>'balan' %>
+		<%end%>
 	</div>
 </div>
 

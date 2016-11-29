@@ -22,7 +22,7 @@
               <div class="col-md-3">
                   <%= f.label "Tipo de Confort" %>
                   <%#= f.text_field :type_of_room_id,value: @my_reservation_requests.type_of_room_id, class: "form-control", placeholder: "" %> 
-                  <%= f.select :comfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ] },
+                  <%= f.select :comfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ,{'precio'=>p.precio},] },
                   {:selected =>@my_reservation_requests.comfort_id}, {class: "form-control"} %>
               </div>
               <div class="col-md-3">
@@ -76,8 +76,8 @@
 
                         <%= li.hidden_field :type_of_room_id,class: "type_of_room"%></td>
                         <td><%= li.number_field :ayudante , value: (!@budget.new_record?)? 
-                        ((@room_name[c][1]) unless c>=@room_name.count) : '', class: "escuchable form-control",readonly: true%></td>                        
-                        <td><%= li.number_field :subtotal,class: "subtotal form-control",readonly: true%></td>
+                        ((@room_name[c][1]) unless c>=@room_name.count) : '', class: "escuchable form-control money",readonly: true%></td>                        
+                        <td><%= li.number_field :subtotal,class: "subtotal form-control money",readonly: true%></td>
                         <td><button type="button" class="btn btn-primary" id="my_button">
                               <span class="glyphicon glyphicon-calendar"></span>
                             </button>
@@ -132,7 +132,7 @@
                         <% ayudante = "#"+"#{li.object_name}[ayudante]".gsub(/(\])?\[/, "_").chop %>
                         <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
 
-                        <th scope="row"><%= li.number_field :cantidad ,min: 1,value: (li.object.new_record? ? 1 : li.object.cantidad),class: "escuchable form-control"%></th>  
+                        <th scope="row"><%= li.number_field :cantidad ,style: "width: 70px",min: 1,value: (li.object.new_record? ? 1 : li.object.cantidad),class: "escuchable form-control"%></th>  
 
                         <!--td><%#= li.select :service_id, Service.all.collect { |p| [ p.nombre , p.id ] }, {include_blank: true}, {:id => "service_select" }%></td-->   
                       <td>
@@ -140,8 +140,8 @@
                         <%= li.hidden_field  :service_id%></td>
 
                         <td><%= li.number_field  :ayudante, value: (!@budget.new_record?)? 
-                        ((@service_name[c][1]) unless c>=@service_name.count) : '', class: "escuchable form-control",readonly: true%></td>
-                        <td><%= li.number_field :subtotal,class: "subtotal form-control",readonly: true%></td>
+                        ((@service_name[c][1]) unless c>=@service_name.count) : '', class: "escuchable form-control money",readonly: true%></td>
+                        <td><%= li.number_field :subtotal,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},class: "subtotal form-control money",readonly: true%></td>
                         <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
                     </tr>
                     <%c=c+1%>
@@ -167,7 +167,7 @@
 
              <div class="col-md-3">
                <%= f.label "Total (Gs)" %><br>
-               <%= f.text_field :total, class: "form-control ",id:"total", placeholder: ""  , readonly: true%>
+               <%= f.text_field :total,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, class: "form-control money",id:"total", placeholder: "" ,readonly: true %>
           </div>
           
         </div>

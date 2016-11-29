@@ -23,8 +23,22 @@ Rails.application.routes.draw do
   resources :budget_service_details
   resources :cleanings
   resources :invoice_details
-  resources :account_details
-  resources :reservations
+  resources :account_details do
+    collection do
+      get 'report'
+    end
+  end
+  resources :reservations  do
+    collection do
+      get 'habitaciones'
+    end
+    collection do
+      get 'hay_disponible'
+    end
+    collection do
+        get 'my_new'
+    end
+  end
   resources :cleaning_rooms
   resources :photos  
   resources :rols 
@@ -33,7 +47,6 @@ Rails.application.routes.draw do
   end
 
   resources :rooms do
-
     collection do
       get 'report'
     end
@@ -80,6 +93,8 @@ Rails.application.routes.draw do
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
 
+  get "list/:opening_cash_id" => "cash_movements#list",as: "list"
+
   get "montos_cierre/:opening_cash_id" => "closing_cashes#montos_cierre"
 
   get "accountiong_account_years/:accounting_year_id" => "accounting_accounts#accountiong_account_years"
@@ -100,11 +115,17 @@ Rails.application.routes.draw do
 
   resources :reservation_requests
   resources :services do
+     collection do
+      get 'report'
+    end
     get :autocomplete_service_nombre, :on => :collection
   end  
   resources :accounts do
     member do
       get :facturar
+    end
+    collection do
+      get 'report'
     end
   end
   resources :invoices, :except => [:edit]

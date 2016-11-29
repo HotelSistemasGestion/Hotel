@@ -17,6 +17,7 @@
   </div>
      <div class="box-body">
       <form class="form-inline">
+         <!--Div selector de rango de fechas-->
         <div class="col-xs-6 col-md-6 col-sm-6">
 
           <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "search_conta" do %>
@@ -28,16 +29,17 @@
           <%end%>  
         </div>
 
-
+          <!--Div selector de cuentas-->
         <div class="col-lg-6 col-md-6 col-sm-6 seleccion no-print">
 
           <%=label_tag "Cuenta:"%>   
-          <select data-placeholder="Seleccione las cuentas..." class="chosen-select " multiple style="width:300px;">
+          <select data-placeholder="Seleccione las cuentas..." name="options" id="options" class="chosen-select " multiple style="width:300px;">
+            <option value="" selected="selected"></option>
             <!-- while para obtner todas los opcion del select dado las cuentas que se filtraron (array_filtrar)-->   
             <%while contador_selector<@array_filtrar.count do %>
               <!-- se optiene el objeto que satisfasga la condion where -->
               <%mostrar=AccountingAccount.where("id": @array_filtrar[contador_selector])%>
-              <option value=""+<%=mostrar[0].nombre%>+""><%=mostrar[0].nombre%>.</option>
+              <option value=""+<%=mostrar[0].nombre%>+""><%=nombre_cuenta(mostrar[0].nombre)%>.</option>
               <%contador_selector +=1%>
             <%end%>
 
@@ -48,6 +50,7 @@
       </form>                            
     </div>
     <div class="row">
+
       <div class="box-body">
         <%mostrar=[]%>
         <%while cont2<@array_filtrar.count do %>
@@ -55,14 +58,14 @@
         <%cant_a=0%>
         <%cant_d=0%>
         <%mostrar=AccountingAccount.where("id": @array_filtrar[cont2])%>
-        <div class="gall-box ocultable"id=<%=mostrar[0].nombre%>>
-          <div class="col-xs-6 col-sm-4 ">
+
+          <div class="col-lg-6 col-md-6 col-sm-6 ocultable"id=<%=nombre_cuenta(mostrar[0].nombre)%>>
             <div class="thumbnail " style=" text-align: center;">                        
               <h4 class="box-title"><%=mostrar[0].nombre%></h4>
               <table class="table table-bordered  table-responsive  table-condensed" style="width: 290px;margin: 0 auto;">
                 <thead>
                   <tr>
-                    <th>N</th>
+                    <th>Nº Asiento:</th>
                     <th>Debe</th>
   	                <th>Haber</th>  
                   </tr>
@@ -108,22 +111,21 @@
                 </tbody>
               </table>
             </div>
-          </div>
+         
         </div>
         <%cont2 +=1%>
         <%end%>
       <%if cont2==0%>
         <div class="box-body">
-           <div class="callout callout-info">
-            <h4>No se ha hecho aun un asiento con ese rango de fechas</h4>
-
+            <div class="callout callout-info callout-dismissible fade in" role="callout">
+              <strong><i class="icon fa fa-info"></i></strong> No se han realizado aun asientos en ese periodo.
+            </div>
           </div>
-        </div>
         <%end%>
 
       </div>
     </div>
-      </div>
-        </div>
+  </div>
+</div>
 
  

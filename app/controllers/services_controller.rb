@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_service, only: [:show, :edit, :update, :destroy]
   
   autocomplete :service, :nombre, :extra_data => [:id,:precio] do |items|
@@ -65,6 +66,24 @@ class ServicesController < ApplicationController
       format.html { redirect_to services_url, notice: 'El servicio ha sido eliminado.' }
       format.json { head :no_content }
     end
+  end
+
+  
+  def report
+  @filterrific = initialize_filterrific(
+    Service,
+    params[:filterrific],select_options: {
+        sorted_by_service: Service.options_for_sorted_by_service
+      },
+     persistence_id: false
+  ) or return
+
+  @services = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @services_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
   end
 
   private

@@ -20,14 +20,23 @@ class CashMovementsController < ApplicationController
     @cash_movement = CashMovement.new
     @cash_movement.payment_types.build()
     @apertura = OpeningCash.find(params[:opening_cash_id])
+    @caja = @apertura.cash.descripcion
+    @id = @apertura.id
   end
 
+  def list
+    @apertura_id = params[:opening_cash_id]
+    @movimientos = CashMovement.where(opening_cash_id: @apertura_id)
+    respond_to do |format|
+      format.html{ render :list }
+    end
+  end
   
   def client_invoices
       client_id = params[:client_id]
       @invoices = Invoice.where(client_id: client_id,state: "pendiente")
       respond_to do |format|
-        format.json { render json: @invoices.to_json }
+        format.html { render json: @invoices.to_json }
       end
   end
 
@@ -132,6 +141,6 @@ class CashMovementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cash_movement_params
-      params.require(:cash_movement).permit(:id, :monto_total, :opening_cash_id, :type_of_cash_movement_id , :client_id, :payment_types_attributes =>[:id,:titular,:banco,:n_cheque,:tarjeta_tipo,:fecha_disponibilidad,:payment_value_id,:total,:_destroy])
+      params.require(:cash_movement).permit(:id, :monto_total,:fecha, :opening_cash_id, :type_of_cash_movement_id , :client_id, :payment_types_attributes =>[:id,:titular,:banco,:n_cheque,:tarjeta_tipo,:fecha_disponibilidad,:payment_value_id,:total,:_destroy])
     end
 end

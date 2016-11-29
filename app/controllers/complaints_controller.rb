@@ -74,8 +74,8 @@ class ComplaintsController < ApplicationController
      persistence_id: false
   ) or return
 
-  @complaints = @filterrific.find.page(params[:page])
-
+  @complaints = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @complaints_report = @filterrific.find
   respond_to do |format|
     format.html
     format.js

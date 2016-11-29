@@ -1,17 +1,22 @@
 
-$(document).ready(function (){
+$(document).ready(function(){
+
+
         $('div#budgets #budget_check_in').change(function(){
-           $("table.services").find('tr.fields:visible').each(function(){ 
+           $("table.services").find('tr.fields:visible').each(function(){             
+            actualizarsubtotal($(this).find(".subtotal").attr("id"),-8);
             checkDisponibility($(this));
           });
         });
         $('div#budgets #budget_check_out').change(function(){
           $("table.services").find('tr.fields:visible').each(function(){ 
+            actualizarsubtotal($(this).find(".subtotal").attr("id"),-8);
             checkDisponibility($(this));
           });
         });
         $('div#budgets #budget_comfort_id').change(function(){
-          $(".table.services").find('tr.fields:visible').each(function(){ 
+          $(".table.services").find('tr.fields:visible').each(function(){
+            actualizarsubtotal($(this).find(".subtotal").attr("id"),-8); 
             checkDisponibility($(this));
           });
         });
@@ -160,17 +165,22 @@ $(document).ready(function (){
         var subtotal_id="#"+aux+"subtotal";
         var ayudante="#"+aux+"ayudante";
         var cantidad="#"+aux+"cantidad";
+
+        var check_in=moment($("#budget_check_in").val(),'D/M/YYYY');
+        var check_out=moment($("#budget_check_out").val(),'D/M/YYYY');
+        var dias = parseInt(check_out.diff(check_in,"days"));
+        var budget_comfort_id = parseInt($("#budget_comfort_id").find(":selected").attr("precio"));
+
+        console.log(dias);
+
         cantidad=parseInt($(cantidad).val());
         var precio=parseInt($(ayudante).val());
-        if(! isNaN(precio)) { 
-          $(subtotal_id).val(precio * cantidad);
-          console.log("Tengo Precio");
+        if(!isNaN(precio) && !isNaN(dias)) { 
+          $(subtotal_id).val((precio + budget_comfort_id) * cantidad * dias).keyup();
           actualizartotal();
         }
         else{
-          $(subtotal_id).val(0);
-          console.log(precio);
-          console.log("No Tengo Precio");
+          $(subtotal_id).val(0).keyup();
           actualizartotal();
 
         }
@@ -183,7 +193,7 @@ $(document).ready(function (){
             var val = $(this).val();
             if ($("#" + id).parent().closest('tr').css('display') !== "none"){
               if ( val ) {
-                val = parseInt(val);
+                val = Number(val.replace(/[^0-9\.]+/g,""));
                 sum += !isNaN(val) ? val : 0;
             }
             }     
@@ -197,11 +207,11 @@ $(document).ready(function (){
         var desc_value=!isNaN(val) ? val : 0;
         var subtotales=getsumasubtotales();
         var descuento=((getPrecioInicial()+subtotales) *  desc_value);
-        $("#total").val(( getPrecioInicial()+subtotales) - descuento);
+        $("#total").val(( getPrecioInicial()+subtotales) - descuento).keyup();
         var val2=(parseInt($("#descount").val())/100);
         var desc_val=!isNaN(val2) ? val2 : 0;
         var d=((getPrecioInicial()+subtotales) *  desc_val);
-        $("#totales").val(( getPrecioInicial()+subtotales) - d);
+        $("#totales").val(( getPrecioInicial()+subtotales) - d).keyup();
       }
       ///ACA TERMINA EL CODIGO QUE AUTOSUMA TODO EN LAS VISTAS DE PRESUPUESTAR
 /*-----------------------------------------------------------------*/     

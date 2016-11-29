@@ -11,7 +11,11 @@
             <div class="box-header with-border" >
             	<h1 align="center">Hotel-Uni</h1>
 	            <h2 align="center">Hola <%= @reservation_request.nombre%> <%=@reservation_request.apellido %>!</h2>	
-	            <h3 align="center">Gracias por su preferencia</h3>	
+	            <h3 align="center">Gracias por su preferencia</h3>
+	            <div class="well" style="word-wrap: break-word !important">
+		            <h4>Comentario:</h4>
+	            	<p><%=@budget.comentario%></p>
+            	</div>			
             </div>
 
             <div class="box-body" style= "background-color:#d2d6de  " >
@@ -87,6 +91,7 @@
 					  <table class="table table-bordered">
 					    <thead>
 					      <tr>	
+					      		<th>Tipo de confort</th>
 					      		<th>Tipo de habitacion</th>
 					      		<th>Fecha de entrada</th>
 					      		<th>Fecha Salidad</th>
@@ -99,6 +104,7 @@
 					    <tbody>
 					      <%= content_tag_for(:tr, @budget_room_details) do |budget_room_detail| %>
 					      		<td><%= Comfort.find(@budget.comfort_id).descripcion%></td>
+					      		<td><%= TypeOfRoom.find(budget_room_detail.type_of_room_id).tipo%></td>
 					      		<td><%= @budget.check_in.strftime("%d/%m/%Y")%></td>
 					      		<td><%= @budget.check_out.strftime("%d/%m/%Y")%></td>
 					            <td><%= @budget.descuento %> %</td>
@@ -116,4 +122,5 @@
             </div>
      </div>
 </body>
+
 </html>

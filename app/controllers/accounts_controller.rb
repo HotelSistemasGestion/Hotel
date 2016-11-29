@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_account, only: [:show, :edit, :update, :destroy, :facturar]
 
   # GET /accounts
@@ -69,6 +70,23 @@ class AccountsController < ApplicationController
     end
   end
 
+  def report
+  @filterrific = initialize_filterrific(
+    Account,
+    params[:filterrific],select_options: {
+        sorted_by_state: Account.options_for_sorted_by_state
+      },
+     persistence_id: false
+  ) or return
+
+  @accounts = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @accounts_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
@@ -77,22 +95,23 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:client_id,
-                                      :ruc,
-                                      :fecha_entrada,
-                                      :fecha_salida,
-                                      :total,
-                                      :room_id,
-                                      :identificador_hab,
-                                      :telefono,
-                                      :correo,
-                                      :nombre,
-                                      :direccion,
-                                      :iva,
-                                      :subtotal,
-                                      :descuento,
-                                      :numero,
-                                      #:room_account_details_attributes => [:id, :room_id, :precio, :subtotal, :_destroy],
-                                      :account_details_attributes => [:id, :service_id, :cantidad, :precio, :subtotal, :_destroy])
+      params.require(:account).permit(
+        :client_id,
+        :ruc,
+        :fecha_entrada,
+        :fecha_salida,
+        :room_id,
+        :identificador_hab,
+        :telefono,
+        :correo,
+        :nombre,
+        :direccion,
+        :numero,
+        :subtotal,
+        :descuento,
+        :total,
+        :iva,
+        #:room_account_details_attributes => [:id, :room_id, :precio, :subtotal, :_destroy],
+        :account_details_attributes => [:id, :service_id, :servicio, :cantidad, :precio, :subtotal, :_destroy])
     end
 end

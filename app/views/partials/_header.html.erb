@@ -107,7 +107,7 @@
                   <%= cl_image_tag(@s[0].my_file.filename, :effect=>"grayscale", :gravity=>"face", :radius=>"max", :crop=>"crop" ,:class =>"user-image")%>
                  
               <%else%>
-                  <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg",:width => 30, :height => 20%>
+                  <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg", :gravity=>"face", :radius=>"max", :crop=>"crop" ,:class =>"user-image"%>
               <%end%>
             <!-- hidden-xs hides the username on small devices so only the image appears. -->         
             <% if current_user.username.present? %>
@@ -150,10 +150,11 @@
 
             <li class="user-footer">            
               <div class="pull-right">
-                <a href="<%=destroy_user_session_path%>" data-method="delete" class="btn btn-default btn-flat">Salir</a>
-
                 <% @p = Photo.where("#{:user_id} = ?", current_user.id)%>
                 <a href="/photos/+<%=@p[0].id%>+/edit"  class="btn btn-default btn-flat">Agregar Imagen</a>
+                <a href="<%=destroy_user_session_path%>" data-method="delete" class="btn btn-default btn-flat">Salir</a>
+
+              
               </div>
             </li>
           </ul>

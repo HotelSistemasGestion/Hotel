@@ -49,7 +49,8 @@ function search_opening(){
             });
     });
 
-    $(document).on('nested:fieldAdded', function(event){
+}
+$(document).on('nested:fieldAdded', function(event){
   // this field was just inserted into your form
   var field = event.field; 
   // it's a jQuery object already! Now you can find date input
@@ -57,10 +58,9 @@ function search_opening(){
   
   dateField.datepicker();
   $(document).trigger('refresh_autonumeric');
-})
-}
-
-var check = function(){
+  $(event.target).find(':input').enableClientSideValidations();
+});
+function controlar_valores(){
    var inputs = $(".auto");
    var total = 0;
    $.each(inputs, function(campo){
@@ -103,3 +103,49 @@ function sumarSubtotales(){
     });
     return sum;
 }
+
+
+//Funciones para cierre de caja
+ function calcularDiferencia(){
+    var dif=0;
+    var reg=0;
+    var exs=0;
+    $(".registrados").each(function(){
+        reg+=Number($(this).val().replace(/[^0-9\.]+/g,""));
+    });
+    $(".existentes").each(function(){
+        exs+=Number($(this).val().replace(/[^0-9\.]+/g,""));
+    });
+    dif = exs-reg;
+    console.log(dif);
+    return dif;
+}
+
+$(document).on('change','.existentes',function(){
+    $("#diferencia").val(calcularDiferencia());
+    $("#diferencia").focus();
+});
+
+$(document).on('click',"#btnEfectivo",function(){
+    $("#r_efectivo").val($("#efectivo").val());
+    $("#diferencia").val(calcularDiferencia());
+    $("#diferencia").focus();
+});
+
+$(document).on('click',"#btnCheque",function(){
+    $("#r_cheque").val($("#cheque").val());
+    $("#diferencia").val(calcularDiferencia());
+    $("#diferencia").focus();
+});
+
+$(document).on('click',"#btnCredito",function(){
+    $("#r_credito").val($("#credito").val());
+    $("#diferencia").val(calcularDiferencia());
+    $("#diferencia").focus();
+});
+
+$(document).on('click',"#btnDebito",function(){
+    $("#r_debito").val($("#debito").val());
+    $("#diferencia").val(calcularDiferencia());
+    $("#diferencia").focus();
+});

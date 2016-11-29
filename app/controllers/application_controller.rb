@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)         
     if resource.has_role? "Admin"
       usuarios_path
-    elsif resource.has_role? "Crear Movimiento"
+    elsif resource.rol_name? "Cajero"
       user_ci = resource.numero_ci.to_i
       cajero = Employee.find_by(cedula: user_ci)
       apertura = OpeningCash.find_by("employee_id = ? and estado = ?",cajero.id,"Activo")
@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
           @id_apertura = apertura.id
           new_cash_movement_path(opening_cash_id: @id_apertura)    
       end
-    elsif resource.has_role? "Supervisor"
-      cashes_path
+    elsif resource.rol_name? "Supervisor"
+      dashboard_index_path
     else
       dashboard_index_path
     end

@@ -30,7 +30,6 @@ class ReservationRoomsController < ApplicationController
       if @reservation_room.save
         format.html { redirect_to @reservation_room, notice: 'Reservation room was successfully created.' }
         format.json { render :show, status: :created, location: @reservation_room }
-        @inicio = Budget.where("#{:id} = ?",@reservation_room.budget_id );
         @reservation_room.update({:start =>@inicio.check_in, :end => @incio.check_out})
       else
         format.html { render :new }

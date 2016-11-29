@@ -97,7 +97,9 @@ $(document).ready(function(){
        
         $('#calendario').fullCalendar({
 
-       height: 200,
+
+       height: 500,
+
       //theme: true,
       header: {
         left: 'prev,next today',
@@ -116,12 +118,14 @@ $(document).ready(function(){
       },
 
       defaultView: 'month',
-      events: "/cleanings.json"
+      events: "/reservation_rooms.json"
     
     
     });
   $('#myModal').on('shown.bs.modal', function () {
+   width:1000,
    $("#calendario").fullCalendar('render');
       });
+
  });
 

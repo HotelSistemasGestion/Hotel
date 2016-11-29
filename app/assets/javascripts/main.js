@@ -534,13 +534,10 @@ $(document).ready(function() {
 	
 	var complaintSelector = function(){
     $("#complaint_selector").change(function(){
-        if($("#complaint_selector").val() == "5"){
+        if($("#complaint_selector option:selected").text() == "Otros"){
 
-
-        	console.log($("#complaint_selector").val());
           $(".hide_complaint_selector").fadeIn('fast');   
         }else {
-        	console.log($("#complaint_selector").val());
          $(".hide_complaint_selector").fadeOut('fast');  
         }   
     });        
