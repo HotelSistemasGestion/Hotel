@@ -19,7 +19,16 @@ class AccountsController < ApplicationController
 
   # GET /accounts/new
   def new
-    @account = Account.new
+    if params[:id]
+      @account = Account.new
+      @reservation = Reservation.find(params[:id])
+      @reservation_rooms = ReservationRoom.where("reservation_id = ?",params[:id])
+      @reservation_rooms.each do |room|
+        @account.room_account_details.new(type_of_room_id: room.type_of_room_id,comfort_id: room.comfort_id,room_id:room.room_id)
+      end
+    else
+      @account = Account.new
+    end
   end
 
   # GET /accounts/1/edit
