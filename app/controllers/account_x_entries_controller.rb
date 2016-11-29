@@ -1,8 +1,10 @@
 class AccountXEntriesController < ApplicationController
   before_action :set_account_x_entry, only: [:show, :edit, :update, :destroy]
+ 
   def index
     @account_x_entries = AccountXEntries.all
   end
+
 
   # GET /detail_of_cash_movements/1
   # GET /detail_of_cash_movements/1.json

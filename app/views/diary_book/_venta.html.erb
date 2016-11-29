@@ -6,6 +6,20 @@
     <!--Suma total del haber de todos los asientos-->
     <%sum_haber=0%>
     <%factura_num=0%>
+<!--if para comprpbar si el rango que se eligio esta vacio o no-->
+<%if  @diary_books.count ==0 %>
+    <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="callout callout-info callout-dismissible fade in" role="callout">
+              <strong><i class="icon fa fa-info"></i></strong> No se han realizado aun asientos en ese periodo.
+           
+            </div> 
+          </div>
+      </div>
+
+
+<%else%>
+
     <table class="table table-bordered  table-responsive ">
           <thead >
           <tr>
@@ -54,6 +68,10 @@
                 <%cont=0%>
                 <!-- Obtengo todas las facturas que esten relacionadas al asiento-->
                 <%numeroFac=AccountingEntry.find_by_sql("SELECT invoices.id, invoices.numero ,accounting_entries.numero AS num_asiento FROM accounting_entries ,cash_movements,detail_of_cash_movements ,invoices WHERE cash_movements.accounting_entry_id=accounting_entries.id AND  detail_of_cash_movements.cash_movement_id=cash_movements.id AND detail_of_cash_movements.invoice_id=invoices.id")%>
+                <!--Si no se encuentra esa factura entonces que cierre el asiento-->
+                <%if numeroFac.count==0%>
+                 <td colspan="6" scope="row">Segun factura nº=</td>
+                <%end%>
 
                 <%numeroFac.each do |n_f|%>
                 <!-- Recorro todos los resultados para comparar si el numero de asiento en esta posicion es igual a algun elemento que este en numeroFac-->
@@ -105,12 +123,15 @@
               
                
           <% end %>
+          <!--Muestro la suma final del debe y el haber en ese periodos-->
         <tr class="text-balance "style="background: #ABCBE8">
           <td></td><td></td><td></td><td></td>
-          <td><%=sum_debe%></td>
-          <td><%=sum_haber%></td>
+          <td><strong><%=sum_debe%></strong></td>
+          <td><strong><%=sum_haber%></strong></td>
+
 
         </tr>
       </tbody>
     </table>
+    <%end%>
     </div>
