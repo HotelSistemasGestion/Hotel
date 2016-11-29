@@ -10,6 +10,7 @@
               <th>Accion</th>
               <th>Tabla</th>
               <th>Usuario</th>
+              <th>Cambios</th>
               <th>Fecha - Hora</th>                         
             </tr>
           </thead>
@@ -34,7 +35,8 @@
                   <td><%= usuario.username + " " + usuario.apellido  %></td>
                 <%elsif%>
                 <td>default</td>   
-                <%end%>                
+                <%end%>
+                <td><%= link_to 'Ver cambios', audit_change_path(audit), remote: true %></td>                
                 <td><%= audit.created_at.strftime("%d-%m-%Y - %R") %></td>                
               </tr>
             <% end %>
