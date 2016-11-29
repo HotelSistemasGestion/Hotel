@@ -5,7 +5,17 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.all
-    @reservations = Kaminari.paginate_array(@reservations).page(params[:page]).per(4)
+    @filterrific = initialize_filterrific(
+    Reservation,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @reservations = @filterrific.find.page(params[:page]).paginate(:per_page => 2, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   #Encargado de llenar el dropdown de habitaciones en reservations

@@ -14,8 +14,14 @@ class Reservation < ActiveRecord::Base
 	validates :nombre, :presence => {:message => "No puede estar en blanco" }
 	validates :apellido, :presence => {:message => "No puede estar en blanco" }
 	validates :telefono, :presence => {:message => "No puede estar en blanco" }
+	
 
+	filterrific(available_filters: [:sorted_by, :sorted_by_apellido])
 
+	#scope :sorted_by, lambda { |nombre|where(:nombre => [*nombre])}
+
+	scope :sorted_by, lambda { |nombre| where('reservations.nombre = ?', nombre)}
+	scope :sorted_by_apellido, lambda { |apellido| where('reservations.apellido = ?', apellido)}
 
 	#validate :validacion_fecha
 

@@ -36,53 +36,32 @@
     }
 </style>
 <h3><center>Reservaciones</center></h3>
-</div>
-  <div class="box-body">
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-        
-            <th>Nombre</th>
+<div class="row">
+<%= form_for_filterrific @filterrific do |f| %>
 
-            <th>Apellido</th>
-        
-            <th>Email</th>
 
-            <th>Telefono</th>
-        
-            <th>Total</th>
-        
-            <th></th>
-
-          </tr>
-        </thead>
-
-        <tbody>
-          <%= content_tag_for(:tr, @reservations) do |reservation| %>
-        
-            <td><%= reservation.nombre %></td>
-        
-            <td><%= reservation.apellido %></td>
-        
-            <td><%= reservation.email %></td>
-
-            <td><%= reservation.telefono %></td>
-
-            <td><%= number_to_currency_py(reservation.total) %></td>
-            
-            <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
-            <%= link_to '', edit_reservation_path(reservation),class: "btn btn-warning glyphicon glyphicon-pencil" %>
-            <%= link_to '', reservation,class: "btn btn-danger glyphicon glyphicon-trash borrar", method: :delete, data: { confirm: 'Esta seguro?' }, :remote => true %></td>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="col-xs-3">
+    <%= f.text_field(:sorted_by,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por nombre")%>
     </div>
-  </div>
-  <div class="box-footer clearfix">
+
+    <div class="col-xs-3">
+    <%= f.text_field(:sorted_by_apellido,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por apellido")%>
+    </div>
+     
+   <%= render_filterrific_spinner %>
+<% end %>
+</div>
+
+<%= render(
+  partial: 'reservations/list',
+  locals: { reservations: @reservations }
+) %>
+</div>
+  
+  <!--<div class="box-footer clearfix">
     <ul class="pagination pagination-sm no-margin pull-right">
-         <nav><%=paginate @reservations, :theme => 'twitter-bootstrap-3' %></nav>
+         <nav><%#=paginate @reservations, :theme => 'twitter-bootstrap-3' %></nav>
     </ul>
     
-  </div>
+  </div>-->
 </div>
