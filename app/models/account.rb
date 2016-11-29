@@ -13,7 +13,7 @@ class Account < ActiveRecord::Base
 
     before_destroy :change_invoice_state
 
-    accepts_nested_attributes_for :account_details, allow_destroy: true , update_only: true
+    accepts_nested_attributes_for :account_details, allow_destroy: true, update_only: true
     accepts_nested_attributes_for :room_account_details, allow_destroy: true , update_only: true
 
     #Opciones de filtros para reportes

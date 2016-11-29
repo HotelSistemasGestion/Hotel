@@ -46,10 +46,6 @@
                 <%= f.label "",  class: 'btn btn-inverse col-sm-1', id: "bt1", title: 'Hoy', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "fa fa-calendar-check-o"></span>
                     <% end %> 
-
-                <%#= f.label 'Hoy', class: "col-sm-3" do <span class= "fa fa-calendar-check-o"> Hoy</span> <% end %>    
-                <!--label id="bt1" class="btn btn-default col-sm-3" role="button" title="Hoy"><span class= "fa fa-calendar-check-o"> Hoy</span></label-->
-                
             </div>
             <div class="row">
 
@@ -130,15 +126,15 @@
               <tr class="fields">
 
                   <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
-                  <% ayudante = "#"+"#{li.object_name}[ayudante]".gsub(/(\])?\[/, "_").chop %>
+                  <% precio = "#"+"#{li.object_name}[precio]".gsub(/(\])?\[/, "_").chop %>
                   <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
 
                   <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
                   
-                  <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
-                  :multiple => true, :update_elements => {:id => id,:precio => ayudante },class: "ui-autocomplete-input"%>
+                  <td><%= li.autocomplete_field :servicio, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
+                  :multiple => true, :update_elements => {:id => id,:precio => precio },class: "ui-autocomplete-input"%>
                   <%= li.hidden_field  :service_id%></td>
-                  <td><%= li.number_field  :ayudante,class: "escuchable",readonly: true%></td>
+                  <td><%= li.number_field  :precio,class: "escuchable",readonly: true%></td>
                   <td><%= li.number_field :subtotal,:class => "subtotal",readonly: true%></td>
                   <td><%= li.link_to_remove "",id: "borrar", :class => "btn glyphicon glyphicon-trash", title: 'Eliminar detalle', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' %></td>
               </tr>
@@ -168,15 +164,15 @@
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td><%= f.number_field :descuento ,min: 0, max: 100, id: "descount", value: 0%></td>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100, id: "descount", value: 0%> %</td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td><%= f.text_field :total, readonly: true, id: "totales", value: 0%></td>
+                  <td><%= f.text_field :total, readonly: true, id: "totales"%></td>
                 </tr>         
                 <tr>
                   <th>IVA:</th>
-                  <td><%= f.text_field :iva, readonly: true, id: "iva", value: 0%></td>
+                  <td><%= f.text_field :iva, readonly: true, id: "iva"%></td>
                 </tr>
               </tbody>
             </table>
@@ -238,12 +234,12 @@
       function actualizarsubtotal(id,num){        
             var aux=id.slice(0,num);
             var subtotal_id="#"+aux+"subtotal";
-            var ayudante="#"+aux+"ayudante";
+            var precio="#"+aux+"precio";
             var cantidad="#"+aux+"cantidad";
             cantidad=parseInt($(cantidad).val());
-            var precio=parseInt($(ayudante).val());
-            if(! isNaN(precio)) { 
-              $(subtotal_id).val(precio * cantidad);      
+            var ayudante=parseInt($(precio).val());
+            if(! isNaN(ayudante)) { 
+              $(subtotal_id).val(ayudante * cantidad);      
               actualizartotal();
             }
             else{
@@ -277,7 +273,7 @@
         var desc_val=!isNaN(val2) ? val2 : 0;
         var d=((getPrecioInicial()+subtotales) *  desc_val);
         $("#totales").val(( getPrecioInicial()+subtotales) - d);
-        $("#iva").val((( getPrecioInicial()+subtotales) - d) * 0.1);
+        $("#iva").val(parseInt((( getPrecioInicial()+subtotales) - d) / 11));
       }
 
       $('#bt1').click(function() {
