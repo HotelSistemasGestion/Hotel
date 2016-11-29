@@ -1,16 +1,13 @@
 <div class="box">
 <div class="box-header with-border">
 
-<button><%= link_to '', {:controller => "reservations", :action => "new"} , class: "btn btn-primary glyphicon glyphicon-plus" %></button> 
+
 
   <%#= link_to my_new_reservation_path,           class: 'btn btn-primary' do %>
     <!--span class="glyphicon glyphicon-plus"></span-->
     
   <%# end %>
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  <span class="glyphicon glyphicon-calendar"></span>
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -36,21 +33,35 @@
     }
 </style>
 <h3><center>Reservaciones</center></h3>
-<div class="row">
-<%= form_for_filterrific @filterrific do |f| %>
+    <div>
+      <button><%= link_to '', {:controller => "reservations", :action => "new"} , class: "btn btn-primary glyphicon glyphicon-plus" %></button>
 
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </button>
 
-    <div class="col-xs-3">
-    <%= f.text_field(:sorted_by,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por nombre")%>
+      <button type="button" class="btn btn-primary" id="showmenu">
+          <span class="glyphicon glyphicon-search"></span>
+      </button>
     </div>
+    <br>
+    <div class="menu well" style="display: none;">
+      <div class="row">
+      <%= form_for_filterrific @filterrific do |f| %>
 
-    <div class="col-xs-3">
-    <%= f.text_field(:sorted_by_apellido,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por apellido")%>
-    </div>
-     
-   <%= render_filterrific_spinner %>
-<% end %>
-</div>
+
+          <div class="col-xs-3">
+          <%= f.text_field(:sorted_by,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por nombre")%>
+          </div>
+
+          <div class="col-xs-3">
+          <%= f.text_field(:sorted_by_apellido,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por apellido")%>
+          </div>
+           
+         <%= render_filterrific_spinner %>
+      <% end %>
+      </div>
+  </div>
 
 <%= render(
   partial: 'reservations/list',
@@ -65,3 +76,10 @@
     
   </div>-->
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+        $('#showmenu').click(function() {
+                $('.menu').toggle("slide");
+        });
+    });
+</script>
