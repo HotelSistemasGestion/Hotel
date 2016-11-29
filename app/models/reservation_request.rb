@@ -26,6 +26,13 @@ class ReservationRequest < ActiveRecord::Base
   	    errors.add(:check_out, "no puede ser menor al check_in")	
       end
     end
+
+    filterrific(available_filters: [:sorted_by, :sorted_by_apellido])
+
+	#scope :sorted_by, lambda { |nombre|where(:nombre => [*nombre])}
+
+	scope :sorted_by, lambda { |nombre| where('reservation_requests.nombre = ?', nombre)}
+	scope :sorted_by_apellido, lambda { |apellido| where('reservation_requests.apellido = ?', apellido)}
 	
 
 end
