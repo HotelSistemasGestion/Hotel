@@ -19,8 +19,10 @@
                               </div>
                               <%if User.where(rol_id: nil).count > 0%>
                                 <div class="col-md-6">
-                                  <label for="exampleInputEmail1">Asignar a</label>   
-                                  <%= f.select :user_ids, User.where(rol_id: nil).collect {|x| [x.username, x.id]},{}, {:multiple => true, class: "selectpicker form-control"} %>
+                                  <label for="exampleInputEmail1">Asignar a</label>
+                                  <select class="selectpicker form-control" disabled>
+                                    <option><%=User.last.username%></option>   
+                                  </select>                                  
                                 </div>
                               <%end%>                            
                             </div>                           
@@ -168,9 +170,5 @@
 <% end %>
 
 <script type="text/javascript">
-  $('.selectpicker').selectpicker({
-    liveSearch: true,    
-    size: 5,
-    maxOptions: 2
-  });
+  $('.selectpicker').selectpicker();
 </script>  
