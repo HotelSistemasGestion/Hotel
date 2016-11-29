@@ -4,11 +4,8 @@
     <span class="glyphicon glyphicon-list-alt"></span>
     Atras
   <% end %>
-  <%= link_to @reservation, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-info-sign"></span>
-    Mostrar
-  <% end %>
-   <h3 class="box-title"><center>Editando Reservacion</center></h3>
+  <%= link_to '', @reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
+   <h4><center>Editando Reservacion</center></h4>
 </div>
 <div class="box-body">
 <%= render 'my_form' %>

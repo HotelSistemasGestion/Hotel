@@ -38,7 +38,7 @@
 
             
           <br></br>
-        <div class="box box-default box-solid collapsed-box">
+        <div class="box box-primary box-solid collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title" style="color:white"><center>Cargar Habitaciones</center></h3>
 
@@ -141,7 +141,7 @@
 
                         <td><%= li.number_field  :ayudante, value: (!@budget.new_record?)? 
                         ((@service_name[c][1]) unless c>=@service_name.count) : '', class: "escuchable form-control money",readonly: true%></td>
-                        <td><%= li.number_field :subtotal,class: "subtotal form-control money",readonly: true%></td>
+                        <td><%= li.number_field :subtotal,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},class: "subtotal form-control money",readonly: true%></td>
                         <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
                     </tr>
                     <%c=c+1%>

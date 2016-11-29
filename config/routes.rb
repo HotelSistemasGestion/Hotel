@@ -23,7 +23,11 @@ Rails.application.routes.draw do
   resources :budget_service_details
   resources :cleanings
   resources :invoice_details
-  resources :account_details
+  resources :account_details do
+    collection do
+      get 'report'
+    end
+  end
   resources :reservations  do
     collection do
       get 'habitaciones'

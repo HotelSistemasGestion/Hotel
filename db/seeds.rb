@@ -23,7 +23,7 @@ AccountingYear.create(anho: "2016",estado: "actual");
 AccountingYear.create(anho: "2015",estado: "antiguo");
 AccountingYear.create(anho: "2014",estado: "antiguo");
 
-AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "10000",haber: "0");
+AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
 AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
 AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "1000",haber: "0");
 AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "0",haber: "1000");
@@ -49,7 +49,7 @@ AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: 
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "19000");
 
-AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "54000",haber: "0");
+AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "35000",haber: "0");
 AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
 AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 
@@ -128,16 +128,19 @@ State.create(descripcion: "ocupado");
 State.create(descripcion: "reservado");
 State.create(descripcion: "fuera de servicio");
 
-Room.create(type_of_room_id: 1,state_id: 3, capacidad: 2, identificador:"A1",precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'A2',precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 3,state_id: 2 ,capacidad: 2,identificador: 'C3',precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"B1",precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 1,state_id: 1, capacidad: 2, identificador:"AU1",precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'AD2',precio: 10000,comfort_id: 2);
+Room.create(type_of_room_id: 3,state_id: 1 ,capacidad: 2,identificador: 'CU3',precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BU1",precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BD1",precio: 10000,comfort_id: 2);
 Room.create(type_of_room_id: 2,state_id: 1 ,capacidad: 2,identificador: 'B2',precio: 10000,comfort_id: 1);
 Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',precio: 10000,comfort_id: 1);
+Room.create(type_of_room_id: 4,state_id: 4 ,capacidad: 2,identificador: 'XT3',precio: 10000,comfort_id: 3);
 
 
-Reservation.create(nombre: "Leo",apellido: "Mesi",email: "Messi@gmail.com",telefono: "0901212",total: 10000);
-ReservationRoom.create(reservation_id: 1,type_of_room_id:1,comfort_id: 1,room_id: 1,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,subtotal: 10000,start: "2016-11-29",end: "2016-12-06" ,title: "Habitacion A1 Reservada" ,color: "#33ff00",textColor: "#ffffff");
+
+#Reservation.create(nombre: "Leo",apellido: "Mesi",email: "Messi@gmail.com",telefono: "0901212",total: 10000);
+#ReservationRoom.create(reservation_id: 1,type_of_room_id:1,comfort_id: 1,room_id: 1,check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,subtotal: 10000,start: "2016-11-29",end: "2016-12-06" ,title: "Habitacion A1 Reservada" ,color: "#33ff00",textColor: "#ffffff");
 #Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
 #Reservation.create(nombre: "Fabri",email: "fabri@gmail.com",check_in: (Date.today+8).to_s, check_out: (Date.today+9).to_s,type_of_room_id: 1,room_id: 5,total: 10000);
 
