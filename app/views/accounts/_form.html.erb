@@ -164,7 +164,7 @@
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td><%= f.number_field :descuento ,min: 0, max: 100, id: "descount", value: 0%> %</td>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100, id: "descount"%> %</td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
@@ -209,7 +209,7 @@
       
       $(document).on('keyup autocompletechange','#table .ui-autocomplete-input', function () {                
         var id = $(this).attr("id");
-        actualizarsubtotal(id,-7);
+        actualizarsubtotal(id,-8);
       });
 
       
