@@ -6,7 +6,8 @@ class AccountDetail < ActiveRecord::Base
 	attr_accessor :service,:ayudante
 
 	before_save :set_precio
-
+	filterrific(available_filters: [:sorted_by])
+	scope :sorted_by,-> state { joins(:account).where('accounts.identificador_hab LIKE ?', "%#{state}%")}
 	private
 
 		def set_precio

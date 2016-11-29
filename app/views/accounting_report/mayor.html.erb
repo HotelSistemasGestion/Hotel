@@ -17,6 +17,7 @@
   </div>
      <div class="box-body">
       <form class="form-inline">
+         <!--Div selector de rango de fechas-->
         <div class="col-xs-6 col-md-6 col-sm-6">
 
           <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "search_conta" do %>
@@ -28,11 +29,12 @@
           <%end%>  
         </div>
 
-
+          <!--Div selector de cuentas-->
         <div class="col-lg-6 col-md-6 col-sm-6 seleccion no-print">
 
           <%=label_tag "Cuenta:"%>   
-          <select data-placeholder="Seleccione las cuentas..." class="chosen-select " multiple style="width:300px;">
+          <select data-placeholder="Seleccione las cuentas..." name="options" id="options" class="chosen-select " multiple style="width:300px;">
+            <option value="" selected="selected"></option>
             <!-- while para obtner todas los opcion del select dado las cuentas que se filtraron (array_filtrar)-->   
             <%while contador_selector<@array_filtrar.count do %>
               <!-- se optiene el objeto que satisfasga la condion where -->
