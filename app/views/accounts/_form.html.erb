@@ -122,7 +122,7 @@
             </thead>
             <tbody>
         
-              <%= f.fields_for :account_details  ,:wrapper => false do |li| %>
+              <%= f.fields_for :account_details ,:wrapper => false do |li| %>
               <tr class="fields">
 
                   <% cantidad = "#"+"#{li.object_name}[cantidad]".gsub(/(\])?\[/, "_").chop %>
