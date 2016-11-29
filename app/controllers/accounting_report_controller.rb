@@ -1,4 +1,5 @@
 class AccountingReportController < ApplicationController
+  helper_method :nombre_cuenta
    def mayor
   	 @ledgers = AccountXEntry.search_conta(params[:search_conta])
   	 $cont=0
@@ -42,5 +43,16 @@ class AccountingReportController < ApplicationController
        end   
      $cont2 +=1      
      end
+  end
+
+  def nombre_cuenta(name)
+   arr_juntar=name.split(' ')
+    cont_juntar=0
+    juntar=''
+      while cont_juntar<arr_juntar.count
+          juntar += arr_juntar[cont_juntar]
+            cont_juntar+=1
+      end
+      return juntar
   end
 end

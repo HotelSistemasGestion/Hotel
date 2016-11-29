@@ -2,6 +2,7 @@
 $(document).ready(function(){
 var cont=0;
 
+
        $("#search_conta").each(function(){
       
             $(this).daterangepicker({ "locale": {
