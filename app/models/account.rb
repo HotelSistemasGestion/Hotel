@@ -7,13 +7,15 @@ class Account < ActiveRecord::Base
     has_many :account_details
     has_many :room_account_details
 
-    validates :fecha_entrada, presence: true
+    validates :fecha_entrada, :presence => {:message => "*campo requerido"}
+    validates :nombre, :presence => {:message => "*campo requerido"}
+
     attr_accessor :client
     attr_accessor :room
 
     before_destroy :change_invoice_state
 
-    accepts_nested_attributes_for :account_details, allow_destroy: true , update_only: true
+    accepts_nested_attributes_for :account_details, allow_destroy: true, update_only: true
     accepts_nested_attributes_for :room_account_details, allow_destroy: true , update_only: true
 
     #Opciones de filtros para reportes

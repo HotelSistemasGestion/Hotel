@@ -5,8 +5,15 @@
       <!--span class="glyphicon glyphicon-plus"></span>
       New Customer
     <#% end %-->
-    <h3 class="box-title"><center>Pedidos de Reserva</center></h3>
-    <div class="row">
+    <h3><center>Pedidos de Reserva</center></h3> 
+    <div> 
+      <button type="button" class="btn btn-primary" id="showmenu">
+          <span class="glyphicon glyphicon-search"></span>
+      </button>
+    </div>
+    <br>
+    <div class="menu well" style="display: none;">
+      <div class="row">
       <%= form_for_filterrific @filterrific do |f| %>
 
 
@@ -21,6 +28,8 @@
          <%= render_filterrific_spinner %>
       <% end %>
     </div>
+    </div>
+   
   </div>
   <%= render(
   partial: 'reservation_requests/list',
@@ -34,4 +43,11 @@
     
   </div>-->
 </div>
+<script type="text/javascript">
+   $(document).ready(function() {
+        $('#showmenu').click(function() {
+                $('.menu').toggle("slide");
+        });
+    });
+</script>
      
