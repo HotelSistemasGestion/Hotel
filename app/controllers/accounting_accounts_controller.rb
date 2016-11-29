@@ -12,7 +12,7 @@ class AccountingAccountsController < ApplicationController
     @accounting_years=AccountingYear.all.order(anho: :asc)
     @year=AccountingYear.find_by(estado: "vigente")
     @id=@year.id
-    @accounting_accounts = AccountingAccount.where(ejercicio: @id).order(grupo: :asc)
+    @accounting_accounts = AccountingAccount.where(ejercicio: @id).order(:parent_id,:grupo,cuenta: :asc)
   end
 
   # GET /accounting_accounts/1
@@ -34,7 +34,8 @@ def accountiong_account_years
 
       #@account_x_plan=AccountXPlan.where("account_plan_id = ?" ,1)
 
-      @accounts = AccountingAccount.where(ejercicio: params[:accounting_year_id]).order(grupo: :asc)
+     
+      @accounts = AccountingAccount.where(ejercicio: params[:accounting_year_id]).order(:parent_id,:grupo,cuenta: :asc)
       respond_to do |format|
         format.js
       end
@@ -54,16 +55,29 @@ def accountiong_account_years
   # POST /accounting_accounts.json
   def create
     @accounting_account = AccountingAccount.new(accounting_account_params)
+
         respond_to do |format|
-      if @accounting_account.save
-        account_year = AccountingYear.find(@accounting_account.ejercicio)
+    if @accounting_account.save
+    ##########################################################
+      x=@accounting_account.grupo
+        if x<9
+          @accounting_account.parent_id=@accounting_account.grupo
+          @accounting_account.save  
+        end
+        if x>9
+          cal=x/100
+          @accounting_account.parent_id=cal
+          @accounting_account.save
+        end
+    ##########################################################
+
+    account_year = AccountingYear.find(@accounting_account.ejercicio)
     account_plan = account_year.account_plan_id
     cuentas_x_plan = AccountXPlan.new
     cuentas_x_plan.account_plan_id=account_plan
     cuentas_x_plan.accounting_account_id=@accounting_account.id
     cuentas_x_plan.cuenta_superior=@accounting_account.grupo
     cuentas_x_plan.save              
-
         format.html { redirect_to accounting_accounts_path, notice: 'La cuenta ha sido agregada con exito' }
         format.json { render :show, status: :created, location: @accounting_account }
       else
@@ -104,6 +118,6 @@ def accountiong_account_years
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accounting_account_params
-      params.require(:accounting_account).permit(:grupo, :nombre, :imputable,:cuenta,:ejercicio)
+      params.require(:accounting_account).permit(:grupo, :nombre, :imputable,:cuenta,:ejercicio,:parent_id)
     end
 end

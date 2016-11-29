@@ -2,6 +2,7 @@
 $(document).ready(function(){
 var cont=0;
 
+
        $("#search_conta").each(function(){
       
             $(this).daterangepicker({ "locale": {
@@ -100,8 +101,9 @@ var arr_cont=label.split('.');
     for (var j = 0; j < arr_cont.length; j++) { 
       console.log(arr_cont[j]);
 
-    $("#"+arr_cont[j]+"").each(function(){
+    $("#"+arr_cont[j]).each(function(){
         $(this).show(); //muestro mediante id
+        console.log($("#"+arr_cont[j]).show());
       });
 
        

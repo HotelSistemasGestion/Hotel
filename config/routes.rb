@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'accounting_years/index'
 
   get 'audit/index'
+  get 'audit/:id', to: 'audit#show', as: 'audit_change'
 
   resources :reservation_rooms
 

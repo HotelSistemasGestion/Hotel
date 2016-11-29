@@ -1,0 +1,92 @@
+
+<div id="invoice-modal" class="modal fade">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>        
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert" style="display: none;"></div>
+          <div class="form-group"> 
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Caja: </label>
+                <%= Cash.find(@closing_cash.opening_cash.cash_id).descripcion %>            
+              </div> 
+               
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Cajero: </label>
+                <%= Employee.find(@closing_cash.opening_cash.employee_id).full_name %>            
+              </div> 
+               
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Fecha Cierre: </label>
+                <%= @closing_cash.fecha_cierre %>            
+              </div>  
+            </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><center><strong>Detalles</strong></center></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                          <td><strong>Valor</strong></td>
+                          <td><strong>Monto Registrado</strong></td>
+                          <td><strong>Monto Existente</strong></td>
+                        </tr>
+                      </thead>
+                      <tbody>                           
+                          <tr>
+                            <td><strong>Efectivo</strong></td>
+                            <td><%= number_to_currency_py(@closing_cash.monto_efectivo) %></td>                          
+                            <td><%= number_to_currency_py(@closing_cash.existente_efe) %></td>  
+                          </tr>
+                          <tr>
+                            <td><strong>Cheque</strong></td>
+                            <td><%= number_to_currency_py(@closing_cash.monto_cheque) %></td>                          
+                            <td><%= number_to_currency_py(@closing_cash.existente_cheque) %></td>  
+                          </tr>  
+                          <tr>
+                            <td><strong>Tarjeta Credito</strong></td>
+                            <td><%= number_to_currency_py(@closing_cash.monto_tcredito) %></td>                          
+                            <td><%= number_to_currency_py(@closing_cash.existente_tcre) %></td>  
+                          </tr>
+                          <tr>
+                            <td><strong>Tarjeta Debito</strong></td>
+                            <td><%= number_to_currency_py(@closing_cash.monto_tdebito) %></td>                          
+                            <td><%= number_to_currency_py(@closing_cash.existente_tdb) %></td>  
+                          </tr>
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8"> 
+              <div class="form-group text-right">
+                <strong>Diferencia Registrada: </strong>           
+              </div> 
+          </div>
+          <div class="col-md-4">        
+            <p><%= number_to_currency_py(@closing_cash.dif_registrada) %></p>
+          </div>
+        </div><!-- /.tabla-content -->
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

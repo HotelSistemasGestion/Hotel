@@ -23,7 +23,7 @@ AccountingYear.create(anho: "2016",estado: "actual");
 AccountingYear.create(anho: "2015",estado: "antiguo");
 AccountingYear.create(anho: "2014",estado: "antiguo");
 
-AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "10000",haber: "0");
+AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
 AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
 AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "1000",haber: "0");
 AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "0",haber: "1000");
@@ -49,7 +49,7 @@ AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: 
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "19000");
 
-AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "54000",haber: "0");
+AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "35000",haber: "0");
 AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
 AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 

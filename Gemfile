@@ -85,6 +85,7 @@ gem 'validates_email_format_of'
 # gem 'capistrano-rails', group: :development
 gem 'cancancan', '~> 1.10'
 
+gem 'acts_as_tree'
 #agregue gemas para funcionamiento de mapas
 #gem 'geocoder'
 gem 'gmaps4rails'

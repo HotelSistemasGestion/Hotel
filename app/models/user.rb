@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   validates :email, presence: { message: "requerido*" }  
   
   belongs_to :rol
-    
+  
+  before_create :convert 
 
   def has_role?(rol)
     !self.rol.actions.find_by(accion: rol).nil?     
@@ -33,5 +34,15 @@ class User < ActiveRecord::Base
     	return false
     end
   end
+
+  private
+
+    def convert
+      self.username = self.username.strip.downcase.capitalize
+      self.apellido = self.apellido.strip.downcase.capitalize
+      if self.direccion.present?
+        self.direccion = self.direccion.strip.downcase.capitalize
+      end
+    end
 
 end
