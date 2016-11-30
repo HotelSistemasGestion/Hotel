@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129005548) do
+
+ActiveRecord::Schema.define(version: 20161130032615) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +28,8 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.datetime "updated_at", null: false
     t.string   "servicio"
   end
+
+  add_index "account_details", ["account_id"], name: "index_account_details_on_account_id", using: :btree
 
   create_table "account_plans", force: :cascade do |t|
     t.string   "descripcion"
@@ -88,6 +92,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "ejercicio"
+    t.integer  "parent_id"
   end
 
   create_table "accounting_entries", force: :cascade do |t|
@@ -112,23 +117,19 @@ ActiveRecord::Schema.define(version: 20161129005548) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "client_id"
-    t.date     "fecha_entrada"
-    t.date     "fecha_salida"
     t.integer  "total"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "nombre"
-    t.string   "apellido"
     t.string   "direccion"
     t.string   "ruc"
-    t.integer  "room_id"
-    t.string   "identificador_hab"
     t.string   "telefono"
     t.string   "correo"
     t.integer  "subtotal"
     t.integer  "descuento"
     t.string   "numero"
     t.integer  "iva"
+    t.integer  "reservation_id"
   end
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
@@ -302,7 +303,6 @@ ActiveRecord::Schema.define(version: 20161129005548) do
 
   create_table "comforts", force: :cascade do |t|
     t.string   "descripcion"
-    t.integer  "precio"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -362,7 +362,10 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.integer  "subtotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "servicio"
   end
+
+  add_index "invoice_details", ["invoice_id"], name: "index_invoice_details_on_invoice_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
     t.string   "numero"
@@ -455,14 +458,15 @@ ActiveRecord::Schema.define(version: 20161129005548) do
 
   create_table "reservation_rooms", force: :cascade do |t|
     t.integer  "reservation_id"
-    t.integer  "type_of_room_id"
-    t.integer  "comfort_id"
     t.integer  "room_id"
     t.date     "check_in"
     t.date     "check_out"
-    t.integer  "subtotal",        limit: 8
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "budget_id"
+    t.integer  "comfort_id"
+    t.integer  "type_of_room_id"
+    t.integer  "subtotal"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.date     "start"
     t.date     "end"
     t.string   "title"
@@ -470,6 +474,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.string   "color"
   end
 
+  add_index "reservation_rooms", ["budget_id"], name: "index_reservation_rooms_on_budget_id", using: :btree
   add_index "reservation_rooms", ["comfort_id"], name: "index_reservation_rooms_on_comfort_id", using: :btree
   add_index "reservation_rooms", ["reservation_id"], name: "index_reservation_rooms_on_reservation_id", using: :btree
   add_index "reservation_rooms", ["room_id"], name: "index_reservation_rooms_on_room_id", using: :btree
@@ -480,11 +485,15 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.string   "apellido"
     t.string   "email"
     t.string   "telefono"
-    t.integer  "budget_id_id"
-    t.string   "total",        limit: 8
+    t.integer  "reservation_request_id"
+    t.integer  "budget_id"
+    t.string   "total"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "reservations", ["budget_id"], name: "index_reservations_on_budget_id", using: :btree
+  add_index "reservations", ["reservation_request_id"], name: "index_reservations_on_reservation_request_id", using: :btree
 
   create_table "rol_actions", force: :cascade do |t|
     t.integer  "rol_id"
@@ -505,10 +514,19 @@ ActiveRecord::Schema.define(version: 20161129005548) do
   create_table "room_account_details", force: :cascade do |t|
     t.integer  "account_id"
     t.integer  "room_id"
-    t.integer  "precio"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "type_of_room_id"
+    t.integer  "comfort_id"
+    t.date     "check_in"
+    t.date     "check_out"
+    t.integer  "subtotal",        limit: 8
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
+
+  add_index "room_account_details", ["account_id"], name: "index_room_account_details_on_account_id", using: :btree
+  add_index "room_account_details", ["comfort_id"], name: "index_room_account_details_on_comfort_id", using: :btree
+  add_index "room_account_details", ["room_id"], name: "index_room_account_details_on_room_id", using: :btree
+  add_index "room_account_details", ["type_of_room_id"], name: "index_room_account_details_on_type_of_room_id", using: :btree
 
   create_table "room_comforts", force: :cascade do |t|
     t.integer  "room_id"
@@ -597,6 +615,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["rol_id"], name: "index_users_on_rol_id", using: :btree
 
+  add_foreign_key "account_details", "accounts"
   add_foreign_key "account_x_auto_entries", "account_x_entries"
   add_foreign_key "account_x_auto_entry_dets", "account_x_auto_entries"
   add_foreign_key "account_x_auto_entry_dets", "accounting_accounts"
@@ -627,6 +646,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
   add_foreign_key "detail_of_cash_movements", "cash_movements"
   add_foreign_key "detail_of_cash_movements", "invoices"
   add_foreign_key "employees", "types_of_employees"
+  add_foreign_key "invoice_details", "invoices"
   add_foreign_key "invoices", "clients"
   add_foreign_key "opening_cashes", "cashes"
   add_foreign_key "opening_cashes", "employees"
@@ -635,12 +655,19 @@ ActiveRecord::Schema.define(version: 20161129005548) do
   add_foreign_key "photos", "rooms"
   add_foreign_key "photos", "users"
   add_foreign_key "reservation_requests", "comforts"
+  add_foreign_key "reservation_rooms", "budgets"
   add_foreign_key "reservation_rooms", "comforts"
   add_foreign_key "reservation_rooms", "reservations"
   add_foreign_key "reservation_rooms", "rooms"
   add_foreign_key "reservation_rooms", "type_of_rooms"
+  add_foreign_key "reservations", "budgets"
+  add_foreign_key "reservations", "reservation_requests"
   add_foreign_key "rol_actions", "actions"
   add_foreign_key "rol_actions", "rols"
+  add_foreign_key "room_account_details", "accounts"
+  add_foreign_key "room_account_details", "comforts"
+  add_foreign_key "room_account_details", "rooms"
+  add_foreign_key "room_account_details", "type_of_rooms"
   add_foreign_key "room_comforts", "comforts"
   add_foreign_key "room_comforts", "rooms"
   add_foreign_key "rooms", "comforts"

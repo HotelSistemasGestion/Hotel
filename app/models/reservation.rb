@@ -4,6 +4,9 @@ class Reservation < ActiveRecord::Base
 	#validates :check_in, :presence => {:message => "en blanco"}
 	#validates :check_out, :presence => {:message => "en blanco"}
 	#paginates_per 2 #solo puse 2 para probar
+	
+	audited
+
 	belongs_to :reservation_request
 	belongs_to :budget
 	has_many :reservation_rooms,:dependent => :destroy

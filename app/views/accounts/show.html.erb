@@ -63,7 +63,7 @@
 
 
     <div class="row">
-      <div class="col-md-5">
+      <div class="col-md-6">
               <div class="panel panel-primary">
                 <div class="panel-heading">
                   <h3 class="panel-title"><center>Detalle Habitaciones</center></h3>
@@ -74,18 +74,27 @@
                       <thead>
                         <tr>
                           <td><strong>Habitacion</strong></td>
-                          <td class="text-center"><strong>Precio</strong></td>
+                          <td class="text-center"><strong>Check-In</strong></td>
+                          <td class="text-center"><strong>Check-Out</strong></td>
                           <td class="text-right"><strong>Subtotal</strong></td>
                         </tr>
                       </thead>
-                      <tbody>          
+                      <tbody>                      
+                        <% @account.room_account_details.each do |details| %>                 
+                          <tr>                    
+                            <td style="margin-left: 80px;"><%= Room.find(details.room_id).identificador %></td> 
+                            <td class="text-center"><%= details.check_in %></td>      
+                            <td class="text-center"><%= details.check_out %></td> 
+                            <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
+                          </tr>
+                        <%end%>
                       </tbody>
                   </table>
                 </div>
               </div>
             </div>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-6">
               <div class="panel panel-primary">
                 <div class="panel-heading">
                   <h3 class="panel-title"><center>Detalle Servicios</center></h3>
@@ -104,7 +113,7 @@
                       <tbody>                      
                         <% @account.account_details.each do |details| %>                 
                           <tr>                    
-                            <td style="margin-left: 80px;"><%= Service.find(details.service_id).nombre %></td> 
+                            <td style="margin-left: 80px;"><%= details.servicio %></td> 
                             <td class="text-center"><%= details.cantidad %></td>      
                             <td class="text-center"><%= number_to_currency_py(details.precio) %></td> 
                             <td class="text-right"><%= number_to_currency_py(details.subtotal) %></td> 
@@ -127,7 +136,7 @@
                 </tr>
                 <tr>
                   <th>Descuento: </th>
-                  <td><%= @account.descuento %> %</td>
+                  <td><%= if @account.descuento.nil? then 0 else @account.descuento end %> %</td>
                 </tr>            
                 <tr>
                   <th>Total:</th>

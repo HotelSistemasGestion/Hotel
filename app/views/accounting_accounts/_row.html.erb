@@ -1,9 +1,64 @@
 <% @accounts.each do |accounting_account| %>
     <tr id="<%= accounting_account.id %>">
     <td><%= accounting_account.grupo %></td>
-    <td><%= accounting_account.cuenta %></td>
-    <td><%= accounting_account.nombre %></td> 
-    <td><%= accounting_account.imputable %></td>
+    <td>
+    <%p=0%>
+    <%if accounting_account.cuenta!=p %>
+    <%= accounting_account.cuenta %>
+    <%end%> 
+    </td>
+    <td>
+ 
+    <%padre=9%>
+    <%padre1=0%>
+    <%hijo=99%>
+    <%nieto=999%>
+    <%bisnieto=9999%>
+    <% str=raw("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp")%>
+    <%label1="|_____" %>
+    <span style="color:navy">
+
+
+
+    <%if accounting_account.grupo<padre and accounting_account.cuenta==padre1%>
+    <%=accounting_account.nombre %>
+    <%end%>
+    
+
+    
+    <%if accounting_account.cuenta<hijo and accounting_account.cuenta==padre1 and accounting_account.grupo>padre%>
+    <span style="color: blue"><%=str%><%= label1 %></span><%=accounting_account.nombre %>
+    <%end%>
+    
+
+    
+    <%if accounting_account.cuenta<hijo and accounting_account.cuenta>padre1%>
+    <span style="color: blue"><%=str%><%=str%><%= label1 %></span><%=accounting_account.nombre %>
+    <%end%>
+
+
+    <%if accounting_account.cuenta<nieto and accounting_account.cuenta>hijo%>
+    <span style="color: blue"><%=str%><%=str%><%=str%><%= label1 %></span><%=accounting_account.nombre %>
+    <%end%>
+
+    <%if accounting_account.cuenta<bisnieto and accounting_account.cuenta>nieto%>
+    <span style="color: blue"><%=str%><%=str%><%=str%><%=str%><%= label1 %></span><%=accounting_account.nombre %>
+    <%end%>
+
+    </span>
+    </td> 
+    <td>
+    <%bo=true%>
+    <%bo1=false%>
+    <%mostrar="Si"%>
+    <%mostrar1="No"%>
+    <%if accounting_account.imputable==bo%>
+    <%= mostrar %>
+    <%end%>
+    <%if accounting_account.imputable==bo1%>
+    <%= mostrar1 %>
+    <%end%>
+    </td>
     <td>
         <div class="row">
             <div class="col-xs-2">

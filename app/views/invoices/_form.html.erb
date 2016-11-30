@@ -91,7 +91,7 @@
 
                   <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
                   
-                  <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
+                  <td><%= li.autocomplete_field :servicio, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
                   :multiple => true, :update_elements => {:id => id,:precio => ayudante },class: "ui-autocomplete-input"%>
                   <%= li.hidden_field  :service_id%></td>
                   <td><%= li.number_field  :ayudante, class: "escuchable",readonly: true%></td>
@@ -123,8 +123,8 @@
                   <td><%= f.text_field :subtotal,readonly: true, id: 'total', value: 0%></td>
                 </tr>
                 <tr>
-                  <th>Descuento: </th>
-                  <td><%= f.number_field :descuento ,min: 0, max: 100,id: 'descount', value: 0%> %</td>
+                  <th>Descuento:</th>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100,id: 'descount', value: 0%>%</td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
