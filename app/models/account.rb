@@ -62,6 +62,8 @@ class Account < ActiveRecord::Base
     private
         #Cuando se elimina una cuenta que ya se facturo pero aun no se pago
         def change_invoice_state
+            AccountDetail.destroy_all(account_id: self.id)
+            RoomAccountDetail.destroy_all(account_id: self.id)
             factura = Invoice.find_by(account_id: self.id)
             if !factura.nil?
                 factura.state = "cancelado"
