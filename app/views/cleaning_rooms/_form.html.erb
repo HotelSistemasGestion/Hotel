@@ -16,7 +16,7 @@
   <div class="form-group col-sm-4">
     <%= f.label "Encargado", class: "control-label" %>
    
-      <%= f.select :employee_id ,@employees.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control" %>
+      <%= f.select :employee_id ,Employee.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control" %>
   </div>
   <div>
         <table id="mytabla" class="table">
@@ -61,14 +61,13 @@
                   
                   
 
-                  <%= li.text_field :color, id:"cp7", class: "form-control input "%>
-                  <%= li.text_field :textColor, id:"cp8", class: "form-control input "%>
+                  <%= li.text_field :color, id:"cp7", class: " hide form-control input "%>
+                  <%= li.text_field :textColor, id:"cp8", class: "hide form-control input "%>
   <script>
     $(function() {
        
         $(' .input-daterange').datepicker({  format: 'dd/mm/yyyy', calendarWeeks: true});
-        $('#cp7').hide();
-        $('#cp8').hide();
+
         $('#cp4').colorpicker({ format: "hex"});
         $('#cp4').colorpicker().on('changeColor', function(e) {
             

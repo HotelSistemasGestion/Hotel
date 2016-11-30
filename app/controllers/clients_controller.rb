@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!  
+  load_and_authorize_resource
   #before_action :authenticate_user!
   #load_and_authorize_resource
   before_action :set_client, only: [:show, :edit, :update, :destroy]
@@ -14,6 +15,7 @@ class ClientsController < ApplicationController
   # GET /clients.json
   def index
     @clients = Client.all
+    @client = Client.new
   end
 
   # GET /clients/1

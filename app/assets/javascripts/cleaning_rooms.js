@@ -30,14 +30,18 @@ $(document).ready(function() {
      //permite el rango entre dos datepicker 
      $('#sandbox-container  .input-daterange').datepicker({});
      $('.fancybox').fancybox();
+        $(' .input-daterange').datepicker({  format: 'dd/mm/yyyy', calendarWeeks: true});
+    
+      
+          
 		
 	});
 
 $(document).on('nested:fieldAdded', function(event) {
   var dateFormat = "mm/dd/yy";
-      $('#sandbox-container  .input-daterange').datepicker({
-});
   var dateField, field;
+  $('#sandbox-container  .input-daterange').datepicker({});
+
 
 
   field = event.field;
@@ -48,29 +52,6 @@ $(document).on('nested:fieldAdded', function(event) {
    //  startDate: "12/12/2016"
    });
 
-  
-  // $(dateField[0]).datepicker({format: 'dd-mm-yyyy'}).on( "change", function() {
-    //   $(dateField[1]).datepicker({format: 'dd-mm-yyyy', startDate: $(this).val() } );
-         
-      //    console.log($(this).val());
-  //});
-  // $(dateField[1]).datepicker({format: 'dd-mm-yyyy'}).on( "change", function() {
-    
-    //   $(dateField[0]).datepicker({format: 'dd-mm-yyyy',  endDate: $(dateField[1]).val() } );
-         
-    //       console.log($(this).val());
-  //});
- //$(dateField[1]).datepicker({format: 'dd-mm-yyyy'}).on( "change", function() {
-   //    $(dateField[0]).datepicker({format: 'dd-mm-yyyy', endDate: $(this).val() } );
-         
-    //       console.log($(this).val());
-  //});
-  //$(dateField[1]).datepicker({format: 'dd-mm-yyyy', minDate: "11/25/2016" } );
-
- // $(dateField[1]).datepicker({format: 'dd-mm-yyyy'}).on( "change", function() {
-   //        // $(dateField[0]).datepicker( "option", "maxDate",  $(this).val() );
-     //        console.log($(this).val());
-  //});
 
 
   field.validator();
