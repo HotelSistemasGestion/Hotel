@@ -69,6 +69,6 @@ class InvoiceDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_detail_params
-      params.require(:invoice_detail).permit(:invoice_id, :service_id, :cantidad, :precio, :subtotal)
+      params.require(:invoice_detail).permit(:invoice_id, :service_id, :servicio, :cantidad, :precio, :subtotal)
     end
 end

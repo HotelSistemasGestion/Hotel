@@ -22,7 +22,11 @@ Rails.application.routes.draw do
  
   resources :budget_room_details
   resources :budget_service_details
-  resources :cleanings
+  resources :cleanings do
+    collection do
+      get 'report'
+    end
+  end
   resources :invoice_details
   resources :account_details do
     collection do
@@ -114,7 +118,11 @@ Rails.application.routes.draw do
   get 'diary_book/diario'
 
 
-  resources :reservation_requests
+  resources :reservation_requests do
+     collection do
+      get 'report'
+    end
+  end
   resources :services do
      collection do
       get 'report'

@@ -24,7 +24,9 @@ class User < ActiveRecord::Base
   
   belongs_to :rol
   
+
   before_create :convert 
+
 
   def has_role?(rol)
     !self.rol.actions.find_by(accion: rol).nil?     

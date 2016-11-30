@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129005548) do
+
+ActiveRecord::Schema.define(version: 20161130025629) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -300,7 +302,6 @@ ActiveRecord::Schema.define(version: 20161129005548) do
 
   create_table "comforts", force: :cascade do |t|
     t.string   "descripcion"
-    t.integer  "precio"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -360,6 +361,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.integer  "subtotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "servicio"
   end
 
   add_index "invoice_details", ["invoice_id"], name: "index_invoice_details_on_invoice_id", using: :btree
@@ -455,14 +457,15 @@ ActiveRecord::Schema.define(version: 20161129005548) do
 
   create_table "reservation_rooms", force: :cascade do |t|
     t.integer  "reservation_id"
-    t.integer  "type_of_room_id"
-    t.integer  "comfort_id"
     t.integer  "room_id"
     t.date     "check_in"
     t.date     "check_out"
-    t.integer  "subtotal",        limit: 8
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "budget_id"
+    t.integer  "comfort_id"
+    t.integer  "type_of_room_id"
+    t.integer  "subtotal"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.date     "start"
     t.date     "end"
     t.string   "title"
@@ -470,6 +473,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.string   "color"
   end
 
+  add_index "reservation_rooms", ["budget_id"], name: "index_reservation_rooms_on_budget_id", using: :btree
   add_index "reservation_rooms", ["comfort_id"], name: "index_reservation_rooms_on_comfort_id", using: :btree
   add_index "reservation_rooms", ["reservation_id"], name: "index_reservation_rooms_on_reservation_id", using: :btree
   add_index "reservation_rooms", ["room_id"], name: "index_reservation_rooms_on_room_id", using: :btree
@@ -480,11 +484,15 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.string   "apellido"
     t.string   "email"
     t.string   "telefono"
-    t.integer  "budget_id_id"
-    t.string   "total",        limit: 8
+    t.integer  "reservation_request_id"
+    t.integer  "budget_id"
+    t.string   "total"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "reservations", ["budget_id"], name: "index_reservations_on_budget_id", using: :btree
+  add_index "reservations", ["reservation_request_id"], name: "index_reservations_on_reservation_request_id", using: :btree
 
   create_table "rol_actions", force: :cascade do |t|
     t.integer  "rol_id"
@@ -646,10 +654,13 @@ ActiveRecord::Schema.define(version: 20161129005548) do
   add_foreign_key "photos", "rooms"
   add_foreign_key "photos", "users"
   add_foreign_key "reservation_requests", "comforts"
+  add_foreign_key "reservation_rooms", "budgets"
   add_foreign_key "reservation_rooms", "comforts"
   add_foreign_key "reservation_rooms", "reservations"
   add_foreign_key "reservation_rooms", "rooms"
   add_foreign_key "reservation_rooms", "type_of_rooms"
+  add_foreign_key "reservations", "budgets"
+  add_foreign_key "reservations", "reservation_requests"
   add_foreign_key "rol_actions", "actions"
   add_foreign_key "rol_actions", "rols"
   add_foreign_key "room_account_details", "accounts"
