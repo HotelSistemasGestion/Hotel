@@ -6,44 +6,44 @@
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Datos de Cuenta</h4>
+          
       </div>
       
       <div class="modal-body">          
+      <h4 class="modal-title" align="center">Asiento</h4>
+          <table class="table table-bordered  table-responsive ">
+                  <thead>
+                    <tr role="row">
+                      <th class="col-sm-2">Grupo</th>
+                      <th class="col-sm-2">Cuenta</th>
+                      <th class="col-sm-2">Nombre</th>
+                      <th class="col-sm-2">Imputable</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <div>
+                    <td><%= @accounting_account.grupo %></td>
+                    <td><%= @accounting_account.cuenta %></td>
+                    <td><%= @accounting_account.nombre %></td>
+                    <td>
+                    <%bo=true%>
+                    <%bo1=false%>
+                    <%mostrar="Si"%>
+                    <%mostrar1="No"%>
+                    <%if @accounting_account.imputable==bo%>
+                    <%= mostrar %>
+                    <%end%>
+                    <%if @accounting_account.imputable==bo1%>
+                    <%= mostrar1 %>
+                    <%end%>
+                    </td>
 
-          <div class="form-group">
-            <p>
-              <strong>Grupo:</strong>
-              <%= @accounting_account.grupo %>
-            </p>       
-          </div>
-          <div class="form-group">
-            <p>
-              <strong>Cuenta:</strong>
-              <%= @accounting_account.cuenta %>
-            </p>       
-          </div>
-
-          <div class="form-group">
-            <p>
-              <strong>Nombre:</strong>
-              <%= @accounting_account.nombre %>
-            </p>          
-          </div>
-          
-          <div class="form-group">
-            <p>
-              <strong>Imputable:</strong>
-              <%= @accounting_account.imputable %>
-            </p>          
-          </div>
-
-      </div>
-
-      <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Aceptar</button>
-      </div>
+                   </div>
+                  </tbody> 
+                </table>
 
     </div>      
   </div>
 </div>
+<!-- Modal -->

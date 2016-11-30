@@ -14,33 +14,50 @@
     <%nieto=999%>
     <%bisnieto=9999%>
     <% str=raw("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp")%>
-    <%label1="|_____"%>
+    <%label1="|_____" %>
+    <span style="color:navy">
 
 
 
     <%if accounting_account.grupo<padre and accounting_account.cuenta==padre1%>
     <%=accounting_account.nombre %>
     <%end%>
+    
 
+    
     <%if accounting_account.cuenta<hijo and accounting_account.cuenta==padre1 and accounting_account.grupo>padre%>
-    <%=str%><%= label1 %><%=accounting_account.nombre %>
+    <span style="color: blue"><%=str%><%= label1 %></span><%=accounting_account.nombre %>
+    <%end%>
+    
+
+    
+    <%if accounting_account.cuenta<hijo and accounting_account.cuenta>padre1%>
+    <span style="color: blue"><%=str%><%=str%><%= label1 %></span><%=accounting_account.nombre %>
     <%end%>
 
-    <%if accounting_account.cuenta<hijo and accounting_account.cuenta>padre1%>
-    <%=str%><%=str%><%= label1 %><%=accounting_account.nombre %>
-    <%end%>
 
     <%if accounting_account.cuenta<nieto and accounting_account.cuenta>hijo%>
-    <%=str%><%=str%><%=str%><%= label1 %><%=accounting_account.nombre %>
+    <span style="color: blue"><%=str%><%=str%><%=str%><%= label1 %></span><%=accounting_account.nombre %>
     <%end%>
 
     <%if accounting_account.cuenta<bisnieto and accounting_account.cuenta>nieto%>
-    <%=str%><%=str%><%=str%><%=str%><%= label1 %><%=accounting_account.nombre %>
+    <span style="color: blue"><%=str%><%=str%><%=str%><%=str%><%= label1 %></span><%=accounting_account.nombre %>
     <%end%>
 
-
+    </span>
     </td> 
-    <td><%= accounting_account.imputable %></td>
+    <td>
+    <%bo=true%>
+    <%bo1=false%>
+    <%mostrar="Si"%>
+    <%mostrar1="No"%>
+    <%if accounting_account.imputable==bo%>
+    <%= mostrar %>
+    <%end%>
+    <%if accounting_account.imputable==bo1%>
+    <%= mostrar1 %>
+    <%end%>
+    </td>
     <td>
         <div class="row">
             <div class="col-xs-2">
