@@ -35,6 +35,17 @@
         </div>
     </div>
 
+      <!-- Table row -->
+        <div class="box box-primary box-solid collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title" style="color:white">Detalle Habitaciones</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body" style="display: none;">
 
               <div class="table-responsive well">
               <table class="table table-striped table-bordered table-hover services" id="table">
@@ -43,8 +54,8 @@
                     <th>Tipo de Habitacion.</th>
                     <th>Confort.</th>
                     <th>Habitacion.</th>
-                    <th>check_in.</th>
-                    <th>check_out.</th>
+                    <th>Check-In.</th>
+                    <th>Check-Out.</th>
                     <th>Subtotal (Gs).</th>
                     <th>Disponible.</th> 
                     <th>Eliminar.</th>
@@ -69,22 +80,22 @@
                     <td><%= li.text_field :check_out,style: "width: 105px",class: "datepicker form-control check_out"%></td>
                     <td><%= li.text_field :subtotal,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},class: "form-control subtotal",readonly: true%></td>
                     <td>
-                        <button type="button" class="btn btn-primary" id="my_button">
-                              <span class="glyphicon glyphicon-calendar"></span>
-                        </button>
+                        <button type="button" class="btn glyphicon glyphicon-calendar" id="my_button"></button>
                     </td>
 
-                    <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
+                    <td><%= li.link_to_remove "",id: "borrar", :class => "btn glyphicon glyphicon-trash" %></td>
                     </tr>
                     <!--aca suma-->
                     <%end%>
                     <tr>
-                      <td><%= f.link_to_add "", :room_account_details , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
+                      <td><%= f.link_to_add "", :room_account_details , :class => "btn glyphicon glyphicon-plus"%></td>
                     </tr>
 
                 </tbody>
               </table>
               </div>
+          </div>
+        </div>
 
 
 
