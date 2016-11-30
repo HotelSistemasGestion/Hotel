@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  filterrific(available_filters: [:sorted_by])
+  scope :sorted_by, lambda { |nombre| where('users.username = ?', nombre)}
 
   validates :username, presence: { message: "requerido*" }
   validates_format_of :username, :with => /[a-z]/

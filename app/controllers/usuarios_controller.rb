@@ -2,10 +2,18 @@ class UsuariosController < ApplicationController
   before_action :authenticate_user!    
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
 
-  # GET /usuarios
-  # GET /usuarios.json
   def index
     @usuarios = User.all    
+    @filterrific = initialize_filterrific(
+    User,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+    @usuarios = @filterrific.find.page(params[:page]).paginate(:per_page => 10, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /usuarios/1
