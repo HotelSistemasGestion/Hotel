@@ -24,7 +24,7 @@ class AccountsController < ApplicationController
       @reservation = Reservation.find(params[:id])
       @reservation_rooms = ReservationRoom.where("reservation_id = ?",params[:id])
       @reservation_rooms.each do |room|
-        @account.room_account_details.new(type_of_room_id: room.type_of_room_id,comfort_id: room.comfort_id,room_id:room.room_id)
+        @account.room_account_details.new(type_of_room_id: room.type_of_room_id,comfort_id: room.comfort_id,room_id:room.room_id,check_in:room.check_in, check_out:room.check_out,subtotal:room.subtotal)
       end
     else
       @account = Account.new
@@ -106,21 +106,17 @@ class AccountsController < ApplicationController
     def account_params
       params.require(:account).permit(
         :client_id,
+        :nombre,
         :ruc,
-        :fecha_entrada,
-        :fecha_salida,
-        :room_id,
-        :identificador_hab,
         :telefono,
         :correo,
-        :nombre,
         :direccion,
         :numero,
         :subtotal,
         :descuento,
         :total,
         :iva,
-        #:room_account_details_attributes => [:id, :room_id, :precio, :subtotal, :_destroy],
+        :room_account_details_attributes => [:id, :room_id, :account_id, :type_of_room_id, :comfort_id, :check_in, :check_out, :subtotal, :_destroy],
         :account_details_attributes => [:id, :service_id, :servicio, :cantidad, :precio, :subtotal, :_destroy])
     end
 end

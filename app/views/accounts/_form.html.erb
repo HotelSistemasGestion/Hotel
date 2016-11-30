@@ -1,71 +1,38 @@
 <%= nested_form_for(@account, html: { class: "form-horizontal", role: "form" }) do |f| %>
   <section class="account">
-      <!-- title row -->
       <div class="row">
-      <!-- info row -->
-      <div class="row invoice-info">
-        <!-- /.col -->
-        <div class="col-sm-5 invoice-col">
-          <div class="row">
-            <div class="col-sm-10">
-              <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
-              <%= f.autocomplete_field :nombre, autocomplete_client_cedula_clients_path, class:"col-sm-7", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
+            <%= f.autocomplete_field :nombre, autocomplete_client_cedula_clients_path, class:"col-sm-7", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
 
-              <%= link_to new_client_path, remote: true, class: 'col-sm-2', title: 'Registrar Nuevo Cliente', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon glyphicon-plus"></span><span class= "glyphicon glyphicon glyphicon-user"></span>
-                    <% end %> 
-              <%= f.hidden_field :client_id, id: 'cli_id' %>
-
-            </div>
-            <div class="col-sm-12" style="margin-top:10px;">
-              <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
-              <%= f.text_field :ruc, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true %>
-            </div>
-            <div class="col-sm-12" style="margin-top:5px;">
-              <%= f.label 'Direccion:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :direccion, id: 'direccion', class:"col-sm-5", placeholder: "Barrio", readonly: true %>
-            </div>
-            <div class="col-sm-12" style="margin-top:5px;">
-              <%= f.label 'Telefono:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :telefono, id: 'telefono', class:"col-sm-5",placeholder: "Celular", readonly: true %>
-            </div>  
-            <div class="col-sm-12" style="margin-top:5px;">
-              <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
-              <%= f.text_field :correo, id: 'correo', class:"col-sm-6",  placeholder: "Correo electronico", readonly: true %>
-            </div>                                             
-          </div>                              
+            <%= link_to new_client_path, remote: true, class: 'col-sm-2', title: 'Registrar Nuevo Cliente', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+              <span class= "glyphicon glyphicon glyphicon-plus"></span><span class= "glyphicon glyphicon glyphicon-user"></span>
+            <% end %> 
+            <%= f.hidden_field :client_id, id: 'cli_id' %>           
+          </div>  
         </div>
-        <!-- /.col -->
-        <!--div class="col-sm-6 invoice-col">
-
-          
-            <div class="row">
-
-                <%= f.label 'Check-in:', class: "col-sm-3" %>            
-                <%= f.text_field :fecha_entrada, id: "date", class: "datepicker col-sm-3", placeholder: "Fecha de entrada"%>
-                <%= f.label "",  class: 'btn btn-inverse col-sm-1', id: "bt1", title: 'Hoy', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "fa fa-calendar-check-o"></span>
-                    <% end %> 
-            </div>
-            <div class="row">
-
-                <%= f.label 'Check-out:', class: "col-sm-3" %>            
-                <%= f.text_field :fecha_salida, class: "datepicker", placeholder: "Fecha de salida"%>
-
-            </div>
-
-          <br> 
-          <br>
-
-
-
-
-            
-        </div !-->
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label 'RUC:', class: "col-sm-3 control-label" %>
+            <%= f.text_field :ruc, id: 'ruc', class:"col-sm-5", placeholder: "RUC", readonly: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Direccion:', class: "col-sm-3 control-label" %>        
+            <%= f.text_field :direccion, id: 'direccion', class:"col-sm-5", placeholder: "Barrio", readonly: true %>
+          </div>
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label 'Telefono:', class: "col-sm-3 control-label" %>        
+            <%= f.text_field :telefono, id: 'telefono', class:"col-sm-5",placeholder: "Celular", readonly: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Correo:', class: "col-sm-3 control-label" %>        
+            <%= f.text_field :correo, id: 'correo', class:"col-sm-6",  placeholder: "Correo electronico", readonly: true %>
+          </div>
+        </div>
+    </div>
 
 
               <div class="table-responsive well">
@@ -105,8 +72,6 @@
                               <span class="glyphicon glyphicon-calendar"></span>
                         </button>
                     </td>
-                         <!--<td><%#= li.autocomplete_field :type_of_room, autocomplete_type_of_room_tipo_type_of_rooms_path, :placeholder => "Seleccione un tipo habitacion", 
-                        :multiple => true, :update_elements => {:id => id} %>-->
 
                     <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
                     </tr>
@@ -153,7 +118,7 @@
                   <% precio = "#"+"#{li.object_name}[precio]".gsub(/(\])?\[/, "_").chop %>
                   <% id = "#"+"#{li.object_name}[service_id]".gsub(/(\])?\[/, "_").chop %>
 
-                  <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
+                  <th scope="row"><%= li.number_field :cantidad ,min: 1 , placeholder: "Cantidad",:class => "escuchable"%></th>          
                   
                   <td><%= li.autocomplete_field :servicio, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
                   :multiple => true, :update_elements => {:id => id,:precio => precio },class: "ui-autocomplete-input"%>
@@ -187,8 +152,8 @@
                   <td><%= f.text_field :subtotal,readonly: true, id: "total"%></td>
                 </tr>
                 <tr>
-                  <th>Descuento: </th>
-                  <td><%= f.number_field :descuento ,min: 0, max: 100, id: "descount"%> %</td>
+                  <th>Descuento:</th>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100, placeholder: "Desc", id: "descount"%>%</td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
@@ -196,7 +161,7 @@
                 </tr>         
                 <tr>
                   <th>IVA:</th>
-                  <td><%= f.text_field :iva, readonly: true, id: "iva"%></td>
+                  <td><%= f.text_field :iva, readonly: true, id: "iva", value: 0%></td>
                 </tr>
               </tbody>
             </table>
