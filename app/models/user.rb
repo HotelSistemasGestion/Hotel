@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable  
+  audited only: [:username, :apellido, :direccion, :numero_ci, :email, :celular, :telefono]
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -23,7 +24,9 @@ class User < ActiveRecord::Base
   
   belongs_to :rol
   
+
   before_create :convert 
+
 
   def has_role?(rol)
     !self.rol.actions.find_by(accion: rol).nil?     
