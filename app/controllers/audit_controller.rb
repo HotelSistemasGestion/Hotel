@@ -2,7 +2,20 @@ class AuditController < ApplicationController
   before_action :authenticate_user!  
 
   def index
-  	@audited_tables = Audited::Audit.all
+  	@audited_tables = Audit.all
+    #@audited_tables = Audit.order(:auditable_type).page params[:page]
+    #@audited_tables = Kaminari.paginate_array(@audited_tables).page(params[:page]).per(2)
+    @filterrific = initialize_filterrific(
+    Audit,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @audited_tables = @filterrific.find.page(params[:page]).paginate(:per_page => 10, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
