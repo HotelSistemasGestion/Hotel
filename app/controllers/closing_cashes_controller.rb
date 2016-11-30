@@ -83,6 +83,6 @@ class ClosingCashesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def closing_cash_params
-      params.require(:closing_cash).permit(:fecha_cierre, :monto_efectivo, :monto_cheque, :monto_tcredito, :monto_tdebito,:existente_efe,:existente_cheque,:existente_tcre,:existente_tdb,:opening_cash_id,:dif_registrada)
+      params.require(:closing_cash).permit(:fecha_cierre, :monto_efectivo, :monto_cheque, :monto_tcredito, :monto_tdebito,:existente_efe,:existente_cheque,:existente_tcre,:existente_tdb,:opening_cash_id,:dif_registrada,:dif_efectivo,:dif_cheque,:dif_credito,:dif_debito)
     end
 end

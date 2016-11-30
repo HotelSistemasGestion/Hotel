@@ -121,31 +121,59 @@ function sumarSubtotales(){
     return dif;
 }
 
+function calcularDif(registrados,existentes){
+    var reg=Number($(registrados).val().replace(/[^0-9\.]+/g,""));
+    var exis=Number($(existentes).val().replace(/[^0-9\.]+/g,""));
+    var dif= exis-reg;
+    return dif;
+}
 $(document).on('change','.existentes',function(){
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
+    var id = "#"+$(this).attr("id");
+    if (id=="#r_efectivo") {
+        $("#d_efectivo").val(calcularDif("#efectivo","#r_efectivo"));
+        $("#d_efectivo").focus();
+    }else if(id=="#r_cheque"){
+        $("#d_cheque").val(calcularDif("#cheque","#r_cheque"));
+        $("#d_cheque").focus();
+    }else if (id=="#r_credito") {
+        $("#d_credito").val(calcularDif("#credito","#r_credito"));
+        $("#d_credito").focus();
+    }else{
+        $("#d_debito").val(calcularDif("#debito","#r_debito"));
+        $("#d_debito").focus();
+    }
 });
 
 $(document).on('click',"#btnEfectivo",function(){
     $("#r_efectivo").val($("#efectivo").val());
+    $("#d_efectivo").val(calcularDif("#efectivo","#r_efectivo"));
+    $("#d_efectivo").focus();
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
 });
 
 $(document).on('click',"#btnCheque",function(){
     $("#r_cheque").val($("#cheque").val());
+    $("#d_cheque").val(calcularDif("#cheque","#r_cheque"));
+    $("#d_cheque").focus();
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
 });
 
 $(document).on('click',"#btnCredito",function(){
     $("#r_credito").val($("#credito").val());
+    $("#d_credito").val(calcularDif("#credito","#r_credito"));
+    $("#d_credito").focus();
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
 });
 
 $(document).on('click',"#btnDebito",function(){
     $("#r_debito").val($("#debito").val());
+    $("#d_debito").val(calcularDif("#debito","#r_debito"));
+    $("#d_efectivo").focus();
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
 });
