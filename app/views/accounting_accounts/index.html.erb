@@ -9,7 +9,6 @@
                                      <th class="col-sm-2"><h3 class="box-title titulo">CUENTAS</h3></th>
                                      <th class="col-sm-2"><h3 class="box-title titulo"><%= link_to new_accounting_account_path, class: 'btn btn-primary' do %><span class="glyphicon glyphicon-plus"></span>
                                        <% end %></h3></th>
-                                       
                                        <th class="col-sm-2"><h2 class="box-title titulo">Ejercicio</h2><%= form_for(@accounting_account=AccountingAccount.new,data: {toggle: "validator"}, html: { class: "form-horizontal", role: "form" }) do |f| %>
                                         <% if @accounting_account.errors.any? %>
                                       <div class="alert alert-danger alert-dismissable" role="alert">
@@ -47,10 +46,10 @@
                 <table class="table table-bordered  table-responsive ">
                   <thead>
                     <tr role="row">
-                      <th class="col-sm-2">Grupo</th>
-                      <th class="col-sm-2">Cuenta</th>
-                      <th class="col-sm-2">Nombre</th> 
-                      <th class="col-sm-2">Imputable</th> 
+                      <th class="col-sm-1">Grupo</th>
+                      <th class="col-sm-1">Cuenta</th>
+                      <th class="col-sm-5">Nombre</th> 
+                      <th class="col-sm-1">Imputable</th> 
                       <th class="col-sm-2">Opciones</th>
                     </tr>
                   </thead>

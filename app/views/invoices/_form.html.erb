@@ -91,7 +91,7 @@
 
                   <th scope="row"><%= li.number_field :cantidad ,min: 1 ,:class => "escuchable",value: 1%></th>          
                   
-                  <td><%= li.autocomplete_field :service, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
+                  <td><%= li.autocomplete_field :servicio, autocomplete_service_nombre_services_path, :placeholder => "Seleccione un servicio", 
                   :multiple => true, :update_elements => {:id => id,:precio => ayudante },class: "ui-autocomplete-input"%>
                   <%= li.hidden_field  :service_id%></td>
                   <td><%= li.number_field  :ayudante, class: "escuchable",readonly: true%></td>
@@ -120,33 +120,29 @@
               <tbody>
                 <tr>
                   <th>Subtotal:</th>
-                  <td><%= f.text_field :subtotal,readonly: true, id: 'total', value: 0%></td>
+                  <td><%= f.text_field :subtotal,readonly: true, id: 'total'%></td>
                 </tr>
                 <tr>
-                  <th>Descuento: </th>
-                  <td><%= f.number_field :descuento ,min: 0, max: 100,id: 'descount', value: 0%> %</td>
+                  <th>Descuento:</th>
+                  <td><%= f.number_field :descuento ,min: 0, max: 100,id: 'descount'%>%</td>
                 </tr>            
                 <tr>
                   <th>Total:</th>
-                  <td><%= f.text_field :total,readonly: true, id: 'totales', value: 0%></td>
+                  <td><%= f.text_field :total,readonly: true, id: 'totales'%></td>
                 </tr>       
                 <tr>
                   <th>IVA:</th>
-                  <td><%= f.text_field :iva, readonly: true, id: "iva", value: 0%></td>
+                  <td><%= f.text_field :iva, readonly: true, id: "iva"%></td>
                 </tr>
               </tbody>
-</table>
+            </table>
           </div>
 
         </div>
       </div>
-      <!-- /.row -->
-
-      <!-- this row will not appear when printing -->
+     
       <div class="row no-print">
-        <div class="col-xs-12">          
-          <!--<button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Facturar
-          </button>-->
+        <div class="col-xs-12">                  
           <%= f.submit 'Facturar', class: "btn btn-success pull-right" %>
           <a href="<%=invoices_path%>" class="btn btn-default" role="button">Cancelar</a>        
         </div>
@@ -156,17 +152,7 @@
 <% end %>    
 
 <script type="text/javascript">
-
-   $(document).ready(function (){  
-        
-        $('#descuento,#cantidad_de_habitaciones,#dias').change(function(){
-           actualizartotal();
-        });    
-        $('#total').val(getPrecioInicial());
-        $('#totales').val(getPrecioInicial());
-
-      });
-      
+     
       $(document).on('change','#table .escuchable', function () {                
         var id = $(this).attr("id");
         actualizarsubtotal(id,-8);
@@ -174,7 +160,7 @@
       
       $(document).on('keyup autocompletechange','#table .ui-autocomplete-input', function () {                
         var id = $(this).attr("id");
-        actualizarsubtotal(id,-7);
+        actualizarsubtotal(id,-8);
       });
 
       

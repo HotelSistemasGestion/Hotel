@@ -39,19 +39,33 @@
                       <th class="col-sm-2">Cuenta</th>
                       <th class="col-sm-2">Concepto</th>
                       <th class="col-sm-2">Monto</th>
+                      <th class="col-sm-2">Tipo</th>
                     </tr>
                   </thead>
                   <tbody>
                   <div>
-                    
+                    <% @accounting_entry.account_x_entries.each do |details|%>
+                        <td><%= details.account %></td>
+                        <td><%= details.observacion %></td>
+                        <td><%= details.monto %></td>
+                        <td>
+                        <%bo="A"%>
+                        <%bo1="D"%>
+                        <%mostrar="Acreedor"%>
+                        <%mostrar1="Deudor"%>
+                        <%if details.tipo==bo%>
+                        <%= mostrar %>
+                        <%end%>
+                        <%if details.tipo==bo1%>
+                        <%= mostrar1 %>
+                        <%end%>
+                        </td>
+                      <%end%>                           
                    </div>
                   </tbody> 
                 </table>  
 
-      <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal">Aceptar</button>
-      </div>
-
+      
     </div>      
   </div>
 </div>
