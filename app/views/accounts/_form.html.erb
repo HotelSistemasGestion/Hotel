@@ -209,7 +209,7 @@
       
       $(document).on('keyup autocompletechange','#table .ui-autocomplete-input', function () {                
         var id = $(this).attr("id");
-        actualizarsubtotal(id,-7);
+        actualizarsubtotal(id,-8);
       });
 
       
@@ -236,6 +236,8 @@
             var subtotal_id="#"+aux+"subtotal";
             var precio="#"+aux+"precio";
             var cantidad="#"+aux+"cantidad";
+
+            console.log(precio);
             cantidad=parseInt($(cantidad).val());
             var ayudante=parseInt($(precio).val());
             if(! isNaN(ayudante)) { 

@@ -106,11 +106,13 @@
   </div>
 <% end %>
 <script type="text/javascript">
-  $(function(){
-    $(".sincronizador1").each(function(){
+
+ $(window).load(function() {
+
+  $(".sincronizador1").each(function(){
     cargarSelectDeHabitaciones($(this).attr("id"),-15);
-    });
   });
+});
 
   $(document).on('nested:fieldAdded','form', function(event) {
     //$("form").live("nested:fieldAdded", function(event) {
@@ -294,7 +296,7 @@
         }
 
   function guardar(){
-    if ($('.field_with_errors:visible').length > 0) {
+    if ($("#my_button").hasClass('field_with_errors')) {
       $("#guardar").attr('disabled', true);
     }else{
       $("#guardar").attr('disabled', false);

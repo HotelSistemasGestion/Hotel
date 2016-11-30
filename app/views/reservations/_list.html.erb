@@ -5,7 +5,8 @@
         <table class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-          
+              <th>Estado</th>
+
               <th>Nombre</th>
 
               <th>Apellido</th>
@@ -23,6 +24,11 @@
 
           <tbody>
             <%= content_tag_for(:tr, @reservations) do |reservation| %>
+                <%if reservation.state = "pendiente" %>
+                  <td><span class="label label-warning">Pendiente</span></td>
+                <%else%>
+                  <td><span class="label label-success">Confirmado</span></td>
+                <%end%>
           
               <td><%= reservation.nombre %></td>
           

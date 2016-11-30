@@ -4,14 +4,14 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.all.order(created_at: :desc)
     @filterrific = initialize_filterrific(
     Reservation,
     params[:filterrific],
      persistence_id: false
     ) or return
 
-    @reservations = @filterrific.find.page(params[:page]).paginate(:per_page => 2, :page => params[:page])
+    @reservations = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
       format.html
       format.js
@@ -35,7 +35,7 @@ class ReservationsController < ApplicationController
     @result
     count = 0 
     #Primero miro si esa habitacion su estado sea "Libre"
-    room= Room.where(["id = ? and state_id = ?",room_id,1])
+    room = Room.where(["id = ? and state_id = ?",room_id,1])
     #Si hay,retorno true
     if room.any?
       @result={"result": true}
@@ -48,17 +48,18 @@ class ReservationsController < ApplicationController
     ##room_ids= Room.where(["room_id = ? and state_id != ? and state_id != ?",room_id,1,4]).select("id")
     #Buscamos esa habitacion entre las reservaciones,y vemos si tenemos esa fecha libre
     filter=ReservationRoom.where(room_id:room_id)
+    toques = 0
     for i in 0..filter.length-1
       #pregunto si se superponen las fechas
-     if !(filter[i].check_in.to_s..filter[i].check_out.to_s).overlaps?(check_in.to_date.to_s..check_out.to_date.to_s)
-      @result={"result": true}
+     if (filter[i].check_in.to_s..filter[i].check_out.to_s).overlaps?(check_in.to_date.strftime("%Y-%m-%d")..check_out.to_date.strftime("%Y-%m-%d"))
+      @result={"result": false}
       render json: @result.to_json 
-      return true
+      return false
      end
     end
-    @result={"result": false}
+    @result={"result": true}
     render json: @result.to_json
-    return false
+    return true
   end
 
   # GET /reservations/1
@@ -72,7 +73,7 @@ class ReservationsController < ApplicationController
       #construimos el la reservacion cuando apretamos confirmar
       @my_reservation_requests = ReservationRequest.find(params[:id])
       @my_budgets = Budget.where("reservation_request_id = ?", @my_reservation_requests.id).first
-      @reservation = Reservation.new(nombre: @my_reservation_requests.nombre,apellido: @my_reservation_requests.apellido,telefono: @my_reservation_requests.telefono,email: @my_reservation_requests.email)
+      @reservation = Reservation.new(state: "pendiente",nombre: @my_reservation_requests.nombre,apellido: @my_reservation_requests.apellido,telefono: @my_reservation_requests.telefono,email: @my_reservation_requests.email)
       iterar = @my_budgets.budget_room_details
       iterar.each do |budget_room_detail|
         (1..budget_room_detail.cantidad).each do |r|
@@ -83,7 +84,7 @@ class ReservationsController < ApplicationController
     @reservation.reservation_rooms.build()
     #@my_type_of_rooms =  TypeOfRoom.find(params[:id])      
     else 
-      @reservation = Reservation.new
+      @reservation = Reservation.new(state: "pendiente")
       @reservation.reservation_rooms.build()
     end
 
@@ -108,7 +109,7 @@ class ReservationsController < ApplicationController
 
         Reservation.last.reservation_rooms.each do |reservation|
           #Cambio el estado de la habitacion
-          reservation.update({start: reservation.check_in, end: reservation.check_out})
+          reservation.update({start: reservation.check_in, end: (reservation.check_out.to_date)+1,title: "Reserva:"+Room.find(reservation.room_id).identificador ,textColor: "#ffffff"})
           #Le pongo check_in y check_out para el calendario
           Room.find(reservation.room_id).update({state_id: 3})
         end
@@ -144,7 +145,7 @@ class ReservationsController < ApplicationController
         #format.json { render :show, status: :ok, location: @reservation }
         Reservation.all.order("updated_at Desc").first.reservation_rooms.each do |reservation|
           #Cambio el estado de la habitacion
-          reservation.update({start: reservation.check_in, end: reservation.check_out})
+          reservation.update({start: reservation.check_in, end: (reservation.check_out.to_date)+1,title: "Reserva:"+Room.find(reservation.room_id).identificador ,textColor: "#ffffff"})
           #Le pongo check_in y check_out para el calendario
           Room.find(reservation.room_id).update({state_id: 3})
         end
