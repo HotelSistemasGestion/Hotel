@@ -478,12 +478,13 @@ ActiveRecord::Schema.define(version: 20161130032615) do
   add_index "reservation_rooms", ["type_of_room_id"], name: "index_reservation_rooms_on_type_of_room_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
+    t.string   "state"
     t.string   "nombre"
     t.string   "apellido"
     t.string   "email"
     t.string   "telefono"
     t.integer  "budget_id_id"
-    t.string   "total",        limit: 8
+    t.integer  "total",        limit: 8
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

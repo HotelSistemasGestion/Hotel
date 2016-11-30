@@ -1,4 +1,5 @@
 class Reservation < ActiveRecord::Base
+	extend Enumerize
 	#validates :nombre, :presence => {:message => "no puede estar en blanco"}
 	#validates :apellido, :presence => {:message => "no puede estar en blanco"}
 	#validates :check_in, :presence => {:message => "en blanco"}
@@ -17,8 +18,9 @@ class Reservation < ActiveRecord::Base
 	validates :nombre, :presence => {:message => "No puede estar en blanco" }
 	validates :apellido, :presence => {:message => "No puede estar en blanco" }
 	validates :telefono, :presence => {:message => "No puede estar en blanco" }
-	
 
+	enumerize :state, in: %w(confirmado pendiente), predicates: true
+	
 	filterrific(available_filters: [:sorted_by, :sorted_by_apellido])
 
 	#scope :sorted_by, lambda { |nombre|where(:nombre => [*nombre])}

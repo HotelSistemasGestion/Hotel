@@ -16,41 +16,57 @@ class BudgetsController < ApplicationController
 
     @result
     count = 0 
-    #Primero miro si hay alguna habitacion con lo requerido que su estado sea "Libre"
+    #Primero miro si hay suficientes habitaciones con lo requerido que su estado sea "Libre"
     room= Room.where(["type_of_room_id = ? and comfort_id = ? and state_id = ?", type_of_room_id,comfort_id,1])
     #Si hay,retorno true
-    count=room.count
+    count = room.count
+
     if count >= cantidad
       @result={"result": true}
-      respond_to do |format|
-        format.json { render json: @result.to_json }
-      end
+      render json: @result.to_json
+      #Se acaba la funcion por que ya comprobe que hay habitaciones disponible
       return true
-      #Se acaba la funcion por que ya comprobe que hay una habitacion disponible
     end
     #Si no hay ninguna "Libre",debemos buscar en las reservadas si esta disponible en nuestro rango de fechas.
     #Buscamos las habitaciones reservadas.
     room_ids= Room.where(["type_of_room_id = ? and comfort_id = ? and state_id != ? and state_id != ?", type_of_room_id,comfort_id,1,4]).select("id")
     #Sacamos las reservaciones de habitaciones que ahora estan en estado reservada.
-    filter=ReservationRoom.where(room_id:room_ids)#debe buscar en reservation room 
-    for i in 0..filter.length-1
-      #pregunto si se superponen las fechas
-     if !(filter[i].check_in.to_s..filter[i].check_out.to_s).overlaps?(check_in.to_date.to_s..check_out.to_date.to_s)
-      count=count+1
-     end
-     if count >= cantidad
-      @result={"result": true}
-      respond_to do |format|
-        format.json { render json: @result.to_json }
+    if cantidad > (room_ids.count + count)
+      @result={"result": false}
+      render json: @result.to_json
+      return false
+    end 
+    #debe buscar en reservation room 
+    for i in 0..room_ids.length-1
+      filter=ReservationRoom.where("room_id = ?",room_ids[i])
+      j = 0
+      choque = false
+      while (j < filter.length and choque == false)
+        Rails.logger.debug " j: #{j}"
+        Rails.logger.debug " conteo: #{filter[j].check_in.to_s}"
+        #pregunto si se superponen las fechas
+        #si no se superponene,siginifica que tengo disponible esa fecha.
+        (filter[j].check_in.to_s..filter[j].check_out.to_s).overlaps?(check_in.to_date.to_s..check_out.to_date.to_s) ? (choque = true) : (j = j + 1)  
       end
-      return true
-     end
+      if j == filter.length
+        count = count + 1
+      end
     end
+
+
+    Rails.logger.debug " cantidad: #{count}"
+
+    if cantidad <= count
+      @result = {"result": true}
+      render json: @result.to_json
+      return true
+    else   
     @result={"result": false}
       respond_to do |format|
         format.json { render json: @result.to_json }
       end
     return false
+    end
   end
 
 

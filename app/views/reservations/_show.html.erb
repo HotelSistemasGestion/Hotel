@@ -60,8 +60,8 @@
                               <td><%= TypeOfRoom.find(detalle.type_of_room_id).tipo %></td>                          
                               <td><%= Comfort.find(detalle.comfort_id).descripcion %></td> 
                               <td><%= Room.find(detalle.room_id).identificador %></td>
-                              <td><%= detalle.check_in %></td> 
-                              <td><%= detalle.check_out %></td> 
+                              <td><%= detalle.check_in.strftime("%d/%m/%Y") %></td> 
+                              <td><%= detalle.check_out.strftime("%d/%m/%Y") %></td> 
                               <td><%= number_to_currency_py(detalle.subtotal) %></td>  
                             </tr>
                           <%end%>                       
