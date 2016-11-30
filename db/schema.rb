@@ -115,17 +115,12 @@ ActiveRecord::Schema.define(version: 20161129005548) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "client_id"
-    t.date     "fecha_entrada"
-    t.date     "fecha_salida"
     t.integer  "total"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "nombre"
-    t.string   "apellido"
     t.string   "direccion"
     t.string   "ruc"
-    t.integer  "room_id"
-    t.string   "identificador_hab"
     t.string   "telefono"
     t.string   "correo"
     t.integer  "subtotal"

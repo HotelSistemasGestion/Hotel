@@ -13,6 +13,11 @@
 Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
 Service.create(nombre: "TV cable Nacionales",descripcion: "100 canales",precio: 10000);
 Service.create(nombre: "Lavanderia",descripcion: "Lavado y planchado",precio: 50000);
+
+Service.create(nombre: "Desayuno clasico",descripcion: "Valido hasta las 10 p.m.",precio: 18000);
+Service.create(nombre: "Pizza familiar",descripcion: "8 porciones",precio: 40000);
+Service.create(nombre: "Hamburguesa p/Niños",descripcion: "Porcion pequeña",precio: 6000);
+
 Comfort.create(descripcion: "una estrella",precio: 10000);
 Comfort.create(descripcion: "dos estrellas",precio: 20000);
 Comfort.create(descripcion: "tres estrellas",precio: 50000);
