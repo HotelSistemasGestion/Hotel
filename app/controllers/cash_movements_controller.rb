@@ -7,7 +7,18 @@ class CashMovementsController < ApplicationController
   # GET /cash_movements.json
   def index
     @cash_movements = CashMovement.all.order(created_at: :desc)
-    @cash_movements = Kaminari.paginate_array(@cash_movements).page(params[:page]).per(5)
+    #@cash_movements = Kaminari.paginate_array(@cash_movements).page(params[:page]).per(5)
+    @filterrific = initialize_filterrific(
+    CashMovement,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 2, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /cash_movements/1

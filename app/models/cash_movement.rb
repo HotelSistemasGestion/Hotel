@@ -18,7 +18,10 @@ class CashMovement < ActiveRecord::Base
 	validates :type_of_cash_movement_id, :presence => {:message => " Seleccione un tipo de movimiento " }
 	validates :monto_total, presence: true, length: {maximum: 12, :message => "12 dígitos máximo."}, :numericality => {:only_integer => true, :message => "Solo puede ingresar numeros enteros"}	  
 
-	
+	filterrific(available_filters: [:sorted_by_client,:created_at_gte,:created_at_lt])
+	scope :sorted_by_client,-> client { joins(:client).where('clients.nombre LIKE ?', "%#{client}%")}
+	scope :created_at_gte, lambda { |reference_time| where('cash_movements.fecha >=?', reference_time)}
+  	scope :created_at_lt, lambda { |reference_time| where('cash_movements.fecha <= ?', reference_time)}
 	def verificar_valores
 		
 	end

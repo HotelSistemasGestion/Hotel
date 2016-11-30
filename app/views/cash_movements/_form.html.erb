@@ -131,13 +131,15 @@
                 </thead>
 
                 <tbody id="payment">
-                <%= f.fields_for :payment_types ,data: {toggle: "validator"} ,:wrapper => false do |li| %>
+                <%= f.fields_for :payment_types ,:wrapper => false do |li| %>
                 <tr class="fields">    
-                  <td class="col-sm-4">
+                  <td class="form-group">
                     <%= li.select :payment_value_id, PaymentValue.all.collect{|p| [p.descripcion, p.id]},{include_blank: false}  ,:class => "form-control select",:required => true%>
+                    <div class="help-block with-errors"></div>
                   </td>
                   
-                  <td class="col-sm-4"><%= li.text_field :total,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, :class => "form-control auto",:required => true%>
+                  <td class="form-group"><%= li.text_field :total,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, :class => "form-control auto",:required => true%>
+                    <div class="help-block with-errors"></div>
                   </td>
                   
                   <td class="detalle" id="detalle-<%= li.index%>" style="display: none">
