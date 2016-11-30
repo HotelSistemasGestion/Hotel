@@ -1,5 +1,6 @@
-class AuditController < ApplicationController
+class AuditController < ApplicationController  
   before_action :authenticate_user!  
+  load_and_authorize_resource
 
   def index
   	@audited_tables = Audit.all    
