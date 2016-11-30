@@ -1,0 +1,117 @@
+<div id="filterrific_results">
+
+
+
+<div class="box-body">
+<div class="box-body no-print">
+
+   <div id="filterrific_results">
+  <table class="table table-striped table-bordered table-hover">
+<!--  <colgroup>
+    <col style="width:20%">
+    <col style="width:20%">
+    <col style="width:40%">
+    <col style="width:20%">
+  </colgroup>-->
+    <thead>
+      <tr>
+            <th>Tipos de Empleado</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Cedula</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Direccion</th>
+            <th>Hijo</th>
+        <th></th>
+  
+      </tr>
+    </thead>
+
+   
+    <tbody>
+    
+    
+      <%= content_tag_for(:tr, @employees.order(id: :desc)) do |employee| %>
+       <tr>
+            <td><%= employee.types_of_employee_tipo %></td>
+            <td><%= employee.nombre %></td>
+            <td><%= employee.apellido %></td>
+            <td><%= employee.edad %></td>
+            <td><%= employee.cedula %></td>
+            <td><%= employee.telefono %></td>
+            <td><%= employee.correo %></td>
+            <td><%= employee.direccion %></td>
+            <td><%= employee.hijo %></td>
+            <td align="center"><%= link_to '', employee,class: "btn btn-primary glyphicon glyphicon-eye-open" %>
+            <%= link_to '', edit_employee_path(employee), class: "btn btn-warning glyphicon glyphicon-pencil" %>
+            <%= link_to '', employee, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger glyphicon glyphicon-trash" %></td>
+        </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+
+ <div class="box-footer clearfix" style="margin-right:-10px">
+    <ul class="pagination pagination-sm no-margin pull-right">
+    <%= will_paginate @employees, renderer: BootstrapPagination::Rails, :container => false %>
+    </ul>
+    </div>
+  </div>
+
+  </div>
+
+ 
+   
+<div class="box-body hide">
+   <div id="filterrific_results">
+  <table class="table table-striped table-bordered table-hover">
+
+    <thead>
+      <tr>
+            <th>Tipos de Empleado</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Cedula</th>
+            <th>Telefono</th>
+            <th>Correo</th>
+            <th>Direccion</th>
+            <th>Hijo</th>
+        <th></th>
+  
+      </tr>
+    </thead>
+
+   
+    <tbody>
+    
+    
+      <%= content_tag_for(:tr, @employees_report) do |employee| %>
+        <tr>
+            <td><%= employee.types_of_employee_tipo %></td>
+            <td><%= employee.nombre %></td>
+            <td><%= employee.apellido %></td>
+            <td><%= employee.edad %></td>
+            <td><%= employee.cedula %></td>
+            <td><%= employee.telefono %></td>
+            <td><%= employee.correo %></td>
+            <td><%= employee.direccion %></td>
+            <td><%= employee.hijo %></td>
+            <td align="center"><%= link_to '', employee,class: "btn btn-primary glyphicon glyphicon-eye-open" %>
+            <%= link_to '', edit_employee_path(employee), class: "btn btn-warning glyphicon glyphicon-pencil" %>
+            <%= link_to '', employee, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger glyphicon glyphicon-trash" %></td>
+      </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+  </div>
+ 
+
+ 
+   
+</div>
+</div>
+</div>
