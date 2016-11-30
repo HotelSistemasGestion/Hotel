@@ -15,7 +15,7 @@ class UsuariosController < ApplicationController
       format.js
     end
   end
-
+   
   # GET /usuarios/1
   # GET /usuarios/1.json
   def show
