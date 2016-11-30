@@ -1,59 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="box">
+  <div class="box-body">
+    <div class="row">
+          <%= form_for_filterrific @filterrific do |f| %>
+          <div class="col-xs-3">
+          <%= f.text_field(:sorted_by_client,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por cliente")%>
+          </div>
+          <div class="col-xs-3">
+          <%= f.text_field(:created_at_gte,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Desde")%>
+          </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="box">   
-        <div class="box-header">
-          <%= link_to "Regresar",new_cash_movement_path(opening_cash_id: @apertura_id), class: "btn btn-primary"%>
+          <div class="col-xs-3">
+          <%= f.text_field(:created_at_lt,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Hasta")%>
+          </div>
+           
+         <%= render_filterrific_spinner %>
+      <% end %>
+      </div>
+  </div>
+</div>
+           
+                              
+<div class="box">
+  <div class="box-header with-border">
+    <%= link_to "Regresar",new_cash_movement_path(opening_cash_id: @apertura_id), class: "btn btn-primary"%>
           <div class="col-sm-2"></div>
           <h3 class="box-title col-sm-6">
-            Movimientos de Caja
-          </h3>                     
-        </div> 
-        
-        <div class="box-body">
-          <div class="dataTables_wrapper form-inline dt-bootstrap">
-            <div class="row">
-              <div class="col-sm-6"></div>
-              <div class="col-sm-6"></div>
-            </div>
-            
-            <div class="row">
-              <div class="col-sm-offset-1 col-sm-9">
-                <table class="table table-bordered table-hover dataTable">
-                  <thead>
-                    <tr role="row">
-                      <th>Fecha</th>
-                      <th>Tipo de Movimiento</th>
-                      <th>Cliente</th>
-                      <th>Monto Total</th> 
-                      <th></th>  
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <%= content_tag_for(:tr, @movimientos) do |cash_movement| %>
-                    <td><%= cash_movement.opening_cash.fecha_apertura %></td>
-                    <td><%= cash_movement.type_of_cash_movement_descripcion %></td>
-                    <td><%= cash_movement.client.name %></td>
-                    <td><%= number_to_currency_py(cash_movement.monto_total) %></td>
-                    <td align="center">
-            <%= link_to cash_movement,remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon-eye-open"></span>
-                    <% end %>
-                </td>
-                    <% end %>
+            Movimientos de <%= @caja%>
+          </h3>
+      
+  </div>
+  <%= render(
+  partial: 'cash_movements/list',
+  locals: { cash_movements: @cash_movements }
+) %>
+</div>
+<script type="text/javascript">
+  $(".datepicker").datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'es',
+              });
+</script>        
 
-                  </tbody>  
-                </table>
-              </div>  
-            </div>
-          </div>
-        </div>
-        <div class="box-footer clearfix">
-    
-    
-  </div>
-      </div>  
-    </div>
-    
-  </div>
+
+

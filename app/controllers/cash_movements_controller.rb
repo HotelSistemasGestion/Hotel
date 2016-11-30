@@ -37,9 +37,19 @@ class CashMovementsController < ApplicationController
 
   def list
     @apertura_id = params[:opening_cash_id]
-    @movimientos = CashMovement.where(opening_cash_id: @apertura_id)
+    @cash_movements = CashMovement.where(opening_cash_id: @apertura_id)
+    @apertura = OpeningCash.find(params[:opening_cash_id])
+    @caja = @apertura.cash.descripcion
+    @filterrific = initialize_filterrific(
+    CashMovement,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 2, :page => params[:page])
     respond_to do |format|
-      format.html{ render :list }
+      format.html
+      format.js
     end
   end
   
