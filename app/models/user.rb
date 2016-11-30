@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  filterrific(available_filters: [:sorted_by])
+  scope :sorted_by, lambda { |nombre| where('users.username = ?', nombre)}
 
   validates :username, presence: { message: "requerido*" }
   validates_format_of :username, :with => /[a-z]/
@@ -20,7 +22,10 @@ class User < ActiveRecord::Base
   validates :email, presence: { message: "requerido*" }  
   
   belongs_to :rol
-    
+  
+
+  before_create :convert 
+
 
   def has_role?(rol)
     !self.rol.actions.find_by(accion: rol).nil?     
@@ -33,5 +38,15 @@ class User < ActiveRecord::Base
     	return false
     end
   end
+
+  private
+
+    def convert
+      self.username = self.username.strip.downcase.capitalize
+      self.apellido = self.apellido.strip.downcase.capitalize
+      if self.direccion.present?
+        self.direccion = self.direccion.strip.downcase.capitalize
+      end
+    end
 
 end

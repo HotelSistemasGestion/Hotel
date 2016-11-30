@@ -15,7 +15,10 @@
               <th>Telefono</th>
           
               <th>Total</th>
-          
+              
+              <th>Check-in</th>
+        
+
               <th></th>
 
             </tr>
@@ -33,6 +36,9 @@
               <td><%= reservation.telefono %></td>
 
               <td><%= number_to_currency_py(reservation.total) %></td>
+              
+              <td><%= link_to 'Confirmar', {:controller => "accounts", :action => "new", :id => reservation.id },class: "btn btn-primary" %></td>
+              
               
               <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
               <%= link_to '', edit_reservation_path(reservation),class: "btn btn-warning glyphicon glyphicon-pencil" %>

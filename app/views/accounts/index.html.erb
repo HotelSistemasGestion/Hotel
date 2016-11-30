@@ -11,8 +11,6 @@
             <th>Cliente</th>
             <th>Direccion</th>
             <th>RUC</th>
-            <th>Fecha entrada</th>
-            <th>Fecha salida</th>
             <th>Total</th>
             <th>N° de Factura</th> 
 
@@ -25,8 +23,6 @@
               <td><%= account.nombre %></td>
               <td><%= account.direccion %></td>
               <td><%= account.ruc %></td>
-              <td><%= account.fecha_entrada %></td>
-              <td><%= account.fecha_salida %></td>
               <td><%= account.total %></td>
               <%if account.numero.present? %> 
                 <td><%= account.numero %></td>

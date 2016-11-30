@@ -14,20 +14,20 @@
     <br>
     <div class="menu well" style="display: none;">
       <div class="row">
-      <%= form_for_filterrific @filterrific do |f| %>
+        <%= form_for_filterrific @filterrific do |f| %>
 
 
-          <div class="col-xs-3">
-          <%= f.text_field(:sorted_by,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por nombre")%>
-          </div>
+            <div class="col-xs-3">
+            <%= f.text_field(:sorted_by,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por nombre")%>
+            </div>
 
-          <div class="col-xs-3">
-          <%= f.text_field(:sorted_by_apellido,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por apellido")%>
-          </div>
-           
-         <%= render_filterrific_spinner %>
-      <% end %>
-    </div>
+            <div class="col-xs-3">
+            <%= f.text_field(:sorted_by_apellido,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por apellido")%>
+            </div>
+             
+           <%= render_filterrific_spinner %>
+        <% end %>
+      </div>
     </div>
    
   </div>
