@@ -109,7 +109,7 @@ class ReservationsController < ApplicationController
 
         Reservation.last.reservation_rooms.each do |reservation|
           #Cambio el estado de la habitacion
-          reservation.update({start: reservation.check_in, end: (reservation.check_out.to_date)+1,title: "Reserva:"+Room.find(reservation.room_id).identificador ,textColor: "#ffffff"})
+          reservation.update({start: reservation.check_in, end: (reservation.check_out.to_date)+1,title: "Reserva: "+Room.find(reservation.room_id).identificador ,textColor: "#ffffff"})
           #Le pongo check_in y check_out para el calendario
           Room.find(reservation.room_id).update({state_id: 3})
         end

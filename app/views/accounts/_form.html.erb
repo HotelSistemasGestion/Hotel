@@ -3,6 +3,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
+            <%= f.hidden_field :reservation_id%> 
             <%= f.label 'Cliente:', class: "col-sm-3 control-label" %>              
             <%= f.autocomplete_field :nombre, autocomplete_client_cedula_clients_path, class:"col-sm-7", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'}  %>
 

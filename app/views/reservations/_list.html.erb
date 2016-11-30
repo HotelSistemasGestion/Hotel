@@ -27,9 +27,10 @@
 
           <tbody>
             <%= content_tag_for(:tr, @reservations) do |reservation| %>
-                <%if reservation.state = "pendiente" %>
+                <%if reservation.state == "pendiente" %>
                   <td><span class="label label-warning">Pendiente</span></td>
-                <%else%>
+                <%end%>
+                <%if reservation.state == "confirmado" %>
                   <td><span class="label label-success">Confirmado</span></td>
                 <%end%>
           
@@ -43,7 +44,13 @@
 
               <td><%= number_to_currency_py(reservation.total) %></td>
               
-              <td><%= link_to 'Confirmar', {:controller => "accounts", :action => "new", :id => reservation.id },class: "btn btn-primary" %></td>
+              <td>
+                <%if reservation.state == "pendiente" %>
+                  <%= link_to 'Confirmar', {:controller => "accounts", :action => "new", :id => reservation.id },class: "btn btn-primary" %>
+                <%else%>
+                  <span class="label label-success">Check_in confirmado</span>
+                <%end%>
+              </td>
               
               
               <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
