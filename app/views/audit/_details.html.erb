@@ -10,13 +10,37 @@
       </div>
       
       <div class="modal-body">          
-
-          <div class="form-group">
-            <p>
-              <strong>Cambio:</strong>
-              <%= @audited_table.audited_changes %>
-            </p>       
-          </div>         
+          <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <% if @audited_table.action == 'update' %>          
+                <th>Atributo</th>
+                <th>Valor Anterior</th>
+                <th>Valor Nuevo</th>                          
+            <% else %>         
+                <th>Atributo</th>
+                <th>Valor</th>                                       
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>          
+            <% @audited_table.audited_changes.each do |clave, valor| %>
+              <tr>
+                <% if @audited_table.action == 'update' %>                
+                    <td><%= clave.capitalize %></td>
+                    <td><%= valor.first %></td>
+                    <td><%= valor.last %></td>                              
+                <% else %>             
+                    <td><%= clave.capitalize %></td>
+                    <td><%= valor %></td>                
+                    <!--Se formatea el total en formato local -->                
+                <% end %> 
+              </tr>             
+            <% end %>
+        </tbody>
+      </table>
+    </div>         
 
       </div>
 
