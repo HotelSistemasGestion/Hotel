@@ -13,6 +13,11 @@
 Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
 Service.create(nombre: "TV cable Nacionales",descripcion: "100 canales",precio: 10000);
 Service.create(nombre: "Lavanderia",descripcion: "Lavado y planchado",precio: 50000);
+
+Service.create(nombre: "Desayuno clasico",descripcion: "Valido hasta las 10 p.m.",precio: 18000);
+Service.create(nombre: "Pizza familiar",descripcion: "8 porciones",precio: 40000);
+Service.create(nombre: "Hamburguesa p/Niños",descripcion: "Porcion pequeña",precio: 6000);
+
 Comfort.create(descripcion: "una estrella",precio: 10000);
 Comfort.create(descripcion: "dos estrellas",precio: 20000);
 Comfort.create(descripcion: "tres estrellas",precio: 50000);
@@ -23,7 +28,7 @@ AccountingYear.create(anho: "2016",estado: "actual");
 AccountingYear.create(anho: "2015",estado: "antiguo");
 AccountingYear.create(anho: "2014",estado: "antiguo");
 
-AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "10000",haber: "0");
+AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
 AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
 AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "1000",haber: "0");
 AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "0",haber: "1000");
@@ -49,7 +54,7 @@ AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: 
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "19000");
 
-AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "54000",haber: "0");
+AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "35000",haber: "0");
 AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
 AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 
@@ -287,3 +292,9 @@ PaymentValue.create(descripcion:"cheque");
 PaymentValue.create(descripcion:"tarjeta crédito");
 PaymentValue.create(descripcion:"tarjeta dédito");
 
+Invoice.create(nombre: "Marcelo Caceres", fecha: "2016-11-20", ruc: "8001425-6", direccion: "Carlos A. Lopez 1020", celular: "0985658955", correo: "micorreo@gmail.com", numero: "9005", state: "pendiente", subtotal: 10000, descuento: 0, total: 10000, iva: 909);
+InvoiceDetail.create(invoice_id: 1, service_id: 2, cantidad: 1, precio: 10000, subtotal: 10000);
+Invoice.create(nombre: "Monica Riveros", fecha: "2016-11-30", ruc: "1258745-0", direccion: "Mcal. Lopez 102", celular: "0971005258", correo: "correodemonica@gmail.com", numero: "9006", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
+InvoiceDetail.create(invoice_id: 2, service_id: 2, cantidad: 2, precio: 10000, subtotal: 20000);
+Invoice.create(nombre: "Angel Carreras", fecha: "2016-10-31", ruc: "400808-6", direccion: "Juan Leon Mallorquin 201", celular: "0993506908", correo: "correodeAngel@gmail.com", numero: "9004", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
+InvoiceDetail.create(invoice_id: 3, service_id: 1, cantidad: 1, precio: 20000, subtotal: 20000);

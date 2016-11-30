@@ -1,0 +1,65 @@
+
+<div class="row">
+  <div class="col-xs-4">
+    <div class="report_header">
+      <%=image_tag("logo.png", size: "130x130", class: "hide")%>
+    </div>
+  </div>
+  <div class="col-xs-4" >
+  <div class="box-header with-border report_title">
+  <h1 class="box-title hide">Listado de Limpiezas</h1>
+  </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="report_information">
+      <p class="hide"><%= Time.now.strftime("%m/%d/%Y %T")%></p>
+      <p class="hide">Impreso por: <%= current_user.username %></p>
+    </div>
+  </div>
+</div>
+
+<div class="box box-primary">
+<div class="box-header">
+<div class="row">
+<%= form_for_filterrific @filterrific do |f| %>
+    <div class="col-xs-3">
+    <div class="hide">
+    Empleado:
+    </div>
+    <%= f.select(:sorted_by_employee,
+      @filterrific.select_options[:sorted_by_employee],
+      {include_blank: 'Todas los empleados'},{ :class => 'form-control' })%>
+    </div>
+
+    <div class="col-xs-3">
+    <div class="hide">
+    Habitacion:
+    </div>
+    <%= f.select(:sorted_by_identificador,
+      @filterrific.select_options[:sorted_by_identificador],
+      {include_blank: 'Todas las Habitaciones'},{ :class => 'form-control' })%>
+    </div>
+
+    <div class="col-xs-3">
+     <div class="hide">
+    Fecha de inicio:
+    </div>
+    <%= f.text_field(:start, class: 'r_datepicker_complaint  form-control',placeholder:"Fecha de inicio")%>
+    </div>
+     <div class="col-xs-3">
+      <div class="hide">
+     Fecha de finalizacion:
+     </div>
+    <%= f.text_field(:end, class: 'r_datepicker_complaint_lt  form-control',placeholder:"Fecha de finalizacion")%>
+    </div>
+    
+    
+   <%= render_filterrific_spinner %>
+<% end %>
+</div>
+</div>
+</div>
+<%= render(
+  partial: 'cleanings/list',
+  locals: { cleanings: @cleanings }
+) %>

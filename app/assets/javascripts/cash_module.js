@@ -58,7 +58,7 @@ $(document).on('nested:fieldAdded', function(event){
   
   dateField.datepicker();
   $(document).trigger('refresh_autonumeric');
-  $(event.target).find(':input').enableClientSideValidations();
+  field.validator();
 });
 function controlar_valores(){
    var inputs = $(".auto");

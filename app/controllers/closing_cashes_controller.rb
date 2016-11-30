@@ -33,12 +33,15 @@ class ClosingCashesController < ApplicationController
     @closing_cash = ClosingCash.new(closing_cash_params)
     apertura = OpeningCash.find(@closing_cash.opening_cash.id)
     empleado = Employee.find(apertura.employee.id)
+    caja = Cash.find(apertura.cash.id)
     respond_to do |format|
       if @closing_cash.save
         apertura.estado = "finalizado"
         apertura.save
         empleado.estado = "Libre"
         empleado.save
+        caja.estado = "Cerrada"
+        caja.save
         format.html { redirect_to closing_cashes_url, notice: 'Closing cash was successfully created.' }
         format.json { render :show, status: :created, location: @closing_cash }
       else
@@ -80,6 +83,6 @@ class ClosingCashesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def closing_cash_params
-      params.require(:closing_cash).permit(:fecha_cierre, :monto_efectivo, :monto_cheque, :monto_tcredito, :monto_tdebito,:existente_efe,:existente_cheque,:existente_tcre,:existente_tdb,:opening_cash_id)
+      params.require(:closing_cash).permit(:fecha_cierre, :monto_efectivo, :monto_cheque, :monto_tcredito, :monto_tdebito,:existente_efe,:existente_cheque,:existente_tcre,:existente_tdb,:opening_cash_id,:dif_registrada)
     end
 end

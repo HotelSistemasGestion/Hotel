@@ -8,8 +8,23 @@ class RoomsController < ApplicationController
   # GET /rooms.json
   def index
     #@rooms = Room.all
-    @rooms = Room.all.order(created_at: :desc)
-    @rooms = Kaminari.paginate_array(@rooms).page(params[:page]).per(5)
+   # @rooms = Room.all.order(created_at: :desc)
+    #@rooms = Kaminari.paginate_array(@rooms).page(params[:page]).per(5)
+      @filterrific = initialize_filterrific(
+    Room,
+    params[:filterrific],select_options: {
+        sorted_by_type: TypeOfRoom.options_for_sorted_by_type,
+        sorted_by_state: State.options_for_sorted_by_state
+      },
+     persistence_id: false
+  ) or return
+
+  @rooms = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+ @rooms_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
   end
 
   # GET /rooms/1

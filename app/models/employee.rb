@@ -7,4 +7,8 @@ class Employee < ActiveRecord::Base
   def full_name
   	"#{self.nombre} #{self.apellido}"
   end
+
+  def self.options_for_sorted_by_employee
+    joins(:types_of_employee).where('types_of_employees.tipo = ?', "limpiadora").map { |e| [e.nombre, e.id] }
+  end
 end

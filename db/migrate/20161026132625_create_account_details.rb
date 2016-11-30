@@ -1,7 +1,7 @@
 class CreateAccountDetails < ActiveRecord::Migration
   def change
     create_table :account_details do |t|
-      t.integer :account_id
+      t.references :account, index: true, foreign_key: true
       t.integer :service_id
       t.integer :cantidad
       t.integer :precio
