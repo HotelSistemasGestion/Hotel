@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!  
+  load_and_authorize_resource
   before_action :set_account, only: [:show, :edit, :update, :destroy, :facturar]
 
   # GET /accounts
