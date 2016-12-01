@@ -1,37 +1,65 @@
 <div class="box">
-    <div class="box-body">
-     
-      <h3 class="box-title">Limpieza de Habitacion</h3>
-
-
-    <dl class="dl-horizontal">
-
-
-      <dt>Habitacion:</dt>
-      <dd><%= @cleaning.room_identificador %></dd>
-
-      <dt>Desde:</dt>
-      <dd><%= @cleaning.start %></dd>
-
-      <dt>Hasta:</dt>
-      <dd><%= @cleaning.end %></dd>
-
-      <dt>Titulo:</dt>
-      <dd><%= @cleaning.title %></dd>
-
-    </dl>
-     <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
-        <span class="glyphicon glyphicon-list-alt"></span>
-    
-      <% end %>
-      <%= link_to edit_cleaning_path(@cleaning), class: 'btn btn-primary' do %>
-        <span class="glyphicon glyphicon-pencil"></span>
-    
-      <% end %>
-      <%= link_to '', @cleaning, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-danger glyphicon glyphicon-trash"%>
+  
+    <div class="box-header with-border">
+          <h3><center>Limpieza de Habitacion   <%= @cleaning.room_identificador %></center></h3>
     </div>
-    <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Volver
-  <% end %>
+    
+    <div class="box-body">
+
+              <div class="form-group col-sm-4">
+                <div class="col-sm-7">
+                 <dt>Habitacion:</dt>
+              </div>
+                <div class="col-sm-5">
+                 <%= @cleaning.room_identificador %>
+                </div>
+              </div>
+               <div class="form-group col-sm-4">
+                <div class="col-sm-7">
+                 <dt>Desde la fecha:</dt>
+              </div>
+                <div class="col-sm-5">
+                 <%= @cleaning.start %>
+                </div>
+              </div>
+               <div class="form-group col-sm-4">
+                <div class="col-sm-7">
+                 <dt>Hasta la fecha:</dt>
+              </div>
+                <div class="col-sm-5">
+                 <%= @cleaning.end %>
+                </div>
+              </div>
+               <div class="form-group col-sm-4">
+                <div class="col-sm-7">
+                 <dt>Etiqueta:</dt>
+              </div>
+                <div class="col-sm-5">
+                 <%= @cleaning.title %>
+                </div>
+              </div>
+                  <div class="form-group col-sm-4">
+                <div class="col-sm-7">
+                 <dt>Encargado:</dt>
+              </div>
+                <div class="col-sm-5">
+                 <%= @cleaning.employee_nombre %>
+                </div>
+              </div>
+
+    </div>
+    <div class="box-body">
+         <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-list-alt"></span>
+        
+          <% end %>
+          <%= link_to edit_cleaning_path(@cleaning), class: 'btn btn-primary' do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+        
+          <% end %>
+          <%= link_to '', @cleaning, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-danger glyphicon glyphicon-trash"%>
+        
+        
+    </div>
+    
 </div>
