@@ -1,4 +1,5 @@
-class CashMovementsController < ApplicationController  
+class CashMovementsController < ApplicationController
+  
   before_action :authenticate_user!
   before_action :set_cash_movement, only: [:show, :edit, :update, :destroy]
   
@@ -13,7 +14,7 @@ class CashMovementsController < ApplicationController
      persistence_id: false
     ) or return
 
-    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 2, :page => params[:page])
     respond_to do |format|
       format.html
       format.js
@@ -36,7 +37,7 @@ class CashMovementsController < ApplicationController
 
   def list2
     @apertura_id = params[:opening_cash_id]
-    @cash_movements = CashMovement.where("opening_cash_id = ?", @apertura_id)
+    @cash_movements = CashMovement.where(opening_cash_id: @apertura_id)
     @apertura = OpeningCash.find(params[:opening_cash_id])
     @caja = @apertura.cash.descripcion
     @filterrific = initialize_filterrific(
@@ -45,7 +46,7 @@ class CashMovementsController < ApplicationController
      persistence_id: false
     ) or return
 
-    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 2, :page => params[:page])
     respond_to do |format|
       format.html
       format.js
@@ -54,9 +55,10 @@ class CashMovementsController < ApplicationController
   
   def client_invoices
       client_id = params[:client_id]
+      cliente = Client.find(params[:client_id])
       @invoices = Invoice.where(client_id: client_id,state: "pendiente")
       respond_to do |format|
-        format.html { render json: @invoices.to_json }
+        format.html { render json: @invoices.as_json(include: :client) }
       end
   end
 
@@ -122,6 +124,64 @@ class CashMovementsController < ApplicationController
         end
         format.html{ redirect_to new_cash_movement_path(opening_cash_id: @cash_movement.opening_cash_id) }
         format.json { render :show, status: :created, location: @cash_movement }
+        ##########################################################################################################
+        @ultimo=AccountingEntry.last.numero + 1
+        @suma = 0
+        invoices.each do |invoice|
+          detalle_factura = InvoiceDetail.where("invoice_id = ?", invoice.id)
+           detalle_factura.each do |detalle|
+             @asiento=AccountingEntry.new
+             @detalle_asiento=AccountXEntry.new
+             @id_servicio = detalle.service_id
+             @servicio=Service.find(@id_servicio)
+             @monto=detalle.subtotal
+            #@cuenta=AccountingAccount.where("nombre = ?",@servicio.nombre)
+             #if @cuenta == nil
+              #   @nombre_cuenta="Otros"  
+             #end
+             @namem=@servicio.nombre
+             @nombre_cuenta=AccountingAccount.find_by_sql("select accounting_accounts.id from accounting_accounts ,services  where accounting_accounts.nombre='#{@namem}'")   
+             @asiento.numero=@ultimo
+             @asiento.fecha=Time.now.strftime("%d-%m-%Y")
+             @asiento.iva=10
+             @asiento.debe=0
+             @asiento.auto=0
+             @asiento.haber=@monto
+             @asiento.save
+             @suma = @suma + @monto
+             @detalle_asiento.monto=@monto
+             @detalle_asiento.observacion=@servicio.descripcion
+             @detalle_asiento.account=@servicio.nombre
+             @detalle_asiento.accounting_account_id=@nombre_cuenta
+             @detalle_asiento.accounting_entry_id=@ultimo
+             @detalle_asiento.tipo= "D"
+             @detalle_asiento.save
+           end
+         end
+             @masiento=AccountingEntry.new
+             @mdetalle_asiento=AccountXEntry.new
+             @name2="Cliente"
+             #@acreedor=AccountingAccount.find_by_sql("select accounting_accounts.id AS id,accounting_accounts.nombre AS nombre from accounting_accounts  where accounting_accounts.nombre='#{@name2}'")   
+             @masiento.numero=@ultimo
+             @masiento.fecha=Time.now.strftime("%d-%m-%Y")
+             @masiento.iva=0
+             @masiento.auto=0
+             @masiento.debe=@suma
+             @masiento.haber=0
+             @masiento.save
+             @mdetalle_asiento.monto=@monto
+             @mdetalle_asiento.observacion="Clientes"
+             @mdetalle_asiento.accounting_entry_id=@ultimo
+             @mdetalle_asiento.tipo= "A"
+             @mdetalle_asiento.account="Cliente"
+             #@acreedor.each do |a|
+             #@mdetalle_asiento.accounting_account_id=a.id
+             #end 
+             @mdetalle_asiento.save
+             @ultimo=0
+             @suma=0
+                       
+ ##########################################################################################################
       else
         format.html { render :new }
         format.json { render json: @cash_movement.errors, status: :unprocessable_entity }

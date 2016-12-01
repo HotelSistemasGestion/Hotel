@@ -3,21 +3,15 @@
 
 
 <div class="box-body">
-<div class="box-body no-print">
+<div class="box-body">
 
    <div id="filterrific_results">
   <table class="table table-striped table-bordered table-hover">
-<!--  <colgroup>
-    <col style="width:20%">
-    <col style="width:20%">
-    <col style="width:40%">
-    <col style="width:20%">
-  </colgroup>-->
     <thead>
       <tr>
-            <th>Tipos de Empleado</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
+            <th>Tipo de Empleado</th>
+            <th>Nombre/s</th>
+            <th>Apellido/s</th>
             <th>Edad</th>
             <th>Cedula</th>
             <th>Telefono</th>
@@ -34,8 +28,18 @@
     
     
       <%= content_tag_for(:tr, @employees.order(id: :desc)) do |employee| %>
-       <tr>
-            <td><%= employee.types_of_employee_tipo %></td>
+       <tr>   <!--Se determina el color del label dependiendo del estado NO UTILIZO ENUMERIZE, -->                   
+                <%if employee.types_of_employee_tipo == "administrador" %>
+                  <% btn = 'success' %>
+                <%elsif employee.types_of_employee_tipo == "limpiadora" %>
+                  <% btn = 'danger' %>
+                <%elsif employee.types_of_employee_tipo == "botones" %>
+                   <% btn = 'warning' %>
+                <%else %>
+                  <% btn = 'primary' %>
+                <%end%>     
+            <td><span class="label label-<%=btn%>"><%= employee.types_of_employee_tipo %></span></td>
+           
             <td><%= employee.nombre %></td>
             <td><%= employee.apellido %></td>
             <td><%= employee.edad %></td>

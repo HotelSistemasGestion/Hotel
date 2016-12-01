@@ -1,0 +1,40 @@
+<!--Se obtiene el iva-->
+<%iva=AccountingEntry.find(a_x_e.accounting_entry_id).iva%>
+<!--Calcula el porcenatje del iva-->
+<%iva_porcentaje=iva/100.00%>
+<!--Calcula el porcentaje del iva de ese haber-->
+<%iva_c=AccountingEntry.find(a_x_e.accounting_entry_id).haber*iva_porcentaje%>
+<!--Se redondea-->
+<%iva_round=iva_c.round%>  
+<!--Obtiene el numero de asineto para esa iteracion-->
+<%busca_num=AccountingEntry.find(a_x_e.accounting_entry_id).numero%>
+<!--obtiene todos los id que tengan ese numero de asiento y con ese iva, luego solo se obtiene el ultimo-->
+<%todo_asiento=AccountingEntry.where('numero=? AND iva=?',busca_num,iva).select('id')%> 
+<%iva_total=0%>
+<%cont=0%>        
+<tr>
+	<td></td>
+    <td></td>
+    <td><%=AccountXPlan.find(AccountingAccount.find(a_x_e.accounting_account_id)).cuenta_superior%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
+    <td class="haber-ctrol">a <%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
+    <td></td>
+    <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).haber - iva_round%></td>            
+</tr>
+<!--Se comprueba que el iva tiene que ser superior a 0-->
+<%if AccountingEntry.find(a_x_e.accounting_entry_id).iva >0%>
+<!--Se comprueba que el id de esa iteracion es igual al id de la variable todo_asiento-->
+	<%if AccountingEntry.find(a_x_e.accounting_entry_id).id==todo_asiento.last.id%>               											 
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td class="haber-ctrol">IVA <%=iva%>%</td>
+			<td></td>
+		<%while todo_asiento.count>cont%>
+			<%iva_total+=(AccountingEntry.find(todo_asiento[cont].id).haber*iva_porcentaje).round%>
+			<%cont+=1%>
+		<%end%>
+			<td><%=iva_total%></td>
+		</tr>
+	<% end %>
+<% end %>

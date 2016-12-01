@@ -1,4 +1,5 @@
 class Cleaning < ActiveRecord::Base
+  audited
   belongs_to :cleaning_room
   belongs_to :room
 
@@ -6,6 +7,7 @@ class Cleaning < ActiveRecord::Base
   validates :end, :presence => {:message => "Ingrese un email"}
   validates :start, :presence => {:message => "Ingrese un email"}
   delegate :identificador, to: :room, prefix: true, allow_nil: true
+  delegate :nombre, to: :employee, prefix: true, allow_nil: true
   #validate  :validacion_fecha  #
 	
     #def validacion_fecha

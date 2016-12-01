@@ -19,20 +19,27 @@
    <div id="filterrific_results">
   <table class="table table-striped table-bordered table-hover">
   <colgroup>
-    <col style="width:20%">
+    <col style="width:10%">
+    <col style="width:10%">
+    <col style="width:10%">
+    <col style="width:10%">
     <col style="width:15%">
     <col style="width:15%">
-    <col style="width:15%">
-    <col style="width:15%">
-    <col style="width:20%">
+    <col style="width:10%">
+    <col style="width:10%">
+    <col style="width:10%">
   </colgroup>
     <thead>
       <tr>
         <th>Cliente</th>
         <th>RUC</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
         <th>Fecha de entrada</th>
         <th>Fecha de salida</th>
         <th>Habitacion</th>
+        <th>Descuento</th>
+        <th>Total</th>
       </tr>
     </thead>
 
@@ -41,11 +48,15 @@
     
     
       <%= content_tag_for(:tr, @accounts.order(id: :desc)) do |account| %>
-       <td><%= account.nombre + ', ' +account.apellido%></td>
+       <td><%= account.nombre%></td>
         <td><%= account.ruc%></td>
-        <td><%= account.fecha_entrada%></td>
-        <td><%= account.fecha_salida%></td>
-       <td><%= account.identificador_hab%></td>
+        <td><%= account.direccion%></td>
+        <td><%= account.telefono%></td>
+        <td><%= ReservationRoom.find(account.reservation_id).check_in%></td>
+        <td><%= ReservationRoom.find(account.reservation_id).check_out%></td>
+       <td><%= ReservationRoom.find(account.reservation_id).room.identificador%></td>
+       <td><%= account.descuento%></td>
+       <td><%= account.total%></td>
     <% end %>
     
     </tbody>
@@ -67,18 +78,27 @@
    <div id="filterrific_results">
   <table class="table table-striped table-bordered table-hover">
   <colgroup>
-    <col style="width:20%">
-    <col style="width:20%">
-    <col style="width:40%">
-    <col style="width:20%">
+    <col style="width:10%">
+    <col style="width:10%">
+    <col style="width:10%">
+    <col style="width:10%">
+    <col style="width:15%">
+    <col style="width:15%">
+    <col style="width:10%">
+    <col style="width:10%">
+    <col style="width:10%">
   </colgroup>
     <thead>
       <tr>
         <th>Cliente</th>
         <th>RUC</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
         <th>Fecha de entrada</th>
         <th>Fecha de salida</th>
         <th>Habitacion</th>
+        <th>Descuento</th>
+        <th>Total</th>
       </tr>
     </thead>
 
@@ -86,12 +106,16 @@
     <tbody>
     
     
-      <%= content_tag_for(:tr, @accounts_report.order(id: :desc)) do |account| %>
+      <%= content_tag_for(:tr, @accounts.order(id: :desc)) do |account| %>
        <td><%= account.nombre%></td>
         <td><%= account.ruc%></td>
-        <td><%= account.fecha_entrada%></td>
-        <td><%= account.fecha_salida%></td>
-       <td><%= account.identificador_hab%></td>
+        <td><%= account.direccion%></td>
+        <td><%= account.telefono%></td>
+        <td><%= ReservationRoom.find(account.reservation_id).check_in%></td>
+        <td><%= ReservationRoom.find(account.reservation_id).check_out%></td>
+       <td><%= ReservationRoom.find(account.reservation_id).room.identificador%></td>
+       <td><%= account.descuento%></td>
+       <td><%= account.total%></td>
     <% end %>
     
     </tbody>

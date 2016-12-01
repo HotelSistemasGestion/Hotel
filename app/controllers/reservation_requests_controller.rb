@@ -82,29 +82,17 @@ class ReservationRequestsController < ApplicationController
   # DELETE /reservation_requests/1
   # DELETE /reservation_requests/1.json
   def destroy
+    @reservation_request = ReservationRequest.find(params[:id])
     @reservation_request.destroy
-    respond_to do |format|
-      format.html { redirect_to reservation_requests_url, notice: 'Reservation request was successfully destroyed.' }
+   
+   respond_to do |format|
+      format.html { redirect_to reservation_requests_url }
       format.json { head :no_content }
-    end
+      format.js   { render :layout => false }
+   end
   end
 
-  def report
-  @filterrific = initialize_filterrific(
-    ReservationRequest,
-    params[:filterrific],select_options: {
-        sorted_by_state: ReservationRequest.options_for_sorted_by_state
-      },
-     persistence_id: false
-  ) or return
-
-  @reservation_requests = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
-  @reservation_requests_report = @filterrific.find
-  respond_to do |format|
-    format.html
-    format.js
-  end
-  end
+ 
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -13,6 +13,10 @@
                 </tr>
               </thead>
             <tbody>
+            <% colection = {'create' => 'Crear', 'update' => 'Editar', 'destroy' => 'Eliminar'} %>
+
+            <% colection_table = {'Service' => 'Servicio', 'User' => 'Usuario', 'Cash' => 'Caja', 'Invoice' => 'Factura', 'Account' => 'Cuenta', 'Client' => 'Cliente','OpeningCash' => 'Apertura', 'ClosingCash' => 'Cierre', 'Room' => 'Habitacion', 'Complaint' => 'Queja','Reservation' => 'Reservacion','Reservation' => 'Reservacion', 'Cleaning' => 'Limpieza' } %>
+
                 <% @audited_tables.each do |audit| %>
 
                 <%if audit.action == "create" %>
@@ -26,8 +30,8 @@
                  <%end%>     
                   <!--<td><span class="label label-<%=btn%>"><%= audit.action %></span></td>-->
                   <tr>                
-                    <td><span class="label label-<%=btn%>"><%= audit.action %></span></td>
-                    <td><%= audit.auditable_type %></td>
+                    <td><span class="label label-<%=btn%>"><%= colection[audit.action] %></span></td>
+                    <td><%= colection_table[audit.auditable_type] %></td>
                     <% if !audit.user_id.nil? %> 
                       <% usuario = User.find(audit.user_id) %>
                       <td><%= usuario.username + " " + usuario.apellido  %></td>

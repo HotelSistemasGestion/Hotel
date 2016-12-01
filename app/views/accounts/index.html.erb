@@ -1,57 +1,47 @@
-<div class="box box-primary">
-  <div class="box-header with-border">
-    <h3 class="box-title"><center>Cuentas</center></h3>
-    <a href="<%=new_account_path%>" class="btn btn-primary pull-right" role="button"><i class='glyphicon glyphicon-list-alt'> </i> Nueva Cuenta</a> 
-  </div>
-  <div class="box-body">
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>Cliente</th>
-            <th>Direccion</th>
-            <th>RUC</th>
-            <th>Total</th>
-            <th>N° de Factura</th> 
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title"><center>Cuentas</center></h3>
+      <a href="<%=new_account_path%>" class="btn btn-primary pull-right" role="button"><i class='glyphicon glyphicon-list-alt'> </i> Nueva Cuenta</a> 
+      <br>
+      <br>
+      <div>
+        <div class="menu well" style="display: none;">
+          <%= form_for_filterrific @filterrific do |f| %>
 
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @accounts.each do |account| %>
-            <tr>              
-              <td><%= account.nombre %></td>
-              <td><%= account.direccion %></td>
-              <td><%= account.ruc %></td>
-              <td><%= account.total %></td>
-              <%if account.numero.present? %> 
-                <td class="text-center"><%= account.numero %></td>
-              <% else %> 
-                <td><span class="label label-warning">No Facturado</span></td>
-              <%end%>
-              <td><%= link_to account, class: 'col-sm-2', title: 'Ver Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                <span class= "glyphicon glyphicon glyphicon-eye-open"></span>
-              <% end %>
-              <%if (account.numero.present? and !Invoice.find_by(account_id: account).state.pagado?) or !account.numero.present? %>
-                    <%= link_to account, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'col-sm-2', title: 'Eliminar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon glyphicon-trash"></span>
-                    <% end %>     
-              <% end %>
-              <%if !account.numero.present? %> 
-                <%= link_to edit_account_path(account), class: 'col-sm-2', title: 'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                  <span class= "glyphicon glyphicon glyphicon-edit"></span>
-                <% end %>
-              <% end %>
-              </td>
-              </tr>
+              <div class="col-xs-4">
+                  <%= f.label "Cliente" %>
+                  <%= f.text_field(:sorted_by_name,
+                                class: 'filterrific-periodically-observed form-control',
+                                placeholder:"Nombre y Apellido")%>
+              </div>
+
+            <div class="col-xs-4">
+                <%= f.label "Numero de Factura" %>
+                <%= f.text_field(:sorted_by_number,
+                              class: 'filterrific-periodically-observed form-control',
+                              placeholder:"Numero de Factura")%>
+            </div>
+               
+             <%= render_filterrific_spinner %>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+        <button type="button" class="btn btn-primary pull-right" id="showmenu">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </div>
     </div>
-  </div>
-  <div class="box-footer clearfix">
-    <ul class="pagination pagination-sm no-margin pull-right">
-         <nav><%=paginate @accounts, :theme => 'twitter-bootstrap-3' %></nav>
-    </ul>    
-  </div>
+
+    <%= render 'row', accounts: @accounts %>
+
+
+
 </div>
+
+<script type="text/javascript">
+   $(window).load(function() {
+        $('#showmenu').click(function() {
+                $('.menu').toggle("slide");
+        });
+    });
+
+</script>

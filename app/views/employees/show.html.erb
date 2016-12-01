@@ -1,42 +1,100 @@
+<div class="box">
+  <div class="box-header with-border">
 
-<div class="page-header">
+  <h3><center>Empleado/a <%= @employee.nombre %> <%= @employee.apellido %></center></h3>
+  
   <%= link_to employees_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
-    Back
+  Volver
   <% end %>
   <%= link_to edit_employee_path(@employee), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
-    Edit
+  Editar
   <% end %>
-  <h1 class="text-center">Ver Empleado</h1>
 </div>
+    <div  class="box-body">
 
-<dl class="dl-horizontal">
-  <dt>Cargo:</dt>
-  <dd><%= @employee.types_of_employee_tipo %></dd>
 
-  <dt>Nombre:</dt>
-  <dd><%= @employee.nombre %></dd>
 
-  <dt>Apellido:</dt>
-  <dd><%= @employee.apellido %></dd>
+              <div class="form-group col-sm-3">
+                <div class="col-sm-4">
+                 <dt>Cargo:</dt>
+              </div>
+                <div class="col-sm-6">
+                 <%= @employee.types_of_employee_tipo %>
+                </div>
+              </div>
 
-  <dt>Edad:</dt>
-  <dd><%= @employee.edad %></dd>
+              <div class="form-group col-sm-3">
+                <div class="col-sm-4">
+                <dt>Nombre:</dt>
+                 </div>
+                <div class="col-sm-8">
+                 <%= @employee.nombre %>
+                </div>
+              </div>
 
-  <dt>Cedula:</dt>
-  <dd><%= @employee.cedula %></dd>
+              <div class="form-group col-sm-3">
+                <div class="col-sm-4">
+                <dt>Apellido:</dt>
+                 </div>
+                <div class="col-sm-8">
+                 <%= @employee.apellido %>
+                </div>
+              </div>
+                <div class="form-group col-sm-3">
+                <div class="col-sm-4">
+                <dt>Edad:</dt>
+                 </div>
+                <div class="col-sm-8">
+                 <%= @employee.edad %>
+                </div>
+              </div>
+              <div class="form-group col-sm-3">
+                <div class="col-sm-4">
+                <dt>Cedula:</dt>
+                 </div>
+                <div class="col-sm-8">
+                 <%= @employee.cedula %>
+                </div>
+              </div>
+                <div class="form-group col-sm-3">
+                <div class="col-sm-4">
+                <dt>Correo:</dt>
+                 </div>
+                <div class="col-sm-8">
+                 <%= @employee.correo %>
+                </div>
+              </div>
+              <div class="form-group col-sm-3">
+                <div class="col-sm-4">
+                <dt>Telefono:</dt>
+                 </div>
+                <div class="col-sm-8">
+                 <%= @employee.telefono %>
+                </div>
+              </div>
+              <div class="form-group col-sm-3">
+                <div class="col-sm-4">
+                <dt>Direccion:</dt>
+                 </div>
+                <div class="col-sm-8">
+                 <%= @employee.direccion %>
+                </div>
+              </div>
+               <div class="form-group col-sm-3">
+                <div class="col-sm-4">
+                <dt>hijos:</dt>
+                 </div>
+                <div class="col-sm-8">
+                 <%= @employee.hijo%>
+                </div>
+              </div>
 
-  <dt>Telefono:</dt>
-  <dd><%= @employee.telefono %></dd>
 
-  <dt>Correo:</dt>
-  <dd><%= @employee.correo %></dd>
 
-  <dt>Direccion:</dt>
-  <dd><%= @employee.direccion %></dd>
 
-  <dt>Hijo:</dt>
-  <dd><%= @employee.hijo %></dd>
-
-</dl>
+ 
+   
+  </div>
+</div>

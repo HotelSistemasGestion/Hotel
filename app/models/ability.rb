@@ -133,6 +133,15 @@ class Ability
      can :manage, AccountingAccount     
   elsif user.has_role? "Ver habitaciones"
      can :read,Room
+  elsif user.has_role? "Crear habitaciones"
+     can :create,Room
+     can :read,Room
+  elsif user.has_role? "Editar habitaciones"
+     can :edit,Room
+     can :read,Room
+  elsif user.has_role? "Inhabilitar habitaciones"
+     can :destroy,Room
+     can :read,Room
   elsif user.has_role? "Control de Planes de Cuentas"
      can :manage, AccountPlan
    else

@@ -27,6 +27,14 @@
               <i class="glyphicon glyphicon-search"></i>
               <% end %>
           <%end%>  
+          <select class="selectpicker no-print" id = "my-select"data-style="btn-primary" data-width="fit">
+            <%ejer_all=AccountingYear.all.select('anho')%>
+            <%con_ejer=0%>
+            <%while ejer_all.count>con_ejer%>
+              <option><%=ejer_all[con_ejer].anho%> </option>
+              <%con_ejer+=1%>
+            <% end%>
+          </select>   
         </div>
 
           <!--Div selector de cuentas-->
