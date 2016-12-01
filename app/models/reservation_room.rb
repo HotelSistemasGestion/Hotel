@@ -3,7 +3,7 @@ class ReservationRoom < ActiveRecord::Base
 	
 	belongs_to :budget
 	belongs_to :type_of_room
-
+  belongs_to :room
 	belongs_to :comfort
 
 	#validates :subtotal, :presence => {:message => "No puede dejar en blanco Cantidad" }, 
@@ -60,5 +60,31 @@ class ReservationRoom < ActiveRecord::Base
     return false
   end
 
+
+   filterrific(available_filters: [:sorted_by_state,:created_at_gte,:created_at_lt])
+
+   scope :created_at_gte, lambda { |reference_time| where('reservation_rooms.check_in >=?', reference_time)}
+  scope :created_at_lt, lambda { |reference_time| where('reservation_rooms.check_out <= ?', reference_time)}
+  #Metodo utilizado por filtros dentro de reportes para quejas  
+  scope :sorted_by_state, lambda { |sort_option|
+    case sort_option.to_s
+    when /^todos/
+        @reservation_rooms = ReservationRoom.joins(:reservation)
+    when /^pendientes/
+        ReservationRoom.joins(:reservation).where('reservations.state = ?','pendiente')
+    when /^confirmados/
+        ReservationRoom.joins(:reservation).where('reservations.state = ?','confirmado')
+    else
+        raise(ArgumentError, "Opcion de ordenamiento invalido: #{ sort_option.inspect }")
+    end 
+    } 
+
+  def self.options_for_sorted_by_state
+    [
+      ['Todos', 'todos'],
+      ['Pendientes', 'pendientes'],
+      ['Confirmados', 'confirmados'],
+    ]
+   end
   	 
 end
