@@ -11,7 +11,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all.order(:created_at).reverse
+    @invoices = Invoice.all.order(state: :desc)
     @invoices = Kaminari.paginate_array(@invoices).page(params[:page]).per(5)
     @filterrific = initialize_filterrific(
     Invoice,
