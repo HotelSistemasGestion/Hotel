@@ -1,14 +1,6 @@
 <div class="box">
-	<div class="page-header">
-	  <%= link_to rooms_path, class: 'btn btn-default' do %>
-	    <span class="glyphicon glyphicon-list-alt"></span>
-	    Volver
-	  <% end %>
-	  <%= link_to @room, class: 'btn btn-primary' do %>
-	    <span class="glyphicon glyphicon-info-sign"></span>
-	    Ver
-	  <% end %>
-	  <h1>Editar Habitacion</h1>
+	<div class="box-header with-border">
+	  <h3><center>Editar Habitacion</center></h3>
 	</div>
 
 	<%= render 'form' %>

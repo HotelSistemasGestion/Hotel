@@ -83,7 +83,14 @@ Rails.application.routes.draw do
   end
     resources :type_of_cash_movements
   resources :cash_counts
-  resources :closing_cashes
+  resources :closing_cashes do
+      collection do
+      get 'report'
+    end
+    collection do
+      get 'report_values'
+    end
+  end
   resources :opening_cashes do
     resources :cash_movements, :except => [:show, :destroy] do 
       collection do
