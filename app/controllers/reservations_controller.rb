@@ -10,6 +10,9 @@ class ReservationsController < ApplicationController
     @filterrific = initialize_filterrific(
     Reservation,
     params[:filterrific],
+    select_options: {
+        sorted_by_estado: Reservation.options_for_sorted_by_estado
+      },
      persistence_id: false
     ) or return
 

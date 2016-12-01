@@ -21,13 +21,17 @@ class Reservation < ActiveRecord::Base
 
 	enumerize :state, in: %w(confirmado pendiente), predicates: true
 	
-	filterrific(available_filters: [:sorted_by, :sorted_by_apellido])
+	filterrific(available_filters: [:sorted_by, :sorted_by_apellido, :sorted_by_estado])
 
 	#scope :sorted_by, lambda { |nombre|where(:nombre => [*nombre])}
 
-	scope :sorted_by, lambda { |nombre| where('reservations.nombre = ?', nombre)}
-	scope :sorted_by_apellido, lambda { |apellido| where('reservations.apellido = ?', apellido)}
+	scope :sorted_by,-> nombre {where('LOWER(reservations.nombre) LIKE ?', "%#{nombre}%")}
+	scope :sorted_by_apellido,-> apellido {where('LOWER(reservations.apellido) LIKE ?', "%#{apellido}%")}
+	scope :sorted_by_estado, lambda { |estado|where(:state => [*estado])}
 
+	def self.options_for_sorted_by_estado
+    	order('state').map { |e| [e.state] }.uniq
+  	end
 	#validate :validacion_fecha
 
 	#def reserva_fecha
