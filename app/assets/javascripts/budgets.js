@@ -3,18 +3,21 @@ $(document).ready(function(){
 
 
         $('div#budgets #budget_check_in').change(function(){
-           $("table.services").find('tr.fields:visible').each(function(){             
+          console.log("cambie check_in");
+           $(".table.services").find('tr.fields:visible').each(function(){             
             actualizarsubtotal($(this).find(".subtotal").attr("id"),-8);
             checkDisponibility($(this));
           });
         });
         $('div#budgets #budget_check_out').change(function(){
-          $("table.services").find('tr.fields:visible').each(function(){ 
+          console.log("cambie check_out");
+          $(".table.services").find('tr.fields:visible').each(function(){ 
             actualizarsubtotal($(this).find(".subtotal").attr("id"),-8);
             checkDisponibility($(this));
           });
         });
-        $('div#budgets #budget_comfort_id').change(function(){
+        $(document).on('change','div#budgets #budget_comfort_id', function () { 
+          console.log("cambie comfort_out");
           $(".table.services").find('tr.fields:visible').each(function(){
             actualizarsubtotal($(this).find(".subtotal").attr("id"),-8); 
             checkDisponibility($(this));
@@ -24,10 +27,6 @@ $(document).ready(function(){
            actualizartotal();
         });
 
-        $('div#budgets #total').val(getPrecioInicial());
-
-
-      });
       
         $(document).on('nested:fieldAdded','div#budgets form', function(event) {
        //$("form").live("nested:fieldAdded", function(event) {
