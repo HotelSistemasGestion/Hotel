@@ -22,7 +22,6 @@ development:
   pool: 5
   username: postgres
   password: 12345
-
 test:
   adapter: postgresql
   encoding: unicode

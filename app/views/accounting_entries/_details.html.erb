@@ -8,7 +8,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
           
       </div>
-      
+      <% if @accounting_entry.auto==nil%>
       <div class="modal-body">          
       <h4 class="modal-title" align="center">Asiento</h4>
           <table class="table table-bordered  table-responsive ">
@@ -63,10 +63,87 @@
                       <%end%>                           
                    </div>
                   </tbody> 
+                </table>
+                <%@con=0%>  
+    </div>      
+  </div>
+</div>
+<%end%>
+
+
+  <% if @accounting_entry.auto==0%>
+    
+     <div class="modal-body">          
+      <h4 class="modal-title" align="center">Asiento</h4>
+          <table class="table table-bordered  table-responsive ">
+                  <thead>
+                    <tr role="row">
+                      <th class="col-sm-2">Numero</th>
+                      <th class="col-sm-2">Fecha</th>
+                      <th class="col-sm-2">Iva</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <div>
+                    <td><%= @accounting_entry.numero %></td>
+                    <td><%= @accounting_entry.fecha %></td>
+                    <td><%= @accounting_entry.iva %></td>
+
+                   </div>
+                  </tbody> 
+                </table>
+        <h4 class="modal-title" align="center">Detalles del Asiento</h4>
+        <table class="table table-bordered  table-responsive ">
+                  <thead>
+                    <tr role="row">
+                      <th class="col-sm-2">Cuenta</th>
+                      <th class="col-sm-2">Concepto</th>
+                      <th class="col-sm-2">Monto</th>
+                      <th class="col-sm-2">Tipo</th>
+                      <th class="col-sm-2">Debe</th>
+                      <th class="col-sm-2">Haber</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @contar=0%>
+                    <% @accounting_entry.account_x_entries.each do |details|%>
+                    <tr>
+                        <%@id_numero=details.accounting_entry_id%>
+                        <%@debe=AccountingEntry.find_by_sql("SELECT accounting_entries.debe from accounting_entries where numero='#{@id_numero}'")%>
+                        <%@id_numero2=details.accounting_entry_id%>
+                        <%@haber=AccountingEntry.find_by_sql("SELECT accounting_entries.haber from accounting_entries where numero='#{@id_numero2}'")%>
+
+                        <td><%= details.account %></td>
+                        <td><%= details.observacion %></td>
+                        <td><%= details.monto %></td>
+                        <td>
+                        <%bo="A"%>
+                        <%bo1="D"%>
+                        <%mostrar="Acreedor"%>
+                        <%mostrar1="Deudor"%>
+                        <%if details.tipo==bo%>
+                        <%= mostrar %>
+                        <%end%>
+                        <%if details.tipo==bo1%>
+                        <%= mostrar1 %>
+                        <%end%>
+                        </td>
+                        <td>
+                        <%= @debe[@contar].debe %></td>
+                        <td>
+                        <%= @haber[@contar].haber %></td>
+                        </tr>
+                        <%@contar+=1%>
+                        <%end%>  
+                  </tbody> 
                 </table>  
 
       
     </div>      
   </div>
 </div>
+
+<%end%>
 <!-- Modal -->

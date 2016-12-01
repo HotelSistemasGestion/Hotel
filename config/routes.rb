@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   get 'audit/index'
   get 'audit/:id', to: 'audit#show', as: 'audit_change'
 
-  resources :reservation_rooms
+  resources :reservation_rooms do
+    collection do
+      get 'report'
+    end
+    end
 
   get 'picture/index'
 
@@ -125,11 +129,7 @@ Rails.application.routes.draw do
   get 'diary_book/diario'
 
 
-  resources :reservation_requests do
-     collection do
-      get 'report'
-    end
-  end
+  resources :reservation_requests
   resources :services do
      collection do
       get 'report'

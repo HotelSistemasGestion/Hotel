@@ -23,7 +23,7 @@
   <div class="col-sm-6 form-group  has-feedback">
     <%= f.label :fecha, class:'Numero' ,class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
-    <%= f.text_field :fecha, id: 'date',  class: "datepicker" ,placeholder:"Fecha" %> 
+    <%= f.text_field :fecha,value: Time.now.strftime("%d-%m-%Y"), class: "form-control", :readonly => true%> 
     <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
     </div>  
   </div>

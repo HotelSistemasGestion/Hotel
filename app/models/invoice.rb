@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-	audited
+	audited except: [:account_id, :client_id]
 	extend Enumerize
 	enumerize :state, in: %w(pagado pendiente cancelado), predicates: true
     belongs_to :client
@@ -17,6 +17,11 @@ class Invoice < ActiveRecord::Base
     accepts_nested_attributes_for :invoice_details, allow_destroy: true , update_only: true
 
     
+    filterrific(available_filters: [:sorted_by, :sorted_by_number, :sorted_by_state])
+
+    scope :sorted_by, lambda { |nombre| where('invoices.nombre = ?', nombre)}
+    scope :sorted_by_number, lambda { |numero| where('invoices.numero = ?', numero)}
+    scope :sorted_by_state, lambda { |state| where('invoices.state = ?', state)}
 
     private
 
