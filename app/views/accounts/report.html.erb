@@ -31,13 +31,7 @@
     </div>
     <%= f.text_field(:sorted_by_name,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por nombre")%>
     </div>
-    <div class="col-xs-3">
-     <div class="hide">
-    Clientes:
-    </div>
-   <%= f.select(:sorted_by_state,
-      @filterrific.select_options[:sorted_by_state],{},{ :class => 'form-control' })%>
-    </div>
+    
     
    <%= render_filterrific_spinner %>
 <% end %>
