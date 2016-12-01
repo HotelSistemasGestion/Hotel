@@ -75,9 +75,9 @@
                         <td><%= li.autocomplete_field :type_of_room, autocomplete_type_of_room_tipo_type_of_rooms_path,class: "form-control",:placeholder => "Seleccione un tipo de habitacion", :multiple => true, :update_elements => {:id => id,:precio => ayudante}, value: (!@budget.new_record?) ? ((@room_name[c][0]) unless ( !@room_name.any? || c>=@room_name.count)) : '' %> 
 
                         <%= li.hidden_field :type_of_room_id,class: "type_of_room"%></td>
-                        <td><%= li.text_field :ayudante , value: (!@budget.new_record?)? 
+                        <td><%= li.text_field :ayudante ,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, value: (!@budget.new_record?)? 
                         ((@room_name[c][1]) unless c>=@room_name.count) : '', class: "escuchable form-control money",readonly: true%></td>                        
-                        <td><%= li.text_field :subtotal,class: "subtotal form-control money",readonly: true%></td>
+                        <td><%= li.text_field :subtotal,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},class: "subtotal form-control money",readonly: true%></td>
                         <td><button type="button" class="btn btn-primary" id="my_button">
                               <span class="glyphicon glyphicon-calendar"></span>
                             </button>
@@ -139,7 +139,7 @@
                       <%= li.autocomplete_field :service, autocomplete_service_nombre_services_path,class: "form-control", :placeholder => "Seleccione un servicio",:multiple => true,:update_elements => {:id => id,:precio => ayudante }, value: (!@budget.new_record?) ? ((@service_name[c][0]) unless ( !@service_name.any? || c>=@service_name.count)) : ''%>
                         <%= li.hidden_field  :service_id%></td>
 
-                        <td><%= li.text_field  :ayudante, value: (!@budget.new_record?)? 
+                        <td><%= li.text_field  :ayudante,data: {autonumeric: {aSign: 'Gs ',mDec: 0}}, value: (!@budget.new_record?)? 
                         ((@service_name[c][1]) unless c>=@service_name.count) : '', class: "escuchable form-control money",readonly: true%></td>
                         <td><%= li.text_field :subtotal,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},class: "subtotal form-control money",readonly: true%></td>
                         <td><%= li.link_to_remove "",id: "borrar", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
