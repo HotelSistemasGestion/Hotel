@@ -286,8 +286,13 @@ Cash.create(descripcion: "Resturant&Bar");
 OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abierta",fecha_apertura: (Date.today+1).to_s);
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
 
+
+
+
+#Limpieza de Habitacion
 CleaningRoom.create(employee_id: 1);
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-01",end: "2016-12-05" ,title: "Habitacion A1" ,color: "#33ff00",textColor: "#ffffff");
+CleaningRoom.create(employee_id: 2);
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-01",end: "2016-12-05" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
 Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-06",end: "2016-12-08" ,title: "Habitacion A1" ,color: "#80f442",textColor: "#ffffff");
 Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-03",end: "2016-12-10" ,title: "Habitacion A1" ,color: "#f45342",textColor: "#ffffff");
 Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-12",end: "2016-12-20" ,title: "Habitacion A1" ,color: "#eef442",textColor: "#ffffff");
@@ -295,6 +300,11 @@ Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-02
 Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-14",end: "2016-12-16" ,title: "Habitacion A1" ,color: "#425cf4",textColor: "#ffffff");
 Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-28",end: "2016-12-30" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
 Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-03",end: "2016-12-14" ,title: "Habitacion A1" ,color: "#f44295",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 2,employee_id: 2,room_id: 2,start: "2017-01-03",end: "2017-01-14" ,title: "Habitacion" 	,color: "#33ff00",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 2,employee_id: 2,room_id: 3,start: "2017-01-07",end: "2017-01-14" ,title: "Habitacion" 	,color: "#f44295",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 2,employee_id: 2,room_id: 2,start: "2017-01-01",end: "2017-01-14" ,title: "Habitacion" 	,color: "#d742f4",textColor: "#ffffff");
+
+
 
 PaymentValue.create(descripcion:"efectivo");
 PaymentValue.create(descripcion:"cheque");
