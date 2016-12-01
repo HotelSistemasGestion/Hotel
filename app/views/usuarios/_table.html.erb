@@ -14,7 +14,7 @@
     <div class="row">
       <%= form_for_filterrific @filterrific do |f| %>
           <div class="col-xs-3">
-            <%= f.text_field(:sorted_by, class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por nombre")%>
+            <%= f.text_field(:sorted_by, class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por nombre o apellido")%>
           </div>           
          <%= render_filterrific_spinner %>
       <% end %>

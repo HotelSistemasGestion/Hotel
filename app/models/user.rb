@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable  
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  def self.options_for_sorted_by_usuario
+    order('username').map { |e| [e.username, e.id] }.uniq
+  end
+    
   audited only: [:username, :apellido, :direccion, :numero_ci, :email, :celular, :telefono]
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable

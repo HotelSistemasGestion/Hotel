@@ -14,7 +14,8 @@ class RoomsController < ApplicationController
     Room,
     params[:filterrific],select_options: {
         sorted_by_type: TypeOfRoom.options_for_sorted_by_type,
-        sorted_by_state: State.options_for_sorted_by_state
+        sorted_by_state: State.options_for_sorted_by_state,
+        sorted_by_comfort: Comfort.options_for_sorted_by_comfort
       },
      persistence_id: false
   ) or return

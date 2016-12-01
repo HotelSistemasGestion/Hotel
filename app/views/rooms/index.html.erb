@@ -1,10 +1,7 @@
 <div class="box box-primary">
  <div class="box-header with-border">
 
-  <h3 class="box-title">
-    Listado de Habitaciones
-            
-  </h3>
+  <h3><center> Listado de Habitaciones</center></h3>
 </div>
 <div class="box-body"> 
         <div class="col-xs-2">
@@ -36,7 +33,11 @@
                   @filterrific.select_options[:sorted_by_type],
                   { include_blank: 'Todas los tipos' },{ :class => 'form-control' })%>
                 </div>
-                
+                <div class="col-xs-3">
+               <%= f.select(:sorted_by_comfort,
+                  @filterrific.select_options[:sorted_by_comfort],
+                  { include_blank: 'Todas los comforts' },{ :class => 'form-control' })%>
+                </div>
                <%= render_filterrific_spinner %>
             <% end %>
     </div>

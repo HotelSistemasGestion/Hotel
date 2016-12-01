@@ -1,6 +1,4 @@
-class CashMovementsController < ApplicationController
-  before_action :authenticate_user!  
-  load_and_authorize_resource
+class CashMovementsController < ApplicationController  
   before_action :authenticate_user!
   before_action :set_cash_movement, only: [:show, :edit, :update, :destroy]
   
@@ -15,7 +13,7 @@ class CashMovementsController < ApplicationController
      persistence_id: false
     ) or return
 
-    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 2, :page => params[:page])
+    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
       format.html
       format.js
@@ -38,7 +36,7 @@ class CashMovementsController < ApplicationController
 
   def list2
     @apertura_id = params[:opening_cash_id]
-    @movimientos = CashMovement.where("opening_cash_id = ?", @apertura_id)
+    @cash_movements = CashMovement.where("opening_cash_id = ?", @apertura_id)
     @apertura = OpeningCash.find(params[:opening_cash_id])
     @caja = @apertura.cash.descripcion
     @filterrific = initialize_filterrific(
@@ -47,7 +45,7 @@ class CashMovementsController < ApplicationController
      persistence_id: false
     ) or return
 
-    @movimientos = @filterrific.find.page(params[:page]).paginate(:per_page => 2, :page => params[:page])
+    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
       format.html
       format.js

@@ -17,14 +17,18 @@ class ReservationRoom < ActiveRecord::Base
 	validates :check_out, :presence => {:message => "No puede estar en blanco" }
 
 	validate :hay_disponible
+  validate :validacion_fecha  
+  
 
-	#def disponibilidad
-	#	 ReservationRoom.all.each do |room|
-	#	 	if self.type_of_room = room.type_of_room
-	#	 		errors.add(:type_of_room, "Este cuarto esta reservado")
-	#		end
-	#	 end
-	#end
+    def validacion_fecha
+      if !check_in.blank? && check_in < Date.today
+        errors.add(:check_in, "Menor a fecha actual")
+      elsif !check_out.blank? && check_out < Date.today
+        errors.add(:check_out, " Menor a fecha actual")
+      elsif !check_out.blank? && check_out < check_in
+        errors.add(:check_out, "No puede ser menor al check_in")  
+      end
+    end
 
 
 	def hay_disponible
