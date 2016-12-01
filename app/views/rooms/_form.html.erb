@@ -15,8 +15,8 @@
   <% end %>
         
           
-   
-       <div class="box body box-primary box-solid collapsed-box">
+   <div class="box-body">
+       <div class="box box-primary box-solid collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title">Imagenes</h3>
 
@@ -49,7 +49,7 @@
         </table>
         </div> 
       </div>
-  
+  </div>
 
   
  <div class="box-body">
@@ -107,5 +107,10 @@
   <div class ="box-body">  
 
       <%= f.submit "Crear Habitacion", class: "btn btn-primary" %>
+      <%= link_to rooms_path, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Volver
+    <% end %>
+ 
 </div>
 <% end %>

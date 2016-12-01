@@ -58,9 +58,19 @@
         <td><%= room.identificador %></td>
 
         <td><%= room.type_of_room_tipo %></td>
-    
-        <td><%= room.state_descripcion %></td>
-    
+          
+           <!--Se determina el color del label dependiendo del estado NO UTILIZO ENUMERIZE, -->                   
+                <%if room.state_descripcion == "libre" %>
+                  <% btn = 'success' %>
+                <%elsif room.state_descripcion == "fuera de servicio" %>
+                  <% btn = 'danger' %>
+                <%elsif room.state_descripcion == "reservado" %>
+                   <% btn = 'warning' %>
+                <%else %>
+                  <% btn = 'teal' %>
+                <%end%>     
+        <td><span class="label label-<%=btn%>"><%= room.state_descripcion %></span></td>
+         
         <td><%= room.comfort_descripcion %></td>
 
         <td align="center"><%= link_to '', room,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
