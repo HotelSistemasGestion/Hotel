@@ -10,11 +10,15 @@
       <%= form_for_filterrific @filterrific do |f| %>
 
           <div class="col-xs-3">
-          <%= f.text_field(:sorted_by,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por Tabla")%>
+          <%= f.select(:sorted_by_tabla,
+          @filterrific.select_options[:sorted_by_tabla],
+          { include_blank: 'Todas las tablas' },{ :class => 'form-control' })%>
           </div>
 
           <div class="col-xs-3">
-          <%= f.text_field(:sorted_by_nombre,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por Usuario")%>
+          <%= f.select(:sorted_by_usuario,
+          @filterrific.select_options[:sorted_by_usuario],
+          { include_blank: 'Default' },{ :class => 'form-control' })%>
           </div>
 
           <div class="col-xs-3">
