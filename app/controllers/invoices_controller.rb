@@ -13,6 +13,17 @@ class InvoicesController < ApplicationController
   def index
     @invoices = Invoice.all.order(:created_at).reverse
     @invoices = Kaminari.paginate_array(@invoices).page(params[:page]).per(5)
+    @filterrific = initialize_filterrific(
+    Invoice,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @invoices = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /invoices/1
