@@ -1,7 +1,53 @@
 
 $(document).ready(function(){
 var cont=0;
+var fecha = new Date();
+var ejercicio=fecha.getFullYear();
+ $("#my-select").change(function() {
+      var text= $('#my-select option:selected').html();
+      ejercicio=parseInt(text);
+      
+            $("#search_conta").daterangepicker({ "locale": {
+              "format": "DD/MM/YYYY",
+              "separator": " - ",
+              "applyLabel": "Aceptar",
+              "cancelLabel": "Cancelar",
+              "fromLabel": "From",
+              "toLabel": "To",
+              "customRangeLabel": "Custom",
+              "daysOfWeek": [
+                  "Do",
+                  "Lu",
+                  "Ma",
+                  "Mi",
+                  "Ju",
+                  "vi",
+                  "S&aacute;"
+              ],
+              "monthNames": [
+                  "Enero",
+                  "Febrero",
+                  "Marzo",
+                  "Abril",
+                  "Mayo",
+                  "Junio",
+                  "Julio",
+                  "Agosto",
+                  "Septiembre",
+                  "Octubre",
+                  "Noviembre",
+                  "Diciembre"
+              ],
+              "firstDay": 1
+          }, autoclose: true,
+          autoSize: true,
+          minDate: new Date((ejercicio-1),12,1),
+          maxDate: new Date(ejercicio,11,31)
 
+
+          });
+
+    });
 
        $("#search_conta").each(function(){
       
@@ -39,8 +85,8 @@ var cont=0;
               "firstDay": 1
           }, autoclose: true,
           autoSize: true,
-          minDate: new Date(2015,12,1),
-          maxDate: new Date(2016,11,31)
+          minDate: new Date((ejercicio-1),12,1),
+          maxDate: new Date(ejercicio,11,31)
 
 
           });

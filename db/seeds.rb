@@ -23,10 +23,6 @@ Comfort.create(descripcion: "dos estrellas",precio: 20000);
 Comfort.create(descripcion: "tres estrellas",precio: 50000);
 
 
-
-
-
-
 #AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
 #AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
 #AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "1000",haber: "0");
@@ -122,7 +118,6 @@ AccountXPlan.create(account_plan_id:"2",accounting_account_id:"12");
 #AccountXEntry.create(accounting_entry_id:"23",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
 #AccountXEntry.create(accounting_entry_id:"24",accounting_account_id:"13",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
 #AccountXEntry.create(accounting_entry_id:"25",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
-
 
 
 
@@ -252,6 +247,11 @@ Action.create(accion: "Eliminar Servicio");
 Action.create(accion: "Control de Asientos");
 Action.create(accion: "Control de Cuentas");
 Action.create(accion: "Control de Planes de Cuentas");
+#Acciones para Habitaciones
+Action.create(accion: "Ver Habitaciones");
+Action.create(accion: "Crear Habitaciones");
+Action.create(accion: "Editar Habitaciones");
+Action.create(accion: "Inhabilitar Habitaciones");
 
 
 Rol.create(:nombre => "Admin", :action_ids => [1])
@@ -282,14 +282,14 @@ OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abie
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
 
 CleaningRoom.create(employee_id: 1);
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-01",end: "2016-11-05" ,title: "Habitacion A1" ,color: "#33ff00",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-06",end: "2016-11-08" ,title: "Habitacion A1" ,color: "#80f442",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-03",end: "2016-11-10" ,title: "Habitacion A1" ,color: "#f45342",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-12",end: "2016-11-20" ,title: "Habitacion A1" ,color: "#eef442",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-02",end: "2016-11-15" ,title: "Habitacion A1" ,color: "#42f4d7",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-14",end: "2016-11-16" ,title: "Habitacion A1" ,color: "#425cf4",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-28",end: "2016-11-30" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-03",end: "2016-11-14" ,title: "Habitacion A1" ,color: "#f44295",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-01",end: "2016-12-05" ,title: "Habitacion A1" ,color: "#33ff00",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-06",end: "2016-12-08" ,title: "Habitacion A1" ,color: "#80f442",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-03",end: "2016-12-10" ,title: "Habitacion A1" ,color: "#f45342",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-12",end: "2016-12-20" ,title: "Habitacion A1" ,color: "#eef442",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-02",end: "2016-12-15" ,title: "Habitacion A1" ,color: "#42f4d7",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-14",end: "2016-12-16" ,title: "Habitacion A1" ,color: "#425cf4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-28",end: "2016-12-30" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-03",end: "2016-12-14" ,title: "Habitacion A1" ,color: "#f44295",textColor: "#ffffff");
 
 PaymentValue.create(descripcion:"efectivo");
 PaymentValue.create(descripcion:"cheque");
