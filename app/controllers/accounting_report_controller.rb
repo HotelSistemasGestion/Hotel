@@ -55,4 +55,5 @@ class AccountingReportController < ApplicationController
       end
       return juntar
   end
+
 end
