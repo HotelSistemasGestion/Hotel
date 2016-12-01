@@ -3,11 +3,16 @@
     <div class="row">
           <%= form_for_filterrific @filterrific do |f| %>
           <div class="col-xs-3">
-          <%= f.text_field(:created_at_gte,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Desde")%>
+          <%= f.select(:sorted_by_cash,
+      @filterrific.select_options[:sorted_by_cash],
+      { include_blank: 'Todas las cajas' },{ :class => 'form-control' })%>
+          </div>
+          <div class="col-xs-3">
+          <%= f.text_field(:desde,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Desde")%>
           </div>
 
           <div class="col-xs-3">
-          <%= f.text_field(:created_at_lt,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Hasta")%>
+          <%= f.text_field(:hasta,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Hasta")%>
           </div>
            
          <%= render_filterrific_spinner %>
@@ -24,7 +29,7 @@
           </h3>
           <%= link_to 'Nuevo Cierre', new_closing_cash_path, class: "btn btn-primary" %>
   <%= render(
-  partial: 'closing_cashes/list',
+  partial: 'closing_cashes/list2',
   locals: { closing_cashes: @closing_cashes }
 ) %>    
   </div>

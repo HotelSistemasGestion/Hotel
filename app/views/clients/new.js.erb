@@ -1,4 +1,4 @@
-$('#product-modal').on('hidden.bs.modal', function (e) {
+$('<%= j render "form", title: "Nuevo Cliente" %>').on('hidden.bs.modal', function (e) {
   $(this).remove();
   $('.modal-backdrop').remove();
 }).modal();

@@ -8,7 +8,9 @@ class ClosingCashesController < ApplicationController
     @closing_cashes = ClosingCash.all
     @filterrific = initialize_filterrific(
     ClosingCash,
-    params[:filterrific],
+    params[:filterrific],select_options: {
+        sorted_by_cash: Cash.options_for_sorted_by_cash
+      },
      persistence_id: false
     ) or return
 
@@ -85,6 +87,41 @@ class ClosingCashesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def report
+  @filterrific = initialize_filterrific(
+    ClosingCash,
+    params[:filterrific],select_options: {
+        sorted_by_cash: Cash.options_for_sorted_by_cash
+      },
+     persistence_id: false
+  ) or return
+
+  @closing_cashes = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @closing_cashes_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
+  def report_values
+  @filterrific = initialize_filterrific(
+    ClosingCash,
+    params[:filterrific],select_options: {
+        sorted_by_cash: Cash.options_for_sorted_by_cash
+      },
+     persistence_id: false
+  ) or return
+
+  @closing_cashes = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @closing_cashes_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
