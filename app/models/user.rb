@@ -1,12 +1,28 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable  
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  def self.options_for_sorted_by_usuario
+    order('username').map { |e| [e.username, e.id] }.uniq
+  end
+    
   audited only: [:username, :apellido, :direccion, :numero_ci, :email, :celular, :telefono]
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   filterrific(available_filters: [:sorted_by])
-  scope :sorted_by, lambda { |nombre| where('users.username = ?', nombre)}
+  
+  scope :sorted_by, lambda { |query|
+    return nil  if query.blank?    
+    terms = query.downcase.split(/\s+/)
+    terms = terms.map { |e| (e.gsub('*', '%') + '%').gsub(/%+/, '%') }
+    num_or_conds = 2
+    where(
+    terms.map { |term|
+      "(LOWER(users.username) LIKE ? OR LOWER(users.apellido) LIKE ?)"
+    }.join(' AND '),
+    *terms.map { |e| [e] * num_or_conds }.flatten
+    )
+  }
 
   validates :username, presence: { message: "requerido*" }
   validates_format_of :username, :with => /[a-z]/

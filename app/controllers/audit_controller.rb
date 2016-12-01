@@ -3,10 +3,14 @@ class AuditController < ApplicationController
   load_and_authorize_resource
 
   def index
-  	@audited_tables = Audit.all    
+    @audited_tables = Audit.all    
     @filterrific = initialize_filterrific(
     Audit,
     params[:filterrific],
+    select_options: {
+        sorted_by_tabla: Audit.options_for_sorted_by_tabla,
+        sorted_by_usuario: User.options_for_sorted_by_usuario
+      },
      persistence_id: false
     ) or return
 
@@ -18,7 +22,7 @@ class AuditController < ApplicationController
   end
 
   def show
-  	@audited_table = Audited::Audit.find(params[:id])
+    @audited_table = Audited::Audit.find(params[:id])
     respond_to do |format|
       format.js
     end

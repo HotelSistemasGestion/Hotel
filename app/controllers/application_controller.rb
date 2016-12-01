@@ -58,9 +58,16 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up)  { |u| u.permit(  :email,:password, :password_confirmation, roles: []) }
   end
+  
+  def redirect_back_or_default(default = root_path, *options)
+    tag_options = {}
+    options.first.each { |k,v| tag_options[k] = v } unless options.empty?
+    redirect_to (request.referer.present? ? :back : default), tag_options
+  end
+
 
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to dashboard_index_path, :alert => exception.message
+    redirect_back_or_default(dashboard_index_path, :alert => 'No esta autorizado para acceder a este recurso', :status => 301)
   end
   
   
