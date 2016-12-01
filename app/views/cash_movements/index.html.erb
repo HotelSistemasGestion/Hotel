@@ -24,12 +24,12 @@
   <div class="box-header with-border">
     <CENTER><h3 class="box-title">Movimientos de Caja</h3></CENTER>
     
-      
-  </div>
   <%= render(
   partial: 'cash_movements/list',
   locals: { cash_movements: @cash_movements }
-) %>
+) %>    
+  </div>
+  
 </div>
 <script type="text/javascript">
   $(".datepicker").datepicker({

@@ -13,6 +13,8 @@ class Account < ActiveRecord::Base
 
     before_destroy :change_invoice_state
 
+    before_save :change_reservation_state
+
 
     accepts_nested_attributes_for :account_details, allow_destroy: true, update_only: true
     accepts_nested_attributes_for :room_account_details, allow_destroy: true , update_only: true
@@ -60,11 +62,22 @@ class Account < ActiveRecord::Base
     private
         #Cuando se elimina una cuenta que ya se facturo pero aun no se pago
         def change_invoice_state
+            AccountDetail.destroy_all(account_id: self.id)
+            RoomAccountDetail.destroy_all(account_id: self.id)
             factura = Invoice.find_by(account_id: self.id)
             if !factura.nil?
                 factura.state = "cancelado"
                 factura.save
             end            
+        end
+
+        #cuando se registra a partir de una reservación cambia el estado de la reservación
+        def change_reservation_state
+            if !self.reservation_id.nil?
+                reservation = Reservation.find(reservation_id)
+                reservation.state = "confirmado"
+                reservation.save
+            end
         end
     
     

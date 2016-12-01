@@ -48,4 +48,14 @@ class Reservation < ActiveRecord::Base
   	    #errors.add(:check_out, "no puede ser menor al check_in")	
       #end
     #end
+
+    before_save :set_state
+
+    private
+
+	    def set_state
+	    	if self.state.nil?
+	    		self.state="pendiente"
+	    	end
+		end
 end

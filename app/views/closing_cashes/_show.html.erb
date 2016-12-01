@@ -46,28 +46,33 @@
                           <td><strong>Valor</strong></td>
                           <td><strong>Monto Registrado</strong></td>
                           <td><strong>Monto Existente</strong></td>
+                          <td><strong>Diferencia Montos</strong></td>
                         </tr>
                       </thead>
                       <tbody>                           
                           <tr>
                             <td><strong>Efectivo</strong></td>
                             <td><%= number_to_currency_py(@closing_cash.monto_efectivo) %></td>                          
-                            <td><%= number_to_currency_py(@closing_cash.existente_efe) %></td>  
+                            <td><%= number_to_currency_py(@closing_cash.existente_efe) %></td>
+                            <td><%= number_to_currency_py(@closing_cash.dif_efectivo) %></td>  
                           </tr>
                           <tr>
                             <td><strong>Cheque</strong></td>
                             <td><%= number_to_currency_py(@closing_cash.monto_cheque) %></td>                          
-                            <td><%= number_to_currency_py(@closing_cash.existente_cheque) %></td>  
+                            <td><%= number_to_currency_py(@closing_cash.existente_cheque) %></td>
+                            <td><%= number_to_currency_py(@closing_cash.dif_cheque) %></td>  
                           </tr>  
                           <tr>
                             <td><strong>Tarjeta Credito</strong></td>
                             <td><%= number_to_currency_py(@closing_cash.monto_tcredito) %></td>                          
-                            <td><%= number_to_currency_py(@closing_cash.existente_tcre) %></td>  
+                            <td><%= number_to_currency_py(@closing_cash.existente_tcre) %></td>
+                            <td><%= number_to_currency_py(@closing_cash.dif_credito) %></td>  
                           </tr>
                           <tr>
                             <td><strong>Tarjeta Debito</strong></td>
                             <td><%= number_to_currency_py(@closing_cash.monto_tdebito) %></td>                          
-                            <td><%= number_to_currency_py(@closing_cash.existente_tdb) %></td>  
+                            <td><%= number_to_currency_py(@closing_cash.existente_tdb) %></td>
+                            <td><%= number_to_currency_py(@closing_cash.dif_debito) %></td>  
                           </tr>
                       </tbody>
                   </table>

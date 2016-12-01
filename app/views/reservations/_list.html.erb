@@ -29,8 +29,7 @@
             <%= content_tag_for(:tr, @reservations) do |reservation| %>
                 <%if reservation.state == "pendiente" %>
                   <td><span class="label label-warning">Pendiente</span></td>
-                <%end%>
-                <%if reservation.state == "confirmado" %>
+                <% else %>
                   <td><span class="label label-success">Confirmado</span></td>
                 <%end%>
           
@@ -48,7 +47,8 @@
                 <%if reservation.state == "pendiente" %>
                   <%= link_to 'Confirmar', {:controller => "accounts", :action => "new", :id => reservation.id },class: "btn btn-primary" %>
                 <%else%>
-                  <span class="label label-success">Check_in confirmado</span>
+                  <%= link_to 'Ver Cuenta', Account.find_by(reservation_id: reservation.id), class: "btn btn-info" %>
+
                 <%end%>
               </td>
               

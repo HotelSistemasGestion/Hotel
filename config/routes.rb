@@ -98,7 +98,7 @@ Rails.application.routes.draw do
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
 
-  get "list/:opening_cash_id" => "cash_movements#list",as: "list"
+  get "list2/:opening_cash_id" => "cash_movements#list2",as: "list2"
 
   get "montos_cierre/:opening_cash_id" => "closing_cashes#montos_cierre"
 
