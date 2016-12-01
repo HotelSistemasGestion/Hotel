@@ -21,7 +21,7 @@
           </thead>
 
           <tbody>
-            <%= content_tag_for(:tr, @movimientos) do |movement| %>
+            <%= content_tag_for(:tr, @cash_movements) do |movement| %>
           
               <td><%= movement.fecha %></td>
           
@@ -44,7 +44,7 @@
 
   <div class="box-footer clearfix">
     <ul class="pagination pagination-sm no-margin pull-right">
-         <nav><%=paginate @movimientos, :theme => 'twitter-bootstrap-3' %></nav>
+         <nav><%=paginate @cash_movements, :theme => 'twitter-bootstrap-3' %></nav>
     </ul>
     
   </div>
