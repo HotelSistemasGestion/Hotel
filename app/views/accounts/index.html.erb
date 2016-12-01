@@ -11,8 +11,6 @@
             <th>Cliente</th>
             <th>Direccion</th>
             <th>RUC</th>
-            <th>Fecha entrada</th>
-            <th>Fecha salida</th>
             <th>Total</th>
             <th>N° de Factura</th> 
 
@@ -25,29 +23,26 @@
               <td><%= account.nombre %></td>
               <td><%= account.direccion %></td>
               <td><%= account.ruc %></td>
-              <td><%= account.fecha_entrada %></td>
-              <td><%= account.fecha_salida %></td>
               <td><%= account.total %></td>
               <%if account.numero.present? %> 
-                <td><%= account.numero %></td>
+                <td class="text-center"><%= account.numero %></td>
               <% else %> 
-                <td><label font-style: oblique>-No facturado-</label></td>
+                <td><span class="label label-warning">No Facturado</span></td>
               <%end%>
               <td><%= link_to account, class: 'col-sm-2', title: 'Ver Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                 <span class= "glyphicon glyphicon glyphicon-eye-open"></span>
-              <% end %></td>
+              <% end %>
               <%if (account.numero.present? and !Invoice.find_by(account_id: account).state.pagado?) or !account.numero.present? %>
-                  <td>
                     <%= link_to account, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'col-sm-2', title: 'Eliminar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon glyphicon-trash"></span>
-                    <% end %>
-                  </td>           
+                    <% end %>     
               <% end %>
-              <%if !account.numero.present? and Invoice.find_by(account_id: account) %> 
-                <td><%= link_to edit_account_path(account), class: 'col-sm-2', title: 'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+              <%if !account.numero.present? %> 
+                <%= link_to edit_account_path(account), class: 'col-sm-2', title: 'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                   <span class= "glyphicon glyphicon glyphicon-edit"></span>
-                <% end %></td>
+                <% end %>
               <% end %>
+              </td>
               </tr>
           <% end %>
         </tbody>

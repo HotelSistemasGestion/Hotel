@@ -11,7 +11,7 @@ class AccountingReportController < ApplicationController
 	  	 @array_cuenta[$cont]=@ledgers[$cont].accounting_account_id  	
 	  	 $cont +=1  	 	
   	 end
-
+ 
   	  @array_filtrar=@array_cuenta.uniq
 
        while $cont2  <@ledgers.count do  

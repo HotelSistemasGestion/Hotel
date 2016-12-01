@@ -1,0 +1,57 @@
+
+<div class="row">
+  <div class="col-xs-4">
+    <div class="report_header">
+      <%=image_tag("logo.png", size: "130x130", class: "hide")%>
+    </div>
+  </div>
+  <div class="col-xs-4" >
+  <div class="box-header with-border report_title">
+  <h1 class="box-title hide">Listado de ingresos en caja</h1>
+  </div>
+  </div>
+  <div class="col-xs-4">
+    <div class="report_information">
+      <p class="hide"><%= Time.now.strftime("%d/%m/%Y %T")%></p>
+      <p class="hide">Impreso por: <%= current_user.username %></p>
+    </div>
+  </div>
+</div>
+
+<div class="box box-primary">
+<div class="box-header">
+<div class="row">
+<%= form_for_filterrific @filterrific do |f| %>
+
+
+     <div class="col-xs-3">
+     <div class="hide">
+    Caja:
+    </div>
+   <%= f.select(:sorted_by_cash,
+      @filterrific.select_options[:sorted_by_cash],
+      { include_blank: 'Todas las cajas' },{ :class => 'form-control' })%>
+    </div>
+    <div class="col-xs-3">
+     <div class="hide">
+    Desde:
+    </div>
+    <%= f.text_field(:desde, class: 'r_datepicker_complaint  form-control',placeholder:"Desde")%>
+    </div>
+     <div class="col-xs-3">
+      <div class="hide">
+     Hasta:
+     </div>
+    <%= f.text_field(:hasta, class: 'r_datepicker_complaint_lt  form-control',placeholder:"Hasta")%>
+    </div>
+   
+    
+   <%= render_filterrific_spinner %>
+<% end %>
+</div>
+</div>
+</div>
+<%= render(
+  partial: 'closing_cashes/list',
+  locals: { closing_cashes: @closing_cashes }
+) %>

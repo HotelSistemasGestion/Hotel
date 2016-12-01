@@ -3,13 +3,21 @@
           <thead >
           <tr>
             <th>Numero</th>
-            <th>Fecha</th>
+            <th>Concepto</th>
             <th>Opciones</th>
           </tr>
         </thead>
           <tbody>
+                    <%@con=0%>
                     <% @accounting_entries.each do |accounting_entry| %>
+                    <%@contador=AccountingEntry.where("numero=?",accounting_entry.numero)%>
+                    <%if @con==0%>
                     <%= render "row", accounting_entry: accounting_entry%>
+                    <%end%>
+                    <%@con+=1%>
+                    <%if @con==@contador.count%>
+                    <%@con=0%>
+                    <%end%>
                     <% end %>
           </tbody> 
     </table>

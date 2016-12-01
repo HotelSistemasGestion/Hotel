@@ -1,0 +1,45 @@
+<div class="box">
+  <div class="box-body">
+    <div class="row">
+          <%= form_for_filterrific @filterrific do |f| %>
+          <div class="col-xs-3">
+          <%= f.text_field(:sorted_by_client,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por cliente")%>
+          </div>
+          <div class="col-xs-3">
+          <%= f.text_field(:created_at_gte,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Desde")%>
+          </div>
+
+          <div class="col-xs-3">
+          <%= f.text_field(:created_at_lt,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Hasta")%>
+          </div>
+           
+         <%= render_filterrific_spinner %>
+      <% end %>
+      </div>
+  </div>
+</div>
+           
+                              
+<div class="box">
+  <div class="box-header with-border">
+    <%= link_to "Regresar",new_cash_movement_path(opening_cash_id: @apertura_id), class: "btn btn-primary"%>
+          <div class="col-sm-2"></div>
+          <h3 class="box-title col-sm-6">
+            Movimientos de <%= @caja%>
+          </h3>
+      
+  </div>
+  <%= render(
+  partial: 'cash_movements/list2',
+  locals: { cash_movements: @cash_movements }
+) %>
+</div>
+<script type="text/javascript">
+  $(".datepicker").datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'es',
+              });
+</script>        
+
+
+

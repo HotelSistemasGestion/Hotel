@@ -1,9 +1,13 @@
 class Reservation < ActiveRecord::Base
+	extend Enumerize
 	#validates :nombre, :presence => {:message => "no puede estar en blanco"}
 	#validates :apellido, :presence => {:message => "no puede estar en blanco"}
 	#validates :check_in, :presence => {:message => "en blanco"}
 	#validates :check_out, :presence => {:message => "en blanco"}
 	#paginates_per 2 #solo puse 2 para probar
+	
+	audited
+
 	belongs_to :reservation_request
 	belongs_to :budget
 	has_many :reservation_rooms,:dependent => :destroy
@@ -14,15 +18,20 @@ class Reservation < ActiveRecord::Base
 	validates :nombre, :presence => {:message => "No puede estar en blanco" }
 	validates :apellido, :presence => {:message => "No puede estar en blanco" }
 	validates :telefono, :presence => {:message => "No puede estar en blanco" }
-	
 
-	filterrific(available_filters: [:sorted_by, :sorted_by_apellido])
+	enumerize :state, in: %w(confirmado pendiente), predicates: true
+	
+	filterrific(available_filters: [:sorted_by, :sorted_by_apellido, :sorted_by_estado])
 
 	#scope :sorted_by, lambda { |nombre|where(:nombre => [*nombre])}
 
-	scope :sorted_by, lambda { |nombre| where('reservations.nombre = ?', nombre)}
-	scope :sorted_by_apellido, lambda { |apellido| where('reservations.apellido = ?', apellido)}
+	scope :sorted_by,-> nombre {where('LOWER(reservations.nombre) LIKE ?', "%#{nombre}%")}
+	scope :sorted_by_apellido,-> apellido {where('LOWER(reservations.apellido) LIKE ?', "%#{apellido}%")}
+	scope :sorted_by_estado, lambda { |estado|where(:state => [*estado])}
 
+	def self.options_for_sorted_by_estado
+    	order('state').map { |e| [e.state] }.uniq
+  	end
 	#validate :validacion_fecha
 
 	#def reserva_fecha
@@ -43,4 +52,14 @@ class Reservation < ActiveRecord::Base
   	    #errors.add(:check_out, "no puede ser menor al check_in")	
       #end
     #end
+
+    before_save :set_state
+
+    private
+
+	    def set_state
+	    	if self.state.nil?
+	    		self.state="pendiente"
+	    	end
+		end
 end

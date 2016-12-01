@@ -8,8 +8,13 @@ Rails.application.routes.draw do
   get 'accounting_years/index'
 
   get 'audit/index'
+  get 'audit/:id', to: 'audit#show', as: 'audit_change'
 
-  resources :reservation_rooms
+  resources :reservation_rooms do
+    collection do
+      get 'report'
+    end
+    end
 
   get 'picture/index'
 
@@ -21,7 +26,11 @@ Rails.application.routes.draw do
  
   resources :budget_room_details
   resources :budget_service_details
-  resources :cleanings
+  resources :cleanings do
+    collection do
+      get 'report'
+    end
+  end
   resources :invoice_details
   resources :account_details do
     collection do
@@ -78,7 +87,14 @@ Rails.application.routes.draw do
   end
     resources :type_of_cash_movements
   resources :cash_counts
-  resources :closing_cashes
+  resources :closing_cashes do
+      collection do
+      get 'report'
+    end
+    collection do
+      get 'report_values'
+    end
+  end
   resources :opening_cashes do
     resources :cash_movements, :except => [:show, :destroy] do 
       collection do
@@ -93,7 +109,7 @@ Rails.application.routes.draw do
 
   get "client_invoices/:client_id" => "cash_movements#client_invoices"
 
-  get "list/:opening_cash_id" => "cash_movements#list",as: "list"
+  get "list2/:opening_cash_id" => "cash_movements#list2",as: "list2"
 
   get "montos_cierre/:opening_cash_id" => "closing_cashes#montos_cierre"
 

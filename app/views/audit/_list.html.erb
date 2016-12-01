@@ -1,0 +1,58 @@
+<div id="filterrific_results">
+  <div class="box-body">
+    <div id="filterrific_results">
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                  <th>Accion</th>
+                  <th>Tabla</th>
+                  <th>Usuario</th>
+                  <th>Cambios</th>
+                  <th>Fecha - Hora</th>                         
+                </tr>
+              </thead>
+            <tbody>
+            <% colection = {'create' => 'Crear', 'update' => 'Editar', 'destroy' => 'Eliminar'} %>
+
+            <% colection_table = {'Service' => 'Servicio', 'User' => 'Usuario', 'Cash' => 'Caja', 'Invoice' => 'Factura', 'Account' => 'Cuenta', 'Client' => 'Cliente','OpeningCash' => 'Apertura', 'ClosingCash' => 'Cierre', 'Room' => 'Habitacion', 'Complaint' => 'Queja','Reservation' => 'Reservacion','Reservation' => 'Reservacion' } %>
+
+                <% @audited_tables.each do |audit| %>
+
+                <%if audit.action == "create" %>
+                  <% btn = 'success' %>
+                <%elsif audit.action == "destroy" %>
+                    <% btn = 'danger' %>
+                <%elsif audit.action == "update" %>
+                    <% btn = 'warning' %>
+                <%else %>
+                  <% btn = 'default' %>
+                 <%end%>     
+                  <!--<td><span class="label label-<%=btn%>"><%= audit.action %></span></td>-->
+                  <tr>                
+                    <td><span class="label label-<%=btn%>"><%= colection[audit.action] %></span></td>
+                    <td><%= colection_table[audit.auditable_type] %></td>
+                    <% if !audit.user_id.nil? %> 
+                      <% usuario = User.find(audit.user_id) %>
+                      <td><%= usuario.username + " " + usuario.apellido  %></td>
+                    <%elsif%>
+                    <td>default</td>   
+                    <%end%>
+                    <td><%= link_to 'Ver cambios', audit_change_path(audit), remote: true %></td>                
+                    <td><%= audit.created_at.strftime("%d-%m-%Y - %R") %></td>                
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+
+        </div>
+    </div>
+  </div>
+
+  <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+         <nav><%=paginate @audited_tables, :theme => 'twitter-bootstrap-3' %></nav>
+    </ul>
+  </div>
+
+</div>

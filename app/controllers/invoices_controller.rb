@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!  
+  load_and_authorize_resource
   before_action :set_invoice, only: [:show, :update, :destroy]
   
   autocomplete :invoice, :numero,:extra_data => [:id,:total] do |items|
@@ -12,6 +13,17 @@ class InvoicesController < ApplicationController
   def index
     @invoices = Invoice.all.order(:created_at).reverse
     @invoices = Kaminari.paginate_array(@invoices).page(params[:page]).per(5)
+    @filterrific = initialize_filterrific(
+    Invoice,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @invoices = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /invoices/1
@@ -85,6 +97,6 @@ class InvoicesController < ApplicationController
                                       :total,
                                       :state,
                                       :account_id,
-                                      :invoice_details_attributes => [:id, :service_id, :cantidad, :precio, :subtotal])
+                                      :invoice_details_attributes => [:id, :service_id, :servicio, :cantidad, :precio, :subtotal])
     end
 end

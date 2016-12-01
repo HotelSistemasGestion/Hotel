@@ -5,12 +5,13 @@ class InvoiceDetail < ActiveRecord::Base
 
 	attr_accessor :service,:ayudante
 
-	before_save :set_precio
+	before_save :set_values
 
 	private
 
-		def set_precio
-			self.precio = self.subtotal / self.cantidad
+		def set_values
+			if self.precio.nil? then self.precio = self.subtotal / self.cantidad end
+			if self.servicio.nil? then self.servicio = Service.find(self.service_id).nombre end
 		end
 
 end

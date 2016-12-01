@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129005548) do
+
+ActiveRecord::Schema.define(version: 20161130213524) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "ejercicio"
+    t.integer  "parent_id"
   end
 
   create_table "accounting_entries", force: :cascade do |t|
@@ -98,6 +101,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.integer  "haber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "auto"
   end
 
   create_table "accounting_years", force: :cascade do |t|
@@ -129,6 +133,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.integer  "descuento"
     t.string   "numero"
     t.integer  "iva"
+    t.integer  "reservation_id"
   end
 
   add_index "accounts", ["client_id"], name: "index_accounts_on_client_id", using: :btree
@@ -296,6 +301,10 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.integer  "existente_tdb"
     t.integer  "opening_cash_id"
     t.integer  "dif_registrada"
+    t.integer  "dif_efectivo"
+    t.integer  "dif_cheque"
+    t.integer  "dif_credito"
+    t.integer  "dif_debito"
   end
 
   add_index "closing_cashes", ["opening_cash_id"], name: "index_closing_cashes_on_opening_cash_id", using: :btree
@@ -362,6 +371,7 @@ ActiveRecord::Schema.define(version: 20161129005548) do
     t.integer  "subtotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "servicio"
   end
 
   create_table "invoices", force: :cascade do |t|

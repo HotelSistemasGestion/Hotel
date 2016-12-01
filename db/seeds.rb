@@ -13,12 +13,18 @@
 Service.create(nombre: "TV cable",descripcion: "900 canales",precio: 20000);
 Service.create(nombre: "TV cable Nacionales",descripcion: "100 canales",precio: 10000);
 Service.create(nombre: "Lavanderia",descripcion: "Lavado y planchado",precio: 50000);
+
+Service.create(nombre: "Desayuno clasico",descripcion: "Valido hasta las 10 p.m.",precio: 18000);
+Service.create(nombre: "Pizza familiar",descripcion: "8 porciones",precio: 40000);
+Service.create(nombre: "Hamburguesa p/Niños",descripcion: "Porcion pequeña",precio: 6000);
+
 Comfort.create(descripcion: "una estrella",precio: 10000);
 Comfort.create(descripcion: "dos estrellas",precio: 20000);
 Comfort.create(descripcion: "tres estrellas",precio: 50000);
 
 
 
+<<<<<<< HEAD
 AccountingYear.create(anho: "2016",estado: "actual");
 AccountingYear.create(anho: "2015",estado: "antiguo");
 AccountingYear.create(anho: "2014",estado: "antiguo");
@@ -114,6 +120,105 @@ AccountXEntry.create(accounting_entry_id:"22",accounting_account_id:"5",monto:"2
 AccountXEntry.create(accounting_entry_id:"23",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
 AccountXEntry.create(accounting_entry_id:"24",accounting_account_id:"13",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
 AccountXEntry.create(accounting_entry_id:"25",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+=======
+
+
+#AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
+#AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
+#AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "1000",haber: "0");
+#AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "0",haber: "1000");
+#AccountingEntry.create(numero:"3",fecha:"2016/07/18",iva: "10",debe: "100",haber: "0");
+#AccountingEntry.create(numero:"3",fecha:"2016/07/18",iva: "10",debe: "0",haber: "100");
+#AccountingEntry.create(numero:"4",fecha:"2016/08/01",iva: "10",debe: "100000",haber: "0");
+#AccountingEntry.create(numero:"4",fecha:"2016/08/01",iva: "10",debe: "0",haber: "100000");
+#AccountingEntry.create(numero:"5",fecha:"2016/09/23",iva: "10",debe: "20000",haber: "0");
+#AccountingEntry.create(numero:"5",fecha:"2016/09/23",iva: "10",debe: "0",haber: "20000");
+#AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "10",debe: "4000",haber: "0");
+#AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "10",debe: "0",haber: "4000");
+#AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "10",debe: "20000",haber: "0");
+#AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "10",debe: "0",haber: "20000");
+
+
+#AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "15000",haber: "0");
+#AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "10000",haber: "0");
+#AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "25000",haber: "0");
+#AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "0",haber: "50000");
+
+#AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "54000",haber: "0");
+#AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
+#AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
+#AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "19000");
+
+#AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "35000",haber: "0");
+#AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
+#AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
+
+
+AccountPlan.create(descripcion:"Plan de cuentas 2016",estado:"vigente",version:"1.0.1");
+AccountPlan.create(descripcion:"Plan de cuentas 2015",estado:"vigente",version:"1.0.1");
+
+AccountingYear.create(anho: "2016",estado: "vigente",account_plan_id: "1");
+AccountingYear.create(anho: "2015",estado: "finalizado",account_plan_id: "2");
+
+
+AccountingAccount.create(grupo:"1",nombre:"Servicios",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"111",nombre:"TV cable",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"112",nombre:"TV cable Nacionales",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"113",nombre:"Lavanderia",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"2",nombre:"Restaurant",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"2");
+AccountingAccount.create(grupo:"221",nombre:"Desayuno clasico",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
+AccountingAccount.create(grupo:"222",nombre:"Pizza familiar",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
+AccountingAccount.create(grupo:"223",nombre:"Hamburguesa p/Niños",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
+
+AccountingAccount.create(grupo:"1",nombre:"Servicios",imputable:"false",cuenta:"0",ejercicio:"2",parent_id:"1");
+AccountingAccount.create(grupo:"111",nombre:"TV cable",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
+AccountingAccount.create(grupo:"112",nombre:"TV cable Nacionales",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
+AccountingAccount.create(grupo:"113",nombre:"Lavanderia",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
+
+
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"4");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"5");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"6");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"7");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"8");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"9");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"10");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"11");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"12");
+
+
+#AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
+#AccountXEntry.create(accounting_entry_id:"3",accounting_account_id:"2",monto:"20000",observacion:"Sector Bar y Restaurant ",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"4",accounting_account_id:"7",monto:"20000",observacion:"Sector Bar y Restaurant ",tipo:"D");
+#AccountXEntry.create(accounting_entry_id:"5",accounting_account_id:"2",monto:"20000",observacion:"Servicio para habitaciones",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"6",accounting_account_id:"8",monto:"20000",observacion:"Servicio para habitaciones",tipo:"D");
+#AccountXEntry.create(accounting_entry_id:"7",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"8",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
+#AccountXEntry.create(accounting_entry_id:"9",accounting_account_id:"2",monto:"20000",observacion:"Servicio para habitaciones",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"10",accounting_account_id:"8",monto:"20000",observacion:"Servicio para habitaciones",tipo:"D");
+#AccountXEntry.create(accounting_entry_id:"11",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"12",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
+#A#ccountXEntry.create(accounting_entry_id:"13",accounting_account_id:"2",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"14",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+
+#AccountXEntry.create(accounting_entry_id:"15",accounting_account_id:"2",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"16",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"17",accounting_account_id:"7",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"18",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+
+#AccountXEntry.create(accounting_entry_id:"19",accounting_account_id:"12",monto:"20000",observacion:"Hospedaje",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"20",accounting_account_id:"8",monto:"20000",observacion:"Hospedaje",tipo:"D");
+#AccountXEntry.create(accounting_entry_id:"21",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"D");
+#AccountXEntry.create(accounting_entry_id:"22",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
+
+#AccountXEntry.create(accounting_entry_id:"23",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"24",accounting_account_id:"13",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+#AccountXEntry.create(accounting_entry_id:"25",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
+>>>>>>> 25b4a48cfb6631f64df06bc88040ed5e744b6f45
 
 
 
@@ -128,14 +233,14 @@ State.create(descripcion: "ocupado");
 State.create(descripcion: "reservado");
 State.create(descripcion: "fuera de servicio");
 
-Room.create(type_of_room_id: 1,state_id: 1, capacidad: 2, identificador:"AU1",precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'AD2',precio: 10000,comfort_id: 2);
-Room.create(type_of_room_id: 3,state_id: 1 ,capacidad: 2,identificador: 'CU3',precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BU1",precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BD1",precio: 10000,comfort_id: 2);
-Room.create(type_of_room_id: 2,state_id: 1 ,capacidad: 2,identificador: 'B2',precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 4,state_id: 4 ,capacidad: 2,identificador: 'XT3',precio: 10000,comfort_id: 3);
+Room.create(type_of_room_id: 1,state_id: 1, capacidad: 2, identificador:"AU1",comfort_id: 1);
+Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'AD2',comfort_id: 2);
+Room.create(type_of_room_id: 3,state_id: 1 ,capacidad: 2,identificador: 'CU3',comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BU1",comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BD1",comfort_id: 2);
+Room.create(type_of_room_id: 2,state_id: 1 ,capacidad: 2,identificador: 'B2',comfort_id: 1);
+Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',comfort_id: 1);
+Room.create(type_of_room_id: 4,state_id: 4 ,capacidad: 2,identificador: 'XT3',comfort_id: 3);
 
 
 
@@ -287,3 +392,10 @@ PaymentValue.create(descripcion:"cheque");
 PaymentValue.create(descripcion:"tarjeta crédito");
 PaymentValue.create(descripcion:"tarjeta dédito");
 
+Invoice.create(nombre: "Marcelo Caceres", fecha: "2016-11-20", ruc: "8001425-6", direccion: "Carlos A. Lopez 1020", celular: "0985658955", correo: "micorreo@gmail.com", numero: "9005", state: "pendiente", subtotal: 10000, descuento: 0, total: 10000, iva: 909);
+InvoiceDetail.create(invoice_id: 1, service_id: 2, cantidad: 1, precio: 10000, subtotal: 10000);
+InvoiceDetail.create(invoice_id: 1, service_id: 2, cantidad: 2, precio: 10000, subtotal: 20000);
+Invoice.create(nombre: "Monica Riveros", fecha: "2016-11-30", ruc: "1258745-0", direccion: "Mcal. Lopez 102", celular: "0971005258", correo: "correodemonica@gmail.com", numero: "9006", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
+InvoiceDetail.create(invoice_id: 2, service_id: 2, cantidad: 2, precio: 10000, subtotal: 20000);
+Invoice.create(nombre: "Angel Carreras", fecha: "2016-10-31", ruc: "400808-6", direccion: "Juan Leon Mallorquin 201", celular: "0993506908", correo: "correodeAngel@gmail.com", numero: "9004", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
+InvoiceDetail.create(invoice_id: 3, service_id: 1, cantidad: 1, precio: 20000, subtotal: 20000);
