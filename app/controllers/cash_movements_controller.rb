@@ -1,5 +1,4 @@
-class CashMovementsController < ApplicationController
-  
+class CashMovementsController < ApplicationController  
   before_action :authenticate_user!
   before_action :set_cash_movement, only: [:show, :edit, :update, :destroy]
   
@@ -7,7 +6,18 @@ class CashMovementsController < ApplicationController
   # GET /cash_movements.json
   def index
     @cash_movements = CashMovement.all.order(created_at: :desc)
-    @cash_movements = Kaminari.paginate_array(@cash_movements).page(params[:page]).per(5)
+    #@cash_movements = Kaminari.paginate_array(@cash_movements).page(params[:page]).per(5)
+    @filterrific = initialize_filterrific(
+    CashMovement,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /cash_movements/1
@@ -24,11 +34,21 @@ class CashMovementsController < ApplicationController
     @id = @apertura.id
   end
 
-  def list
+  def list2
     @apertura_id = params[:opening_cash_id]
-    @movimientos = CashMovement.where(opening_cash_id: @apertura_id)
+    @cash_movements = CashMovement.where("opening_cash_id = ?", @apertura_id)
+    @apertura = OpeningCash.find(params[:opening_cash_id])
+    @caja = @apertura.cash.descripcion
+    @filterrific = initialize_filterrific(
+    CashMovement,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @cash_movements = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
     respond_to do |format|
-      format.html{ render :list }
+      format.html
+      format.js
     end
   end
   

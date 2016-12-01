@@ -55,18 +55,18 @@
       </tr>
       <tr>
         <td>Ingresos</td>
-        <td>Lista los ingresos del hotel por rango de fechas</td>
-        <td><button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></td>
+        <td>Lista los ingresos de las cajas en el hotel</td>
+        <td><button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><%= link_to 'Ver Reporte', report_closing_cashes_path, style: "color:white"%></button></td>
       </tr>
       <tr>
         <td>Pedido de Reservas</td>
         <td>Lista los pedidos de reserva y su actual estado</td>
-        <td><button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><%= link_to 'Ver Reporte', report_reservation_requests_path, style: "color:white"%></button></td>
+        <td><button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><%= link_to 'Ver Reporte', report_reservation_rooms_path, style: "color:white"%></button></td>
       </tr>
       <tr>
         <td>Valores</td>
         <td>Lista los valores recibidos del hotel</td>
-        <td><button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><a href="#" style="color:white"> Ver reporte</a></button></td>
+        <td><button class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-chevron-right"></i><%= link_to 'Ver Reporte', report_values_closing_cashes_path, style: "color:white"%></button></td>
       </tr>
    </tbody>   
   </table>

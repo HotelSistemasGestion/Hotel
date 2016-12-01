@@ -1,14 +1,14 @@
-<%= nested_form_for(@reservation_request, html: { class: "form-horizontal", role: "form" }) do |f| %>
+<%= nested_form_for(@reservation_request, html: { class: "form-horizontal", role: "form" },validate: true) do |f| %>
   <% if @reservation_request.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert" id="alert">
+     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@reservation_request.errors.count, "error") %> Ocurrio un error, por favor verifique los campos:</h4>
-
-      <ul>
-      <% @reservation_request.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+      <h4><%=(@reservation_request.errors.count)%>
+          <%= ((@reservation_request.errors.count) > 1) ? (" errores han ocurrido") : "error ocurrio" %>:</h4>
+      <!--ul>
+      <%# @reservation.errors.full_messages.each do |msg| %>
+        <li><%#= msg %></li>
+      <%# end %>
+      </ul-->
     </div>
   <% end %>
 
@@ -43,7 +43,7 @@
     <div class="form-group">
       <%#= f.label "Confort de la Habitacion", class: "col-sm-3" %> <!--aun no se ve ya que no hay nada en el-->
       <div class="col-sm-6">
-        <%= f.select :comfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ] }, {:prompt => "Elegir Comfort de la Habitacion",include_blank: true},{ class: "form-control", data: { live_search: 'true' } } %>
+        <%= f.select :comfort_id,Comfort.all.collect { |p| [ p.descripcion , p.id ] }, {:prompt => "Elegir Comfort de la Habitacion"},{ class: "form-control", data: { live_search: 'true' } } %>
       </div>
     </div>
 

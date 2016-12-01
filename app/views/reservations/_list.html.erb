@@ -5,7 +5,8 @@
         <table class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-          
+              <th>Estado</th>
+
               <th>Nombre</th>
 
               <th>Apellido</th>
@@ -26,6 +27,11 @@
 
           <tbody>
             <%= content_tag_for(:tr, @reservations) do |reservation| %>
+                <%if reservation.state == "pendiente" %>
+                  <td><span class="label label-warning">Pendiente</span></td>
+                <% else %>
+                  <td><span class="label label-success">Confirmado</span></td>
+                <%end%>
           
               <td><%= reservation.nombre %></td>
           
@@ -37,11 +43,20 @@
 
               <td><%= number_to_currency_py(reservation.total) %></td>
               
-              <td><%= link_to 'Confirmar', {:controller => "accounts", :action => "new", :id => reservation.id },class: "btn btn-primary" %></td>
+              <td>
+                <%if reservation.state == "pendiente" %>
+                  <%= link_to 'Confirmar', {:controller => "accounts", :action => "new", :id => reservation.id },class: "btn btn-primary" %>
+                <%else%>
+                  <%= link_to 'Ver Cuenta', Account.find_by(reservation_id: reservation.id), class: "btn btn-info" %>
+
+                <%end%>
+              </td>
               
               
               <td align="right"><%= link_to '', reservation, remote: true, class: "btn btn-primary glyphicon glyphicon-eye-open" %>
+              <%if reservation.state == "pendiente" %>
               <%= link_to '', edit_reservation_path(reservation),class: "btn btn-warning glyphicon glyphicon-pencil" %>
+              <%end%>
               <%= link_to '', reservation,class: "btn btn-danger glyphicon glyphicon-trash borrar", method: :delete, data: { confirm: 'Esta seguro?' }, :remote => true %></td>
             <% end %>
           </tbody>

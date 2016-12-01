@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!  
+  load_and_authorize_resource
   before_action :set_account, only: [:show, :edit, :update, :destroy, :facturar]
 
   # GET /accounts
@@ -20,7 +21,7 @@ class AccountsController < ApplicationController
   # GET /accounts/new
   def new
     if params[:id]
-      @account = Account.new
+      @account = Account.new(reservation_id: params[:id])
       @reservation = Reservation.find(params[:id])
       @reservation_rooms = ReservationRoom.where("reservation_id = ?",params[:id])
       @reservation_rooms.each do |room|
@@ -39,11 +40,16 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
+     Rails.logger.debug "reservation_id: #{@account.reservation_id}"
+              
+    Reservation.find(@account.reservation_id).update({state: "confirmado"})
+
 
     respond_to do |format|
       if @account.save
         format.html { redirect_to @account, notice: 'La Cuenta fue creada exitosamente.' }
         format.json { render :show, status: :created, location: @account }
+        
       else
         format.html { render :new }
         format.json { render json: @account.errors, status: :unprocessable_entity }
@@ -106,6 +112,7 @@ class AccountsController < ApplicationController
     def account_params
       params.require(:account).permit(
         :client_id,
+        :reservation_id,
         :nombre,
         :ruc,
         :telefono,
@@ -115,6 +122,7 @@ class AccountsController < ApplicationController
         :subtotal,
         :descuento,
         :total,
+        :reservation_id,
         :iva,
         :room_account_details_attributes => [:id, :room_id, :account_id, :type_of_room_id, :comfort_id, :check_in, :check_out, :subtotal, :_destroy],
         :account_details_attributes => [:id, :service_id, :servicio, :cantidad, :precio, :subtotal, :_destroy])

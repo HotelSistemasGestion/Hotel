@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!  
+  load_and_authorize_resource
   before_action :set_service, only: [:show, :edit, :update, :destroy]
   
   autocomplete :service, :nombre, :extra_data => [:id,:precio] do |items|

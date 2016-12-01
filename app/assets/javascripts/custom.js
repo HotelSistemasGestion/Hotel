@@ -23,7 +23,7 @@ init_function();
           $(this).datepicker({
             format: 'dd-mm-yyyy',
             language: 'es',
-            startDate: '+1d'}
+            startDate: '+0d'}
             );
     });
 
@@ -102,11 +102,11 @@ init_function();
                   "Noviembre",
                   "Diciembre"
               ]
-          },startDate: moment().add(1,'days'),
+          },startDate: moment().add(0,'days'),
           endDate: moment().add(2,'days'),
           autoclose: true,
           autoSize: true,
-          minDate: moment().add(1,'days'),
+          minDate: moment().add(0,'days'),
 
           });
 

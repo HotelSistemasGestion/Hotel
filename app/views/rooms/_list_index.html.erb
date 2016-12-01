@@ -24,7 +24,6 @@
     
         <th>Estado</th>
     
-        <th>Capacidad</th>
         <th>Comforts</th>
         <th></th>
     
@@ -39,27 +38,46 @@
     
       <%= content_tag_for(:tr, @rooms.order(id: :desc)) do |room| %>
      <td>
-         <% Photo.where("#{:room_id} = ?" , room.id).each do |p|%>
-         <a  href= "<%=p.my_file.url%>"  class="image-popup">
-         <%= image_tag p.my_file.url,:width => 50, :height => 50%>
-         </a>
+         <% if !(Photo.where("#{:room_id} = ?" , room.id)).present?%>
+              No tiene imagenes
          <%end%>
-        </td>
+
+         <% Photo.where("#{:room_id} = ?" , room.id).each do |p|%>
+              <%if (!p.my_file.present?) %>
+              No tiene imagenes
+              <%else%>
+              <a  href= "<%=p.my_file.url%>"  class="image-popup">
+              <%= image_tag p.my_file.url,:width => 50, :height => 50%>
+              </a>
+              <%end%>
+         <%end%>
+     </td>
 
                 
                               
         <td><%= room.identificador %></td>
 
         <td><%= room.type_of_room_tipo %></td>
-    
-        <td><%= room.state_descripcion %></td>
-    
-        <td><%= room.capacidad %></td>
+          
+           <!--Se determina el color del label dependiendo del estado NO UTILIZO ENUMERIZE, -->                   
+                <%if room.state_descripcion == "libre" %>
+                  <% btn = 'success' %>
+                <%elsif room.state_descripcion == "fuera de servicio" %>
+                  <% btn = 'danger' %>
+                <%elsif room.state_descripcion == "reservado" %>
+                   <% btn = 'warning' %>
+                <%else %>
+                  <% btn = 'teal' %>
+                <%end%>     
+        <td><span class="label label-<%=btn%>"><%= room.state_descripcion %></span></td>
+         
         <td><%= room.comfort_descripcion %></td>
 
         <td align="center"><%= link_to '', room,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
         <%= link_to '', edit_room_path(room), class: "btn btn-warning glyphicon glyphicon-pencil"%>
+        <% if room.state_descripcion != "fuera de servicio"%>
         <%= link_to '', room, method: :delete, data: { confirm: 'Are you sure?'},class: "btn btn-danger glyphicon glyphicon-trash" %>
+        <%end%>
       </td>
     <% end %>
     </tbody>

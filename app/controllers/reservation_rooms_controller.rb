@@ -62,6 +62,23 @@ class ReservationRoomsController < ApplicationController
     end
   end
 
+  def report
+  @filterrific = initialize_filterrific(
+    ReservationRoom,
+    params[:filterrific],select_options: {
+        sorted_by_state: ReservationRoom.options_for_sorted_by_state
+      },
+     persistence_id: false
+  ) or return
+
+  @reservation_rooms = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @reservation_rooms_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation_room

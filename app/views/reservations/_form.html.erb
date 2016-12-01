@@ -2,13 +2,13 @@
   <% if @reservation.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h4>
-
-      <ul>
-      <% @reservation.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+      <h4><%=(@reservation.errors.count)%>
+          <%= ((@reservation.errors.count) > 1) ? (" errores han ocurrido") : "error ocurrio" %>:</h4>
+      <!--ul>
+      <%# @reservation.errors.full_messages.each do |msg| %>
+        <li><%#= msg %></li>
+      <%# end %>
+      </ul-->
     </div>
   <% end %>
 
@@ -106,11 +106,13 @@
   </div>
 <% end %>
 <script type="text/javascript">
-  $(function(){
-    $(".sincronizador1").each(function(){
+
+ $(window).load(function() {
+
+  $(".sincronizador1").each(function(){
     cargarSelectDeHabitaciones($(this).attr("id"),-15);
-    });
   });
+});
 
   $(document).on('nested:fieldAdded','form', function(event) {
     //$("form").live("nested:fieldAdded", function(event) {
@@ -294,7 +296,7 @@
         }
 
   function guardar(){
-    if ($('.field_with_errors:visible').length > 0) {
+    if ($("#my_button").hasClass('field_with_errors')) {
       $("#guardar").attr('disabled', true);
     }else{
       $("#guardar").attr('disabled', false);

@@ -135,14 +135,14 @@ State.create(descripcion: "ocupado");
 State.create(descripcion: "reservado");
 State.create(descripcion: "fuera de servicio");
 
-Room.create(type_of_room_id: 1,state_id: 1, capacidad: 2, identificador:"AU1",precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'AD2',precio: 10000,comfort_id: 2);
-Room.create(type_of_room_id: 3,state_id: 1 ,capacidad: 2,identificador: 'CU3',precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BU1",precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BD1",precio: 10000,comfort_id: 2);
-Room.create(type_of_room_id: 2,state_id: 1 ,capacidad: 2,identificador: 'B2',precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',precio: 10000,comfort_id: 1);
-Room.create(type_of_room_id: 4,state_id: 4 ,capacidad: 2,identificador: 'XT3',precio: 10000,comfort_id: 3);
+Room.create(type_of_room_id: 1,state_id: 1, capacidad: 2, identificador:"AU1",comfort_id: 1);
+Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'AD2',comfort_id: 2);
+Room.create(type_of_room_id: 3,state_id: 1 ,capacidad: 2,identificador: 'CU3',comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BU1",comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BD1",comfort_id: 2);
+Room.create(type_of_room_id: 2,state_id: 1 ,capacidad: 2,identificador: 'B2',comfort_id: 1);
+Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',comfort_id: 1);
+Room.create(type_of_room_id: 4,state_id: 4 ,capacidad: 2,identificador: 'XT3',comfort_id: 3);
 
 
 

@@ -2,13 +2,13 @@
   <% if @budget.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
       <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@budget.errors.count,"error") %> Error</h4>
-
-      <ul>
-      <% @budget.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+      <h4><%=(@budget.errors.count)%>
+          <%= ((@budget.errors.count) > 1) ? (" errores han ocurrido") : "error ocurrio" %>:</h4>
+      <!--ul>
+      <%# @reservation.errors.full_messages.each do |msg| %>
+        <li><%#= msg %></li>
+      <%# end %>
+      </ul-->
     </div>
   <% end %>
 
