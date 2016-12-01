@@ -36,8 +36,7 @@
         
               <%= f.fields_for :photos  ,:wrapper => false do |li| %>
               <tr class="fields">
-                  <th scope="row"> <%= li.file_field :my_file, class: "form-control" ,type:"file" ,class: "file"  %></th>
-                 
+                  <th scope="row"> <%= li.file_field :my_file, class: "form-control"  ,class: "file" %></th>
                   <td><%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %></td>
               </tr>
               <%end%>
@@ -93,7 +92,7 @@
     <div class="col-sm-9">
        <%= f.select :comfort_id, Comfort.all.collect { |p| [ p.descripcion, p.id ] },{include_blank: false},class: "form-control"%>
          <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-      <div class="help-block with-errors">*requerido</div>
+      <div class="hide help-block with-errors">*requerido</div>
     </div>
   </div>
 
@@ -105,12 +104,17 @@
 
     </div>         
   <div class ="box-body">  
-
+      <%if @room.identificador.present?%>
+      
+      <%= f.submit "Editar Habitacion", class: "btn btn-primary" %>
+      <%else%>
       <%= f.submit "Crear Habitacion", class: "btn btn-primary" %>
+      <%end%>
+
       <%= link_to rooms_path, class: 'btn btn-default' do %>
       <span class="glyphicon glyphicon-list-alt"></span>
       Volver
-    <% end %>
+      <% end %>
  
 </div>
 <% end %>
