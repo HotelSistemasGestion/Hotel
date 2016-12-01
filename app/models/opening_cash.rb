@@ -16,4 +16,11 @@ class OpeningCash < ActiveRecord::Base
     
     delegate :descripcion, to: :cash, prefix: true, allow_nil: true
     delegate :nombre, :apellido, :type_of_employee_id, to: :employee, prefix: true, allow_nil: true
+
+    filterrific(available_filters: [:sorted_by_employee,:sorted_by_cash,:created_at_gte,:created_at_lt])
+    scope :sorted_by_cash,->cash {joins(:cash).where('cashes.descripcion LIKE ?',"%#{cash}%")}
+    scope :sorted_by_employee,->employee {joins(:employee).where('employees.nombre LIKE ?',"%#{employee}%")}
+    scope :created_at_gte, lambda { |reference_time| where('opening_cashes.fecha_apertura >=?', reference_time)}
+    scope :created_at_lt, lambda { |reference_time| where('opening_cashes.fecha_apertura <= ?', reference_time)}
+    
 end

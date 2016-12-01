@@ -14,10 +14,11 @@ class ClosingCash < ActiveRecord::Base
 	validates :existente_tdb, :presence => {:message => " Ingrese el monto en tarjeta debito " }
 	
 	filterrific(available_filters: [:sorted_by_cash,:desde,:hasta])
-
+	
 	scope :sorted_by_cash, lambda{ |cash_ids| joins(opening_cash: :cash).where('cashes.id = ?', cash_ids)}
 	scope :desde, lambda { |reference_time| where('closing_cashes.created_at >=?', reference_time)}
  	scope :hasta, lambda { |reference_time| where('closing_cashes.created_at <= ?', reference_time)}
  
+
 
 end
