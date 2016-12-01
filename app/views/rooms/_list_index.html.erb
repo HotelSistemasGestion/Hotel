@@ -44,7 +44,7 @@
 
          <% Photo.where("#{:room_id} = ?" , room.id).each do |p|%>
               <%if (!p.my_file.present?) %>
-              NO TIENE IMAGENES
+              No tiene imagenes
               <%else%>
               <a  href= "<%=p.my_file.url%>"  class="image-popup">
               <%= image_tag p.my_file.url,:width => 50, :height => 50%>

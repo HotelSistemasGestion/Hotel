@@ -6,8 +6,8 @@
 
     <div class="box-body">
 
-      <div class="col-sm-2">
-
+      <div class="col-md-3">
+      <dl class="dl-horizontal">
       <dt>Identificador: </dt>
       <dd><%= @room.identificador %></dd>
 
@@ -25,16 +25,13 @@
                   <% btn = 'default' %>
                 <%end%>     
                 <dd><span class="label label-<%=btn%>"><%= @room.state_descripcion %></span></dd>
-
-    
-
       
       <dt>Comfort:</dt>
       <dd><%= @room.comfort_descripcion %></dd>
 
-
+      </dl>
       </div>
-      <div class="col-sm-8">
+      <div class="col-sm-7">
       <% if !(Photo.where("#{:room_id} = ?" , @room.id)).present?%>
              
          <%end%>
@@ -44,15 +41,15 @@
              
              <%else%>
              <a  href= "<%=p.my_file.url%>"  class="image-popup">
-             <%= image_tag p.my_file.url,:width => 200, :height => 200%>
+             <%= image_tag p.my_file.url,:width => 150, :height => 150%>
              </a>
              <%end%>
         </div>
       <%end%>
 
       </div>    
-     </div>
-
+   </div>
+    
      <BR>
      <BR>
      <div class="box-body">
