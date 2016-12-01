@@ -296,7 +296,7 @@
         }
 
   function guardar(){
-    if ($("#my_button").hasClass('field_with_errors')) {
+    if ($("#my_button:visible").hasClass('field_with_errors')) {
       $("#guardar").attr('disabled', true);
     }else{
       $("#guardar").attr('disabled', false);

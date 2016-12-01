@@ -52,8 +52,8 @@ class ReservationRequestsController < ApplicationController
 
     
     respond_to do |format|
-       #if verify_recaptcha(model: @reservation_request) && @reservation_request.save
-       if @reservation_request.save
+       if verify_recaptcha(model: @reservation_request) && @reservation_request.save
+       #if @reservation_request.save
         # Redireccionamos a welcome y especificamente a la seccion de contacto para mostrar el mensaje de exito.
         format.html { redirect_to welcome_index_path(), notice: 'Su pedido fue creado con exito,en breve responderemos.' }
         #format.json { render 'welcome/index' , status: :created, location: @reservation_request }
