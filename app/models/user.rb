@@ -6,7 +6,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   filterrific(available_filters: [:sorted_by])
-  scope :sorted_by, lambda { |nombre| where('users.username = ?', nombre)}
+  
+  scope :sorted_by, lambda { |query|
+    return nil  if query.blank?    
+    terms = query.downcase.split(/\s+/)
+    terms = terms.map { |e| (e.gsub('*', '%') + '%').gsub(/%+/, '%') }
+    num_or_conds = 2
+    where(
+    terms.map { |term|
+      "(LOWER(users.username) LIKE ? OR LOWER(users.apellido) LIKE ?)"
+    }.join(' AND '),
+    *terms.map { |e| [e] * num_or_conds }.flatten
+    )
+  }
 
   validates :username, presence: { message: "requerido*" }
   validates_format_of :username, :with => /[a-z]/

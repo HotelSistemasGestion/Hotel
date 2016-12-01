@@ -37,7 +37,7 @@
         <p>
           <strong>Rol:</strong>
           <%= @usuario.rol.nombre %>
-        </p>
+        </p>        
         <%if @usuario.rol.nombre != 'Admin' %>
           <p>
             <strong>Acciones:</strong>       
@@ -45,9 +45,7 @@
                 <%= acc.accion + ' - ' %>           
             <%end%> 
           </p>
-        <%end%>          
-        <%#= link_to 'Edit', edit_reservation_request_path(@reservation_request) %> 
-        <%#= link_to 'Back', reservation_requests_path %>
+        <%end%>                 
       </div>
     </div>
   </div>
