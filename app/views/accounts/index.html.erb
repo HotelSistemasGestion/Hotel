@@ -32,16 +32,21 @@
               <td><%= link_to account, class: 'col-sm-2', title: 'Ver Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                 <span class= "glyphicon glyphicon glyphicon-eye-open"></span>
               <% end %>
-              <%if (account.numero.present? and !Invoice.find_by(account_id: account).state.pagado?) or !account.numero.present? %>
+              <%if !account.numero.present? %>
                     <%= link_to account, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'col-sm-2', title: 'Eliminar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
                     <span class= "glyphicon glyphicon glyphicon-trash"></span>
-                    <% end %>     
-              <% end %>
-              <%if !account.numero.present? %> 
-                <%= link_to edit_account_path(account), class: 'col-sm-2', title: 'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                  <span class= "glyphicon glyphicon glyphicon-edit"></span>
+                    <% end %>  
+                    <%= link_to edit_account_path(account), class: 'col-sm-2', title: 'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                      <span class= "glyphicon glyphicon glyphicon-edit"></span>
+                    <% end %>   
+              <% else %>
+                <%if !Invoice.find_by(account_id: account).state.pagado? %>
+                  <%= link_to account, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'col-sm-2', title: 'Eliminar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
+                    <span class= "glyphicon glyphicon glyphicon-trash"></span>
+                  <% end %>
                 <% end %>
               <% end %>
+
               </td>
               </tr>
           <% end %>

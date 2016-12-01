@@ -42,7 +42,7 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
      Rails.logger.debug "reservation_id: #{@account.reservation_id}"
               
-    Reservation.find(@account.reservation_id).update({state: "confirmado"})
+    if @account.reservation_id.present? then Reservation.find(@account.reservation_id).update({state: "confirmado"}) end
 
 
     respond_to do |format|
