@@ -6,64 +6,94 @@
 
     <div class="box-body">
 
-      <div class="col-md-4">
-      <dl class="dl-horizontal">
-      <dt>Identificador: </dt>
-      <dd><%= @room.identificador %></dd>
+              <div class="form-group col-sm-4">
+                <div class="col-sm-7">
+                 <dt>Identificador:</dt>
+                </div>
+                <div class="col-sm-5">
+                 <%= @room.identificador %>
+                </div>
+              </div>
 
-      <dt>Tipo de Habitacion:</dt>
-      <dd><%= @room.type_of_room_tipo %></dd>
-      <dt>Estado:</dt>
-      
-          <!--Se determina el color del label dependiendo del estado NO UTILIZO ENUMERIZE, -->                   
+              <div class="form-group col-sm-4">
+                <div class="col-sm-7">
+                 <dt>Tipo de Habitacion:</dt>
+              </div>
+                <div class="col-sm-5">
+                 <%= @room.type_of_room_tipo %>
+                </div>
+              </div>
+              
+
+              <!--Se determina el color del label dependiendo del estado NO UTILIZO ENUMERIZE, -->                   
                 <%if @room.state_descripcion == "libre" %>
                   <% btn = 'success' %>
                 <%elsif @room.state_descripcion == "fuera de servicio" %>
                   <% btn = 'danger' %>
-               
+                <%elsif @room.state_descripcion == "reservado" %>
+                   <% btn = 'warning' %>
                 <%else %>
-                  <% btn = 'default' %>
-                <%end%>     
-                <dd><span class="label label-<%=btn%>"><%= @room.state_descripcion %></span></dd>
-      
-      <dt>Comfort:</dt>
-      <dd><%= @room.comfort_descripcion %></dd>
+                  <% btn = 'info' %>
+                <%end%>  
 
-      </dl>
+
+              <div class="form-group col-sm-4">
+                <div class="col-sm-7">
+                 <dt>Tipo de Habitacion:</dt>
+              </div>
+                <div class="col-sm-5">
+                <span class="label label-<%=btn%>"><%= @room.state_descripcion %></span>
+                </div>
+              </div>
+
+                <div class="form-group col-sm-4">
+                <div class="col-sm-7">
+                 <dt>Comfort:</dt>
+              </div>
+                <div class="col-sm-5">
+                <%= @room.comfort_descripcion %>
+                </div>
+              </div>
+
+
       </div>
-      <div class="col-md-8">
-      <% if !(Photo.where("#{:room_id} = ?" , @room.id)).present?%>
-             
-         <%end%>
-      <% Photo.where("#{:room_id} = ?" , @room.id).each do |p|%>
-        <div class="col-sm-2">
-             <%if (!p.my_file.present?) %>
-             
-             <%else%>
-             <a  href= "<%=p.my_file.url%>"  class="image-popup">
-             <%= image_tag p.my_file.url,:width => 150, :height => 150%>
-             </a>
-             <%end%>
-        </div>
-      <%end%>
 
-      </div>    
-   </div>
-    
-     <BR>
-     <BR>
+
+
+            <div style="text-align:center">
+            <% if !(Photo.where("#{:room_id} = ?" , @room.id)).present?%>
+                    AGREGUE IMAGENES
+
+            <%end%>
+            <% Photo.where("#{:room_id} = ?" , @room.id).each do |p|%>
+              
+                   <%if (!p.my_file.present?) %>
+                   AGREGUE IMAGENES
+
+                   <%else%>
+              <a class="image-popup" href="<%=p.my_file.url%>">
+              <%= cl_image_tag(p.my_file.filename,:width => 150, :height => 100, :crop => :fill, :radius => 20 )%>
+              </a>
+      
+                   <%end%>
+           
+            <%end%>
+
+            
+          </div>
+
+
      <div class="box-body">
-    
-        <div>
-          <%= link_to rooms_path, class: 'btn btn-default' do %>
-          <span class="glyphicon glyphicon-list-alt"></span>
-          Volver
-          <% end %>
-         <%= link_to edit_room_path(@room),class: "btn btn-default" do %>
-         <span class="glyphicon glyphicon-edit"></span>
-         Editar
-         <%end%> 
-        </div>
+         <div class="col-sm-3">
+              <%= link_to rooms_path, class: 'btn btn-default' do %>
+              <span class="glyphicon glyphicon-list-alt"></span>
+            
+              <% end %>
+             <%= link_to edit_room_path(@room),class: "btn btn-success" do %>
+             <span class="glyphicon glyphicon-edit"></span>
+             Editar
+             <%end%> 
+         </div>
     </div>
  
 </div>

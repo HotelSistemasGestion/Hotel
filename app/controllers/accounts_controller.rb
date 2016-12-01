@@ -88,9 +88,7 @@ class AccountsController < ApplicationController
   def report
   @filterrific = initialize_filterrific(
     Account,
-    params[:filterrific],select_options: {
-        sorted_by_state: Account.options_for_sorted_by_state
-      },
+    params[:filterrific],select_options: {},
      persistence_id: false
   ) or return
 

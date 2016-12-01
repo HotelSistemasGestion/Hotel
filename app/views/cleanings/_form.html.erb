@@ -11,40 +11,36 @@
       </ul>
     </div>
   <% end %>
+<div class="box-body">
 
-  <div class="form-group">
-    <%= f.label :cleaning_room, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :cleaning_room, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :room, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :room, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :start, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.date_select :start, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :end, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.date_select :end, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :title, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :title, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
-  </div>
+      <div class="form-group col-sm-6">
+        <%= f.label :Habitacion ,class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+        <%= f.select :room_id ,Room.all.collect { |p| [p.identificador, p.id ] },{include_blank: false},class: "form-control"%>  
+        </div>
+      </div>
+      <div class="form-group col-sm-6">  
+        <%= f.label :Desde, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :start, class: "datepicker form-control" %>
+        </div>
+      </div>
+      <div class="form-group col-sm-6">
+        <%= f.label :Hasta, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :end, class: "datepicker form-control" %>
+        </div>
+      </div>
+      <div class="form-group col-sm-6">
+        <%= f.label :Etiqueta, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group col-sm-6">
+       
+          <%= f.submit "Editar limpieza", class: "btn btn-primary" %>
+        
+      </div>
+ </div>     
 <% end %>
