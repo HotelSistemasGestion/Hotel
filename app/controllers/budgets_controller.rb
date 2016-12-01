@@ -125,6 +125,7 @@ class BudgetsController < ApplicationController
         format.html { redirect_to reservation_requests_path, notice: 'Presupuesto creado exitosamente.' }
       else
         @my_reservation_requests = ReservationRequest.find(budget_params[:reservation_request_id])
+        Rails.logger.debug " conteo: #{1}"
         @budget.budget_service_details.build
         @budget.budget_room_details.build
         format.html { render :new }

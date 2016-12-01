@@ -6,6 +6,19 @@ class ClosingCashesController < ApplicationController
   # GET /closing_cashes.json
   def index
     @closing_cashes = ClosingCash.all
+    @filterrific = initialize_filterrific(
+    ClosingCash,
+    params[:filterrific],select_options: {
+        sorted_by_cash: Cash.options_for_sorted_by_cash
+      },
+     persistence_id: false
+    ) or return
+
+    @closing_cashes = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /closing_cashes/1

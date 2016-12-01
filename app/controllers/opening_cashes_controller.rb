@@ -5,8 +5,19 @@ class OpeningCashesController < ApplicationController
   # GET /opening_cashes
   # GET /opening_cashes.json
   def index
-    @opening_cashes = OpeningCash.all.order(created_at: :desc)
-    @opening_cashes = Kaminari.paginate_array(@opening_cashes).page(params[:page]).per(5)
+    @opening_cashes = OpeningCash.all.order(estado: :desc)
+    #@opening_cashes = Kaminari.paginate_array(@opening_cashes).page(params[:page]).per(5)
+     @filterrific = initialize_filterrific(
+    OpeningCash,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @opening_cashes = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /opening_cashes/1

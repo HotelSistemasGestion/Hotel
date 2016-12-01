@@ -1,70 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="box">
+  <div class="box-body">
+    <div class="row">
+          <%= form_for_filterrific @filterrific do |f| %>
+          <div class="col-xs-3">
+          <%= f.text_field(:sorted_by_employee,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por empleado")%>
+          </div>
+          <div class="col-xs-3">
+          <%= f.text_field(:sorted_by_cash,class: 'filterrific-periodically-observed form-control',placeholder:"Buscar por caja")%>
+          </div>
+          <div class="col-xs-3">
+          <%= f.text_field(:created_at_gte,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Desde")%>
+          </div>
 
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="box">   
-        <div class="box-header">
-          <div class="col-sm-2"></div>
-          <h3 class="box-title col-sm-6">
+          <div class="col-xs-3">
+          <%= f.text_field(:created_at_lt,class: 'filterrific-periodically-observed form-control datepicker',placeholder:"Hasta")%>
+          </div>
+           
+         <%= render_filterrific_spinner %>
+      <% end %>
+      </div>
+  </div>
+</div>
+
+<div class="box">
+  <div class="box-header with-border">
+    <div class="col-sm-4"></div>
+          <h3 class="box-title col-sm-4">
             Aperturas de Cajas
           </h3>
-          <%= link_to 'Nueva Apertura', new_opening_cash_path, class: "btn btn-primary" %>           
-        </div> 
-        
-        <div class="box-body">
-          <div class="dataTables_wrapper form-inline dt-bootstrap">
-            <div class="row">
-              <div class="col-sm-6"></div>
-              <div class="col-sm-6"></div>
-            </div>
-            
-            <div class="row">
-              <div class="col-sm-offset-1 col-sm-9">
-                <table class="table table-bordered table-hover dataTable">
-                  <thead>
-                    <tr role="row">
-                      <th>Caja</th>
-                      <th>Cajero</th>
-                      <th>Fecha</th>
-                      <th>Monto Efectivo</th>
-                      <th></th> 
-                      <th></th>  
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <%= content_tag_for(:tr, @opening_cashes) do |opening_cash| %>
-                    <td><%= opening_cash.cash_descripcion %></td>
-                    <td><%= opening_cash.employee.full_name %></td>
-                    <td><%= opening_cash.fecha_apertura %></td>
-                    <td><%= number_to_currency_py(opening_cash.monto_efectivo) %></td>
-                    <td align="center">
-            <%= link_to opening_cash,remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon-eye-open"></span>
-                    <% end %>
-                <%= link_to edit_opening_cash_path(opening_cash), class: 'btn btn-warning', title: 'Editar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon-pencil"></span>
-                    <% end %>
-            <%= link_to opening_cash, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                        <span class= "glyphicon glyphicon-trash"></span>
-                    <% end %></td>
-                    <% end %>
-                  </tbody>  
-                </table>
-              </div>  
-            </div>
-          </div>
-        </div>
-        <div class="box-footer clearfix">
-    <ul class="pagination pagination-sm no-margin pull-right">
-         <nav><%= paginate @opening_cashes, :theme => 'twitter-bootstrap-3' %></nav>
-    </ul>
-    
+          <%= link_to 'Nueva Apertura', new_opening_cash_path, class: "btn btn-primary" %>
+  <%= render(
+  partial: 'opening_cashes/list',
+  locals: { opening_cashes: @opening_cashes }
+) %>    
   </div>
-      </div>  
-    </div>
-  </div>
-
-
   
+</div>
+<script type="text/javascript">
+  $(".datepicker").datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'es',
+              });
+</script>        
 
-  
