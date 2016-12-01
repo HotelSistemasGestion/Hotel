@@ -17,9 +17,8 @@ class Invoice < ActiveRecord::Base
     accepts_nested_attributes_for :invoice_details, allow_destroy: true , update_only: true
 
     
-    filterrific(available_filters: [:sorted_by, :sorted_by_name, :sorted_by_number, :sorted_by_state])
+    filterrific(available_filters: [:sorted_by_name, :sorted_by_number, :sorted_by_state])
 
-    scope :sorted_by, lambda { |nombre| where('invoices.nombre = ?', nombre)}
     scope :sorted_by_name,-> state { where('invoices.nombre LIKE ?', "%#{state}%")}
     scope :sorted_by_number,-> state { where('invoices.numero LIKE ?', "%#{state}%")}
     scope :sorted_by_state, lambda { |state| where('invoices.state = ?', state)}
