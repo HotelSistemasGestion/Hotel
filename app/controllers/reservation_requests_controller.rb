@@ -82,11 +82,14 @@ class ReservationRequestsController < ApplicationController
   # DELETE /reservation_requests/1
   # DELETE /reservation_requests/1.json
   def destroy
+    @reservation_request = ReservationRequest.find(params[:id])
     @reservation_request.destroy
-    respond_to do |format|
-      format.html { redirect_to reservation_requests_url, notice: 'Reservation request was successfully destroyed.' }
+   
+   respond_to do |format|
+      format.html { redirect_to reservation_requests_url }
       format.json { head :no_content }
-    end
+      format.js   { render :layout => false }
+   end
   end
 
  

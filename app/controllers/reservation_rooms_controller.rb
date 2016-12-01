@@ -5,6 +5,7 @@ class ReservationRoomsController < ApplicationController
   # GET /reservation_rooms.json
   def index
     @reservation_rooms = ReservationRoom.all
+    @reservation_rooms = Kaminari.paginate_array(@reservation_rooms).page(params[:page]).per(4)
   end
 
   # GET /reservation_rooms/1
