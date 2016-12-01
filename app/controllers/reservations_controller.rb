@@ -33,6 +33,8 @@ class ReservationsController < ApplicationController
 
   #encargado de decir si esta disponible la habitacion
   def hay_disponible
+    edit = params[:edit]
+    reservation_id = params[:reservation_id]
     room_id = Integer(params[:room_id])
     check_in = params[:check_in]
     check_out = params[:check_out]
@@ -52,8 +54,14 @@ class ReservationsController < ApplicationController
     #Buscamos las habitaciones reservadas.
     ##room_ids= Room.where(["room_id = ? and state_id != ? and state_id != ?",room_id,1,4]).select("id")
     #Buscamos esa habitacion entre las reservaciones,y vemos si tenemos esa fecha libre
-    filter=ReservationRoom.where(room_id:room_id)
+    if edit
+      filter=ReservationRoom.where(room_id:room_id).where.not("reservation_id = ?",reservation_id)
+    else
+      filter=ReservationRoom.where(room_id:room_id)
+    end
     toques = 0
+     Rails.logger.debug("My object: #{action_name.inspect}")    
+
     for i in 0..filter.length-1
       #pregunto si se superponen las fechas
      if (filter[i].check_in.to_s..filter[i].check_out.to_s).overlaps?(check_in.to_date.strftime("%Y-%m-%d")..check_out.to_date.strftime("%Y-%m-%d"))
@@ -66,6 +74,7 @@ class ReservationsController < ApplicationController
     render json: @result.to_json
     return true
   end
+
 
   # GET /reservations/1
   # GET /reservations/1.json
