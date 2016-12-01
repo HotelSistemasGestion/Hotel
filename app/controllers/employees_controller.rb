@@ -4,8 +4,22 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all
-    @employees = Kaminari.paginate_array(@employees).page(params[:page]).per(2)
+    #@employees = Employee.all
+    #@employees = Kaminari.paginate_array(@employees).page(params[:page]).per(2)
+      @filterrific = initialize_filterrific(
+        Employee,
+        params[:filterrific],select_options: {
+            sorted_by_types_of_employee: TypesOfEmployee.options_for_sorted_by_types_of_employee,
+          },
+         persistence_id: false
+      ) or return
+
+      @employees = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+     @employes_report = @filterrific.find
+      respond_to do |format|
+        format.html
+        format.js
+      end
   end
 
   # GET /employees/1

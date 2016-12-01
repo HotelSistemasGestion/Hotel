@@ -75,6 +75,41 @@ class ClosingCashesController < ApplicationController
     end
   end
 
+  def report
+  @filterrific = initialize_filterrific(
+    ClosingCash,
+    params[:filterrific],select_options: {
+        sorted_by_cash: Cash.options_for_sorted_by_cash
+      },
+     persistence_id: false
+  ) or return
+
+  @closing_cashes = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @closing_cashes_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
+  def report_values
+  @filterrific = initialize_filterrific(
+    ClosingCash,
+    params[:filterrific],select_options: {
+        sorted_by_cash: Cash.options_for_sorted_by_cash
+      },
+     persistence_id: false
+  ) or return
+
+  @closing_cashes = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+  @closing_cashes_report = @filterrific.find
+  respond_to do |format|
+    format.html
+    format.js
+  end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_closing_cash
@@ -83,6 +118,6 @@ class ClosingCashesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def closing_cash_params
-      params.require(:closing_cash).permit(:fecha_cierre, :monto_efectivo, :monto_cheque, :monto_tcredito, :monto_tdebito,:existente_efe,:existente_cheque,:existente_tcre,:existente_tdb,:opening_cash_id,:dif_registrada)
+      params.require(:closing_cash).permit(:fecha_cierre, :monto_efectivo, :monto_cheque, :monto_tcredito, :monto_tdebito,:existente_efe,:existente_cheque,:existente_tcre,:existente_tdb,:opening_cash_id,:dif_registrada,:dif_efectivo,:dif_cheque,:dif_credito,:dif_debito)
     end
 end

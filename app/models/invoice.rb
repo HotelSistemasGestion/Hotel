@@ -22,9 +22,17 @@ class Invoice < ActiveRecord::Base
 
         def comprobar_cuenta
             if !account_id.nil?
+                Account.find(account_id).room_account_details.each do |account_detail|
+                    InvoiceDetail.create(invoice_id: self.id, 
+                                         servicio: Room.find(account_detail.room_id).identificador,
+                                         cantidad: (account_detail.subtotal / (Comfort.find(account_detail.comfort_id).precio + TypeOfRoom.find(account_detail.type_of_room_id).precio)),
+                                         precio: (Comfort.find(account_detail.comfort_id).precio + TypeOfRoom.find(account_detail.type_of_room_id).precio),
+                                         subtotal: account_detail.subtotal)
+                end
                 Account.find(account_id).account_details.each do |account_detail|
-                    InvoiceDetail.create!(invoice_id: self.id, 
+                    InvoiceDetail.create(invoice_id: self.id, 
                                          service_id: account_detail.service_id,
+                                         servicio: account_detail.servicio,
                                          cantidad: account_detail.cantidad,
                                          precio: account_detail.precio,
                                          subtotal: account_detail.subtotal)

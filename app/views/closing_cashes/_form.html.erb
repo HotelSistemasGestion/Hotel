@@ -41,6 +41,7 @@
                 <th>Valor</th>
                 <th>Montos Registrados</th>
                 <th>Montos Existentes</th>
+                <th>Diferencia Montos</th>
                 <th></th>
               </tr>
             </thead>
@@ -51,7 +52,9 @@
                 </td>
                 <td><%=f.text_field :existente_efe ,class: "form-control existentes",value: 0,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},id:"r_efectivo"%>
                 </td>
-                <td><button class="btn btn-primary glyphicon glyphicon-ok" type="button" id="btnEfectivo"></button></td>
+                <td><%=f.text_field :dif_efectivo ,class: "form-control",value: 0,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},id:"d_efectivo",readonly: true%>
+                </td>
+                <td><button class="btn btn-success glyphicon glyphicon-ok" type="button" id="btnEfectivo"></button></td>
               </tr>
               
               <tr>
@@ -60,7 +63,9 @@
                 </td>
                 <td><%=f.text_field :existente_cheque ,class: "form-control existentes",value: 0,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},id:"r_cheque"%>
                 </td>
-                <td><button class="btn btn-primary glyphicon glyphicon-ok" type="button" id="btnCheque"></button></td>
+                <td><%=f.text_field :dif_cheque ,class: "form-control",value: 0,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},id:"d_cheque",readonly: true%>
+                </td>
+                <td><button class="btn btn-success glyphicon glyphicon-ok" type="button" id="btnCheque"></button></td>
               </tr>
               
               <tr>
@@ -69,7 +74,9 @@
                 </td>
                 <td><%=f.text_field :existente_tcre ,class: "form-control existentes",value: 0,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},id:"r_credito"%>
                 </td>
-                <td><button class="btn btn-primary glyphicon glyphicon-ok" type="button" id="btnCredito"></button></td>
+                <td><%=f.text_field :dif_credito ,class: "form-control",value: 0,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},id:"d_credito",readonly: true%>
+                </td>
+                <td><button class="btn btn-success glyphicon glyphicon-ok" type="button" id="btnCredito"></button></td>
               </tr>
               
               <tr>
@@ -78,7 +85,9 @@
                 </td>
                 <td><%=f.text_field :existente_tdb ,class: "form-control existentes",value: 0,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},id:"r_debito"%>
                 </td>
-                <td><button class="btn btn-primary glyphicon glyphicon-ok" type="button" id="btnDebito"></button></td>
+                <td><%=f.text_field :dif_debito ,class: "form-control",value: 0,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},id:"d_debito",readonly: true%>
+                </td>
+                <td><button class="btn btn-success glyphicon glyphicon-ok" type="button" id="btnDebito"></button></td>
               </tr>
           </tbody>
         </table>  
@@ -98,7 +107,7 @@
     </div>
   <div class="box-footer">
           <div class="col-sm-offset-8 col-sm-10">
-            <%= f.submit "Aceptar", class: "btn btn-primary " %>
+            <%= f.submit "Guardar", class: "btn btn-primary " %>
           </div>
         </div>
 <% end %>

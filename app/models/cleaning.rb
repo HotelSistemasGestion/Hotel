@@ -1,6 +1,7 @@
 class Cleaning < ActiveRecord::Base
   belongs_to :cleaning_room
   belongs_to :room
+
   belongs_to :employee
   validates :end, :presence => {:message => "Ingrese un email"}
   validates :start, :presence => {:message => "Ingrese un email"}

@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!  
+  load_and_authorize_resource
   before_action :set_account, only: [:show, :edit, :update, :destroy, :facturar]
 
   # GET /accounts
@@ -23,8 +24,6 @@ class AccountsController < ApplicationController
       @account = Account.new(reservation_id: params[:id])
       @reservation = Reservation.find(params[:id])
       @reservation_rooms = ReservationRoom.where("reservation_id = ?",params[:id])
-      #@account.reservation_id = @reservation.id
-      #@account.reservation_id = @reservation.last.reservation_id
       @reservation_rooms.each do |room|
         @account.room_account_details.new(type_of_room_id: room.type_of_room_id,comfort_id: room.comfort_id,room_id:room.room_id,check_in:room.check_in, check_out:room.check_out,subtotal:room.subtotal)
       end
@@ -123,6 +122,7 @@ class AccountsController < ApplicationController
         :subtotal,
         :descuento,
         :total,
+        :reservation_id,
         :iva,
         :room_account_details_attributes => [:id, :room_id, :account_id, :type_of_room_id, :comfort_id, :check_in, :check_out, :subtotal, :_destroy],
         :account_details_attributes => [:id, :service_id, :servicio, :cantidad, :precio, :subtotal, :_destroy])

@@ -14,7 +14,8 @@ class RoomsController < ApplicationController
     Room,
     params[:filterrific],select_options: {
         sorted_by_type: TypeOfRoom.options_for_sorted_by_type,
-        sorted_by_state: State.options_for_sorted_by_state
+        sorted_by_state: State.options_for_sorted_by_state,
+        sorted_by_comfort: Comfort.options_for_sorted_by_comfort
       },
      persistence_id: false
   ) or return
@@ -55,7 +56,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to @room, notice: 'La habitacion ha sido creada correctamente.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }
@@ -73,7 +74,7 @@ class RoomsController < ApplicationController
         #@room_comforts.each do |room| 
         # destruir_repetidos(room.room_id,room.comfort_id);
         #end  
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        format.html { redirect_to @room, notice: 'La habitacion ha sido editada correctamente.' }
         format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit }
@@ -85,7 +86,8 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
-    @room.destroy
+   # @room.destroy
+   @room.update({:state_id => 4})
     respond_to do |format|
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }

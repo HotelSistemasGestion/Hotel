@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!  
+  load_and_authorize_resource
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
   # GET /reservations
@@ -8,6 +10,9 @@ class ReservationsController < ApplicationController
     @filterrific = initialize_filterrific(
     Reservation,
     params[:filterrific],
+    select_options: {
+        sorted_by_estado: Reservation.options_for_sorted_by_estado
+      },
      persistence_id: false
     ) or return
 
@@ -73,7 +78,7 @@ class ReservationsController < ApplicationController
       #construimos el la reservacion cuando apretamos confirmar
       @my_reservation_requests = ReservationRequest.find(params[:id])
       @my_budgets = Budget.where("reservation_request_id = ?", @my_reservation_requests.id).first
-      @reservation = Reservation.new(state: "pendiente",nombre: @my_reservation_requests.nombre,apellido: @my_reservation_requests.apellido,telefono: @my_reservation_requests.telefono,email: @my_reservation_requests.email)
+      @reservation = Reservation.new(nombre: @my_reservation_requests.nombre,apellido: @my_reservation_requests.apellido,telefono: @my_reservation_requests.telefono,email: @my_reservation_requests.email)
       iterar = @my_budgets.budget_room_details
       iterar.each do |budget_room_detail|
         (1..budget_room_detail.cantidad).each do |r|
@@ -84,7 +89,7 @@ class ReservationsController < ApplicationController
     @reservation.reservation_rooms.build()
     #@my_type_of_rooms =  TypeOfRoom.find(params[:id])      
     else 
-      @reservation = Reservation.new(state: "pendiente")
+      @reservation = Reservation.new()
       @reservation.reservation_rooms.build()
     end
 
@@ -192,7 +197,7 @@ class ReservationsController < ApplicationController
      # params.require(:reservation).permit(:nombre, :apellido, :check_in, :check_out, :type_of_room_id)
      #json.extract! reservation, :id, :nombre, :apellido, :check_in, :check_out, :type_of_room_id, :created_at, :updated_at
      #json.url reservation_url(reservation, format: :json)
-     params.require(:reservation).permit(:id, :budget_id, :nombre, :apellido, :email, :telefono, :total,
+     params.require(:reservation).permit(:id, :budget_id, :nombre, :apellido, :email, :telefono, :total, :state,
       :reservation_rooms_attributes => [:id, :type_of_room_id,:comfort_id,:room_id,:check_in,:check_out, :subtotal, :_destroy])
 
     end

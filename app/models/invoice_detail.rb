@@ -10,8 +10,8 @@ class InvoiceDetail < ActiveRecord::Base
 	private
 
 		def set_values
-			self.precio = self.subtotal / self.cantidad
-			self.servicio = Service.find(self.service_id).nombre
+			if self.precio.nil? then self.precio = self.subtotal / self.cantidad end
+			if self.servicio.nil? then self.servicio = Service.find(self.service_id).nombre end
 		end
 
 end
