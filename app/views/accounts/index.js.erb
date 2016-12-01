@@ -1,0 +1,4 @@
+<% js = escape_javascript(
+  render 'row', accounts: @accounts
+) %>
+$("#filterrific_results").html("<%= js %>");

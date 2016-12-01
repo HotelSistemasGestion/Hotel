@@ -13,16 +13,17 @@ class Account < ActiveRecord::Base
 
     before_destroy :change_invoice_state
 
-    before_save :change_reservation_state
+    before_save :antes_de_guardar
 
 
     accepts_nested_attributes_for :account_details, allow_destroy: true, update_only: true
     accepts_nested_attributes_for :room_account_details, allow_destroy: true , update_only: true
 
     #Opciones de filtros para reportes
-    filterrific(available_filters: [:sorted_by_name])
+    filterrific(available_filters: [:sorted_by_name, :sorted_by_number])
     #Scope para busqueda por nombre y apellido para reportes
     scope :sorted_by_name,-> state { where('accounts.nombre LIKE ?', "%#{state}%")}
+    scope :sorted_by_number,-> state { where('accounts.numero LIKE ?', "%#{state}%")}
     # Scope para busqueda de clientes registrados para reportes
 
     def self.options_for_sorted_by_identificador
@@ -42,12 +43,19 @@ class Account < ActiveRecord::Base
         end
 
         #cuando se registra a partir de una reservación cambia el estado de la reservación
-        def change_reservation_state
+        def antes_de_guardar
+            if self.descuento.nil? then self.descuento = 0 end
+            #cambiar el estado de una reservación a confirmado
             if !self.reservation_id.nil?
                 reservation = Reservation.find(reservation_id)
                 reservation.state = "confirmado"
                 reservation.save
             end
+            self.room_account_details.each do |rad|
+                self.subtotal= self.subtotal + rad.subtotal
+            end
+            self.total= self.subtotal - (self.subtotal * self.descuento / 100)
+            self.iva= self.total / 11
         end
     
     

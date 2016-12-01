@@ -1,23 +1,35 @@
 <div class="box">
 	<div class="nav-tabs-custom"  >
 		<div class="box-body">
-			<div class="col-xs-4 col-md-4 col-sm-4">
-				<h1 class="box-title titulo text_balance">HOTEL UNI</h1>
-			</div>
-			<div class="col-xs-8 col-md-8 col-sm-8">
-				<form class="form-inline" style="top-left: 50px;">
-					<%=label_tag "Periodo: "%>
-					<%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "search_conta" do %>
-					<%= text_field_tag :search_conta, params[:search_conta],class: "form-control"%>
-					<%= button_tag(type: :submit, class: "btn btn-primary no-print " ) do %>
-					<i class="glyphicon glyphicon-search"></i>
-					<% end %>
-					<%end%>
+			  <div class="col-xs-6 col-md-6 col-sm-6">
+			  	
+      <h6 class="box-title titulo">Balance</h6>
+     
 
-				</form>
-				<%= link_to ''.html_safe, '#', class: "btn btn-primary no-print glyphicon glyphicon-print alineado_balance", onclick: 'window.print();return false;'%>
-			</div>
-		</div>
+        
+  </div>
+     <div class="box-body">
+      <form class="form-inline">
+         <!--Div selector de rango de fechas-->
+        <div class="col-xs-6 col-md-6 col-sm-6">
+
+          <%= form_tag diary_book_diario_path ,remote: true, method: :post , id: "search_conta" do %>
+            <%=label_tag "Periodo: "%>
+            <%= text_field_tag :search_conta, params[:search_conta],class: "form-control"%>
+            <%= button_tag(type: :submit, class: "btn btn-primary no-print" ,id:"button1") do %>
+              <i class="glyphicon glyphicon-search"></i>
+              <% end %>
+          <%end%>  
+          <select class="selectpicker no-print" id = "my-select"data-style="btn-primary" data-width="fit">
+            <%ejer_all=AccountingYear.all.select('anho')%>
+            <%con_ejer=0%>
+            <%while ejer_all.count>con_ejer%>
+              <option><%=ejer_all[con_ejer].anho%> </option>
+              <%con_ejer+=1%>
+            <% end%>
+          </select> 
+           <%= link_to ''.html_safe, '#', class: "btn btn-primary no-print glyphicon glyphicon-print alineado_mayor", onclick: 'window.print();return false;'%>  
+        </div>
 <!--Comprueba si hay o no asientos en el periodo seleccionado-->
 		<%if @array_filtrar.count==0%>
 			<div class="row">
