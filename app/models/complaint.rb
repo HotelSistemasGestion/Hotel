@@ -1,4 +1,5 @@
 class Complaint < ActiveRecord::Base
+  audited
 	belongs_to :room
 	belongs_to :complaint_service
 	validates :room_id, :description,:complaint_service_id, presence: true

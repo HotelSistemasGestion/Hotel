@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-	audited
+	audited except: [:account_id, :client_id]
 	extend Enumerize
 	enumerize :state, in: %w(pagado pendiente cancelado), predicates: true
     belongs_to :client
