@@ -14,17 +14,18 @@
       <dt>Tipo de Habitacion:</dt>
       <dd><%= @room.type_of_room_tipo %></dd>
       <dt>Estado:</dt>
-      
-          <!--Se determina el color del label dependiendo del estado NO UTILIZO ENUMERIZE, -->                   
+
+           <!--Se determina el color del label dependiendo del estado NO UTILIZO ENUMERIZE, -->                   
                 <%if @room.state_descripcion == "libre" %>
                   <% btn = 'success' %>
                 <%elsif @room.state_descripcion == "fuera de servicio" %>
                   <% btn = 'danger' %>
-               
+                <%elsif @room.state_descripcion == "reservado" %>
+                   <% btn = 'warning' %>
                 <%else %>
-                  <% btn = 'default' %>
+                  <% btn = 'teal' %>
                 <%end%>     
-                <dd><span class="label label-<%=btn%>"><%= @room.state_descripcion %></span></dd>
+            <dd><span class="label label-<%=btn%>"><%= @room.state_descripcion %></span></dd>
       
       <dt>Comfort:</dt>
       <dd><%= @room.comfort_descripcion %></dd>
