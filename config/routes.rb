@@ -87,6 +87,9 @@ Rails.application.routes.draw do
       collection do
       get 'report'
     end
+    collection do
+      get 'report_values'
+    end
   end
   resources :opening_cashes do
     resources :cash_movements, :except => [:show, :destroy] do 
