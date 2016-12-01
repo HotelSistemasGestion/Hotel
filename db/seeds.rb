@@ -252,6 +252,11 @@ Action.create(accion: "Eliminar Servicio");
 Action.create(accion: "Control de Asientos");
 Action.create(accion: "Control de Cuentas");
 Action.create(accion: "Control de Planes de Cuentas");
+#Acciones para Habitaciones
+Action.create(accion: "Ver Habitaciones");
+Action.create(accion: "Crear Habitaciones");
+Action.create(accion: "Editar Habitaciones");
+Action.create(accion: "Inhabilitar Habitaciones");
 
 
 Rol.create(:nombre => "Admin", :action_ids => [1])

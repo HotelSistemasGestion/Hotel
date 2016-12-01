@@ -157,7 +157,17 @@
                                 <%= role.accion %><br>
                               <% end %>                                
                             </div>
-                          </div>                                              
+                          </div>    
+                          <div style="margin-top: 30px;" class="col-md-12">
+                             <div class="col-md-3">
+                              <h5>Habitaciones</h5>
+                              <% for i in 49..52 %>
+                              <% role = Action.find(i) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>
+                              <% end %>                                
+                            </div>
+                          </div>                                          
                         </div>
                     </div>  
 
