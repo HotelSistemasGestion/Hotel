@@ -3,18 +3,21 @@ $(document).ready(function(){
 
 
         $('div#budgets #budget_check_in').change(function(){
-           $("table.services").find('tr.fields:visible').each(function(){             
+          console.log("cambie check_in");
+           $(".table.services").find('tr.fields:visible').each(function(){             
             actualizarsubtotal($(this).find(".subtotal").attr("id"),-8);
             checkDisponibility($(this));
           });
         });
         $('div#budgets #budget_check_out').change(function(){
-          $("table.services").find('tr.fields:visible').each(function(){ 
+          console.log("cambie check_out");
+          $(".table.services").find('tr.fields:visible').each(function(){ 
             actualizarsubtotal($(this).find(".subtotal").attr("id"),-8);
             checkDisponibility($(this));
           });
         });
-        $('div#budgets #budget_comfort_id').change(function(){
+        $(document).on('change','div#budgets #budget_comfort_id', function () { 
+          console.log("cambie comfort_out");
           $(".table.services").find('tr.fields:visible').each(function(){
             actualizarsubtotal($(this).find(".subtotal").attr("id"),-8); 
             checkDisponibility($(this));
@@ -23,10 +26,6 @@ $(document).ready(function(){
         $('div#budgets #descuento').change(function(){
            actualizartotal();
         });
-
-        $('div#budgets #total').val(getPrecioInicial());
-
-
       });
       
         $(document).on('nested:fieldAdded','div#budgets form', function(event) {
@@ -63,49 +62,49 @@ $(document).ready(function(){
       });
 
       //cuando llamo al popover
-      $(document).on('click','div#budgets #table .popover-test', function () {
-        var $tr =  $(this).closest('tr');
+      //$(document).on('click','div#budgets #table .popover-test', function () {
+        //var $tr =  $(this).closest('tr');
 
-        var mybutton=$tr.find(".popover-test");
-        var check_in=$("#budget_check_in").val();
-        var check_out=$("#budget_check_out").val();
-        var comfort_id=parseInt($("#budget_comfort_id").val());
-        var type_of_room_id= parseInt($tr.find(".type_of_room").val());
-        var cantidad = parseInt($tr.find('.escuchable').val());
-        var buff = [];
-        buff.push("hola");
+        //var mybutton=$tr.find(".popover-test");
+        //var check_in=$("#budget_check_in").val();
+        //var check_out=$("#budget_check_out").val();
+        //var comfort_id=parseInt($("#budget_comfort_id").val());
+        //var type_of_room_id= parseInt($tr.find(".type_of_room").val());
+        //var cantidad = parseInt($tr.find('.escuchable').val());
+        //var buff = [];
+        //buff.push("hola");
       //Ve si tiene todos los datos para llamar al ajax
-        if(!isNaN(comfort_id) && !isNaN(type_of_room_id) && !isNaN(cantidad)  && ($("#budget_check_out").val().length > 0) && ($("#budget_check_in").val().length > 0)){
-          console.log("voy a llamar");
-          $.ajax({
-            async: false,
-            type:"GET",
-            url:"/budgets/disponibles",
-            my_buff: buff,
-            dataType:"json",
-            data: { "cantidad" : cantidad ,
-                    "type_of_room_id" : type_of_room_id,
-                    "comfort_id" : comfort_id,
-                    "check_in" : check_in ,
-                    "check_out" : check_out},
-            success:function(result){
-              alert(result["result"]);
-              buff[1] = ""+result["result"]+"<br>";
-            },error: function(result) {
-        }
-          });
-        }else{
+        //if(!isNaN(comfort_id) && !isNaN(type_of_room_id) && !isNaN(cantidad)  && ($("#budget_check_out").val().length > 0) && ($("#budget_check_in").val().length > 0)){
+          //console.log("voy a llamar");
+          //$.ajax({
+            //async: false,
+            //type:"GET",
+            //url:"/budgets/disponibles",
+            //my_buff: buff,
+            //dataType:"json",
+            //data: { "cantidad" : cantidad ,
+              //      "type_of_room_id" : type_of_room_id,
+                //    "comfort_id" : comfort_id,
+                //    "check_in" : check_in ,
+                 //   "check_out" : check_out},
+            //success:function(result){
+              //alert(result["result"]);
+              //buff[1] = ""+result["result"]+"<br>";
+            //},error: function(result) {
+       // }
+         // });
+        //}else{
 
-        }
+        //}
 
 
-         $(this).popover({ 
-          trigger : "focus",
-          html : true,
-          title: "Fechas disponibles",
-          content: "<div>"+"hop "+buff[0]+buff[1]+"</div>"
-        }).popover("show");
-      });
+         //$(this).popover({ 
+          //trigger : "focus",
+          //html : true,
+         /// title: "Fechas disponibles",
+         // content: "<div>"+"hop "+buff[0]+buff[1]+"</div>"
+        //}).popover("show");
+      //});
 
   //Funciones
 
