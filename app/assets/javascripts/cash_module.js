@@ -16,8 +16,8 @@ $(document).on("change", ".select", function(){
 
 
 function search_invoices(){
-    $("#cliente").on('railsAutocomplete.select', function (event,data) {                
-            var client = data.item.id;
+    $("#cliente").on('change', function (event,data) {                
+            var client = $("#cliente").val();
             console.log(client);
             $.ajax({
                 type: "GET",
@@ -25,12 +25,16 @@ function search_invoices(){
                 dataType: "json",
                 data: {"cliente_id" : client},
                 success: function(result){
-
+                    console.log(result);
                     $.each(result,function(index){
                         $("#invoice").append('<tr><td><input class="form-control" value='+result[index].numero+' readonly></input></td><td><input class="form-control subtotal" id="subtotal" value='+result[index].total+' readonly ></input></td><td><a class="btn btn-primary" title="" data-toggle="tooltip" data-placement="rigth" data-remote="true" href='+"/invoices/"+result[index].id+' data-original-title="Ver Factura"><span class="glyphicon glyphicon-eye-open"></span></td></tr>');    
                     
                     })
                     $(".total").val(sumarSubtotales());
+                    $("#ruc").val(result[0].ruc);
+                    $("#direccion").val(result[0].direccion);
+                    $("#telefono").val(result[0].celular);
+                    $("#correo").val(result[0].correo);
                 } 
             });
     });
@@ -71,8 +75,8 @@ function controlar_valores(){
 
 // funcion para mostrar o ocultar campos ocultos
 function mostrarCheque(id,detalle){
-	if ($(id).val() == "2") {
-    	$(detalle).show();
+    if ($(id).val() == "2") {
+        $(detalle).show();
         $(detalle).children(".tarjeta").removeAttr("required");
         $(detalle).children(".tarjeta").val("");
         $(detalle).children(".tarjeta").hide();
@@ -85,7 +89,7 @@ function mostrarCheque(id,detalle){
         $(detalle).children(".cheque").val("");
         $(detalle).children(".cheque").hide();
         $(detalle).children(".tarjeta").prop("required",true);
-        $(detalle).children(".tarjeta").show();  	     
+        $(detalle).children(".tarjeta").show();          
     }else{
         $(detalle).hide();
         $(detalle).children(".cheque").val("");
@@ -121,59 +125,31 @@ function sumarSubtotales(){
     return dif;
 }
 
-function calcularDif(registrados,existentes){
-    var reg=Number($(registrados).val().replace(/[^0-9\.]+/g,""));
-    var exis=Number($(existentes).val().replace(/[^0-9\.]+/g,""));
-    var dif= exis-reg;
-    return dif;
-}
 $(document).on('change','.existentes',function(){
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
-    var id = "#"+$(this).attr("id");
-    if (id=="#r_efectivo") {
-        $("#d_efectivo").val(calcularDif("#efectivo","#r_efectivo"));
-        $("#d_efectivo").focus();
-    }else if(id=="#r_cheque"){
-        $("#d_cheque").val(calcularDif("#cheque","#r_cheque"));
-        $("#d_cheque").focus();
-    }else if (id=="#r_credito") {
-        $("#d_credito").val(calcularDif("#credito","#r_credito"));
-        $("#d_credito").focus();
-    }else{
-        $("#d_debito").val(calcularDif("#debito","#r_debito"));
-        $("#d_debito").focus();
-    }
 });
 
 $(document).on('click',"#btnEfectivo",function(){
     $("#r_efectivo").val($("#efectivo").val());
-    $("#d_efectivo").val(calcularDif("#efectivo","#r_efectivo"));
-    $("#d_efectivo").focus();
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
 });
 
 $(document).on('click',"#btnCheque",function(){
     $("#r_cheque").val($("#cheque").val());
-    $("#d_cheque").val(calcularDif("#cheque","#r_cheque"));
-    $("#d_cheque").focus();
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
 });
 
 $(document).on('click',"#btnCredito",function(){
     $("#r_credito").val($("#credito").val());
-    $("#d_credito").val(calcularDif("#credito","#r_credito"));
-    $("#d_credito").focus();
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
 });
 
 $(document).on('click',"#btnDebito",function(){
     $("#r_debito").val($("#debito").val());
-    $("#d_debito").val(calcularDif("#debito","#r_debito"));
-    $("#d_efectivo").focus();
     $("#diferencia").val(calcularDiferencia());
     $("#diferencia").focus();
 });
