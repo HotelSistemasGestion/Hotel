@@ -41,11 +41,11 @@
                <td>
                 <div class="input-daterange" id="datepicker">             
                   <div class="col-sm-6">
-                          <%= li.text_field :start, class: "form-control", placeholder: "Desde el Dia" %>
+                          <%= li.text_field :start, class: "form-control", placeholder: "Desde el Dia" ,:required=>true%>
                   </div>
                   
                   <div class="col-sm-6">
-                          <%= li.text_field :end,class: "form-control",placeholder: "Hasta el Dia"%>
+                          <%= li.text_field :end,class: "form-control",placeholder: "Hasta el Dia",:required=>true%>
                   </div>
                 </div>
                 </td>
@@ -56,8 +56,8 @@
                            
                   </td>
                   <td>
-                  <button id="cp4"class="btn btn-primary glyphicon glyphicon-text-background colorpicker-component"></button>
-                  <button id="cp6"class="btn btn-primary glyphicon glyphicon-text-color colorpicker-component"></button>   
+                  <button id="cp4"class="btn btn-warning glyphicon glyphicon-text-background colorpicker-component"></button>
+                  <button id="cp6"class="btn btn-success glyphicon glyphicon-text-color colorpicker-component"></button>   
                   
                   
 
@@ -99,18 +99,14 @@
                 <td><%= f.link_to_add "", :cleanings, :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
               </tr>
               <tr>
-              <td> <%= f.submit "Crear Limpieza ",class: "btn btn-primary" %></td>
+              <td> <%= f.submit "Crear Limpieza ",class: "btn btn-primary" %> 
+                <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %><span class="fa fa-calendar-check-o"></span> <% end %></td>
+
               </tr>
           </tbody>
         </table>
     </div>  
    </div>
-  <div class="box-body">
-  <div class="form-group">
-    <div class="col-sm-offset-1 col-sm-10">
-     
-    </div>
-  </div>
-</div>
+
 <% end %>
 

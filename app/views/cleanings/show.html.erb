@@ -49,16 +49,19 @@
 
     </div>
     <div class="box-body">
-         <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
-            <span class="glyphicon glyphicon-list-alt"></span>
+        <div class="form-group col-sm-4">
+           <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
+            <span class="fa fa-calendar-check-o"></span>
         
           <% end %>
           <%= link_to edit_cleaning_path(@cleaning), class: 'btn btn-primary' do %>
             <span class="glyphicon glyphicon-pencil"></span>
         
           <% end %>
-          <%= link_to '', @cleaning, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-danger glyphicon glyphicon-trash"%>
+          <%= link_to '', @cleaning, method: :delete, data: { confirm: 'Esta seguro?' } ,class:"btn btn-danger glyphicon glyphicon-trash"%>
         
+        
+        </div>
         
     </div>
     
