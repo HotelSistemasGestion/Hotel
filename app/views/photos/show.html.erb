@@ -1,20 +1,64 @@
-<div class="page-header">
-  <%= link_to photos_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <%= link_to edit_photo_path(@photo), class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-pencil"></span>
-    Edit
-  <% end %>
-  <h1>Show photo</h1>
+<div class="box">
+  
+    <div class="box-header with-border">
+    <h3><center>Nueva Foto de Perfil</center></h3>
+  </div>
+
+  <!--<dl class="dl-horizontal">
+    <dt>Room:</dt>
+    <dd><%= @photo.room %></dd>
+
+    <dt>My file:</dt>
+    <dd><%= @photo.my_file %></dd>
+
+  </dl> -->
+      
+         
+       <div class="box-body">
+      
+       
+          <div class="col-md-8 col-md-offset-2">
+              <div class="col-sm-4">
+
+              <%@s = Photo.all.where("#{:user_id} = ?", current_user.id)%>
+               <a class="image-popup" href="<%=@s[0].my_file.url%>">          
+              <%= cl_image_tag(@s[0].my_file.filename,:width => 200, :height => 150, :crop => :fill, :radius => 20 )%>
+              </a>
+            </div>
+              <div class="col-sm-8">
+                  <div class="box box-danger">
+                    <div class="box-header with-border">
+                      <h3><center>Miembros</center></h3>
+
+                      <div class="box-tools pull-right">
+                        <span class="label label-danger"><%=User.count%> Miembros</span>
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                 
+                    <div class="box-body no-padding">
+                      <ul class="users-list clearfix">
+                       <% Photo.where("#{:user_id} > ? " , 0).each do |p|%>
+                      <li>
+                            <a class="image-popup" href="<%=p.my_file.url%>">
+              
+                               <%= image_tag p.my_file.url,:width => 50, :height => 50 , :alt =>"User Image"%>
+                            </a>
+                          <a class="users-list-name" href="#"><%= (User.where("#{:id} = ? ", p.user_id))[0].username%></a>
+                         <!-- <span class="users-list-date">Today</span>-->
+                        </li>
+                         <%end%>
+                      </ul>
+                  
+                    </div>
+              
+                
+                  </div>
+           
+                </div>
+              </div>
+          </div>
 </div>
-
-<dl class="dl-horizontal">
-  <dt>Room:</dt>
-  <dd><%= @photo.room %></dd>
-
-  <dt>My file:</dt>
-  <dd><%= @photo.my_file %></dd>
-
-</dl>

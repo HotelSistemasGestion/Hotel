@@ -12,9 +12,16 @@
 
             <div class="col-xs-4">
                 <%= f.label "Cliente" %>
-                <%= f.text_field(:sorted_by,
+                <%= f.text_field(:sorted_by_name,
                               class: 'filterrific-periodically-observed form-control',
                               placeholder:"Nombre y Apellido")%>
+            </div>
+
+            <div class="col-xs-4">
+                <%= f.label "Numero" %>
+                <%= f.text_field(:sorted_by_number,
+                              class: 'filterrific-periodically-observed form-control',
+                              placeholder:"Numero de Factura")%>
             </div>
 
             <div class="col-xs-4">
