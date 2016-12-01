@@ -24,103 +24,7 @@ Comfort.create(descripcion: "tres estrellas",precio: 50000);
 
 
 
-<<<<<<< HEAD
-AccountingYear.create(anho: "2016",estado: "actual");
-AccountingYear.create(anho: "2015",estado: "antiguo");
-AccountingYear.create(anho: "2014",estado: "antiguo");
 
-AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
-AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
-AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "0",debe: "1000",haber: "0");
-AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "0",haber: "1000");
-AccountingEntry.create(numero:"3",fecha:"2016/07/18",iva: "0",debe: "100",haber: "0");
-AccountingEntry.create(numero:"3",fecha:"2016/07/18",iva: "10",debe: "0",haber: "100");
-AccountingEntry.create(numero:"4",fecha:"2016/08/01",iva: "0",debe: "100000",haber: "0");
-AccountingEntry.create(numero:"4",fecha:"2016/08/01",iva: "10",debe: "0",haber: "100000");
-AccountingEntry.create(numero:"5",fecha:"2016/09/23",iva: "0",debe: "20000",haber: "0");
-AccountingEntry.create(numero:"5",fecha:"2016/09/23",iva: "10",debe: "0",haber: "20000");
-AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "0",debe: "4000",haber: "0");
-AccountingEntry.create(numero:"6",fecha:"2016/10/15",iva: "10",debe: "0",haber: "4000");
-AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "0",debe: "20000",haber: "0");
-AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "10",debe: "0",haber: "20000");
-
-
-AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "15000",haber: "0");
-AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "10000",haber: "0");
-AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "25000",haber: "0");
-AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "0",debe: "0",haber: "50000");
-
-AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "0",debe: "54000",haber: "0");
-AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
-AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
-AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "19000");
-
-AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "0",debe: "35000",haber: "0");
-AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
-AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
-
-
-
-
-AccountingAccount.create(grupo:"00",nombre:"Cuentas por cobrar",imputable:"true");
-AccountingAccount.create(grupo:"01",nombre:"Clientes",imputable:"true");
-AccountingAccount.create(grupo:"00",nombre:"Ingreso",imputable:"true");
-AccountingAccount.create(grupo:"01",nombre:"Ingreso de Habitacion",imputable:"true");
-AccountingAccount.create(grupo:"001",nombre:"Habitacion",imputable:"true");
-AccountingAccount.create(grupo:"02",nombre:"Ingreso de Alimentacion",imputable:"true");
-AccountingAccount.create(grupo:"001",nombre:"Restaurant",imputable:"true");
-AccountingAccount.create(grupo:"002",nombre:"RoomService",imputable:"true");
-AccountingAccount.create(grupo:"03",nombre:"Ingreso de Bebidas",imputable:"true");
-AccountingAccount.create(grupo:"001",nombre:"Bebidas",imputable:"true");
-AccountingAccount.create(grupo:"04",nombre:"Ingreso de Telefono",imputable:"true");
-AccountingAccount.create(grupo:"001",nombre:"Llamadas internacionales",imputable:"true");
-AccountingAccount.create(grupo:"002",nombre:"Llamadas locales",imputable:"true");
-
-AccountPlan.create(descripcion:"Hotel",estado:"vigente",version:"1");
-
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1",cuenta_superior:"1");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2",cuenta_superior:"1");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3",cuenta_superior:"2");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"4",cuenta_superior:"2");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"5",cuenta_superior:"2.1");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"6",cuenta_superior:"2");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"7",cuenta_superior:"2.2");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"8",cuenta_superior:"2.02");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"9",cuenta_superior:"2");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"10",cuenta_superior:"2.3");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"11",cuenta_superior:"2");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"12",cuenta_superior:"2.4");
-AccountXPlan.create(account_plan_id:"1",accounting_account_id:"13",cuenta_superior:"2.4");
-
-AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
-AccountXEntry.create(accounting_entry_id:"3",accounting_account_id:"2",monto:"20000",observacion:"Sector Bar y Restaurant ",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"4",accounting_account_id:"7",monto:"20000",observacion:"Sector Bar y Restaurant ",tipo:"D");
-AccountXEntry.create(accounting_entry_id:"5",accounting_account_id:"2",monto:"20000",observacion:"Servicio para habitaciones",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"6",accounting_account_id:"8",monto:"20000",observacion:"Servicio para habitaciones",tipo:"D");
-AccountXEntry.create(accounting_entry_id:"7",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"8",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
-AccountXEntry.create(accounting_entry_id:"9",accounting_account_id:"2",monto:"20000",observacion:"Servicio para habitaciones",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"10",accounting_account_id:"8",monto:"20000",observacion:"Servicio para habitaciones",tipo:"D");
-AccountXEntry.create(accounting_entry_id:"11",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"12",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
-AccountXEntry.create(accounting_entry_id:"13",accounting_account_id:"2",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"14",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
-
-AccountXEntry.create(accounting_entry_id:"15",accounting_account_id:"2",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"16",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"17",accounting_account_id:"7",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"18",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
-
-AccountXEntry.create(accounting_entry_id:"19",accounting_account_id:"12",monto:"20000",observacion:"Hospedaje",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"20",accounting_account_id:"8",monto:"20000",observacion:"Hospedaje",tipo:"D");
-AccountXEntry.create(accounting_entry_id:"21",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"D");
-AccountXEntry.create(accounting_entry_id:"22",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
-
-AccountXEntry.create(accounting_entry_id:"23",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"24",accounting_account_id:"13",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
-AccountXEntry.create(accounting_entry_id:"25",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
-=======
 
 
 #AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
@@ -218,7 +122,7 @@ AccountXPlan.create(account_plan_id:"2",accounting_account_id:"12");
 #AccountXEntry.create(accounting_entry_id:"23",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
 #AccountXEntry.create(accounting_entry_id:"24",accounting_account_id:"13",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
 #AccountXEntry.create(accounting_entry_id:"25",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
->>>>>>> 25b4a48cfb6631f64df06bc88040ed5e744b6f45
+
 
 
 
