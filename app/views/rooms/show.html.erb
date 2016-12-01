@@ -1,19 +1,15 @@
 <div class="box">
-  
-  
-     
-      <div class="box-header with-border">
-        <h3 class="box-title">Habitacion <%= @room.identificador %></h3>
-      </div>
-      
  
+      <div class="box-header with-border">
+        <h3><center>Habitacion <%= @room.identificador %></center></h3>
+      </div>
 
     <div class="box-body">
 
-      <div class="col-sm-2">
-
-      <dd>Identificador: <%= @room.identificador %></dd>
-      <dd></dd>
+      <div class="col-md-3">
+      <dl class="dl-horizontal">
+      <dt>Identificador: </dt>
+      <dd><%= @room.identificador %></dd>
 
       <dt>Tipo de Habitacion:</dt>
       <dd><%= @room.type_of_room_tipo %></dd>
@@ -21,41 +17,39 @@
       
           <!--Se determina el color del label dependiendo del estado NO UTILIZO ENUMERIZE, -->                   
                 <%if @room.state_descripcion == "libre" %>
-                  <% btn = 'warning' %>
-                <%elsif @room.state_descripcion == "fuera de servicio" %>
                   <% btn = 'success' %>
+                <%elsif @room.state_descripcion == "fuera de servicio" %>
+                  <% btn = 'danger' %>
                
                 <%else %>
                   <% btn = 'default' %>
                 <%end%>     
                 <dd><span class="label label-<%=btn%>"><%= @room.state_descripcion %></span></dd>
-
-    
-
-
-      <dt>Capacidad:</dt>
-      <dd><%= @room.capacidad %></dd>
       
       <dt>Comfort:</dt>
       <dd><%= @room.comfort_descripcion %></dd>
 
-     
-      
-      
+      </dl>
       </div>
-      <div class="col-sm-8">
-        
+      <div class="col-sm-7">
+      <% if !(Photo.where("#{:room_id} = ?" , @room.id)).present?%>
+             
+         <%end%>
       <% Photo.where("#{:room_id} = ?" , @room.id).each do |p|%>
         <div class="col-sm-2">
+             <%if (!p.my_file.present?) %>
+             
+             <%else%>
              <a  href= "<%=p.my_file.url%>"  class="image-popup">
-             <%= image_tag p.my_file.url,:width => 200, :height => 200%>
+             <%= image_tag p.my_file.url,:width => 150, :height => 150%>
              </a>
+             <%end%>
         </div>
       <%end%>
 
       </div>    
-     </div>
-
+   </div>
+    
      <BR>
      <BR>
      <div class="box-body">

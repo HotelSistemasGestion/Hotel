@@ -7,6 +7,11 @@ class Employee < ActiveRecord::Base
   def full_name
   	"#{self.nombre} #{self.apellido}"
   end
+  
+  filterrific(available_filters: [:sorted_by_types_of_employee])
+  #scopes para reporte
+  scope :sorted_by_types_of_employee, lambda{ |room_types_of_employee_ids|where(:types_of_employee => [*room_types_of_employee_ids])}
+  
 
   def self.options_for_sorted_by_employee
     joins(:types_of_employee).where('types_of_employees.tipo = ?', "limpiadora").map { |e| [e.nombre, e.id] }

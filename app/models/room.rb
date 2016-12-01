@@ -1,4 +1,5 @@
 class Room < ActiveRecord::Base
+  audited
   belongs_to :type_of_room
   belongs_to :state
   belongs_to :comfort
