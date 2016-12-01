@@ -40,7 +40,7 @@
         <div class="col-sm-7">
           <%= f.select :client_id ,Client.all.collect { |t| [t.name, t.id ] },{include_blank: true},class: "form-control selectpicker",:required => true ,id: "cliente"%>
           <div class="help-block with-errors"></div>          
-          <%= f.hidden_field  :client_id, id: 'cli_id' %>
+          
         </div>                    
       </div>  
     </div>
