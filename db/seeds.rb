@@ -23,10 +23,6 @@ Comfort.create(descripcion: "dos estrellas",precio: 20000);
 Comfort.create(descripcion: "tres estrellas",precio: 50000);
 
 
-
-
-
-
 #AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
 #AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
 #AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "1000",haber: "0");
@@ -122,7 +118,6 @@ AccountXPlan.create(account_plan_id:"2",accounting_account_id:"12");
 #AccountXEntry.create(accounting_entry_id:"23",accounting_account_id:"5",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"A");
 #AccountXEntry.create(accounting_entry_id:"24",accounting_account_id:"13",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
 #AccountXEntry.create(accounting_entry_id:"25",accounting_account_id:"12",monto:"20000",observacion:"Telefono y telecomunicaciones",tipo:"D");
-
 
 
 

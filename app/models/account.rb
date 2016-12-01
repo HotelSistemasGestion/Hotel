@@ -20,9 +20,10 @@ class Account < ActiveRecord::Base
     accepts_nested_attributes_for :room_account_details, allow_destroy: true , update_only: true
 
     #Opciones de filtros para reportes
-    filterrific(available_filters: [:sorted_by_name])
+    filterrific(available_filters: [:sorted_by_name, :sorted_by_number])
     #Scope para busqueda por nombre y apellido para reportes
     scope :sorted_by_name,-> state { where('accounts.nombre LIKE ?', "%#{state}%")}
+    scope :sorted_by_number,-> state { where('accounts.numero LIKE ?', "%#{state}%")}
     # Scope para busqueda de clientes registrados para reportes
 
     def self.options_for_sorted_by_identificador

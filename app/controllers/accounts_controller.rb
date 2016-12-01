@@ -5,8 +5,20 @@ class AccountsController < ApplicationController
 
   # GET /accounts
   # GET /accounts.json
-  def index    
-    @accounts = Account.page(params[:page]).per(5)
+  def index
+    @accounts = Account.all.order(:created_at).reverse
+    @accounts = Kaminari.paginate_array(@accounts).page(params[:page]).per(5)
+    @filterrific = initialize_filterrific(
+    Account,
+    params[:filterrific],
+     persistence_id: false
+    ) or return
+
+    @accounts = @filterrific.find.page(params[:page]).paginate(:per_page => 5, :page => params[:page])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /accounts/1
@@ -42,7 +54,7 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
      Rails.logger.debug "reservation_id: #{@account.reservation_id}"
               
-    Reservation.find(@account.reservation_id).update({state: "confirmado"})
+    if @account.reservation_id.present? then Reservation.find(@account.reservation_id).update({state: "confirmado"}) end
 
 
     respond_to do |format|
