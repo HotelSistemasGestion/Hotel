@@ -32,9 +32,11 @@
                 <%if employee.types_of_employee_tipo == "administrador" %>
                   <% btn = 'success' %>
                 <%elsif employee.types_of_employee_tipo == "limpiadora" %>
-                  <% btn = 'danger' %>
+                  <% btn = 'info' %>
                 <%elsif employee.types_of_employee_tipo == "botones" %>
                    <% btn = 'warning' %>
+                <%elsif employee.types_of_employee_tipo == "retirado" %>
+                  <% btn = 'danger' %>
                 <%else %>
                   <% btn = 'primary' %>
                 <%end%>     

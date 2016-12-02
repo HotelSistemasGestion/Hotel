@@ -8,7 +8,7 @@
 <div  class="links">
      <% Photo.where("#{:room_id} > ?",0).each do |p| %>              
        
-        <a href= <%= p.my_file %>  title="River Bend Reflections" data-gallery=""> 
+        <a href= <%= p.my_file %>  title="HOTEL UNI GALERIA" data-gallery=""> 
           <%=cl_image_tag(p.my_file.filename, :border=>"2px_solid_rgb:fff", :height=>100, :width=>100, :crop=>"scale")%>
         </a>
     <%end%>

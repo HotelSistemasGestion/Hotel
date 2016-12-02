@@ -16,7 +16,7 @@
   <div class="form-group col-sm-4">
     <%= f.label "Encargado", class: "control-label" %>
    
-      <%= f.select :employee_id ,Employee.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control" %>
+      <%= f.select :employee_id ,@employees.all.collect { |p| [p.nombre, p.id ] },{include_blank: false},class: "form-control" %>
   </div>
   <div>
         <table id="mytabla" class="table">

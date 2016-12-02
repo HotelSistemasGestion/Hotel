@@ -76,7 +76,7 @@
         <td align="center"><%= link_to '', room,class: "btn btn-primary glyphicon glyphicon-eye-open"%>
         <%= link_to '', edit_room_path(room), class: "btn btn-warning glyphicon glyphicon-pencil"%>
         <% if room.state_descripcion != "fuera de servicio"%>
-        <%= link_to '', room, method: :delete, data: { confirm: 'Are you sure?'},class: "btn btn-danger glyphicon glyphicon-trash" %>
+        <%= link_to '', room, method: :delete, data: { confirm: 'Esta usted seguro?'},class: "btn btn-danger glyphicon glyphicon-trash" %>
         <%end%>
       </td>
     <% end %>

@@ -1,4 +1,5 @@
 class AccountingEntry < ActiveRecord::Base
+	audited
 	has_many :account_x_entries
 	has_many :cash_movement
 	attr_accessor :cuenta

@@ -117,6 +117,7 @@ AccountingEntry.create(numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "
 AccountingEntry.create(numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
 
 
+
 AccountingEntry.create(numero:"2",fecha:"2016/12/02",iva: "10",debe: "10000",haber: "0",auto:"0");
 AccountingEntry.create(numero:"2",fecha:"2016/12/02",iva: "10",debe: "25000",haber: "0",auto:"0");
 AccountingEntry.create(numero:"2",fecha:"2016/12/02",iva: "0",debe: "0",haber: "35000",auto:"0");
@@ -133,6 +134,7 @@ AccountXEntry.create(accounting_entry_id:"3",accounting_account_id:"4",monto:"0"
 AccountXEntry.create(accounting_entry_id:"7",accounting_account_id:"17",monto:"50000",observacion:"Compra de servicio",tipo:"A",account:"Caja");
 AccountXEntry.create(accounting_entry_id:"8",accounting_account_id:"13",monto:"50000",observacion:"Compra de servicio",tipo:"A",account:"Caja");
 AccountXEntry.create(accounting_entry_id:"9",accounting_account_id:"2",monto:"50000",observacion:"Compra de servicio",tipo:"D",account:"Caja");
+
 
 #AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
 #AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");

@@ -1,4 +1,5 @@
 class AccountPlan < ActiveRecord::Base
+	audited
 	has_many :accounting_years
 	has_many :account_x_plans
 	attr_accessor :eje1
