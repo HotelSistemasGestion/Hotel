@@ -44,15 +44,21 @@ class Account < ActiveRecord::Base
 
         #cuando se registra a partir de una reservación cambia el estado de la reservación
         def antes_de_guardar
+            self.subtotal=0
             if self.descuento.nil? then self.descuento = 0 end
             #cambiar el estado de una reservación a confirmado
             if !self.reservation_id.nil?
                 reservation = Reservation.find(reservation_id)
-                reservation.state = "confirmado"
-                reservation.save
+                if reservation.state.pendiente?
+                    reservation.state = "confirmado"
+                    reservation.save
+                end
             end
             self.room_account_details.each do |rad|
                 self.subtotal= self.subtotal + rad.subtotal
+            end
+            self.account_details.each do |ad|
+                self.subtotal= self.subtotal + ad.subtotal
             end
             self.total= self.subtotal - (self.subtotal * self.descuento / 100)
             self.iva= self.total / 11
