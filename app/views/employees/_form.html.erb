@@ -38,7 +38,7 @@
      <div class="col-sm-6 form-group   has-feedback">
       <%= f.label :edad, class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.number_field :edad, class: "form-control",min: 18,max: 70 ,:required => true %>
+        <%= f.number_field :edad, class: "form-control",min: 18,max: 70 ,:required => true,placeholder:"18" %>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
@@ -47,7 +47,7 @@
      <div class="col-sm-6 form-group   has-feedback">
       <%= f.label :cedula, class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.number_field :cedula, class: "form-control",min: 100000, max: 100000000,:required => true  %>
+        <%= f.number_field :cedula, class: "form-control",min: 100000, max: 100000000,:required => true ,placeholder:"4267323" %>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
@@ -56,7 +56,7 @@
     <div class="col-sm-6 form-group has-feedback">
       <%= f.label :telefono, class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.number_field :telefono, class: "form-control",min: 1000000,max: 1000000000 ,:required => true%>
+        <%= f.number_field :telefono, class: "form-control",min: 1000000,max: 1000000000 ,:required => true,placeholder:"0992457536"%>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
@@ -64,7 +64,7 @@
   <div class="col-sm-6 form-group has-feedback">
     <%= f.label :cantidad_de_hijos, class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
-      <%= f.number_field :hijo, class: "form-control",min: 0,max: 17 ,:required => true %>
+      <%= f.number_field :hijo, class: "form-control",min: 0,max: 17 ,:required => true, placeholder:"2"%>
        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
       <div class="help-block with-errors">*requerido</div>
     </div>
@@ -73,13 +73,13 @@
 
 
 
-    <div class="col-sm-6 form-group has-feedback">
+    <div class="col-sm-6 form-group">
       <%= f.label :Cargo, class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.select :types_of_employee_id ,TypesOfEmployee.all.collect { |p| [p.tipo, p.id ] },{include_blank: false},class: "form-control",:required => true %>
-         <!--  <%= f.text_field :types_of_employee, class: "form-control" ,:required => true %>-->
+        <%= f.select :types_of_employee_id ,TypesOfEmployee.all.collect { |p| [p.tipo, p.id ] },{include_blank: false},class: "form-control" %>
+         <!--  <%= f.text_field :types_of_employee, class: "form-control"  %>-->
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
-        <div class="help-block with-errors">*requerido</div>
+        <div class="hide help-block with-errors">*requerido</div>
       </div>
     </div>
  
@@ -90,7 +90,7 @@
     <div class="col-sm-6 form-group has-feedback">
       <%= f.label :correo, class: "col-sm-3 control-label" %>
       <div class="col-sm-9">
-        <%= f.email_field :correo, class: "form-control" ,type:"email",:required => true%>
+        <%= f.email_field :correo, class: "form-control" ,type:"email",:required => true,placeholder:"fernando@gmail.com"%>
         <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
         <div class="help-block with-errors">*requerido</div>
       </div>
@@ -100,7 +100,7 @@
     <div class="col-sm-6 form-group has-feedback">
     <%= f.label :direccion, class: "col-sm-3 control-label" %>
     <div class="col-sm-9">
-      <%= f.text_field :direccion,minlength: 3, class: "form-control" ,:required => true%>
+      <%= f.text_field :direccion,minlength: 3, class: "form-control" ,:required => true,placeholder:"Capitan Miranda"%>
        <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
       <div class="help-block with-errors">*requerido</div>
     </div>
@@ -108,7 +108,17 @@
   </div>
   
     <div class ="box-body"> 
+      <%if @employee.nombre.present?%>
+      
+      <%= f.submit "Editar Empleado", class: "btn btn-primary" %>
+      <%else%>
       <%= f.submit "Crear Empleado", class: "btn btn-primary" %>
+      <%end%>
+      <%= link_to employees_path, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Volver
+    <% end %>
     </div>
 </div>
 <% end %>
+  

@@ -41,13 +41,13 @@
     <tbody>
     
     
-      <%= content_tag_for(:tr, @account_details.order(id: :desc)) do |accounts_detail| %>
-       <td><%= Account.find(accounts_detail.account_id).identificador_hab %></td>
-       <td><%= Service.find(accounts_detail.service_id).nombre %></td>
-       <td><%= accounts_detail.precio %></td>
-       <td><%= accounts_detail.cantidad %></td>
-       <td><%= accounts_detail.subtotal %></td>
-       <td><%= accounts_detail.created_at.strftime("%F %T") %></td>
+      <%= content_tag_for(:tr, @account_details.order(id: :desc)) do |account_detail| %>
+       <td><%= ReservationRoom.find_by(reservation: (Account.find(account_detail.account_id)).reservation_id).room.identificador %></td>
+       <td><%= account_detail.servicio %></td>
+       <td><%= account_detail.precio %></td>
+       <td><%= account_detail.cantidad %></td>
+       <td><%= account_detail.subtotal %></td>
+       <td><%= account_detail.created_at.strftime("%F %T") %></td>
     <% end %>
     
     </tbody>
@@ -91,13 +91,13 @@
     <tbody>
     
     
-      <%= content_tag_for(:tr, @account_details_report.order(id: :desc)) do |accounts_detail| %>
-       <td><%= Account.find(accounts_detail.account_id).identificador_hab %></td>
-       <td><%= Service.find(accounts_detail.service_id).nombre %></td>
-       <td><%= accounts_detail.precio %></td>
-       <td><%= accounts_detail.cantidad %></td>
-       <td><%= accounts_detail.subtotal %></td>
-       <td><%= accounts_detail.created_at.strftime("%F %T") %></td>
+      <%= content_tag_for(:tr, @account_details.order(id: :desc)) do |account_detail| %>
+       <td><%= ReservationRoom.find_by(reservation: (Account.find(account_detail.account_id)).reservation_id).room.identificador %></td>
+       <td><%= account_detail.servicio %></td>
+       <td><%= account_detail.precio %></td>
+       <td><%= account_detail.cantidad %></td>
+       <td><%= account_detail.subtotal %></td>
+       <td><%= account_detail.created_at.strftime("%F %T") %></td>
     <% end %>
     
     </tbody>

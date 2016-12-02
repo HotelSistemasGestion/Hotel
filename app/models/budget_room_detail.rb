@@ -1,4 +1,5 @@
 class BudgetRoomDetail < ActiveRecord::Base
+	audited
 	belongs_to :budget, inverse_of: :budget_room_details
 
 	attr_accessor :precio_habitacion,:type_of_room,:ayudante

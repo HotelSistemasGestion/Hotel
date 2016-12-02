@@ -104,7 +104,7 @@
              
               <% if @p[0].my_file.present?%>
                   <%@s = Photo.all.where("#{:user_id} = ?", current_user.id)%>
-                  <%= cl_image_tag(@s[0].my_file.filename, :effect=>"grayscale", :gravity=>"face", :radius=>"max", :crop=>"crop" ,:class =>"user-image")%>
+                  <%= cl_image_tag(@s[0].my_file.filename, :gravity=>"face", :radius=>"max", :crop=>"crop" ,:class =>"user-image")%>
                  
               <%else%>
                   <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg", :gravity=>"face", :radius=>"max", :crop=>"crop" ,:class =>"user-image"%>
@@ -124,7 +124,7 @@
              
               <% if @p[0].my_file.present?%>
                   <%@s = Photo.all.where("#{:user_id} = ?", current_user.id)%>
-                    <%= cl_image_tag(@s[0].my_file.filename, :effect=>"grayscale", :gravity=>"face", :radius=>"max", :crop=>"crop" ,:class =>"img-circle" , alt: "User Image"  )%>
+                    <%= cl_image_tag(@s[0].my_file.filename, :gravity=>"face", :radius=>"max", :crop=>"crop" ,:class =>"img-circle" , alt: "User Image"  )%>
               
               <%else%>
                   <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg", :class =>"img-circle" , alt: "User Image" %>
@@ -151,7 +151,7 @@
             <li class="user-footer">            
               <div class="pull-right">
                 <% @p = Photo.where("#{:user_id} = ?", current_user.id)%>
-                <a href="/photos/+<%=@p[0].id%>+/edit"  class="btn btn-default btn-flat">Agregar Imagen</a>
+                <a href="/photos/+<%=@p[0].id%>+/edit"  class="btn btn-default btn-flat"><i class='glyphicon glyphicon-camera'></i> <span>Foto perfil</span></a>
                 <a href="<%=destroy_user_session_path%>" data-method="delete" class="btn btn-default btn-flat">Salir</a>
 
               

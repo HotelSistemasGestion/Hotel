@@ -1,16 +1,21 @@
 <div class="box">
- 
+  <div class="box-body">
+     <%= link_to cleaning_rooms_path, class: 'btn btn-default' do %>
+            <span class="fa fa-calendar-check-o"></span>
+        
+     <% end %>
+  </div>
  <div class="box-body">
 
- <div id='calendario'></div>
-           
+ <div id='calendario_filtrado'></div>
+   
 </div>
       
       <script type="text/javascript">
       $(function() {
 
     
-    $('#calendario').fullCalendar({
+    $('#calendario_filtrado').fullCalendar({
 
        height: 600,
       //theme: true,

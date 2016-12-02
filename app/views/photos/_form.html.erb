@@ -1,5 +1,5 @@
 <div class="box-body">
-  <%= form_for(@photo, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <%= form_for(@photo, html: { class: "form-horizontal", role: "form",data: {toggle:"validator"} }) do |f| %>
     <% if @photo.errors.any? %>
       <div class="alert alert-danger alert-dismissable" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -19,10 +19,12 @@
          <% @p = Photo.where("#{:user_id} = ?", current_user.id)%>
                <% if @p[0].my_file.present?%>
                   <%@s = Photo.all.where("#{:user_id} = ?", current_user.id)%>
-                  <%= cl_image_tag(@s[0].my_file.filename,:width => 100, :height =>100)%>
+                   <a class="image-popup" href="<%=@s[0].my_file.url%>">
+                  <%= cl_image_tag(@s[0].my_file.filename,:width => 100, :height =>100,:crop => :fill, :radius => 20)%>
+                  </a>
                  
               <%else%>
-                  <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg",:width => 30, :height => 20%>
+                  <%= image_tag "https://res.cloudinary.com/dqgld1gyl/image/upload/v1480119780/perfilVacio_l0twii.jpg",:width => 50, :height => 50%>
               <%end%>
 
        
@@ -30,8 +32,8 @@
     </div>
     <div class="form-group">
       <%= f.label :Nueva_Imagen, class: "col-sm-2 control-label" %>
-      <div class="col-sm-7">
-        <%= f.file_field :my_file, class: "form-control" ,type:"file" ,class: "file"  %>
+      <div class="col-sm-10">
+        <%= f.file_field :my_file, class: "form-control" ,type:"file" ,class: "file",:required=>true  %>
       </div>
     </div>
     <div class="form-group">

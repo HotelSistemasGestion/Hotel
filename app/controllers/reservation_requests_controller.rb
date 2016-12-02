@@ -52,8 +52,8 @@ class ReservationRequestsController < ApplicationController
 
     
     respond_to do |format|
-       #if verify_recaptcha(model: @reservation_request) && @reservation_request.save
-       if @reservation_request.save
+       if verify_recaptcha(model: @reservation_request) && @reservation_request.save
+       #if @reservation_request.save
         # Redireccionamos a welcome y especificamente a la seccion de contacto para mostrar el mensaje de exito.
         format.html { redirect_to welcome_index_path(), notice: 'Su pedido fue creado con exito,en breve responderemos.' }
         #format.json { render 'welcome/index' , status: :created, location: @reservation_request }
@@ -70,7 +70,7 @@ class ReservationRequestsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation_request.update(reservation_request_params)
-        format.html { redirect_to @reservation_request, notice: 'Reservation request was successfully updated.' }
+        format.html { redirect_to @reservation_request, notice: 'Reservation fue Actualizada.' }
         format.json { render :show, status: :ok, location: @reservation_request }
       else
         format.html { render :edit }
@@ -82,11 +82,14 @@ class ReservationRequestsController < ApplicationController
   # DELETE /reservation_requests/1
   # DELETE /reservation_requests/1.json
   def destroy
+    @reservation_request = ReservationRequest.find(params[:id])
     @reservation_request.destroy
-    respond_to do |format|
-      format.html { redirect_to reservation_requests_url, notice: 'Reservation request was successfully destroyed.' }
+   
+   respond_to do |format|
+      format.html { redirect_to reservation_requests_url }
       format.json { head :no_content }
-    end
+      format.js   { render :layout => false }
+   end
   end
 
  

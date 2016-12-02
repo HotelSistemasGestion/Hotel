@@ -22,7 +22,11 @@
           </div>
 
           <div class="col-xs-3">
-          <%= f.text_field(:created_at_lt, class: 'r_datepicker_complaint_lt  form-control',placeholder:"Buscar por fecha")%>
+          <%= f.text_field(:created_at_lt, class: 'r_datepicker_complaint  form-control',placeholder:"Desde")%>
+          </div>
+
+          <div class="col-xs-3">
+          <%= f.text_field(:created_at_lta, class: 'r_datepicker_complaint_lt  form-control',placeholder:"Hasta")%>
           </div>
            
          <%= render_filterrific_spinner %>

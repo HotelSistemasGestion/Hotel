@@ -23,9 +23,6 @@ Comfort.create(descripcion: "dos estrellas",precio: 20000);
 Comfort.create(descripcion: "tres estrellas",precio: 50000);
 
 
-
-
-
 #AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "0",debe: "10000",haber: "0");
 #AccountingEntry.create(numero:"1",fecha:"2016/05/15",iva: "10",debe: "0",haber: "10000");
 #AccountingEntry.create(numero:"2",fecha:"2016/06/11",iva: "10",debe: "1000",haber: "0");
@@ -86,6 +83,10 @@ AccountingAccount.create(grupo:"1",nombre:"Servicios",imputable:"false",cuenta:"
 AccountingAccount.create(grupo:"111",nombre:"TV cable",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
 AccountingAccount.create(grupo:"112",nombre:"TV cable Nacionales",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
 AccountingAccount.create(grupo:"113",nombre:"Lavanderia",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
+
+AccountingAccount.create(grupo:"3",nombre:"Cuentas por cobrar",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"331",nombre:"Cliente",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"3");
+
 
 
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1");
@@ -164,14 +165,19 @@ State.create(descripcion: "ocupado");
 State.create(descripcion: "reservado");
 State.create(descripcion: "fuera de servicio");
 
-Room.create(type_of_room_id: 1,state_id: 1, capacidad: 2, identificador:"AU1",comfort_id: 1);
-Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'AD2',comfort_id: 2);
-Room.create(type_of_room_id: 3,state_id: 1 ,capacidad: 2,identificador: 'CU3',comfort_id: 1);
-Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BU1",comfort_id: 1);
-Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BD1",comfort_id: 2);
-Room.create(type_of_room_id: 2,state_id: 1 ,capacidad: 2,identificador: 'B2',comfort_id: 1);
-Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',comfort_id: 1);
-Room.create(type_of_room_id: 4,state_id: 4 ,capacidad: 2,identificador: 'XT3',comfort_id: 3);
+
+#Habitaciones 
+Room.create(type_of_room_id: 1,state_id: 1, identificador:"AU1",  comfort_id: 1);
+Room.create(type_of_room_id: 1,state_id: 1, identificador: 'AD2', comfort_id: 2);
+Room.create(type_of_room_id: 3,state_id: 1 ,identificador: 'CU3', comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, identificador:"BU1",  comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, identificador:"BD1",  comfort_id: 2);
+Room.create(type_of_room_id: 2,state_id: 1 ,identificador: 'B2',  comfort_id: 1);
+Room.create(type_of_room_id: 3,state_id: 4 ,identificador: 'D3',  comfort_id: 1);
+Room.create(type_of_room_id: 1,state_id: 1 ,identificador: 'A1', comfort_id: 3);
+Room.create(type_of_room_id: 1,state_id: 1 ,identificador: 'A2', comfort_id: 3);
+Room.create(type_of_room_id: 1,state_id: 1 ,identificador: 'A3', comfort_id: 3);
+Room.create(type_of_room_id: 1,state_id: 1 ,identificador: 'A4', comfort_id: 3);
 
 
 
@@ -199,10 +205,16 @@ TypesOfEmployee.create(tipo: "administrador", descripcion: "");
 TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
 TypesOfEmployee.create(tipo: "botones", descripcion: "");
 TypesOfEmployee.create(tipo: "cajero", descripcion: "");
-Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
-Employee.create(types_of_employee_id: 2, nombre: "Enrique", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
-Employee.create(types_of_employee_id: 2, nombre: "Julio", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
-
+TypesOfEmployee.create(tipo: "retirado", descripcion: "");
+#Empleados botones
+Employee.create(types_of_employee_id: 3, nombre: "Pedro", 	 apellido:"Wasiluk",			 edad: 34, cedula: 3000343, telefono: 202030, correo: "pedro@gmail.com",    direccion: "Cambyreta" , 		hijo: 5);
+Employee.create(types_of_employee_id: 3, nombre: "Juan", 	 apellido:"Gimenez",			 edad: 36, cedula: 2400343, telefono: 211230, correo: "juan@gmail.com",     direccion: "encarnacion" , 		hijo: 3);
+Employee.create(types_of_employee_id: 3, nombre: "Lucas", 	 apellido: "Ronaldo",			 edad: 32, cedula: 3040343, telefono: 211232, correo: "lucas@gmail.com",    direccion: "Capitan Miranda" , 	hijo: 1);
+# Empleados de Limpieza
+Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra Liseras", edad: 20, cedula: 4333333, telefono: 211289, correo: "fernando@gmail.com", direccion: "Capitan Miranda" , hijo: 1);
+Employee.create(types_of_employee_id: 2, nombre: "Enrique",  apellido:"Pereira Gomez",	 edad: 28, cedula: 3233500, telefono: 202222, correo: "enrique@gmail.com",  direccion: "Arroyo Pora" ,     hijo: 2);
+Employee.create(types_of_employee_id: 2, nombre: "Julio", 	 apellido:"Torres",			 edad: 22, cedula: 4000343, telefono: 202030, correo: "julio@gmail.com",    direccion: "Capitan Miranda" , hijo: 0);
+# Empleados de Caja
 Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 666, correo: "miguel@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
 
 
@@ -279,6 +291,11 @@ Action.create(accion: "Eliminar Servicio");
 Action.create(accion: "Control de Asientos");
 Action.create(accion: "Control de Cuentas");
 Action.create(accion: "Control de Planes de Cuentas");
+#Acciones para Habitaciones
+Action.create(accion: "Ver Habitaciones");
+Action.create(accion: "Crear Habitaciones");
+Action.create(accion: "Editar Habitaciones");
+Action.create(accion: "Inhabilitar Habitaciones");
 
 
 Rol.create(:nombre => "Admin", :action_ids => [1])
@@ -287,12 +304,12 @@ User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "09834334
 Photo.create(:user_id => 1);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
+ReservationRequest.create(nombre: "Cristiano", apellido: "Ronaldo", email: "cr7@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
-ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
-ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 1, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+3).to_s, comentarios: "");
+#ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 1, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+3).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Katya", apellido: "Chaparro", email: "katya.chaparro.2010@gmail.com", telefono: "0012", comfort_id: 2, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+5).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
+#eservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 
 ######
 #Budget.create(reservation_request_id: 1,comfort_id: 3, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,comentario:"a",descuento: 10,total:10000);
@@ -308,25 +325,35 @@ Cash.create(descripcion: "Resturant&Bar");
 OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abierta",fecha_apertura: (Date.today+1).to_s);
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
 
+
+
+
+#Limpieza de Habitacion
 CleaningRoom.create(employee_id: 1);
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-01",end: "2016-11-05" ,title: "Habitacion A1" ,color: "#33ff00",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-06",end: "2016-11-08" ,title: "Habitacion A1" ,color: "#80f442",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-03",end: "2016-11-10" ,title: "Habitacion A1" ,color: "#f45342",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-12",end: "2016-11-20" ,title: "Habitacion A1" ,color: "#eef442",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-02",end: "2016-11-15" ,title: "Habitacion A1" ,color: "#42f4d7",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-14",end: "2016-11-16" ,title: "Habitacion A1" ,color: "#425cf4",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-28",end: "2016-11-30" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-03",end: "2016-11-14" ,title: "Habitacion A1" ,color: "#f44295",textColor: "#ffffff");
+CleaningRoom.create(employee_id: 2);
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-01",end: "2016-12-05" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-06",end: "2016-12-08" ,title: "Habitacion A1" ,color: "#80f442",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-03",end: "2016-12-10" ,title: "Habitacion A1" ,color: "#f45342",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-12",end: "2016-12-20" ,title: "Habitacion A1" ,color: "#eef442",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-02",end: "2016-12-15" ,title: "Habitacion A1" ,color: "#42f4d7",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-14",end: "2016-12-16" ,title: "Habitacion A1" ,color: "#425cf4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-28",end: "2016-12-30" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-03",end: "2016-12-14" ,title: "Habitacion A1" ,color: "#f44295",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 2,employee_id: 2,room_id: 2,start: "2017-01-03",end: "2017-01-14" ,title: "Habitacion" 	,color: "#33ff00",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 2,employee_id: 2,room_id: 3,start: "2017-01-07",end: "2017-01-14" ,title: "Habitacion" 	,color: "#f44295",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 2,employee_id: 2,room_id: 2,start: "2017-01-01",end: "2017-01-14" ,title: "Habitacion" 	,color: "#d742f4",textColor: "#ffffff");
+
+
 
 PaymentValue.create(descripcion:"efectivo");
 PaymentValue.create(descripcion:"cheque");
 PaymentValue.create(descripcion:"tarjeta crédito");
 PaymentValue.create(descripcion:"tarjeta dédito");
 
-Invoice.create(nombre: "Marcelo Caceres", fecha: "2016-11-20", ruc: "8001425-6", direccion: "Carlos A. Lopez 1020", celular: "0985658955", correo: "micorreo@gmail.com", numero: "9005", state: "pendiente", subtotal: 10000, descuento: 0, total: 10000, iva: 909);
+Invoice.create(nombre: "Marcelo Caceres", client_id: "1",fecha: "2016-11-20", ruc: "8001425-6", direccion: "Carlos A. Lopez 1020", celular: "0985658955", correo: "micorreo@gmail.com", numero: "9005", state: "pendiente", subtotal: 10000, descuento: 0, total: 10000, iva: 909);
 InvoiceDetail.create(invoice_id: 1, service_id: 2, cantidad: 1, precio: 10000, subtotal: 10000);
 InvoiceDetail.create(invoice_id: 1, service_id: 2, cantidad: 2, precio: 10000, subtotal: 20000);
-Invoice.create(nombre: "Monica Riveros", fecha: "2016-11-30", ruc: "1258745-0", direccion: "Mcal. Lopez 102", celular: "0971005258", correo: "correodemonica@gmail.com", numero: "9006", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
+Invoice.create(nombre: "Monica Riveros", client_id: "1", fecha: "2016-11-30", ruc: "1258745-0", direccion: "Mcal. Lopez 102", celular: "0971005258", correo: "correodemonica@gmail.com", numero: "9006", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
 InvoiceDetail.create(invoice_id: 2, service_id: 2, cantidad: 2, precio: 10000, subtotal: 20000);
-Invoice.create(nombre: "Angel Carreras", fecha: "2016-10-31", ruc: "400808-6", direccion: "Juan Leon Mallorquin 201", celular: "0993506908", correo: "correodeAngel@gmail.com", numero: "9004", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
+Invoice.create(nombre: "Angel Carreras", client_id: "1", fecha: "2016-10-31", ruc: "400808-6", direccion: "Juan Leon Mallorquin 201", celular: "0993506908", correo: "correodeAngel@gmail.com", numero: "9004", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
 InvoiceDetail.create(invoice_id: 3, service_id: 1, cantidad: 1, precio: 20000, subtotal: 20000);

@@ -15,7 +15,9 @@
             <tbody>
             <% colection = {'create' => 'Crear', 'update' => 'Editar', 'destroy' => 'Eliminar'} %>
 
-            <% colection_table = {'Service' => 'Servicio', 'User' => 'Usuario', 'Cash' => 'Caja', 'Invoice' => 'Factura', 'Account' => 'Cuenta', 'Client' => 'Cliente','OpeningCash' => 'Apertura', 'ClosingCash' => 'Cierre', 'Room' => 'Habitacion', 'Complaint' => 'Queja','Reservation' => 'Reservacion','Reservation' => 'Reservacion' } %>
+
+            <% colection_table = {'Service' => 'Servicio', 'User' => 'Usuario', 'Cash' => 'Caja', 'Invoice' => 'Factura', 'Account' => 'Cuenta', 'Client' => 'Cliente','OpeningCash' => 'Apertura', 'ClosingCash' => 'Cierre', 'Room' => 'Habitacion', 'Complaint' => 'Queja','Reservation' => 'Reservacion', 'Cleaning' => 'Limpieza', 'ReservationRoom' => 'Reservacion de Cuartos', 'Budget' => 'Presupuesto','BudgetRoomDetail'=> 'Presupuesto en Cuarto', 'BudgetServiceDetail' =>'Presupuesto en Servicio', 'ReservationRequest' => 'Pedido de Reservacion','Employee' => 'Empleado'} %>
+
 
                 <% @audited_tables.each do |audit| %>
 
