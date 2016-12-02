@@ -19,20 +19,18 @@
    <div id="filterrific_results">
   <table class="table table-striped table-bordered table-hover">
   <colgroup>
+    <col style="width:18%">
     <col style="width:10%">
     <col style="width:10%">
+    <col style="width:13.5%">
+    <col style="width:13.5%">
     <col style="width:10%">
     <col style="width:10%">
     <col style="width:15%">
-    <col style="width:15%">
-    <col style="width:10%">
-    <col style="width:10%">
-    <col style="width:10%">
   </colgroup>
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Apellido</th>
         <th>Email</th>
         <th>Habitacion</th>
         <th>Tipo de Habitacion</th>
@@ -48,8 +46,7 @@
     
     
       <%= content_tag_for(:tr, @reservation_rooms.order(id: :desc)) do |reservation_rooms| %>
-       <td><%= reservation_rooms.reservation.nombre %></td>
-       <td><%= reservation_rooms.reservation.apellido %></td>
+       <td><%= reservation_rooms.reservation.nombre+" "+reservation_rooms.reservation.apellido  %></td>
        <td><%= reservation_rooms.reservation.email %></td>
        <td><%= reservation_rooms.room.identificador %></td>
        <td><%= reservation_rooms.type_of_room.tipo %></td>
@@ -78,20 +75,18 @@
    <div id="filterrific_results">
   <table class="table table-striped table-bordered table-hover">
   <colgroup>
+   <col style="width:18%">
     <col style="width:10%">
     <col style="width:10%">
+    <col style="width:13.5%">
+    <col style="width:13.5%">
     <col style="width:10%">
     <col style="width:10%">
     <col style="width:15%">
-    <col style="width:15%">
-    <col style="width:10%">
-    <col style="width:10%">
-    <col style="width:10%">
   </colgroup>
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Apellido</th>
         <th>Email</th>
         <th>Habitacion</th>
         <th>Tipo de Habitacion</th>
@@ -108,8 +103,7 @@
     
     
       <%= content_tag_for(:tr, @reservation_rooms_report.order(id: :desc)) do |reservation_rooms| %>
-       <td><%= reservation_rooms.reservation.nombre %></td>
-       <td><%= reservation_rooms.reservation.apellido %></td>
+       <td><%= reservation_rooms.reservation.nombre+" "+reservation_rooms.reservation.apellido %></td>
        <td><%= reservation_rooms.reservation.email %></td>
        <td><%= reservation_rooms.room.identificador %></td>
        <td><%= reservation_rooms.type_of_room.tipo %></td>

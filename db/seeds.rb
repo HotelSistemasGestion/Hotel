@@ -222,7 +222,7 @@ Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra L
 Employee.create(types_of_employee_id: 2, nombre: "Enrique",  apellido:"Pereira Gomez",	 edad: 28, cedula: 3233500, telefono: 202222, correo: "enrique@gmail.com",  direccion: "Arroyo Pora" ,     hijo: 2);
 Employee.create(types_of_employee_id: 2, nombre: "Julio", 	 apellido:"Torres",			 edad: 22, cedula: 4000343, telefono: 202030, correo: "julio@gmail.com",    direccion: "Capitan Miranda" , hijo: 0);
 # Empleados de Caja
-Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 0981226979, correo: "cajero@gmail.com", direccion: "Capitan Miranda" , hijo: 0);
+Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 203030, correo: "cajero@gmail.com", direccion: "Capitan Miranda" , hijo: 0);
 
 
 ComplaintService.create(description: "Limpieza");
@@ -311,7 +311,7 @@ Action.create(accion: "Inhabilitar Habitaciones");
 Action.create(accion: "Ver Movimientos");
 Rol.create(:nombre => "Admin", :action_ids => [1])
 Rol.create(:nombre => "Auditor", :action_ids => [53])
-#Rol.create(:nombre => "Recepcionista", :action_ids => [53])
+Rol.create(:nombre => "Recepcionista", :action_ids => [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45])
 Rol.create(:nombre => "Supervisor", :action_ids => [2,6,7])
 Rol.create(:nombre => "Cajero", :action_ids => [2,3])
 User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 1);
