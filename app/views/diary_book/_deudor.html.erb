@@ -15,7 +15,7 @@
 <tr>
 	<td></td>
     <td></td>
-    <td><%=AccountXPlan.find(AccountingAccount.find(a_x_e.accounting_account_id)).cuenta_superior%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
+    <td><%=AccountingAccount.find(a_x_e.accounting_account_id).parent_id%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
     <td class="haber-ctrol">a <%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
     <td></td>
     <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).haber - iva_round%></td>            
