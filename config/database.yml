@@ -27,7 +27,7 @@ test:
   encoding: unicode
   database: sistema_hotel_test
   pool: 5
-  username: postgre1s
+  username: postgres
   password: 12345
 
 production:
@@ -36,4 +36,4 @@ production:
   database: sistema_hotel_production
   pool: 5
   username: postgres
-  password: 12345
+  password: 
