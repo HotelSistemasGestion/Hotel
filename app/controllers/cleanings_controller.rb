@@ -54,7 +54,7 @@ class CleaningsController < ApplicationController
   def update
     respond_to do |format|
       if @cleaning.update(cleaning_params)
-        format.html { redirect_to @cleaning, notice: 'Cleaning was successfully updated.' }
+        format.html { redirect_to @cleaning, notice: 'La limpieza ha sido editada!!.' }
         format.json { render :show, status: :ok, location: @cleaning }
       else
         format.html { render :edit }
@@ -68,7 +68,7 @@ class CleaningsController < ApplicationController
   def destroy
     @cleaning.destroy
     respond_to do |format|
-      format.html { redirect_to cleanings_url, notice: 'Cleaning was successfully destroyed.' }
+      format.html { redirect_to cleaning_rooms_url, notice: 'La limpieza ha sido borrada!!.' }
       format.json { head :no_content }
     end
   end
