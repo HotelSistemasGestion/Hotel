@@ -300,10 +300,13 @@ Action.create(accion: "Ver Habitaciones");
 Action.create(accion: "Crear Habitaciones");
 Action.create(accion: "Editar Habitaciones");
 Action.create(accion: "Inhabilitar Habitaciones");
-
-
-Rol.create(:nombre => "Admin", :action_ids => [1]);
-#Rol.create(:nombre => "Cajero", :action_ids => [1]);
+#Acciones para Habitaciones
+Action.create(accion: "Ver Movimientos");
+Rol.create(:nombre => "Admin", :action_ids => [1])
+Rol.create(:nombre => "Auditor", :action_ids => [53])
+#Rol.create(:nombre => "Recepcionista", :action_ids => [53])
+Rol.create(:nombre => "Supervisor", :action_ids => [2,6,7])
+Rol.create(:nombre => "Cajero", :action_ids => [2,3])
 User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 1);
 #User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 2);
 Photo.create(:user_id => 1);

@@ -167,14 +167,16 @@
                                 <%= role.accion %><br>
                               <% end %>                                
                             </div>
-                          </div>                                          
+
+                            <div class="col-md-3">
+                              <h5>Auditoria</h5>                              
+                              <% role = Action.find(53) %>
+                                <%= check_box_tag  "rol[action_ids][]", role.id, f.object.actions.include?(role) %>
+                                <%= role.accion %><br>                            
+                            </div>
+                          </div>                                                 
                         </div>
-                    </div>  
-
-
-                                              
-
-                                         
+                    </div>                
                 <!-- /.post -->
               </div>                        
               <div class="box-footer">                                
