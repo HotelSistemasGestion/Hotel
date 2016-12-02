@@ -124,7 +124,10 @@ class CashMovementsController < ApplicationController
         end
         format.html{ redirect_to new_cash_movement_path(opening_cash_id: @cash_movement.opening_cash_id) }
         format.json { render :show, status: :created, location: @cash_movement }
-        ##########################################################################################################
+
+                      
+##########################################################################################################
+       
         @ultimo=AccountingEntry.last.numero + 1
         @suma = 0
         invoices.each do |invoice|
@@ -186,6 +189,7 @@ class CashMovementsController < ApplicationController
             @cash_movement.accounting_entry_id= AccountingEntry.last.id
             @cash_movement.save 
  ##########################################################################################################
+
       else
         format.html { render :new }
         format.json { render json: @cash_movement.errors, status: :unprocessable_entity }

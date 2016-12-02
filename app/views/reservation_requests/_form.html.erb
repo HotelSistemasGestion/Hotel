@@ -87,16 +87,32 @@
       </div>
     </div>
     
+    <%if ! user_signed_in? %>
     <div class="form-group">
       <%= f.label :recaptcha_tags, class: "col-sm-2 sr-only" %>
       <div class="col-sm-6">
          <%= recaptcha_tags %>
       </div>
     </div>
-   
     <div class="form-group">
       <div class="col-sm-6 col-sm-10">
         <%= f.submit "Enviar Pedido",class: "btn btn-success" %>
       </div>
     </div>
+    <%end%>
+
+    <%if user_signed_in? %>
+    <div class="form-group">
+    <div class="col-sm-10">
+      <%= button_tag( :class => "btn btn-primary",id: "guardar") do %>
+        <i class="glyphicon glyphicon-floppy-save"></i> Guardar 
+      <% end %>
+    </div>
+  </div>
+  <%end%>
+
+
+
+
+    
 <% end %>
