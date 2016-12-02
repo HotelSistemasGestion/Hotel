@@ -140,7 +140,7 @@ class CashMovementsController < ApplicationController
               #   @nombre_cuenta="Otros"  
              #end
              @namem=@servicio.nombre
-             @nombre_cuenta=AccountingAccount.find_by_sql("select accounting_accounts.id from accounting_accounts ,services  where accounting_accounts.nombre='#{@namem}'")   
+             @nombre_cuenta=AccountingAccount.find_by_sql("select accounting_accounts.id AS id from accounting_accounts  where accounting_accounts.nombre='#{@namem}'")   
              @asiento.numero=@ultimo
              @asiento.fecha=Time.now.strftime("%d-%m-%Y")
              @asiento.iva=10
@@ -152,7 +152,10 @@ class CashMovementsController < ApplicationController
              @detalle_asiento.monto=@monto
              @detalle_asiento.observacion=@servicio.descripcion
              @detalle_asiento.account=@servicio.nombre
-             @detalle_asiento.accounting_account_id=@nombre_cuenta
+             @nombre_cuenta.each do |a|
+             @detalle_asiento.accounting_account_id=a.id
+             end 
+             
              @detalle_asiento.accounting_entry_id=@ultimo
              @detalle_asiento.tipo= "D"
              @detalle_asiento.save
@@ -161,7 +164,7 @@ class CashMovementsController < ApplicationController
              @masiento=AccountingEntry.new
              @mdetalle_asiento=AccountXEntry.new
              @name2="Cliente"
-             #@acreedor=AccountingAccount.find_by_sql("select accounting_accounts.id AS id,accounting_accounts.nombre AS nombre from accounting_accounts  where accounting_accounts.nombre='#{@name2}'")   
+             @acreedor=AccountingAccount.find_by_sql("select accounting_accounts.id AS id from accounting_accounts  where accounting_accounts.nombre='#{@name2}'")   
              @masiento.numero=@ultimo
              @masiento.fecha=Time.now.strftime("%d-%m-%Y")
              @masiento.iva=0
@@ -170,17 +173,18 @@ class CashMovementsController < ApplicationController
              @masiento.haber=0
              @masiento.save
              @mdetalle_asiento.monto=@monto
-             @mdetalle_asiento.observacion="Clientes"
+             @mdetalle_asiento.observacion="Cuentas por cobrar"
              @mdetalle_asiento.accounting_entry_id=@ultimo
              @mdetalle_asiento.tipo= "A"
              @mdetalle_asiento.account="Cliente"
-             #@acreedor.each do |a|
-             #@mdetalle_asiento.accounting_account_id=a.id
-             #end 
+             @acreedor.each do |a|
+             @mdetalle_asiento.accounting_account_id=a.id
+             end 
              @mdetalle_asiento.save
              @ultimo=0
              @suma=0
-                       
+            @cash_movement.accounting_entry_id= AccountingEntry.last.id
+            @cash_movement.save 
  ##########################################################################################################
       else
         format.html { render :new }

@@ -1,8 +1,16 @@
+<!--Obtiene el numero de asineto para esa iteracion-->
+<%busca_num=AccountingEntry.find(a_x_e.accounting_entry_id).numero%>
+<!--obtiene todos los id que tengan ese numero de asiento y con ese iva, luego solo se obtiene el ultimo-->
+<%todo_asiento=AccountingEntry.where('numero=?',busca_num).select('id')%> 
+<script >
+console.log("estoy en factura");
+</script>
 
- <!--Tiene como fin cerrar el asiento-->
               <!-- Si el que sigue de este asiento es nil significa que el objeto en esta iteracion es el ultimo o si el numero  de asiento de la siguiente iteracion es distinto al de estaa iteracion significa que es el ultimo  con el mismo numero de asiento-->
-              <%if(AccountingEntry.where("id >= ?",a_x_e .accounting_entry_id).first.nil?) ? nil :
-                anterior_asiento.numero != AccountingEntry.where("id > ?",a_x_e .accounting_entry_id).first.numero%>
+            <%if AccountingEntry.find(a_x_e.accounting_entry_id).id==todo_asiento.last.id%>  
+            <script >
+console.log("estoy en factura condicion");
+</script> 
                 <%cont=0%>
                 <!-- Obtengo todas las facturas que esten relacionadas al asiento-->
                 <%numeroFac=AccountingEntry.find_by_sql("SELECT invoices.id, invoices.numero ,accounting_entries.numero AS num_asiento FROM accounting_entries ,cash_movements,detail_of_cash_movements ,invoices WHERE cash_movements.accounting_entry_id=accounting_entries.id AND  detail_of_cash_movements.cash_movement_id=cash_movements.id AND detail_of_cash_movements.invoice_id=invoices.id")%>
