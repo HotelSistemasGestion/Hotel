@@ -12,10 +12,12 @@
             	<h1 align="center">Hotel-Uni</h1>
 	            <h2 align="center">Hola <%= @reservation_request.nombre%> <%=@reservation_request.apellido %>!</h2>	
 	            <h3 align="center">Gracias por su preferencia</h3>
-	            <div class="well" style="word-wrap: break-word !important">
-		            <h4>Comentario:</h4>
-	            	<p><%=@budget.comentario%></p>
-            	</div>			
+	            <%if ! @budget.comentario == "" %>
+		            <div class="well" style="word-wrap: break-word !important">
+			            <h4>Comentario:</h4>
+		            	<p><%=@budget.comentario%></p>
+	            	</div>
+            	<%end%>		
             </div>
 
             <div class="box-body" style= "background-color:#d2d6de  " >

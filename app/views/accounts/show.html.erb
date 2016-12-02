@@ -57,6 +57,12 @@
           <label>Direccion: </label>
           <%= @account.direccion %> 
         </div>
+        <% if @account.numero.present? %> 
+          <div class="form-group">
+            <label>Factura N°: </label>
+            <%= @account.numero %> 
+          </div>
+        <% end %> 
       </div>
     </div>
 

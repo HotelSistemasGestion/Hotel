@@ -32,6 +32,8 @@ class ApplicationController < ActionController::Base
   private
   helper_method :is_ip_allowed
   def is_ip_allowed  
+     # correr el servidor en 127.0.0.1 o por defecto ::1
+    #if ((request.ip).to_s == '127.0.0.1')
     if ip_block.include?(request.remote_ip).to_s
       return true
     else  

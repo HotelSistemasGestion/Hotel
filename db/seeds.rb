@@ -75,6 +75,10 @@ AccountingAccount.create(grupo:"111",nombre:"TV cable",imputable:"true",cuenta:"
 AccountingAccount.create(grupo:"112",nombre:"TV cable Nacionales",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
 AccountingAccount.create(grupo:"113",nombre:"Lavanderia",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
 
+AccountingAccount.create(grupo:"3",nombre:"Cuentas por cobrar",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"331",nombre:"Cliente",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"3");
+
+
 
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2");
@@ -271,12 +275,12 @@ User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "09834334
 Photo.create(:user_id => 1);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
+ReservationRequest.create(nombre: "Cristiano", apellido: "Ronaldo", email: "cr7@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
-ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
-ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 1, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+3).to_s, comentarios: "");
+#ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 1, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+3).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Katya", apellido: "Chaparro", email: "katya.chaparro.2010@gmail.com", telefono: "0012", comfort_id: 2, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+5).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
+#eservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 
 ######
 #Budget.create(reservation_request_id: 1,comfort_id: 3, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,comentario:"a",descuento: 10,total:10000);
@@ -317,10 +321,10 @@ PaymentValue.create(descripcion:"cheque");
 PaymentValue.create(descripcion:"tarjeta crédito");
 PaymentValue.create(descripcion:"tarjeta dédito");
 
-Invoice.create(nombre: "Marcelo Caceres", fecha: "2016-11-20", ruc: "8001425-6", direccion: "Carlos A. Lopez 1020", celular: "0985658955", correo: "micorreo@gmail.com", numero: "9005", state: "pendiente", subtotal: 10000, descuento: 0, total: 10000, iva: 909);
+Invoice.create(nombre: "Marcelo Caceres", client_id: "1",fecha: "2016-11-20", ruc: "8001425-6", direccion: "Carlos A. Lopez 1020", celular: "0985658955", correo: "micorreo@gmail.com", numero: "9005", state: "pendiente", subtotal: 10000, descuento: 0, total: 10000, iva: 909);
 InvoiceDetail.create(invoice_id: 1, service_id: 2, cantidad: 1, precio: 10000, subtotal: 10000);
 InvoiceDetail.create(invoice_id: 1, service_id: 2, cantidad: 2, precio: 10000, subtotal: 20000);
-Invoice.create(nombre: "Monica Riveros", fecha: "2016-11-30", ruc: "1258745-0", direccion: "Mcal. Lopez 102", celular: "0971005258", correo: "correodemonica@gmail.com", numero: "9006", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
+Invoice.create(nombre: "Monica Riveros", client_id: "1", fecha: "2016-11-30", ruc: "1258745-0", direccion: "Mcal. Lopez 102", celular: "0971005258", correo: "correodemonica@gmail.com", numero: "9006", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
 InvoiceDetail.create(invoice_id: 2, service_id: 2, cantidad: 2, precio: 10000, subtotal: 20000);
-Invoice.create(nombre: "Angel Carreras", fecha: "2016-10-31", ruc: "400808-6", direccion: "Juan Leon Mallorquin 201", celular: "0993506908", correo: "correodeAngel@gmail.com", numero: "9004", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
+Invoice.create(nombre: "Angel Carreras", client_id: "1", fecha: "2016-10-31", ruc: "400808-6", direccion: "Juan Leon Mallorquin 201", celular: "0993506908", correo: "correodeAngel@gmail.com", numero: "9004", state: "pendiente", subtotal: 20000, descuento: 0, total: 20000, iva: 1818);
 InvoiceDetail.create(invoice_id: 3, service_id: 1, cantidad: 1, precio: 20000, subtotal: 20000);
