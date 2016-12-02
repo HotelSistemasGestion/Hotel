@@ -103,6 +103,7 @@ class BudgetsController < ApplicationController
   # GET /budgets/1/edit
   def edit
     @budget = Budget.find(params[:id])
+    
     @my_reservation_requests = ReservationRequest.find(@budget.reservation_request_id)
     #busco los servicios en los detalles de este presupuesto y retorno su id
     @services_details=@budget.budget_service_details.select("service_id").collect(&:service_id)

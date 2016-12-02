@@ -46,7 +46,7 @@
     
       <%= content_tag_for(:tr, @closing_cashes.order(id: :desc)) do |closing_cash| %>
        <td><%= closing_cash.opening_cash.cash.descripcion %></td>
-       <td><%= closing_cash.opening_cash.employee.nombre %></td>
+       <td><%= closing_cash.opening_cash.employee.nombre + " "+closing_cash.opening_cash.employee.apellido %></td>
        <td><%= closing_cash.monto_efectivo %></td>
        <td><%= closing_cash.monto_cheque %></td>
        <td><%= closing_cash.monto_tcredito %></td>
@@ -101,7 +101,7 @@
     
       <%= content_tag_for(:tr, @closing_cashes_report.order(id: :desc)) do |closing_cash| %>
        <td><%= closing_cash.opening_cash.cash.descripcion %></td>
-       <td><%= closing_cash.opening_cash.employee.nombre %></td>
+       <td><%= closing_cash.opening_cash.employee.nombre + " "+closing_cash.opening_cash.employee.apellido %></td>
        <td><%= closing_cash.monto_efectivo %></td>
        <td><%= closing_cash.monto_cheque %></td>
        <td><%= closing_cash.monto_tcredito %></td>
