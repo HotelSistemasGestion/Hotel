@@ -309,7 +309,7 @@ Action.create(accion: "Inhabilitar Habitaciones");
 Action.create(accion: "Ver Movimientos");
 Rol.create(:nombre => "Admin", :action_ids => [1])
 Rol.create(:nombre => "Auditor", :action_ids => [53])
-#Rol.create(:nombre => "Recepcionista", :action_ids => [53])
+Rol.create(:nombre => "Recepcionista", :action_ids => [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45])
 Rol.create(:nombre => "Supervisor", :action_ids => [2,6,7])
 Rol.create(:nombre => "Cajero", :action_ids => [2,3])
 User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 1);
