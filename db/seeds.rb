@@ -302,8 +302,6 @@ Action.create(accion: "Editar Habitaciones");
 Action.create(accion: "Inhabilitar Habitaciones");
 #Acciones para Habitaciones
 Action.create(accion: "Ver Movimientos");
-
-<<<<<<< HEAD
 Rol.create(:nombre => "Admin", :action_ids => [1])
 Rol.create(:nombre => "Auditor", :action_ids => [53])
 #Rol.create(:nombre => "Recepcionista", :action_ids => [53])
