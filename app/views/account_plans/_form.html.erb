@@ -31,9 +31,9 @@
 </div>
 
       <br></br>
-        <div class="box box-default box-solid collapsed-box">
+       <div class="box box-primary box-solid collapsed-box">
           <div class="box-header with-border">
-            <h3 class="box-title"><center>Agregar Ejercicios</center></h3>
+            <h3 class="box-title" style="color:white"><center>Agregar Ejercicio</center></h3>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
                 </button>
@@ -57,8 +57,16 @@
                   <td>
                     <%= li.text_field :estado, :class => "form-control"%>
                   </td>             
+              <td>
+                  <%= li.link_to_remove "", :class => "btn btn-danger glyphicon glyphicon-trash " %>
+                </td>               
               </tr>
               <%end%>
+              
+              <tr>
+                <td><%= f.link_to_add "", :accounting_years , :class => "btn btn-primary glyphicon glyphicon-plus"%></td>
+              </tr>
+
           </tbody>
         </table>
       </div>

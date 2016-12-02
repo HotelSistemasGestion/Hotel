@@ -62,8 +62,11 @@
 
                     <td><%= li.select :room_id,{},{:prompt => "Elegir Habitacion"},{ class: "form-control room_id",style: "width: 110px"}%></td>
                     
-                    <td><%= li.text_field :check_in,style: "width: 105px",class: "datepicker form-control check_in"%></td>
-                    <td><%= li.text_field :check_out,style: "width: 105px",class: "datepicker form-control check_out"%></td>
+                    <div class="input-daterange">
+                      <td><%= li.text_field :check_in,style: "width: 105px",class: "datepicker form-control check_in"%></td>
+                      <td><%= li.text_field :check_out,style: "width: 105px",class: "datepicker form-control check_out"%></td>
+                    </div>
+                    
                     <td><%= li.text_field :subtotal,data: {autonumeric: {aSign: 'Gs ',mDec: 0}},class: "form-control subtotal",readonly: true%></td>
                     <td>
                         <button type="button" class="btn btn-primary" id="my_button">

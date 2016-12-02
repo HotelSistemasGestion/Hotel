@@ -107,39 +107,42 @@
                   </thead>
 
                   <tbody>
-                    <% @contar=0%>
-                    <% @accounting_entry.account_x_entries.each do |details|%>
-                    <tr>
-                        <%@id_numero=details.accounting_entry_id%>
-                        <%@debe=AccountingEntry.find_by_sql("SELECT accounting_entries.debe from accounting_entries where numero='#{@id_numero}'")%>
-                        <%@id_numero2=details.accounting_entry_id%>
-                        <%@haber=AccountingEntry.find_by_sql("SELECT accounting_entries.haber from accounting_entries where numero='#{@id_numero2}'")%>
+                    
+                    <%@numero_a=@accounting_entry.numero%>
 
-                        <td><%= details.account %></td>
-                        <td><%= details.observacion %></td>
-                        <td><%= details.monto %></td>
+                    <%@cuentas_id=AccountingEntry.find_by_sql("SELECT accounting_entries.id AS id from accounting_entries where numero='#{@numero_a}'")%>
+                    <% @cuentas_id.each do |a|%>
+                    <% @id_c=a.id%>
+                    <%@datos_detalle=AccountingEntry.find_by_sql("SELECT account_x_entries.account AS account ,account_x_entries.observacion ,account_x_entries.monto ,account_x_entries.tipo from account_x_entries where account_x_entries.accounting_entry_id='#{@id_c}'")%>
+
+                    <%@debe=AccountingEntry.find_by_sql("SELECT accounting_entries.debe AS debe from accounting_entries where accounting_entries.id='#{@id_c}'")%>
+                    <%@haber=AccountingEntry.find_by_sql("SELECT accounting_entries.haber AS haber from accounting_entries where accounting_entries.id='#{@id_c}'")%>
+
+                    <tr>
+                        <td><%= @datos_detalle[0].account %></td>
+                        <td><%= @datos_detalle[0].observacion %></td>
+                        <td><%= @datos_detalle[0].monto %></td>
                         <td>
                         <%bo="A"%>
                         <%bo1="D"%>
                         <%mostrar="Acreedor"%>
                         <%mostrar1="Deudor"%>
-                        <%if details.tipo==bo%>
+                        <%if @datos_detalle[0].tipo==bo%>
                         <%= mostrar %>
                         <%end%>
-                        <%if details.tipo==bo1%>
+                        <%if @datos_detalle[0].tipo==bo1%>
                         <%= mostrar1 %>
                         <%end%>
                         </td>
+                        
                         <td>
-                        <%= @debe[@contar].debe %></td>
+                        <%= @debe[0].debe %></td>
                         <td>
-                        <%= @haber[@contar].haber %></td>
+                        <%= @haber[0].haber %></td>
                         </tr>
-                        <%@contar+=1%>
-                        <%end%>  
-                  </tbody> 
-                </table>  
-
+                    <%end%>
+                </tbody> 
+                    
       
     </div>      
   </div>

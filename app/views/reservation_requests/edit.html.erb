@@ -1,6 +1,13 @@
-<h1>Editing Reservation Request</h1>
+<div class="box box-primary">
+<div class="box-header with-border">
+  <%= link_to reservation_requests_path, class: 'btn btn-default' do %>
+	    <span class="glyphicon glyphicon-list-alt"></span>
+	    Back
+	  <% end %>
+  <h3><center>Editar Pedido de Reservacion</center></h3>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @reservation_request %> |
-<%= link_to 'Back', reservation_requests_path %>
+<div class="box-body">
+	<%= render 'form' %>
+</div>
+</div>

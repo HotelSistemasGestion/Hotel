@@ -10,7 +10,7 @@ class AccountingAccountsController < ApplicationController
     #@accounting_accounts = AccountingAccount.all.order(:grupo)
     #@accounting_accounts = AccountingAccount.all.order(grupo: :desc)
     @accounting_years=AccountingYear.all.order(anho: :asc)
-    @year=AccountingYear.find_by(estado: "vigente")
+    @year=AccountingYear.find_by(estado: "Vigente")
     @id=@year.id
     @accounting_accounts = AccountingAccount.where(ejercicio: @id).order(:parent_id,:grupo,cuenta: :asc)
   end

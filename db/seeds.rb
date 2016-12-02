@@ -49,21 +49,30 @@ Comfort.create(descripcion: "tres estrellas",precio: 50000);
 #AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 
 
-AccountPlan.create(descripcion:"Plan de cuentas 2016",estado:"vigente",version:"1.0.1");
-AccountPlan.create(descripcion:"Plan de cuentas 2015",estado:"vigente",version:"1.0.1");
+AccountPlan.create(descripcion:"Plan de cuentas 2016",estado:"Vigente",version:"1.0.1");
+AccountPlan.create(descripcion:"Plan de cuentas 2015",estado:"Terminado",version:"1.0.1");
 
-AccountingYear.create(anho: "2016",estado: "vigente",account_plan_id: "1");
-AccountingYear.create(anho: "2015",estado: "finalizado",account_plan_id: "2");
+AccountingYear.create(anho: "2016",estado: "Vigente",account_plan_id: "1");
+AccountingYear.create(anho: "2015",estado: "Finalizado",account_plan_id: "2");
+
+AccountingAccount.create(grupo:"1",nombre:"Apertura Ejercicio",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"111",nombre:"Caja",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"112",nombre:"Equipo de oficina",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"113",nombre:"Banco",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
+
+AccountingAccount.create(grupo:"2",nombre:"Acreedores",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"2");
+AccountingAccount.create(grupo:"221",nombre:"Proveedores",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
+AccountingAccount.create(grupo:"222",nombre:"Capital personas",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
 
 
-AccountingAccount.create(grupo:"1",nombre:"Servicios",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"1");
-AccountingAccount.create(grupo:"111",nombre:"TV cable",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
-AccountingAccount.create(grupo:"112",nombre:"TV cable Nacionales",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
-AccountingAccount.create(grupo:"113",nombre:"Lavanderia",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
-AccountingAccount.create(grupo:"2",nombre:"Restaurant",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"2");
-AccountingAccount.create(grupo:"221",nombre:"Desayuno clasico",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
-AccountingAccount.create(grupo:"222",nombre:"Pizza familiar",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
-AccountingAccount.create(grupo:"223",nombre:"Hamburguesa p/Niños",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
+AccountingAccount.create(grupo:"3",nombre:"Servicios",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"331",nombre:"TV cable",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"332",nombre:"TV cable Nacionales",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"333",nombre:"Lavanderia",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"4",nombre:"Restaurant",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"4");
+AccountingAccount.create(grupo:"441",nombre:"Desayuno clasico",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"4");
+AccountingAccount.create(grupo:"442",nombre:"Pizza familiar",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"4");
+AccountingAccount.create(grupo:"443",nombre:"Hamburguesa p/Niños",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"4");
 
 AccountingAccount.create(grupo:"1",nombre:"Servicios",imputable:"false",cuenta:"0",ejercicio:"2",parent_id:"1");
 AccountingAccount.create(grupo:"111",nombre:"TV cable",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
@@ -84,15 +93,39 @@ AccountXPlan.create(account_plan_id:"1",accounting_account_id:"5");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"6");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"7");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"8");
-AccountXPlan.create(account_plan_id:"2",accounting_account_id:"9");
-AccountXPlan.create(account_plan_id:"2",accounting_account_id:"10");
-AccountXPlan.create(account_plan_id:"2",accounting_account_id:"11");
-AccountXPlan.create(account_plan_id:"2",accounting_account_id:"12");
+
 
 #AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "15000",haber: "0");
 #AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "10000",haber: "0");
 #AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "25000",haber: "0");
 #AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "0",debe: "0",haber: "50000");
+
+
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"9");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"10");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"11");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"12");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"13");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"14");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"15");
+
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"16");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"17");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"18");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"19");
+
+
+AccountingEntry.create(id:"1",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+AccountingEntry.create(id:"2",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+AccountingEntry.create(id:"3",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+AccountingEntry.create(id:"4",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+AccountingEntry.create(id:"5",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+
+AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Caja");
+AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"3",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Equipo de oficina");
+AccountXEntry.create(accounting_entry_id:"3",accounting_account_id:"4",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Banco");
+AccountXEntry.create(accounting_entry_id:"4",accounting_account_id:"6",monto:"0",observacion:"Acreedores",tipo:"A",account:"Proveedores");
+AccountXEntry.create(accounting_entry_id:"5",accounting_account_id:"7",monto:"0",observacion:"Acreedores",tipo:"A",account:"Capital personas");
 
 
 #AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
@@ -177,10 +210,16 @@ TypesOfEmployee.create(tipo: "administrador", descripcion: "");
 TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
 TypesOfEmployee.create(tipo: "botones", descripcion: "");
 TypesOfEmployee.create(tipo: "cajero", descripcion: "");
-Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
-Employee.create(types_of_employee_id: 2, nombre: "Enrique", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
-Employee.create(types_of_employee_id: 2, nombre: "Julio", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
-
+TypesOfEmployee.create(tipo: "retirado", descripcion: "");
+#Empleados botones
+Employee.create(types_of_employee_id: 3, nombre: "Pedro", 	 apellido:"Wasiluk",			 edad: 34, cedula: 3000343, telefono: 202030, correo: "pedro@gmail.com",    direccion: "Cambyreta" , 		hijo: 5);
+Employee.create(types_of_employee_id: 3, nombre: "Juan", 	 apellido:"Gimenez",			 edad: 36, cedula: 2400343, telefono: 211230, correo: "juan@gmail.com",     direccion: "encarnacion" , 		hijo: 3);
+Employee.create(types_of_employee_id: 3, nombre: "Lucas", 	 apellido: "Ronaldo",			 edad: 32, cedula: 3040343, telefono: 211232, correo: "lucas@gmail.com",    direccion: "Capitan Miranda" , 	hijo: 1);
+# Empleados de Limpieza
+Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra Liseras", edad: 20, cedula: 4333333, telefono: 211289, correo: "fernando@gmail.com", direccion: "Capitan Miranda" , hijo: 1);
+Employee.create(types_of_employee_id: 2, nombre: "Enrique",  apellido:"Pereira Gomez",	 edad: 28, cedula: 3233500, telefono: 202222, correo: "enrique@gmail.com",  direccion: "Arroyo Pora" ,     hijo: 2);
+Employee.create(types_of_employee_id: 2, nombre: "Julio", 	 apellido:"Torres",			 edad: 22, cedula: 4000343, telefono: 202030, correo: "julio@gmail.com",    direccion: "Capitan Miranda" , hijo: 0);
+# Empleados de Caja
 Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 666, correo: "miguel@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
 
 
@@ -192,10 +231,14 @@ ComplaintService.create(description: "Otros");
 
 Complaint.create(description: "Mal servicio de limpieza a cuarto",complaint_service_id: 1,service_description: "",state: false,room_id: 1);
 Complaint.create(description: "Tuve que esperar 25 minutos para ser atendido en la mesa de consultas",complaint_service_id: 3,service_description: "",state: false,room_id: 1);
-Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complaint_service_id: 2,service_description: "",state: false,room_id: 1);
-Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: false,room_id: 1);
-Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: false,room_id: 1);
-
+Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complaint_service_id: 2,service_description: "",state: true,room_id: 1);
+Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: true,room_id: 1);
+Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: true,room_id: 1);
+Complaint.create(description: "La limpieza no fue buena",complaint_service_id: 1,service_description: "",state: true,room_id: 2);
+Complaint.create(description: "No me dan una solucion en la mesa de atencion",complaint_service_id: 3,service_description: "",state: true,room_id: 2);
+Complaint.create(description: "La comida estaba fria y sin sabor",complaint_service_id: 2,service_description: "",state: true,room_id: 3);
+Complaint.create(description: "El agua caliente no funcionaba",complaint_service_id: 5,service_description: "Agua",state: true,room_id: 2);
+Complaint.create(description: "Algunas luces no funcionan",complaint_service_id: 5,service_description: "Luces",state: true,room_id: 3);
 
 Action.create(accion: "Admin");
 #Acciones para Movimientos
@@ -262,20 +305,25 @@ Action.create(accion: "Ver Habitaciones");
 Action.create(accion: "Crear Habitaciones");
 Action.create(accion: "Editar Habitaciones");
 Action.create(accion: "Inhabilitar Habitaciones");
-
-
+#Acciones para Habitaciones
+Action.create(accion: "Ver Movimientos");
 Rol.create(:nombre => "Admin", :action_ids => [1])
+Rol.create(:nombre => "Auditor", :action_ids => [53])
+#Rol.create(:nombre => "Recepcionista", :action_ids => [53])
+Rol.create(:nombre => "Supervisor", :action_ids => [2,6,7])
+Rol.create(:nombre => "Cajero", :action_ids => [2,3])
 User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 1);
-#User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 3);
+#User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 2);
 Photo.create(:user_id => 1);
+#Photo.create(:user_id => 2);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
+ReservationRequest.create(nombre: "Cristiano", apellido: "Ronaldo", email: "cr7@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
-ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
-ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 1, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+3).to_s, comentarios: "");
+#ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 1, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+3).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Katya", apellido: "Chaparro", email: "katya.chaparro.2010@gmail.com", telefono: "0012", comfort_id: 2, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+5).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
+#eservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtambulo@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 
 ######
 #Budget.create(reservation_request_id: 1,comfort_id: 3, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s,comentario:"a",descuento: 10,total:10000);
@@ -287,8 +335,8 @@ ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtamb
 
 TypeOfCashMovement.create(descripcion: "entrada");
 
-Cash.create(descripcion: "Resturant&Bar");
-OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abierta",fecha_apertura: (Date.today+1).to_s);
+Cash.create(descripcion: "Resturant&Bar",estado: "Cerrada");
+#OpeningCash.create(cash_id: 1,employee_id: 4,monto_efectivo: 100000,estado:"Activo",fecha_apertura: (Date.today+1).to_s);
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
 
 
