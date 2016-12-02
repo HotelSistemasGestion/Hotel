@@ -17,7 +17,7 @@ class CleaningRoomsController < ApplicationController
   def new
     @cleaning_room = CleaningRoom.new
     @cleaning_room.cleanings.build
-    @employees = Employee.where("#{:types_of_employee_id} = ?", 2) 
+    @employees = Employee.where("#{:types_of_employee_id} = ? ", 2) 
   end
 
   # GET /cleaning_rooms/1/edit
