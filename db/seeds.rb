@@ -116,22 +116,22 @@ AccountingEntry.create(id:"3",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",h
 AccountingEntry.create(id:"4",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
 AccountingEntry.create(id:"5",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
 
-AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "15000",haber: "0");
-AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "10000",haber: "0");
-AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "25000",haber: "0");
-AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "0",debe: "0",haber: "50000");
+#AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "15000",haber: "0");
+#AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "10000",haber: "0");
+#AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "25000",haber: "0");
+#AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "0",debe: "0",haber: "50000");
 
-AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Caja");
-AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"3",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Equipo de oficina");
-AccountXEntry.create(accounting_entry_id:"3",accounting_account_id:"4",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Banco");
-AccountXEntry.create(accounting_entry_id:"4",accounting_account_id:"6",monto:"0",observacion:"Acreedores",tipo:"A",account:"Proveedores");
-AccountXEntry.create(accounting_entry_id:"5",accounting_account_id:"7",monto:"0",observacion:"Acreedores",tipo:"A",account:"Capital personas");
+#AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Caja");
+#AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"3",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Equipo de oficina");
+#AccountXEntry.create(accounting_entry_id:"3",accounting_account_id:"4",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Banco");
+#AccountXEntry.create(accounting_entry_id:"4",accounting_account_id:"6",monto:"0",observacion:"Acreedores",tipo:"A",account:"Proveedores");
+#AccountXEntry.create(accounting_entry_id:"5",accounting_account_id:"7",monto:"0",observacion:"Acreedores",tipo:"A",account:"Capital personas");
 
 
-AccountXEntry.create(accounting_entry_id:"6",accounting_account_id:"10",monto:"20000",observacion:"Compra de servicio",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"7",accounting_account_id:"11",monto:"20000",observacion:"Compra de servicio",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"8",accounting_account_id:"13",monto:"20000",observacion:"Compra de servicio",tipo:"A");
-AccountXEntry.create(accounting_entry_id:"9",accounting_account_id:"2",monto:"20000",observacion:"Compra de servicio",tipo:"D");
+#AccountXEntry.create(accounting_entry_id:"6",accounting_account_id:"10",monto:"20000",observacion:"Compra de servicio",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"7",accounting_account_id:"11",monto:"20000",observacion:"Compra de servicio",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"8",accounting_account_id:"13",monto:"20000",observacion:"Compra de servicio",tipo:"A");
+#AccountXEntry.create(accounting_entry_id:"9",accounting_account_id:"2",monto:"20000",observacion:"Compra de servicio",tipo:"D");
 
 #AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
 #AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
