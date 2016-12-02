@@ -12,39 +12,48 @@
   <% end %>
 
 
-  <div class="form-group"> 
-    <%= f.label :"Numero de Habitacion",class: "col-sm-2 control-label"%>
-    <div class="col-sm-10">
+ 
+
+
+ <div class="form-group"> 
+    <%= f.label :"Numero de Habitacion",style: "text-align:left;font-weight:normal",class: "col-sm-3 control-label"%>
+    <div class="col-sm-9">
       <%= f.select :room_id,Room.all.collect { |s| [ s.identificador , s.id ] }, {:style => "width: 100%"},include_blank: true,  class: "form-control"%>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :"Servicio relacionado", class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
+    <%= f.label :"Servicio relacionado",style: "text-align:left;font-weight:normal", class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
       <%= f.select :complaint_service_id,ComplaintService.all.collect { |s| [ s.description , s.id ] },{:style => "width:100%"}, id: "complaint_selector",class: "form-control" %>
     </div>
   </div>
   
   <div class="form-group hide_complaint_selector">
-    <%= f.label :"Describa el servicio", class: "col-sm-2 control-label" %>
-    <div class="col-sm-10 hide_complaint_selector">
+    <%= f.label :"Describa el servicio",style: "text-align:left;font-weight:normal", class: "col-sm-3 control-label" %>
+    <div class="col-sm-9 hide_complaint_selector">
       <%= f.text_field :service_description,class: "form-control"%>
     </div>  
   </div>
 
    <div class="form-group">
-    <%= f.label :"Escriba su queja aqui", class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_area :description,class: "form-control", style: "height:200px"%>
+    <%= f.label :"Escriba su queja aqui",style: "text-align:left;font-weight:normal", class: "col-sm-3 control-label" %>
+    <div class="col-sm-9">
+      <%= f.text_area :description,class: "form-control", style: "height:150px"%>
     </div>  
   </div>
 
   <div class="form-group">
     <div class="col-sm-12 control-label">
-      <%= f.submit  "Enviar Queja",class: "btn btn-default" %>
+      <%= f.submit  "Enviar Queja",class: "btn btn-success" %>
     </div>
   </div>
   
      
 <% end %>
+
+
+
+
+
+

@@ -1,4 +1,5 @@
 class Budget < ActiveRecord::Base
+  audited
 	belongs_to :reservation_request
   belongs_to :comfort
 	has_many :budget_service_details,:dependent => :destroy

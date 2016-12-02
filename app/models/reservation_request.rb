@@ -1,4 +1,5 @@
 class ReservationRequest < ActiveRecord::Base
+	audited
 	belongs_to :comfort
 	has_many :budgets,:dependent => :destroy 
 
@@ -34,8 +35,10 @@ class ReservationRequest < ActiveRecord::Base
   #atributos para filtros de reporte
   filterrific(available_filters: [:sorted_by,:sorted_by_apellido])
   #scopes para reporte
-  scope :sorted_by, lambda { |nombre| where('reservation_requests.nombre = ?', nombre)}
-  scope :sorted_by_apellido, lambda { |apellido| where('reservation_requests.apellido = ?', apellido)}
+  #scope :sorted_by, lambda { |nombre| where('reservation_requests.nombre = ?', nombre)}
+  #scope :sorted_by_apellido, lambda { |apellido| where('reservation_requests.apellido = ?', apellido)}
+  scope :sorted_by,-> nombre {where('LOWER(reservation_requests.nombre) LIKE ?', "%#{nombre}%")}
+  scope :sorted_by_apellido,-> apellido {where('LOWER(reservation_requests.apellido) LIKE ?', "%#{apellido}%")}
   
   
 end
