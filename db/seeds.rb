@@ -226,10 +226,14 @@ ComplaintService.create(description: "Otros");
 
 Complaint.create(description: "Mal servicio de limpieza a cuarto",complaint_service_id: 1,service_description: "",state: false,room_id: 1);
 Complaint.create(description: "Tuve que esperar 25 minutos para ser atendido en la mesa de consultas",complaint_service_id: 3,service_description: "",state: false,room_id: 1);
-Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complaint_service_id: 2,service_description: "",state: false,room_id: 1);
-Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: false,room_id: 1);
-Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: false,room_id: 1);
-
+Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complaint_service_id: 2,service_description: "",state: true,room_id: 1);
+Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: true,room_id: 1);
+Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: true,room_id: 1);
+Complaint.create(description: "La limpieza no fue buena",complaint_service_id: 1,service_description: "",state: true,room_id: 2);
+Complaint.create(description: "No me dan una solucion en la mesa de atencion",complaint_service_id: 3,service_description: "",state: true,room_id: 2);
+Complaint.create(description: "La comida estaba fria y sin sabor",complaint_service_id: 2,service_description: "",state: true,room_id: 3);
+Complaint.create(description: "El agua caliente no funcionaba",complaint_service_id: 5,service_description: "Agua",state: true,room_id: 2);
+Complaint.create(description: "Algunas luces no funcionan",complaint_service_id: 5,service_description: "Luces",state: true,room_id: 3);
 
 Action.create(accion: "Admin");
 #Acciones para Movimientos
