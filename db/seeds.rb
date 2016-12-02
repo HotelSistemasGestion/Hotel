@@ -172,10 +172,16 @@ TypesOfEmployee.create(tipo: "administrador", descripcion: "");
 TypesOfEmployee.create(tipo: "limpiadora", descripcion: "");
 TypesOfEmployee.create(tipo: "botones", descripcion: "");
 TypesOfEmployee.create(tipo: "cajero", descripcion: "");
-Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
-Employee.create(types_of_employee_id: 2, nombre: "Enrique", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
-Employee.create(types_of_employee_id: 2, nombre: "Julio", apellido:"Escurra",edad: 20, cedula: 4333333, telefono: 666, correo: "niko@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
-
+TypesOfEmployee.create(tipo: "retirado", descripcion: "");
+#Empleados botones
+Employee.create(types_of_employee_id: 3, nombre: "Pedro", 	 apellido:"Wasiluk",			 edad: 34, cedula: 3000343, telefono: 202030, correo: "pedro@gmail.com",    direccion: "Cambyreta" , 		hijo: 5);
+Employee.create(types_of_employee_id: 3, nombre: "Juan", 	 apellido:"Gimenez",			 edad: 36, cedula: 2400343, telefono: 211230, correo: "juan@gmail.com",     direccion: "encarnacion" , 		hijo: 3);
+Employee.create(types_of_employee_id: 3, nombre: "Lucas", 	 apellido: "Ronaldo",			 edad: 32, cedula: 3040343, telefono: 211232, correo: "lucas@gmail.com",    direccion: "Capitan Miranda" , 	hijo: 1);
+# Empleados de Limpieza
+Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra Liseras", edad: 20, cedula: 4333333, telefono: 211289, correo: "fernando@gmail.com", direccion: "Capitan Miranda" , hijo: 1);
+Employee.create(types_of_employee_id: 2, nombre: "Enrique",  apellido:"Pereira Gomez",	 edad: 28, cedula: 3233500, telefono: 202222, correo: "enrique@gmail.com",  direccion: "Arroyo Pora" ,     hijo: 2);
+Employee.create(types_of_employee_id: 2, nombre: "Julio", 	 apellido:"Torres",			 edad: 22, cedula: 4000343, telefono: 202030, correo: "julio@gmail.com",    direccion: "Capitan Miranda" , hijo: 0);
+# Empleados de Caja
 Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 666, correo: "miguel@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
 
 

@@ -49,8 +49,10 @@
             <td><%= employee.direccion %></td>
             <td><%= employee.hijo %></td>
             <td align="center"><%= link_to '', employee,class: "btn btn-primary glyphicon glyphicon-eye-open" %>
+             <% if employee.types_of_employee_tipo != "retirado"%>
             <%= link_to '', edit_employee_path(employee), class: "btn btn-warning glyphicon glyphicon-pencil" %>
-            <%= link_to '', employee, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger glyphicon glyphicon-trash" %></td>
+            <%= link_to '', employee, method: :delete, data: { confirm: 'Usted esta seguro?' },class: "btn btn-danger glyphicon glyphicon-trash" %></td>
+            <%end%>
         </tr>
     <% end %>
     </tbody>
