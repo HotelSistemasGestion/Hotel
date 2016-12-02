@@ -1,5 +1,13 @@
-<h2><img src="https://res.cloudinary.com/dqgld1gyl/image/upload/v1479526122/cooltext216714265064138_fm7ire.png"></h2>
+<h2><img src="https://res.cloudinary.com/dqgld1gyl/image/upload/v1479526122/cooltext216714265064138_fm7ire.png"> <div>
+
+      <%= link_to welcome_index_path, class: "btn btn-primary form-control" do %>
+                      <span class="fa fa-fw fa-bed"></span>
+                     #HOTEL UNI
+      <%end%>
+ </h2>
 <!-- The container for the list of example images -->
+
+
 <div  class="links">
      <% Photo.where("#{:room_id} > ?",0).each do |p| %>              
        
