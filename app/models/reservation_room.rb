@@ -1,4 +1,5 @@
 class ReservationRoom < ActiveRecord::Base
+  audited
 	belongs_to :reservation
 	
 	belongs_to :budget

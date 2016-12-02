@@ -1,4 +1,5 @@
 class ReservationRequest < ActiveRecord::Base
+	audited
 	belongs_to :comfort
 	has_many :budgets,:dependent => :destroy 
 	validates :nombre, :presence => {:message => "No puede estar en blanco"}
