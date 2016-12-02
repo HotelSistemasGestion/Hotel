@@ -38,7 +38,8 @@
       <div class="form-group">
         <%= f.label 'Cliente:', class: "col-sm-5 control-label" %>
         <div class="col-sm-7">
-          <%= f.select :client_id ,Client.all.collect { |t| [t.name, t.id ] },{include_blank: true},class: "form-control selectpicker",:required => true ,id: "cliente"%>
+          <%= f.autocomplete_field :nombre,  autocomplete_client_cedula_clients_path,:validate => true, class:"form-control", placeholder: "Ingrese numero de cedula", :multiple => false, :update_elements => {:id => '#cli_id', :ruc => '#ruc', :direccion => '#direccion', :telefono => '#telefono', :email => '#correo'},id: 'cliente',:required => true  %>
+          <%= f.hidden_field  :client_id, id: 'cli_id' %>
           <div class="help-block with-errors"></div>          
           
         </div>                    
@@ -177,14 +178,14 @@
         <div class="form-group">
           <div class="col-md-offset-9 col-md-4">
             <%= f.label :Total %><br>
-            <%= f.text_field :monto_total,id: "Total", class: "form-control total",  :readonly => true,placeholder: "" %>
+            <%= f.text_field :monto_total,id: "Total", class: "form-control total",  :readonly => true,placeholder: "",data: {autonumeric: {aSign: 'Gs ',mDec: 0}} %>
           </div>    
         </div>
       </div>         
     </div>
     <div class="box-footer">
       <div class="col-sm-offset-9 col-sm-10">
-        <%= f.submit "Aceptar", class: "btn btn-primary" ,id:"btnAceptar"%>
+        <%= f.submit "Guardar", class: "btn btn-primary" ,id:"btnAceptar"%>
       </div>
     </div>
   <% end %>

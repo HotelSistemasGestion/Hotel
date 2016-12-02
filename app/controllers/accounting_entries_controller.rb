@@ -32,7 +32,7 @@ end
   # POST /accounting_entries.json
   def create
     @accounting_entry = AccountingEntry.new(accounting_entry_params)
-    @accounting_entry.cuenta="hola"
+    #@accounting_entry.cuenta="hola"
     respond_to do |format|
       if @accounting_entry.save
         

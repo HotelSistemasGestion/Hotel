@@ -106,7 +106,7 @@
     <tbody>
     
     
-      <%= content_tag_for(:tr, @accounts.order(id: :desc)) do |account| %>
+      <%= content_tag_for(:tr, @accounts_report.order(id: :desc)) do |account| %>
        <td><%= account.nombre%></td>
         <td><%= account.ruc%></td>
         <td><%= account.direccion%></td>
