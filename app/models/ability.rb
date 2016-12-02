@@ -15,10 +15,9 @@ class Ability
      can :manage, Invoice
      can :manage, Account
    elsif user.rol_name? "Cajero"
-     can :read, CashMovement
-     can :create, CashMovement
-     can :read, Clients                        
-     can :read, Invoices
+     can :manage, CashMovement
+     can :manage, Client                        
+     can :manage, Invoice
    elsif user.rol_name? "Supervisor"
      can :read, CashMovement
      can :manage, Cash

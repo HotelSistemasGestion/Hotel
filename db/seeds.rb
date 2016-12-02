@@ -215,7 +215,7 @@ Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra L
 Employee.create(types_of_employee_id: 2, nombre: "Enrique",  apellido:"Pereira Gomez",	 edad: 28, cedula: 3233500, telefono: 202222, correo: "enrique@gmail.com",  direccion: "Arroyo Pora" ,     hijo: 2);
 Employee.create(types_of_employee_id: 2, nombre: "Julio", 	 apellido:"Torres",			 edad: 22, cedula: 4000343, telefono: 202030, correo: "julio@gmail.com",    direccion: "Capitan Miranda" , hijo: 0);
 # Empleados de Caja
-Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 666, correo: "miguel@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 0981226979, correo: "cajero@gmail.com", direccion: "Capitan Miranda" , hijo: 0);
 
 
 ComplaintService.create(description: "Limpieza");
