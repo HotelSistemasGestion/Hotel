@@ -127,7 +127,7 @@ class CashMovementsController < ApplicationController
        @suma = 0
        invoices.each do |invoice|
          detalle_factura = InvoiceDetail.where("invoice_id = ?", invoice.id)
-          detalle_factura.each do |detalle|
+          detalle_factura.each do |detalle| 
             @asiento=AccountingEntry.new
             @detalle_asiento=AccountXEntry.new
             @id_servicio = detalle.service_id
@@ -159,7 +159,7 @@ class CashMovementsController < ApplicationController
             @masiento=AccountingEntry.new
             @mdetalle_asiento=AccountXEntry.new
             @name2="Cliente"
-            #@acreedor=AccountingAccount.find_by_sql("select accounting_accounts.id AS id,accounting_accounts.nombre AS nombre from accounting_accounts  where accounting_accounts.nombre='#{@name2}'")   
+            @acreedor=AccountingAccount.find_by_sql("select accounting_accounts.id AS id,accounting_accounts.nombre AS nombre from accounting_accounts  where accounting_accounts.nombre='#{@name2}'")   
             @masiento.numero=@ultimo
             @masiento.fecha=Time.now.strftime("%d-%m-%Y")
             @masiento.iva=0
@@ -172,8 +172,8 @@ class CashMovementsController < ApplicationController
             @mdetalle_asiento.accounting_entry_id=@ultimo
             @mdetalle_asiento.tipo= "A"
             @mdetalle_asiento.account="Cliente"
-            #@acreedor.each do |a|
-            #@mdetalle_asiento.accounting_account_id=a.id
+            @acreedor.each do |a|
+             @mdetalle_asiento.accounting_account_id=a.id
             #end 
             @mdetalle_asiento.save
             @ultimo=0

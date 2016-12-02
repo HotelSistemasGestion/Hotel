@@ -57,21 +57,30 @@ Comfort.create(descripcion: "tres estrellas",precio: 50000);
 #AccountingEntry.create(numero:"10",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
 
 
-AccountPlan.create(descripcion:"Plan de cuentas 2016",estado:"vigente",version:"1.0.1");
-AccountPlan.create(descripcion:"Plan de cuentas 2015",estado:"vigente",version:"1.0.1");
+AccountPlan.create(descripcion:"Plan de cuentas 2016",estado:"Vigente",version:"1.0.1");
+AccountPlan.create(descripcion:"Plan de cuentas 2015",estado:"Terminado",version:"1.0.1");
 
-AccountingYear.create(anho: "2016",estado: "vigente",account_plan_id: "1");
-AccountingYear.create(anho: "2015",estado: "finalizado",account_plan_id: "2");
+AccountingYear.create(anho: "2016",estado: "Vigente",account_plan_id: "1");
+AccountingYear.create(anho: "2015",estado: "Finalizado",account_plan_id: "2");
+
+AccountingAccount.create(grupo:"1",nombre:"Apertura Ejercicio",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"111",nombre:"Caja",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"112",nombre:"Equipo de oficina",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
+AccountingAccount.create(grupo:"113",nombre:"Banco",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
+
+AccountingAccount.create(grupo:"2",nombre:"Acreedores",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"2");
+AccountingAccount.create(grupo:"221",nombre:"Proveedores",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
+AccountingAccount.create(grupo:"222",nombre:"Capital personas",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
 
 
-AccountingAccount.create(grupo:"1",nombre:"Servicios",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"1");
-AccountingAccount.create(grupo:"111",nombre:"TV cable",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
-AccountingAccount.create(grupo:"112",nombre:"TV cable Nacionales",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
-AccountingAccount.create(grupo:"113",nombre:"Lavanderia",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"1");
-AccountingAccount.create(grupo:"2",nombre:"Restaurant",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"2");
-AccountingAccount.create(grupo:"221",nombre:"Desayuno clasico",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
-AccountingAccount.create(grupo:"222",nombre:"Pizza familiar",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
-AccountingAccount.create(grupo:"223",nombre:"Hamburguesa p/Niños",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"2");
+AccountingAccount.create(grupo:"3",nombre:"Servicios",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"331",nombre:"TV cable",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"332",nombre:"TV cable Nacionales",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"333",nombre:"Lavanderia",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"3");
+AccountingAccount.create(grupo:"4",nombre:"Restaurant",imputable:"false",cuenta:"0",ejercicio:"1",parent_id:"4");
+AccountingAccount.create(grupo:"441",nombre:"Desayuno clasico",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"4");
+AccountingAccount.create(grupo:"442",nombre:"Pizza familiar",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"4");
+AccountingAccount.create(grupo:"443",nombre:"Hamburguesa p/Niños",imputable:"true",cuenta:"0",ejercicio:"1",parent_id:"4");
 
 AccountingAccount.create(grupo:"1",nombre:"Servicios",imputable:"false",cuenta:"0",ejercicio:"2",parent_id:"1");
 AccountingAccount.create(grupo:"111",nombre:"TV cable",imputable:"true",cuenta:"0",ejercicio:"2",parent_id:"1");
@@ -87,11 +96,31 @@ AccountXPlan.create(account_plan_id:"1",accounting_account_id:"5");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"6");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"7");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"8");
-AccountXPlan.create(account_plan_id:"2",accounting_account_id:"9");
-AccountXPlan.create(account_plan_id:"2",accounting_account_id:"10");
-AccountXPlan.create(account_plan_id:"2",accounting_account_id:"11");
-AccountXPlan.create(account_plan_id:"2",accounting_account_id:"12");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"9");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"10");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"11");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"12");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"13");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"14");
+AccountXPlan.create(account_plan_id:"1",accounting_account_id:"15");
 
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"16");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"17");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"18");
+AccountXPlan.create(account_plan_id:"2",accounting_account_id:"19");
+
+
+AccountingEntry.create(id:"1",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+AccountingEntry.create(id:"2",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+AccountingEntry.create(id:"3",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+AccountingEntry.create(id:"4",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+AccountingEntry.create(id:"5",numero:"1",fecha:"2016/12/01",iva: "0",debe: "0",haber: "0",auto:"0");
+
+AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Caja");
+AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"3",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Equipo de oficina");
+AccountXEntry.create(accounting_entry_id:"3",accounting_account_id:"4",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Banco");
+AccountXEntry.create(accounting_entry_id:"4",accounting_account_id:"6",monto:"0",observacion:"Acreedores",tipo:"A",account:"Proveedores");
+AccountXEntry.create(accounting_entry_id:"5",accounting_account_id:"7",monto:"0",observacion:"Acreedores",tipo:"A",account:"Capital personas");
 
 #AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
 #AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
