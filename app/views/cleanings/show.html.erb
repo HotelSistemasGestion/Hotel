@@ -19,7 +19,7 @@
                  <dt>Desde la fecha:</dt>
               </div>
                 <div class="col-sm-5">
-                 <%= @cleaning.start %>
+                 <%= @cleaning.start.strftime("%d-%m-%Y") %>
                 </div>
               </div>
                <div class="form-group col-sm-4">
@@ -27,7 +27,7 @@
                  <dt>Hasta la fecha:</dt>
               </div>
                 <div class="col-sm-5">
-                 <%= @cleaning.end %>
+                 <%= @cleaning.end.strftime("%d-%m-%Y") %>
                 </div>
               </div>
                <div class="form-group col-sm-4">

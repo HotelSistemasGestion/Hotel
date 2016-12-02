@@ -5,17 +5,23 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><%= title %></h4>
       </div>
-      <%= form_for @service, remote: true do |f| %>        
+      <%= form_for @service, remote: true, data: {toggle:"validator"} do |f| %>        
         <div class="modal-body">
           <div class="alert alert-danger" role="alert" style="display: none;"></div>
-          <div class="form-group">
-            <%= f.text_field :nombre, class: "form-control input-lg", placeholder: "Nombre del servicio(mínimo 4 caracteres)" %>          
+          <div class="form-group has-feedback">
+            <%= f.label "Servicio:"%>
+            <%= f.text_field :nombre, class: "form-control input-lg", placeholder: "Nombre del servicio",minlength:4,maxlength:100,:required=>true %>
+            <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>          
           </div>
-          <div class="form-group">
-            <%= f.text_area :descripcion, class: "form-control input-lg", placeholder: "Descripcion del servicio(mínimo 6 caracteres)" %>          
+          <div class="form-group has-feedback">
+            <%= f.label "Descripcion:"%>
+            <%= f.text_area :descripcion, class: "form-control input-lg", placeholder: "Descripcion del servicio",minlength:6,maxlength:100,:required=>true %>
+            <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>          
           </div>
-          <div class="form-group">
-            <%= f.text_field :precio, class: "form-control input-lg", placeholder: "Precio del servicio (min: 4 digitos, max: 12)" %>
+          <div class="form-group has-feedback">
+            <%= f.label "Precio: (de 4 a 12 dígitos)"%>
+            <%= f.number_field :precio, class: "form-control input-lg", placeholder: "Precio del servicio",minlength:4,maxlength:12,:required=>true %>
+            <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
           </div>
         </div>
         <div class="modal-footer">

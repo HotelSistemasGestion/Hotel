@@ -27,11 +27,11 @@
 
           <tbody>
             <%= content_tag_for(:tr, @reservations) do |reservation| %>
-                <%if reservation.state == "pendiente" %>
-                  <td><span class="label label-warning">Pendiente</span></td>
+                <td><%if reservation.state == "pendiente" %>
+                  <span class="label label-warning">Pendiente</span>
                 <% else %>
-                  <td><span class="label label-success">Confirmado</span></td>
-                <%end%>
+                  <span class="label label-success">Confirmado</span>
+                <%end%></td>
           
               <td><%= reservation.nombre %></td>
           

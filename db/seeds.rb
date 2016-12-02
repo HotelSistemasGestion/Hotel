@@ -136,14 +136,19 @@ State.create(descripcion: "ocupado");
 State.create(descripcion: "reservado");
 State.create(descripcion: "fuera de servicio");
 
-Room.create(type_of_room_id: 1,state_id: 1, capacidad: 2, identificador:"AU1",comfort_id: 1);
-Room.create(type_of_room_id: 1,state_id: 1,capacidad: 2,identificador: 'AD2',comfort_id: 2);
-Room.create(type_of_room_id: 3,state_id: 1 ,capacidad: 2,identificador: 'CU3',comfort_id: 1);
-Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BU1",comfort_id: 1);
-Room.create(type_of_room_id: 2,state_id: 1, capacidad: 2, identificador:"BD1",comfort_id: 2);
-Room.create(type_of_room_id: 2,state_id: 1 ,capacidad: 2,identificador: 'B2',comfort_id: 1);
-Room.create(type_of_room_id: 3,state_id: 4 ,capacidad: 2,identificador: 'D3',comfort_id: 1);
-Room.create(type_of_room_id: 4,state_id: 4 ,capacidad: 2,identificador: 'XT3',comfort_id: 3);
+
+#Habitaciones 
+Room.create(type_of_room_id: 1,state_id: 1, identificador:"AU1",  comfort_id: 1);
+Room.create(type_of_room_id: 1,state_id: 1, identificador: 'AD2', comfort_id: 2);
+Room.create(type_of_room_id: 3,state_id: 1 ,identificador: 'CU3', comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, identificador:"BU1",  comfort_id: 1);
+Room.create(type_of_room_id: 2,state_id: 1, identificador:"BD1",  comfort_id: 2);
+Room.create(type_of_room_id: 2,state_id: 1 ,identificador: 'B2',  comfort_id: 1);
+Room.create(type_of_room_id: 3,state_id: 4 ,identificador: 'D3',  comfort_id: 1);
+Room.create(type_of_room_id: 1,state_id: 1 ,identificador: 'A1', comfort_id: 3);
+Room.create(type_of_room_id: 1,state_id: 1 ,identificador: 'A2', comfort_id: 3);
+Room.create(type_of_room_id: 1,state_id: 1 ,identificador: 'A3', comfort_id: 3);
+Room.create(type_of_room_id: 1,state_id: 1 ,identificador: 'A4', comfort_id: 3);
 
 
 
@@ -251,6 +256,11 @@ Action.create(accion: "Eliminar Servicio");
 Action.create(accion: "Control de Asientos");
 Action.create(accion: "Control de Cuentas");
 Action.create(accion: "Control de Planes de Cuentas");
+#Acciones para Habitaciones
+Action.create(accion: "Ver Habitaciones");
+Action.create(accion: "Crear Habitaciones");
+Action.create(accion: "Editar Habitaciones");
+Action.create(accion: "Inhabilitar Habitaciones");
 
 
 Rol.create(:nombre => "Admin", :action_ids => [1])
@@ -280,15 +290,25 @@ Cash.create(descripcion: "Resturant&Bar");
 OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abierta",fecha_apertura: (Date.today+1).to_s);
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
 
+
+
+
+#Limpieza de Habitacion
 CleaningRoom.create(employee_id: 1);
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-01",end: "2016-11-05" ,title: "Habitacion A1" ,color: "#33ff00",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-06",end: "2016-11-08" ,title: "Habitacion A1" ,color: "#80f442",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-03",end: "2016-11-10" ,title: "Habitacion A1" ,color: "#f45342",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-12",end: "2016-11-20" ,title: "Habitacion A1" ,color: "#eef442",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-02",end: "2016-11-15" ,title: "Habitacion A1" ,color: "#42f4d7",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-14",end: "2016-11-16" ,title: "Habitacion A1" ,color: "#425cf4",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-28",end: "2016-11-30" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
-Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-11-03",end: "2016-11-14" ,title: "Habitacion A1" ,color: "#f44295",textColor: "#ffffff");
+CleaningRoom.create(employee_id: 2);
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-01",end: "2016-12-05" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-06",end: "2016-12-08" ,title: "Habitacion A1" ,color: "#80f442",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-03",end: "2016-12-10" ,title: "Habitacion A1" ,color: "#f45342",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-12",end: "2016-12-20" ,title: "Habitacion A1" ,color: "#eef442",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-02",end: "2016-12-15" ,title: "Habitacion A1" ,color: "#42f4d7",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-14",end: "2016-12-16" ,title: "Habitacion A1" ,color: "#425cf4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-28",end: "2016-12-30" ,title: "Habitacion A1" ,color: "#d742f4",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 1,employee_id: 1,room_id: 1,start: "2016-12-03",end: "2016-12-14" ,title: "Habitacion A1" ,color: "#f44295",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 2,employee_id: 2,room_id: 2,start: "2017-01-03",end: "2017-01-14" ,title: "Habitacion" 	,color: "#33ff00",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 2,employee_id: 2,room_id: 3,start: "2017-01-07",end: "2017-01-14" ,title: "Habitacion" 	,color: "#f44295",textColor: "#ffffff");
+Cleaning.create(cleaning_room_id: 2,employee_id: 2,room_id: 2,start: "2017-01-01",end: "2017-01-14" ,title: "Habitacion" 	,color: "#d742f4",textColor: "#ffffff");
+
+
 
 PaymentValue.create(descripcion:"efectivo");
 PaymentValue.create(descripcion:"cheque");

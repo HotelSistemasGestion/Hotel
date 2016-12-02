@@ -112,6 +112,11 @@
 $(document).on('nested:fieldAdded','form', function(event) {
   //$("form").live("nested:fieldAdded", function(event) {
   $(event.target).find(':input').enableClientSideValidations();
+  $(".datepicker").datepicker({
+                format: 'dd-mm-yyyy',
+                language: 'es',
+                startDate: '+1d'
+              });
 
 });
 
@@ -162,7 +167,7 @@ function actualizarsubtotal(my_tr){
         var comfort=parseInt(my_tr.find(".sincronizador1").find(":selected").attr("precio"));
         var type_of_room=parseInt(my_tr.find(".sincronizador2").find(":selected").attr("precio"));
 
-        console.log(dias,comfort,type_of_room);
+
         //var precio=parseInt($(ayudante).val());
         if(!isNaN(dias) && !isNaN(type_of_room) && !isNaN(comfort)) { 
           $(subtotal).val(dias * (type_of_room + comfort)).keyup();
@@ -254,7 +259,9 @@ function cargarSelectDeHabitaciones(id,num){
             url:"/reservations/hay_disponible",
             my_button: mybutton,
             dataType:"json",
-            data: { "room_id" : room_id,
+            data: { "reservation_id" : "<%= @reservation.id %>",
+                    "edit": true,
+                    "room_id" : room_id,
                     "check_in" : check_in ,
                     "check_out" : check_out},
             success:function(result){
