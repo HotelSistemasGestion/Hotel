@@ -1,4 +1,5 @@
 class BudgetServiceDetail < ActiveRecord::Base
+  audited
 	belongs_to :budget
 	belongs_to :service
 

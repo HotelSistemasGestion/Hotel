@@ -403,8 +403,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row row-bottom-padded-md">
-                <div class="col-md-12">
+           <div class="row row-bottom-padded-md">
+                <div style="float: none;
+                            margin-left: auto;
+                            margin-right: auto;"
+                            class="col-md-10 to-animate">
 
                     <% if my_type %>
 
@@ -413,13 +416,18 @@
                             <b><%= my_type %></b>
                         </div>
                         <%end%>
-    
-                        <h1>Realize su queja correspondiente</h1>
+                        <%if !user_signed_in? %>
+
+                        <div class="panel panel-success">
+                        <div class="panel-heading">Ayudenos a ofrecele un servicio de excelencia </div>
+                        <div class="panel-body">
                         <%= render 'complaints/form' %>
-                </div>
-                </div>
+                        </div>
+                        </div>
+                        <%end%>
 
             </div>
+        </div>
         </div>
         <%end%>
         <!--Aca esta el mapa  -->
