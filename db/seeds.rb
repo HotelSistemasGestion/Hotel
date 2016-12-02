@@ -263,10 +263,12 @@ Action.create(accion: "Editar Habitaciones");
 Action.create(accion: "Inhabilitar Habitaciones");
 
 
-Rol.create(:nombre => "Admin", :action_ids => [1])
+Rol.create(:nombre => "Admin", :action_ids => [1]);
+#Rol.create(:nombre => "Cajero", :action_ids => [1]);
 User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 1);
-#User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 3);
+#User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 2);
 Photo.create(:user_id => 1);
+#Photo.create(:user_id => 2);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgoro@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
@@ -286,8 +288,8 @@ ReservationRequest.create(nombre: "Mirta", apellido: "Arambulo", email: "mirtamb
 
 TypeOfCashMovement.create(descripcion: "entrada");
 
-Cash.create(descripcion: "Resturant&Bar");
-OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abierta",fecha_apertura: (Date.today+1).to_s);
+Cash.create(descripcion: "Resturant&Bar",estado: "Cerrada");
+#OpeningCash.create(cash_id: 1,employee_id: 4,monto_efectivo: 100000,estado:"Activo",fecha_apertura: (Date.today+1).to_s);
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
 
 
