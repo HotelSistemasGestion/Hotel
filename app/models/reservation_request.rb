@@ -1,13 +1,14 @@
 class ReservationRequest < ActiveRecord::Base
 	belongs_to :comfort
 	has_many :budgets,:dependent => :destroy 
+
 	validates :nombre, :presence => {:message => "No puede estar en blanco"}
 	validates :apellido, :presence => {:message => "No puede estar en blanco"}
 	validates :email, :presence => {:message => "Ingrese un email"}
 	validates :telefono, :presence => {:message => "Ingrese un numero valido"}
 	validates :cantidad_de_adultos, :presence => {:message => "Debe registrar almenos un adulto"}, :numericality => {:only_integer => true, :message => "solo se aceptan enteros"}
 	###
-  validates :comfort_id, :presence => {:message => "No puede estar en blanco"}
+    validates :comfort_id, :presence => {:message => "No puede estar en blanco"}
 	validates :check_in, :presence => {:message => "No puede estar en blanco"}
 	validates :check_out, :presence => {:message => "No puede estar en blanco"}
 	
