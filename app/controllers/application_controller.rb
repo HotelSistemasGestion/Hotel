@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
       end
     elsif resource.rol_name? "Supervisor"
       dashboard_index_path
+    elsif resource.rol_name? "Auditor"
+      audit_index_path
     else
       dashboard_index_path
     end

@@ -19,10 +19,10 @@
    <div id="filterrific_results">
   <table class="table table-striped table-bordered table-hover">
   <colgroup>
-    <col style="width:20%">
-    <col style="width:20%">
-    <col style="width:40%">
-    <col style="width:20%">
+    <col style="width:25%">
+    <col style="width:25%">
+    <col style="width:25%">
+    <col style="width:25%">
   </colgroup>
     <thead>
       <tr>
@@ -39,7 +39,7 @@
     
       <%= content_tag_for(:tr, @cleanings.order(id: :desc)) do |cleaning| %>
        <td><%= cleaning.room.identificador %></td>
-       <td><%= cleaning.employee.nombre %></td>
+       <td><%= cleaning.employee.nombre + " " +cleaning.employee.apellido%></td>
        <td><%= cleaning.start %></td>
        <td><%= cleaning.end %></td>
     <% end %>
@@ -63,10 +63,10 @@
    <div id="filterrific_results">
   <table class="table table-striped table-bordered table-hover">
   <colgroup>
-    <col style="width:20%">
-    <col style="width:20%">
-    <col style="width:40%">
-    <col style="width:20%">
+    <col style="width:25%">
+    <col style="width:25%">
+    <col style="width:25%">
+    <col style="width:25%">
   </colgroup>
     <thead>
       <tr>
@@ -81,9 +81,9 @@
     <tbody>
     
     
-      <%= content_tag_for(:tr, @cleanings.order(id: :desc)) do |cleaning| %>
+      <%= content_tag_for(:tr, @cleanings_report.order(id: :desc)) do |cleaning| %>
        <td><%= cleaning.room.identificador %></td>
-       <td><%= cleaning.employee.nombre%></td>
+       <td><%= cleaning.employee.nombre + " " +cleaning.employee.apellido%></td>
        <td><%= cleaning.start %></td>
        <td><%= cleaning.end %></td>
     <% end %>

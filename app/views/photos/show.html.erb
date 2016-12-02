@@ -45,7 +45,8 @@
                       <li>
                             <a class="image-popup" href="<%=p.my_file.url%>">
               
-                               <%= image_tag p.my_file.url,:width => 50, :height => 50 , :alt =>"User Image"%>
+                       
+                              <%= cl_image_tag(p.my_file.filename,:width => 50, :height => 50, :crop => :fill, :radius => 20 )%>
                             </a>
                           <a class="users-list-name" href="#"><%= (User.where("#{:id} = ? ", p.user_id))[0].username%></a>
                          <!-- <span class="users-list-date">Today</span>-->

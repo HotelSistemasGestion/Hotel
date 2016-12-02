@@ -39,11 +39,6 @@ Comfort.create(descripcion: "tres estrellas",precio: 50000);
 #AccountingEntry.create(numero:"7",fecha:"2016/10/19",iva: "10",debe: "0",haber: "20000");
 
 
-#AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "15000",haber: "0");
-#AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "10000",haber: "0");
-#AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "25000",haber: "0");
-#AccountingEntry.create(numero:"8",fecha:"2016/11/25",iva: "10",debe: "0",haber: "50000");
-
 #AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "54000",haber: "0");
 #AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "18000");
 #AccountingEntry.create(numero:"9",fecha:"2016/12/25",iva: "10",debe: "0",haber: "17000");
@@ -89,6 +84,7 @@ AccountingAccount.create(grupo:"331",nombre:"Cliente",imputable:"true",cuenta:"0
 
 
 
+
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"1");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"2");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"3");
@@ -97,6 +93,14 @@ AccountXPlan.create(account_plan_id:"1",accounting_account_id:"5");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"6");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"7");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"8");
+
+
+#AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "15000",haber: "0");
+#AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "10000",haber: "0");
+#AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "10",debe: "25000",haber: "0");
+#AccountingEntry.create(numero:"2",fecha:"2016/02/25",iva: "0",debe: "0",haber: "50000");
+
+
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"9");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"10");
 AccountXPlan.create(account_plan_id:"1",accounting_account_id:"11");
@@ -122,6 +126,7 @@ AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"3",monto:"0"
 AccountXEntry.create(accounting_entry_id:"3",accounting_account_id:"4",monto:"0",observacion:"Apertura de Ejercicio",tipo:"D",account:"Banco");
 AccountXEntry.create(accounting_entry_id:"4",accounting_account_id:"6",monto:"0",observacion:"Acreedores",tipo:"A",account:"Proveedores");
 AccountXEntry.create(accounting_entry_id:"5",accounting_account_id:"7",monto:"0",observacion:"Acreedores",tipo:"A",account:"Capital personas");
+
 
 #AccountXEntry.create(accounting_entry_id:"1",accounting_account_id:"2",monto:"20000",observacion:"Hospedaje",tipo:"A");
 #AccountXEntry.create(accounting_entry_id:"2",accounting_account_id:"5",monto:"20000",observacion:"Hospedaje",tipo:"D");
@@ -215,7 +220,7 @@ Employee.create(types_of_employee_id: 2, nombre: "Fernando", apellido:"Escurra L
 Employee.create(types_of_employee_id: 2, nombre: "Enrique",  apellido:"Pereira Gomez",	 edad: 28, cedula: 3233500, telefono: 202222, correo: "enrique@gmail.com",  direccion: "Arroyo Pora" ,     hijo: 2);
 Employee.create(types_of_employee_id: 2, nombre: "Julio", 	 apellido:"Torres",			 edad: 22, cedula: 4000343, telefono: 202030, correo: "julio@gmail.com",    direccion: "Capitan Miranda" , hijo: 0);
 # Empleados de Caja
-Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 666, correo: "miguel@gmail.com", direccion: "Capitan Miranda" , hijo: 3);
+Employee.create(types_of_employee_id: 4, nombre: "Miguel", apellido:"Carreras",edad: 20, cedula: 3832128, telefono: 203030, correo: "cajero@gmail.com", direccion: "Capitan Miranda" , hijo: 0);
 
 
 ComplaintService.create(description: "Limpieza");
@@ -226,10 +231,14 @@ ComplaintService.create(description: "Otros");
 
 Complaint.create(description: "Mal servicio de limpieza a cuarto",complaint_service_id: 1,service_description: "",state: false,room_id: 1);
 Complaint.create(description: "Tuve que esperar 25 minutos para ser atendido en la mesa de consultas",complaint_service_id: 3,service_description: "",state: false,room_id: 1);
-Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complaint_service_id: 2,service_description: "",state: false,room_id: 1);
-Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: false,room_id: 1);
-Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: false,room_id: 1);
-
+Complaint.create(description: "Tardaron 45 minutos en traerme mi pedido",complaint_service_id: 2,service_description: "",state: true,room_id: 1);
+Complaint.create(description: "El aire acondicionado no funciona correctamente",complaint_service_id: 5,service_description: "Aire acondicionado",state: true,room_id: 1);
+Complaint.create(description: "Las ventanas no se cerraban del todo",complaint_service_id: 5,service_description: "Ventanas",state: true,room_id: 1);
+Complaint.create(description: "La limpieza no fue buena",complaint_service_id: 1,service_description: "",state: true,room_id: 2);
+Complaint.create(description: "No me dan una solucion en la mesa de atencion",complaint_service_id: 3,service_description: "",state: true,room_id: 2);
+Complaint.create(description: "La comida estaba fria y sin sabor",complaint_service_id: 2,service_description: "",state: true,room_id: 3);
+Complaint.create(description: "El agua caliente no funcionaba",complaint_service_id: 5,service_description: "Agua",state: true,room_id: 2);
+Complaint.create(description: "Algunas luces no funcionan",complaint_service_id: 5,service_description: "Luces",state: true,room_id: 3);
 
 Action.create(accion: "Admin");
 #Acciones para Movimientos
@@ -296,12 +305,17 @@ Action.create(accion: "Ver Habitaciones");
 Action.create(accion: "Crear Habitaciones");
 Action.create(accion: "Editar Habitaciones");
 Action.create(accion: "Inhabilitar Habitaciones");
-
-
+#Acciones para Habitaciones
+Action.create(accion: "Ver Movimientos");
 Rol.create(:nombre => "Admin", :action_ids => [1])
+Rol.create(:nombre => "Auditor", :action_ids => [53])
+Rol.create(:nombre => "Recepcionista", :action_ids => [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45])
+Rol.create(:nombre => "Supervisor", :action_ids => [2,6,7])
+Rol.create(:nombre => "Cajero", :action_ids => [2,3])
 User.create(:username => "Ariel", :numero_ci => "4384512", :celular => "0983433454", :apellido => "Sanabria", :email => "admin@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 1);
-#User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_ids => 3);
+#User.create(:username => "Miguel", :numero_ci => "3832128", :celular => "0981226979", :apellido => "Carreras", :email => "miguel@gmail.com", :password => '123456', :password_confirmation => '123456', :rol_id => 2);
 Photo.create(:user_id => 1);
+#Photo.create(:user_id => 2);
 
 ReservationRequest.create(nombre: "Leo", apellido: "Messi", email: "messi@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
 ReservationRequest.create(nombre: "Cristiano", apellido: "Ronaldo", email: "cr7@gmail.com", telefono: "0012", comfort_id: 3, cantidad_de_adultos: 1, cantidad_de_ninhos: 1, cantidad_de_familias: 1, check_in: (Date.today+1).to_s, check_out: (Date.today+7).to_s, comentarios: "");
@@ -321,8 +335,8 @@ ReservationRequest.create(nombre: "Matias", apellido: "Gonzalez", email: "maedgo
 
 TypeOfCashMovement.create(descripcion: "entrada");
 
-Cash.create(descripcion: "Resturant&Bar");
-OpeningCash.create(cash_id: 1,employee_id: 2,monto_efectivo: 100000,estado:"Abierta",fecha_apertura: (Date.today+1).to_s);
+Cash.create(descripcion: "Resturant&Bar",estado: "Cerrada");
+#OpeningCash.create(cash_id: 1,employee_id: 4,monto_efectivo: 100000,estado:"Activo",fecha_apertura: (Date.today+1).to_s);
 Client.create(nombre:"Franco",apellido:"Cardozo",telefono:"201258",email:"franco@gmail.com",direccion:"Barrio Pacu-Cua",cedula:"123456",ruc:"123456");
 
 

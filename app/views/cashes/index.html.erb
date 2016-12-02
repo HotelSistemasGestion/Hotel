@@ -8,7 +8,9 @@
           <h3 class="box-title col-sm-6">
             Cajas
           </h3>
-          <%= link_to 'Nueva Caja', new_cash_path, remote: true, class: "btn btn-primary" %>           
+          <% if can? :create, Cash %>
+          <%= link_to 'Nueva Caja', new_cash_path, remote: true, class: "btn btn-primary" %>    
+          <%end%>       
         </div> 
         
         <div class="box-body">

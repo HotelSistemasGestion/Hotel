@@ -1,7 +1,8 @@
 
 $(document).ready(function(){
     search_invoices();
-    search_opening();
+    search_opening();   
+    
 });
 
 
@@ -16,8 +17,8 @@ $(document).on("change", ".select", function(){
 
 
 function search_invoices(){
-    $("#cliente").on('change', function (event,data) {                
-            var client = $("#cliente").val();
+    $("#cliente").on('railsAutocomplete.select', function (event,data) {                
+             var client = data.item.id;
             console.log(client);
             $.ajax({
                 type: "GET",
@@ -31,10 +32,12 @@ function search_invoices(){
                     
                     })
                     $(".total").val(sumarSubtotales());
-                    $("#ruc").val(result[0].ruc);
-                    $("#direccion").val(result[0].direccion);
-                    $("#telefono").val(result[0].celular);
-                    $("#correo").val(result[0].correo);
+                    $(".total").keyup();
+                    //$("#ruc").val(result[0].ruc);
+                   // $("#direccion").val(result[0].direccion);
+                    //$("#telefono").val(result[0].celular);
+                    //$("#correo").val(result[0].correo);
+                    //console.log(parseInt($("#total").val()));
                 } 
             });
     });
@@ -133,51 +136,51 @@ function calcularDif(registrados,existentes){
 }
 $(document).on('change','.existentes',function(){
     $("#diferencia").val(calcularDiferencia());
-    $("#diferencia").focus();
+    $("#diferencia").keyup();
     var id = "#"+$(this).attr("id");
     if (id=="#r_efectivo") {
         $("#d_efectivo").val(calcularDif("#efectivo","#r_efectivo"));
-        $("#d_efectivo").focus();
+        $("#d_efectivo").keyup();
     }else if(id=="#r_cheque"){
         $("#d_cheque").val(calcularDif("#cheque","#r_cheque"));
-        $("#d_cheque").focus();
+        $("#d_cheque").keyup();
     }else if (id=="#r_credito") {
         $("#d_credito").val(calcularDif("#credito","#r_credito"));
-        $("#d_credito").focus();
+        $("#d_credito").keyup();
     }else{
         $("#d_debito").val(calcularDif("#debito","#r_debito"));
-        $("#d_debito").focus();
+        $("#d_debito").keyup();
     }
 });
 
 $(document).on('click',"#btnEfectivo",function(){
     $("#r_efectivo").val($("#efectivo").val());
     $("#d_efectivo").val(calcularDif("#efectivo","#r_efectivo"));
-    $("#d_efectivo").focus();
+    $("#d_efectivo").keyup();
     $("#diferencia").val(calcularDiferencia());
-    $("#diferencia").focus();
+    $("#diferencia").keyup();
 });
 
 $(document).on('click',"#btnCheque",function(){
     $("#r_cheque").val($("#cheque").val());
     $("#d_cheque").val(calcularDif("#cheque","#r_cheque"));
-    $("#d_cheque").focus();
+    $("#d_cheque").keyup();
     $("#diferencia").val(calcularDiferencia());
-    $("#diferencia").focus();
+    $("#diferencia").keyup();
 });
 
 $(document).on('click',"#btnCredito",function(){
     $("#r_credito").val($("#credito").val());
     $("#d_credito").val(calcularDif("#credito","#r_credito"));
-    $("#d_credito").focus();
+    $("#d_credito").keyup();
     $("#diferencia").val(calcularDiferencia());
-    $("#diferencia").focus();
+    $("#diferencia").keyup();
 });
 
 $(document).on('click',"#btnDebito",function(){
     $("#r_debito").val($("#debito").val());
     $("#d_debito").val(calcularDif("#debito","#r_debito"));
-    $("#d_efectivo").focus();
+    $("#d_efectivo").keyup();
     $("#diferencia").val(calcularDiferencia());
-    $("#diferencia").focus();
+    $("#diferencia").keyup();
 });
