@@ -15,7 +15,7 @@
 <tr>
 	<td></td>
 	<td></td>
-	<td><%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).cuenta%></td>
+	<td><%=AccountingAccount.find(a_x_e.accounting_account_id).parent_id%>.<%=AccountingAccount.find(a_x_e.accounting_account_id).grupo%></td>
 	 <td><%=AccountingAccount.find(a_x_e.accounting_account_id).nombre%></td>
 	 <td><%=AccountingEntry.find(a_x_e.accounting_entry_id).debe - iva_round %></td>   
 	 <td></td>         
