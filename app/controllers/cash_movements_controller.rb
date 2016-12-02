@@ -127,8 +127,32 @@ class CashMovementsController < ApplicationController
 
                       
 ##########################################################################################################
-       
         @ultimo=AccountingEntry.last.numero + 1
+        @ultimo_id=AccountingEntry.last.id
+        
+             @masiento=AccountingEntry.new
+             @mdetalle_asiento=AccountXEntry.new
+             @masiento.id=AccountingEntry.last.id + 1
+             @name2="Cliente"
+             @acreedor=AccountingAccount.find_by_sql("select accounting_accounts.id AS id from accounting_accounts  where accounting_accounts.nombre='#{@name2}'")   
+             @masiento.numero=@ultimo
+             @masiento.fecha=Time.now.strftime("%d-%m-%Y")
+             @masiento.iva=0
+             @masiento.auto=0
+             @masiento.haber=0
+             @masiento.save
+             @mdetalle_asiento.monto=@monto
+             @mdetalle_asiento.observacion="Cuentas por cobrar"
+             @mdetalle_asiento.accounting_entry_id=AccountingEntry.last.id 
+             @mdetalle_asiento.tipo= "A"
+             @mdetalle_asiento.account="Cliente"
+             @acreedor.each do |a|
+             @mdetalle_asiento.accounting_account_id=a.id
+             end 
+             @mdetalle_asiento.save
+
+
+       
         @suma = 0
         invoices.each do |invoice|
           detalle_factura = InvoiceDetail.where("invoice_id = ?", invoice.id)
@@ -143,7 +167,14 @@ class CashMovementsController < ApplicationController
               #   @nombre_cuenta="Otros"  
              #end
              @namem=@servicio.nombre
+             @bo=false
+             @datos=AccountingAccount.find_by_sql("select accounting_accounts.parent_id AS parent from accounting_accounts  where accounting_accounts.nombre='#{@namem}'")
+              @datos.each do |a|
+                @dato=a.parent
+             end
              @nombre_cuenta=AccountingAccount.find_by_sql("select accounting_accounts.id AS id from accounting_accounts  where accounting_accounts.nombre='#{@namem}'")   
+             @cuenta=AccountingAccount.find_by_sql("select accounting_accounts.nombre AS cuenta from accounting_accounts  where accounting_accounts.parent_id='#{@dato}' and accounting_accounts.imputable='#{@bo}'")   
+             @asiento.id=AccountingEntry.last.id + 1
              @asiento.numero=@ultimo
              @asiento.fecha=Time.now.strftime("%d-%m-%Y")
              @asiento.iva=10
@@ -151,39 +182,22 @@ class CashMovementsController < ApplicationController
              @asiento.auto=0
              @asiento.haber=@monto
              @asiento.save
+             @detalle_asiento.account=@servicio.nombre
              @suma = @suma + @monto
              @detalle_asiento.monto=@monto
+             #@cuenta.each do |b|
              @detalle_asiento.observacion=@servicio.descripcion
-             @detalle_asiento.account=@servicio.nombre
+             #end 
              @nombre_cuenta.each do |a|
              @detalle_asiento.accounting_account_id=a.id
              end 
-             
-             @detalle_asiento.accounting_entry_id=@ultimo
+             @detalle_asiento.accounting_entry_id=AccountingEntry.last.id 
              @detalle_asiento.tipo= "D"
              @detalle_asiento.save
            end
          end
-             @masiento=AccountingEntry.new
-             @mdetalle_asiento=AccountXEntry.new
-             @name2="Cliente"
-             @acreedor=AccountingAccount.find_by_sql("select accounting_accounts.id AS id from accounting_accounts  where accounting_accounts.nombre='#{@name2}'")   
-             @masiento.numero=@ultimo
-             @masiento.fecha=Time.now.strftime("%d-%m-%Y")
-             @masiento.iva=0
-             @masiento.auto=0
              @masiento.debe=@suma
-             @masiento.haber=0
              @masiento.save
-             @mdetalle_asiento.monto=@monto
-             @mdetalle_asiento.observacion="Cuentas por cobrar"
-             @mdetalle_asiento.accounting_entry_id=@ultimo
-             @mdetalle_asiento.tipo= "A"
-             @mdetalle_asiento.account="Cliente"
-             @acreedor.each do |a|
-             @mdetalle_asiento.accounting_account_id=a.id
-             end 
-             @mdetalle_asiento.save
              @ultimo=0
              @suma=0
             @cash_movement.accounting_entry_id= AccountingEntry.last.id
