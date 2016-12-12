@@ -1,5 +1,7 @@
 
 $(document).ready(function(){
+
+
 var cont=0;
 var fecha = new Date();
 var ejercicio=fecha.getFullYear();
@@ -118,8 +120,27 @@ var ejercicio=fecha.getFullYear();
     });
 
 
-  });
+  $('.vali').on('nested:fieldAdded', function(event) {
+  var field;
+  field = event.field;
+  field.validator();
+});
 
+
+
+
+  });
+      $(document).on('nested:fieldAdded','div#account_plans form', function(event) {
+       
+          console.log("Agregado");
+         $(event.target).find(':input').enableClientSideValidations();
+        });
+
+           $(document).on('nested:fieldAdded','div#accounting_years form', function(event) {
+       
+          console.log("Agregado");
+         $(event.target).find(':input').enableClientSideValidations();
+        });
 
 
 function cuentas_cant (num){
@@ -158,6 +179,5 @@ var arr_cont=label.split('.');
   };
 
 
-       
 
 
