@@ -59,27 +59,17 @@
     <%= mostrar1 %>
     <%end%>
     </td>
-    <td>
-        <div class="row">
-            <div class="col-xs-2">
-                <%= link_to accounting_account, remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon-eye-open"></span>
-                    <% end %>    
-            </div>
-            <div class="col-xs-2">
-                <%= link_to edit_accounting_account_path(accounting_account), class: 'btn btn-warning', title: 
-                'Editar Cuenta', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon-pencil"></span>
-                    <% end %>    
-            </div>
-            <div class="col-xs-2">
-                <%= link_to accounting_account, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                        <span class= "glyphicon glyphicon-trash"></span>
-                    <% end %>                    
-    
-            </div>
-            
-        </div>
+    <td align="center">
+                <%= link_to '',accounting_account, remote: true, class: 'btn btn-primary glyphicon glyphicon-eye-open', title: 'Ver'%>
+                 
+
+                <%= link_to '',edit_accounting_account_path(accounting_account), class: 'btn btn-warning glyphicon glyphicon-pencil', title: 
+                'Editar Cuenta'%>
+               
+
+                <%= link_to '',accounting_account, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'btn btn-danger glyphicon glyphicon-trash', title: 'Eliminar' %>
+
+
     </td>
 </tr>                    
 <% end %>

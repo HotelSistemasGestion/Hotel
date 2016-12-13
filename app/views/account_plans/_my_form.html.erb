@@ -5,14 +5,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><%= title %></h4>
       </div>
-      <%= form_for @account_plan, remote: true do |f| %>        
+      <%= form_for @account_plan,data: {toggle: "validator"}, remote: true do |f| %>        
         <div class="modal-body">
 
           <div class="form-group">
 
             <div class="row">
 
-              <div class="col-md-6">   
+              <div class="col-md-6 has-feedback">   
                   <%= f.text_field :descripcion, class: "form-control input-lg", placeholder: "Descripcion" ,:required => true %>             
                   <span id="alerta span"class="glyphicon form-control-feedback" aria-hidden="true"></span>
                   <div class="help-block with-errors"></div> 
