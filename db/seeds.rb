@@ -50,7 +50,7 @@ Comfort.create(descripcion: "tres estrellas",precio: 50000);
 
 
 AccountPlan.create(descripcion:"Plan de cuentas 2016",estado:"Vigente",version:"1.0.1");
-AccountPlan.create(descripcion:"Plan de cuentas 2015",estado:"Terminado",version:"1.0.1");
+AccountPlan.create(descripcion:"Plan de cuentas 2015",estado:"Terminado",version:"1.0.2");
 
 AccountingYear.create(anho: "2016",estado: "Vigente",account_plan_id: "1");
 AccountingYear.create(anho: "2015",estado: "Finalizado",account_plan_id: "2");
