@@ -17,4 +17,4 @@
 /tmp
 
 # Ignorar de prueba
-.ignorar
+app/assets/javascripts/ignorar.js
