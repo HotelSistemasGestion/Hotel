@@ -4,18 +4,7 @@
 
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
-
-    <!-- search form (Optional) -->
-    <!--form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search..."/>
-        <span class="input-group-btn">
-          <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-        </span>
-      </div>
-    </form-->
-    <!-- /.search form -->
-
+   
     <!-- Sidebar Menu -->
     <%if current_user.has_role? "Admin" %>
 
@@ -102,6 +91,7 @@
         <ul class="treeview-menu">          
           <li><a href="<%=accounts_path%>"><i class='glyphicon glyphicon-list-alt'> </i> <span>Cuentas </span></a></li>
           <li><a href="<%=invoices_path%>"><i class='fa fa-credit-card'> </i> <span>Facturas </span></a></li>
+          <li><a href="<%=services_path%>"><i class='glyphicon glyphicon-list-alt'> </i> <span>Servicios </span></a></li>
         </ul>        
       </li>
   
@@ -132,6 +122,73 @@
                 </ul>
             </li>                          
       </ul><!-- /.sidebar-menu --> 
+
+      <%elsif current_user.rol_name? "Recepcionista"%>
+
+      <ul class="sidebar-menu">      
+        <!-- Optionally, you can add icons to the links -->      
+      <li><a href="<%=dashboard_index_path%>"><i class='glyphicon glyphicon-dashboard'></i> <span>Dashboard</span></a></li> 
+      
+    
+      <li class="treeview">
+        <a href="<%=new_account_path%>" ><i class='glyphicon glyphicon-check'> </i> <span>Registrar Check-In</span> </a>
+      </li>
+
+      <li class="treeview">
+        <a href="#">
+            <i class='fa fa-user-plus'></i> <span>Personas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        <ul class="treeview-menu">               
+          <li><a href="<%=clients_path%>"><i class='fa fa-user'> </i> <span>Clientes </span></a></li>
+          <li><a href="<%=employees_path%>"><i class='fa fa-user'> </i> <span>Empleados </span></a></li>
+        </ul>        
+      </li>
+    
+      <li class="treeview">
+          <a href="#">
+            <i class="fa fa-th"></i> <span>Reservas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li><a href="<%=reservation_requests_path%>"><i class="fa fa-circle-o"></i> Pedidos de Reservaciones</a></li>
+            <li class="active"><a href="<%=reservations_path%>"><i class="fa fa-circle-o"></i>Reservas</a></li>
+          </ul>
+      </li>
+
+      <li class="treeview">
+        <a href="#">
+            <i class="fa fa-dollar"></i> <span>Ingresos</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        <ul class="treeview-menu">          
+          <li><a href="<%=accounts_path%>"><i class='glyphicon glyphicon-list-alt'> </i> <span>Cuentas </span></a></li>
+          <li><a href="<%=invoices_path%>"><i class='fa fa-credit-card'> </i> <span>Facturas </span></a></li>
+        </ul>        
+      </li>
+  
+      <li class="treeview">
+        <a href="<%=rooms_path%>"> <i class='glyphicon glyphicon-bell'> </i> <span>Habitaciones</span> </a>
+      </li>
+           
+      <li><a href="<%=complaints_path%>"><i class='glyphicon glyphicon-link'></i> <span>Quejas</span></a></li>      
+      
+    </ul><!-- /.sidebar-menu -->  
+
+    <%elsif current_user.rol_name? "Auditor"%>
+      <ul class="sidebar-menu">      
+        <!-- Optionally, you can add icons to the links -->      
+        <li><a href="<%=dashboard_index_path%>"><i class='glyphicon glyphicon-dashboard'></i> <span>Dashboard</span></a></li>   
+
+        <li><a href="<%=audit_index_path%>"><i class='fa fa-search'></i> <span>Auditoria</span></a></li>      
+      
+      </ul><!-- /.sidebar-menu -->  
 
     <%end%>
 

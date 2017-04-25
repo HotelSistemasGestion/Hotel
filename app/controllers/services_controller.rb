@@ -35,10 +35,44 @@ class ServicesController < ApplicationController
   # POST /services
   # POST /services.json
   def create
-    @service = Service.new(service_params)    
+    @service = Service.new(service_params)
+    @cuenta = AccountingAccount.new
+    @name=@service.nombre    
+    @idp=@service.cuenta_padre
     respond_to do |format|
-      if @service.save          
-        format.js { } # Hace un render a create.js.erb
+      if @service.save 
+        @cuenta.nombre=@name
+        @cuenta.imputable=true
+        @cuenta.cuenta=0
+        @padres=AccountingAccount.find(@idp)
+        @padre=@padres.parent_id
+        @padre1=AccountingAccount.where("parent_id = ?", @padre)
+        @cuenta.ejercicio=@padres.ejercicio
+        @cuenta.parent_id=@padre
+        @contar=0;
+        @padre1.each do |c|
+            @contar = @contar + 1
+        end
+        @guarda=0
+        if @contar < 10
+          @padre1.each do |z|
+             @guardado=z.grupo
+            end
+          @guarda=(@guardado*100)+(@guardado*10)+1 
+         end
+        if @contar>10 
+        @contar2=0
+        @padre1.each do |n|
+            @contar2 = @contar2 + 1 
+            if @contar == @contar2
+              @guarda=n.grupo
+            end
+          end
+        end
+        @cuenta.grupo= @guarda + 1
+        @cuenta.save
+        format.html { redirect_to accounting_accounts_path, notice: 'El servicio ha sido agregada con exito' }
+        format.json { render :show, status: :created, location: @service }
       else
         format.html { render :new }
         format.json { render json: @service.errors, status: :unprocessable_entity }
@@ -95,6 +129,6 @@ class ServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_params
-      params.require(:service).permit(:nombre, :descripcion, :precio)
+      params.require(:service).permit(:nombre, :descripcion, :precio,:cuenta_padre)
     end
 end

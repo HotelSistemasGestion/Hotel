@@ -4,8 +4,27 @@ class Ability
   def initialize(user)
 
    user ||= User.new
-   if user.has_role? "Admin"
+   if user.rol_name? "Admin"
      can :manage, :all
+   elsif user.rol_name? "Recepcionista"
+     can :manage, Client
+     can :manage, Reservation
+     can :manage, ReservationRequest
+     can :manage, Room
+     can :manage, Service
+     can :manage, Invoice
+     can :manage, Account
+   elsif user.rol_name? "Cajero"
+     can :manage, CashMovement
+     can :manage, Client                        
+     can :manage, Invoice
+   elsif user.rol_name? "Supervisor"
+     can :read, CashMovement
+     can :manage, Cash
+     can :manage, OpeningCash
+     can :manage, ClosingCash
+   elsif user.rol_name? "Auditor"
+     can :manage, Audit     
    elsif user.has_role? "Ver Movimiento"     
      can :read, CashMovement
    elsif user.has_role? "Crear Movimiento"
@@ -144,6 +163,8 @@ class Ability
      can :read,Room
   elsif user.has_role? "Control de Planes de Cuentas"
      can :manage, AccountPlan
+  elsif user.has_role? "Ver Movimientos"
+     can :manage, Audit
    else
       can :read, Client
   end

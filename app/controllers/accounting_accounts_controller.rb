@@ -10,7 +10,7 @@ class AccountingAccountsController < ApplicationController
     #@accounting_accounts = AccountingAccount.all.order(:grupo)
     #@accounting_accounts = AccountingAccount.all.order(grupo: :desc)
     @accounting_years=AccountingYear.all.order(anho: :asc)
-    @year=AccountingYear.find_by(estado: "vigente")
+    @year=AccountingYear.find_by(estado: "Vigente")
     @id=@year.id
     @accounting_accounts = AccountingAccount.where(ejercicio: @id).order(:parent_id,:grupo,cuenta: :asc)
   end
@@ -55,20 +55,39 @@ def accountiong_account_years
   # POST /accounting_accounts.json
   def create
     @accounting_account = AccountingAccount.new(accounting_account_params)
-
+    @servicio = Service.new
         respond_to do |format|
     if @accounting_account.save
     ##########################################################
       x=@accounting_account.grupo
         if x<9
           @accounting_account.parent_id=@accounting_account.grupo
-          @accounting_account.save  
+          @accounting_account.save
+          ############################################################3
+          @servicio.nombre=@accounting_account.nombre
+          @servicio.descripcion="Debe ser agregada"  
         end
         if x>9
           cal=x/100
           @accounting_account.parent_id=cal
           @accounting_account.save
+          ############################################################3
+          @servicio.nombre=@accounting_account.nombre
+          @servicio.descripcion="Debe ser agregada"
+          @servicio.save
+          @padre1=AccountingAccount.where("parent_id = ?", cal)
+          @contar2=0
+          @padre1.each do |n| 
+            if @contar2 == 0
+              @guarda=n.id
+            end
+            @contar2 = @contar2 + 1
+          end
+          @servicio.cuenta_padre=@guarda
+          @servicio.precio=0
+          @servicio.save
         end
+        
     ##########################################################
 
     account_year = AccountingYear.find(@accounting_account.ejercicio)
@@ -77,7 +96,8 @@ def accountiong_account_years
     cuentas_x_plan.account_plan_id=account_plan
     cuentas_x_plan.accounting_account_id=@accounting_account.id
     cuentas_x_plan.cuenta_superior=@accounting_account.grupo
-    cuentas_x_plan.save              
+    cuentas_x_plan.save    
+    @servicio.save          
         format.html { redirect_to accounting_accounts_path, notice: 'La cuenta ha sido agregada con exito' }
         format.json { render :show, status: :created, location: @accounting_account }
       else

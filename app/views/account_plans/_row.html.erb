@@ -2,24 +2,12 @@
     <td><%= account_plan.descripcion %></td>
     <td><%= account_plan.estado %></td>
     <td><%= account_plan.version %></td>
-    <td>
-        <div class="row">
-            <div class="col-xs-2">
-                <%= link_to account_plan, remote: true, class: 'btn btn-primary', title: 'Ver', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon-eye-open"></span>
-                    <% end %>    
-            </div>
-            <div class="col-xs-2">
-                <%= link_to edit_account_plan_path(account_plan), class: 'btn btn-warning', title: 'Editar Plan', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                    <span class= "glyphicon glyphicon-pencil"></span>
-                    <% end %>    
-            </div>
-            <div class="col-xs-2">
-                <%= link_to account_plan, method: :delete, data: { confirm: 'Esta seguro?' }, class: 'btn btn-danger', title: 'Eliminar', 'data-toggle' => 'tooltip', 'data-placement' => 'rigth' do %>
-                        <span class= "glyphicon glyphicon-trash"></span>
-                    <% end %>                    
-    
-            </div>
-        </div>
+    <td align="center">
+        
+             <%= link_to '',account_plan, class: 'btn btn-primary glyphicon glyphicon-eye-open',remote: true,  title: 'Ver' %>
+
+             <%= link_to '',edit_account_plan_path(account_plan), class: 'btn btn-warning glyphicon glyphicon-pencil', title: 'Editar Plan' %>
+
+             <%= link_to '',account_plan,  class: 'btn btn-danger glyphicon glyphicon-trash',method: :delete, data: { confirm: 'Esta seguro?' }, title: 'Eliminar' %>
     </td>   
 </tr>

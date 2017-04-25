@@ -89,7 +89,7 @@ class RoomsController < ApplicationController
    # @room.destroy
    @room.update({:state_id => 4})
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
+      format.html { redirect_to rooms_url, notice: 'La habitacion ha sido inhabilitada!!' }
       format.json { head :no_content }
     end
   end
